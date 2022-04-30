@@ -70,10 +70,10 @@ public class class129 extends class128 {
 		if (MouseHandler.MouseHandler_currentButton == 1 || !GameBuild.mouseCam && MouseHandler.MouseHandler_currentButton == 4) {
 			if (var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) {
 				var0.scrollY -= 4;
-				class346.method6449(var0);
+				class346.invalidateWidget(var0);
 			} else if (var5 >= var1 && var5 < var1 + 16 && var6 >= var3 + var2 - 16 && var6 < var3 + var2) {
 				var0.scrollY += 4;
-				class346.method6449(var0);
+				class346.invalidateWidget(var0);
 			} else if (var5 >= var1 - Client.alternativeScrollbarWidth && var5 < Client.alternativeScrollbarWidth + var1 + 16 && var6 >= var2 + 16 && var6 < var3 + var2 - 16) {
 				var7 = var3 * (var3 - 32) / var4;
 				if (var7 < 8) {
@@ -83,7 +83,7 @@ public class class129 extends class128 {
 				int var8 = var6 - var2 - 16 - var7 / 2;
 				int var9 = var3 - 32 - var7;
 				var0.scrollY = var8 * (var4 - var3) / var9;
-				class346.method6449(var0);
+				class346.invalidateWidget(var0);
 				Client.field570 = true;
 			}
 		}
@@ -92,7 +92,7 @@ public class class129 extends class128 {
 			var7 = var0.width;
 			if (var5 >= var1 - var7 && var6 >= var2 && var5 < var1 + 16 && var6 <= var3 + var2) {
 				var0.scrollY += Client.mouseWheelRotation * 45;
-				class346.method6449(var0);
+				class346.invalidateWidget(var0);
 			}
 		}
 

@@ -20,13 +20,13 @@ public abstract class AbstractWorldMapData {
 	static Fonts WorldMapElement_fonts;
 	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 230273216
+		intValue = 406251203
 	)
 	@Export("regionXLow")
 	int regionXLow;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1541758272
+		intValue = -110127755
 	)
 	@Export("regionYLow")
 	int regionYLow;

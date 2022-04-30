@@ -337,7 +337,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 	static int cycle;
 	@ObfuscatedName("dr")
 	@ObfuscatedGetter(
-		longValue = -4039727128502314979L
+		longValue = 4039727128502314979L
 	)
 	@Export("mouseLastLastPressedTimeMillis")
 	static long mouseLastLastPressedTimeMillis;
@@ -397,13 +397,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 	static int hintArrowY;
 	@ObfuscatedName("di")
 	@ObfuscatedGetter(
-		intValue = 167208642
+		intValue = -2063879327
 	)
 	@Export("hintArrowHeight")
 	static int hintArrowHeight;
 	@ObfuscatedName("dt")
 	@ObfuscatedGetter(
-		intValue = -313810368
+		intValue = 800403081
 	)
 	@Export("hintArrowSubX")
 	static int hintArrowSubX;
@@ -776,7 +776,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 	static int mouseCrossY;
 	@ObfuscatedName("kb")
 	@ObfuscatedGetter(
-		intValue = 1806177652
+		intValue = 734553977
 	)
 	@Export("mouseCrossState")
 	static int mouseCrossState;
@@ -1107,7 +1107,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 	@ObfuscatedSignature(
 		descriptor = "Lky;"
 	)
-	static Widget field680;
+	@Export("clickedWidgetParent")
+	static Widget clickedWidgetParent;
 	@ObfuscatedName("op")
 	@ObfuscatedGetter(
 		intValue = -1977634921
@@ -1522,7 +1523,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 		playerMod = false;
 		viewportWidget = null;
 		clickedWidget = null;
-		field680 = null;
+		clickedWidgetParent = null;
 		widgetClickX = 0;
 		widgetClickY = 0;
 		draggedOnWidget = null;
@@ -3469,7 +3470,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 						if (GrandExchangeOfferAgeComparator.field4011 != null) {
 							++field610;
 							if (field610 >= 15) {
-								class346.method6449(GrandExchangeOfferAgeComparator.field4011);
+								class346.invalidateWidget(GrandExchangeOfferAgeComparator.field4011);
 								GrandExchangeOfferAgeComparator.field4011 = null;
 							}
 						}
@@ -3542,7 +3543,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 
 															PacketBufferNode var40;
 															if (class142.dragInventoryWidget != null) {
-																class346.method6449(class142.dragInventoryWidget);
+																class346.invalidateWidget(class142.dragInventoryWidget);
 																++itemDragDuration;
 																if (MouseHandler.MouseHandler_currentButton == 0) {
 																	if (field767) {
@@ -3622,21 +3623,21 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 
 															if (var32 != DevicePcmPlayerProvider.mousedOverWidgetIf1) {
 																if (var32 != null) {
-																	class346.method6449(var32);
+																	class346.invalidateWidget(var32);
 																}
 
 																if (DevicePcmPlayerProvider.mousedOverWidgetIf1 != null) {
-																	class346.method6449(DevicePcmPlayerProvider.mousedOverWidgetIf1);
+																	class346.invalidateWidget(DevicePcmPlayerProvider.mousedOverWidgetIf1);
 																}
 															}
 
 															if (var34 != GrandExchangeOfferOwnWorldComparator.field486 && field657 == field656) {
 																if (var34 != null) {
-																	class346.method6449(var34);
+																	class346.invalidateWidget(var34);
 																}
 
 																if (GrandExchangeOfferOwnWorldComparator.field486 != null) {
-																	class346.method6449(GrandExchangeOfferOwnWorldComparator.field486);
+																	class346.invalidateWidget(GrandExchangeOfferOwnWorldComparator.field486);
 																}
 															}
 
@@ -3644,7 +3645,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 																if (field656 < field657) {
 																	++field656;
 																	if (field656 == field657) {
-																		class346.method6449(GrandExchangeOfferOwnWorldComparator.field486);
+																		class346.invalidateWidget(GrandExchangeOfferOwnWorldComparator.field486);
 																	}
 																}
 															} else if (field656 > 0) {
@@ -4017,7 +4018,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 					}
 
 					if (meslayerContinueWidget != null) {
-						class346.method6449(meslayerContinueWidget);
+						class346.invalidateWidget(meslayerContinueWidget);
 						meslayerContinueWidget = null;
 					}
 
@@ -4059,7 +4060,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 						var60.rawY = var6;
 						var60.xAlignment = 0;
 						var60.yAlignment = 0;
-						class346.method6449(var60);
+						class346.invalidateWidget(var60);
 						this.alignWidget(var60);
 						if (var60.type == 0) {
 							AbstractByteArrayCopier.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var20 >> 16], var60, false);
@@ -4160,7 +4161,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 						var74.sequenceId = var5;
 						var74.modelFrame = 0;
 						var74.modelFrameCycle = 0;
-						class346.method6449(var74);
+						class346.invalidateWidget(var74);
 					}
 
 					var1.serverPacket = null;
@@ -4352,7 +4353,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 					}
 
 					if (var74 != null) {
-						class346.method6449(var74);
+						class346.invalidateWidget(var74);
 					}
 
 					class143.method3072();
@@ -4396,7 +4397,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 
 						if (var5 != var74.scrollY) {
 							var74.scrollY = var5;
-							class346.method6449(var74);
+							class346.invalidateWidget(var74);
 						}
 					}
 
@@ -4488,7 +4489,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 					var74 = class127.getWidget(var20);
 					if (!var21.equals(var74.text)) {
 						var74.text = var21;
-						class346.method6449(var74);
+						class346.invalidateWidget(var74);
 					}
 
 					var1.serverPacket = null;
@@ -4803,12 +4804,12 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 
 					var25 = class127.getWidget(var20);
 					if (var25 != null) {
-						class346.method6449(var25);
+						class346.invalidateWidget(var25);
 					}
 
 					var25 = class127.getWidget(var5);
 					if (var25 != null) {
-						class346.method6449(var25);
+						class346.invalidateWidget(var25);
 						AbstractByteArrayCopier.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var25.id >>> 16], var25, true);
 					}
 
@@ -4881,7 +4882,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 						var60.modelAngleX = var80.xan2d;
 						var60.modelAngleY = var80.yan2d;
 						var60.modelZoom = var80.zoom2d * 100 / var5;
-						class346.method6449(var60);
+						class346.invalidateWidget(var60);
 					} else {
 						var60.itemId = var20;
 						var60.itemQuantity = var5;
@@ -4904,7 +4905,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 							var60.modelZoom = var60.modelZoom * 32 / var60.rawWidth;
 						}
 
-						class346.method6449(var60);
+						class346.invalidateWidget(var60);
 					}
 
 					var1.serverPacket = null;
@@ -4935,7 +4936,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 						var73.itemIds[var6] = 0;
 					}
 
-					class346.method6449(var73);
+					class346.invalidateWidget(var73);
 					var1.serverPacket = null;
 					return true;
 				}
@@ -4971,7 +4972,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 					}
 
 					if (var74 != null) {
-						class346.method6449(var74);
+						class346.invalidateWidget(var74);
 					}
 
 					class143.method3072();
@@ -4985,7 +4986,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 					var73 = class127.getWidget(var20);
 					var73.modelType = 3;
 					var73.modelId = GrandExchangeEvents.localPlayer.appearance.getChatHeadId();
-					class346.method6449(var73);
+					class346.invalidateWidget(var73);
 					var1.serverPacket = null;
 					return true;
 				}
@@ -5038,7 +5039,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 					if (var74.modelType != 2 || var20 != var74.modelId) {
 						var74.modelType = 2;
 						var74.modelId = var20;
-						class346.method6449(var74);
+						class346.invalidateWidget(var74);
 					}
 
 					var1.serverPacket = null;
@@ -5141,7 +5142,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 					if (var74.modelType != 1 || var5 != var74.modelId) {
 						var74.modelType = 1;
 						var74.modelId = var5;
-						class346.method6449(var74);
+						class346.invalidateWidget(var74);
 					}
 
 					var1.serverPacket = null;
@@ -5216,7 +5217,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 						var25.modelAngleX = var6;
 						var25.modelAngleY = var5;
 						var25.modelZoom = var20;
-						class346.method6449(var25);
+						class346.invalidateWidget(var25);
 					}
 
 					var1.serverPacket = null;
@@ -5340,7 +5341,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 					Widget var90 = class127.getWidget(var5);
 					if (var61 != var90.color) {
 						var90.color = var61;
-						class346.method6449(var90);
+						class346.invalidateWidget(var90);
 					}
 
 					var1.serverPacket = null;
@@ -5376,7 +5377,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 					var74 = class127.getWidget(var20);
 					if (var56 != var74.isHidden) {
 						var74.isHidden = var56;
-						class346.method6449(var74);
+						class346.invalidateWidget(var74);
 					}
 
 					var1.serverPacket = null;
@@ -5767,7 +5768,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 								field767 = false;
 								itemDragDuration = 0;
 								if (class142.dragInventoryWidget != null) {
-									class346.method6449(class142.dragInventoryWidget);
+									class346.invalidateWidget(class142.dragInventoryWidget);
 								}
 
 								class142.dragInventoryWidget = class127.getWidget(var5);
@@ -5783,7 +5784,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 									Interpreter.tempMenuAction.action = menuActions[var2];
 								}
 
-								class346.method6449(class142.dragInventoryWidget);
+								class346.invalidateWidget(class142.dragInventoryWidget);
 								return;
 							}
 						}
@@ -5915,7 +5916,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 		garbageValue = "-20"
 	)
 	final void method1164() {
-		class346.method6449(clickedWidget);
+		class346.invalidateWidget(clickedWidget);
 		++class124.widgetDragDuration;
 		if (field687 && field696) {
 			int var1 = MouseHandler.MouseHandler_x;
@@ -5926,16 +5927,16 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 				var1 = field773;
 			}
 
-			if (var1 + clickedWidget.width > field773 + field680.width) {
-				var1 = field773 + field680.width - clickedWidget.width;
+			if (var1 + clickedWidget.width > field773 + clickedWidgetParent.width) {
+				var1 = field773 + clickedWidgetParent.width - clickedWidget.width;
 			}
 
 			if (var2 < field686) {
 				var2 = field686;
 			}
 
-			if (var2 + clickedWidget.height > field686 + field680.height) {
-				var2 = field686 + field680.height - clickedWidget.height;
+			if (var2 + clickedWidget.height > field686 + clickedWidgetParent.height) {
+				var2 = field686 + clickedWidgetParent.height - clickedWidget.height;
 			}
 
 			int var3 = var1 - field688;
@@ -5945,8 +5946,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi
 				isDraggingWidget = true;
 			}
 
-			int var6 = var1 - field773 + field680.scrollX;
-			int var7 = var2 - field686 + field680.scrollY;
+			int var6 = var1 - field773 + clickedWidgetParent.scrollX;
+			int var7 = var2 - field686 + clickedWidgetParent.scrollY;
 			ScriptEvent var8;
 			if (clickedWidget.onDrag != null && isDraggingWidget) {
 				var8 = new ScriptEvent();

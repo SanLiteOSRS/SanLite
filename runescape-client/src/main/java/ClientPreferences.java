@@ -26,7 +26,8 @@ public class ClientPreferences {
 	@Export("titleMusicDisabled")
 	boolean titleMusicDisabled;
 	@ObfuscatedName("n")
-	boolean field1217;
+	@Export("displayFps")
+	boolean displayFps;
 	@ObfuscatedName("s")
 	@ObfuscatedGetter(
 		intValue = 1845230803
@@ -77,7 +78,7 @@ public class ClientPreferences {
 
 	ClientPreferences() {
 		this.hideUsername = false;
-		this.field1217 = false;
+		this.displayFps = false;
 		this.brightness = 0.8D;
 		this.musicVolume = 127;
 		this.soundEffectsVolume = 127;
@@ -94,7 +95,7 @@ public class ClientPreferences {
 	)
 	ClientPreferences(Buffer var1) {
 		this.hideUsername = false;
-		this.field1217 = false;
+		this.displayFps = false;
 		this.brightness = 0.8D;
 		this.musicVolume = 127;
 		this.soundEffectsVolume = 127;
@@ -148,7 +149,7 @@ public class ClientPreferences {
 				}
 
 				if (var2 > 8) {
-					this.field1217 = var1.readUnsignedByte() == 1;
+					this.displayFps = var1.readUnsignedByte() == 1;
 				}
 
 				if (var2 > 9) {
@@ -199,7 +200,7 @@ public class ClientPreferences {
 		var1.writeByte(this.soundEffectsVolume);
 		var1.writeByte(this.areaSoundEffectsVolume);
 		var1.writeByte(this.field1215);
-		var1.writeByte(this.field1217 ? 1 : 0);
+		var1.writeByte(this.displayFps ? 1 : 0);
 		var1.writeInt(this.field1218);
 		return var1;
 	}
@@ -267,7 +268,7 @@ public class ClientPreferences {
 		garbageValue = "618524190"
 	)
 	void method2234(boolean var1) {
-		this.field1217 = var1;
+		this.displayFps = var1;
 		GameEngine.savePreferences();
 	}
 
@@ -277,7 +278,7 @@ public class ClientPreferences {
 		garbageValue = "82"
 	)
 	void method2302() {
-		this.method2234(!this.field1217);
+		this.method2234(!this.displayFps);
 	}
 
 	@ObfuscatedName("w")
@@ -286,7 +287,7 @@ public class ClientPreferences {
 		garbageValue = "-509682647"
 	)
 	boolean method2236() {
-		return this.field1217;
+		return this.displayFps;
 	}
 
 	@ObfuscatedName("k")

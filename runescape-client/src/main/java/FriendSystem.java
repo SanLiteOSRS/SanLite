@@ -553,7 +553,7 @@ public class FriendSystem {
 
 			Client.selectedSpellItemId = -1;
 			Client.isSpellSelected = false;
-			class346.method6449(var0);
+			class346.invalidateWidget(var0);
 		}
 	}
 }

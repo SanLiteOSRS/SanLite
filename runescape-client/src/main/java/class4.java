@@ -41,9 +41,9 @@ public final class class4 {
 		Client.interfaceParents.put(var3, (long)var0);
 		class29.Widget_resetModelFrames(var1);
 		Widget var4 = class127.getWidget(var0);
-		class346.method6449(var4);
+		class346.invalidateWidget(var4);
 		if (Client.meslayerContinueWidget != null) {
-			class346.method6449(Client.meslayerContinueWidget);
+			class346.invalidateWidget(Client.meslayerContinueWidget);
 			Client.meslayerContinueWidget = null;
 		}
 

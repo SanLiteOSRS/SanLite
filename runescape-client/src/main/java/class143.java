@@ -117,7 +117,7 @@ public class class143 extends class128 {
 					var4 = (int)var0.key;
 					Widget var5 = class127.getWidget(var4);
 					if (var5 != null) {
-						class346.method6449(var5);
+						class346.invalidateWidget(var5);
 					}
 				}
 			}

@@ -97,16 +97,16 @@ public final class class268 {
 								var15 = Client.field773;
 							}
 
-							if (var15 + var10.width > Client.field773 + Client.field680.width) {
-								var15 = Client.field773 + Client.field680.width - var10.width;
+							if (var15 + var10.width > Client.field773 + Client.clickedWidgetParent.width) {
+								var15 = Client.field773 + Client.clickedWidgetParent.width - var10.width;
 							}
 
 							if (var16 < Client.field686) {
 								var16 = Client.field686;
 							}
 
-							if (var16 + var10.height > Client.field686 + Client.field680.height) {
-								var16 = Client.field686 + Client.field680.height - var10.height;
+							if (var16 + var10.height > Client.field686 + Client.clickedWidgetParent.height) {
+								var16 = Client.field686 + Client.clickedWidgetParent.height - var10.height;
 							}
 
 							var12 = var15;
@@ -281,7 +281,7 @@ public final class class268 {
 													if (var46 != null) {
 														var46.drawTransBgAt(var22, var23);
 													} else if (Widget.field3411) {
-														class346.method6449(var10);
+														class346.invalidateWidget(var10);
 													}
 												}
 											} else {
@@ -329,7 +329,7 @@ public final class class268 {
 
 																	var28.scrollY -= var29;
 																	Client.draggedWidgetY += var29;
-																	class346.method6449(var28);
+																	class346.invalidateWidget(var28);
 																}
 
 																if (var25 + var23 + 32 > Rasterizer2D.Rasterizer2D_yClipEnd && var28.scrollY < var28.scrollHeight - var28.height) {
@@ -344,7 +344,7 @@ public final class class268 {
 
 																	var28.scrollY += var29;
 																	Client.draggedWidgetY -= var29;
-																	class346.method6449(var28);
+																	class346.invalidateWidget(var28);
 																}
 															}
 														} else if (var10 == GrandExchangeOfferAgeComparator.field4011 && var19 == Client.field611) {
@@ -353,7 +353,7 @@ public final class class268 {
 															var35.drawTransBgAt(var22, var23);
 														}
 													} else {
-														class346.method6449(var10);
+														class346.invalidateWidget(var10);
 													}
 												}
 											}
@@ -400,7 +400,7 @@ public final class class268 {
 										var39 = var10.getFont();
 										if (var39 == null) {
 											if (Widget.field3411) {
-												class346.method6449(var10);
+												class346.invalidateWidget(var10);
 											}
 										} else {
 											String var44 = var10.text;
@@ -450,7 +450,7 @@ public final class class268 {
 											if (var40 != null) {
 												var40.drawTransBgAt(var12, var13);
 											} else if (Widget.field3411) {
-												class346.method6449(var10);
+												class346.invalidateWidget(var10);
 											}
 										} else {
 											if (var10.itemId != -1) {
@@ -461,7 +461,7 @@ public final class class268 {
 
 											if (var40 == null) {
 												if (Widget.field3411) {
-													class346.method6449(var10);
+													class346.invalidateWidget(var10);
 												}
 											} else {
 												var20 = var40.width;
@@ -519,7 +519,7 @@ public final class class268 {
 														var41.calculateBoundsCylinder();
 														var22 = var41.height / 2;
 													} else {
-														class346.method6449(var10);
+														class346.invalidateWidget(var10);
 													}
 												}
 											} else if (var10.modelType == 5) {
@@ -531,13 +531,13 @@ public final class class268 {
 											} else if (var20 == -1) {
 												var41 = var10.getModel((SequenceDefinition)null, -1, var36, GrandExchangeEvents.localPlayer.appearance);
 												if (var41 == null && Widget.field3411) {
-													class346.method6449(var10);
+													class346.invalidateWidget(var10);
 												}
 											} else {
 												SequenceDefinition var47 = class163.SequenceDefinition_get(var20);
 												var41 = var10.getModel(var47, var10.modelFrame, var36, GrandExchangeEvents.localPlayer.appearance);
 												if (var41 == null && Widget.field3411) {
-													class346.method6449(var10);
+													class346.invalidateWidget(var10);
 												}
 											}
 
@@ -563,7 +563,7 @@ public final class class268 {
 												var39 = var10.getFont();
 												if (var39 == null) {
 													if (Widget.field3411) {
-														class346.method6449(var10);
+														class346.invalidateWidget(var10);
 													}
 													continue;
 												}

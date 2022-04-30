@@ -169,7 +169,7 @@ public class class7 {
 			var4.rawY = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 			var4.xAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
 			var4.yAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
-			class346.method6449(var4);
+			class346.invalidateWidget(var4);
 			class127.client.alignWidget(var4);
 			if (var3 != -1 && var4.type == 0) {
 				AbstractByteArrayCopier.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var3 >> 16], var4, false);
@@ -182,7 +182,7 @@ public class class7 {
 			var4.rawHeight = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 			var4.widthAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
 			var4.heightAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
-			class346.method6449(var4);
+			class346.invalidateWidget(var4);
 			class127.client.alignWidget(var4);
 			if (var3 != -1 && var4.type == 0) {
 				AbstractByteArrayCopier.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var3 >> 16], var4, false);
@@ -193,7 +193,7 @@ public class class7 {
 			boolean var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
 			if (var5 != var4.isHidden) {
 				var4.isHidden = var5;
-				class346.method6449(var4);
+				class346.invalidateWidget(var4);
 			}
 
 			return 1;

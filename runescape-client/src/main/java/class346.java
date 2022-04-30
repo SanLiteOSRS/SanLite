@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -93,7 +94,8 @@ public class class346 {
 		descriptor = "(Lky;I)V",
 		garbageValue = "-60390428"
 	)
-	static void method6449(Widget var0) {
+	@Export("invalidateWidget")
+	static void invalidateWidget(Widget var0) {
 		if (var0 != null && var0.cycle == Client.field540) {
 			Client.field715[var0.rootIndex] = true;
 		}

@@ -82,7 +82,7 @@ public class VarpDefinition extends DualNode {
 	static final void updateInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
 		for (int var8 = 0; var8 < var0.length; ++var8) {
 			Widget var9 = var0[var8];
-			if (var9 != null && var9.parentId == var1 && (var9.method5617() || class326.getWidgetFlags(var9) != 0 || var9 == Client.field680)) {
+			if (var9 != null && var9.parentId == var1 && (var9.method5617() || class326.getWidgetFlags(var9) != 0 || var9 == Client.clickedWidgetParent)) {
 				if (var9.isIf3) {
 					if (class1.isComponentHidden(var9)) {
 						continue;
@@ -92,7 +92,7 @@ public class VarpDefinition extends DualNode {
 				}
 
 				if (var9.type == 11 && var9.method5629(VerticalAlignment.urlRequester)) {
-					class346.method6449(var9);
+					class346.invalidateWidget(var9);
 					AbstractByteArrayCopier.revalidateWidgetScroll(var9.children, var9, true);
 					if (var9.field3462 != null) {
 						ScriptEvent var10 = new ScriptEvent();
@@ -180,15 +180,15 @@ public class VarpDefinition extends DualNode {
 						if (var9.noClickThrough) {
 							if (MouseHandler.MouseHandler_x >= var12 && MouseHandler.MouseHandler_y >= var13 && MouseHandler.MouseHandler_x < var14 && MouseHandler.MouseHandler_y < var15) {
 								for (var27 = (ScriptEvent)Client.scriptEvents.last(); var27 != null; var27 = (ScriptEvent)Client.scriptEvents.previous()) {
-									if (var27.field1032) {
+									if (var27.isMouseInputEvent) {
 										var27.remove();
-										var27.widget.field3398 = false;
+										var27.widget.containsMouse = false;
 									}
 								}
 
 								if (class124.widgetDragDuration == 0) {
 									Client.clickedWidget = null;
-									Client.field680 = null;
+									Client.clickedWidgetParent = null;
 								}
 
 								if (!Client.isMenuOpen) {
@@ -197,7 +197,7 @@ public class VarpDefinition extends DualNode {
 							}
 						} else if (var9.noScrollThrough && MouseHandler.MouseHandler_x >= var12 && MouseHandler.MouseHandler_y >= var13 && MouseHandler.MouseHandler_x < var14 && MouseHandler.MouseHandler_y < var15) {
 							for (var27 = (ScriptEvent)Client.scriptEvents.last(); var27 != null; var27 = (ScriptEvent)Client.scriptEvents.previous()) {
-								if (var27.field1032 && var27.widget.onScroll == var27.args) {
+								if (var27.isMouseInputEvent && var27.widget.onScroll == var27.args) {
 									var27.remove();
 								}
 							}
@@ -350,7 +350,7 @@ public class VarpDefinition extends DualNode {
 								Client.draggedOnWidget = var9;
 							}
 
-							if (var9 == Client.field680) {
+							if (var9 == Client.clickedWidgetParent) {
 								Client.field696 = true;
 								Client.field773 = var26;
 								Client.field686 = var11;
@@ -360,7 +360,7 @@ public class VarpDefinition extends DualNode {
 								ScriptEvent var37;
 								if (var35 && Client.mouseWheelRotation != 0 && var9.onScroll != null) {
 									var37 = new ScriptEvent();
-									var37.field1032 = true;
+									var37.isMouseInputEvent = true;
 									var37.widget = var9;
 									var37.mouseY = Client.mouseWheelRotation;
 									var37.args = var9.onScroll;
@@ -373,11 +373,11 @@ public class VarpDefinition extends DualNode {
 									var35 = false;
 								}
 
-								if (!var9.field3372 && var21) {
-									var9.field3372 = true;
+								if (!var9.isClicked && var21) {
+									var9.isClicked = true;
 									if (var9.onClick != null) {
 										var37 = new ScriptEvent();
-										var37.field1032 = true;
+										var37.isMouseInputEvent = true;
 										var37.widget = var9;
 										var37.mouseX = MouseHandler.MouseHandler_lastPressedX - var26;
 										var37.mouseY = MouseHandler.MouseHandler_lastPressedY - var11;
@@ -386,9 +386,9 @@ public class VarpDefinition extends DualNode {
 									}
 								}
 
-								if (var9.field3372 && var36 && var9.onClickRepeat != null) {
+								if (var9.isClicked && var36 && var9.onClickRepeat != null) {
 									var37 = new ScriptEvent();
-									var37.field1032 = true;
+									var37.isMouseInputEvent = true;
 									var37.widget = var9;
 									var37.mouseX = MouseHandler.MouseHandler_x - var26;
 									var37.mouseY = MouseHandler.MouseHandler_y - var11;
@@ -396,11 +396,11 @@ public class VarpDefinition extends DualNode {
 									Client.scriptEvents.addFirst(var37);
 								}
 
-								if (var9.field3372 && !var36) {
-									var9.field3372 = false;
+								if (var9.isClicked && !var36) {
+									var9.isClicked = false;
 									if (var9.onRelease != null) {
 										var37 = new ScriptEvent();
-										var37.field1032 = true;
+										var37.isMouseInputEvent = true;
 										var37.widget = var9;
 										var37.mouseX = MouseHandler.MouseHandler_x - var26;
 										var37.mouseY = MouseHandler.MouseHandler_y - var11;
@@ -411,7 +411,7 @@ public class VarpDefinition extends DualNode {
 
 								if (var36 && var9.onHold != null) {
 									var37 = new ScriptEvent();
-									var37.field1032 = true;
+									var37.isMouseInputEvent = true;
 									var37.widget = var9;
 									var37.mouseX = MouseHandler.MouseHandler_x - var26;
 									var37.mouseY = MouseHandler.MouseHandler_y - var11;
@@ -419,11 +419,11 @@ public class VarpDefinition extends DualNode {
 									Client.scriptEvents.addFirst(var37);
 								}
 
-								if (!var9.field3398 && var35) {
-									var9.field3398 = true;
+								if (!var9.containsMouse && var35) {
+									var9.containsMouse = true;
 									if (var9.onMouseOver != null) {
 										var37 = new ScriptEvent();
-										var37.field1032 = true;
+										var37.isMouseInputEvent = true;
 										var37.widget = var9;
 										var37.mouseX = MouseHandler.MouseHandler_x - var26;
 										var37.mouseY = MouseHandler.MouseHandler_y - var11;
@@ -432,9 +432,9 @@ public class VarpDefinition extends DualNode {
 									}
 								}
 
-								if (var9.field3398 && var35 && var9.onMouseRepeat != null) {
+								if (var9.containsMouse && var35 && var9.onMouseRepeat != null) {
 									var37 = new ScriptEvent();
-									var37.field1032 = true;
+									var37.isMouseInputEvent = true;
 									var37.widget = var9;
 									var37.mouseX = MouseHandler.MouseHandler_x - var26;
 									var37.mouseY = MouseHandler.MouseHandler_y - var11;
@@ -442,11 +442,11 @@ public class VarpDefinition extends DualNode {
 									Client.scriptEvents.addFirst(var37);
 								}
 
-								if (var9.field3398 && !var35) {
-									var9.field3398 = false;
+								if (var9.containsMouse && !var35) {
+									var9.containsMouse = false;
 									if (var9.onMouseLeave != null) {
 										var37 = new ScriptEvent();
-										var37.field1032 = true;
+										var37.isMouseInputEvent = true;
 										var37.widget = var9;
 										var37.mouseX = MouseHandler.MouseHandler_x - var26;
 										var37.mouseY = MouseHandler.MouseHandler_y - var11;
@@ -670,15 +670,15 @@ public class VarpDefinition extends DualNode {
 							if (var30 != null) {
 								if (var30.type == 0 && MouseHandler.MouseHandler_x >= var12 && MouseHandler.MouseHandler_y >= var13 && MouseHandler.MouseHandler_x < var14 && MouseHandler.MouseHandler_y < var15 && !Client.isMenuOpen) {
 									for (ScriptEvent var31 = (ScriptEvent)Client.scriptEvents.last(); var31 != null; var31 = (ScriptEvent)Client.scriptEvents.previous()) {
-										if (var31.field1032) {
+										if (var31.isMouseInputEvent) {
 											var31.remove();
-											var31.widget.field3398 = false;
+											var31.widget.containsMouse = false;
 										}
 									}
 
 									if (class124.widgetDragDuration == 0) {
 										Client.clickedWidget = null;
-										Client.field680 = null;
+										Client.clickedWidgetParent = null;
 									}
 
 									if (!Client.isMenuOpen) {

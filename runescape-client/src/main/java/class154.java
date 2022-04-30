@@ -13,7 +13,7 @@ public class class154 extends class166 {
 	static ClanSettings guestClanSettings;
 	@ObfuscatedName("se")
 	@ObfuscatedGetter(
-		intValue = -847593472
+		intValue = 1598240235
 	)
 	static int field1691;
 	@ObfuscatedName("id")

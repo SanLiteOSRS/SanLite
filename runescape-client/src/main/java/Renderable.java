@@ -250,6 +250,6 @@ public abstract class Renderable extends DualNode {
 		Timer.selectedSpellWidget = var0;
 		Client.selectedSpellChildIndex = var1;
 		class17.selectedSpellFlags = var2;
-		class346.method6449(var4);
+		class346.invalidateWidget(var4);
 	}
 }

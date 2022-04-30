@@ -224,7 +224,7 @@ public class class20 implements Callable {
 		}
 
 		if (Client.meslayerContinueWidget != null) {
-			class346.method6449(Client.meslayerContinueWidget);
+			class346.invalidateWidget(Client.meslayerContinueWidget);
 			Client.meslayerContinueWidget = null;
 		}
 

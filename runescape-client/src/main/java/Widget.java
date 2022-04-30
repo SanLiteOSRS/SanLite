@@ -676,9 +676,11 @@ public class Widget extends Node {
 	@Export("children")
 	public Widget[] children;
 	@ObfuscatedName("fg")
-	public boolean field3398;
+	@Export("containsMouse")
+	public boolean containsMouse;
 	@ObfuscatedName("fh")
-	public boolean field3372;
+	@Export("isClicked")
+	public boolean isClicked;
 	@ObfuscatedName("fk")
 	@ObfuscatedGetter(
 		intValue = -235731823
@@ -818,8 +820,8 @@ public class Widget extends Node {
 		this.itemQuantity = 0;
 		this.modelFrame = 0;
 		this.modelFrameCycle = 0;
-		this.field3398 = false;
-		this.field3372 = false;
+		this.containsMouse = false;
+		this.isClicked = false;
 		this.field3478 = -1;
 		this.field3479 = 0;
 		this.field3480 = 0;

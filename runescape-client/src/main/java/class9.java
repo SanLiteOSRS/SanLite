@@ -520,7 +520,7 @@ public class class9 implements MouseWheel {
 								if (Client.meslayerContinueWidget == null) {
 									class268.resumePauseWidget(var1, var0);
 									Client.meslayerContinueWidget = ItemComposition.getWidgetChild(var1, var0);
-									class346.method6449(Client.meslayerContinueWidget);
+									class346.invalidateWidget(Client.meslayerContinueWidget);
 								}
 							} else if (var2 == 31) {
 								var8 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2971, Client.packetWriter.isaacCipher);
@@ -598,7 +598,7 @@ public class class9 implements MouseWheel {
 									class432.selectedItemSlot = var0;
 									TaskHandler.selectedItemWidget = var1;
 									Varcs.selectedItemId = var3;
-									class346.method6449(var16);
+									class346.invalidateWidget(var16);
 									Client.selectedItemName = UserComparator9.colorStartTag(16748608) + class19.ItemComposition_get(var3).name + UserComparator9.colorStartTag(16777215);
 									if (Client.selectedItemName == null) {
 										Client.selectedItemName = "null";
@@ -855,7 +855,7 @@ public class class9 implements MouseWheel {
 
 		if (Client.isItemSelected != 0) {
 			Client.isItemSelected = 0;
-			class346.method6449(class127.getWidget(TaskHandler.selectedItemWidget));
+			class346.invalidateWidget(class127.getWidget(TaskHandler.selectedItemWidget));
 		}
 
 		if (Client.isSpellSelected) {
@@ -863,7 +863,7 @@ public class class9 implements MouseWheel {
 		}
 
 		if (GrandExchangeOfferAgeComparator.field4011 != null && Client.field610 == 0) {
-			class346.method6449(GrandExchangeOfferAgeComparator.field4011);
+			class346.invalidateWidget(GrandExchangeOfferAgeComparator.field4011);
 		}
 
 	}

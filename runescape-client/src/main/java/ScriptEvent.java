@@ -16,7 +16,8 @@ public class ScriptEvent extends Node {
 	@Export("args")
 	Object[] args;
 	@ObfuscatedName("c")
-	boolean field1032;
+	@Export("isMouseInputEvent")
+	boolean isMouseInputEvent;
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		descriptor = "Lky;"

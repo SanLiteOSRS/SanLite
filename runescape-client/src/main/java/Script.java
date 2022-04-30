@@ -166,7 +166,7 @@ public class Script extends DualNode {
 		class29.method403(var2);
 		Widget var6 = class127.getWidget(var3);
 		if (var6 != null) {
-			class346.method6449(var6);
+			class346.invalidateWidget(var6);
 		}
 
 		if (Client.rootInterface != -1) {

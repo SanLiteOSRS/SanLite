@@ -7,7 +7,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class54 {
 	@ObfuscatedName("sn")
 	@ObfuscatedGetter(
-		intValue = 2115944448
+		intValue = -508954501
 	)
 	static int field447;
 	@ObfuscatedName("v")

@@ -148,7 +148,7 @@ public class ParamComposition extends DualNode {
 		if (Client.clickedWidget == null && !Client.isMenuOpen) {
 			if (var0 != null && FriendLoginUpdate.method6686(var0) != null) {
 				Client.clickedWidget = var0;
-				Client.field680 = FriendLoginUpdate.method6686(var0);
+				Client.clickedWidgetParent = FriendLoginUpdate.method6686(var0);
 				Client.widgetClickX = var1;
 				Client.widgetClickY = var2;
 				class124.widgetDragDuration = 0;

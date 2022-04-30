@@ -69,7 +69,7 @@ public class class168 {
 						Interpreter.scriptActiveWidget = var12;
 					}
 
-					class346.method6449(var6);
+					class346.invalidateWidget(var6);
 					return 1;
 				}
 			}
@@ -79,12 +79,12 @@ public class class168 {
 				var3 = var2 ? WorldMapID.scriptDotWidget : Interpreter.scriptActiveWidget;
 				Widget var10 = class127.getWidget(var3.id);
 				var10.children[var3.childIndex] = null;
-				class346.method6449(var10);
+				class346.invalidateWidget(var10);
 				return 1;
 			} else if (var0 == ScriptOpcodes.CC_DELETEALL) {
 				var3 = class127.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 				var3.children = null;
-				class346.method6449(var3);
+				class346.invalidateWidget(var3);
 				return 1;
 			} else if (var0 == 103) {
 				Interpreter.Interpreter_intStackSize -= 3;

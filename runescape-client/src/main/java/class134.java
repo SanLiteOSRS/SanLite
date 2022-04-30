@@ -119,7 +119,7 @@ public class class134 extends class144 {
 			var3 = var2 ? WorldMapID.scriptDotWidget : Interpreter.scriptActiveWidget;
 		}
 
-		class346.method6449(var3);
+		class346.invalidateWidget(var3);
 		if (var0 != ScriptOpcodes.CC_SETOBJECT && var0 != ScriptOpcodes.CC_SETOBJECT_NONUM && var0 != ScriptOpcodes.CC_SETOBJECT_ALWAYS_NUM) {
 			if (var0 == ScriptOpcodes.CC_SETNPCHEAD) {
 				var3.modelType = 2;

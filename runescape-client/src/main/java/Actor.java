@@ -29,6 +29,9 @@ public abstract class Actor extends Renderable {
 	@Export("isWalking")
 	boolean isWalking;
 	@ObfuscatedName("av")
+	@ObfuscatedGetter(
+		intValue = -783744909
+	)
 	int field1150;
 	@ObfuscatedName("at")
 	@ObfuscatedGetter(
