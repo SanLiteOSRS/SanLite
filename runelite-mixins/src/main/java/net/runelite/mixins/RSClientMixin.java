@@ -2610,5 +2610,36 @@ public abstract class RSClientMixin implements RSClient
 
 		return null;
 	}
+
+	@Inject
+	@MethodHook("loginScreen")
+	public static void loginScreenClick(RSGameEngine var0, RSFont var1)
+	{
+		if (!client.isWorldSelectOpen() && (client.getMouseLastPressedX() > client.getLoginScreenXPadding() + 765 || client.getMouseLastPressedY() > 503))
+		{
+			client.setMouseLastPressedX(0);
+			client.setMouseLastPressedX(0);
+		}
+	}
+
+	@FieldHook("worldSelectOpen")
+	@Inject
+	public static void worldSelectionScreenToggled(int idx)
+	{
+		if (!client.isWorldSelectOpen())
+		{
+			Arrays.fill(client.getBufferProvider().getPixels(), 0);
+		}
+	}
+
+	@MethodHook("drawTitle")
+	@Inject
+	public static void drawTitleHook(RSFont var0, RSFont var1, RSFont var2)
+	{
+		if (client.isWorldSelectOpen())
+		{
+			Arrays.fill(client.getBufferProvider().getPixels(), 0);
+		}
+	}
 }
 

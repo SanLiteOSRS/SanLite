@@ -24,6 +24,7 @@
  */
 package net.runelite.mixins;
 
+import net.runelite.api.ObjectID;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
@@ -70,7 +71,7 @@ public abstract class RSDynamicObjectMixin implements RSDynamicObject
 	@Inject
 	public void onAnimCycleCountChanged(int idx)
 	{
-		if (client.isInterpolateObjectAnimations())
+		if (client.isInterpolateObjectAnimations() && this.getId() != ObjectID.WATER_WHEEL_26671)
 		{
 			// sets the packed anim frame with the frame cycle
 			int objectFrameCycle = client.getGameCycle() - getAnimCycleCount();

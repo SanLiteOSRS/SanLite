@@ -256,6 +256,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("graphicsObjects")
 	RSNodeDeque getGraphicsObjectDeque();
 
+	@Import("worldSelectOpen")
+	boolean isWorldSelectOpen();
+
 	@Import("Login_username")
 	@Override
 	String getUsername();
@@ -270,6 +273,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("otp")
 	@Override
 	void setOtp(String otp);
+
+	@Import("xPadding")
+	int getLoginScreenXPadding();
 
 	@Import("currentLoginField")
 	@Override
@@ -620,6 +626,18 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("MouseHandler_idleCycles")
 	void setMouseIdleTicks(int cycles);
+
+	@Import("MouseHandler_lastPressedX")
+	int getMouseLastPressedX();
+
+	@Import("MouseHandler_lastPressedX")
+	void setMouseLastPressedX(int x);
+
+	@Import("MouseHandler_lastPressedY")
+	int getMouseLastPressedY();
+
+	@Import("MouseHandler_lastPressedY")
+	void setMouseLastPressedY(int y);
 
 	@Import("MouseHandler_lastPressedTimeMillis")
 	@Override
