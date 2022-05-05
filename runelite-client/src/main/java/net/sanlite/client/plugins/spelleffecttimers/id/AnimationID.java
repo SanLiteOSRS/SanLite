@@ -29,6 +29,7 @@ public final class AnimationID
 	public static final int PULL_LEVER = 2140;
 	public static final int STANDARD_PURPLE_TELEPORT = 714;
 	public static final int ECTOPHIAL_TELEPORT = 878;
+	public static final int PHARAOHS_SCEPTRE_TELEPORT = 2881;
 	public static final int FAIRY_RING_TELEPORT = 3265;
 	public static final int SCROLL_TELEPORT = 3864;
 	public static final int XERICS_TALISMAN_TELEPORT = 3865;

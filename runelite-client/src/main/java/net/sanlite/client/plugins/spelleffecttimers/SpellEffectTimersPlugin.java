@@ -395,7 +395,8 @@ public class SpellEffectTimersPlugin extends Plugin
 				animationId == AnimationID.FAIRY_RING_TELEPORT ||
 				animationId == AnimationID.ECTOPHIAL_TELEPORT ||
 				animationId == AnimationID.SCROLL_TELEPORT ||
-				animationId == AnimationID.TABLET_TELEPORT)
+				animationId == AnimationID.TABLET_TELEPORT ||
+				animationId == AnimationID.PHARAOHS_SCEPTRE_TELEPORT)
 		{
 			spellEffects.remove(spellEffectInfo);
 		}
