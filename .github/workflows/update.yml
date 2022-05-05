@@ -45,17 +45,17 @@ jobs:
           echo Determined new gamepack revision as: $NEW_GAMEPACK_REVISION
       - name: Deobfuscate gamepack
         if: ${{ env.CURRENT_GAMEPACK_REVISION < env.NEW_GAMEPACK_REVISION || startsWith(github.ref, 'refs/tags/')}}
-        run: ./gradlew Deob$main --args="../gamepack/gamepack.jar ../gamepack/deob.jar"
+        run: ./gradlew Deob$main --args="../gamepack/gamepack.jar ../gamepack/deob.jar" | tee deob.log
       - name: Update gamepack mappings
         if: ${{ env.CURRENT_GAMEPACK_REVISION < env.NEW_GAMEPACK_REVISION || startsWith(github.ref, 'refs/tags/')}}
         run: |
-          ./gradlew UpdateMappings$main --args="../runescape-client/build/libs/runescape-client-${{ env.PROJECT_VERSION }}.jar ../gamepack/deob.jar ../gamepack/refactored.jar"
+          ./gradlew UpdateMappings$main --args="../runescape-client/build/libs/runescape-client-${{ env.PROJECT_VERSION }}.jar ../gamepack/deob.jar ../gamepack/refactored.jar" | tee update-mappings.log
       - name: Decompile refactored gamepack
         if: ${{ env.CURRENT_GAMEPACK_REVISION < env.NEW_GAMEPACK_REVISION || startsWith(github.ref, 'refs/tags/')}}
         working-directory: ./gamepack
         run: |
           mkdir ./rs-client
-          java -Xmx1024m -cp ../deobfuscator/src/main/resources/fernflower-osrs.jar org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler ./refactored.jar ./rs-client
+          java -jar ../deobfuscator/src/main/resources/fernflower-osrs.jar -bsm=1 -__dump_original_lines__=1 %* sources/ ./refactored.jar ./rs-client | tee decompile.log
           mv ./rs-client/refactored.jar ./decompiled.jar
           unzip ./decompiled.jar -d ./rs-client
       - name: Prepare pull request changes
