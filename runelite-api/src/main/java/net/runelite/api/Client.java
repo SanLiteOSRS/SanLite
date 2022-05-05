@@ -1942,6 +1942,12 @@ public interface Client extends OAuthApi, GameEngine
 	NodeCache getItemCompositionCache();
 
 	/**
+	 * Returns client object composition cache
+	 * @return
+	 */
+	NodeCache getObjectCompositionCache();
+
+	/**
 	 * Returns the array of cross sprites that appear and animate when left-clicking
 	 */
 	SpritePixels[] getCrossSprites();
