@@ -774,6 +774,7 @@ public final class WidgetID
 	static class LunarSpellBook
 	{
 		static final int LUNAR_HOME_TELEPORT = 101;
+		static final int FERTILE_SOIL = 126;
 	}
 
 	static class ArceuusSpellBook
