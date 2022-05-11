@@ -5,112 +5,103 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("no")
+@ObfuscatedName("ni")
 @Implements("BufferedNetSocket")
 public class BufferedNetSocket extends AbstractSocket {
 	@ObfuscatedName("o")
-	@Export("Tiles_hue")
-	static int[] Tiles_hue;
-	@ObfuscatedName("ei")
-	@ObfuscatedSignature(
-		descriptor = "Llx;"
-	)
-	@Export("archive3")
-	static Archive archive3;
-	@ObfuscatedName("v")
 	@Export("socket")
 	Socket socket;
-	@ObfuscatedName("c")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lnx;"
+		descriptor = "Lnp;"
 	)
 	@Export("source")
 	BufferedSource source;
-	@ObfuscatedName("i")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lnd;"
+		descriptor = "Lno;"
 	)
 	@Export("sink")
 	BufferedSink sink;
 
 	public BufferedNetSocket(Socket var1, int var2, int var3) throws IOException {
-		this.socket = var1;
-		this.socket.setSoTimeout(30000);
-		this.socket.setTcpNoDelay(true);
-		this.socket.setReceiveBufferSize(65536);
-		this.socket.setSendBufferSize(65536);
-		this.source = new BufferedSource(this.socket.getInputStream(), var2);
-		this.sink = new BufferedSink(this.socket.getOutputStream(), var3);
-	}
+		this.socket = var1; // L: 12
+		this.socket.setSoTimeout(30000); // L: 13
+		this.socket.setTcpNoDelay(true); // L: 14
+		this.socket.setReceiveBufferSize(65536); // L: 15
+		this.socket.setSendBufferSize(65536); // L: 16
+		this.source = new BufferedSource(this.socket.getInputStream(), var2); // L: 17
+		this.sink = new BufferedSink(this.socket.getOutputStream(), var3); // L: 18
+	} // L: 19
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "-13138"
+		descriptor = "(I)V",
+		garbageValue = "731891927"
 	)
 	@Export("close")
 	public void close() {
-		this.sink.close();
+		this.sink.close(); // L: 48
 
 		try {
-			this.socket.close();
-		} catch (IOException var2) {
+			this.socket.close(); // L: 50
+		} catch (IOException var2) { // L: 52
 		}
 
-		this.source.close();
-	}
+		this.source.close(); // L: 53
+	} // L: 54
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-891040314"
+		descriptor = "(B)I",
+		garbageValue = "18"
 	)
 	@Export("readUnsignedByte")
 	public int readUnsignedByte() throws IOException {
-		return this.source.readUnsignedByte();
+		return this.source.readUnsignedByte(); // L: 33
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "46"
+		descriptor = "(I)I",
+		garbageValue = "-1429957580"
 	)
 	@Export("available")
 	public int available() throws IOException {
-		return this.source.available();
+		return this.source.available(); // L: 28
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "27"
+		descriptor = "(II)Z",
+		garbageValue = "-15219997"
 	)
 	@Export("isAvailable")
 	public boolean isAvailable(int var1) throws IOException {
-		return this.source.isAvailable(var1);
+		return this.source.isAvailable(var1); // L: 23
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)I",
-		garbageValue = "-118"
+		descriptor = "([BIII)I",
+		garbageValue = "-642682113"
 	)
 	@Export("read")
 	public int read(byte[] var1, int var2, int var3) throws IOException {
-		return this.source.read(var1, var2, var3);
+		return this.source.read(var1, var2, var3); // L: 38
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "-1359342670"
+		garbageValue = "257086671"
 	)
 	@Export("write")
 	public void write(byte[] var1, int var2, int var3) throws IOException {
-		this.sink.write(var1, var2, var3);
-	}
+		this.sink.write(var1, var2, var3); // L: 43
+	} // L: 44
 
 	protected void finalize() {
-		this.close();
-	}
+		this.close(); // L: 58
+	} // L: 59
 }
