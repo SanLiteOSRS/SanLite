@@ -9,7 +9,7 @@ import java.security.MessageDigest
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
-open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultTask() {
+open class BootstrapTask @Inject constructor(@Input val type: String, @Input val repoUrl: String) : DefaultTask() {
 
     @InputFile
     @PathSensitive(PathSensitivity.ABSOLUTE)
@@ -149,9 +149,7 @@ open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultT
                     it.file.name.contains("runescape-api") ||
                     it.file.name.contains("runelite-api") ||
                     it.file.name.contains("runelite-jshell")) {
-                path = "https://github.com/open-osrs/hosting/raw/master/${type}/${it.file.name}"
-            } else if (it.file.name.contains("injection-annotations")) {
-                path = "https://github.com/open-osrs/hosting/raw/master/" + group.replace(".", "/") + "/${name}/$version/${it.file.name}"
+                path = "${repoUrl}/${type}/${it.file.name}"
             } else if (!group.contains("runelite")) {
                 path = "https://repo.maven.apache.org/maven2/" + group.replace(".", "/") + "/${name}/$version/${name}-$version"
                 if (it.classifier != null && it.classifier != "no_aop") {
@@ -164,7 +162,8 @@ open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultT
                     it.file.name.contains("substance") ||
                     it.file.name.contains("gluegen") ||
                     it.file.name.contains("jogl") ||
-                    it.file.name.contains("jocl")
+                    it.file.name.contains("jocl") ||
+                    it.file.name.contains("http-api")
             ) {
                 path = "https://repo.runelite.net/"
                 path += "${group.replace(".", "/")}/${name}/$version/${name}-$version"
@@ -236,7 +235,7 @@ open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultT
         val sha = hash(cjar.readBytes())
         artifacts.add(JsonBuilder(
                 "name" to cjar.name,
-                "path" to "https://github.com/open-osrs/hosting/raw/master/${type}/${cjar.name}",
+                "path" to "${repoUrl}/${type}/${cjar.name}",
                 "size" to cjar.length(),
                 "hash" to sha
         ))
@@ -271,7 +270,7 @@ open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultT
         val bootstrapDir = File("${project.buildDir}/bootstrap")
         bootstrapDir.mkdirs()
 
-        File(bootstrapDir, "bootstrap-${type}.json").printWriter().use { out ->
+        File(bootstrapDir, "${type}/bootstrap.json").printWriter().use { out ->
             out.println(prettyJson)
         }
     }

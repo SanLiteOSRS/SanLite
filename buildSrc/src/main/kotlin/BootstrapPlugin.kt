@@ -17,9 +17,10 @@ class BootstrapPlugin : Plugin<Project> {
             bootstrapDependencies(project(":runelite-jshell"))
         }
 
-        tasks.register<BootstrapTask>("bootstrapStaging", "staging")
-        tasks.register<BootstrapTask>("bootstrapNightly", "nightly")
-        tasks.register<BootstrapTask>("bootstrapStable", "stable")
+        tasks.register<BootstrapTask>("bootstrapStaging", "staging", "https://raw.githubusercontent.com/sanliteosrs/hosting-repo/master")
+        tasks.register<BootstrapTask>("bootstrapStagingFallback", "staging-fallback", "https://gitlab.com/sanlite/hosting-repo/-/raw/master")
+        tasks.register<BootstrapTask>("bootstrapLive", "live", "https://raw.githubusercontent.com/sanliteosrs/hosting-repo/master")
+        tasks.register<BootstrapTask>("bootstrapLiveFallback", "live-fallback", "https://gitlab.com/sanlite/hosting-repo/-/raw/master")
 
         tasks.withType<BootstrapTask> {
             this.group = "sanlite"
