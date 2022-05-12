@@ -24,6 +24,7 @@ runelite-client/dependencies.txt
 .staging/
 .vscode
 .factorypath
+.DS_Store
 hs_err_pid*.log
 /runelite-client/src/main/resources/net/runelite/client/injected-client.rs
 gamepack
