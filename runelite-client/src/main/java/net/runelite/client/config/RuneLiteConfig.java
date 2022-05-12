@@ -465,6 +465,17 @@ public interface RuneLiteConfig extends Config
 		return true;
 	}
 
+	@ConfigItem(
+		keyName = "dragHotkey",
+		name = "Drag Hotkey",
+		description = "Configures the hotkey used to drag UI elements around",
+		position = 52
+	)
+	default Keybind dragHotkey()
+	{
+		return Keybind.ALT;
+	}
+
 	@Range(
 		max = 200
 	)
@@ -472,7 +483,7 @@ public interface RuneLiteConfig extends Config
 		keyName = "soundVolume",
 		name = "Sound volume",
 		description = "The playback volume of non-game sounds from plugins",
-		position = 52
+		position = 99
 	)
 	@Units(Units.PERCENT)
 	default int soundVolume()
