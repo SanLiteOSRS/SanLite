@@ -35,7 +35,6 @@ gradleEnterprise {
         termsOfServiceAgree = System.getenv("SCAN_TOS_ACCEPTED")?: "no"
     }
 }
-include(":bootstrapper")
 include(":cache")
 include(":deobfuscator")
 include(":injection-annotations")

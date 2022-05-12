@@ -7,10 +7,8 @@ If you have any questions, please join our [Discord](https://discord.gg/hNgWmk6)
 
 ## Project Layout
 
-- [bootstrapper](bootstrapper/src/main/java/net/runelite/bootstrap) - Generates bootstrap file used for automatically retrieving launcher dependencies
 - [cache](cache/src/main/java/net/runelite/cache) - Libraries used for reading/writing cache files, as well as the data in it
 - [deobfuscator](deobfuscator/src/main/java/net/runelite/deob) - Deobfuscates OSRS gamepacks & updating the runescape-client mappings
-- [injected-client](injected-client) - OSRS client with mixins injected
 - [injector](injector/src/main/java/net/runelite/injector) - Injects mixins into the OSRS client
 - [runelite-api](runelite-api/src/main/java/net/runelite/api) - RuneLite API, interfaces for accessing the client
 - [runelite-mixins](runelite-mixins/src/main/java/net/runelite) - Mixins which are injected into the injected client's classes	
