@@ -25,7 +25,7 @@ import org.objectweb.asm.ClassWriter;
 
 public class SourceChangerTest
 {
-	private static final String PACKAGE = "com.openosrs.injector.transformers.srcchangeclasses.";
+	private static final String PACKAGE = "net.sanlite.injector.transformers.srcchangeclasses.";
 
 	@Test
 	@Ignore // Ignored because it's not really testing anything atm, but it works!

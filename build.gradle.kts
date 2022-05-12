@@ -95,7 +95,7 @@ subprojects {
         exclusiveContent {
             forRepository {
                 maven {
-                    url = uri("https://raw.githubusercontent.com/open-osrs/hosting/master")
+                    url = uri("https://raw.githubusercontent.com/SanLiteOSRS/hosting-repo/master")
                 }
             }
             filter {

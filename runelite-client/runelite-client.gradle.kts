@@ -54,7 +54,7 @@ dependencies {
 
     implementation(project(":runelite-jshell"))
     implementation(group = "net.runelite.arn", name = "http-api", version = "1.0.0")
-    implementation(group = "ch.qos.logback", name = "logback-classic", version = ProjectVersions.logbackVersion)
+    implementation(group = "ch.qos.logback", name = "logback-classic", version = "1.2.9")
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
     implementation(group = "com.google.guava", name = "guava", version = "23.2-jre")
     implementation(group = "com.google.inject", name = "guice", version = "4.1.0", classifier = "no_aop")
