@@ -121,7 +121,7 @@ public class SecureRandomCallable implements Callable {
 		System.gc(); // L: 3018
 		UrlRequester.method2538(2); // L: 3019
 		Client.currentTrackGroupId = -1; // L: 3020
-		Client.field734 = false; // L: 3021
+		Client.playingJingle = false; // L: 3021
 		Varcs.method2466(); // L: 3022
 		PendingSpawn.updateGameState(10); // L: 3023
 	} // L: 3024

@@ -117,6 +117,6 @@ public class class67 {
 	)
 	static final void method1881(int var0) {
 		var0 = Math.min(Math.max(var0, 0), 127); // L: 12073
-		class12.clientPreferences.method2236(var0); // L: 12074
+		class12.clientPreferences.updateSoundEffectVolume(var0); // L: 12074
 	} // L: 12075
 }

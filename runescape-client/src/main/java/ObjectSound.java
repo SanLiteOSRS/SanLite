@@ -39,13 +39,13 @@ public final class ObjectSound extends Node {
 	int y;
 	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1430224256
+		intValue = 2069201157
 	)
 	@Export("maxX")
 	int maxX;
 	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 711037824
+		intValue = -1537948889
 	)
 	@Export("maxY")
 	int maxY;

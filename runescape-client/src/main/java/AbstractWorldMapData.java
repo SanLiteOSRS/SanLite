@@ -10,18 +10,18 @@ import net.runelite.mapping.ObfuscatedSignature;
 public abstract class AbstractWorldMapData {
 	@ObfuscatedName("tk")
 	@ObfuscatedGetter(
-		intValue = 1523531776
+		intValue = -508466371
 	)
 	static int field2851;
 	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1545834496
+		intValue = 1205484999
 	)
 	@Export("regionXLow")
 	int regionXLow;
 	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1194858688
+		intValue = -1189289885
 	)
 	@Export("regionYLow")
 	int regionYLow;

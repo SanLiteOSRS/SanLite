@@ -343,7 +343,7 @@ public final class Player extends Actor {
 				if (!this.isUnanimated && super.spotAnimation != -1 && super.spotAnimationFrame != -1) { // L: 201
 					var4 = class136.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame); // L: 202
 					if (var4 != null) { // L: 203
-						var4.offsetBy(0, -super.field1151, 0); // L: 204
+						var4.offsetBy(0, -super.spotAnimationHeight, 0); // L: 204
 						var5 = new Model[]{var3, var4}; // L: 205
 						var3 = new Model(var5, 2); // L: 206
 					}

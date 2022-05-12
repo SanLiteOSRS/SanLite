@@ -349,7 +349,8 @@ public class ClientPreferences {
 		descriptor = "(II)V",
 		garbageValue = "-1131698297"
 	)
-	void method2236(int var1) {
+	@Export("updateSoundEffectVolume")
+	void updateSoundEffectVolume(int var1) {
 		this.soundEffectsVolume = var1; // L: 195
 		class270.savePreferences(); // L: 196
 	} // L: 197

@@ -3,7 +3,6 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@js
 @ObfuscatedName("mt")
 public final class class343 {
 	@ObfuscatedName("ja")

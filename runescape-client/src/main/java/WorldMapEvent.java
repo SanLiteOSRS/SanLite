@@ -68,8 +68,8 @@ public class WorldMapEvent {
 		garbageValue = "-27"
 	)
 	@Export("FillMode_values")
-	public static class450[] FillMode_values() {
-		return new class450[]{class450.field4753, class450.field4754, class450.SOLID}; // L: 15
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field4753, FillMode.field4754, FillMode.SOLID}; // L: 15
 	}
 
 	@ObfuscatedName("hg")

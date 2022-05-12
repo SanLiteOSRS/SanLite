@@ -200,7 +200,7 @@ public class class136 extends class144 {
 									Login.currentLoginField = 0; // L: 394
 								}
 							} else {
-								PcmPlayer.method755(false); // L: 399
+								PcmPlayer.Login_promptCredentials(false); // L: 399
 							}
 						}
 					} else {
@@ -212,7 +212,7 @@ public class class136 extends class144 {
 									var32 = Decimator.loginBoxCenter - 80; // L: 412
 									var8 = 321; // L: 413
 									if (var4 == 1 && var30 >= var32 - 75 && var30 <= var32 + 75 && var31 >= var8 - 20 && var31 <= var8 + 20) { // L: 414
-										PcmPlayer.method755(false); // L: 415
+										PcmPlayer.Login_promptCredentials(false); // L: 415
 									}
 
 									var32 = Decimator.loginBoxCenter + 80; // L: 417
@@ -223,7 +223,7 @@ public class class136 extends class144 {
 								}
 
 								if (class12.field61 == 84) { // L: 405
-									PcmPlayer.method755(false); // L: 406
+									PcmPlayer.Login_promptCredentials(false); // L: 406
 								} else if (class12.field61 == 13) { // L: 408
 									class126.method2799(0); // L: 409
 								}
@@ -578,7 +578,7 @@ public class class136 extends class144 {
 
 									var32 = Login.loginBoxX + 180 + 80; // L: 726
 									if (var4 == 1 && var30 >= var32 - 75 && var30 <= var32 + 75 && var31 >= var8 - 20 && var31 <= var8 + 20) { // L: 727
-										PcmPlayer.method755(true); // L: 728
+										PcmPlayer.Login_promptCredentials(true); // L: 728
 									}
 
 									var35 = 361; // L: 730
@@ -600,7 +600,7 @@ public class class136 extends class144 {
 										}
 
 										if (class12.field61 == 13) { // L: 745
-											PcmPlayer.method755(true); // L: 746
+											PcmPlayer.Login_promptCredentials(true); // L: 746
 										} else {
 											if (class12.field61 == 85 && Login.Login_username.length() > 0) { // L: 749
 												Login.Login_username = Login.Login_username.substring(0, Login.Login_username.length() - 1);
@@ -641,7 +641,7 @@ public class class136 extends class144 {
 											var11 = Login.loginBoxX + 180 + 80; // L: 787
 											if (var4 == 1 && var30 >= var11 - 75 && var30 <= var11 + 75 && var31 >= var12 - 20 && var31 <= var12 + 20) { // L: 788
 												Login.field876 = new String[8]; // L: 789
-												PcmPlayer.method755(true); // L: 790
+												PcmPlayer.Login_promptCredentials(true); // L: 790
 											}
 
 											while (TaskHandler.isKeyDown()) { // L: 792
@@ -685,7 +685,7 @@ public class class136 extends class144 {
 
 											var32 = Login.loginBoxX + 180 + 80; // L: 826
 											if (var4 == 1 && var30 >= var32 - 75 && var30 <= var32 + 75 && var31 >= var8 - 20 && var31 <= var8 + 20) { // L: 827
-												PcmPlayer.method755(true); // L: 828
+												PcmPlayer.Login_promptCredentials(true); // L: 828
 											}
 										}
 									} else if (Login.loginIndex == 8) { // L: 832
@@ -700,7 +700,7 @@ public class class136 extends class144 {
 
 										var32 = Login.loginBoxX + 180 + 80; // L: 841
 										if (var4 == 1 && var30 >= var32 - 75 && var30 <= var32 + 75 && var31 >= var8 - 20 && var31 <= var8 + 20) { // L: 842
-											PcmPlayer.method755(true); // L: 843
+											PcmPlayer.Login_promptCredentials(true); // L: 843
 										}
 									} else if (Login.loginIndex == 9) { // L: 846
 										var32 = Login.loginBoxX + 180; // L: 847
@@ -762,7 +762,7 @@ public class class136 extends class144 {
 											var27 = "https://support.runescape.com/hc/en-gb/articles/206103939-My-account-is-locked"; // L: 906
 											break; // L: 907
 										default:
-											PcmPlayer.method755(false); // L: 912
+											PcmPlayer.Login_promptCredentials(false); // L: 912
 										}
 
 										var34 = Login.loginBoxX + 180; // L: 915
@@ -777,7 +777,7 @@ public class class136 extends class144 {
 										var34 = Login.loginBoxX + 180; // L: 923
 										var35 = 326; // L: 924
 										if (var4 == 1 && var30 >= var34 - 75 && var30 <= var34 + 75 && var31 >= var35 - 20 && var31 <= var35 + 20) { // L: 925
-											PcmPlayer.method755(false); // L: 926
+											PcmPlayer.Login_promptCredentials(false); // L: 926
 										}
 									} else if (Login.loginIndex == 24) { // L: 929
 										var32 = Login.loginBoxX + 180; // L: 930
@@ -797,7 +797,7 @@ public class class136 extends class144 {
 
 										var32 = Login.loginBoxX + 180 + 80; // L: 945
 										if (var4 == 1 && var30 >= var32 - 75 && var30 <= var32 + 75 && var31 >= var8 - 20 && var31 <= var8 + 20) { // L: 946
-											PcmPlayer.method755(true); // L: 947
+											PcmPlayer.Login_promptCredentials(true); // L: 947
 										}
 									}
 								} else {
@@ -806,14 +806,14 @@ public class class136 extends class144 {
 											if (!TaskHandler.isKeyDown()) { // L: 759
 												var33 = 321; // L: 764
 												if (var4 == 1 && var31 >= var33 - 20 && var31 <= var33 + 20) { // L: 765
-													PcmPlayer.method755(true); // L: 766
+													PcmPlayer.Login_promptCredentials(true); // L: 766
 												}
 
 												return;
 											}
 										} while(class12.field61 != 84 && class12.field61 != 13); // L: 760
 
-										PcmPlayer.method755(true); // L: 761
+										PcmPlayer.Login_promptCredentials(true); // L: 761
 									}
 								}
 							}

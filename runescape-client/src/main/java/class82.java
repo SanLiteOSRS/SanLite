@@ -121,7 +121,7 @@ public enum class82 implements MouseWheel {
 					int var7;
 					int var10;
 					if (class393.field4428) { // L: 8094
-						int var8 = Client.field620[var1.readBits(3)]; // L: 8095
+						int var8 = Client.defaultRotations[var1.readBits(3)]; // L: 8095
 						if (var3) { // L: 8096
 							var4.orientation = var4.rotation = var8;
 						}
@@ -193,7 +193,7 @@ public enum class82 implements MouseWheel {
 						}
 
 						var4.definition = WorldMapSectionType.getNpcDefinition(var1.readBits(14)); // L: 8144
-						int var12 = Client.field620[var1.readBits(3)]; // L: 8145
+						int var12 = Client.defaultRotations[var1.readBits(3)]; // L: 8145
 						if (var3) { // L: 8146
 							var4.orientation = var4.rotation = var12;
 						}

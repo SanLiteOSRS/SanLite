@@ -609,7 +609,8 @@ public class PcmPlayer {
 		descriptor = "(ZI)V",
 		garbageValue = "-1912643787"
 	)
-	static void method755(boolean var0) {
+	@Export("Login_promptCredentials")
+	static void Login_promptCredentials(boolean var0) {
 		if (!class82.client.method1128() && !class82.client.isOtlTokenRequesterInitialized()) { // L: 1046
 			Login.Login_response1 = ""; // L: 1050
 			Login.Login_response2 = "Enter your username/email & password."; // L: 1051

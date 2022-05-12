@@ -9,7 +9,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class Players {
 	@ObfuscatedName("sh")
 	@ObfuscatedGetter(
-		intValue = -2098953344
+		intValue = -419051257
 	)
 	static int field1317;
 	@ObfuscatedName("l")

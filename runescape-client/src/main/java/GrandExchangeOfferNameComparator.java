@@ -293,7 +293,7 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 		if ((var3 & 4096) != 0) { // L: 498
 			var2.spotAnimation = var0.method7576(); // L: 499
 			var5 = var0.method7567(); // L: 500
-			var2.field1151 = var5 >> 16; // L: 501
+			var2.spotAnimationHeight = var5 >> 16; // L: 501
 			var2.field1185 = (var5 & 65535) + Client.cycle; // L: 502
 			var2.spotAnimationFrame = 0; // L: 503
 			var2.spotAnimationFrameCycle = 0; // L: 504

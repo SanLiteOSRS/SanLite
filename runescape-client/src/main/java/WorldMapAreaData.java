@@ -260,7 +260,7 @@ public class WorldMapAreaData extends WorldMapArea {
 				return 1; // L: 770
 			} else if (var0 == 1125) { // L: 772
 				var8 = Interpreter.Interpreter_intStack[--class12.Interpreter_intStackSize]; // L: 773
-				class450 var6 = (class450)class291.findEnumerated(WorldMapEvent.FillMode_values(), var8); // L: 774
+				FillMode var6 = (FillMode)class291.findEnumerated(WorldMapEvent.FillMode_values(), var8); // L: 774
 				if (var6 != null) { // L: 775
 					var3.fillMode = var6; // L: 776
 					GrandExchangeOfferTotalQuantityComparator.invalidateWidget(var3); // L: 777

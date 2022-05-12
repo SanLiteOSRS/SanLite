@@ -337,7 +337,7 @@ public class JagexCache {
 			if ((var4 & 1) != 0) { // L: 8254
 				var3.spotAnimation = var0.method7576(); // L: 8255
 				var5 = var0.method7701(); // L: 8256
-				var3.field1151 = var5 >> 16; // L: 8257
+				var3.spotAnimationHeight = var5 >> 16; // L: 8257
 				var3.field1185 = (var5 & 65535) + Client.cycle; // L: 8258
 				var3.spotAnimationFrame = 0; // L: 8259
 				var3.spotAnimationFrameCycle = 0; // L: 8260
@@ -431,13 +431,13 @@ public class JagexCache {
 
 		int var6 = (var3 - 32 - var5) * var2 / (var4 - var3); // L: 10868
 		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var6 + var1 + 16, 16, var5, Client.field556); // L: 10869
-		Rasterizer2D.method7840(var0, var6 + var1 + 16, var5, Client.field483); // L: 10870
-		Rasterizer2D.method7840(var0 + 1, var6 + var1 + 16, var5, Client.field483); // L: 10871
-		Rasterizer2D.method7838(var0, var6 + var1 + 16, 16, Client.field483); // L: 10872
-		Rasterizer2D.method7838(var0, var6 + var1 + 17, 16, Client.field483); // L: 10873
-		Rasterizer2D.method7840(var0 + 15, var6 + var1 + 16, var5, Client.field640); // L: 10874
-		Rasterizer2D.method7840(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field640); // L: 10875
-		Rasterizer2D.method7838(var0, var5 + var6 + var1 + 15, 16, Client.field640); // L: 10876
-		Rasterizer2D.method7838(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field640); // L: 10877
+		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0, var6 + var1 + 16, var5, Client.field483); // L: 10870
+		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 1, var6 + var1 + 16, var5, Client.field483); // L: 10871
+		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 16, 16, Client.field483); // L: 10872
+		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 17, 16, Client.field483); // L: 10873
+		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 15, var6 + var1 + 16, var5, Client.field640); // L: 10874
+		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field640); // L: 10875
+		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var5 + var6 + var1 + 15, 16, Client.field640); // L: 10876
+		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field640); // L: 10877
 	} // L: 10878
 }

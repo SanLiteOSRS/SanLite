@@ -262,7 +262,8 @@ public abstract class Actor extends Renderable {
 	@ObfuscatedGetter(
 		intValue = 1282068867
 	)
-	int field1151;
+	@Export("spotAnimationHeight")
+	int spotAnimationHeight;
 	@ObfuscatedName("cs")
 	@ObfuscatedGetter(
 		intValue = -598436523

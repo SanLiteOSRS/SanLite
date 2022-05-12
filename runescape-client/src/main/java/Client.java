@@ -47,7 +47,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	)
 	public static int field767;
 	@ObfuscatedName("si")
-	static boolean field734;
+	@Export("playingJingle")
+	static boolean playingJingle;
 	@ObfuscatedName("vu")
 	@ObfuscatedSignature(
 		descriptor = "Lbl;"
@@ -116,12 +117,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	@ObfuscatedName("ti")
 	static boolean field742;
 	@ObfuscatedName("ri")
-	static long[] field717;
+	@Export("crossWorldMessageIds")
+	static long[] crossWorldMessageIds;
 	@ObfuscatedName("rj")
 	@ObfuscatedGetter(
 		intValue = 1619055061
 	)
-	static int field718;
+	@Export("crossWorldMessageIdsIndex")
+	static int crossWorldMessageIdsIndex;
 	@ObfuscatedName("rm")
 	@ObfuscatedGetter(
 		longValue = -2855623584539877235L
@@ -340,7 +343,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	static int cycle;
 	@ObfuscatedName("dp")
 	@ObfuscatedGetter(
-		longValue = 7486676481103711511L
+		longValue = -7486676481103711511L
 	)
 	@Export("mouseLastLastPressedTimeMillis")
 	static long mouseLastLastPressedTimeMillis;
@@ -901,7 +904,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	@Export("playerOptionsPriorities")
 	static boolean[] playerOptionsPriorities;
 	@ObfuscatedName("ml")
-	static int[] field620;
+	@Export("defaultRotations")
+	static int[] defaultRotations;
 	@ObfuscatedName("mt")
 	@ObfuscatedGetter(
 		intValue = -599570105
@@ -1492,7 +1496,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 		playerMenuOpcodes = new int[]{44, 45, 46, 47, 48, 49, 50, 51}; // L: 428
 		playerMenuActions = new String[8]; // L: 429
 		playerOptionsPriorities = new boolean[8]; // L: 430
-		field620 = new int[]{768, 1024, 1280, 512, 1536, 256, 0, 1792}; // L: 431
+		defaultRotations = new int[]{768, 1024, 1280, 512, 1536, 256, 0, 1792}; // L: 431
 		combatTargetPlayerIndex = -1; // L: 432
 		groundItems = new NodeDeque[4][104][104]; // L: 433
 		pendingSpawns = new NodeDeque(); // L: 434
@@ -1589,8 +1593,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 		publicChatMode = 0; // L: 561
 		tradeChatMode = 0; // L: 563
 		field549 = ""; // L: 564
-		field717 = new long[100]; // L: 566
-		field718 = 0; // L: 567
+		crossWorldMessageIds = new long[100]; // L: 566
+		crossWorldMessageIdsIndex = 0; // L: 567
 		field719 = 0; // L: 569
 		field720 = new int[128]; // L: 570
 		field721 = new int[128]; // L: 571
@@ -1606,7 +1610,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 		destinationY = 0; // L: 586
 		minimapState = 0; // L: 593
 		currentTrackGroupId = -1; // L: 594
-		field734 = false; // L: 595
+		playingJingle = false; // L: 595
 		soundEffectCount = 0; // L: 601
 		soundEffectIds = new int[50]; // L: 602
 		queuedSoundEffectLoops = new int[50]; // L: 603
@@ -1860,7 +1864,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	@Export("draw")
 	protected final void draw(boolean var1) {
 		boolean var2 = Players.method2427(); // L: 1060
-		if (var2 && field734 && SecureRandomCallable.pcmPlayer0 != null) { // L: 1061 1062
+		if (var2 && playingJingle && SecureRandomCallable.pcmPlayer0 != null) { // L: 1061 1062
 			SecureRandomCallable.pcmPlayer0.tryDiscard();
 		}
 
@@ -3588,12 +3592,12 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 							}
 						}
 
-						if (field734 && !Coord.method5370()) { // L: 3326
+						if (playingJingle && !Coord.method5370()) { // L: 3326
 							if (class12.clientPreferences.method2248() != 0 && currentTrackGroupId != -1) { // L: 3327
 								UserComparator8.method2574(AbstractUserComparator.archive6, currentTrackGroupId, 0, class12.clientPreferences.method2248(), false);
 							}
 
-							field734 = false; // L: 3328
+							playingJingle = false; // L: 3328
 						}
 
 						++packetWriter.field1349; // L: 3331
@@ -4540,7 +4544,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 								break;
 							}
 
-							if (field717[var15] == var11) { // L: 6231
+							if (crossWorldMessageIds[var15] == var11) { // L: 6231
 								var64 = true; // L: 6232
 								break; // L: 6233
 							}
@@ -4550,8 +4554,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					}
 
 					if (!var64) { // L: 6240
-						field717[field718] = var11; // L: 6241
-						field718 = (field718 + 1) % 100; // L: 6242
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var11; // L: 6241
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100; // L: 6242
 						var25 = AbstractFont.escapeBrackets(LoginPacket.method5025(var3)); // L: 6243
 						var16 = var20 >= 0 ? 41 : 44; // L: 6244
 						if (var59.modIcon != -1) { // L: 6245
@@ -5048,7 +5052,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					boolean var87 = false; // L: 6616
 
 					for (var13 = 0; var13 < 100; ++var13) { // L: 6617
-						if (var36 == field717[var13]) { // L: 6618
+						if (var36 == crossWorldMessageIds[var13]) { // L: 6618
 							var87 = true; // L: 6619
 							break; // L: 6620
 						}
@@ -5059,8 +5063,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					}
 
 					if (!var87 && field606 == 0) { // L: 6624
-						field717[field718] = var36; // L: 6625
-						field718 = (field718 + 1) % 100; // L: 6626
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var36; // L: 6625
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100; // L: 6626
 						var39 = AbstractFont.escapeBrackets(WorldMapManager.method4679(LoginPacket.method5025(var3))); // L: 6627
 						byte var89;
 						if (var35.isPrivileged) { // L: 6629
@@ -5156,7 +5160,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					var5 = var3.method7567(); // L: 6702
 					if (var54 != null) { // L: 6703
 						var54.spotAnimation = var6; // L: 6704
-						var54.field1151 = var5 >> 16; // L: 6705
+						var54.spotAnimationHeight = var5 >> 16; // L: 6705
 						var54.field1185 = (var5 & 65535) + cycle; // L: 6706
 						var54.spotAnimationFrame = 0; // L: 6707
 						var54.spotAnimationFrameCycle = 0; // L: 6708
@@ -5211,7 +5215,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					var5 = var3.method7716(); // L: 6753
 					if (var56 != null) { // L: 6754
 						var56.spotAnimation = var5; // L: 6755
-						var56.field1151 = var6 >> 16; // L: 6756
+						var56.spotAnimationHeight = var6 >> 16; // L: 6756
 						var56.field1185 = (var6 & 65535) + cycle; // L: 6757
 						var56.spotAnimationFrame = 0; // L: 6758
 						var56.spotAnimationFrameCycle = 0; // L: 6759
@@ -5889,7 +5893,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					boolean var88 = false; // L: 7321
 
 					for (var15 = 0; var15 < 100; ++var15) { // L: 7322
-						if (field717[var15] == var44) { // L: 7323
+						if (crossWorldMessageIds[var15] == var44) { // L: 7323
 							var88 = true; // L: 7324
 							break; // L: 7325
 						}
@@ -5900,8 +5904,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					}
 
 					if (!var88 && field606 == 0) { // L: 7331
-						field717[field718] = var44; // L: 7332
-						field718 = (field718 + 1) % 100; // L: 7333
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var44; // L: 7332
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100; // L: 7333
 						var25 = AbstractFont.escapeBrackets(WorldMapManager.method4679(LoginPacket.method5025(var3))); // L: 7334
 						if (var43.modIcon != -1) { // L: 7335
 							UserComparator7.addChatMessage(9, StudioGame.method5590(var43.modIcon) + var48, var25, class263.base37DecodeLong(var31));
@@ -5945,7 +5949,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 						var30 = true;
 					} else {
 						for (var13 = 0; var13 < 100; ++var13) { // L: 7366
-							if (field717[var13] == var41) { // L: 7367
+							if (crossWorldMessageIds[var13] == var41) { // L: 7367
 								var30 = true; // L: 7368
 								break; // L: 7369
 							}
@@ -5953,8 +5957,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					}
 
 					if (!var30) { // L: 7373
-						field717[field718] = var41; // L: 7374
-						field718 = (field718 + 1) % 100; // L: 7375
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var41; // L: 7374
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100; // L: 7375
 						var39 = LoginPacket.method5025(var3); // L: 7376
 						var40 = var20 >= 0 ? 43 : 46; // L: 7377
 						UserComparator7.addChatMessage(var40, "", var39, var12.name); // L: 7378
@@ -6805,8 +6809,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 						}
 					} else {
 						HealthBarDefinition var13 = var78.definition; // L: 5060
-						SpritePixels var81 = var13.method3360(); // L: 5061
-						SpritePixels var82 = var13.method3359(); // L: 5062
+						SpritePixels var81 = var13.getBackSprite(); // L: 5061
+						SpritePixels var82 = var13.getFrontSprite(); // L: 5062
 						int var17 = 0; // L: 5064
 						int var83;
 						if (var81 != null && var82 != null) { // L: 5065

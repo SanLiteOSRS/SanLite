@@ -9,7 +9,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public final class TileItem extends Renderable {
 	@ObfuscatedName("sb")
 	@ObfuscatedGetter(
-		intValue = -917478784
+		intValue = -1684889403
 	)
 	static int field1292;
 	@ObfuscatedName("ev")

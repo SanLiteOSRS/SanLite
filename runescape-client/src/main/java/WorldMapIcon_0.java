@@ -104,9 +104,9 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 	)
 	@Export("playSong")
 	static void playSong(int var0) {
-		if (var0 == -1 && !Client.field734) { // L: 3800
+		if (var0 == -1 && !Client.playingJingle) { // L: 3800
 			ApproximateRouteStrategy.method1110(); // L: 3801
-		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && class12.clientPreferences.method2248() != 0 && !Client.field734) { // L: 3803
+		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && class12.clientPreferences.method2248() != 0 && !Client.playingJingle) { // L: 3803
 			Archive var1 = AbstractUserComparator.archive6; // L: 3804
 			int var2 = class12.clientPreferences.method2248(); // L: 3805
 			class273.musicPlayerStatus = 1; // L: 3807

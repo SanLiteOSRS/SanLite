@@ -534,7 +534,7 @@ public class SoundCache {
 							var6 = ""; // L: 1567
 							break;
 						default:
-							PcmPlayer.method755(false); // L: 1572
+							PcmPlayer.Login_promptCredentials(false); // L: 1572
 						}
 
 						var0.drawCentered(var20, Login.loginBoxX + 180, var25, 16776960, 0); // L: 1583

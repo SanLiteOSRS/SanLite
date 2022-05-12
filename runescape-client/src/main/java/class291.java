@@ -82,10 +82,10 @@ public class class291 {
 		if (var0 != class12.clientPreferences.method2248()) { // L: 12055
 			if (class12.clientPreferences.method2248() == 0 && Client.currentTrackGroupId != -1) { // L: 12056
 				UserComparator8.method2574(AbstractUserComparator.archive6, Client.currentTrackGroupId, 0, var0, false); // L: 12057
-				Client.field734 = false; // L: 12058
+				Client.playingJingle = false; // L: 12058
 			} else if (var0 == 0) { // L: 12060
 				ApproximateRouteStrategy.method1110(); // L: 12061
-				Client.field734 = false; // L: 12062
+				Client.playingJingle = false; // L: 12062
 			} else if (class273.musicPlayerStatus != 0) { // L: 12065
 				Clock.musicTrackVolume = var0;
 			} else {

@@ -9,7 +9,7 @@ import net.runelite.rs.ScriptOpcodes;
 public class class267 {
 	@ObfuscatedName("ts")
 	@ObfuscatedGetter(
-		intValue = 1725996416
+		intValue = -1597128389
 	)
 	static int field3206;
 	@ObfuscatedName("cm")

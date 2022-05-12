@@ -155,7 +155,8 @@ public class HealthBarDefinition extends DualNode {
 		descriptor = "(I)Lqr;",
 		garbageValue = "1767705109"
 	)
-	public SpritePixels method3359() {
+	@Export("getFrontSprite")
+	public SpritePixels getFrontSprite() {
 		if (this.frontSpriteID < 0) { // L: 57
 			return null;
 		} else {
@@ -178,7 +179,8 @@ public class HealthBarDefinition extends DualNode {
 		descriptor = "(I)Lqr;",
 		garbageValue = "2134989657"
 	)
-	public SpritePixels method3360() {
+	@Export("getBackSprite")
+	public SpritePixels getBackSprite() {
 		if (this.backSpriteID < 0) { // L: 67
 			return null;
 		} else {
