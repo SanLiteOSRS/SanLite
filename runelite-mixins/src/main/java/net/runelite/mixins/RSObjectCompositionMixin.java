@@ -2,7 +2,13 @@ package net.runelite.mixins;
 
 import net.runelite.api.IterableHashTable;
 import net.runelite.api.Node;
-import net.runelite.api.mixins.*;
+import net.runelite.api.events.PostObjectComposition;
+import net.runelite.api.mixins.Copy;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.MethodHook;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSBuffer;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSEvictingDualNodeHashTable;
@@ -29,6 +35,14 @@ public abstract class RSObjectCompositionMixin implements RSObjectComposition
 	RSObjectCompositionMixin()
 	{
 
+	}
+
+	@Inject
+	@MethodHook(value = "postDecode", end = true)
+	public void postDecode()
+	{
+		final PostObjectComposition event = new PostObjectComposition(this);
+		client.getCallbacks().post(event);
 	}
 
 	@Inject
