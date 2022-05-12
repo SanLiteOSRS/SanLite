@@ -30,7 +30,6 @@ hs_err_pid*.log
 gamepack
 
 # General
-.DS_Store
 .AppleDouble
 .LSOverride
 

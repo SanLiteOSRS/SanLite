@@ -10,6 +10,11 @@ class BootstrapPlugin : Plugin<Project> {
             isTransitive = false
         }
 
+        val hostingRepositories = mapOf(
+            "github" to "https://raw.githubusercontent.com/sanliteosrs/hosting-repo/master",
+            "gitlab" to "https://gitlab.com/sanlite/hosting-repo/-/raw/master"
+        )
+
         dependencies {
             bootstrapDependencies(project(":runelite-api"))
             bootstrapDependencies(project(":runescape-api"))
@@ -17,10 +22,8 @@ class BootstrapPlugin : Plugin<Project> {
             bootstrapDependencies(project(":runelite-jshell"))
         }
 
-        tasks.register<BootstrapTask>("bootstrapStaging", "staging", "https://raw.githubusercontent.com/sanliteosrs/hosting-repo/master")
-        tasks.register<BootstrapTask>("bootstrapStagingFallback", "staging-fallback", "https://gitlab.com/sanlite/hosting-repo/-/raw/master")
-        tasks.register<BootstrapTask>("bootstrapLive", "live", "https://raw.githubusercontent.com/sanliteosrs/hosting-repo/master")
-        tasks.register<BootstrapTask>("bootstrapLiveFallback", "live-fallback", "https://gitlab.com/sanlite/hosting-repo/-/raw/master")
+        tasks.register<BootstrapTask>("bootstrapStaging", "staging", hostingRepositories)
+        tasks.register<BootstrapTask>("bootstrapLive", "live", hostingRepositories)
 
         tasks.withType<BootstrapTask> {
             this.group = "sanlite"

@@ -9,7 +9,10 @@ import java.security.MessageDigest
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
-open class BootstrapTask @Inject constructor(@Input val type: String, @Input val repoUrl: String) : DefaultTask() {
+open class BootstrapTask @Inject constructor(
+    @Input val type: String,
+    @Input val repositories: Map<String, String>
+) : DefaultTask() {
 
     @InputFile
     @PathSensitive(PathSensitivity.ABSOLUTE)
@@ -131,11 +134,15 @@ open class BootstrapTask @Inject constructor(@Input val type: String, @Input val
         return MessageDigest.getInstance("SHA-256").digest(file).fold("", { str, it -> str + "%02x".format(it) })
     }
 
-    private fun getArtifacts(): Array<JsonBuilder> {
+    private fun getArtifacts(repoUrl: String): Array<JsonBuilder> {
         val artifacts = ArrayList<JsonBuilder>()
         val artifactsSet = HashSet<String>()
 
         project.configurations["runtimeClasspath"].resolvedConfiguration.resolvedArtifacts.forEach {
+            if (it.file.name.contains("injection-annotations")) {
+                return@forEach
+            }
+
             val module = it.moduleVersion.id.toString()
 
             val splat = module.split(":")
@@ -245,33 +252,45 @@ open class BootstrapTask @Inject constructor(@Input val type: String, @Input val
         return artifacts.toTypedArray()
     }
 
-    @TaskAction
-    fun bootstrap() {
+    private fun getBootstrapJson(repositoryUrl: String): String {
         val json = JsonBuilder(
-                "projectVersion" to ProjectVersions.sanliteVersion,
-                "minimumLauncherVersion" to ProjectVersions.launcherVersion,
-                "launcherArguments" to launcherArguments,
-                "launcherJvm11Arguments" to launcherJvm11Arguments,
-                "launcherJvm11WindowsArguments" to launcherJvm11WindowsArguments,
-                "launcherJvm17Arguments" to launcherJvm17Arguments,
-                "launcherJvm17MacArguments" to launcherJvm17MacArguments,
-                "launcherJvm17WindowsArguments" to launcherJvm17WindowsArguments,
-                "clientJvmArguments" to clientJvmArguments,
-                "clientJvm9Arguments" to clientJvm9Arguments,
-                "clientJvm17MacArguments" to clientJvm17MacArguments,
-                "clientJvm17Arguments" to clientJvm17Arguments,
-                "buildCommit" to project.extra["gitCommit"],
-                "artifacts" to getArtifacts(),
-                "dependencyHashes" to dependencyHashes
+            "projectVersion" to ProjectVersions.sanliteVersion,
+            "minimumLauncherVersion" to ProjectVersions.launcherVersion,
+            "launcherArguments" to launcherArguments,
+            "launcherJvm11Arguments" to launcherJvm11Arguments,
+            "launcherJvm11WindowsArguments" to launcherJvm11WindowsArguments,
+            "launcherJvm17Arguments" to launcherJvm17Arguments,
+            "launcherJvm17MacArguments" to launcherJvm17MacArguments,
+            "launcherJvm17WindowsArguments" to launcherJvm17WindowsArguments,
+            "clientJvmArguments" to clientJvmArguments,
+            "clientJvm9Arguments" to clientJvm9Arguments,
+            "clientJvm17MacArguments" to clientJvm17MacArguments,
+            "clientJvm17Arguments" to clientJvm17Arguments,
+            "buildCommit" to project.extra["gitCommit"],
+            "artifacts" to getArtifacts(repositoryUrl),
+            "dependencyHashes" to dependencyHashes
         ).toString()
 
-        val prettyJson = JsonOutput.prettyPrint(json)
+        return JsonOutput.prettyPrint(json)
+    }
+
+    private fun saveBootstrapFile(bootstrapDir: File, repositoryType: String, bootstrapJson: String) {
+        val repositoryTypeDir = File("${bootstrapDir.path}/${type}/${repositoryType}")
+        logger.warn("Booty dir: ${repositoryTypeDir}")
+        repositoryTypeDir.mkdirs()
+
+        File(repositoryTypeDir, "bootstrap.json").printWriter().use { out ->
+            out.println(bootstrapJson)
+        }
+    }
+
+    @TaskAction
+    fun bootstrap() {
+        val bootstrapFiles = repositories.mapValues { getBootstrapJson(it.value) }
 
         val bootstrapDir = File("${project.buildDir}/bootstrap")
         bootstrapDir.mkdirs()
 
-        File(bootstrapDir, "${type}/bootstrap.json").printWriter().use { out ->
-            out.println(prettyJson)
-        }
+        bootstrapFiles.forEach { saveBootstrapFile(bootstrapDir, it.key, it.value) }
     }
 }
