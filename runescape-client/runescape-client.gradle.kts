@@ -27,6 +27,7 @@ group = "net.sanlite.rs"
 description = "RuneScape Client"
 
 dependencies {
+    api(project(":runescape-api"))
     api(project(":runelite-api"))
 
     implementation(project(":injection-annotations"))
