@@ -726,7 +726,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 			if (type == MenuAction.EXAMINE_NPC)
 			{
-				final NPC npc = client.getCachedNPCs()[id];
+				final NPC npc = entry.getNpc();
+				assert npc != null;
 				final NPCComposition composition = npc.getTransformedComposition();
 				final String[] actions = composition.getActions();
 
@@ -1010,7 +1011,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		if (NPC_MENU_TYPES.contains(menuAction))
 		{
-			final NPC npc = client.getCachedNPCs()[eventId];
+			final NPC npc = menuEntry.getNpc();
+			assert npc != null;
 			final NPCComposition composition = npc.getTransformedComposition();
 
 			Integer customOption = getNpcSwapConfig(composition.getId());
