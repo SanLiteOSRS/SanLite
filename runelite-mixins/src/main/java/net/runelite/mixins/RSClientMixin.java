@@ -867,14 +867,7 @@ public abstract class RSClientMixin implements RSClient
 				rl$menuEntries[tmpOptionsCount].setConsumer(null);
 			}
 
-			MenuEntryAdded event = new MenuEntryAdded(
-				menuOption,
-				menuTarget,
-				menuOpcode,
-				menuIdentifier,
-				menuArgument1,
-				menuArgument2
-			);
+			MenuEntryAdded event = new MenuEntryAdded(rl$menuEntries[tmpOptionsCount]);
 			client.getCallbacks().post(event);
 		}
 	}
@@ -890,7 +883,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 		else if (target instanceof RSPlayer)
 		{
-			targetIndex = -(((RSPlayer)target).getPlayerId() + 1);
+			targetIndex = -(((RSPlayer)target).getId() + 1);
 		}
 
 		RSProjectile projectile = client.newProjectile(id, plane, startX, startY, startZ, startCycle, endCycle, slope, startHeight, targetIndex, endHeight);
@@ -1348,7 +1341,7 @@ public abstract class RSClientMixin implements RSClient
 	public void setHintArrow(Player player)
 	{
 		client.setHintArrowTargetType(HintArrowType.PLAYER.getValue());
-		client.setHintArrowPlayerTargetIdx(((RSPlayer) player).getPlayerId());
+		client.setHintArrowPlayerTargetIdx(((RSPlayer) player).getId());
 	}
 
 	@Inject

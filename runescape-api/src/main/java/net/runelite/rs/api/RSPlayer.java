@@ -33,7 +33,7 @@ public interface RSPlayer extends RSActor, Player
 	RSUsername getRsName();
 
 	@Import("index")
-	int getPlayerId();
+	int getId();
 
 	@Import("appearance")
 	@Override

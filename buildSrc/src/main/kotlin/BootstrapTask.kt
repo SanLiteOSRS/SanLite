@@ -159,7 +159,7 @@ open class BootstrapTask @Inject constructor(
                 path = "${repoUrl}/${type}/${it.file.name}"
             } else if (!group.contains("runelite")) {
                 path = "https://repo.maven.apache.org/maven2/" + group.replace(".", "/") + "/${name}/$version/${name}-$version"
-                if (it.classifier != null && it.classifier != "no_aop") {
+                if (it.classifier != null) {
                     path += "-${it.classifier}"
                 }
                 path += ".jar"
@@ -174,7 +174,7 @@ open class BootstrapTask @Inject constructor(
             ) {
                 path = "https://repo.runelite.net/"
                 path += "${group.replace(".", "/")}/${name}/$version/${name}-$version"
-                if (it.classifier != null && it.classifier != "no_aop") {
+                if (it.classifier != null) {
                     path += "-${it.classifier}"
 
                     if (it.classifier!!.contains("linux")) {
@@ -276,7 +276,6 @@ open class BootstrapTask @Inject constructor(
 
     private fun saveBootstrapFile(bootstrapDir: File, repositoryType: String, bootstrapJson: String) {
         val repositoryTypeDir = File("${bootstrapDir.path}/${type}/${repositoryType}")
-        logger.warn("Booty dir: ${repositoryTypeDir}")
         repositoryTypeDir.mkdirs()
 
         File(repositoryTypeDir, "bootstrap.json").printWriter().use { out ->
