@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 plugins {
-    id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
     java
 }
 
@@ -129,10 +129,6 @@ tasks {
     }
 
     processResources {
-        finalizedBy("filterResources")
-    }
-
-    register<Copy>("filterResources") {
         val tokens = mapOf(
                 "project.version" to ProjectVersions.rlVersion,
                 "rs.version" to ProjectVersions.rsVersion.toString(),
@@ -144,12 +140,10 @@ tasks {
 
         inputs.properties(tokens)
 
-        from("src/main/resources/")
-        include("**/*.properties")
-        into("${buildDir}/resources/main")
-
-        filter(ReplaceTokens::class, "tokens" to tokens)
-        filteringCharset = "UTF-8"
+        filesMatching("**/*.properties") {
+            filter(ReplaceTokens::class, "tokens" to tokens)
+            filteringCharset = "UTF-8"
+        }
     }
 
     register<Copy>("packInjectedClient") {
@@ -189,7 +183,7 @@ tasks {
     register<JavaExec>("RuneLite.main()") {
         group = "sanlite"
 
-        classpath = sourceSets["main"].runtimeClasspath
+        classpath = project.sourceSets.main.get().runtimeClasspath
         enableAssertions = true
         mainClass.set("net.runelite.client.RuneLite")
     }

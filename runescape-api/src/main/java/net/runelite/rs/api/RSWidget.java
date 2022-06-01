@@ -600,4 +600,8 @@ public interface RSWidget extends Widget
 	@Import("textLineHeight")
 	@Override
 	RSWidget setLineHeight(int height);
+
+	void setForcedX();
+
+	void setForcedY();
 }
