@@ -226,7 +226,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("error during main loop tasks", ex);
+			log.error("error during main loop tasks", ex);
 		}
 	}
 
@@ -351,7 +351,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 
 		notifier.processFlash(graphics2d);
@@ -446,7 +446,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 	}
 
@@ -462,7 +462,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 	}
 
@@ -514,7 +514,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 	}
 
@@ -530,7 +530,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 	}
 
