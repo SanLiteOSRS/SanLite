@@ -63,7 +63,6 @@ jobs:
         if: ${{ env.CURRENT_GAMEPACK_REVISION < env.NEW_GAMEPACK_REVISION || startsWith(github.ref, 'refs/tags/')}}
         run: |
           rm -rf ./runescape-client/src/main/java/com
-          rm -f ./runescape-client/src/main/java/net/runelite/rs/*Opcodes.java
           rm -f $(find ./runescape-client/src/main/java -maxdepth 1 -name "*.java" ! -name "RuneLite*.java")
           cp -R ./gamepack/rs-client/* ./runescape-client/src/main/java
           sed -i -r "s/rsVersion = [0-9]+/rsVersion = ${{ env.NEW_GAMEPACK_REVISION }}/" ./buildSrc/src/main/kotlin/Dependencies.kt
