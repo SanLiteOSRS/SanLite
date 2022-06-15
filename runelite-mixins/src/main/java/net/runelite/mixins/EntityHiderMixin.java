@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2018, Lotto <https://github.com/devLotto>
+ * Copyright (c) 2019, ThatGamerBlue <thatgamerblue@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,15 +26,13 @@
 package net.runelite.mixins;
 
 import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.*;
+import net.runelite.rs.api.RSActor;
+import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSRenderable;
-
-import java.util.HashMap;
-import java.util.Map;
+import net.runelite.rs.api.RSScene;
 
 @Mixin(RSScene.class)
 public abstract class EntityHiderMixin implements RSScene
@@ -41,59 +40,15 @@ public abstract class EntityHiderMixin implements RSScene
 	@Shadow("client")
 	private static RSClient client;
 
-	@Shadow("isHidingEntities")
-	private static boolean isHidingEntities;
-
-	@Shadow("hideOthers")
-	private static boolean hideOthers;
-
-	@Shadow("hideOthers2D")
-	private static boolean hideOthers2D;
-
-	@Shadow("hideFriends")
-	private static boolean hideFriends;
-
-	@Shadow("hideFriendsChatMembers")
-	private static boolean hideFriendsChatMembers;
-
-	@Shadow("hideClanChatMembers")
-	private static boolean hideClanChatMembers;
-
-	@Shadow("hideLocalPlayer")
-	private static boolean hideLocalPlayer;
-
-	@Shadow("hideLocalPlayer2D")
-	private static boolean hideLocalPlayer2D;
-
-	@Shadow("hideIgnores")
-	private static boolean hideIgnores;
-
-	@Shadow("hideNPCs")
-	private static boolean hideNPCs;
-
-	@Shadow("hideNPCs2D")
-	private static boolean hideNPCs2D;
-
-	@Shadow("hidePets")
-	private static boolean hidePets;
-
-	@Shadow("hideAttackers")
-	private static boolean hideAttackers;
-
-	@Shadow("hideProjectiles")
-	private static boolean hideProjectiles;
-
-	@Shadow("hideDeadNPCs")
-	private static boolean hideDeadNPCs;
-
-	@Shadow("hiddenDeadNpcNames")
-	private static HashMap<String, Integer> hiddenDeadNpcNames;
-
 	@Copy("newGameObject")
 	@Replace("newGameObject")
 	boolean copy$addEntityMarker(int var1, int var2, int var3, int var4, int var5, int x, int y, int var8, RSRenderable entity, int var10, boolean var11, long var12, int var13)
 	{
-		final boolean shouldDraw = shouldDraw(entity, false);
+		boolean shouldDraw = client.getCallbacks().draw(entity, false);
+		if (entity.isHidden())
+		{
+			shouldDraw = false;
+		}
 
 		if (!shouldDraw)
 		{
@@ -114,99 +69,9 @@ public abstract class EntityHiderMixin implements RSScene
 	@Replace("drawActor2d")
 	private static void copy$draw2DExtras(RSActor actor, int var1, int var2, int var3, int var4, int var5)
 	{
-		if (shouldDraw(actor, true))
+		if (client.getCallbacks().draw(actor, true))
 		{
 			copy$draw2DExtras(actor, var1, var2, var3, var4, var5);
 		}
-	}
-
-	@Inject
-	private static boolean shouldDraw(Object entity, boolean drawingUI)
-	{
-		if (!isHidingEntities)
-		{
-			return true;
-		}
-
-		if (entity instanceof RSPlayer)
-		{
-			RSPlayer player = (RSPlayer) entity;
-			RSPlayer local = client.getLocalPlayer();
-			if (player.getName() == null)
-			{
-				return true;
-			}
-
-			if (player == local)
-			{
-				return drawingUI ? !hideLocalPlayer2D : !hideLocalPlayer;
-			}
-
-			if (hideAttackers && player.getInteracting() == local)
-			{
-				return false;
-			}
-
-			if (player.isFriend())
-			{
-				return !hideFriends;
-			}
-
-			if (player.isFriendsChatMember())
-			{
-				return !hideFriendsChatMembers;
-			}
-
-			if (player.isClanMember())
-			{
-				return !hideClanChatMembers;
-			}
-
-			if (client.getFriendManager().isIgnored(player.getRsName()))
-			{
-				return !hideIgnores;
-			}
-
-			return drawingUI ? !hideOthers2D : !hideOthers;
-		}
-		else if (entity instanceof RSNPC)
-		{
-			RSNPC npc = (RSNPC) entity;
-			for (Map.Entry<String, Integer> entry : hiddenDeadNpcNames.entrySet())
-			{
-				String name = entry.getKey();
-				int count = entry.getValue();
-				if (name != null && !name.equals(""))
-				{
-					if (count > 0 && npc.getName() != null && npc.getName().equalsIgnoreCase(name) && npc.isDead())
-					{
-						return false;
-					}
-				}
-			}
-
-			if (npc.isDead() && hideDeadNPCs)
-			{
-				return false;
-			}
-
-			if (npc.getComposition().isFollower() && npc.getIndex() != client.getFollowerIndex() && hidePets)
-			{
-				return false;
-			}
-
-			if (npc.getInteracting() == client.getLocalPlayer() && hideAttackers)
-			{
-				return false;
-			}
-
-			return drawingUI ? !hideNPCs2D : !hideNPCs;
-		}
-		else if (entity instanceof RSProjectile)
-		{
-			return !hideProjectiles;
-		}
-
-		return true;
 	}
 }
