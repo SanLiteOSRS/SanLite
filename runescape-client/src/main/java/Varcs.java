@@ -544,7 +544,7 @@ public class Varcs {
 				return 1; // L: 780
 			} else if (var0 == 1125) { // L: 782
 				var8 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 783
-				class453 var6 = (class453)Actor.findEnumerated(StudioGame.FillMode_values(), var8); // L: 784
+				FillMode var6 = (FillMode)Actor.findEnumerated(StudioGame.FillMode_values(), var8); // L: 784
 				if (var6 != null) { // L: 785
 					var3.fillMode = var6; // L: 786
 					ChatChannel.invalidateWidget(var3); // L: 787

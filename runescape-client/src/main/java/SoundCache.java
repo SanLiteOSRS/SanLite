@@ -265,7 +265,7 @@ public class SoundCache {
 			if ((var4 & 2) != 0) { // L: 8111
 				var3.spotAnimation = var0.method7775(); // L: 8112
 				var5 = var0.method7785(); // L: 8113
-				var3.field1143 = var5 >> 16; // L: 8114
+				var3.spotAnimationHeight = var5 >> 16; // L: 8114
 				var3.field1178 = (var5 & 65535) + Client.cycle; // L: 8115
 				var3.spotAnimationFrame = 0; // L: 8116
 				var3.spotAnimationFrameCycle = 0; // L: 8117

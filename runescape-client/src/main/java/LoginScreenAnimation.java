@@ -11,7 +11,8 @@ public class LoginScreenAnimation {
 	@ObfuscatedSignature(
 		descriptor = "Lnz;"
 	)
-	static GraphicsDefaults field1221;
+	@Export("spriteIds")
+	static GraphicsDefaults spriteIds;
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "[Lqu;"
@@ -58,7 +59,7 @@ public class LoginScreenAnimation {
 	int field1229;
 	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1285608208
+		intValue = 1845848383
 	)
 	int field1226;
 	@ObfuscatedName("p")

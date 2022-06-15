@@ -75,8 +75,8 @@ public enum StudioGame implements MouseWheel {
 		garbageValue = "-466654611"
 	)
 	@Export("FillMode_values")
-	public static class453[] FillMode_values() {
-		return new class453[]{class453.SOLID, class453.field4778, class453.field4783}; // L: 15
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.SOLID, FillMode.field4778, FillMode.field4783}; // L: 15
 	}
 
 	@ObfuscatedName("u")

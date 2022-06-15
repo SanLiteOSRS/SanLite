@@ -1,4 +1,5 @@
-import com.jagex.oldscape.pub.OtlTokenRequester;
+package com.jagex.oldscape.pub;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;

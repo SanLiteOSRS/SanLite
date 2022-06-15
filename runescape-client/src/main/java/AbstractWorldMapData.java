@@ -19,13 +19,13 @@ public abstract class AbstractWorldMapData {
 	static class427 HitSplatDefinition_cachedSprites;
 	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 2020953408
+		intValue = -1310599883
 	)
 	@Export("regionXLow")
 	int regionXLow;
 	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 447901888
+		intValue = 1550502339
 	)
 	@Export("regionYLow")
 	int regionYLow;

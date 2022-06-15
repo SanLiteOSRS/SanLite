@@ -1096,7 +1096,7 @@ public class ClanSettings {
 							if ((var6 & 8192) != 0) { // L: 254
 								var5.spotAnimation = var0.method7776(); // L: 255
 								var8 = var0.readInt(); // L: 256
-								var5.field1143 = var8 >> 16; // L: 257
+								var5.spotAnimationHeight = var8 >> 16; // L: 257
 								var5.field1178 = (var8 & 65535) + Client.cycle; // L: 258
 								var5.spotAnimationFrame = 0; // L: 259
 								var5.spotAnimationFrameCycle = 0; // L: 260

@@ -11,7 +11,8 @@ public class CollisionMap {
 	@ObfuscatedSignature(
 		descriptor = "Lnd;"
 	)
-	static ArchiveDisk field2202;
+	@Export("masterDisk")
+	static ArchiveDisk masterDisk;
 	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
 		intValue = 414195973

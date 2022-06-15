@@ -23,14 +23,16 @@ public abstract class AbstractSocket {
 		descriptor = "(I)I",
 		garbageValue = "-439883726"
 	)
-	public abstract int vmethod6822() throws IOException;
+	@Export("available")
+	public abstract int available() throws IOException;
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
 		garbageValue = "-1889844897"
 	)
-	public abstract int vmethod6823() throws IOException;
+	@Export("readUnsignedByte")
+	public abstract int readUnsignedByte() throws IOException;
 
 	@ObfuscatedName("j")
 	@ObfuscatedSignature(

@@ -75,9 +75,6 @@ public final class BZip2State {
 	@Export("bsLive")
 	int bsLive;
 	@ObfuscatedName("x")
-	@ObfuscatedGetter(
-		intValue = 1075332096
-	)
 	@Export("blockSize100k")
 	int blockSize100k;
 	@ObfuscatedName("l")

@@ -30,7 +30,7 @@ public final class ObjectSound extends Node {
 	int plane;
 	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -2098406784
+		intValue = -452601419
 	)
 	@Export("x")
 	int x;
@@ -42,7 +42,7 @@ public final class ObjectSound extends Node {
 	int y;
 	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -534882944
+		intValue = -440386389
 	)
 	@Export("maxX")
 	int maxX;

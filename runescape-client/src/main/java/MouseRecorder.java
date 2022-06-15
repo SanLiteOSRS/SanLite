@@ -174,7 +174,8 @@ public class MouseRecorder implements Runnable {
 		descriptor = "(B)V",
 		garbageValue = "76"
 	)
-	static final void method2107() {
+	@Export("logOut")
+	static final void logOut() {
 		Client.packetWriter.close(); // L: 2902
 		Projectile.method1961(); // L: 2903
 		class356.scene.clear(); // L: 2904

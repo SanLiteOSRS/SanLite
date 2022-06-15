@@ -210,13 +210,14 @@ public enum ModeWhere implements MouseWheel {
 		descriptor = "(IZZZZI)Llc;",
 		garbageValue = "-1168566075"
 	)
-	static Archive method6081(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
+	@Export("newArchive")
+	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
 		ArchiveDisk var5 = null; // L: 2030
 		if (JagexCache.JagexCache_dat2File != null) { // L: 2031
 			var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, class359.JagexCache_idxFiles[var0], 1000000);
 		}
 
-		return new Archive(var5, CollisionMap.field2202, var0, var1, var2, var3, var4); // L: 2032
+		return new Archive(var5, CollisionMap.masterDisk, var0, var1, var2, var3, var4); // L: 2032
 	}
 
 	@ObfuscatedName("lu")

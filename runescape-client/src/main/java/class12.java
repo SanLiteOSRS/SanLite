@@ -15,7 +15,7 @@ import org.bouncycastle.crypto.tls.TlsClientProtocol;
 class class12 extends SSLSocket {
 	@ObfuscatedName("sw")
 	@ObfuscatedGetter(
-		intValue = -910516864
+		intValue = 731084091
 	)
 	static int field65;
 	@ObfuscatedName("lm")

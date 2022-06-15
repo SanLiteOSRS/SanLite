@@ -1,7 +1,6 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@jk
 @ObfuscatedName("mr")
 public final class class342 {
 	@ObfuscatedName("fw")

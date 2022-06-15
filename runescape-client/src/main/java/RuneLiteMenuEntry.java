@@ -412,12 +412,12 @@ public class RuneLiteMenuEntry implements MenuEntry
 		MenuAction menuAction = this.getType();
 
 		if (menuAction == MenuAction.NPC_FIRST_OPTION ||
-				menuAction == MenuAction.NPC_SECOND_OPTION ||
-				menuAction == MenuAction.NPC_THIRD_OPTION ||
-				menuAction == MenuAction.NPC_FOURTH_OPTION ||
-				menuAction == MenuAction.NPC_FIFTH_OPTION ||
-				menuAction == MenuAction.WIDGET_TARGET_ON_NPC ||
-				menuAction == MenuAction.EXAMINE_NPC)
+			menuAction == MenuAction.NPC_SECOND_OPTION ||
+			menuAction == MenuAction.NPC_THIRD_OPTION ||
+			menuAction == MenuAction.NPC_FOURTH_OPTION ||
+			menuAction == MenuAction.NPC_FIFTH_OPTION ||
+			menuAction == MenuAction.WIDGET_TARGET_ON_NPC ||
+			menuAction == MenuAction.EXAMINE_NPC)
 		{
 			int identifier = this.getIdentifier();
 
@@ -438,15 +438,15 @@ public class RuneLiteMenuEntry implements MenuEntry
 
 		MenuAction menuAction = this.getType();
 		if (menuAction == MenuAction.PLAYER_FIRST_OPTION ||
-				menuAction == MenuAction.PLAYER_SECOND_OPTION ||
-				menuAction == MenuAction.PLAYER_THIRD_OPTION ||
-				menuAction == MenuAction.PLAYER_FOURTH_OPTION ||
-				menuAction == MenuAction.PLAYER_FIFTH_OPTION ||
-				menuAction == MenuAction.PLAYER_SIXTH_OPTION ||
-				menuAction == MenuAction.PLAYER_SEVENTH_OPTION ||
-				menuAction == MenuAction.PLAYER_EIGTH_OPTION ||
-				menuAction == MenuAction.WIDGET_TARGET_ON_PLAYER ||
-				menuAction == MenuAction.RUNELITE_PLAYER)
+			menuAction == MenuAction.PLAYER_SECOND_OPTION ||
+			menuAction == MenuAction.PLAYER_THIRD_OPTION ||
+			menuAction == MenuAction.PLAYER_FOURTH_OPTION ||
+			menuAction == MenuAction.PLAYER_FIFTH_OPTION ||
+			menuAction == MenuAction.PLAYER_SIXTH_OPTION ||
+			menuAction == MenuAction.PLAYER_SEVENTH_OPTION ||
+			menuAction == MenuAction.PLAYER_EIGTH_OPTION ||
+			menuAction == MenuAction.WIDGET_TARGET_ON_PLAYER ||
+			menuAction == MenuAction.RUNELITE_PLAYER)
 		{
 			int identifier = this.getIdentifier();
 			if (identifier >= 0 && identifier < players.length)

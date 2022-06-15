@@ -21,7 +21,8 @@ public enum class6 implements MouseWheel {
 	@ObfuscatedSignature(
 		descriptor = "Llc;"
 	)
-	static Archive field20;
+	@Export("archive17")
+	static Archive archive17;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
 		intValue = -1659874385

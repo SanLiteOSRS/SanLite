@@ -95,7 +95,7 @@ public class UserComparator4 implements Comparator {
 				}
 
 				var5 = var1.readBits(1); // L: 7927
-				int var9 = Client.field620[var1.readBits(3)]; // L: 7928
+				int var9 = Client.defaultRotations[var1.readBits(3)]; // L: 7928
 				if (var3) { // L: 7929
 					var4.orientation = var4.rotation = var9;
 				}
@@ -119,7 +119,7 @@ public class UserComparator4 implements Comparator {
 
 				var4.definition = BuddyRankComparator.getNpcDefinition(var1.readBits(14)); // L: 7940
 			} else {
-				int var12 = Client.field620[var1.readBits(3)]; // L: 7943
+				int var12 = Client.defaultRotations[var1.readBits(3)]; // L: 7943
 				if (var3) { // L: 7944
 					var4.orientation = var4.rotation = var12;
 				}

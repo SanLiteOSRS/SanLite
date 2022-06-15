@@ -217,27 +217,27 @@ public class ViewportMouse {
 			Login.Login_loadingPercent = 10; // L: 1668
 			Client.titleLoadingStage = 30; // L: 1669
 		} else if (Client.titleLoadingStage == 30) { // L: 1672
-			Varcs.archive5 = ModeWhere.method6081(0, false, true, true, false); // L: 1673
-			WorldMapEvent.field2882 = ModeWhere.method6081(1, false, true, true, false); // L: 1674
-			class140.archive2 = ModeWhere.method6081(2, true, false, true, false); // L: 1675
-			class341.archive7 = ModeWhere.method6081(3, false, true, true, false); // L: 1676
-			Client.archive4 = ModeWhere.method6081(4, false, true, true, false); // L: 1677
-			WorldMapSectionType.archive9 = ModeWhere.method6081(5, true, true, true, false); // L: 1678
-			class121.archive6 = ModeWhere.method6081(6, true, true, true, false); // L: 1679
-			class10.archive11 = ModeWhere.method6081(7, false, true, true, false); // L: 1680
-			class304.archive8 = ModeWhere.method6081(8, false, true, true, false); // L: 1681
-			Language.field4098 = ModeWhere.method6081(9, false, true, true, false); // L: 1682
-			ApproximateRouteStrategy.archive10 = ModeWhere.method6081(10, false, true, true, false); // L: 1683
-			UserComparator7.field1383 = ModeWhere.method6081(11, false, true, true, false); // L: 1684
-			class267.archive12 = ModeWhere.method6081(12, false, true, true, false); // L: 1685
-			AbstractByteArrayCopier.archive13 = ModeWhere.method6081(13, true, false, true, false); // L: 1686
-			WorldMapSprite.archive14 = ModeWhere.method6081(14, false, true, true, false); // L: 1687
-			class67.archive15 = ModeWhere.method6081(15, false, true, true, false); // L: 1688
-			class6.field20 = ModeWhere.method6081(17, true, true, true, false); // L: 1689
-			AbstractUserComparator.archive18 = ModeWhere.method6081(18, false, true, true, false); // L: 1690
-			MouseHandler.archive19 = ModeWhere.method6081(19, false, true, true, false); // L: 1691
-			class4.archive20 = ModeWhere.method6081(20, false, true, true, false); // L: 1692
-			class132.field1588 = ModeWhere.method6081(21, false, true, true, true); // L: 1693
+			Varcs.archive5 = ModeWhere.newArchive(0, false, true, true, false); // L: 1673
+			WorldMapEvent.field2882 = ModeWhere.newArchive(1, false, true, true, false); // L: 1674
+			class140.archive2 = ModeWhere.newArchive(2, true, false, true, false); // L: 1675
+			class341.archive7 = ModeWhere.newArchive(3, false, true, true, false); // L: 1676
+			Client.archive4 = ModeWhere.newArchive(4, false, true, true, false); // L: 1677
+			WorldMapSectionType.archive9 = ModeWhere.newArchive(5, true, true, true, false); // L: 1678
+			class121.archive6 = ModeWhere.newArchive(6, true, true, true, false); // L: 1679
+			class10.archive11 = ModeWhere.newArchive(7, false, true, true, false); // L: 1680
+			class304.archive8 = ModeWhere.newArchive(8, false, true, true, false); // L: 1681
+			Language.field4098 = ModeWhere.newArchive(9, false, true, true, false); // L: 1682
+			ApproximateRouteStrategy.archive10 = ModeWhere.newArchive(10, false, true, true, false); // L: 1683
+			UserComparator7.field1383 = ModeWhere.newArchive(11, false, true, true, false); // L: 1684
+			class267.archive12 = ModeWhere.newArchive(12, false, true, true, false); // L: 1685
+			AbstractByteArrayCopier.archive13 = ModeWhere.newArchive(13, true, false, true, false); // L: 1686
+			WorldMapSprite.archive14 = ModeWhere.newArchive(14, false, true, true, false); // L: 1687
+			class67.archive15 = ModeWhere.newArchive(15, false, true, true, false); // L: 1688
+			class6.archive17 = ModeWhere.newArchive(17, true, true, true, false); // L: 1689
+			AbstractUserComparator.archive18 = ModeWhere.newArchive(18, false, true, true, false); // L: 1690
+			MouseHandler.archive19 = ModeWhere.newArchive(19, false, true, true, false); // L: 1691
+			class4.archive20 = ModeWhere.newArchive(20, false, true, true, false); // L: 1692
+			class132.field1588 = ModeWhere.newArchive(21, false, true, true, true); // L: 1693
 			Login.Login_loadingText = "Connecting to update server"; // L: 1694
 			Login.Login_loadingPercent = 20; // L: 1695
 			Client.titleLoadingStage = 40; // L: 1696
@@ -367,67 +367,67 @@ public class ViewportMouse {
 				} else if (Client.titleLoadingStage == 80) { // L: 1900
 					var26 = 0; // L: 1901
 					if (class267.compass == null) { // L: 1902
-						class267.compass = class7.SpriteBuffer_getSprite(class304.archive8, LoginScreenAnimation.field1221.compass, 0);
+						class267.compass = class7.SpriteBuffer_getSprite(class304.archive8, LoginScreenAnimation.spriteIds.compass, 0);
 					} else {
 						++var26; // L: 1903
 					}
 
 					if (class344.redHintArrowSprite == null) { // L: 1904
-						class344.redHintArrowSprite = class7.SpriteBuffer_getSprite(class304.archive8, LoginScreenAnimation.field1221.field4367, 0);
+						class344.redHintArrowSprite = class7.SpriteBuffer_getSprite(class304.archive8, LoginScreenAnimation.spriteIds.field4367, 0);
 					} else {
 						++var26; // L: 1905
 					}
 
 					if (class13.mapSceneSprites == null) { // L: 1906
-						class13.mapSceneSprites = ClanChannelMember.method2867(class304.archive8, LoginScreenAnimation.field1221.mapScenes, 0);
+						class13.mapSceneSprites = ClanChannelMember.method2867(class304.archive8, LoginScreenAnimation.spriteIds.mapScenes, 0);
 					} else {
 						++var26; // L: 1907
 					}
 
 					if (Message.headIconPkSprites == null) { // L: 1908
-						Message.headIconPkSprites = class430.method7547(class304.archive8, LoginScreenAnimation.field1221.headIconsPk, 0);
+						Message.headIconPkSprites = class430.method7547(class304.archive8, LoginScreenAnimation.spriteIds.headIconsPk, 0);
 					} else {
 						++var26; // L: 1909
 					}
 
 					if (class28.headIconPrayerSprites == null) { // L: 1910
-						class28.headIconPrayerSprites = class430.method7547(class304.archive8, LoginScreenAnimation.field1221.field4374, 0);
+						class28.headIconPrayerSprites = class430.method7547(class304.archive8, LoginScreenAnimation.spriteIds.field4374, 0);
 					} else {
 						++var26; // L: 1911
 					}
 
 					if (UserComparator4.headIconHintSprites == null) { // L: 1912
-						UserComparator4.headIconHintSprites = class430.method7547(class304.archive8, LoginScreenAnimation.field1221.field4373, 0);
+						UserComparator4.headIconHintSprites = class430.method7547(class304.archive8, LoginScreenAnimation.spriteIds.field4373, 0);
 					} else {
 						++var26; // L: 1913
 					}
 
 					if (DynamicObject.mapMarkerSprites == null) { // L: 1914
-						DynamicObject.mapMarkerSprites = class430.method7547(class304.archive8, LoginScreenAnimation.field1221.field4372, 0);
+						DynamicObject.mapMarkerSprites = class430.method7547(class304.archive8, LoginScreenAnimation.spriteIds.field4372, 0);
 					} else {
 						++var26; // L: 1915
 					}
 
 					if (BuddyRankComparator.crossSprites == null) { // L: 1916
-						BuddyRankComparator.crossSprites = class430.method7547(class304.archive8, LoginScreenAnimation.field1221.field4368, 0);
+						BuddyRankComparator.crossSprites = class430.method7547(class304.archive8, LoginScreenAnimation.spriteIds.field4368, 0);
 					} else {
 						++var26; // L: 1917
 					}
 
 					if (class9.mapDotSprites == null) { // L: 1918
-						class9.mapDotSprites = class430.method7547(class304.archive8, LoginScreenAnimation.field1221.field4371, 0);
+						class9.mapDotSprites = class430.method7547(class304.archive8, LoginScreenAnimation.spriteIds.field4371, 0);
 					} else {
 						++var26; // L: 1919
 					}
 
 					if (class126.scrollBarSprites == null) { // L: 1920
-						class126.scrollBarSprites = ClanChannelMember.method2867(class304.archive8, LoginScreenAnimation.field1221.field4375, 0);
+						class126.scrollBarSprites = ClanChannelMember.method2867(class304.archive8, LoginScreenAnimation.spriteIds.field4375, 0);
 					} else {
 						++var26; // L: 1921
 					}
 
 					if (ClientPreferences.modIconSprites == null) { // L: 1922
-						ClientPreferences.modIconSprites = ClanChannelMember.method2867(class304.archive8, LoginScreenAnimation.field1221.field4376, 0);
+						ClientPreferences.modIconSprites = ClanChannelMember.method2867(class304.archive8, LoginScreenAnimation.spriteIds.field4376, 0);
 					} else {
 						++var26; // L: 1923
 					}
@@ -538,7 +538,7 @@ public class ViewportMouse {
 			var26 += AbstractUserComparator.archive18.percentage() / 100; // L: 1718
 			var26 += class4.archive20.percentage() / 100; // L: 1719
 			var26 += class132.field1588.percentage() / 100; // L: 1720
-			var26 += class6.field20.method5795() && class6.field20.isFullyLoaded() ? 1 : 0; // L: 1721
+			var26 += class6.archive17.method5795() && class6.archive17.isFullyLoaded() ? 1 : 0; // L: 1721
 			if (var26 != 100) { // L: 1722
 				if (var26 != 0) { // L: 1723
 					Login.Login_loadingText = "Checking for updates - " + var26 + "%";
@@ -559,8 +559,8 @@ public class ViewportMouse {
 				HealthBarUpdate.method2202(MouseHandler.archive19, "World Map"); // L: 1737
 				HealthBarUpdate.method2202(AbstractUserComparator.archive18, "World Map Geography"); // L: 1738
 				HealthBarUpdate.method2202(class4.archive20, "World Map Ground"); // L: 1739
-				LoginScreenAnimation.field1221 = new GraphicsDefaults(); // L: 1740
-				LoginScreenAnimation.field1221.decode(class6.field20); // L: 1741
+				LoginScreenAnimation.spriteIds = new GraphicsDefaults(); // L: 1740
+				LoginScreenAnimation.spriteIds.decode(class6.archive17); // L: 1741
 				Login.Login_loadingText = "Loaded update list"; // L: 1742
 				Login.Login_loadingPercent = 30; // L: 1743
 				Client.titleLoadingStage = 45; // L: 1744

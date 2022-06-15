@@ -230,7 +230,7 @@ public class class131 {
 	)
 	static final void method2877() {
 		if (Client.logoutTimer > 0) { // L: 3009
-			MouseRecorder.method2107(); // L: 3010
+			MouseRecorder.logOut(); // L: 3010
 		} else {
 			Client.timer.method6510(); // L: 3013
 			HealthBarUpdate.updateGameState(40); // L: 3014

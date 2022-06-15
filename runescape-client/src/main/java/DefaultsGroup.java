@@ -34,7 +34,7 @@ public class DefaultsGroup {
 	)
 	@Export("forceDisconnect")
 	static final void forceDisconnect(int var0) {
-		MouseRecorder.method2107(); // L: 2923
+		MouseRecorder.logOut(); // L: 2923
 		switch(var0) { // L: 2924
 		case 1:
 			WorldMapData_1.method4872(24); // L: 2936
