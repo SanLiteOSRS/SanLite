@@ -1,34 +1,50 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qk")
-public class class453 {
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 1540266419
+@ObfuscatedName("qy")
+public enum class453 implements MouseWheel {
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Lqy;"
 	)
-	@Export("SpriteBuffer_spriteCount")
-	public static int SpriteBuffer_spriteCount;
+	@Export("SOLID")
+	SOLID(0, 0),
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Lqy;"
+	)
+	field4778(1, 1),
 	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 1346768065
+	@ObfuscatedSignature(
+		descriptor = "Lqy;"
 	)
-	@Export("SpriteBuffer_spriteWidth")
-	public static int SpriteBuffer_spriteWidth;
-	@ObfuscatedName("l")
+	field4783(2, 2);
+
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1623360163
+		intValue = 112722803
 	)
-	@Export("SpriteBuffer_spriteHeight")
-	public static int SpriteBuffer_spriteHeight;
-	@ObfuscatedName("k")
-	@Export("SpriteBuffer_xOffsets")
-	public static int[] SpriteBuffer_xOffsets;
-	@ObfuscatedName("a")
-	@Export("SpriteBuffer_yOffsets")
-	public static int[] SpriteBuffer_yOffsets;
-	@ObfuscatedName("p")
-	@Export("SpriteBuffer_spriteHeights")
-	public static int[] SpriteBuffer_spriteHeights;
+	public final int field4781;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 773830597
+	)
+	final int field4782;
+
+	class453(int var3, int var4) {
+		this.field4781 = var3; // L: 19
+		this.field4782 = var4; // L: 20
+	} // L: 21
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-100"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field4782; // L: 25
+	}
 }
