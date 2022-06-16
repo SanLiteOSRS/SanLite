@@ -42,4 +42,15 @@ public interface Renderable extends Node
 	void setModelHeight(int modelHeight);
 
 	void draw(int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash);
+
+	/**
+	 * @return whether the renderable is blocked from rendering in the viewport.
+	 */
+	boolean isHidden();
+
+	/**
+	 * Blocks the renderable from being rendered in the viewport.
+	 * @param hidden
+	 */
+	void setHidden(boolean hidden);
 }

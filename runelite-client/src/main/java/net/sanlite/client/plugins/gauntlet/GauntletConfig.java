@@ -200,8 +200,7 @@ public interface GauntletConfig extends Config
 	@ConfigItem(
 			keyName = "hideNpcDeathAnimations",
 			name = "Hide NPC death animations",
-			description = "Hides death animations for regular NPC's in the gauntlet." +
-					"<br>Note: the entity hider plugin needs to be enabled.",
+			description = "Hides death animations for regular NPC's in the gauntlet",
 			section = regularMonstersSection,
 			position = 1
 	)

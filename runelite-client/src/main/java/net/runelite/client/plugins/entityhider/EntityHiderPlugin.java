@@ -25,9 +25,15 @@
  */
 package net.runelite.client.plugins.entityhider;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Provides;
 import javax.inject.Inject;
 import net.runelite.api.Client;
+import net.runelite.api.NPC;
+import net.runelite.api.Player;
+import net.runelite.api.Projectile;
+import net.runelite.api.Renderable;
+import net.runelite.client.callback.Hooks;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -48,6 +54,25 @@ public class EntityHiderPlugin extends Plugin
 	@Inject
 	private EntityHiderConfig config;
 
+	@Inject
+	private Hooks hooks;
+
+	private boolean hideOthers;
+	private boolean hideOthers2D;
+	private boolean hideFriends;
+	private boolean hideFriendsChatMembers;
+	private boolean hideClanMembers;
+	private boolean hideIgnoredPlayers;
+	private boolean hideLocalPlayer;
+	private boolean hideLocalPlayer2D;
+	private boolean hideNPCs;
+	private boolean hideNPCs2D;
+	private boolean hidePets;
+	private boolean hideAttackers;
+	private boolean hideProjectiles;
+
+	private final Hooks.RenderableDrawListener drawListener = this::shouldDraw;
+
 	@Provides
 	EntityHiderConfig provideConfig(ConfigManager configManager)
 	{
@@ -58,6 +83,14 @@ public class EntityHiderPlugin extends Plugin
 	protected void startUp()
 	{
 		updateConfig();
+
+		hooks.registerRenderableDrawListener(drawListener);
+	}
+
+	@Override
+	protected void shutDown()
+	{
+		hooks.unregisterRenderableDrawListener(drawListener);
 	}
 
 	@Subscribe
@@ -71,54 +104,100 @@ public class EntityHiderPlugin extends Plugin
 
 	private void updateConfig()
 	{
-		client.setIsHidingEntities(true);
+		hideOthers = config.hideOthers();
+		hideOthers2D = config.hideOthers2D();
 
-		client.setOthersHidden(config.hideOthers());
-		client.setOthersHidden2D(config.hideOthers2D());
+		hideFriends = config.hideFriends();
+		hideFriendsChatMembers = config.hideFriendsChatMembers();
+		hideClanMembers = config.hideClanChatMembers();
+		hideIgnoredPlayers = config.hideIgnores();
 
-		client.setFriendsHidden(config.hideFriends());
-		client.setFriendsChatMembersHidden(config.hideFriendsChatMembers());
-		client.setClanChatMembersHidden(config.hideClanChatMembers());
-		client.setIgnoresHidden(config.hideIgnores());
+		hideLocalPlayer = config.hideLocalPlayer();
+		hideLocalPlayer2D = config.hideLocalPlayer2D();
 
-		client.setLocalPlayerHidden(config.hideLocalPlayer());
-		client.setLocalPlayerHidden2D(config.hideLocalPlayer2D());
+		hideNPCs = config.hideNPCs();
+		hideNPCs2D = config.hideNPCs2D();
 
-		client.setNPCsHidden(config.hideNPCs());
-		client.setNPCsHidden2D(config.hideNPCs2D());
-		client.setDeadNPCsHidden(config.hideDeadNPCs());
+		hidePets = config.hidePets();
 
-		client.setPetsHidden(config.hidePets());
+		hideAttackers = config.hideAttackers();
 
-		client.setAttackersHidden(config.hideAttackers());
-
-		client.setProjectilesHidden(config.hideProjectiles());
+		hideProjectiles = config.hideProjectiles();
 	}
 
-	@Override
-	protected void shutDown() throws Exception
+	@VisibleForTesting
+	boolean shouldDraw(Renderable renderable, boolean drawingUI)
 	{
-		client.setIsHidingEntities(false);
+		if (renderable instanceof Player)
+		{
+			Player player = (Player) renderable;
+			Player local = client.getLocalPlayer();
 
-		client.setOthersHidden(false);
-		client.setOthersHidden2D(false);
+			if (player.getName() == null)
+			{
+				// player.isFriend() and player.isFriendsChatMember() npe when the player has a null name
+				return true;
+			}
 
-		client.setFriendsHidden(false);
-		client.setFriendsChatMembersHidden(false);
-		client.setClanChatMembersHidden(false);
-		client.setIgnoresHidden(false);
+			// Allow hiding local self in pvp, which is an established meta.
+			// It is more advantageous than renderself due to being able to still render local player 2d
+			if (player == local)
+			{
+				return !(drawingUI ? hideLocalPlayer2D : hideLocalPlayer);
+			}
 
-		client.setLocalPlayerHidden(false);
-		client.setLocalPlayerHidden2D(false);
+			if (hideAttackers && player.getInteracting() == local)
+			{
+				return false; // hide
+			}
 
-		client.setNPCsHidden(false);
-		client.setNPCsHidden2D(false);
-		client.setDeadNPCsHidden(false);
+			if (player.isFriend())
+			{
+				return !hideFriends;
+			}
+			if (player.isFriendsChatMember())
+			{
+				return !hideFriendsChatMembers;
+			}
+			if (player.isClanMember())
+			{
+				return !hideClanMembers;
+			}
+			if (client.getIgnoreContainer().findByName(player.getName()) != null)
+			{
+				return !hideIgnoredPlayers;
+			}
 
-		client.setPetsHidden(false);
+			return !(drawingUI ? hideOthers2D : hideOthers);
+		}
+		else if (renderable instanceof NPC)
+		{
+			NPC npc = (NPC) renderable;
 
-		client.setAttackersHidden(false);
+			if (npc.getComposition().isFollower() && npc != client.getFollower())
+			{
+				return !hidePets;
+			}
 
-		client.setProjectilesHidden(false);
+			if (npc.getInteracting() == client.getLocalPlayer())
+			{
+				boolean b = hideAttackers;
+				// Kludge to make hide attackers only affect 2d or 3d if the 2d or 3d hide is on
+				// This allows hiding 2d for all npcs, including attackers.
+				if (hideNPCs2D || hideNPCs)
+				{
+					b &= drawingUI ? hideNPCs2D : hideNPCs;
+				}
+				return !b;
+			}
+
+			return !(drawingUI ? hideNPCs2D : hideNPCs);
+		}
+		else if (renderable instanceof Projectile)
+		{
+			return !hideProjectiles;
+		}
+
+		return true;
 	}
 }

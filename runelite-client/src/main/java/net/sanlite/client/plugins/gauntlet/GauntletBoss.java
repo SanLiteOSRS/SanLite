@@ -39,6 +39,8 @@ import java.util.function.Consumer;
 @Slf4j
 public class GauntletBoss
 {
+	// Inactive damage tile NULL_36047
+	// Active damage tile NULL_36048
 	static final int ATTACK_RATE = 5; // 5 ticks between each attack
 	static final int ATTACKS_PER_SWITCH = 4; // 4 attacks per style switch
 	static final int ATTACKS_PER_OVERHEAD_SWITCH = 6; // 6 attacks per overhead switch

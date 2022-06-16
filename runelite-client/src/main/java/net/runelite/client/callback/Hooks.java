@@ -36,14 +36,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
-import net.runelite.api.events.*;
+import net.runelite.api.Client;
+import net.runelite.api.MainBufferProvider;
+import net.runelite.api.RenderOverview;
+import net.runelite.api.Renderable;
+import net.runelite.api.Skill;
+import net.runelite.api.WorldMapManager;
+import net.runelite.api.events.BeforeRender;
+import net.runelite.api.events.FakeXpDrop;
+import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.GameTick;
+import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.hooks.Callbacks;
-import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.widgets.Widget;
 import static net.runelite.api.widgets.WidgetInfo.WORLD_MAP_VIEW;
 import net.runelite.api.widgets.WidgetItem;
@@ -100,6 +109,14 @@ public class Hooks implements Callbacks
 
 	private static MainBufferProvider lastMainBufferProvider;
 	private static Graphics2D lastGraphics;
+
+	@FunctionalInterface
+	public interface RenderableDrawListener
+	{
+		boolean draw(Renderable renderable, boolean ui);
+	}
+
+	private final List<RenderableDrawListener> renderableDrawListeners = new ArrayList<>();
 
 	/**
 	 * Get the Graphics2D for the MainBufferProvider image
@@ -208,7 +225,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("error during main loop tasks", ex);
+			log.error("error during main loop tasks", ex);
 		}
 	}
 
@@ -333,7 +350,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 
 		notifier.processFlash(graphics2d);
@@ -428,7 +445,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 	}
 
@@ -444,7 +461,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 	}
 
@@ -496,7 +513,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 	}
 
@@ -512,7 +529,7 @@ public class Hooks implements Callbacks
 		}
 		catch (Exception ex)
 		{
-			log.warn("Error during overlay rendering", ex);
+			log.error("Error during overlay rendering", ex);
 		}
 	}
 
@@ -538,42 +555,33 @@ public class Hooks implements Callbacks
 		eventBus.post(fakeXpDrop);
 	}
 
-	public static void clearColorBuffer(int x, int y, int width, int height, int color)
+	public void registerRenderableDrawListener(RenderableDrawListener listener)
 	{
-		BufferProvider bp = client.getBufferProvider();
-		int canvasWidth = bp.getWidth();
-		int[] pixels = bp.getPixels();
+		renderableDrawListeners.add(listener);
+	}
 
-		int pixelPos = y * canvasWidth + x;
-		int pixelJump = canvasWidth - width;
+	public void unregisterRenderableDrawListener(RenderableDrawListener listener)
+	{
+		renderableDrawListeners.remove(listener);
+	}
 
-		for (int cy = y; cy < y + height; cy++)
+	@Override
+	public boolean draw(Renderable renderable, boolean drawingUi)
+	{
+		try
 		{
-			for (int cx = x; cx < x + width; cx++)
+			for (RenderableDrawListener renderableDrawListener : renderableDrawListeners)
 			{
-				pixels[pixelPos++] = 0;
+				if (!renderableDrawListener.draw(renderable, drawingUi))
+				{
+					return false;
+				}
 			}
-			pixelPos += pixelJump;
 		}
-	}
-
-	public static void renderDraw(Renderable renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
-	{
-		DrawCallbacks drawCallbacks = client.getDrawCallbacks();
-		if (drawCallbacks != null)
+		catch (Exception ex)
 		{
-			drawCallbacks.draw(renderable, orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
+			log.error("exception from renderable draw listener", ex);
 		}
-		else
-		{
-			renderable.draw(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
-		}
-	}
-
-	public static boolean drawMenu()
-	{
-		BeforeMenuRender event = new BeforeMenuRender();
-		client.getCallbacks().post(event);
-		return event.isConsumed();
+		return true;
 	}
 }

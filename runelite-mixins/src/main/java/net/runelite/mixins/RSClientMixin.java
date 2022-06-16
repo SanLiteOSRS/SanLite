@@ -2634,5 +2634,23 @@ public abstract class RSClientMixin implements RSClient
 			Arrays.fill(client.getBufferProvider().getPixels(), 0);
 		}
 	}
+
+	@Inject
+	@Override
+	@Nullable
+	public RSNPC getFollower()
+	{
+		int followerIndex = client.getFollowerIndex();
+		RSNPC[] cachedNPCs = this.getCachedNPCs();
+		return followerIndex >= 0 && followerIndex < cachedNPCs.length ? cachedNPCs[followerIndex] : null;
+	}
+
+	@Inject
+	public static boolean drawMenu()
+	{
+		BeforeMenuRender event = new BeforeMenuRender();
+		client.getCallbacks().post(event);
+		return event.isConsumed();
+	}
 }
 

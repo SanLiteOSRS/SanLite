@@ -12,6 +12,9 @@ public interface RSNameableContainer<T extends Nameable> extends NameableContain
 	@Import("getSize")
 	int getCount();
 
+	@Import("capacity")
+	int getSize();
+
 	@Import("getByUsername")
 	T findByName(RSUsername name);
 

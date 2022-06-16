@@ -13,6 +13,8 @@ import net.sanlite.injector.injection.InjectData;
 import net.sanlite.injector.rsapi.RSApi;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
+import net.runelite.asm.Method;
+import net.runelite.asm.signature.Signature;
 import net.runelite.deob.util.JarUtil;
 import org.junit.Test;
 
@@ -31,6 +33,9 @@ public class DrawMenuTest
 		deob.addClass(deobClient);
 
 		InjectData inject = new TestInjection(van, deob, new ClassGroup(), new RSApi());
+
+		addMockMethod(van);
+
 		inject.initToVanilla();
 		new DrawMenu(inject).inject();
 	}
@@ -48,7 +53,19 @@ public class DrawMenuTest
 		deob.addClass(deobClient);
 
 		InjectData inject = new TestInjection(van, deob, new ClassGroup(), new RSApi());
+
+		addMockMethod(van);
+
 		inject.initToVanilla();
 		new DrawMenu(inject).inject();
+	}
+
+	private void addMockMethod(ClassGroup vanilla)
+	{
+		final ClassFile classFile = vanilla.findClass("client");
+
+		final Method clientM = new Method(classFile, "drawMenu", new Signature("()Z"));
+		clientM.setStatic(true);
+		classFile.addMethod(clientM);
 	}
 }
