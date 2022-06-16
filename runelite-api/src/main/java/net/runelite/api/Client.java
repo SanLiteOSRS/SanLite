@@ -2014,25 +2014,4 @@ public interface Client extends OAuthApi, GameEngine
 	void invokeMenuAction(int param0, int param1, int type, int id, String menuEntry, String targetString, int canvasX, int canvasY);
 
 	void setKeyboardIdleTicks(int cycles);
-
-	/**
-	 * Sets whether dead NPCs are hidden.
-	 *
-	 * @param state new NPC hidden state
-	 */
-	void setDeadNPCsHidden(boolean state);
-
-	/**
-	 * Increments the counter for how many times this dead npc has been selected to be hidden
-	 *
-	 * @param name npc name
-	 */
-	void addHiddenDeadNpcName(String name);
-
-	/**
-	 * Decrements the counter for how many times this dead npc has been selected to be hidden
-	 *
-	 * @param name npc name
-	 */
-	void removeHiddenDeadNpcName(String name);
 }

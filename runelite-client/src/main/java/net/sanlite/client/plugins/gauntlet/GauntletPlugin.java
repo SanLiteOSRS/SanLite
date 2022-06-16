@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.*;
 import net.runelite.client.callback.ClientThread;
+import net.runelite.client.callback.Hooks;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -107,6 +108,8 @@ public class GauntletPlugin extends Plugin
 			NullObjectID.NULL_35996,
 			ObjectID.ILLUMINATED_SYMBOL,
 			ObjectID.INACTIVE_SYMBOL,
+			NullObjectID.NULL_36000,
+			NullObjectID.NULL_36001,
 			ObjectID.ILLUMINATED_SYMBOL_36095,
 			ObjectID.INACTIVE_SYMBOL_36097,
 			NullObjectID.NULL_36098,
@@ -120,42 +123,33 @@ public class GauntletPlugin extends Plugin
 
 	@Inject
 	private GauntletConfig config;
-
+	private final Hooks.RenderableDrawListener gauntletNPCDrawListener = this::shouldDrawGauntletNPC;
 	@Inject
 	private OverlayManager overlayManager;
-
 	@Inject
 	private GauntletBossOverlay bossOverlay;
-
 	@Inject
 	private GauntletBossProtectionPrayOverlay bossProtectionPrayOverlay;
-
 	@Inject
 	private GauntletBossFixedAttackOverlay gauntletFixedAttackOverlay;
-
 	@Inject
 	private GauntletBossFixedProtectOverlay gauntletFixedProtectOverlay;
-
 	@Inject
 	private GauntletEnvironmentOverlay environmentOverlay;
-
 	@Inject
 	private GauntletEnvironmentMinimapOverlay environmentMinimapOverlay;
-
 	@Inject
 	private GauntletDebugOverlay debugOverlay;
-
 	@Inject
 	private ClientThread clientThread;
-
 	@Inject
 	private ScheduledExecutorService scheduledExecutorService;
-
 	@Inject
 	private SoundManager soundManager;
-
 	@Getter
 	private Gauntlet gauntlet;
+	@Inject
+	private Hooks hooks;
 
 	@Provides
 	GauntletConfig getConfig(ConfigManager configManager)
@@ -214,11 +208,16 @@ public class GauntletPlugin extends Plugin
 
 				if (config.hideNpcDeathAnimations())
 				{
-					clientThread.invoke(() -> hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName));
+					if (gauntlet == null)
+					{
+						break;
+					}
+
+					hooks.registerRenderableDrawListener(gauntletNPCDrawListener);
 					break;
 				}
 
-				clientThread.invoke(() -> hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName));
+				hooks.unregisterRenderableDrawListener(gauntletNPCDrawListener);
 				break;
 			case "hideBigTreeObjects":
 				if (gauntlet == null)
@@ -290,10 +289,7 @@ public class GauntletPlugin extends Plugin
 	private void reset()
 	{
 		gauntlet = null;
-		if (config.hideNpcDeathAnimations())
-		{
-			hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName);
-		}
+		hooks.unregisterRenderableDrawListener(gauntletNPCDrawListener);
 
 		if (config.hideBigTreeObjects())
 		{
@@ -320,7 +316,7 @@ public class GauntletPlugin extends Plugin
 
 			if (config.hideNpcDeathAnimations())
 			{
-				clientThread.invoke(() -> hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName));
+				hooks.registerRenderableDrawListener(gauntletNPCDrawListener);
 			}
 
 			if (config.hideBigTreeObjects())
@@ -647,5 +643,24 @@ public class GauntletPlugin extends Plugin
 				return meleeOverheadIcon;
 		}
 		return null;
+	}
+
+	boolean shouldDrawGauntletNPC(Renderable renderable, boolean drawingUI)
+	{
+		if (!config.hideNpcDeathAnimations())
+		{
+			return true;
+		}
+
+		if (renderable instanceof NPC)
+		{
+			NPC npc = (NPC) renderable;
+			if (hiddenDeadNpcNames.stream().anyMatch((name) -> name.equalsIgnoreCase(npc.getName())))
+			{
+				return !npc.isDead();
+			}
+		}
+
+		return true;
 	}
 }
