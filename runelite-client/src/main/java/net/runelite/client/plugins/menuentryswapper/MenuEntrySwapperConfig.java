@@ -151,13 +151,25 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-		position = -2,
+		position = -3,
 		keyName = "npcLeftClickCustomization",
 		name = "Customizable left-click",
 		description = "Allows customization of left-clicks on NPCs",
 		section = npcSection
 	)
 	default boolean npcLeftClickCustomization()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		position = -2,
+		keyName = "npcShiftClickWalkHere",
+		name = "Shift click Walk here",
+		description = "Swaps Walk here on shift click on all NPCs",
+		section = npcSection
+	)
+	default boolean npcShiftClickWalkHere()
 	{
 		return true;
 	}
@@ -892,13 +904,12 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "swapPickpocket",
-		name = "Pickpocket",
-		description = "Swap Talk-to with Pickpocket",
-		warning = "This is a use at own risk option, do you still want toggle this option?",
+		keyName = "removeDeadNpcMenus",
+		name = "Remove dead npc menus",
+		description = "Remove menu options such as Attack and Talk-to from dead npcs",
 		section = npcSection
 	)
-	default boolean swapPickpocket()
+	default boolean removeDeadNpcMenus()
 	{
 		return false;
 	}
