@@ -227,7 +227,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 	@VisibleForTesting
 	void setupSwaps()
 	{
-		swap("talk-to", "pickpocket", config::swapPickpocket);
 		swap("talk-to", "mage of zamorak", "teleport", config::swapAbyssTeleport);
 		swap("talk-to", "rionasta", "send-parcel", config::swapHardWoodGroveParcel);
 		swap("talk-to", "captain khaled", "task", config::swapCaptainKhaled);
