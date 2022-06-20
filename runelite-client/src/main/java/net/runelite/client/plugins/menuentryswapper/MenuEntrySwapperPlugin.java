@@ -817,13 +817,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 						continue;
 					}
 
-					if ("Knock-Out".equals(actions[actionIdx])
-						|| "Lure".equals(actions[actionIdx]))
-					{
-						// https://secure.runescape.com/m=news/another-message-about-unofficial-clients?oldschool=1
-						continue;
-					}
-
 					client.createMenuEntry(idx)
 						.setOption("Swap " + actions[actionIdx])
 						.setTarget(entry.getTarget())
