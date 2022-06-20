@@ -33,8 +33,22 @@ import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
-import net.runelite.api.events.*;
+import net.runelite.api.Actor;
+import net.runelite.api.ChatMessageType;
+import net.runelite.api.Client;
+import net.runelite.api.GameState;
+import net.runelite.api.MenuAction;
+import net.runelite.api.MenuEntry;
+import net.runelite.api.NPC;
+import net.runelite.api.NpcID;
+import net.runelite.api.Varbits;
+import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.HitsplatApplied;
+import net.runelite.api.events.InteractingChanged;
+import net.runelite.api.events.MenuEntryAdded;
+import net.runelite.api.events.NpcDespawned;
+import net.runelite.api.events.NpcSpawned;
+import net.runelite.api.events.VarbitChanged;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
@@ -55,7 +69,6 @@ import net.runelite.client.ui.overlay.OverlayManager;
 @Slf4j
 public class CorpPlugin extends Plugin
 {
-	private static final int NPC_SECTION_ACTION = MenuAction.NPC_SECOND_OPTION.getId();
 	private static final String ATTACK = "Attack";
 	private static final String DARK_ENERGY_CORE = "Dark energy core";
 
@@ -240,24 +253,20 @@ public class CorpPlugin extends Plugin
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded menuEntryAdded)
 	{
-		if (menuEntryAdded.getType() != NPC_SECTION_ACTION
-				|| !config.leftClickCore() || !menuEntryAdded.getOption().equals(ATTACK))
+		final MenuEntry menuEntry = menuEntryAdded.getMenuEntry();
+		final NPC npc = menuEntry.getNpc();
+		if (npc == null || !DARK_ENERGY_CORE.equals(npc.getName()))
 		{
 			return;
 		}
 
-		final int npcIndex = menuEntryAdded.getIdentifier();
-		final NPC npc = client.getCachedNPCs()[npcIndex];
-		if (npc == null || !npc.getName().equals(DARK_ENERGY_CORE))
+		if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION
+			|| !menuEntry.getOption().equals(ATTACK)
+			|| !config.leftClickCore())
 		{
 			return;
 		}
 
-		// since this is the menu entry add event, this is the last menu entry
-		MenuEntry[] menuEntries = client.getMenuEntries();
-		MenuEntry menuEntry = menuEntries[menuEntries.length - 1];
-
-		menuEntry.setType(MenuAction.DEPRIORITIZED_NPC_SECOND_OPTION);
-		client.setMenuEntries(menuEntries);
+		menuEntry.setDeprioritized(true);
 	}
 }
