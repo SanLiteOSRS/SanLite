@@ -892,13 +892,12 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "swapPickpocket",
-		name = "Pickpocket",
-		description = "Swap Talk-to with Pickpocket",
-		warning = "This is a use at own risk option, do you still want toggle this option?",
+		keyName = "removeDeadNpcMenus",
+		name = "Remove dead npc menus",
+		description = "Remove menu options such as Attack and Talk-to from dead npcs",
 		section = npcSection
 	)
-	default boolean swapPickpocket()
+	default boolean removeDeadNpcMenus()
 	{
 		return false;
 	}
