@@ -1,55 +1,56 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mi")
+@ObfuscatedName("nv")
 @Implements("IgnoreList")
 public class IgnoreList extends NameableContainer {
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = -676945199
 	)
-	static IndexedSprite field4284;
-	@ObfuscatedName("q")
+	static int field4293;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lpe;"
+		descriptor = "Lpa;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpe;)V"
+		descriptor = "(Lpa;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400); // L: 13
 		this.loginType = var1; // L: 14
 	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lne;",
-		garbageValue = "-7122"
+		descriptor = "(B)Lnd;",
+		garbageValue = "12"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Ignored(); // L: 19
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lne;",
-		garbageValue = "77510907"
+		descriptor = "(II)[Lnd;",
+		garbageValue = "-1607059691"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Ignored[var1]; // L: 24
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "1241534529"
+		descriptor = "(Lqw;IB)V",
+		garbageValue = "-9"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -90,6 +91,34 @@ public class IgnoreList extends NameableContainer {
 			}
 
 			return; // L: 57
+		}
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1968612284"
+	)
+	static void method6630() {
+		class267.SpriteBuffer_xOffsets = null; // L: 243
+		class457.SpriteBuffer_yOffsets = null; // L: 244
+		class457.SpriteBuffer_spriteWidths = null; // L: 245
+		Decimator.SpriteBuffer_spriteHeights = null; // L: 246
+		GrandExchangeOfferWorldComparator.SpriteBuffer_spritePalette = null; // L: 247
+		class436.SpriteBuffer_pixels = null; // L: 248
+	} // L: 249
+
+	@ObfuscatedName("lp")
+	@ObfuscatedSignature(
+		descriptor = "(Lku;I)Ljava/lang/String;",
+		garbageValue = "2090269770"
+	)
+	@Export("Widget_getSpellActionName")
+	static String Widget_getSpellActionName(Widget var0) {
+		if (WallObject.Widget_unpackTargetMask(class67.getWidgetFlags(var0)) == 0) { // L: 12280
+			return null;
+		} else {
+			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null; // L: 12281 12282 12284
 		}
 	}
 }

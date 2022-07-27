@@ -1,34 +1,47 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cz")
+@ObfuscatedName("cr")
 public class class92 {
-	@ObfuscatedName("e")
+	@ObfuscatedName("uc")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-35"
+		descriptor = "Lou;"
 	)
-	public static void method2389() {
-		HealthBarDefinition.HealthBarDefinition_cached.clear(); // L: 89
-		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear(); // L: 90
-	} // L: 91
-
-	@ObfuscatedName("lr")
+	@Export("platformInfo")
+	static PlatformInfo platformInfo;
+	@ObfuscatedName("iw")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "38"
+		descriptor = "[Lqj;"
 	)
-	static String method2388(String var0) {
-		PlayerType[] var1 = SoundSystem.PlayerType_values(); // L: 12443
+	@Export("headIconHintSprites")
+	static SpritePixels[] headIconHintSprites;
 
-		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12444
-			PlayerType var3 = var1[var2]; // L: 12445
-			if (var3.modIcon != -1 && var0.startsWith(SecureRandomCallable.method2066(var3.modIcon))) { // L: 12447 12448
-				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length()); // L: 12449
-				break;
-			}
-		}
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(Llc;S)V",
+		garbageValue = "29302"
+	)
+	public static void method2442(AbstractArchive var0) {
+		VarcInt.VarcInt_archive = var0; // L: 15
+	} // L: 16
 
-		return var0; // L: 12456
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1752725574"
+	)
+	public static void method2441() {
+		class438.DBRowType_cache.clear(); // L: 75
+	} // L: 76
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)I",
+		garbageValue = "0"
+	)
+	@Export("stringCp1252NullTerminatedByteSize")
+	public static int stringCp1252NullTerminatedByteSize(String var0) {
+		return var0.length() + 1; // L: 108
 	}
 }

@@ -3,22 +3,16 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ji")
+@ObfuscatedName("ja")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("ro")
-	@ObfuscatedSignature(
-		descriptor = "Lno;"
-	)
-	@Export("friendsChatManager")
-	static FriendsChatManager friendsChatManager;
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@Export("keys")
 	int[] keys;
 
@@ -47,23 +41,23 @@ public class Huffman {
 
 					for (var10 = var6 - 1; var10 >= 1; --var10) { // L: 25
 						var11 = var3[var10]; // L: 26
-						if (var8 != var11) { // L: 27
+						if (var11 != var8) { // L: 27
 							break;
 						}
 
 						var12 = 1 << 32 - var10; // L: 28
 						if ((var11 & var12) != 0) { // L: 29
-							var3[var10] = var3[var10 - 1]; // L: 30
+							var3[var10] = var3[var10 - 1];
 							break;
 						}
 
-						var3[var10] = var11 | var12; // L: 33
+						var3[var10] = var11 | var12;
 					}
 				}
 
 				var3[var6] = var9; // L: 38
 
-				for (var10 = var6 + 1; var10 <= 32; ++var10) { // L: 39
+				for (var10 = var6 + 1; var10 <= 32; ++var10) {
 					if (var8 == var3[var10]) { // L: 40
 						var3[var10] = var9;
 					}
@@ -103,35 +97,35 @@ public class Huffman {
 			}
 		}
 
-	}
+	} // L: 60
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "([BII[BIB)I",
-		garbageValue = "-98"
+		garbageValue = "-111"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
 		int var6 = 0; // L: 63
-		int var7 = var5 << 3;
+		int var7 = var5 << 3; // L: 64
 
-		for (var3 += var2; var2 < var3; ++var2) {
-			int var8 = var1[var2] & 255;
+		for (var3 += var2; var2 < var3; ++var2) { // L: 65 66
+			int var8 = var1[var2] & 255; // L: 67
 			int var9 = this.masks[var8]; // L: 68
-			byte var10 = this.bits[var8];
-			if (var10 == 0) {
+			byte var10 = this.bits[var8]; // L: 69
+			if (var10 == 0) { // L: 70
 				throw new RuntimeException("" + var8);
 			}
 
-			int var11 = var7 >> 3;
-			int var12 = var7 & 7;
+			int var11 = var7 >> 3; // L: 71
+			int var12 = var7 & 7; // L: 72
 			var6 &= -var12 >> 31; // L: 73
-			int var13 = (var12 + var10 - 1 >> 3) + var11;
-			var12 += 24;
-			var4[var11] = (byte)(var6 |= var9 >>> var12);
+			int var13 = (var12 + var10 - 1 >> 3) + var11; // L: 74
+			var12 += 24; // L: 76
+			var4[var11] = (byte)(var6 |= var9 >>> var12); // L: 77
 			if (var11 < var13) { // L: 78
 				++var11; // L: 79
-				var12 -= 8;
+				var12 -= 8; // L: 80
 				var4[var11] = (byte)(var6 = var9 >>> var12); // L: 81
 				if (var11 < var13) { // L: 82
 					++var11; // L: 83
@@ -156,10 +150,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5; // L: 97
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "([BI[BIII)I",
-		garbageValue = "669033826"
+		garbageValue = "-1581076395"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -278,8 +272,8 @@ public class Huffman {
 					var6 = 0; // L: 155
 				}
 
-				if ((var8 & 1) != 0) {
-					var6 = this.keys[var6]; // L: 157
+				if ((var8 & 1) != 0) { // L: 157
+					var6 = this.keys[var6];
 				} else {
 					++var6; // L: 158
 				}
@@ -300,49 +294,23 @@ public class Huffman {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lbi;",
-		garbageValue = "2027632889"
+		descriptor = "(Lqw;[II)[Ljava/lang/Object;",
+		garbageValue = "-111213447"
 	)
-	static Script method5480(int var0, int var1) {
-		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16)); // L: 60
-		if (var2 != null) { // L: 61
-			return var2; // L: 62
-		} else {
-			String var3 = String.valueOf(var0); // L: 64
-			int var4 = class267.archive12.getGroupId(var3); // L: 65
-			if (var4 == -1) { // L: 66
-				return null; // L: 67
-			} else {
-				byte[] var5 = class267.archive12.takeFileFlat(var4); // L: 69
-				if (var5 != null) { // L: 70
-					if (var5.length <= 1) { // L: 71
-						return null; // L: 72
-					}
+	static Object[] method5486(Buffer var0, int[] var1) {
+		int var2 = var0.readUShortSmart(); // L: 30
+		Object[] var3 = new Object[var1.length * var2]; // L: 31
 
-					var2 = class344.newScript(var5); // L: 74
-					if (var2 != null) { // L: 75
-						Script.Script_cached.put(var2, (long)(var0 << 16)); // L: 76
-						return var2; // L: 77
-					}
-				}
-
-				return null; // L: 80
+		for (int var4 = 0; var4 < var2; ++var4) { // L: 32
+			for (int var5 = 0; var5 < var1.length; ++var5) { // L: 33
+				int var6 = var1.length * var4 + var5; // L: 34
+				class433 var7 = AbstractWorldMapIcon.method5044(var1[var5]); // L: 35
+				var3[var6] = var7.method7602(var0); // L: 36
 			}
 		}
-	}
 
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-1058305132"
-	)
-	static int method5474(int var0, int var1, int var2) {
-		if ((Tiles.Tiles_renderFlags[var0][var1][var2] & 8) != 0) { // L: 867
-			return 0;
-		} else {
-			return var0 > 0 && (Tiles.Tiles_renderFlags[1][var1][var2] & 2) != 0 ? var0 - 1 : var0; // L: 868
-		}
+		return var3; // L: 39
 	}
 }

@@ -1,22 +1,39 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("el")
+@ObfuscatedName("er")
 public abstract class class144 extends Node {
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "Lcb;"
+	)
+	@Export("World_request")
+	static UrlRequest World_request;
+
 	class144() {
 	} // L: 49
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "(Lqw;I)V",
+		garbageValue = "-1897546377"
 	)
-	abstract void vmethod3137(Buffer var1);
+	abstract void vmethod3146(Buffer var1);
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
+		descriptor = "(Ley;I)V",
+		garbageValue = "-406744366"
 	)
-	abstract void vmethod3138(ClanChannel var1);
+	abstract void vmethod3145(ClanChannel var1);
+
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Lcj;",
+		garbageValue = "431742906"
+	)
+	static class83[] method3086() {
+		return new class83[]{class83.field1076, class83.field1081, class83.field1078, class83.field1075, class83.field1073, class83.field1077}; // L: 17
+	}
 }
