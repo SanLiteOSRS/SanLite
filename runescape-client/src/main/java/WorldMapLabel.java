@@ -4,33 +4,33 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iz")
+@ObfuscatedName("iy")
 @Implements("WorldMapLabel")
 public class WorldMapLabel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@Export("text")
 	String text;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1772526111
+		intValue = 175930427
 	)
 	@Export("width")
 	int width;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1037270607
+		intValue = -1778296107
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "Lhq;"
+		descriptor = "Lhy;"
 	)
 	@Export("size")
 	WorldMapLabelSize size;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;IILhq;)V"
+		descriptor = "(Ljava/lang/String;IILhy;)V"
 	)
 	WorldMapLabel(String var1, int var2, int var3, WorldMapLabelSize var4) {
 		this.text = var1; // L: 10
@@ -39,32 +39,24 @@ public class WorldMapLabel {
 		this.size = var4; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("lb")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "-115"
+		descriptor = "(IIS)V",
+		garbageValue = "3878"
 	)
-	public static void method5000(AbstractArchive var0) {
-		VarcInt.VarcInt_archive = var0; // L: 15
-	} // L: 16
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1560877857"
-	)
-	public static void method4999() {
-		try {
-			JagexCache.JagexCache_dat2File.close(); // L: 295
-
-			for (int var0 = 0; var0 < class142.idxCount; ++var0) { // L: 296
-				class359.JagexCache_idxFiles[var0].close();
+	static final void method4977(int var0, int var1) {
+		ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : class17.guestClanChannel; // L: 12222
+		if (var2 != null && var1 >= 0 && var1 < var2.method3117()) { // L: 12223
+			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1); // L: 12224
+			if (var3.rank == -1) {
+				String var4 = var3.username.getName(); // L: 12226
+				PacketBufferNode var5 = class433.getPacketBufferNode(ClientPacket.field2978, Client.packetWriter.isaacCipher); // L: 12227
+				var5.packetBuffer.writeByte(3 + class92.stringCp1252NullTerminatedByteSize(var4)); // L: 12228
+				var5.packetBuffer.writeByte(var0); // L: 12229
+				var5.packetBuffer.writeShort(var1); // L: 12230
+				var5.packetBuffer.writeStringCp1252NullTerminated(var4); // L: 12231
+				Client.packetWriter.addNode(var5); // L: 12232
 			}
-
-			JagexCache.JagexCache_idx255File.close(); // L: 297
-			JagexCache.JagexCache_randomDat.close(); // L: 298
-		} catch (Exception var2) { // L: 300
 		}
-
-	} // L: 301
+	} // L: 12225 12233
 }

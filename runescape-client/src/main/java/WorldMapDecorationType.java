@@ -4,128 +4,128 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ku")
+@ObfuscatedName("ke")
 @Implements("WorldMapDecorationType")
 public enum WorldMapDecorationType implements MouseWheel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lke;"
 	)
-	field3549(0, 0),
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3543(1, 0),
+	field3541(0, 0),
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lke;"
 	)
-	field3533(2, 0),
+	field3549(1, 0),
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lke;"
 	)
-	field3534(3, 0),
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3535(9, 2),
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3536(4, 1),
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3537(5, 1),
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3538(6, 1),
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3539(7, 1),
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3532(8, 1),
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3541(12, 2),
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3542(13, 2),
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3551(14, 2),
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3531(15, 2),
+	field3540(2, 0),
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lke;"
 	)
-	field3545(16, 2),
-	@ObfuscatedName("k")
+	field3559(3, 0),
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lke;"
 	)
-	field3546(17, 2),
+	field3542(9, 2),
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3538(4, 1),
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3544(5, 1),
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3545(6, 1),
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lke;"
 	)
-	field3547(18, 2),
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3548(19, 2),
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3540(20, 2),
+	field3543(7, 1),
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lke;"
 	)
-	field3550(21, 2),
-	@ObfuscatedName("p")
+	field3547(8, 1),
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lke;"
 	)
-	field3553(10, 2),
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "Lku;"
-	)
-	field3552(11, 2),
+	field3548(12, 2),
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lke;"
 	)
-	field3544(22, 3);
+	field3561(13, 2),
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3550(14, 2),
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3551(15, 2),
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3552(16, 2),
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3553(17, 2),
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3554(18, 2),
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3555(19, 2),
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3556(20, 2),
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3557(21, 2),
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3558(10, 2),
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3546(11, 2),
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lke;"
+	)
+	field3560(22, 3);
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1096065009
+		intValue = 805969907
 	)
 	@Export("id")
 	public final int id;
@@ -138,23 +138,55 @@ public enum WorldMapDecorationType implements MouseWheel {
 		this.id = var3; // L: 34
 	} // L: 35
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "1790946346"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 39
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-1746098292"
+		descriptor = "(III)I",
+		garbageValue = "-1930760540"
 	)
-	@Export("isCharAlphabetic")
-	public static boolean isCharAlphabetic(char var0) {
-		return var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z'; // L: 155
+	public static int method5755(int var0, int var1) {
+		return (var0 << 8) + var1; // L: 13
+	}
+
+	@ObfuscatedName("bn")
+	@ObfuscatedSignature(
+		descriptor = "([BB)[B",
+		garbageValue = "28"
+	)
+	@Export("decompressBytes")
+	static final byte[] decompressBytes(byte[] var0) {
+		Buffer var1 = new Buffer(var0); // L: 470
+		int var2 = var1.readUnsignedByte(); // L: 471
+		int var3 = var1.readInt(); // L: 472
+		if (var3 < 0 || AbstractArchive.field4016 != 0 && var3 > AbstractArchive.field4016) { // L: 473
+			throw new RuntimeException(); // L: 474
+		} else if (var2 == 0) { // L: 476
+			byte[] var6 = new byte[var3]; // L: 477
+			var1.readBytes(var6, 0, var3); // L: 478
+			return var6; // L: 479
+		} else {
+			int var4 = var1.readInt(); // L: 482
+			if (var4 >= 0 && (AbstractArchive.field4016 == 0 || var4 <= AbstractArchive.field4016)) { // L: 483
+				byte[] var5 = new byte[var4]; // L: 486
+				if (var2 == 1) { // L: 487
+					BZip2Decompressor.BZip2Decompressor_decompress(var5, var4, var0, var3, 9);
+				} else {
+					AbstractArchive.gzipDecompressor.decompress(var1, var5); // L: 488
+				}
+
+				return var5; // L: 489
+			} else {
+				throw new RuntimeException(); // L: 484
+			}
+		}
 	}
 }

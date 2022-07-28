@@ -3,19 +3,15 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ds")
+@ObfuscatedName("da")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("e")
-	@Export("PcmPlayer_stereo")
-	protected static boolean PcmPlayer_stereo;
-	@ObfuscatedName("in")
+	@ObfuscatedName("ed")
 	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
+		descriptor = "Llu;"
 	)
-	@Export("crossSprites")
-	static SpritePixels[] crossSprites;
-	@ObfuscatedName("c")
+	static Archive field1380;
+	@ObfuscatedName("o")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -23,10 +19,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1; // L: 10
 	} // L: 11
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;B)I",
-		garbageValue = "114"
+		descriptor = "(Lnh;Lnh;B)I",
+		garbageValue = "-6"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -41,36 +37,74 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 21
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lfj;",
-		garbageValue = "273043499"
+		descriptor = "(ILbc;ZI)I",
+		garbageValue = "134944919"
 	)
-	@Export("getNpcDefinition")
-	public static NPCComposition getNpcDefinition(int var0) {
-		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0); // L: 65
-		if (var1 != null) { // L: 66
-			return var1;
-		} else {
-			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0); // L: 67
-			var1 = new NPCComposition(); // L: 68
-			var1.id = var0; // L: 69
-			if (var2 != null) { // L: 70
-				var1.decode(new Buffer(var2));
+	static int method2690(int var0, Script var1, boolean var2) {
+		if (var0 == 7100) { // L: 4607
+			++TaskHandler.Interpreter_intStackSize; // L: 4608
+			return 1; // L: 4609
+		} else if (var0 == 7101) { // L: 4611
+			GrandExchangeOfferAgeComparator.Interpreter_stringStackSize += 2; // L: 4612
+			return 1; // L: 4613
+		} else if (var0 != 7102 && var0 != 7103 && var0 != 7104 && var0 != 7105 && var0 != 7109) { // L: 4615
+			if (var0 == 7106) { // L: 4619
+				++TaskHandler.Interpreter_intStackSize; // L: 4620
+				return 1; // L: 4621
+			} else if (var0 == 7107) { // L: 4623
+				++TaskHandler.Interpreter_intStackSize; // L: 4624
+				return 1; // L: 4625
+			} else if (var0 == 7108) { // L: 4627
+				Interpreter.Interpreter_intStack[++TaskHandler.Interpreter_intStackSize - 1] = class21.method303() ? 1 : 0; // L: 4628
+				return 1; // L: 4629
+			} else if (var0 == 7110) { // L: 4631
+				Interpreter.Interpreter_intStack[++TaskHandler.Interpreter_intStackSize - 1] = 0; // L: 4632
+				return 1; // L: 4633
+			} else if (var0 == 7120) { // L: 4635
+				--TaskHandler.Interpreter_intStackSize; // L: 4636
+				Interpreter.Interpreter_intStack[++TaskHandler.Interpreter_intStackSize - 1] = 0; // L: 4637
+				return 1; // L: 4638
+			} else if (var0 == 7121) { // L: 4640
+				TaskHandler.Interpreter_intStackSize -= 2; // L: 4641
+				Interpreter.Interpreter_intStack[++TaskHandler.Interpreter_intStackSize - 1] = -1; // L: 4642
+				return 1; // L: 4643
+			} else if (var0 == 7122) { // L: 4645
+				TaskHandler.Interpreter_intStackSize -= 2; // L: 4646
+				Interpreter.Interpreter_intStack[++TaskHandler.Interpreter_intStackSize - 1] = 0; // L: 4647
+				return 1; // L: 4648
+			} else {
+				return 2; // L: 4650
 			}
-
-			var1.postDecode(); // L: 71
-			NPCComposition.NpcDefinition_cached.put(var1, (long)var0); // L: 72
-			return var1; // L: 73
+		} else {
+			++TaskHandler.Interpreter_intStackSize; // L: 4616
+			return 1; // L: 4617
 		}
 	}
 
-	@ObfuscatedName("br")
+	@ObfuscatedName("la")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)I",
-		garbageValue = "-107"
+		descriptor = "(I)V",
+		garbageValue = "144313696"
 	)
-	public static int method2620(String var0) {
-		return var0.length() + 2; // L: 128
-	}
+	static void method2698() {
+		if (Client.field701 && class28.localPlayer != null) { // L: 12398
+			int var0 = class28.localPlayer.pathX[0]; // L: 12399
+			int var1 = class28.localPlayer.pathY[0]; // L: 12400
+			if (var0 < 0 || var1 < 0 || var0 >= 104 || var1 >= 104) { // L: 12401
+				return;
+			}
+
+			ObjectSound.oculusOrbFocalPointX = class28.localPlayer.x; // L: 12402
+			int var2 = SecureRandomFuture.getTileHeight(class28.localPlayer.x, class28.localPlayer.y, FriendSystem.Client_plane) - Client.camFollowHeight; // L: 12403
+			if (var2 < FileSystem.field1753) { // L: 12404
+				FileSystem.field1753 = var2;
+			}
+
+			class306.oculusOrbFocalPointY = class28.localPlayer.y; // L: 12405
+			Client.field701 = false; // L: 12406
+		}
+
+	} // L: 12408
 }

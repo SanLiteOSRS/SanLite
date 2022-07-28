@@ -4,165 +4,130 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jm")
+@ObfuscatedName("jf")
 @Implements("MusicPatchNode")
 public class MusicPatchNode extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1539628919
+		intValue = 1294534435
 	)
-	int field3284;
-	@ObfuscatedName("v")
+	int field3274;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Ljg;"
+		descriptor = "Ljh;"
 	)
 	@Export("patch")
 	MusicPatch patch;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Laf;"
+		descriptor = "Lap;"
 	)
 	@Export("rawSound")
 	RawSound rawSound;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "Ljv;"
+		descriptor = "Ljb;"
 	)
-	MusicPatchNode2 field3264;
-	@ObfuscatedName("j")
+	MusicPatchNode2 field3261;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1874501073
+		intValue = 32088699
 	)
-	int field3267;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -370020525
-	)
-	int field3269;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = 785892757
-	)
-	int field3282;
+	int field3265;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -2029040381
+		intValue = 1734612137
 	)
-	int field3271;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = 2036763329
-	)
-	int field3272;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -1389641683
-	)
-	int field3273;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = -1743724405
-	)
-	int field3277;
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = -848752911
-	)
-	int field3275;
+	int field3279;
 	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1533749071
+		intValue = 1057864677
+	)
+	int field3267;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = -1411616549
+	)
+	int field3273;
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = -515562641
+	)
+	int field3263;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = -689296601
+	)
+	int field3269;
+	@ObfuscatedName("d")
+	@ObfuscatedGetter(
+		intValue = -1216279749
+	)
+	int field3271;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = -233027663
+	)
+	int field3272;
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = -206831331
+	)
+	int field3264;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		intValue = -1876823857
+	)
+	int field3270;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = 2145758209
+	)
+	int field3275;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 492776381
 	)
 	int field3276;
-	@ObfuscatedName("r")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -950899707
+		intValue = 641451677
 	)
-	int field3274;
-	@ObfuscatedName("u")
+	int field3277;
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1022110285
+		intValue = -1691149719
 	)
 	int field3278;
 	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = -1739604047
-	)
-	int field3279;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = -407034595
-	)
-	int field3280;
-	@ObfuscatedName("x")
-	@ObfuscatedGetter(
-		intValue = -1860967229
-	)
-	int field3281;
-	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lai;"
+		descriptor = "Lav;"
 	)
 	@Export("stream")
 	RawPcmStream stream;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -292002933
+		intValue = 1200493067
 	)
-	int field3283;
-	@ObfuscatedName("b")
+	int field3280;
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -799763535
+		intValue = 1207660311
 	)
-	int field3270;
+	int field3281;
 
 	MusicPatchNode() {
 	} // L: 31
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-120"
+		descriptor = "(I)V",
+		garbageValue = "2068907598"
 	)
-	void method5471() {
+	void method5479() {
 		this.patch = null; // L: 34
 		this.rawSound = null; // L: 35
-		this.field3264 = null; // L: 36
+		this.field3261 = null; // L: 36
 		this.stream = null; // L: 37
 	} // L: 38
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljt;",
-		garbageValue = "-1448337434"
-	)
-	public static PacketBufferNode method5473() {
-		PacketBufferNode var0;
-		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) { // L: 47
-			var0 = new PacketBufferNode(); // L: 48
-		} else {
-			var0 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 51
-		}
-
-		var0.clientPacket = null; // L: 54
-		var0.clientPacketLength = 0; // L: 55
-		var0.packetBuffer = new PacketBuffer(5000); // L: 56
-		return var0; // L: 57
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lpv;",
-		garbageValue = "-507334207"
-	)
-	public static class432 method5472(int var0) {
-		int var1 = class430.field4652[var0]; // L: 19
-		if (var1 == 1) { // L: 20
-			return class432.field4658; // L: 21
-		} else if (var1 == 2) { // L: 23
-			return class432.field4657; // L: 24
-		} else {
-			return var1 == 3 ? class432.field4656 : null; // L: 26 27 29
-		}
-	}
 }
