@@ -8,74 +8,60 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bt")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("tx")
-	@ObfuscatedGetter(
-		intValue = -1240555931
-	)
-	static int field846;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@Export("Interpreter_intLocals")
 	static int[] Interpreter_intLocals;
-	@ObfuscatedName("e")
+	@ObfuscatedName("c")
+	@Export("Interpreter_stringLocals")
+	static String[] Interpreter_stringLocals;
+	@ObfuscatedName("w")
 	@Export("Interpreter_arrayLengths")
 	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("g")
+	@ObfuscatedName("z")
 	@Export("Interpreter_arrays")
 	static int[][] Interpreter_arrays;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@Export("Interpreter_intStack")
 	static int[] Interpreter_intStack;
-	@ObfuscatedName("i")
+	@ObfuscatedName("a")
 	@Export("Interpreter_stringStack")
 	static String[] Interpreter_stringStack;
-	@ObfuscatedName("s")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 183300013
-	)
-	@Export("Interpreter_stringStackSize")
-	static int Interpreter_stringStackSize;
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = -2041512145
+		intValue = 1952462401
 	)
 	@Export("Interpreter_frameDepth")
 	static int Interpreter_frameDepth;
-	@ObfuscatedName("z")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "[Lbg;"
+		descriptor = "[Lba;"
 	)
 	@Export("Interpreter_frames")
 	static ScriptFrame[] Interpreter_frames;
-	@ObfuscatedName("x")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 987199293
+		intValue = -473119647
 	)
-	static int field838;
-	@ObfuscatedName("l")
+	static int field836;
+	@ObfuscatedName("k")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@Export("Interpreter_MONTHS")
 	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("b")
-	static boolean field829;
-	@ObfuscatedName("n")
-	static boolean field842;
-	@ObfuscatedName("o")
-	static ArrayList field843;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
+	static boolean field831;
+	@ObfuscatedName("s")
+	static boolean field840;
+	@ObfuscatedName("i")
+	static ArrayList field841;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -186588537
+		intValue = 192809765
 	)
-	static int field850;
-	@ObfuscatedName("al")
-	static final double field845;
-	@ObfuscatedName("lc")
-	@ObfuscatedSignature(
-		descriptor = "Lkb;"
-	)
-	@Export("dragInventoryWidget")
-	static Widget dragInventoryWidget;
+	static int field844;
+	@ObfuscatedName("aj")
+	static final double field843;
 
 	static {
 		Interpreter_arrayLengths = new int[5]; // L: 83
@@ -86,38 +72,29 @@ public class Interpreter {
 		Interpreter_frames = new ScriptFrame[50]; // L: 90
 		Interpreter_calendar = java.util.Calendar.getInstance(); // L: 96
 		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}; // L: 99
-		field829 = false; // L: 102
-		field842 = false; // L: 103
-		field843 = new ArrayList(); // L: 104
-		field850 = 0; // L: 105
-		field845 = Math.log(2.0D); // L: 109
+		field831 = false; // L: 102
+		field840 = false; // L: 103
+		field841 = new ArrayList(); // L: 104
+		field844 = 0; // L: 105
+		field843 = Math.log(2.0D); // L: 109
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Ldf;",
-		garbageValue = "1105102872"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;B)V",
+		garbageValue = "122"
 	)
-	static class123[] method1866() {
-		return new class123[]{class123.field1535, class123.field1529, class123.field1542, class123.field1531, class123.field1536, class123.field1533, class123.field1534, class123.field1532, class123.field1528}; // L: 113
-	}
+	@Export("addChatMessage")
+	static void addChatMessage(int var0, String var1, String var2, String var3) {
+		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 23
+		if (var4 == null) { // L: 24
+			var4 = new ChatChannel(); // L: 25
+			Messages.Messages_channels.put(var0, var4); // L: 26
+		}
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1772742726"
-	)
-	public static void method1868() {
-		StructComposition.StructDefinition_cached.clear(); // L: 71
-	} // L: 72
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(B)Lbc;",
-		garbageValue = "1"
-	)
-	@Export("getNextWorldListWorld")
-	static World getNextWorldListWorld() {
-		return World.World_listCount < World.World_count ? class362.World_worlds[++World.World_listCount - 1] : null; // L: 242 243
-	}
+		Message var5 = var4.addMessage(var0, var1, var2, var3); // L: 28
+		Messages.Messages_hashTable.put(var5, (long)var5.count); // L: 29
+		Messages.Messages_queue.add(var5); // L: 30
+		Client.chatCycle = Client.cycleCntr; // L: 31
+	} // L: 32
 }
