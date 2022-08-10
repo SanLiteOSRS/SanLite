@@ -4,31 +4,48 @@ import java.net.Socket;
 import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("fr")
+@ObfuscatedName("ff")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
+	@Export("javaVendor")
+	public static String javaVendor;
+	@ObfuscatedName("q")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = -1971059873
+	)
+	@Export("Interpreter_intStackSize")
+	static int Interpreter_intStackSize;
+	@ObfuscatedName("eu")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "Llu;"
+	)
+	@Export("archive11")
+	static Archive archive11;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Lfz;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "Lfz;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -36,11 +53,11 @@ public class TaskHandler implements Runnable {
 		this.current = null; // L: 11
 		this.task = null; // L: 12
 		this.isClosed = false; // L: 14
-		class360.javaVendor = "Unknown"; // L: 20
+		javaVendor = "Unknown"; // L: 20
 		javaVersion = "1.6"; // L: 21
 
 		try {
-			class360.javaVendor = System.getProperty("java.vendor"); // L: 23
+			javaVendor = System.getProperty("java.vendor"); // L: 23
 			javaVersion = System.getProperty("java.version"); // L: 24
 		} catch (Exception var2) { // L: 26
 		}
@@ -52,10 +69,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start(); // L: 31
 	} // L: 32
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "64"
+		descriptor = "(I)V",
+		garbageValue = "1663558948"
 	)
 	@Export("close")
 	public final void close() {
@@ -71,15 +88,15 @@ public class TaskHandler implements Runnable {
 
 	} // L: 43
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;B)Lfm;",
-		garbageValue = "0"
+		descriptor = "(IIILjava/lang/Object;I)Lfz;",
+		garbageValue = "2040134052"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
-		Task var5 = new Task();
-		var5.type = var1;
+		Task var5 = new Task(); // L: 90
+		var5.type = var1; // L: 91
 		var5.intArgument = var2; // L: 92
 		var5.objectArgument = var4; // L: 93
 		synchronized(this) { // L: 94
@@ -95,20 +112,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;IB)Lfm;",
-		garbageValue = "-14"
+		descriptor = "(Ljava/lang/String;II)Lfz;",
+		garbageValue = "-1762952522"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1); // L: 108
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;II)Lfm;",
-		garbageValue = "966743438"
+		descriptor = "(Ljava/lang/Runnable;II)Lfz;",
+		garbageValue = "-212575664"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -134,7 +151,7 @@ public class TaskHandler implements Runnable {
 					}
 
 					try {
-						this.wait();
+						this.wait(); // L: 58
 					} catch (InterruptedException var8) { // L: 60
 					}
 				}
@@ -163,79 +180,63 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "-443449853"
+		descriptor = "(ILbc;ZI)I",
+		garbageValue = "784335958"
 	)
-	public static String method3240(CharSequence var0) {
-		String var1 = class229.base37DecodeLong(class339.method6244(var0)); // L: 57
-		if (var1 == null) { // L: 58
-			var1 = "";
+	static int method3253(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? VertexNormal.scriptDotWidget : class321.scriptActiveWidget; // L: 1140
+		if (var0 == ScriptOpcodes.CC_GETSCROLLX) { // L: 1141
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.scrollX; // L: 1142
+			return 1; // L: 1143
+		} else if (var0 == ScriptOpcodes.CC_GETSCROLLY) { // L: 1145
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.scrollY; // L: 1146
+			return 1; // L: 1147
+		} else if (var0 == ScriptOpcodes.CC_GETTEXT) { // L: 1149
+			Interpreter.Interpreter_stringStack[++GrandExchangeOfferAgeComparator.Interpreter_stringStackSize - 1] = var3.text; // L: 1150
+			return 1; // L: 1151
+		} else if (var0 == ScriptOpcodes.CC_GETSCROLLWIDTH) { // L: 1153
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.scrollWidth; // L: 1154
+			return 1; // L: 1155
+		} else if (var0 == ScriptOpcodes.CC_GETSCROLLHEIGHT) { // L: 1157
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.scrollHeight; // L: 1158
+			return 1; // L: 1159
+		} else if (var0 == ScriptOpcodes.CC_GETMODELZOOM) { // L: 1161
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.modelZoom; // L: 1162
+			return 1; // L: 1163
+		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_X) { // L: 1165
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.modelAngleX; // L: 1166
+			return 1; // L: 1167
+		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Z) { // L: 1169
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.modelAngleZ; // L: 1170
+			return 1; // L: 1171
+		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Y) { // L: 1173
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.modelAngleY; // L: 1174
+			return 1; // L: 1175
+		} else if (var0 == ScriptOpcodes.CC_GETTRANS) { // L: 1177
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.transparencyTop; // L: 1178
+			return 1; // L: 1179
+		} else if (var0 == 1610) { // L: 1181
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.transparencyBot; // L: 1182
+			return 1; // L: 1183
+		} else if (var0 == ScriptOpcodes.CC_GETCOLOUR) { // L: 1185
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.color; // L: 1186
+			return 1; // L: 1187
+		} else if (var0 == ScriptOpcodes.CC_GETFILLCOLOUR) { // L: 1189
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.color2; // L: 1190
+			return 1; // L: 1191
+		} else if (var0 == 1613) { // L: 1193
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal(); // L: 1194
+			return 1; // L: 1195
+		} else if (var0 == ScriptOpcodes.CC_GETMODELTRANSPARENT) { // L: 1197
+			Interpreter.Interpreter_intStack[++Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0; // L: 1198
+			return 1; // L: 1199
+		} else if (var0 != 1615 && var0 != 1616) { // L: 1201
+			return 2; // L: 1205
+		} else {
+			++Interpreter_intStackSize; // L: 1202
+			return 1; // L: 1203
 		}
-
-		return var1; // L: 59
 	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(IIIZII)J",
-		garbageValue = "608136618"
-	)
-	@Export("calculateTag")
-	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
-		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17; // L: 89
-		if (var3) { // L: 90
-			var5 |= 65536L;
-		}
-
-		return var5; // L: 91
-	}
-
-	@ObfuscatedName("jr")
-	@ObfuscatedSignature(
-		descriptor = "([Lkb;IB)V",
-		garbageValue = "79"
-	)
-	@Export("runComponentCloseListeners")
-	static final void runComponentCloseListeners(Widget[] var0, int var1) {
-		for (int var2 = 0; var2 < var0.length; ++var2) { // L: 11586
-			Widget var3 = var0[var2]; // L: 11587
-			if (var3 != null) { // L: 11588
-				if (var3.type == 0) { // L: 11589
-					if (var3.children != null) { // L: 11590
-						runComponentCloseListeners(var3.children, var1);
-					}
-
-					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id); // L: 11591
-					if (var4 != null) { // L: 11592
-						class7.runIntfCloseListeners(var4.group, var1);
-					}
-				}
-
-				ScriptEvent var5;
-				if (var1 == 0 && var3.onDialogAbort != null) { // L: 11594
-					var5 = new ScriptEvent(); // L: 11595
-					var5.widget = var3; // L: 11596
-					var5.args = var3.onDialogAbort; // L: 11597
-					WallObject.runScriptEvent(var5); // L: 11598
-				}
-
-				if (var1 == 1 && var3.onSubChange != null) { // L: 11600
-					if (var3.childIndex >= 0) { // L: 11601
-						Widget var6 = class140.getWidget(var3.id); // L: 11602
-						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) { // L: 11603
-							continue;
-						}
-					}
-
-					var5 = new ScriptEvent(); // L: 11607
-					var5.widget = var3; // L: 11608
-					var5.args = var3.onSubChange; // L: 11609
-					WallObject.runScriptEvent(var5); // L: 11610
-				}
-			}
-		}
-
-	} // L: 11613
 }

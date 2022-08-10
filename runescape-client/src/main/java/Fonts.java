@@ -4,30 +4,27 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("oy")
+@ObfuscatedName("pb")
 @Implements("Fonts")
 public class Fonts {
-	@ObfuscatedName("h")
-	@Export("cacheParentPaths")
-	static String[] cacheParentPaths;
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Llc;"
 	)
 	@Export("spritesArchive")
 	AbstractArchive spritesArchive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Llc;"
 	)
 	@Export("fontsArchive")
 	AbstractArchive fontsArchive;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@Export("map")
 	HashMap map;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;)V"
+		descriptor = "(Llc;Llc;)V"
 	)
 	public Fonts(AbstractArchive var1, AbstractArchive var2) {
 		this.spritesArchive = var1; // L: 14
@@ -35,10 +32,10 @@ public class Fonts {
 		this.map = new HashMap(); // L: 16
 	} // L: 17
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "([Lpd;B)Ljava/util/HashMap;",
-		garbageValue = "82"
+		descriptor = "([Lpz;I)Ljava/util/HashMap;",
+		garbageValue = "1790173917"
 	)
 	@Export("createMap")
 	public HashMap createMap(FontName[] var1) {
@@ -50,14 +47,34 @@ public class Fonts {
 			if (this.map.containsKey(var5)) { // L: 26
 				var2.put(var5, this.map.get(var5)); // L: 27
 			} else {
-				Font var6 = ServerPacket.method5211(this.spritesArchive, this.fontsArchive, var5.name, ""); // L: 30
-				if (var6 != null) { // L: 31
-					this.map.put(var5, var6); // L: 32
-					var2.put(var5, var6); // L: 33
+				AbstractArchive var7 = this.spritesArchive; // L: 31
+				AbstractArchive var8 = this.fontsArchive; // L: 32
+				String var9 = var5.name; // L: 33
+				int var10 = var7.getGroupId(var9); // L: 35
+				int var11 = var7.getFileId(var10, ""); // L: 36
+				byte[] var14 = var7.takeFile(var10, var11); // L: 41
+				boolean var13;
+				if (var14 == null) { // L: 42
+					var13 = false; // L: 43
+				} else {
+					class83.SpriteBuffer_decode(var14); // L: 46
+					var13 = true; // L: 47
+				}
+
+				Font var12;
+				if (!var13) { // L: 49
+					var12 = null; // L: 50
+				} else {
+					var12 = class14.method182(var8.takeFile(var10, var11)); // L: 53
+				}
+
+				if (var12 != null) { // L: 58
+					this.map.put(var5, var12); // L: 59
+					var2.put(var5, var12); // L: 60
 				}
 			}
 		}
 
-		return var2; // L: 39
+		return var2; // L: 66
 	}
 }
