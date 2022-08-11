@@ -2,110 +2,118 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.Reflection;
 
-@ObfuscatedName("ec")
+@ObfuscatedName("ea")
 public class class141 extends class144 {
-	@ObfuscatedName("jm")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1799721325
+		intValue = 1612165561
 	)
-	@Export("oculusOrbFocalPointY")
-	static int oculusOrbFocalPointY;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 1400461077
-	)
-	int field1659;
-	@ObfuscatedName("v")
-	byte field1660;
+	int field1642;
 	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 1585058459
-	)
-	int field1658;
+	byte field1643;
 	@ObfuscatedName("f")
-	String field1656;
+	@ObfuscatedGetter(
+		intValue = -1820695807
+	)
+	int field1645;
+	@ObfuscatedName("u")
+	String field1644;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Leu;"
+		descriptor = "Let;"
 	)
 	final class145 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Leu;)V"
+		descriptor = "(Let;)V"
 	)
 	class141(class145 var1) {
 		this.this$0 = var1;
-		this.field1659 = -1; // L: 125
+		this.field1642 = -1; // L: 125
 	} // L: 130
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "(Lqw;I)V",
+		garbageValue = "-1897546377"
 	)
-	void vmethod3137(Buffer var1) {
+	void vmethod3146(Buffer var1) {
 		var1.readUnsignedByte(); // L: 133
-		this.field1659 = var1.readUnsignedShort(); // L: 134
-		this.field1660 = var1.readByte(); // L: 135
-		this.field1658 = var1.readUnsignedShort(); // L: 136
+		this.field1642 = var1.readUnsignedShort(); // L: 134
+		this.field1643 = var1.readByte(); // L: 135
+		this.field1645 = var1.readUnsignedShort(); // L: 136
 		var1.readLong(); // L: 137
-		this.field1656 = var1.readStringCp1252NullTerminated(); // L: 138
+		this.field1644 = var1.readStringCp1252NullTerminated(); // L: 138
 		var1.readUnsignedByte(); // L: 139
 	} // L: 140
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
-	)
-	void vmethod3138(ClanChannel var1) {
-		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1659); // L: 143
-		var2.rank = this.field1660; // L: 144
-		var2.world = this.field1658; // L: 145
-		var2.username = new Username(this.field1656); // L: 146
-	} // L: 147
-
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-113948023"
+		descriptor = "(Ley;I)V",
+		garbageValue = "-406744366"
 	)
-	public static int method3048(int var0) {
-		return (var0 & class438.field4680) - 1; // L: 26
-	}
+	void vmethod3145(ClanChannel var1) {
+		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1642); // L: 143
+		var2.rank = this.field1643; // L: 144
+		var2.world = this.field1645; // L: 145
+		var2.username = new Username(this.field1644); // L: 146
+	} // L: 147
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIII)I",
-		garbageValue = "-612042966"
+		descriptor = "(IIIIIIB)I",
+		garbageValue = "1"
 	)
-	public static int method3044(int var0, int var1, int var2, int var3, int var4, int var5) {
-		if ((var5 & 1) == 1) { // L: 38
-			int var6 = var3; // L: 39
-			var3 = var4; // L: 40
-			var4 = var6; // L: 41
+	public static int method3060(int var0, int var1, int var2, int var3, int var4, int var5) {
+		if ((var5 & 1) == 1) { // L: 30
+			int var6 = var3; // L: 31
+			var3 = var4; // L: 32
+			var4 = var6; // L: 33
 		}
 
-		var2 &= 3; // L: 43
-		if (var2 == 0) { // L: 44
+		var2 &= 3; // L: 35
+		if (var2 == 0) { // L: 36
 			return var1;
-		} else if (var2 == 1) { // L: 45
+		} else if (var2 == 1) { // L: 37
 			return 7 - var0 - (var3 - 1);
 		} else {
-			return var2 == 2 ? 7 - var1 - (var4 - 1) : var0; // L: 46
+			return var2 == 2 ? 7 - var1 - (var4 - 1) : var0; // L: 38
 		}
 	}
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1644827355"
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
+		garbageValue = "342406360"
 	)
-	public static void method3047() {
-		ObjectComposition.ObjectDefinition_cached.clear(); // L: 429
-		ObjectComposition.ObjectDefinition_cachedModelData.clear(); // L: 430
-		ObjectComposition.ObjectDefinition_cachedEntities.clear(); // L: 431
-		ObjectComposition.ObjectDefinition_cachedModels.clear(); // L: 432
-	} // L: 433
+	@Export("loadClassFromDescriptor")
+	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
+		if (var0.equals("B")) { // L: 218
+			return Byte.TYPE;
+		} else if (var0.equals("I")) { // L: 219
+			return Integer.TYPE;
+		} else if (var0.equals("S")) { // L: 220
+			return Short.TYPE;
+		} else if (var0.equals("J")) { // L: 221
+			return Long.TYPE;
+		} else if (var0.equals("Z")) { // L: 222
+			return Boolean.TYPE;
+		} else if (var0.equals("F")) { // L: 223
+			return Float.TYPE;
+		} else if (var0.equals("D")) { // L: 224
+			return Double.TYPE;
+		} else if (var0.equals("C")) { // L: 225
+			return Character.TYPE;
+		} else {
+			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0); // L: 226 227
+		}
+	}
+
+	@ObfuscatedName("a")
+	@Export("Entity_unpackID")
+	public static int Entity_unpackID(long var0) {
+		return (int)(var0 >>> 17 & 4294967295L); // L: 93
+	}
 }

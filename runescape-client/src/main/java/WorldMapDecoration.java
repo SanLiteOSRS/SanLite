@@ -3,94 +3,88 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ix")
+@ObfuscatedName("ik")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-	@ObfuscatedName("c")
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "Lez;"
+	)
+	static ClanSettings field2816;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1217125903
+		intValue = -831845423
 	)
 	@Export("objectDefinitionId")
 	final int objectDefinitionId;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1822794685
+		intValue = 2055574461
 	)
 	@Export("decoration")
 	final int decoration;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1636858953
+		intValue = -1905026631
 	)
 	@Export("rotation")
 	final int rotation;
 
 	WorldMapDecoration(int var1, int var2, int var3) {
-		this.objectDefinitionId = var1; // L: 9
-		this.decoration = var2; // L: 10
-		this.rotation = var3; // L: 11
-	} // L: 12
+		this.objectDefinitionId = var1;
+		this.decoration = var2;
+		this.rotation = var3;
+	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("o")
+	public static final void method4967(long var0) {
+		if (var0 > 0L) { // L: 9
+			if (var0 % 10L == 0L) { // L: 10
+				Frames.method4305(var0 - 1L); // L: 11
+				Frames.method4305(1L); // L: 12
+			} else {
+				Frames.method4305(var0); // L: 14
+			}
+
+		}
+	} // L: 15
+
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-2049294776"
+		descriptor = "(II)Lgx;",
+		garbageValue = "2023361213"
 	)
-	static int method4992(int var0, Script var1, boolean var2) {
-		Widget var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1322
-		if (var0 == ScriptOpcodes.IF_GETX) { // L: 1323
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.x; // L: 1324
-			return 1; // L: 1325
-		} else if (var0 == ScriptOpcodes.IF_GETY) { // L: 1327
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.y; // L: 1328
-			return 1; // L: 1329
-		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) { // L: 1331
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.width; // L: 1332
-			return 1; // L: 1333
-		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) { // L: 1335
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.height; // L: 1336
-			return 1; // L: 1337
-		} else if (var0 == ScriptOpcodes.IF_GETHIDE) { // L: 1339
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1340
-			return 1; // L: 1341
-		} else if (var0 == ScriptOpcodes.IF_GETLAYER) { // L: 1343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.parentId; // L: 1344
-			return 1; // L: 1345
+	@Export("getObjectDefinition")
+	public static ObjectComposition getObjectDefinition(int var0) {
+		ObjectComposition var1 = (ObjectComposition)ObjectComposition.ObjectDefinition_cached.get((long)var0); // L: 79
+		if (var1 != null) { // L: 80
+			return var1;
 		} else {
-			return 2; // L: 1347
+			byte[] var2 = ObjectComposition.ObjectDefinition_archive.takeFile(6, var0); // L: 81
+			var1 = new ObjectComposition(); // L: 82
+			var1.id = var0; // L: 83
+			if (var2 != null) { // L: 84
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode(); // L: 85
+			if (var1.isSolid) { // L: 86
+				var1.interactType = 0; // L: 87
+				var1.boolean1 = false; // L: 88
+			}
+
+			ObjectComposition.ObjectDefinition_cached.put(var1, (long)var0); // L: 90
+			return var1; // L: 91
 		}
 	}
 
-	@ObfuscatedName("ig")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-80"
+		descriptor = "(II)I",
+		garbageValue = "-1086866361"
 	)
-	@Export("Widget_runOnTargetLeave")
-	static void Widget_runOnTargetLeave() {
-		if (Client.isSpellSelected) { // L: 9573
-			Widget var0 = ScriptFrame.getWidgetChild(NetCache.selectedSpellWidget, Client.selectedSpellChildIndex); // L: 9574
-			if (var0 != null && var0.onTargetLeave != null) { // L: 9575
-				ScriptEvent var1 = new ScriptEvent(); // L: 9576
-				var1.widget = var0; // L: 9577
-				var1.args = var0.onTargetLeave; // L: 9578
-				WallObject.runScriptEvent(var1); // L: 9579
-			}
-
-			Client.selectedSpellItemId = -1; // L: 9581
-			Client.isSpellSelected = false; // L: 9582
-			ChatChannel.invalidateWidget(var0); // L: 9583
-		}
-	} // L: 9584
-
-	@ObfuscatedName("lp")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1243783436"
-	)
-	static void method4991(int var0) {
-		Client.oculusOrbState = var0; // L: 12414
-	} // L: 12415
+	public static int method4969(int var0) {
+		return class402.field4458[var0 & 16383]; // L: 37
+	}
 }
