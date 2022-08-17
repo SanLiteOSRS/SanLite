@@ -7,37 +7,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nw")
+@ObfuscatedName("nu")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 647895995
+		intValue = 1701863313
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 2104008339
+		intValue = -1343140521
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 678269677
+		intValue = 1791585203
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("g")
+	@ObfuscatedName("z")
 	@Export("exception")
 	IOException exception;
 
@@ -52,10 +52,10 @@ public class BufferedSource implements Runnable {
 		this.thread.start(); // L: 76
 	} // L: 77
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "2131773931"
+		descriptor = "(IS)Z",
+		garbageValue = "5939"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -86,10 +86,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-31"
+		descriptor = "(I)I",
+		garbageValue = "-2040018317"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -110,15 +110,15 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1293599351"
+		garbageValue = "1709355306"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
 		synchronized(this) { // L: 142
-			if (this.limit == this.position) { // L: 143
+			if (this.position == this.limit) { // L: 143
 				if (this.exception != null) { // L: 144
 					throw new IOException(this.exception.toString());
 				} else {
@@ -133,10 +133,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)I",
-		garbageValue = "-55"
+		descriptor = "([BIII)I",
+		garbageValue = "-2087041896"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -174,10 +174,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-101"
+		descriptor = "(I)V",
+		garbageValue = "1606613907"
 	)
 	@Export("close")
 	void close() {

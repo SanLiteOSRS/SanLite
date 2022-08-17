@@ -1,62 +1,87 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ef")
+@ObfuscatedName("ej")
 public class class152 extends class128 {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 557898497
+	@ObfuscatedName("hn")
+	@ObfuscatedSignature(
+		descriptor = "Lcc;"
 	)
-	int field1715;
-	@ObfuscatedName("v")
+	@Export("urlRequester")
+	static UrlRequester urlRequester;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		longValue = -6189068569361167089L
+		intValue = -693046249
 	)
-	long field1716;
+	int field1696;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		longValue = 8647621559817674409L
+	)
+	long field1697;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lec;"
 	)
 	final class131 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lec;)V"
 	)
 	class152(class131 var1) {
 		this.this$0 = var1; // L: 307
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lqw;I)V",
+		garbageValue = "-423569520"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1715 = var1.readInt(); // L: 310
-		this.field1716 = var1.readLong(); // L: 311
+	void vmethod3155(Buffer var1) {
+		this.field1696 = var1.readInt(); // L: 310
+		this.field1697 = var1.readLong(); // L: 311
 	} // L: 312
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Lez;I)V",
+		garbageValue = "-1755436064"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2967(this.field1715, this.field1716); // L: 315
+	void vmethod3154(ClanSettings var1) {
+		var1.method2989(this.field1696, this.field1697); // L: 315
 	} // L: 316
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "2011587938"
+		descriptor = "(ZS)V",
+		garbageValue = "500"
 	)
-	static int method3147(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 14
-		if (var2 == null) { // L: 15
-			return -1;
+	@Export("Login_promptCredentials")
+	static void Login_promptCredentials(boolean var0) {
+		if (!class329.client.method1112() && !class329.client.isOtlTokenRequesterInitialized()) { // L: 1159
+			Login.Login_response1 = ""; // L: 1163
+			Login.Login_response2 = "Enter your username/email & password."; // L: 1164
+			Login.Login_response3 = ""; // L: 1165
+			UserComparator6.method2701(2); // L: 1166
+			if (var0) { // L: 1167
+				Login.Login_password = "";
+			}
+
+			Client.method1639(); // L: 1168
+			FloorOverlayDefinition.method3799(); // L: 1169
 		} else {
-			return var1 >= 0 && var1 < var2.ids.length ? var2.ids[var1] : -1; // L: 16 17
+			UserComparator6.method2701(10); // L: 1160
 		}
+	} // L: 1161 1170
+
+	@ObfuscatedName("fo")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "34881222"
+	)
+	static int method3152(int var0) {
+		return var0 * 3 + 600; // L: 1582
 	}
 }
