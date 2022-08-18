@@ -1,41 +1,51 @@
+import java.io.DataInputStream;
+import java.net.URL;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mf")
+@ObfuscatedName("mr")
 public class class359 {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lmf;"
+		descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;I)V",
+		garbageValue = "-891701215"
 	)
-	public static final class359 field4260;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lmf;"
-	)
-	static final class359 field4259;
-	@ObfuscatedName("e")
-	@Export("SpriteBuffer_spriteWidths")
-	public static int[] SpriteBuffer_spriteWidths;
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "[Lpa;"
-	)
-	@Export("JagexCache_idxFiles")
-	public static BufferedFile[] JagexCache_idxFiles;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -1555727855
-	)
-	final int field4258;
+	@Export("RunException_sendStackTrace")
+	public static void RunException_sendStackTrace(String var0, Throwable var1) {
+		if (var1 != null) {
+			var1.printStackTrace();
+		} else {
+			try {
+				String var2 = ""; // L: 34
+				if (var1 != null) { // L: 35
+					var2 = Players.method2497(var1);
+				}
 
-	static {
-		field4260 = new class359(1); // L: 5
-		field4259 = new class359(0); // L: 6
-	}
+				if (var0 != null) { // L: 36
+					if (var1 != null) { // L: 37
+						var2 = var2 + " | ";
+					}
 
-	class359(int var1) {
-		this.field4258 = var1; // L: 10
-	} // L: 11
+					var2 = var2 + var0; // L: 38
+				}
+
+				System.out.println("Error: " + var2); // L: 40
+				var2 = var2.replace(':', '.'); // L: 41
+				var2 = var2.replace('@', '_'); // L: 42
+				var2 = var2.replace('&', '_'); // L: 43
+				var2 = var2.replace('#', '_'); // L: 44
+				if (RunException.RunException_applet == null) { // L: 45
+					return;
+				}
+
+				URL var3 = new URL(RunException.RunException_applet.getCodeBase(), "clienterror.ws?cv=" + RunException.RunException_revision + "&cs=" + class138.field1608 + "&u=" + class392.localPlayerName + "&v1=" + TaskHandler.javaVendor + "&v2=" + TaskHandler.javaVersion + "&ct=" + class133.clientType + "&e=" + var2); // L: 46
+				DataInputStream var4 = new DataInputStream(var3.openStream()); // L: 47
+				var4.read(); // L: 48
+				var4.close(); // L: 49
+			} catch (Exception var5) { // L: 51
+			}
+
+		}
+	} // L: 52
 }
