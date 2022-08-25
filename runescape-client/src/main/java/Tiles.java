@@ -4,62 +4,50 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bm")
+@ObfuscatedName("bj")
 @Implements("Tiles")
 public final class Tiles {
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@Export("Tiles_heights")
 	static int[][][] Tiles_heights;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@Export("Tiles_renderFlags")
 	static byte[][][] Tiles_renderFlags;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1266793715
+		intValue = -625386397
 	)
 	@Export("Tiles_minPlane")
 	static int Tiles_minPlane;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("Tiles_underlays")
 	static byte[][][] Tiles_underlays;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@Export("Tiles_overlays")
 	static byte[][][] Tiles_overlays;
-	@ObfuscatedName("e")
-	@Export("Tiles_shapes")
-	static byte[][][] Tiles_shapes;
-	@ObfuscatedName("g")
-	static byte[][][] field996;
-	@ObfuscatedName("s")
-	@Export("Tiles_saturation")
-	static int[] Tiles_saturation;
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "Ljj;"
-	)
-	@Export("musicTrack")
-	public static MusicTrack musicTrack;
-	@ObfuscatedName("l")
-	static final int[] field1007;
-	@ObfuscatedName("a")
-	static final int[] field1011;
+	@ObfuscatedName("k")
+	static byte[][][] field975;
 	@ObfuscatedName("p")
-	static final int[] field1003;
+	static final int[] field977;
+	@ObfuscatedName("e")
+	static final int[] field978;
 	@ObfuscatedName("b")
-	static final int[] field1005;
-	@ObfuscatedName("n")
-	static final int[] field1006;
-	@ObfuscatedName("o")
-	static final int[] field1002;
-	@ObfuscatedName("m")
+	static final int[] field979;
+	@ObfuscatedName("x")
+	static final int[] field982;
+	@ObfuscatedName("f")
+	static final int[] field981;
+	@ObfuscatedName("t")
+	static final int[] field970;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1814148363
+		intValue = 565999891
 	)
 	@Export("rndHue")
 	static int rndHue;
-	@ObfuscatedName("d")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -1220296573
+		intValue = -917550561
 	)
 	@Export("rndLightness")
 	static int rndLightness;
@@ -68,95 +56,177 @@ public final class Tiles {
 		Tiles_heights = new int[4][105][105]; // L: 16
 		Tiles_renderFlags = new byte[4][104][104]; // L: 17
 		Tiles_minPlane = 99; // L: 18
-		field1007 = new int[]{1, 2, 4, 8}; // L: 34
-		field1011 = new int[]{16, 32, 64, 128}; // L: 35
-		field1003 = new int[]{1, 0, -1, 0}; // L: 36
-		field1005 = new int[]{0, -1, 0, 1}; // L: 37
-		field1006 = new int[]{1, -1, -1, 1}; // L: 38
-		field1002 = new int[]{-1, -1, 1, 1}; // L: 39
+		field977 = new int[]{1, 2, 4, 8}; // L: 34
+		field978 = new int[]{16, 32, 64, 128}; // L: 35
+		field979 = new int[]{1, 0, -1, 0}; // L: 36
+		field982 = new int[]{0, -1, 0, 1}; // L: 37
+		field981 = new int[]{1, -1, -1, 1}; // L: 38
+		field970 = new int[]{-1, -1, 1, 1}; // L: 39
 		rndHue = (int)(Math.random() * 17.0D) - 8; // L: 40
 		rndLightness = (int)(Math.random() * 33.0D) - 16; // L: 41
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "2041916936"
+		descriptor = "(S)I",
+		garbageValue = "-9992"
 	)
-	static void method2065() {
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) { // L: 60
-			if (ArchiveDiskActionHandler.field3971 == 0) { // L: 61
-				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler()); // L: 62
-				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setDaemon(true); // L: 63
-				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.start(); // L: 64
-				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setPriority(5); // L: 65
+	static int method1973() {
+		return ++Messages.Messages_count - 1; // L: 19
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(Lls;III)[Lqn;",
+		garbageValue = "-2043818816"
+	)
+	public static SpritePixels[] method2024(AbstractArchive var0, int var1, int var2) {
+		if (!Tile.method3937(var0, var1, var2)) { // L: 78
+			return null;
+		} else {
+			SpritePixels[] var4 = new SpritePixels[class457.SpriteBuffer_spriteCount]; // L: 81
+
+			for (int var5 = 0; var5 < class457.SpriteBuffer_spriteCount; ++var5) { // L: 82
+				SpritePixels var6 = var4[var5] = new SpritePixels(); // L: 83
+				var6.width = class457.SpriteBuffer_spriteWidth; // L: 84
+				var6.height = class457.SpriteBuffer_spriteHeight; // L: 85
+				var6.xOffset = class457.SpriteBuffer_xOffsets[var5]; // L: 86
+				var6.yOffset = InterfaceParent.SpriteBuffer_yOffsets[var5]; // L: 87
+				var6.subWidth = class457.SpriteBuffer_spriteWidths[var5]; // L: 88
+				var6.subHeight = SoundCache.SpriteBuffer_spriteHeights[var5]; // L: 89
+				int var7 = var6.subWidth * var6.subHeight; // L: 90
+				byte[] var8 = class181.SpriteBuffer_pixels[var5]; // L: 91
+				var6.pixels = new int[var7]; // L: 92
+
+				for (int var9 = 0; var9 < var7; ++var9) { // L: 93
+					var6.pixels[var9] = class457.SpriteBuffer_spritePalette[var8[var9] & 255];
+				}
 			}
 
-			ArchiveDiskActionHandler.field3971 = 600; // L: 67
+			class457.SpriteBuffer_xOffsets = null; // L: 96
+			InterfaceParent.SpriteBuffer_yOffsets = null; // L: 97
+			class457.SpriteBuffer_spriteWidths = null; // L: 98
+			SoundCache.SpriteBuffer_spriteHeights = null; // L: 99
+			class457.SpriteBuffer_spritePalette = null; // L: 100
+			class181.SpriteBuffer_pixels = null; // L: 101
+			return var4; // L: 105
 		}
-	} // L: 69
+	}
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "([BIIIIIIILgg;[Lgv;)V"
+		descriptor = "(B)V",
+		garbageValue = "5"
 	)
-	static final void method2007(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, Scene var8, CollisionMap[] var9) {
-		Buffer var10 = new Buffer(var0); // L: 260
-		int var11 = -1; // L: 261
+	public static void method2022() {
+		StructComposition.StructDefinition_cached.clear(); // L: 53
+	} // L: 54
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "([BIIIIIIILgy;[Lgl;)V"
+	)
+	static final void method2011(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, Scene var8, CollisionMap[] var9) {
+		Buffer var10 = new Buffer(var0); // L: 307
+		int var11 = -1; // L: 308
 
 		while (true) {
-			int var12 = var10.method7770(); // L: 263
-			if (var12 == 0) { // L: 264
-				return; // L: 291
+			int var12 = var10.method7881(); // L: 310
+			if (var12 == 0) { // L: 311
+				return; // L: 394
 			}
 
-			var11 += var12; // L: 265
-			int var13 = 0; // L: 266
+			var11 += var12; // L: 312
+			int var13 = 0; // L: 313
 
 			while (true) {
-				int var14 = var10.readUShortSmart(); // L: 268
-				if (var14 == 0) { // L: 269
+				int var14 = var10.readUShortSmart(); // L: 315
+				if (var14 == 0) { // L: 316
 					break;
 				}
 
-				var13 += var14 - 1; // L: 270
-				int var15 = var13 & 63; // L: 271
-				int var16 = var13 >> 6 & 63; // L: 272
-				int var17 = var13 >> 12; // L: 273
-				int var18 = var10.readUnsignedByte(); // L: 274
-				int var19 = var18 >> 2; // L: 275
-				int var20 = var18 & 3; // L: 276
-				if (var17 == var4 && var16 >= var5 && var16 < var5 + 8 && var15 >= var6 && var15 < var6 + 8) { // L: 277
-					ObjectComposition var21 = class162.getObjectDefinition(var11); // L: 278
-					int var22 = var2 + FloorOverlayDefinition.method3810(var16 & 7, var15 & 7, var7, var21.sizeX, var21.sizeY, var20); // L: 279
-					int var23 = var3 + class141.method3044(var16 & 7, var15 & 7, var7, var21.sizeX, var21.sizeY, var20); // L: 280
-					if (var22 > 0 && var23 > 0 && var22 < 103 && var23 < 103) { // L: 281
-						int var24 = var1; // L: 282
-						if ((Tiles_renderFlags[1][var22][var23] & 2) == 2) { // L: 283
-							var24 = var1 - 1;
+				var13 += var14 - 1; // L: 317
+				int var15 = var13 & 63; // L: 318
+				int var16 = var13 >> 6 & 63; // L: 319
+				int var17 = var13 >> 12; // L: 320
+				int var18 = var10.readUnsignedByte(); // L: 321
+				int var19 = var18 >> 2; // L: 322
+				int var20 = var18 & 3; // L: 323
+				if (var17 == var4 && var16 >= var5 && var16 < var5 + 8 && var15 >= var6 && var15 < var6 + 8) { // L: 324
+					ObjectComposition var21 = FileSystem.getObjectDefinition(var11); // L: 325
+					int var24 = var16 & 7; // L: 328
+					int var25 = var15 & 7; // L: 329
+					int var27 = var21.sizeX; // L: 331
+					int var28 = var21.sizeY; // L: 332
+					int var29;
+					if ((var20 & 1) == 1) { // L: 334
+						var29 = var27; // L: 335
+						var27 = var28; // L: 336
+						var28 = var29; // L: 337
+					}
+
+					int var26 = var7 & 3; // L: 339
+					int var23;
+					if (var26 == 0) { // L: 340
+						var23 = var24; // L: 341
+					} else if (var26 == 1) { // L: 344
+						var23 = var25; // L: 345
+					} else if (var26 == 2) { // L: 348
+						var23 = 7 - var24 - (var27 - 1); // L: 349
+					} else {
+						var23 = 7 - var25 - (var28 - 1); // L: 352
+					}
+
+					var29 = var23 + var2; // L: 354
+					int var32 = var16 & 7; // L: 357
+					int var33 = var15 & 7; // L: 358
+					int var35 = var21.sizeX; // L: 360
+					int var36 = var21.sizeY; // L: 361
+					int var37;
+					if ((var20 & 1) == 1) { // L: 363
+						var37 = var35; // L: 364
+						var35 = var36; // L: 365
+						var36 = var37; // L: 366
+					}
+
+					int var34 = var7 & 3; // L: 368
+					int var31;
+					if (var34 == 0) { // L: 369
+						var31 = var33; // L: 370
+					} else if (var34 == 1) { // L: 373
+						var31 = 7 - var32 - (var35 - 1); // L: 374
+					} else if (var34 == 2) { // L: 377
+						var31 = 7 - var33 - (var36 - 1); // L: 378
+					} else {
+						var31 = var32; // L: 381
+					}
+
+					var37 = var31 + var3; // L: 383
+					if (var29 > 0 && var37 > 0 && var29 < 103 && var37 < 103) { // L: 384
+						int var38 = var1; // L: 385
+						if ((Tiles_renderFlags[1][var29][var37] & 2) == 2) { // L: 386
+							var38 = var1 - 1;
 						}
 
-						CollisionMap var25 = null; // L: 284
-						if (var24 >= 0) { // L: 285
-							var25 = var9[var24];
+						CollisionMap var39 = null; // L: 387
+						if (var38 >= 0) { // L: 388
+							var39 = var9[var38];
 						}
 
-						class268.addObjects(var1, var22, var23, var11, var20 + var7 & 3, var19, var8, var25); // L: 286
+						class347.addObjects(var1, var29, var37, var11, var20 + var7 & 3, var19, var8, var39); // L: 389
 					}
 				}
 			}
 		}
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("kw")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-21"
+		descriptor = "(Lkn;B)Z",
+		garbageValue = "3"
 	)
-	static void method2021() {
-		Login.worldSelectOpen = false; // L: 1932
-		class16.leftTitleSprite.drawAt(Login.xPadding, 0); // L: 1933
-		Login.rightTitleSprite.drawAt(Login.xPadding + 382, 0); // L: 1934
-		Login.logoSprite.drawAt(Login.xPadding + 382 - Login.logoSprite.subWidth / 2, 18); // L: 1935
-	} // L: 1936
+	@Export("isComponentHidden")
+	static boolean isComponentHidden(Widget var0) {
+		return var0.isHidden; // L: 12080
+	}
 }

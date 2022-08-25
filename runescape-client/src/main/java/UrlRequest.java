@@ -1,22 +1,25 @@
 import java.net.URL;
-import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("cv")
 @Implements("UrlRequest")
 public class UrlRequest {
-	@ObfuscatedName("us")
-	static List field1373;
-	@ObfuscatedName("c")
+	@ObfuscatedName("d")
+	@ObfuscatedGetter(
+		intValue = -2013552201
+	)
+	static int field1355;
+	@ObfuscatedName("s")
 	@Export("url")
 	final URL url;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@Export("isDone0")
 	volatile boolean isDone0;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@Export("response0")
 	volatile byte[] response0;
 
@@ -24,43 +27,77 @@ public class UrlRequest {
 		this.url = var1; // L: 118
 	} // L: 119
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "-60"
+		garbageValue = "-104"
 	)
 	@Export("isDone")
 	public boolean isDone() {
 		return this.isDone0; // L: 122
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "-1112773966"
+		descriptor = "(B)[B",
+		garbageValue = "49"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
 		return this.response0; // L: 126
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-2136536725"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "14"
 	)
-	public String method2553() {
+	public String method2528() {
 		return this.url.toString(); // L: 130
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(ZZI)I",
-		garbageValue = "-1626715483"
+		descriptor = "(Lls;Lls;Lls;Lje;I)Z",
+		garbageValue = "1932536931"
 	)
-	public static int method2557(boolean var0, boolean var1) {
-		byte var2 = 0; // L: 143
-		int var3 = var2 + NetCache.NetCache_pendingPriorityWritesCount + NetCache.NetCache_pendingPriorityResponsesCount; // L: 144
-		return var3; // L: 145
+	public static boolean method2520(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
+		class273.musicPatchesArchive = var0; // L: 26
+		class273.musicSamplesArchive = var1; // L: 27
+		class273.soundEffectsArchive = var2; // L: 28
+		ItemContainer.midiPcmStream = var3; // L: 29
+		return true; // L: 30
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(BI)C",
+		garbageValue = "2101377039"
+	)
+	public static char method2530(byte var0) {
+		int var1 = var0 & 255; // L: 66
+		if (var1 == 0) { // L: 67
+			throw new IllegalArgumentException("" + Integer.toString(var1, 16));
+		} else {
+			if (var1 >= 128 && var1 < 160) { // L: 68
+				char var2 = class341.cp1252AsciiExtension[var1 - 128]; // L: 69
+				if (var2 == 0) { // L: 70
+					var2 = '?';
+				}
+
+				var1 = var2; // L: 71
+			}
+
+			return (char)var1; // L: 73
+		}
+	}
+
+	@ObfuscatedName("kd")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-137524219"
+	)
+	public static boolean method2525() {
+		return Client.staffModLevel >= 2; // L: 12221
 	}
 }

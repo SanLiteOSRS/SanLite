@@ -3,66 +3,69 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("hi")
+@ObfuscatedName("hn")
 @Implements("WallObject")
 public final class WallObject {
-	@ObfuscatedName("tr")
-	@ObfuscatedGetter(
-		intValue = 274182681
+	@ObfuscatedName("cj")
+	public static char field2636;
+	@ObfuscatedName("kd")
+	@ObfuscatedSignature(
+		descriptor = "Lkn;"
 	)
-	static int field2622;
-	@ObfuscatedName("c")
+	static Widget field2634;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1257114009
+		intValue = 1760692663
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -655721437
+		intValue = 1190754957
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1527654875
+		intValue = 2046459239
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 364149679
+		intValue = -283671445
 	)
 	@Export("orientationA")
 	int orientationA;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1337588957
+		intValue = -1295985349
 	)
 	@Export("orientationB")
 	int orientationB;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lgq;"
 	)
 	@Export("renderable1")
 	public Renderable renderable1;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lgq;"
 	)
 	@Export("renderable2")
 	public Renderable renderable2;
-	@ObfuscatedName("w")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		longValue = 5334859034127772709L
+		longValue = 2351322069323510671L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("y")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -256459155
+		intValue = -1112023027
 	)
 	@Export("flags")
 	int flags;
@@ -72,100 +75,117 @@ public final class WallObject {
 		this.flags = 0; // L: 12
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lcw;B)V",
-		garbageValue = "-14"
+		descriptor = "(ILbz;ZI)I",
+		garbageValue = "797879953"
 	)
-	@Export("runScriptEvent")
-	public static void runScriptEvent(ScriptEvent var0) {
-		class135.runScript(var0, 500000, 475000);
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "94"
-	)
-	static void method4534(int var0, int var1, int var2, int var3) {
-		for (ObjectSound var4 = (ObjectSound)ObjectSound.objectSounds.last(); var4 != null; var4 = (ObjectSound)ObjectSound.objectSounds.previous()) { // L: 93
-			if (var4.soundEffectId != -1 || var4.soundEffectIds != null) { // L: 94
-				int var5 = 0; // L: 95
-				if (var1 > var4.maxX * 128) { // L: 96
-					var5 += var1 - var4.maxX * 128;
-				} else if (var1 < var4.x * 128) { // L: 97
-					var5 += var4.x * 128 - var1;
+	static int method4420(int var0, Script var1, boolean var2) {
+		int var4;
+		int var9;
+		if (var0 == ScriptOpcodes.CC_CREATE) { // L: 489
+			Nameable.Interpreter_intStackSize -= 3; // L: 490
+			var9 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize]; // L: 491
+			var4 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize + 1]; // L: 492
+			int var11 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize + 2]; // L: 493
+			if (var4 == 0) { // L: 494
+				throw new RuntimeException(); // L: 495
+			} else {
+				Widget var6 = HitSplatDefinition.getWidget(var9); // L: 497
+				if (var6.children == null) { // L: 498
+					var6.children = new Widget[var11 + 1];
 				}
 
-				if (var2 > var4.maxY * 16384) { // L: 98
-					var5 += var2 - var4.maxY * 16384;
-				} else if (var2 < var4.y * 16384) { // L: 99
-					var5 += var4.y * 16384 - var2;
+				if (var6.children.length <= var11) { // L: 499
+					Widget[] var7 = new Widget[var11 + 1]; // L: 500
+
+					for (int var8 = 0; var8 < var6.children.length; ++var8) { // L: 501
+						var7[var8] = var6.children[var8];
+					}
+
+					var6.children = var7; // L: 502
 				}
 
-				if (var5 - 64 <= var4.field812 && class19.clientPreferences.method2262() != 0 && var0 == var4.plane) { // L: 100
-					var5 -= 64; // L: 111
-					if (var5 < 0) { // L: 112
-						var5 = 0;
-					}
-
-					int var6 = (var4.field812 - var5) * class19.clientPreferences.method2262() / var4.field812; // L: 113
-					if (var4.stream1 == null) { // L: 114
-						if (var4.soundEffectId >= 0) { // L: 115
-							SoundEffect var7 = SoundEffect.readSoundEffect(Client.archive4, var4.soundEffectId, 0); // L: 116
-							if (var7 != null) { // L: 117
-								RawSound var8 = var7.toRawSound().resample(WorldMapRegion.decimator); // L: 118
-								RawPcmStream var9 = RawPcmStream.createRawPcmStream(var8, 100, var6); // L: 119
-								var9.setNumLoops(-1); // L: 120
-								class21.pcmStreamMixer.addSubStream(var9); // L: 121
-								var4.stream1 = var9; // L: 122
-							}
-						}
-					} else {
-						var4.stream1.method790(var6); // L: 126
-					}
-
-					if (var4.stream2 == null) { // L: 127
-						if (var4.soundEffectIds != null && (var4.field809 -= var3) <= 0) { // L: 128
-							int var11 = (int)(Math.random() * (double)var4.soundEffectIds.length); // L: 129
-							SoundEffect var12 = SoundEffect.readSoundEffect(Client.archive4, var4.soundEffectIds[var11], 0); // L: 130
-							if (var12 != null) { // L: 131
-								RawSound var13 = var12.toRawSound().resample(WorldMapRegion.decimator); // L: 132
-								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var13, 100, var6); // L: 133
-								var10.setNumLoops(0); // L: 134
-								class21.pcmStreamMixer.addSubStream(var10); // L: 135
-								var4.stream2 = var10; // L: 136
-								var4.field809 = var4.field819 + (int)(Math.random() * (double)(var4.field811 - var4.field819)); // L: 137
-							}
-						}
-					} else {
-						var4.stream2.method790(var6); // L: 142
-						if (!var4.stream2.hasNext()) { // L: 143
-							var4.stream2 = null; // L: 144
-						}
-					}
+				if (var11 > 0 && var6.children[var11 - 1] == null) { // L: 504
+					throw new RuntimeException("" + (var11 - 1));
 				} else {
-					if (var4.stream1 != null) { // L: 101
-						class21.pcmStreamMixer.removeSubStream(var4.stream1); // L: 102
-						var4.stream1 = null; // L: 103
+					Widget var12 = new Widget(); // L: 505
+					var12.type = var4; // L: 506
+					var12.parentId = var12.id = var6.id; // L: 507
+					var12.childIndex = var11; // L: 508
+					var12.isIf3 = true; // L: 509
+					var6.children[var11] = var12; // L: 510
+					if (var2) { // L: 511
+						SoundSystem.scriptDotWidget = var12;
+					} else {
+						Ignored.scriptActiveWidget = var12; // L: 512
 					}
 
-					if (var4.stream2 != null) { // L: 105
-						class21.pcmStreamMixer.removeSubStream(var4.stream2); // L: 106
-						var4.stream2 = null; // L: 107
-					}
+					class125.invalidateWidget(var6); // L: 513
+					return 1; // L: 514
 				}
 			}
+		} else {
+			Widget var3;
+			if (var0 == ScriptOpcodes.CC_DELETE) { // L: 516
+				var3 = var2 ? SoundSystem.scriptDotWidget : Ignored.scriptActiveWidget; // L: 517
+				Widget var10 = HitSplatDefinition.getWidget(var3.id); // L: 518
+				var10.children[var3.childIndex] = null; // L: 519
+				class125.invalidateWidget(var10); // L: 520
+				return 1; // L: 521
+			} else if (var0 == ScriptOpcodes.CC_DELETEALL) { // L: 523
+				var3 = HitSplatDefinition.getWidget(Interpreter.Interpreter_intStack[--Nameable.Interpreter_intStackSize]); // L: 524
+				var3.children = null; // L: 525
+				class125.invalidateWidget(var3); // L: 526
+				return 1; // L: 527
+			} else if (var0 == 103) { // L: 529
+				Nameable.Interpreter_intStackSize -= 3; // L: 530
+				return 1; // L: 531
+			} else if (var0 == 104) { // L: 533
+				--Nameable.Interpreter_intStackSize; // L: 534
+				return 1; // L: 535
+			} else if (var0 != ScriptOpcodes.CC_FIND) { // L: 537
+				if (var0 == ScriptOpcodes.IF_FIND) { // L: 550
+					var3 = HitSplatDefinition.getWidget(Interpreter.Interpreter_intStack[--Nameable.Interpreter_intStackSize]); // L: 551
+					if (var3 != null) { // L: 552
+						Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = 1; // L: 553
+						if (var2) { // L: 554
+							SoundSystem.scriptDotWidget = var3;
+						} else {
+							Ignored.scriptActiveWidget = var3; // L: 555
+						}
+					} else {
+						Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = 0; // L: 557
+					}
+
+					return 1; // L: 558
+				} else if (var0 == 202) { // L: 560
+					Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize + 1] = 0; // L: 561
+					return 1; // L: 562
+				} else if (var0 == 203) { // L: 564
+					Interpreter.Interpreter_intStack[--Nameable.Interpreter_intStackSize + 1] = 0; // L: 565
+					return 1; // L: 566
+				} else {
+					return 2; // L: 568
+				}
+			} else {
+				Nameable.Interpreter_intStackSize -= 2; // L: 538
+				var9 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize]; // L: 539
+				var4 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize + 1]; // L: 540
+				Widget var5 = class128.getWidgetChild(var9, var4); // L: 541
+				if (var5 != null && var4 != -1) { // L: 542
+					Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = 1; // L: 543
+					if (var2) { // L: 544
+						SoundSystem.scriptDotWidget = var5;
+					} else {
+						Ignored.scriptActiveWidget = var5; // L: 545
+					}
+				} else {
+					Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = 0; // L: 547
+				}
+
+				return 1; // L: 548
+			}
 		}
-
-	} // L: 148
-
-	@ObfuscatedName("fp")
-	@ObfuscatedSignature(
-		descriptor = "(I)J",
-		garbageValue = "-2059501837"
-	)
-	static long method4536() {
-		return Client.field612; // L: 2945
 	}
 }

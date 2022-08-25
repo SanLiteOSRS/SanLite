@@ -3,16 +3,16 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kr")
+@ObfuscatedName("ka")
 @Implements("Varps")
 public class Varps {
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@Export("Varps_masks")
 	static int[] Varps_masks;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@Export("Varps_temp")
 	public static int[] Varps_temp;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@Export("Varps_main")
 	public static int[] Varps_main;
 
@@ -29,22 +29,36 @@ public class Varps {
 		Varps_main = new int[4000]; // L: 17
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;ZB)[B",
-		garbageValue = "74"
+		descriptor = "(IIB)Lbz;",
+		garbageValue = "8"
 	)
-	public static byte[] method5530(Object var0, boolean var1) {
-		if (var0 == null) { // L: 21
-			return null;
-		} else if (var0 instanceof byte[]) { // L: 22
-			byte[] var3 = (byte[])((byte[])var0); // L: 23
-			return var1 ? MusicPatch.method5432(var3) : var3; // L: 24
-		} else if (var0 instanceof AbstractByteArrayCopier) { // L: 27
-			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0; // L: 28
-			return var2.get(); // L: 29
+	static Script method5465(int var0, int var1) {
+		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16)); // L: 52
+		if (var2 != null) { // L: 53
+			return var2; // L: 54
 		} else {
-			throw new IllegalArgumentException(); // L: 31
+			String var3 = String.valueOf(var0); // L: 56
+			int var4 = SequenceDefinition.archive12.getGroupId(var3); // L: 57
+			if (var4 == -1) { // L: 58
+				return null; // L: 59
+			} else {
+				byte[] var5 = SequenceDefinition.archive12.takeFileFlat(var4); // L: 61
+				if (var5 != null) { // L: 62
+					if (var5.length <= 1) { // L: 63
+						return null; // L: 64
+					}
+
+					var2 = class21.newScript(var5); // L: 66
+					if (var2 != null) { // L: 67
+						Script.Script_cached.put(var2, (long)(var0 << 16)); // L: 68
+						return var2; // L: 69
+					}
+				}
+
+				return null; // L: 72
+			}
 		}
 	}
 }
