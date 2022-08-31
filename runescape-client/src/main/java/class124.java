@@ -2,121 +2,157 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dj")
+@ObfuscatedName("df")
 public enum class124 implements MouseWheel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Ldf;"
 	)
-	field1546(0, 0),
+	field1519(3, 0),
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "Ldf;"
+	)
+	field1522(0, 1),
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "Ldf;"
+	)
+	field1521(1, 2),
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Ldf;"
 	)
-	field1544(4, 1),
-	@ObfuscatedName("q")
+	field1520(4, 3),
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Ldf;"
 	)
-	field1543(1, 2),
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Ldj;"
-	)
-	field1550(2, 3),
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Ldj;"
-	)
-	field1547(3, 4);
+	field1523(2, 4);
 
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "Lkb;"
-	)
-	@Export("scriptDotWidget")
-	static Widget scriptDotWidget;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1017548215
+		intValue = 1199083661
 	)
-	public final int field1548;
-	@ObfuscatedName("g")
+	public final int field1524;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 972373499
+		intValue = -2124972105
 	)
 	@Export("id")
 	final int id;
 
 	class124(int var3, int var4) {
-		this.field1548 = var3; // L: 17
+		this.field1524 = var3; // L: 17
 		this.id = var4; // L: 18
 	} // L: 19
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "104"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 23
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "(Lpb;III)I",
-		garbageValue = "-1005056854"
+		descriptor = "(CB)Z",
+		garbageValue = "123"
 	)
-	static int method2818(IterableNodeHashTable var0, int var1, int var2) {
-		if (var0 == null) {
-			return var2;
+	@Export("isCharPrintable")
+	public static boolean isCharPrintable(char var0) {
+		if (var0 >= ' ' && var0 <= '~') { // L: 193
+			return true;
+		} else if (var0 >= 160 && var0 <= 255) { // L: 194
+			return true;
 		} else {
-			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
-			return var3 == null ? var2 : var3.integer;
+			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376; // L: 195
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgp;",
-		garbageValue = "15"
+		descriptor = "(ILbz;ZI)I",
+		garbageValue = "-1560947837"
 	)
-	public static FloorOverlayDefinition method2814(int var0) {
-		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0); // L: 30
-		if (var1 != null) { // L: 31
-			return var1;
-		} else {
-			byte[] var2 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0); // L: 32
-			var1 = new FloorOverlayDefinition(); // L: 33
-			if (var2 != null) { // L: 34
-				var1.decode(new Buffer(var2), var0);
+	static int method2768(int var0, Script var1, boolean var2) {
+		int var3;
+		int var6;
+		int var9;
+		if (var0 == ScriptOpcodes.ENUM_STRING) { // L: 2289
+			Nameable.Interpreter_intStackSize -= 2; // L: 2290
+			var3 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize]; // L: 2291
+			var9 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize + 1]; // L: 2292
+			EnumComposition var10 = WorldMapIcon_1.getEnum(var3); // L: 2293
+			if (var10.outputType != 's') { // L: 2294
 			}
 
-			var1.postDecode(); // L: 35
-			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var1, (long)var0); // L: 36
-			return var1; // L: 37
+			for (var6 = 0; var6 < var10.outputCount; ++var6) { // L: 2295
+				if (var9 == var10.keys[var6]) { // L: 2296
+					Interpreter.Interpreter_stringStack[++UserComparator8.Interpreter_stringStackSize - 1] = var10.strVals[var6]; // L: 2297
+					var10 = null; // L: 2298
+					break;
+				}
+			}
+
+			if (var10 != null) { // L: 2302
+				Interpreter.Interpreter_stringStack[++UserComparator8.Interpreter_stringStackSize - 1] = var10.defaultStr;
+			}
+
+			return 1; // L: 2303
+		} else if (var0 != ScriptOpcodes.ENUM) { // L: 2305
+			if (var0 == ScriptOpcodes.ENUM_GETOUTPUTCOUNT) { // L: 2331
+				var3 = Interpreter.Interpreter_intStack[--Nameable.Interpreter_intStackSize]; // L: 2332
+				EnumComposition var4 = WorldMapIcon_1.getEnum(var3); // L: 2333
+				Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = var4.size(); // L: 2334
+				return 1; // L: 2335
+			} else {
+				return 2; // L: 2337
+			}
+		} else {
+			Nameable.Interpreter_intStackSize -= 4; // L: 2306
+			var3 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize]; // L: 2307
+			var9 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize + 1]; // L: 2308
+			int var5 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize + 2]; // L: 2309
+			var6 = Interpreter.Interpreter_intStack[Nameable.Interpreter_intStackSize + 3]; // L: 2310
+			EnumComposition var7 = WorldMapIcon_1.getEnum(var5); // L: 2311
+			if (var3 == var7.inputType && var9 == var7.outputType) { // L: 2312
+				for (int var8 = 0; var8 < var7.outputCount; ++var8) { // L: 2317
+					if (var6 == var7.keys[var8]) { // L: 2318
+						if (var9 == 115) { // L: 2319
+							Interpreter.Interpreter_stringStack[++UserComparator8.Interpreter_stringStackSize - 1] = var7.strVals[var8];
+						} else {
+							Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = var7.intVals[var8]; // L: 2320
+						}
+
+						var7 = null; // L: 2321
+						break;
+					}
+				}
+
+				if (var7 != null) { // L: 2325
+					if (var9 == 115) { // L: 2326
+						Interpreter.Interpreter_stringStack[++UserComparator8.Interpreter_stringStackSize - 1] = var7.defaultStr;
+					} else {
+						Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = var7.defaultInt; // L: 2327
+					}
+				}
+
+				return 1; // L: 2329
+			} else {
+				if (var9 == 115) { // L: 2313
+					Interpreter.Interpreter_stringStack[++UserComparator8.Interpreter_stringStackSize - 1] = "null";
+				} else {
+					Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = 0; // L: 2314
+				}
+
+				return 1; // L: 2315
+			}
 		}
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(B)[Lft;",
-		garbageValue = "127"
-	)
-	static VerticalAlignment[] method2820() {
-		return new VerticalAlignment[]{VerticalAlignment.field1963, VerticalAlignment.field1961, VerticalAlignment.VerticalAlignment_centered}; // L: 14
-	}
-
-	@ObfuscatedName("lw")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)I",
-		garbageValue = "1998673549"
-	)
-	@Export("getWidgetFlags")
-	static int getWidgetFlags(Widget var0) {
-		IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32)); // L: 12289
-		return var1 != null ? var1.integer : var0.flags; // L: 12290 12291
 	}
 }

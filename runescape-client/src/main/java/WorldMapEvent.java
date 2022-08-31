@@ -4,35 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iy")
+@ObfuscatedName("ib")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-	@ObfuscatedName("eg")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	static Archive field2882;
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 285885713
+		intValue = 1706747549
 	)
 	@Export("mapElement")
 	public int mapElement;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lku;"
 	)
 	@Export("coord1")
 	public Coord coord1;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lku;"
 	)
 	@Export("coord2")
 	public Coord coord2;
 
 	@ObfuscatedSignature(
-		descriptor = "(ILkd;Lkd;)V"
+		descriptor = "(ILku;Lku;)V"
 	)
 	public WorldMapEvent(int var1, Coord var2, Coord var3) {
 		this.mapElement = var1; // L: 11
@@ -40,46 +35,92 @@ public class WorldMapEvent {
 		this.coord2 = var3; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(DDIB)[D",
-		garbageValue = "-87"
+		descriptor = "(B)V",
+		garbageValue = "32"
 	)
-	public static double[] method5119(double var0, double var2, int var4) {
-		int var5 = var4 * 2 + 1; // L: 18
-		double[] var6 = new double[var5]; // L: 19
-		int var7 = -var4;
+	public static void method5064() {
+		try {
+			if (class273.musicPlayerStatus == 1) { // L: 62
+				int var0 = ItemContainer.midiPcmStream.method5237(); // L: 63
+				if (var0 > 0 && ItemContainer.midiPcmStream.isReady()) { // L: 64
+					var0 -= class160.pcmSampleLength; // L: 65
+					if (var0 < 0) { // L: 66
+						var0 = 0;
+					}
 
-		for (int var8 = 0; var7 <= var4; ++var8) {
-			var6[var8] = class357.method6530((double)var7, var0, var2); // L: 21
-			++var7; // L: 20
+					ItemContainer.midiPcmStream.setPcmStreamVolume(var0); // L: 67
+					return; // L: 68
+				}
+
+				ItemContainer.midiPcmStream.clear(); // L: 70
+				ItemContainer.midiPcmStream.removeAll(); // L: 71
+				if (NetFileRequest.musicTrackArchive != null) { // L: 72
+					class273.musicPlayerStatus = 2;
+				} else {
+					class273.musicPlayerStatus = 0; // L: 73
+				}
+
+				Username.musicTrack = null; // L: 74
+				Script.soundCache = null; // L: 75
+			}
+		} catch (Exception var2) { // L: 78
+			var2.printStackTrace(); // L: 79
+			ItemContainer.midiPcmStream.clear(); // L: 80
+			class273.musicPlayerStatus = 0; // L: 81
+			Username.musicTrack = null; // L: 82
+			Script.soundCache = null; // L: 83
+			NetFileRequest.musicTrackArchive = null; // L: 84
 		}
 
-		return var6; // L: 23
-	}
+	} // L: 86
 
-	@ObfuscatedName("kb")
+	@ObfuscatedName("hh")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-2116126418"
+		descriptor = "(ILjava/lang/String;B)V",
+		garbageValue = "3"
 	)
-	static final void method5120(int var0) {
-		var0 = Math.max(Math.min(var0, 100), 0); // L: 11823
-		var0 = 100 - var0; // L: 11824
-		float var1 = (float)var0 / 200.0F + 0.5F; // L: 11825
-		Rasterizer3D.Rasterizer3D_setBrightness((double)var1); // L: 11827
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness((double)var1); // L: 11828
-		Projectile.method1959(); // L: 11829
-		class19.clientPreferences.method2255((double)var1); // L: 11830
-	} // L: 11832
+	static void method5063(int var0, String var1) {
+		int var2 = Players.Players_count; // L: 9208
+		int[] var3 = Players.Players_indices; // L: 9209
+		boolean var4 = false; // L: 9210
+		Username var5 = new Username(var1, StructComposition.loginType); // L: 9211
 
-	@ObfuscatedName("kn")
-	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "124"
-	)
-	static final void method5121(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 127); // L: 11861
-		class19.clientPreferences.method2341(var0); // L: 11862
-	} // L: 11863
+		for (int var6 = 0; var6 < var2; ++var6) { // L: 9212
+			Player var7 = Client.players[var3[var6]]; // L: 9213
+			if (var7 != null && var7 != ScriptFrame.localPlayer && var7.username != null && var7.username.equals(var5)) { // L: 9214
+				PacketBufferNode var8;
+				if (var0 == 1) { // L: 9215
+					var8 = DevicePcmPlayerProvider.getPacketBufferNode(ClientPacket.field2934, Client.packetWriter.isaacCipher); // L: 9217
+					var8.packetBuffer.method7667(0); // L: 9218
+					var8.packetBuffer.method7647(var3[var6]); // L: 9219
+					Client.packetWriter.addNode(var8); // L: 9220
+				} else if (var0 == 4) { // L: 9222
+					var8 = DevicePcmPlayerProvider.getPacketBufferNode(ClientPacket.field2957, Client.packetWriter.isaacCipher); // L: 9224
+					var8.packetBuffer.method7647(var3[var6]); // L: 9225
+					var8.packetBuffer.method7667(0); // L: 9226
+					Client.packetWriter.addNode(var8); // L: 9227
+				} else if (var0 == 6) { // L: 9229
+					var8 = DevicePcmPlayerProvider.getPacketBufferNode(ClientPacket.field2952, Client.packetWriter.isaacCipher); // L: 9231
+					var8.packetBuffer.method7878(0); // L: 9232
+					var8.packetBuffer.method7647(var3[var6]); // L: 9233
+					Client.packetWriter.addNode(var8); // L: 9234
+				} else if (var0 == 7) { // L: 9236
+					var8 = DevicePcmPlayerProvider.getPacketBufferNode(ClientPacket.field3000, Client.packetWriter.isaacCipher); // L: 9238
+					var8.packetBuffer.writeByte(0); // L: 9239
+					var8.packetBuffer.writeIntME(var3[var6]); // L: 9240
+					Client.packetWriter.addNode(var8); // L: 9241
+				}
+
+				var4 = true; // L: 9243
+				break;
+			}
+		}
+
+		if (!var4) { // L: 9247
+			VarcInt.addGameMessage(4, "", "Unable to find " + var1);
+		}
+
+	} // L: 9248
 }

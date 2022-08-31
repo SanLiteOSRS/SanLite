@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -6,26 +7,41 @@ public abstract class class128 extends Node {
 	class128() {
 	} // L: 68
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "-885940784"
 	)
-	abstract void vmethod3150(Buffer var1);
+	abstract void vmethod3087(Buffer var1);
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Leh;B)V",
+		garbageValue = "0"
 	)
-	abstract void vmethod3149(ClanSettings var1);
+	abstract void vmethod3084(ClanSettings var1);
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Ljw;",
-		garbageValue = "182200833"
+		descriptor = "(III)Lkn;",
+		garbageValue = "-1307186333"
 	)
-	public static class262[] method2856() {
-		return new class262[]{class262.field3020, class262.field3017, class262.field3019, class262.field3018, class262.field3015, class262.field3016, class262.field3021, class262.field3022, class262.field3023, class262.field3024}; // L: 17
+	@Export("getWidgetChild")
+	public static Widget getWidgetChild(int var0, int var1) {
+		Widget var2 = HitSplatDefinition.getWidget(var0); // L: 230
+		if (var1 == -1) { // L: 231
+			return var2;
+		} else {
+			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null; // L: 232 233
+		}
 	}
+
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "-99"
+	)
+	static final void method2801(String var0) {
+		class4.method20("Please remove " + var0 + " from your ignore list first"); // L: 117
+	} // L: 118
 }

@@ -3,95 +3,82 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("df")
+@ObfuscatedName("db")
 public enum class123 implements MouseWheel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Ldf;"
+		descriptor = "Ldb;"
 	)
-	field1535(0, 0),
-	@ObfuscatedName("v")
+	field1508(0, 0),
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Ldf;"
+		descriptor = "Ldb;"
 	)
-	field1529(1, 1),
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Ldf;"
-	)
-	field1542(2, 2),
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Ldf;"
-	)
-	field1531(3, 3),
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Ldf;"
-	)
-	field1536(4, 4),
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "Ldf;"
-	)
-	field1533(5, 5),
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "Ldf;"
-	)
-	field1534(6, 6),
+	field1515(1, 1),
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Ldf;"
+		descriptor = "Ldb;"
 	)
-	field1532(7, 7),
-	@ObfuscatedName("y")
+	field1507(2, 2),
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ldf;"
+		descriptor = "Ldb;"
 	)
-	field1528(8, 8);
-
-	@ObfuscatedName("n")
-	@Export("userHomeDirectory")
-	static String userHomeDirectory;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -980085823
-	)
-	final int field1537;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = 1512803197
-	)
-	final int field1538;
-
-	class123(int var3, int var4) {
-		this.field1537 = var3; // L: 117
-		this.field1538 = var4; // L: 118
-	} // L: 119
-
+	field1512(3, 3),
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
+		descriptor = "Ldb;"
+	)
+	field1509(4, 4),
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "Ldb;"
+	)
+	field1518(5, 5),
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		descriptor = "Ldb;"
+	)
+	field1511(6, 6),
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "Ldb;"
+	)
+	field1510(7, 7),
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "Ldb;"
+	)
+	field1513(8, 8);
+
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = 373388961
+	)
+	static int field1517;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = -467457373
+	)
+	final int field1514;
+	@ObfuscatedName("d")
+	@ObfuscatedGetter(
+		intValue = 1623865199
+	)
+	final int field1506;
+
+	class123(int var3, int var4) {
+		this.field1514 = var3; // L: 97
+		this.field1506 = var4; // L: 98
+	} // L: 99
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "104"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field1538; // L: 122
-	}
-
-	@ObfuscatedName("lk")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Lps;",
-		garbageValue = "-5"
-	)
-	static class436 method2813(int var0) {
-		class436 var1 = (class436)Client.Widget_cachedModels.get((long)var0); // L: 12477
-		if (var1 == null) { // L: 12478
-			var1 = new class436(class132.field1588, class285.method5516(var0), HealthBarUpdate.method2199(var0)); // L: 12479
-			Client.Widget_cachedModels.put(var1, (long)var0); // L: 12480
-		}
-
-		return var1; // L: 12482
+		return this.field1506; // L: 102
 	}
 }

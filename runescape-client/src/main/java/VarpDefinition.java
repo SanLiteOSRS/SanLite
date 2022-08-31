@@ -4,31 +4,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fp")
+@ObfuscatedName("fw")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("tf")
+	@ObfuscatedGetter(
+		intValue = -1358941939
+	)
+	static int field1805;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lls;"
 	)
 	@Export("VarpDefinition_archive")
-	public static AbstractArchive VarpDefinition_archive;
-	@ObfuscatedName("v")
+	static AbstractArchive VarpDefinition_archive;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 486330385
+		intValue = -1767580571
 	)
-	public static int field1822;
-	@ObfuscatedName("q")
+	public static int field1809;
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Liz;"
 	)
 	@Export("VarpDefinition_cached")
 	public static EvictingDualNodeHashTable VarpDefinition_cached;
-	@ObfuscatedName("ct")
-	static boolean field1821;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ip")
+	@ObfuscatedSignature(
+		descriptor = "[Lqe;"
+	)
+	@Export("modIconSprites")
+	static IndexedSprite[] modIconSprites;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -737478807
+		intValue = -953256093
 	)
 	@Export("type")
 	public int type;
@@ -41,60 +50,51 @@ public class VarpDefinition extends DualNode {
 		this.type = 0; // L: 13
 	} // L: 15
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "-1095475514"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "1926258442"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 29
-			if (var2 == 0) { // L: 30
-				return; // L: 33
+			int var2 = var1.readUnsignedByte(); // L: 34
+			if (var2 == 0) { // L: 35
+				return; // L: 38
 			}
 
-			this.decodeNext(var1, var2); // L: 31
+			this.decodeNext(var1, var2); // L: 36
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "1370423223"
+		descriptor = "(Lqr;IB)V",
+		garbageValue = "-21"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 5) { // L: 36
+		if (var2 == 5) { // L: 41
 			this.type = var1.readUnsignedShort();
 		}
 
-	} // L: 38
+	} // L: 43
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1678307117"
+		descriptor = "(I)V",
+		garbageValue = "284353290"
 	)
-	public static int method3374(int var0) {
-		return class270.field3179[var0]; // L: 24
-	}
+	public static void method3288() {
+		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear(); // L: 85
+	} // L: 86
 
-	@ObfuscatedName("iy")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1226531684"
+		descriptor = "(I)V",
+		garbageValue = "-252579017"
 	)
-	static final boolean method3373(int var0) {
-		if (var0 < 0) { // L: 8693
-			return false;
-		} else {
-			int var1 = Client.menuOpcodes[var0]; // L: 8694
-			if (var1 >= 2000) { // L: 8695
-				var1 -= 2000;
-			}
-
-			return var1 == 1007; // L: 8696
-		}
-	}
+	public static void method3284() {
+		PlayerComposition.PlayerComposition_cachedModels.clear(); // L: 279
+	} // L: 280
 }
