@@ -4,51 +4,57 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hu")
+@ObfuscatedName("ha")
 @Implements("SceneTilePaint")
 public final class SceneTilePaint {
-	@ObfuscatedName("cj")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	@Export("worldSelectRightSprite")
-	static IndexedSprite worldSelectRightSprite;
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1769216381
+		intValue = -246999917
+	)
+	@Export("musicTrackFileId")
+	public static int musicTrackFileId;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("Widget_fontsArchive")
+	public static AbstractArchive Widget_fontsArchive;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = -874065581
 	)
 	@Export("swColor")
 	int swColor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -78289351
+		intValue = 1159712219
 	)
 	@Export("seColor")
 	int seColor;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -184307337
+		intValue = 1006604365
 	)
 	@Export("neColor")
 	int neColor;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1175452837
+		intValue = -1851893905
 	)
 	@Export("nwColor")
 	int nwColor;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 516518743
+		intValue = 503057411
 	)
 	@Export("texture")
 	int texture;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@Export("isFlat")
 	boolean isFlat;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 1480522927
+		intValue = -532188411
 	)
 	@Export("rgb")
 	int rgb;
@@ -64,77 +70,71 @@ public final class SceneTilePaint {
 		this.isFlat = var7; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)Ljava/lang/String;",
-		garbageValue = "-117"
+		descriptor = "(Lco;S)V",
+		garbageValue = "203"
 	)
-	@Export("decodeStringCp1252")
-	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
-		char[] var3 = new char[var2]; // L: 114
-		int var4 = 0; // L: 115
+	@Export("runScriptEvent")
+	public static void runScriptEvent(ScriptEvent var0) {
+		GraphicsObject.runScript(var0, 500000, 475000); // L: 117
+	} // L: 118
 
-		for (int var5 = 0; var5 < var2; ++var5) { // L: 116
-			int var6 = var0[var5 + var1] & 255; // L: 117
-			if (var6 != 0) { // L: 118
-				if (var6 >= 128 && var6 < 160) { // L: 119
-					char var7 = class340.cp1252AsciiExtension[var6 - 128]; // L: 120
-					if (var7 == 0) { // L: 121
-						var7 = '?';
-					}
-
-					var6 = var7; // L: 122
-				}
-
-				var3[var4++] = (char)var6; // L: 124
-			}
-		}
-
-		return new String(var3, 0, var4); // L: 126
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "-1527071876"
+	)
+	public static final boolean method4416(char var0) {
+		return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-'; // L: 36
 	}
 
-	@ObfuscatedName("hr")
+	@ObfuscatedName("es")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "744577981"
+		descriptor = "(B)V",
+		garbageValue = "110"
 	)
-	@Export("getTileHeight")
-	static final int getTileHeight(int var0, int var1, int var2) {
-		int var3 = var0 >> 7; // L: 5462
-		int var4 = var1 >> 7; // L: 5463
-		if (var3 >= 0 && var4 >= 0 && var3 <= 103 && var4 <= 103) { // L: 5464
-			int var5 = var2; // L: 5465
-			if (var2 < 3 && (Tiles.Tiles_renderFlags[1][var3][var4] & 2) == 2) { // L: 5466
-				var5 = var2 + 1;
-			}
+	static void method4417() {
+		Client.packetWriter.clearBuffer(); // L: 2657
+		Client.packetWriter.packetBuffer.offset = 0; // L: 2658
+		Client.packetWriter.serverPacket = null; // L: 2659
+		Client.packetWriter.field1337 = null; // L: 2660
+		Client.packetWriter.field1339 = null; // L: 2661
+		Client.packetWriter.field1330 = null; // L: 2662
+		Client.packetWriter.serverPacketLength = 0; // L: 2663
+		Client.packetWriter.field1336 = 0; // L: 2664
+		Client.rebootTimer = 0; // L: 2665
+		Client.menuOptionsCount = 0; // L: 2667
+		Client.isMenuOpen = false; // L: 2668
+		Client.minimapState = 0; // L: 2670
+		Client.destinationX = 0; // L: 2671
 
-			int var6 = var0 & 127; // L: 5467
-			int var7 = var1 & 127; // L: 5468
-			int var8 = Tiles.Tiles_heights[var5][var3 + 1][var4] * var6 + (128 - var6) * Tiles.Tiles_heights[var5][var3][var4] >> 7; // L: 5469
-			int var9 = var6 * Tiles.Tiles_heights[var5][var3 + 1][var4 + 1] + Tiles.Tiles_heights[var5][var3][var4 + 1] * (128 - var6) >> 7; // L: 5470
-			return var8 * (128 - var7) + var9 * var7 >> 7; // L: 5471
-		} else {
-			return 0;
+		int var0;
+		for (var0 = 0; var0 < 2048; ++var0) { // L: 2672
+			Client.players[var0] = null;
 		}
-	}
 
-	@ObfuscatedName("lv")
-	@ObfuscatedSignature(
-		descriptor = "(IIZI)V",
-		garbageValue = "1779675406"
-	)
-	static final void method4530(int var0, int var1, boolean var2) {
-		if (Client.currentClanChannels[var0] != null) { // L: 12276
-			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method3113()) { // L: 12277
-				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1); // L: 12278
-				PacketBufferNode var4 = EnumComposition.getPacketBufferNode(ClientPacket.field2960, Client.packetWriter.isaacCipher); // L: 12279
-				var4.packetBuffer.writeByte(4 + ScriptEvent.stringCp1252NullTerminatedByteSize(var3.username.getName())); // L: 12280
-				var4.packetBuffer.writeByte(var0); // L: 12281
-				var4.packetBuffer.writeShort(var1); // L: 12282
-				var4.packetBuffer.writeBoolean(var2); // L: 12283
-				var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName()); // L: 12284
-				Client.packetWriter.addNode(var4); // L: 12285
+		ScriptFrame.localPlayer = null; // L: 2673
+
+		for (var0 = 0; var0 < Client.npcs.length; ++var0) { // L: 2674
+			NPC var1 = Client.npcs[var0]; // L: 2675
+			if (var1 != null) { // L: 2676
+				var1.targetIndex = -1; // L: 2677
+				var1.false0 = false; // L: 2678
 			}
 		}
-	} // L: 12286
+
+		ItemContainer.itemContainers = new NodeHashTable(32); // L: 2682
+		class4.updateGameState(30); // L: 2684
+
+		for (var0 = 0; var0 < 100; ++var0) { // L: 2685
+			Client.field643[var0] = true;
+		}
+
+		PacketBufferNode var2 = DevicePcmPlayerProvider.getPacketBufferNode(ClientPacket.field2990, Client.packetWriter.isaacCipher); // L: 2688
+		var2.packetBuffer.writeByte(Canvas.getWindowedMode()); // L: 2689
+		var2.packetBuffer.writeShort(class7.canvasWidth); // L: 2690
+		var2.packetBuffer.writeShort(DecorativeObject.canvasHeight); // L: 2691
+		Client.packetWriter.addNode(var2); // L: 2692
+	} // L: 2694
 }

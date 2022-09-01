@@ -1,63 +1,64 @@
-import java.io.IOException;
+import java.security.SecureRandom;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bi")
+@ObfuscatedName("bz")
 @Implements("Script")
 public class Script extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Liz;"
 	)
 	@Export("Script_cached")
 	static EvictingDualNodeHashTable Script_cached;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 1079051883
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "Lap;"
 	)
-	@Export("canvasWidth")
-	public static int canvasWidth;
-	@ObfuscatedName("v")
-	String field967;
-	@ObfuscatedName("q")
+	@Export("soundCache")
+	public static SoundCache soundCache;
+	@ObfuscatedName("h")
+	String field952;
+	@ObfuscatedName("w")
 	@Export("opcodes")
 	int[] opcodes;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("intOperands")
 	int[] intOperands;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@Export("stringOperands")
 	String[] stringOperands;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 762574265
+		intValue = -2052154599
 	)
 	@Export("localIntCount")
 	int localIntCount;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1282940193
+		intValue = -470503423
 	)
 	@Export("localStringCount")
 	int localStringCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -1341494055
+		intValue = 303491303
 	)
 	@Export("intArgumentCount")
 	int intArgumentCount;
-	@ObfuscatedName("y")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 2092128287
+		intValue = -130768209
 	)
 	@Export("stringArgumentCount")
 	int stringArgumentCount;
-	@ObfuscatedName("i")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "[Lpb;"
+		descriptor = "[Lpm;"
 	)
 	@Export("switches")
 	IterableNodeHashTable[] switches;
@@ -69,119 +70,77 @@ public class Script extends DualNode {
 	Script() {
 	} // L: 23
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lpb;",
-		garbageValue = "-1127899828"
+		descriptor = "(II)[Lpm;",
+		garbageValue = "2079737321"
 	)
 	@Export("newIterableNodeHashTable")
 	IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
-		return new IterableNodeHashTable[var1]; // L: 127
+		return new IterableNodeHashTable[var1]; // L: 119
 	}
 
-	@ObfuscatedName("go")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Lcj;B)V",
-		garbageValue = "3"
+		descriptor = "(I)Ljava/security/SecureRandom;",
+		garbageValue = "420841235"
 	)
-	static final void method1977(Actor var0) {
-		if (var0.field1129 != 0) { // L: 4279
-			if (var0.targetIndex != -1) { // L: 4280
-				Object var1 = null; // L: 4281
-				if (var0.targetIndex < 32768) { // L: 4282
-					var1 = Client.npcs[var0.targetIndex];
-				} else if (var0.targetIndex >= 32768) { // L: 4283
-					var1 = Client.players[var0.targetIndex - 32768];
-				}
+	static SecureRandom method1936() {
+		SecureRandom var0 = new SecureRandom(); // L: 39
+		var0.nextInt(); // L: 40
+		return var0; // L: 41
+	}
 
-				if (var1 != null) { // L: 4284
-					int var2 = var0.x - ((Actor)var1).x; // L: 4285
-					int var3 = var0.y - ((Actor)var1).y; // L: 4286
-					if (var2 != 0 || var3 != 0) { // L: 4287
-						var0.orientation = (int)(Math.atan2((double)var2, (double)var3) * 325.949D) & 2047;
-					}
-				} else if (var0.false0) { // L: 4289
-					var0.targetIndex = -1; // L: 4290
-					var0.false0 = false; // L: 4291
-				}
-			}
-
-			if (var0.field1165 != -1 && (var0.pathLength == 0 || var0.field1202 > 0)) { // L: 4294
-				var0.orientation = var0.field1165; // L: 4295
-				var0.field1165 = -1; // L: 4296
-			}
-
-			int var4 = var0.orientation - var0.rotation & 2047; // L: 4298
-			if (var4 == 0 && var0.false0) { // L: 4299
-				var0.targetIndex = -1; // L: 4300
-				var0.false0 = false; // L: 4301
-			}
-
-			if (var4 != 0) { // L: 4303
-				++var0.field1196; // L: 4304
-				boolean var6;
-				if (var4 > 1024) { // L: 4305
-					var0.rotation -= var0.field1161 ? var4 : var0.field1129; // L: 4306
-					var6 = true; // L: 4307
-					if (var4 < var0.field1129 || var4 > 2048 - var0.field1129) { // L: 4308
-						var0.rotation = var0.orientation; // L: 4309
-						var6 = false; // L: 4310
-					}
-
-					if (!var0.field1161 && var0.idleSequence == var0.movementSequence && (var0.field1196 > 25 || var6)) { // L: 4312
-						if (var0.turnLeftSequence != -1) { // L: 4313
-							var0.movementSequence = var0.turnLeftSequence;
-						} else {
-							var0.movementSequence = var0.walkSequence; // L: 4314
-						}
-					}
-				} else {
-					var0.rotation += var0.field1161 ? var4 : var0.field1129; // L: 4318
-					var6 = true; // L: 4319
-					if (var4 < var0.field1129 || var4 > 2048 - var0.field1129) { // L: 4320
-						var0.rotation = var0.orientation; // L: 4321
-						var6 = false; // L: 4322
-					}
-
-					if (!var0.field1161 && var0.movementSequence == var0.idleSequence && (var0.field1196 > 25 || var6)) { // L: 4324
-						if (var0.turnRightSequence != -1) { // L: 4325
-							var0.movementSequence = var0.turnRightSequence;
-						} else {
-							var0.movementSequence = var0.walkSequence; // L: 4326
-						}
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "([BIIII[Lgl;I)V",
+		garbageValue = "1817853304"
+	)
+	static final void method1948(byte[] var0, int var1, int var2, int var3, int var4, CollisionMap[] var5) {
+		int var7;
+		int var8;
+		for (int var6 = 0; var6 < 4; ++var6) { // L: 93
+			for (var7 = 0; var7 < 64; ++var7) { // L: 94
+				for (var8 = 0; var8 < 64; ++var8) { // L: 95
+					if (var7 + var1 > 0 && var7 + var1 < 103 && var8 + var2 > 0 && var8 + var2 < 103) { // L: 96
+						int[] var10000 = var5[var6].flags[var7 + var1];
+						var10000[var8 + var2] &= -16777217;
 					}
 				}
+			}
+		}
 
-				var0.rotation &= 2047; // L: 4330
-				var0.field1161 = false; // L: 4331
+		Buffer var10 = new Buffer(var0); // L: 100
+
+		for (var7 = 0; var7 < 4; ++var7) { // L: 101
+			for (var8 = 0; var8 < 64; ++var8) { // L: 102
+				for (int var9 = 0; var9 < 64; ++var9) { // L: 103
+					class92.loadTerrain(var10, var7, var8 + var1, var9 + var2, var3, var4, 0); // L: 104
+				}
+			}
+		}
+
+	} // L: 108
+
+	@ObfuscatedName("ad")
+	@ObfuscatedSignature(
+		descriptor = "(ILbz;ZI)I",
+		garbageValue = "2024494547"
+	)
+	static int method1947(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.LOGOUT) { // L: 3839
+			Client.logoutTimer = 250; // L: 3840
+			return 1; // L: 3841
+		} else if (var0 != 5631 && var0 != 5633) { // L: 3843
+			if (var0 == 5632) { // L: 3847
+				Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = 26; // L: 3848
+				return 1; // L: 3849
 			} else {
-				var0.field1196 = 0; // L: 4333
+				return 2; // L: 3851
 			}
-
+		} else {
+			UserComparator8.Interpreter_stringStackSize -= 2; // L: 3844
+			return 1; // L: 3845
 		}
-	} // L: 4334
-
-	@ObfuscatedName("hq")
-	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "302270289"
-	)
-	static final void method1978(boolean var0) {
-		Renderable.playPcmPlayers(); // L: 5708
-		++Client.packetWriter.pendingWrites; // L: 5709
-		if (Client.packetWriter.pendingWrites >= 50 || var0) { // L: 5710
-			Client.packetWriter.pendingWrites = 0; // L: 5711
-			if (!Client.hadNetworkError && Client.packetWriter.getSocket() != null) { // L: 5712
-				PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2969, Client.packetWriter.isaacCipher); // L: 5714
-				Client.packetWriter.addNode(var1); // L: 5715
-
-				try {
-					Client.packetWriter.flush(); // L: 5717
-				} catch (IOException var3) { // L: 5719
-					Client.hadNetworkError = true; // L: 5720
-				}
-			}
-
-		}
-	} // L: 5723
+	}
 }

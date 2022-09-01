@@ -4,141 +4,150 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gb")
+@ObfuscatedName("gt")
 @Implements("Occluder")
 public final class Occluder {
-	@ObfuscatedName("uw")
-	@ObfuscatedSignature(
-		descriptor = "Los;"
-	)
-	@Export("platformInfo")
-	static PlatformInfo platformInfo;
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1913259521
+		intValue = 420323745
 	)
 	@Export("minTileX")
 	int minTileX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -743836359
+		intValue = 664232373
 	)
 	@Export("maxTileX")
 	int maxTileX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1643298167
+		intValue = 1752935515
 	)
 	@Export("minTileY")
 	int minTileY;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1894194977
+		intValue = -1056536929
 	)
 	@Export("maxTileY")
 	int maxTileY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -741467087
+		intValue = 571087511
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 360875993
+		intValue = 406575443
 	)
 	@Export("minX")
 	int minX;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1324054405
+		intValue = 1576796185
 	)
 	@Export("maxX")
 	int maxX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1977577685
+		intValue = 1314559405
 	)
 	@Export("minZ")
 	int minZ;
-	@ObfuscatedName("y")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 690008559
+		intValue = 2128416579
 	)
 	@Export("maxZ")
 	int maxZ;
-	@ObfuscatedName("i")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 638283975
+		intValue = 1717210177
 	)
 	@Export("minY")
 	int minY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1747045819
+		intValue = -492747543
 	)
 	@Export("maxY")
 	int maxY;
-	@ObfuscatedName("t")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1792742847
+		intValue = -1212775709
 	)
 	int field2470;
-	@ObfuscatedName("z")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 963802065
+		intValue = 2080254021
 	)
-	int field2472;
-	@ObfuscatedName("r")
-	@ObfuscatedGetter(
-		intValue = -1423983461
-	)
-	int field2466;
+	int field2471;
 	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 942298147
+		intValue = 1185688463
 	)
-	int field2467;
-	@ObfuscatedName("k")
+	int field2472;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -740983489
-	)
-	int field2468;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = 336673989
-	)
-	int field2462;
-	@ObfuscatedName("x")
-	@ObfuscatedGetter(
-		intValue = 680765335
+		intValue = -333239733
 	)
 	int field2473;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = 1901247891
+	)
+	int field2474;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = 1422842103
+	)
+	int field2477;
+	@ObfuscatedName("y")
+	@ObfuscatedGetter(
+		intValue = 205898589
+	)
+	int field2461;
 
 	Occluder() {
-	} // L: 23
+	}
 
-	@ObfuscatedName("kc")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-49313522"
+		descriptor = "(DDIB)[D",
+		garbageValue = "0"
 	)
-	static final void method4354() {
-		PacketBufferNode var0 = EnumComposition.getPacketBufferNode(ClientPacket.field2987, Client.packetWriter.isaacCipher); // L: 11980
-		Client.packetWriter.addNode(var0); // L: 11981
-		Interpreter.field842 = true; // L: 11982
+	public static double[] method4235(double var0, double var2, int var4) {
+		int var5 = var4 * 2 + 1; // L: 9
+		double[] var6 = new double[var5]; // L: 10
+		int var7 = -var4;
 
-		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) { // L: 11983
-			if (var1.type == 0 || var1.type == 3) { // L: 11984
-				MusicPatchPcmStream.closeInterface(var1, true);
-			}
+		for (int var8 = 0; var7 <= var4; ++var8) {
+			double var15 = ((double)var7 - var0) / var2; // L: 17
+			double var13 = Math.exp(-var15 * var15 / 2.0D) / Math.sqrt(6.283185307179586D); // L: 19
+			double var11 = var13 / var2; // L: 21
+			var6[var8] = var11; // L: 23
+			++var7; // L: 11
 		}
 
-		if (Client.meslayerContinueWidget != null) { // L: 11986
-			ChatChannel.invalidateWidget(Client.meslayerContinueWidget); // L: 11987
-			Client.meslayerContinueWidget = null; // L: 11988
-		}
+		return var6; // L: 25
+	}
 
-		Interpreter.field842 = false; // L: 11990
-	} // L: 11991
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "1428269525"
+	)
+	public static int method4236(int var0) {
+		return FileSystem.method3214(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 56
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-27"
+	)
+	public static void method4237() {
+		class436.DBTableType_cache.clear(); // L: 78
+	} // L: 79
 }

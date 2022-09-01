@@ -1,374 +1,311 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("do")
+@ObfuscatedName("dj")
 public class class117 {
-	@ObfuscatedName("c")
-	boolean field1463;
-	@ObfuscatedName("v")
-	boolean field1459;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Ldn;"
-	)
-	class116 field1468;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Ldn;"
-	)
-	class116 field1461;
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "[Ldx;"
-	)
-	class113[] field1462;
-	@ObfuscatedName("e")
-	boolean field1470;
-	@ObfuscatedName("g")
-	float field1464;
-	@ObfuscatedName("w")
-	float field1458;
-	@ObfuscatedName("y")
-	float[] field1465;
-	@ObfuscatedName("i")
-	float[] field1467;
 	@ObfuscatedName("s")
-	boolean field1472;
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = 1656446909
+	boolean field1447;
+	@ObfuscatedName("h")
+	boolean field1438;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "Ldg;"
 	)
-	int field1469;
-	@ObfuscatedName("z")
-	float[] field1460;
-	@ObfuscatedName("r")
-	@ObfuscatedGetter(
-		intValue = -1725270903
+	class116 field1439;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Ldg;"
 	)
-	int field1471;
+	class116 field1449;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "[Ldr;"
+	)
+	class113[] field1441;
+	@ObfuscatedName("q")
+	boolean field1442;
+	@ObfuscatedName("i")
+	float field1437;
+	@ObfuscatedName("k")
+	float field1444;
+	@ObfuscatedName("o")
+	float[] field1445;
+	@ObfuscatedName("n")
+	float[] field1440;
+	@ObfuscatedName("d")
+	boolean field1448;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = -142194557
+	)
+	int field1446;
+	@ObfuscatedName("m")
+	float[] field1454;
 	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1480629139
+		intValue = -1852010129
 	)
-	int field1466;
-	@ObfuscatedName("k")
-	float field1473;
-	@ObfuscatedName("h")
-	float field1474;
+	int field1450;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = -777934173
+	)
+	int field1451;
+	@ObfuscatedName("z")
+	float field1452;
+	@ObfuscatedName("r")
+	float field1443;
 
 	class117() {
-		this.field1465 = new float[4]; // L: 16
-		this.field1467 = new float[4]; // L: 17
-		this.field1472 = true; // L: 18
-		this.field1469 = 0; // L: 19
+		this.field1445 = new float[4]; // L: 16
+		this.field1440 = new float[4]; // L: 17
+		this.field1448 = true; // L: 18
+		this.field1446 = 0; // L: 19
 	} // L: 26
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)I",
-		garbageValue = "1937348414"
+		descriptor = "(Lqr;II)I",
+		garbageValue = "1553569592"
 	)
-	int method2702(Buffer var1, int var2) {
+	int method2685(Buffer var1, int var2) {
 		int var3 = var1.readUnsignedShort(); // L: 29
-		ScriptFrame.method1052(var1.readUnsignedByte()); // L: 30
-		int var5 = var1.readUnsignedByte(); // L: 32
-		class116[] var6 = new class116[]{class116.field1455, class116.field1451, class116.field1450, class116.field1453, class116.field1454}; // L: 36
-		class116 var7 = (class116)Actor.findEnumerated(var6, var5); // L: 38
-		if (var7 == null) { // L: 39
-			var7 = class116.field1455;
+		int var4 = var1.readUnsignedByte(); // L: 30
+		class123[] var5 = new class123[]{class123.field1508, class123.field1515, class123.field1507, class123.field1512, class123.field1509, class123.field1518, class123.field1511, class123.field1510, class123.field1513}; // L: 34
+		class123 var6 = (class123)GameEngine.findEnumerated(var5, var4); // L: 36
+		if (var6 == null) { // L: 37
+			var6 = class123.field1513;
 		}
 
-		this.field1468 = var7; // L: 42
-		int var11 = var1.readUnsignedByte(); // L: 44
-		class116[] var8 = new class116[]{class116.field1455, class116.field1451, class116.field1450, class116.field1453, class116.field1454};
-		class116 var9 = (class116)Actor.findEnumerated(var8, var11);
-		if (var9 == null) {
-			var9 = class116.field1455;
+		int var12 = var1.readUnsignedByte(); // L: 40
+		class116[] var7 = new class116[]{class116.field1434, class116.field1431, class116.field1428, class116.field1433, class116.field1432}; // L: 44
+		class116 var8 = (class116)GameEngine.findEnumerated(var7, var12); // L: 46
+		if (var8 == null) { // L: 47
+			var8 = class116.field1434;
 		}
 
-		this.field1461 = var9; // L: 54
-		this.field1463 = var1.readUnsignedByte() != 0;
-		this.field1462 = new class113[var3];
-		class113 var13 = null; // L: 57
+		this.field1439 = var8; // L: 50
+		int var13 = var1.readUnsignedByte(); // L: 52
+		class116[] var9 = new class116[]{class116.field1434, class116.field1431, class116.field1428, class116.field1433, class116.field1432}; // L: 56
+		class116 var10 = (class116)GameEngine.findEnumerated(var9, var13); // L: 58
+		if (var10 == null) { // L: 59
+			var10 = class116.field1434;
+		}
 
-		int var12;
-		for (var12 = 0; var12 < var3; ++var12) { // L: 58
-			class113 var10 = new class113();
-			var10.method2630(var1, var2); // L: 60
-			this.field1462[var12] = var10;
-			if (var13 != null) { // L: 62
-				var13.field1426 = var10;
+		this.field1449 = var10; // L: 62
+		this.field1447 = var1.readUnsignedByte() != 0; // L: 63
+		this.field1441 = new class113[var3]; // L: 64
+		class113 var15 = null; // L: 65
+
+		int var14;
+		for (var14 = 0; var14 < var3; ++var14) { // L: 66
+			class113 var11 = new class113(); // L: 67
+			var11.method2621(var1, var2); // L: 68
+			this.field1441[var14] = var11; // L: 69
+			if (var15 != null) { // L: 70
+				var15.field1404 = var11; // L: 71
 			}
 
-			var13 = var10;
+			var15 = var11; // L: 73
 		}
 
-		this.field1471 = this.field1462[0].field1420;
-		this.field1466 = this.field1462[this.method2709() - 1].field1420;
-		this.field1460 = new float[this.method2706() + 1];
+		this.field1450 = this.field1441[0].field1400; // L: 75
+		this.field1451 = this.field1441[this.method2712() - 1].field1400; // L: 76
+		this.field1454 = new float[this.method2686() + 1]; // L: 78
 
-		for (var12 = this.method2704(); var12 <= this.method2703(); ++var12) {
-			this.field1460[var12 - this.method2704()] = WorldMapSection0.method4918(this, (float)var12); // L: 72
+		for (var14 = this.method2687(); var14 <= this.method2709(); ++var14) { // L: 79
+			this.field1454[var14 - this.method2687()] = class10.method86(this, (float)var14); // L: 80
 		}
 
-		this.field1462 = null;
-		this.field1473 = WorldMapSection0.method4918(this, (float)(this.method2704() - 1)); // L: 76
-		this.field1474 = WorldMapSection0.method4918(this, (float)(this.method2703() + 1));
-		return var3; // L: 78
+		this.field1441 = null; // L: 82
+		this.field1452 = class10.method86(this, (float)(this.method2687() - 1)); // L: 84
+		this.field1443 = class10.method86(this, (float)(this.method2709() + 1)); // L: 85
+		return var3; // L: 86
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(II)F",
+		garbageValue = "-313022235"
+	)
+	public float method2705(int var1) {
+		if (var1 < this.method2687()) { // L: 91
+			return this.field1452; // L: 92
+		} else {
+			return var1 > this.method2709() ? this.field1443 : this.field1454[var1 - this.method2687()]; // L: 94 95 97
+		}
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(S)I",
+		garbageValue = "512"
+	)
+	int method2687() {
+		return this.field1450; // L: 102
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)F",
-		garbageValue = "1796106515"
+		descriptor = "(I)I",
+		garbageValue = "428317719"
 	)
-	public float method2701(int var1) {
-		if (var1 < this.method2704()) { // L: 83
-			return this.field1473;
-		} else {
-			return var1 > this.method2703() ? this.field1474 : this.field1460[var1 - this.method2704()]; // L: 86
-		}
+	int method2709() {
+		return this.field1451; // L: 106
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-70"
+	)
+	int method2686() {
+		return this.method2709() - this.method2687(); // L: 110
 	}
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "176047889"
-	)
-	int method2704() {
-		return this.field1471;
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1241672779"
-	)
-	int method2703() {
-		return this.field1466; // L: 98
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "5"
-	)
-	int method2706() {
-		return this.method2703() - this.method2704();
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
 		descriptor = "(FI)I",
-		garbageValue = "-938650750"
+		garbageValue = "1558860712"
 	)
-	int method2705(float var1) {
-		if (this.field1469 < 0 || (float)this.field1462[this.field1469].field1420 > var1 || this.field1462[this.field1469].field1426 != null && (float)this.field1462[this.field1469].field1426.field1420 <= var1) {
-			if (var1 >= (float)this.method2704() && var1 <= (float)this.method2703()) {
-				int var2 = this.method2709();
-				int var3 = this.field1469; // L: 113
-				if (var2 > 0) {
-					int var4 = 0;
-					int var5 = var2 - 1;
+	int method2690(float var1) {
+		if (this.field1446 < 0 || (float)this.field1441[this.field1446].field1400 > var1 || this.field1441[this.field1446].field1404 != null && (float)this.field1441[this.field1446].field1404.field1400 <= var1) { // L: 114
+			if (var1 >= (float)this.method2687() && var1 <= (float)this.method2709()) { // L: 117
+				int var2 = this.method2712(); // L: 120
+				int var3 = this.field1446; // L: 121
+				if (var2 > 0) { // L: 122
+					int var4 = 0; // L: 123
+					int var5 = var2 - 1; // L: 124
 
 					do {
-						int var6 = var4 + var5 >> 1;
-						if (var1 < (float)this.field1462[var6].field1420) { // L: 119
-							if (var1 > (float)this.field1462[var6 - 1].field1420) {
-								var3 = var6 - 1; // L: 121
+						int var6 = var5 + var4 >> 1; // L: 126
+						if (var1 < (float)this.field1441[var6].field1400) { // L: 127
+							if (var1 > (float)this.field1441[var6 - 1].field1400) { // L: 128
+								var3 = var6 - 1; // L: 129
 								break;
 							}
 
-							var5 = var6 - 1; // L: 125
+							var5 = var6 - 1; // L: 133
 						} else {
-							if (var1 <= (float)this.field1462[var6].field1420) { // L: 128
+							if (var1 <= (float)this.field1441[var6].field1400) { // L: 136
+								var3 = var6; // L: 146
+								break; // L: 147
+							}
+
+							if (var1 < (float)this.field1441[var6 + 1].field1400) { // L: 137
 								var3 = var6; // L: 138
 								break; // L: 139
 							}
 
-							if (var1 < (float)this.field1462[var6 + 1].field1420) { // L: 129
-								var3 = var6; // L: 130
-								break; // L: 131
-							}
-
-							var4 = var6 + 1; // L: 134
+							var4 = var6 + 1; // L: 142
 						}
-					} while(var4 <= var5); // L: 141
+					} while(var4 <= var5); // L: 149
 				}
 
-				if (var3 != this.field1469) { // L: 143
-					this.field1469 = var3; // L: 144
-					this.field1472 = true; // L: 145
+				if (var3 != this.field1446) { // L: 151
+					this.field1446 = var3; // L: 152
+					this.field1448 = true; // L: 153
 				}
 
-				return this.field1469; // L: 147
+				return this.field1446; // L: 155
 			} else {
-				return -1; // L: 110
+				return -1; // L: 118
 			}
 		} else {
-			return this.field1469;
+			return this.field1446; // L: 115
 		}
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(FI)Ldx;",
-		garbageValue = "-1377164530"
+		descriptor = "(FB)Ldr;",
+		garbageValue = "-25"
 	)
-	class113 method2717(float var1) {
-		int var2 = this.method2705(var1); // L: 151
-		return var2 >= 0 && var2 < this.field1462.length ? this.field1462[var2] : null; // L: 152 153 156
+	class113 method2691(float var1) {
+		int var2 = this.method2690(var1); // L: 159
+		return var2 >= 0 && var2 < this.field1441.length ? this.field1441[var2] : null; // L: 160 161 164
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "273043499"
+		garbageValue = "16711935"
 	)
-	int method2709() {
-		return this.field1462 == null ? 0 : this.field1462.length; // L: 161 162
+	int method2712() {
+		return this.field1441 == null ? 0 : this.field1441.length; // L: 169 170
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;III)V",
-		garbageValue = "-1404648911"
+		descriptor = "([BB)V",
+		garbageValue = "51"
 	)
-	public static void method2727(String var0, String var1, int var2, int var3) throws IOException {
-		class142.idxCount = var3; // L: 40
-		class93.cacheGamebuild = var2; // L: 41
+	@Export("SpriteBuffer_decode")
+	static void SpriteBuffer_decode(byte[] var0) {
+		Buffer var1 = new Buffer(var0); // L: 227
+		var1.offset = var0.length - 2; // L: 228
+		class457.SpriteBuffer_spriteCount = var1.readUnsignedShort(); // L: 229
+		class457.SpriteBuffer_xOffsets = new int[class457.SpriteBuffer_spriteCount]; // L: 230
+		InterfaceParent.SpriteBuffer_yOffsets = new int[class457.SpriteBuffer_spriteCount]; // L: 231
+		class457.SpriteBuffer_spriteWidths = new int[class457.SpriteBuffer_spriteCount]; // L: 232
+		SoundCache.SpriteBuffer_spriteHeights = new int[class457.SpriteBuffer_spriteCount]; // L: 233
+		class181.SpriteBuffer_pixels = new byte[class457.SpriteBuffer_spriteCount][]; // L: 234
+		var1.offset = var0.length - 7 - class457.SpriteBuffer_spriteCount * 8; // L: 235
+		class457.SpriteBuffer_spriteWidth = var1.readUnsignedShort(); // L: 236
+		class457.SpriteBuffer_spriteHeight = var1.readUnsignedShort(); // L: 237
+		int var2 = (var1.readUnsignedByte() & 255) + 1; // L: 238
 
-		try {
-			class115.operatingSystemName = System.getProperty("os.name"); // L: 43
-		} catch (Exception var15) { // L: 45
-			class115.operatingSystemName = "Unknown"; // L: 46
+		int var3;
+		for (var3 = 0; var3 < class457.SpriteBuffer_spriteCount; ++var3) { // L: 239
+			class457.SpriteBuffer_xOffsets[var3] = var1.readUnsignedShort();
 		}
 
-		NetFileRequest.formattedOperatingSystemName = class115.operatingSystemName.toLowerCase(); // L: 48
+		for (var3 = 0; var3 < class457.SpriteBuffer_spriteCount; ++var3) { // L: 240
+			InterfaceParent.SpriteBuffer_yOffsets[var3] = var1.readUnsignedShort();
+		}
 
-		try {
-			class123.userHomeDirectory = System.getProperty("user.home"); // L: 50
-			if (class123.userHomeDirectory != null) { // L: 51
-				class123.userHomeDirectory = class123.userHomeDirectory + "/";
+		for (var3 = 0; var3 < class457.SpriteBuffer_spriteCount; ++var3) { // L: 241
+			class457.SpriteBuffer_spriteWidths[var3] = var1.readUnsignedShort();
+		}
+
+		for (var3 = 0; var3 < class457.SpriteBuffer_spriteCount; ++var3) { // L: 242
+			SoundCache.SpriteBuffer_spriteHeights[var3] = var1.readUnsignedShort();
+		}
+
+		var1.offset = var0.length - 7 - class457.SpriteBuffer_spriteCount * 8 - (var2 - 1) * 3; // L: 243
+		class457.SpriteBuffer_spritePalette = new int[var2]; // L: 244
+
+		for (var3 = 1; var3 < var2; ++var3) { // L: 245
+			class457.SpriteBuffer_spritePalette[var3] = var1.readMedium(); // L: 246
+			if (class457.SpriteBuffer_spritePalette[var3] == 0) { // L: 247
+				class457.SpriteBuffer_spritePalette[var3] = 1;
 			}
-		} catch (Exception var14) { // L: 53
 		}
 
-		try {
-			if (NetFileRequest.formattedOperatingSystemName.startsWith("win")) { // L: 55
-				if (class123.userHomeDirectory == null) { // L: 56
-					class123.userHomeDirectory = System.getenv("USERPROFILE");
+		var1.offset = 0; // L: 249
+
+		for (var3 = 0; var3 < class457.SpriteBuffer_spriteCount; ++var3) { // L: 250
+			int var4 = class457.SpriteBuffer_spriteWidths[var3]; // L: 251
+			int var5 = SoundCache.SpriteBuffer_spriteHeights[var3]; // L: 252
+			int var6 = var4 * var5; // L: 253
+			byte[] var7 = new byte[var6]; // L: 254
+			class181.SpriteBuffer_pixels[var3] = var7; // L: 255
+			int var8 = var1.readUnsignedByte(); // L: 256
+			int var9;
+			if (var8 == 0) { // L: 257
+				for (var9 = 0; var9 < var6; ++var9) { // L: 258
+					var7[var9] = var1.readByte();
 				}
-			} else if (class123.userHomeDirectory == null) { // L: 59
-				class123.userHomeDirectory = System.getenv("HOME");
-			}
-
-			if (class123.userHomeDirectory != null) { // L: 61
-				class123.userHomeDirectory = class123.userHomeDirectory + "/";
-			}
-		} catch (Exception var13) { // L: 63
-		}
-
-		if (class123.userHomeDirectory == null) { // L: 64
-			class123.userHomeDirectory = "~/";
-		}
-
-		Fonts.cacheParentPaths = new String[]{"c:/rscache/", "/rscache/", "c:/windows/", "c:/winnt/", "c:/", class123.userHomeDirectory, "/tmp/", ""}; // L: 65
-		JagexCache.cacheSubPaths = new String[]{".jagex_cache_" + class93.cacheGamebuild, ".file_store_" + class93.cacheGamebuild}; // L: 66
-		int var9 = 0;
-
-		label129:
-		while (var9 < 4) {
-			JagexCache.cacheDir = Friend.method6630(var0, var1, var9); // L: 68
-			if (!JagexCache.cacheDir.exists()) { // L: 69
-				JagexCache.cacheDir.mkdirs();
-			}
-
-			File[] var5 = JagexCache.cacheDir.listFiles(); // L: 70
-			if (var5 == null) { // L: 71
-				break;
-			}
-
-			File[] var6 = var5; // L: 73
-			int var7 = 0;
-
-			while (true) {
-				if (var7 >= var6.length) {
-					break label129;
-				}
-
-				File var8 = var6[var7]; // L: 75
-				if (!Varcs.method2474(var8, false)) { // L: 77
-					++var9; // L: 67
-					break;
-				}
-
-				++var7; // L: 74
-			}
-		}
-
-		MilliClock.method3309(JagexCache.cacheDir); // L: 84
-
-		try {
-			File var4 = new File(class123.userHomeDirectory, "random.dat"); // L: 87
-			int var11;
-			if (var4.exists()) { // L: 88
-				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var4, "rw", 25L), 24, 0); // L: 89
-			} else {
-				label111:
-				for (int var10 = 0; var10 < JagexCache.cacheSubPaths.length; ++var10) { // L: 92
-					for (var11 = 0; var11 < Fonts.cacheParentPaths.length; ++var11) { // L: 93
-						File var12 = new File(Fonts.cacheParentPaths[var11] + JagexCache.cacheSubPaths[var10] + File.separatorChar + "random.dat"); // L: 94
-						if (var12.exists()) { // L: 95
-							JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var12, "rw", 25L), 24, 0); // L: 96
-							break label111; // L: 97
-						}
+			} else if (var8 == 1) { // L: 260
+				for (var9 = 0; var9 < var4; ++var9) { // L: 261
+					for (int var10 = 0; var10 < var5; ++var10) { // L: 262
+						var7[var9 + var4 * var10] = var1.readByte(); // L: 263
 					}
 				}
 			}
-
-			if (JagexCache.JagexCache_randomDat == null) { // L: 102
-				RandomAccessFile var17 = new RandomAccessFile(var4, "rw"); // L: 103
-				var11 = var17.read(); // L: 104
-				var17.seek(0L); // L: 105
-				var17.write(var11); // L: 106
-				var17.seek(0L); // L: 107
-				var17.close(); // L: 108
-				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var4, "rw", 25L), 24, 0); // L: 109
-			}
-		} catch (IOException var16) { // L: 112
 		}
 
-		JagexCache.JagexCache_dat2File = new BufferedFile(new AccessFile(GameEngine.getFile("main_file_cache.dat2"), "rw", 1048576000L), 5200, 0); // L: 114
-		JagexCache.JagexCache_idx255File = new BufferedFile(new AccessFile(GameEngine.getFile("main_file_cache.idx255"), "rw", 1048576L), 6000, 0); // L: 115
-		class359.JagexCache_idxFiles = new BufferedFile[class142.idxCount]; // L: 116
-
-		for (var9 = 0; var9 < class142.idxCount; ++var9) { // L: 117
-			class359.JagexCache_idxFiles[var9] = new BufferedFile(new AccessFile(GameEngine.getFile("main_file_cache.idx" + var9), "rw", 1048576L), 6000, 0); // L: 118
-		}
-
-	} // L: 120
-
-	@ObfuscatedName("fb")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-625330098"
-	)
-	static int method2719() {
-		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1644
-			int var0 = 0; // L: 1645
-
-			for (int var1 = 0; var1 <= Client.archiveLoadersDone; ++var1) { // L: 1646
-				var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount; // L: 1647
-			}
-
-			return var0 * 10000 / Client.field626; // L: 1649
-		} else {
-			return 10000;
-		}
-	}
+	} // L: 268
 }
