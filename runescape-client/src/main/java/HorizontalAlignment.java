@@ -4,35 +4,35 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fk")
+@ObfuscatedName("fo")
 @Implements("HorizontalAlignment")
 public enum HorizontalAlignment implements MouseWheel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lfo;"
 	)
-	field1910(1, 0),
-	@ObfuscatedName("v")
+	field1898(1, 0),
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lfo;"
 	)
 	@Export("HorizontalAlignment_centered")
-	HorizontalAlignment_centered(2, 1),
-	@ObfuscatedName("q")
+	HorizontalAlignment_centered(0, 1),
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lfo;"
 	)
-	field1905(0, 2);
+	field1895(2, 2);
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -571312605
+		intValue = -682238819
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -279458597
+		intValue = 928621237
 	)
 	@Export("id")
 	final int id;
@@ -42,23 +42,30 @@ public enum HorizontalAlignment implements MouseWheel {
 		this.id = var4; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "104"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 24
 	}
 
-	@ObfuscatedName("jk")
+	@ObfuscatedName("eu")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "20"
+		descriptor = "(I)V",
+		garbageValue = "-943359452"
 	)
-	@Export("getTapToDrop")
-	static boolean getTapToDrop() {
-		return Client.tapToDrop; // L: 11040
-	}
+	static final void method3399() {
+		if (class4.field13) { // L: 3647
+			for (int var0 = 0; var0 < Players.Players_count; ++var0) { // L: 3649
+				Player var1 = Client.players[Players.Players_indices[var0]]; // L: 3650
+				var1.method2134(); // L: 3651
+			}
+
+			class4.field13 = false; // L: 3654
+		}
+
+	} // L: 3656
 }
