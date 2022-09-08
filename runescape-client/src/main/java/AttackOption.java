@@ -4,77 +4,97 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("cq")
 @Implements("AttackOption")
 public enum AttackOption implements MouseWheel {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lcq;"
 	)
 	@Export("AttackOption_dependsOnCombatLevels")
 	AttackOption_dependsOnCombatLevels(0),
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lcq;"
 	)
 	@Export("AttackOption_alwaysRightClick")
 	AttackOption_alwaysRightClick(1),
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Lce;"
-	)
-	field1288(2),
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lcq;"
+	)
+	field1282(2),
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Lcq;"
 	)
 	@Export("AttackOption_hidden")
 	AttackOption_hidden(3),
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lcq;"
 	)
-	field1294(4);
+	field1275(4);
 
-	@ObfuscatedName("sx")
-	@ObfuscatedSignature(
-		descriptor = "Lar;"
-	)
-	@Export("pcmPlayer0")
-	static PcmPlayer pcmPlayer0;
-	@ObfuscatedName("e")
+	@ObfuscatedName("bp")
+	static String field1279;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 1078797137
+		intValue = -706271717
 	)
 	@Export("id")
 	final int id;
 
 	AttackOption(int var3) {
-		this.id = var3; // L: 12508
-	} // L: 12509
+		this.id = var3; // L: 12232
+	} // L: 12233
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "1"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 12513
+		return this.id; // L: 12237
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;IIIZI)V",
-		garbageValue = "-2127504965"
+		descriptor = "(I)V",
+		garbageValue = "1076800384"
 	)
-	public static void method2410(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class272.musicPlayerStatus = 1; // L: 26
-		class272.musicTrackArchive = var0; // L: 27
-		class272.musicTrackGroupId = var1; // L: 28
-		class151.musicTrackFileId = var2; // L: 29
-		class272.musicTrackVolume = var3; // L: 30
-		class11.musicTrackBoolean = var4; // L: 31
-		class272.pcmSampleLength = 10000; // L: 32
-	} // L: 33
+	public static void method2557() {
+		StructComposition.StructDefinition_cached.clear(); // L: 71
+	} // L: 72
+
+	@ObfuscatedName("hw")
+	@ObfuscatedSignature(
+		descriptor = "(ZI)V",
+		garbageValue = "-867433724"
+	)
+	@Export("addNpcsToScene")
+	static final void addNpcsToScene(boolean var0) {
+		for (int var1 = 0; var1 < Client.npcCount; ++var1) { // L: 4686
+			NPC var2 = Client.npcs[Client.npcIndices[var1]]; // L: 4687
+			if (var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.transformIsVisible()) { // L: 4688
+				int var3 = var2.x >> 7; // L: 4689
+				int var4 = var2.y >> 7; // L: 4690
+				if (var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) { // L: 4691
+					if (var2.field1131 * 799674368 == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) { // L: 4692
+						if (Client.tileLastDrawnActor[var3][var4] == Client.viewportDrawCount) { // L: 4693
+							continue;
+						}
+
+						Client.tileLastDrawnActor[var3][var4] = Client.viewportDrawCount; // L: 4694
+					}
+
+					long var5 = class259.calculateTag(0, 0, 1, !var2.definition.isInteractable, Client.npcIndices[var1]); // L: 4696
+					var2.playerCycle = Client.cycle; // L: 4697
+					MusicPatchNode.scene.drawEntity(Tiles.Client_plane, var2.x, var2.y, class120.getTileHeight(var2.field1131 * -360448000 - 64 + var2.x, var2.field1131 * -360448000 - 64 + var2.y, Tiles.Client_plane), var2.field1131 * -360448000 - 64 + 60, var2, var2.rotation, var5, var2.isWalking); // L: 4698
+				}
+			}
+		}
+
+	} // L: 4702
 }
