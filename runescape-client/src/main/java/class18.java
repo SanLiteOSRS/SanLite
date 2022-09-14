@@ -1,32 +1,19 @@
 import java.util.Comparator;
 import java.util.Map.Entry;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("l")
 class class18 implements Comparator {
-	@ObfuscatedName("fm")
-	@ObfuscatedGetter(
-		intValue = 872496551
-	)
-	@Export("js5Port")
-	static int js5Port;
-	@ObfuscatedName("jt")
-	@ObfuscatedGetter(
-		intValue = 437863053
-	)
-	@Export("cameraX")
-	static int cameraX;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Ls;"
+		descriptor = "Lj;"
 	)
 	final class10 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ls;)V"
+		descriptor = "(Lj;)V"
 	)
 	class18(class10 var1) {
 		this.this$0 = var1; // L: 50
@@ -35,56 +22,49 @@ class class18 implements Comparator {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/util/Map$Entry;Ljava/util/Map$Entry;I)I",
-		garbageValue = "-175722815"
+		garbageValue = "-1228298901"
 	)
-	int method233(Entry var1, Entry var2) {
+	int method276(Entry var1, Entry var2) {
 		return ((Float)var2.getValue()).compareTo((Float)var1.getValue()); // L: 52
-	}
-
-	public int compare(Object var1, Object var2) {
-		return this.method233((Entry)var1, (Entry)var2); // L: 56
 	}
 
 	public boolean equals(Object var1) {
 		return super.equals(var1); // L: 60
 	}
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)Lbr;",
-		garbageValue = "123"
-	)
-	@Export("Messages_getByChannelAndID")
-	static Message Messages_getByChannelAndID(int var0, int var1) {
-		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 35
-		return var2.getMessage(var1); // L: 36
+	public int compare(Object var1, Object var2) {
+		return this.method276((Entry)var1, (Entry)var2); // L: 56
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-80"
+		descriptor = "(I)V",
+		garbageValue = "8396800"
 	)
-	@Export("isKeyDown")
-	public static final boolean isKeyDown() {
-		synchronized(KeyHandler.KeyHandler_instance) { // L: 175
-			if (KeyHandler.field127 == KeyHandler.field147) { // L: 176
-				return false;
-			} else {
-				class272.field3196 = KeyHandler.field148[KeyHandler.field147]; // L: 177
-				HealthBar.field1258 = KeyHandler.field149[KeyHandler.field147]; // L: 178
-				KeyHandler.field147 = KeyHandler.field147 + 1 & 127; // L: 179
-				return true; // L: 180
-			}
+	protected static final void method282() {
+		class13.clock.mark(); // L: 408
+
+		int var0;
+		for (var0 = 0; var0 < 32; ++var0) { // L: 409
+			GameEngine.graphicsTickTimes[var0] = 0L;
 		}
-	}
 
-	@ObfuscatedName("im")
+		for (var0 = 0; var0 < 32; ++var0) { // L: 410
+			GameEngine.clientTickTimes[var0] = 0L;
+		}
+
+		WorldMapCacheName.gameCyclesToDo = 0; // L: 411
+	} // L: 412
+
+	@ObfuscatedName("kd")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-15"
+		descriptor = "(III)V",
+		garbageValue = "-1228311382"
 	)
-	static final boolean method234() {
-		return Client.isMenuOpen; // L: 8499
-	}
+	@Export("runIntfCloseListeners")
+	static final void runIntfCloseListeners(int var0, int var1) {
+		if (FloorOverlayDefinition.loadInterface(var0)) { // L: 11322
+			GameBuild.runComponentCloseListeners(Calendar.Widget_interfaceComponents[var0], var1); // L: 11323
+		}
+	} // L: 11324
 }
