@@ -4,111 +4,94 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("br")
+@ObfuscatedName("bj")
 @Implements("Message")
 public class Message extends DualNode {
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "Lqn;"
-	)
-	@Export("rasterProvider")
-	public static AbstractRasterProvider rasterProvider;
-	@ObfuscatedName("gb")
-	@ObfuscatedSignature(
-		descriptor = "Lnl;"
-	)
-	static AbstractSocket field461;
-	@ObfuscatedName("if")
-	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
-	)
-	@Export("headIconPkSprites")
-	static SpritePixels[] headIconPkSprites;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 169965093
+		intValue = 734716511
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1756063821
+		intValue = -1431189029
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -163656379
+		intValue = 1190976647
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@Export("sender")
 	String sender;
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lqo;"
 	)
 	@Export("senderUsername")
 	Username senderUsername;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "Lnt;"
 	)
 	@Export("isFromFriend0")
 	TriBool isFromFriend0;
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "Lnt;"
 	)
 	@Export("isFromIgnored0")
 	TriBool isFromIgnored0;
-	@ObfuscatedName("w")
+	@ObfuscatedName("q")
 	@Export("prefix")
 	String prefix;
-	@ObfuscatedName("y")
+	@ObfuscatedName("m")
 	@Export("text")
 	String text;
 
 	Message(int var1, String var2, String var3, String var4) {
 		this.isFromFriend0 = TriBool.TriBool_unknown; // L: 13
-		this.isFromIgnored0 = TriBool.TriBool_unknown; // L: 14
+		this.isFromIgnored0 = TriBool.TriBool_unknown;
 		this.set(var1, var2, var3, var4); // L: 19
 	} // L: 20
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;S)V",
-		garbageValue = "18718"
+		garbageValue = "255"
 	)
 	@Export("set")
 	void set(int var1, String var2, String var3, String var4) {
 		int var5 = ++Messages.Messages_count - 1; // L: 25
-		this.count = var5; // L: 27
-		this.cycle = Client.cycle; // L: 28
-		this.type = var1; // L: 29
-		this.sender = var2; // L: 30
-		this.fillSenderUsername(); // L: 31
-		this.prefix = var3; // L: 32
-		this.text = var4; // L: 33
+		this.count = var5;
+		this.cycle = Client.cycle;
+		this.type = var1;
+		this.sender = var2;
+		this.fillSenderUsername();
+		this.prefix = var3;
+		this.text = var4;
 		this.clearIsFromFriend(); // L: 34
 		this.clearIsFromIgnored(); // L: 35
 	} // L: 36
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "2124874138"
+		garbageValue = "16711935"
 	)
 	@Export("clearIsFromFriend")
 	void clearIsFromFriend() {
 		this.isFromFriend0 = TriBool.TriBool_unknown; // L: 39
 	} // L: 40
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1551662577"
+		garbageValue = "-536134885"
 	)
 	@Export("isFromFriend")
 	final boolean isFromFriend() {
@@ -119,30 +102,30 @@ public class Message extends DualNode {
 		return this.isFromFriend0 == TriBool.TriBool_true; // L: 46
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "1419615044"
+		garbageValue = "-151416691"
 	)
 	@Export("fillIsFromFriend")
 	void fillIsFromFriend() {
-		this.isFromFriend0 = Player.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 50
+		this.isFromFriend0 = Varps.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 50
 	} // L: 51
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "2083952991"
+		garbageValue = "1200998842"
 	)
 	@Export("clearIsFromIgnored")
 	void clearIsFromIgnored() {
 		this.isFromIgnored0 = TriBool.TriBool_unknown; // L: 54
 	} // L: 55
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "13"
+		descriptor = "(I)Z",
+		garbageValue = "395618776"
 	)
 	@Export("isFromIgnored")
 	final boolean isFromIgnored() {
@@ -153,72 +136,79 @@ public class Message extends DualNode {
 		return this.isFromIgnored0 == TriBool.TriBool_true; // L: 61
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1213016043"
+		garbageValue = "2097518488"
 	)
 	@Export("fillIsFromIgnored")
 	void fillIsFromIgnored() {
-		this.isFromIgnored0 = Player.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 65
+		this.isFromIgnored0 = Varps.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 65
 	} // L: 66
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-470307536"
+		descriptor = "(B)V",
+		garbageValue = "-61"
 	)
 	@Export("fillSenderUsername")
 	final void fillSenderUsername() {
 		if (this.sender != null) {
-			this.senderUsername = new Username(class92.method2388(this.sender), HealthBarDefinition.loginType); // L: 69
+			this.senderUsername = new Username(class14.method195(this.sender), Players.loginType); // L: 69
 		} else {
 			this.senderUsername = null; // L: 70
 		}
 
 	} // L: 71
 
-	@ObfuscatedName("kx")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)Z",
-		garbageValue = "1375784000"
+		descriptor = "(B)[Lfw;",
+		garbageValue = "-2"
 	)
-	static final boolean method1065(Widget var0) {
-		int var1 = var0.contentType; // L: 12043
-		if (var1 == 205) { // L: 12044
-			Client.logoutTimer = 250; // L: 12045
-			return true; // L: 12046
-		} else {
-			int var2;
-			int var3;
-			if (var1 >= 300 && var1 <= 313) { // L: 12048
-				var2 = (var1 - 300) / 2; // L: 12049
-				var3 = var1 & 1; // L: 12050
-				Client.playerAppearance.changeAppearance(var2, var3 == 1); // L: 12051
-			}
+	static VerticalAlignment[] method1144() {
+		return new VerticalAlignment[]{VerticalAlignment.VerticalAlignment_centered, VerticalAlignment.field1979, VerticalAlignment.field1976}; // L: 14
+	}
 
-			if (var1 >= 314 && var1 <= 323) { // L: 12053
-				var2 = (var1 - 314) / 2; // L: 12054
-				var3 = var1 & 1; // L: 12055
-				Client.playerAppearance.method5573(var2, var3 == 1); // L: 12056
-			}
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Llv;IIIZI)V",
+		garbageValue = "-1917456783"
+	)
+	public static void method1164(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
+		class274.musicPlayerStatus = 1; // L: 26
+		class274.musicTrackArchive = var0; // L: 27
+		class274.musicTrackGroupId = var1; // L: 28
+		StructComposition.musicTrackFileId = var2; // L: 29
+		class269.musicTrackVolume = var3; // L: 30
+		TriBool.musicTrackBoolean = var4; // L: 31
+		VarcInt.pcmSampleLength = 10000; // L: 32
+	} // L: 33
 
-			if (var1 == 324) { // L: 12058
-				Client.playerAppearance.changeSex(false);
-			}
+	@ObfuscatedName("in")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "-1809629894"
+	)
+	static final void method1165(int var0, int var1) {
+		if (Client.menuOptionsCount >= 2 || Client.isItemSelected != 0 || Client.isSpellSelected) { // L: 8135
+			if (Client.showMouseOverText) { // L: 8136
+				int var2 = class156.method3411(); // L: 8137
+				String var3;
+				if (Client.isItemSelected == 1 && Client.menuOptionsCount < 2) { // L: 8139
+					var3 = "Use" + " " + Client.selectedItemName + " " + "->";
+				} else if (Client.isSpellSelected && Client.menuOptionsCount < 2) { // L: 8140
+					var3 = Client.selectedSpellActionName + " " + Client.selectedSpellName + " " + "->";
+				} else {
+					var3 = DynamicObject.method2135(var2); // L: 8141
+				}
 
-			if (var1 == 325) { // L: 12059
-				Client.playerAppearance.changeSex(true);
-			}
+				if (Client.menuOptionsCount > 2) { // L: 8142
+					var3 = var3 + SoundCache.colorStartTag(16777215) + " " + '/' + " " + (Client.menuOptionsCount - 2) + " more options";
+				}
 
-			if (var1 == 326) { // L: 12060
-				PacketBufferNode var4 = EnumComposition.getPacketBufferNode(ClientPacket.field3010, Client.packetWriter.isaacCipher); // L: 12062
-				Client.playerAppearance.write(var4.packetBuffer); // L: 12063
-				Client.packetWriter.addNode(var4); // L: 12064
-				return true; // L: 12065
-			} else {
-				return false; // L: 12067
+				class29.fontBold12.drawRandomAlphaAndSpacing(var3, var0 + 4, var1 + 15, 16777215, 0, Client.cycle / 1000); // L: 8143
 			}
 		}
-	}
+	} // L: 8144
 }

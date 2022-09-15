@@ -1,32 +1,102 @@
-import net.runelite.mapping.Export;
+import java.net.MalformedURLException;
+import java.net.URL;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kk")
 public class class292 {
 	@ObfuscatedName("c")
-	public static final short[] field3351;
-	@ObfuscatedName("v")
-	public static final short[][] field3349;
-	@ObfuscatedName("q")
-	public static final short[] field3350;
-	@ObfuscatedName("f")
-	public static final short[][] field3352;
-
-	static {
-		field3351 = new short[]{6798, 8741, 25238, 4626, 4550}; // L: 4
-		field3349 = new short[][]{{6798, 107, 10283, 16, 4797, 7744, 5799, 4634, -31839, 22433, 2983, -11343, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010}, {8741, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 25239, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010}, {25238, 8742, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010}, {4626, 11146, 6439, 12, 4758, 10270}, {4550, 4537, 5681, 5673, 5790, 6806, 8076, 4574, 17050, 0, 127, -31821, -17991}}; // L: 5
-		field3350 = new short[]{-10304, 9104, -1, -1, -1}; // L: 12
-		field3352 = new short[][]{{6554, 115, 10304, 28, 5702, 7756, 5681, 4510, -31835, 22437, 2859, -11339, 16, 5157, 10446, 3658, -27314, -21965, 472, 580, 784, 21966, 28950, -15697, -14002}, {9104, 10275, 7595, 3610, 7975, 8526, 918, -26734, 24466, 10145, -6882, 5027, 1457, 16565, -30545, 25486, 24, 5392, 10429, 3673, -27335, -21957, 192, 687, 412, 21821, 28835, -15460, -14019}, new short[0], new short[0], new short[0]}; // L: 13
-	}
-
-	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(II)[B",
-		garbageValue = "-682770392"
+		descriptor = "Lcm;"
 	)
-	@Export("ByteArrayPool_getArray")
-	public static synchronized byte[] ByteArrayPool_getArray(int var0) {
-		return ByteArrayPool.ByteArrayPool_getArrayBool(var0, false); // L: 94
+	UrlRequest field3357;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "Lqi;"
+	)
+	SpritePixels field3358;
+
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Lch;)V"
+	)
+	class292(String var1, UrlRequester var2) {
+		try {
+			this.field3357 = var2.request(new URL(var1)); // L: 16
+		} catch (MalformedURLException var4) { // L: 18
+			this.field3357 = null; // L: 19
+		}
+
+	} // L: 21
+
+	@ObfuscatedSignature(
+		descriptor = "(Lcm;)V"
+	)
+	class292(UrlRequest var1) {
+		this.field3357 = var1; // L: 24
+	} // L: 25
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lqi;",
+		garbageValue = "1783597520"
+	)
+	SpritePixels method5722() {
+		if (this.field3358 == null && this.field3357 != null && this.field3357.isDone()) { // L: 28
+			if (this.field3357.getResponse() != null) { // L: 29
+				this.field3358 = class21.method322(this.field3357.getResponse()); // L: 30
+			}
+
+			this.field3357 = null; // L: 32
+		}
+
+		return this.field3358; // L: 34
 	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(IIILgz;IS)V",
+		garbageValue = "-3813"
+	)
+	static void method5723(int var0, int var1, int var2, ObjectComposition var3, int var4) {
+		ObjectSound var5 = new ObjectSound(); // L: 73
+		var5.plane = var0; // L: 74
+		var5.x = var1 * 16384; // L: 75
+		var5.y = var2 * 128; // L: 76
+		int var6 = var3.sizeX; // L: 77
+		int var7 = var3.sizeY; // L: 78
+		if (var4 == 1 || var4 == 3) { // L: 79
+			var6 = var3.sizeY; // L: 80
+			var7 = var3.sizeX; // L: 81
+		}
+
+		var5.maxX = (var6 + var1) * 128; // L: 83
+		var5.maxY = (var7 + var2) * 16384; // L: 84
+		var5.soundEffectId = var3.ambientSoundId; // L: 85
+		var5.field823 = var3.int7 * 128; // L: 86
+		var5.field819 = var3.int5; // L: 87
+		var5.field827 = var3.int6; // L: 88
+		var5.soundEffectIds = var3.soundEffectIds; // L: 89
+		if (var3.transforms != null) { // L: 90
+			var5.obj = var3; // L: 91
+			var5.set(); // L: 92
+		}
+
+		ObjectSound.objectSounds.addFirst(var5); // L: 94
+		if (var5.soundEffectIds != null) { // L: 95
+			var5.field829 = var5.field819 + (int)(Math.random() * (double)(var5.field827 - var5.field819));
+		}
+
+	} // L: 96
+
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1017893852"
+	)
+	public static void method5724() {
+		Widget.Widget_cachedSprites.clear(); // L: 766
+		Widget.Widget_cachedModels.clear(); // L: 767
+		Widget.Widget_cachedFonts.clear(); // L: 768
+		Widget.Widget_cachedSpriteMasks.clear(); // L: 769
+	} // L: 770
 }

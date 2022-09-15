@@ -1,29 +1,20 @@
 import java.nio.ByteBuffer;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jr")
+@ObfuscatedName("kv")
 @Implements("DirectByteArrayCopier")
 public class DirectByteArrayCopier extends AbstractByteArrayCopier {
-	@ObfuscatedName("fy")
-	@ObfuscatedGetter(
-		intValue = -1703500315
-	)
-	static int field3306;
 	@ObfuscatedName("c")
 	@Export("directBuffer")
 	ByteBuffer directBuffer;
 
-	DirectByteArrayCopier() {
-	} // L: 10
-
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(B)[B",
-		garbageValue = "-87"
+		garbageValue = "56"
 	)
 	@Export("get")
 	byte[] get() {
@@ -33,50 +24,37 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		return var1; // L: 16
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "2067022612"
+		descriptor = "([BB)V",
+		garbageValue = "1"
 	)
 	@Export("set")
-	void set(byte[] var1) {
+	public void set(byte[] var1) {
 		this.directBuffer = ByteBuffer.allocateDirect(var1.length); // L: 20
 		this.directBuffer.position(0); // L: 21
 		this.directBuffer.put(var1); // L: 22
 	} // L: 23
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(Llc;IB)V",
-		garbageValue = "20"
+		descriptor = "(ILkw;IIIII[FI)Lkw;",
+		garbageValue = "-1366585654"
 	)
-	public static void method5512(Archive var0, int var1) {
-		KitDefinition.field1862.offset = var1 * 8 + 5; // L: 87
-		if (KitDefinition.field1862.offset >= KitDefinition.field1862.array.length) { // L: 88
-			if (var0.field3990) { // L: 89
-				var0.method5822(); // L: 90
-			} else {
-				throw new RuntimeException(""); // L: 93
-			}
-		} else {
-			int var2 = KitDefinition.field1862.readInt(); // L: 95
-			int var3 = KitDefinition.field1862.readInt(); // L: 96
-			var0.loadIndex(var2, var3); // L: 97
-		}
-	} // L: 91 98
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1018448231"
-	)
-	@Export("Messages_getLastChatID")
-	static int Messages_getLastChatID(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0); // L: 57
-		if (var1 == null) { // L: 58
-			return -1;
-		} else {
-			return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count; // L: 59 60
-		}
+	static Widget method5686(int var0, Widget var1, int var2, int var3, int var4, int var5, int var6, float[] var7) {
+		Widget var8 = new Widget(); // L: 915
+		var8.type = var0; // L: 916
+		var8.parentId = var1.id; // L: 917
+		var8.childIndex = var2; // L: 918
+		var8.isIf3 = true; // L: 919
+		var8.xAlignment = var3; // L: 920
+		var8.yAlignment = var4; // L: 921
+		var8.widthAlignment = var5; // L: 922
+		var8.heightAlignment = var6; // L: 923
+		var8.rawX = (int)((float)var1.width * var7[0]); // L: 924
+		var8.rawY = (int)((float)var1.height * var7[1]); // L: 925
+		var8.rawWidth = (int)(var7[2] * (float)var1.width); // L: 926
+		var8.rawHeight = (int)((float)var1.height * var7[3]); // L: 927
+		return var8; // L: 928
 	}
 }
