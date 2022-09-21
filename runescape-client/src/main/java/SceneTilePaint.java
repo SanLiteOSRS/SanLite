@@ -1,54 +1,68 @@
+import java.io.File;
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hu")
+@ObfuscatedName("hj")
 @Implements("SceneTilePaint")
 public final class SceneTilePaint {
-	@ObfuscatedName("cj")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
+	@ObfuscatedName("uh")
+	@ObfuscatedGetter(
+		longValue = 4139438951691168581L
 	)
-	@Export("worldSelectRightSprite")
-	static IndexedSprite worldSelectRightSprite;
+	static long field2649;
+	@ObfuscatedName("sw")
+	@ObfuscatedGetter(
+		intValue = 741348224
+	)
+	static int field2638;
+	@ObfuscatedName("ah")
+	static String field2648;
+	@ObfuscatedName("ll")
+	@ObfuscatedSignature(
+		descriptor = "Lkw;"
+	)
+	@Export("hoveredItemContainer")
+	static Widget hoveredItemContainer;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1769216381
+		intValue = 313526917
 	)
 	@Export("swColor")
 	int swColor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -78289351
+		intValue = 1400554561
 	)
 	@Export("seColor")
 	int seColor;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -184307337
+		intValue = 645705857
 	)
 	@Export("neColor")
 	int neColor;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1175452837
+		intValue = 855976187
 	)
 	@Export("nwColor")
 	int nwColor;
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 516518743
+		intValue = -1928669257
 	)
 	@Export("texture")
 	int texture;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@Export("isFlat")
 	boolean isFlat;
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1480522927
+		intValue = -1925546141
 	)
 	@Export("rgb")
 	int rgb;
@@ -64,77 +78,54 @@ public final class SceneTilePaint {
 		this.isFlat = var7; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)Ljava/lang/String;",
-		garbageValue = "-117"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;ZI)Lpk;",
+		garbageValue = "526697035"
 	)
-	@Export("decodeStringCp1252")
-	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
-		char[] var3 = new char[var2]; // L: 114
-		int var4 = 0; // L: 115
-
-		for (int var5 = 0; var5 < var2; ++var5) { // L: 116
-			int var6 = var0[var5 + var1] & 255; // L: 117
-			if (var6 != 0) { // L: 118
-				if (var6 >= 128 && var6 < 160) { // L: 119
-					char var7 = class340.cp1252AsciiExtension[var6 - 128]; // L: 120
-					if (var7 == 0) { // L: 121
-						var7 = '?';
-					}
-
-					var6 = var7; // L: 122
-				}
-
-				var3[var4++] = (char)var6; // L: 124
+	@Export("getPreferencesFile")
+	public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
+		File var3 = new File(JagexCache.cacheDir, "preferences" + var0 + ".dat"); // L: 282
+		if (var3.exists()) { // L: 283
+			try {
+				AccessFile var10 = new AccessFile(var3, "rw", 10000L); // L: 285
+				return var10; // L: 286
+			} catch (IOException var9) { // L: 288
 			}
 		}
 
-		return new String(var3, 0, var4); // L: 126
-	}
+		String var4 = ""; // L: 290
+		if (class151.cacheGamebuild == 33) { // L: 291
+			var4 = "_rc";
+		} else if (class151.cacheGamebuild == 34) { // L: 292
+			var4 = "_wip";
+		}
 
-	@ObfuscatedName("hr")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "744577981"
-	)
-	@Export("getTileHeight")
-	static final int getTileHeight(int var0, int var1, int var2) {
-		int var3 = var0 >> 7; // L: 5462
-		int var4 = var1 >> 7; // L: 5463
-		if (var3 >= 0 && var4 >= 0 && var3 <= 103 && var4 <= 103) { // L: 5464
-			int var5 = var2; // L: 5465
-			if (var2 < 3 && (Tiles.Tiles_renderFlags[1][var3][var4] & 2) == 2) { // L: 5466
-				var5 = var2 + 1;
+		File var5 = new File(JagexCache.userHomeDirectory, "jagex_" + var1 + "_preferences" + var0 + var4 + ".dat"); // L: 293
+		AccessFile var6;
+		if (!var2 && var5.exists()) { // L: 294
+			try {
+				var6 = new AccessFile(var5, "rw", 10000L); // L: 296
+				return var6; // L: 297
+			} catch (IOException var8) { // L: 299
 			}
+		}
 
-			int var6 = var0 & 127; // L: 5467
-			int var7 = var1 & 127; // L: 5468
-			int var8 = Tiles.Tiles_heights[var5][var3 + 1][var4] * var6 + (128 - var6) * Tiles.Tiles_heights[var5][var3][var4] >> 7; // L: 5469
-			int var9 = var6 * Tiles.Tiles_heights[var5][var3 + 1][var4 + 1] + Tiles.Tiles_heights[var5][var3][var4 + 1] * (128 - var6) >> 7; // L: 5470
-			return var8 * (128 - var7) + var9 * var7 >> 7; // L: 5471
-		} else {
-			return 0;
+		try {
+			var6 = new AccessFile(var3, "rw", 10000L); // L: 302
+			return var6; // L: 303
+		} catch (IOException var7) { // L: 305
+			throw new RuntimeException(); // L: 306
 		}
 	}
 
-	@ObfuscatedName("lv")
+	@ObfuscatedName("gm")
 	@ObfuscatedSignature(
-		descriptor = "(IIZI)V",
-		garbageValue = "1779675406"
+		descriptor = "(I)I",
+		garbageValue = "759233642"
 	)
-	static final void method4530(int var0, int var1, boolean var2) {
-		if (Client.currentClanChannels[var0] != null) { // L: 12276
-			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method3113()) { // L: 12277
-				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1); // L: 12278
-				PacketBufferNode var4 = EnumComposition.getPacketBufferNode(ClientPacket.field2960, Client.packetWriter.isaacCipher); // L: 12279
-				var4.packetBuffer.writeByte(4 + ScriptEvent.stringCp1252NullTerminatedByteSize(var3.username.getName())); // L: 12280
-				var4.packetBuffer.writeByte(var0); // L: 12281
-				var4.packetBuffer.writeShort(var1); // L: 12282
-				var4.packetBuffer.writeBoolean(var2); // L: 12283
-				var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName()); // L: 12284
-				Client.packetWriter.addNode(var4); // L: 12285
-			}
-		}
-	} // L: 12286
+	@Export("getWindowedMode")
+	static int getWindowedMode() {
+		return Client.isResizable ? 2 : 1; // L: 4257
+	}
 }

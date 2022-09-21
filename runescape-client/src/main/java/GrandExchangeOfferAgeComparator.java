@@ -4,13 +4,13 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lq")
+@ObfuscatedName("ls")
 @Implements("GrandExchangeOfferAgeComparator")
 final class GrandExchangeOfferAgeComparator implements Comparator {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Llj;Llj;B)I",
-		garbageValue = "-38"
+		descriptor = "(Lla;Lla;B)I",
+		garbageValue = "122"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -25,45 +25,117 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 		return super.equals(var1); // L: 21
 	}
 
-	@ObfuscatedName("v")
-	static final void method5989(long var0) {
-		try {
-			Thread.sleep(var0); // L: 30
-		} catch (InterruptedException var3) { // L: 32
-		}
-
-	} // L: 33
-
-	@ObfuscatedName("em")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)Loe;",
-		garbageValue = "439042509"
+		descriptor = "(CB)C",
+		garbageValue = "71"
 	)
-	@Export("getWorldMap")
-	static WorldMap getWorldMap() {
-		return class121.worldMap; // L: 729
+	public static char method6156(char var0) {
+		switch(var0) { // L: 16
+		case ' ':
+		case '-':
+		case '_':
+		case ' ':
+			return '_'; // L: 72
+		case '#':
+		case '[':
+		case ']':
+			return var0; // L: 76
+		case 'À':
+		case 'Á':
+		case 'Â':
+		case 'Ã':
+		case 'Ä':
+		case 'à':
+		case 'á':
+		case 'â':
+		case 'ã':
+		case 'ä':
+			return 'a'; // L: 27
+		case 'Ç':
+		case 'ç':
+			return 'c'; // L: 67
+		case 'È':
+		case 'É':
+		case 'Ê':
+		case 'Ë':
+		case 'è':
+		case 'é':
+		case 'ê':
+		case 'ë':
+			return 'e'; // L: 59
+		case 'Í':
+		case 'Î':
+		case 'Ï':
+		case 'í':
+		case 'î':
+		case 'ï':
+			return 'i'; // L: 37
+		case 'Ñ':
+		case 'ñ':
+			return 'n'; // L: 62
+		case 'Ò':
+		case 'Ó':
+		case 'Ô':
+		case 'Õ':
+		case 'Ö':
+		case 'ò':
+		case 'ó':
+		case 'ô':
+		case 'õ':
+		case 'ö':
+			return 'o'; // L: 50
+		case 'Ù':
+		case 'Ú':
+		case 'Û':
+		case 'Ü':
+		case 'ù':
+		case 'ú':
+		case 'û':
+		case 'ü':
+			return 'u'; // L: 85
+		case 'ß':
+			return 'b'; // L: 64
+		case 'ÿ':
+		case 'Ÿ':
+			return 'y'; // L: 30
+		default:
+			return Character.toLowerCase(var0); // L: 39
+		}
 	}
 
-	@ObfuscatedName("iq")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "47"
+		descriptor = "(II)Z",
+		garbageValue = "-1985359771"
 	)
-	@Export("selectSpell")
-	static void selectSpell(int var0, int var1, int var2, int var3) {
-		Widget var4 = ScriptFrame.getWidgetChild(var0, var1); // L: 9557
-		if (var4 != null && var4.onTargetEnter != null) { // L: 9558
-			ScriptEvent var5 = new ScriptEvent(); // L: 9559
-			var5.widget = var4; // L: 9560
-			var5.args = var4.onTargetEnter; // L: 9561
-			WallObject.runScriptEvent(var5); // L: 9562
+	@Export("isWorldMapEvent")
+	public static boolean isWorldMapEvent(int var0) {
+		return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17; // L: 19
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "571864509"
+	)
+	@Export("savePreferences")
+	static void savePreferences() {
+		AccessFile var0 = null; // L: 134
+
+		try {
+			var0 = SceneTilePaint.getPreferencesFile("", class153.field1729.name, true); // L: 136
+			Buffer var1 = Player.clientPreferences.toBuffer(); // L: 137
+			var0.write(var1.array, 0, var1.offset); // L: 138
+		} catch (Exception var3) { // L: 140
 		}
 
-		Client.selectedSpellItemId = var3; // L: 9564
-		Client.isSpellSelected = true; // L: 9565
-		NetCache.selectedSpellWidget = var0; // L: 9566
-		Client.selectedSpellChildIndex = var1; // L: 9567
-		HealthBar.selectedSpellFlags = var2; // L: 9568
-		ChatChannel.invalidateWidget(var4); // L: 9569
-	} // L: 9570
+		try {
+			if (var0 != null) { // L: 142
+				var0.closeSync(true); // L: 143
+			}
+		} catch (Exception var2) { // L: 146
+		}
+
+	} // L: 147
 }
