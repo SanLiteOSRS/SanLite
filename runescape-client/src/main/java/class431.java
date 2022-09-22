@@ -1,47 +1,49 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pj")
-final class class431 implements class428 {
+@ObfuscatedName("pa")
+final class class431 implements class430 {
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "Llv;"
+	)
+	@Export("KitDefinition_modelsArchive")
+	public static AbstractArchive KitDefinition_modelsArchive;
+
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;Lqt;B)V",
-		garbageValue = "-51"
+		descriptor = "(Ljava/lang/Object;Lqq;S)V",
+		garbageValue = "1113"
 	)
-	public void vmethod7583(Object var1, Buffer var2) {
-		this.method7554((Long)var1, var2); // L: 35
-	} // L: 36
+	public void vmethod7796(Object var1, Buffer var2) {
+		this.method7746((Integer)var1, var2); // L: 21
+	} // L: 22
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)Ljava/lang/Object;",
-		garbageValue = "-261873850"
+		descriptor = "(Lqq;I)Ljava/lang/Object;",
+		garbageValue = "298261584"
 	)
-	public Object vmethod7580(Buffer var1) {
-		return var1.readLong(); // L: 31
+	public Object vmethod7802(Buffer var1) {
+		return var1.readInt(); // L: 17
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Long;Lqt;I)V",
-		garbageValue = "590392359"
+		descriptor = "(Ljava/lang/Integer;Lqq;B)V",
+		garbageValue = "-93"
 	)
-	void method7554(Long var1, Buffer var2) {
-		var2.writeLong(var1); // L: 26
-	} // L: 27
+	void method7746(Integer var1, Buffer var2) {
+		var2.writeInt(var1); // L: 12
+	} // L: 13
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;II)Z",
-		garbageValue = "-140653331"
+		descriptor = "(Llv;III)Lqu;",
+		garbageValue = "1917784805"
 	)
-	static boolean method7559(AbstractArchive var0, int var1) {
-		byte[] var2 = var0.takeFileFlat(var1); // L: 183
-		if (var2 == null) { // L: 184
-			return false;
-		} else {
-			ChatChannel.SpriteBuffer_decode(var2); // L: 185
-			return true; // L: 186
-		}
+	static IndexedSprite method7757(AbstractArchive var0, int var1, int var2) {
+		return !Occluder.method4475(var0, var1, var2) ? null : class353.method6681(); // L: 28 29
 	}
 }

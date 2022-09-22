@@ -7,37 +7,43 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nw")
+@ObfuscatedName("nm")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
+	@ObfuscatedName("mm")
+	@ObfuscatedGetter(
+		intValue = 830865447
+	)
+	@Export("menuX")
+	static int menuX;
 	@ObfuscatedName("c")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 647895995
+		intValue = -1335488063
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 2104008339
+		intValue = 885941459
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 678269677
+		intValue = 1087004357
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@Export("exception")
 	IOException exception;
 
@@ -55,7 +61,7 @@ public class BufferedSource implements Runnable {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "2131773931"
+		garbageValue = "-204109826"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -86,10 +92,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-31"
+		descriptor = "(I)I",
+		garbageValue = "324153997"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -110,15 +116,15 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1293599351"
+		garbageValue = "1116130893"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
 		synchronized(this) { // L: 142
-			if (this.limit == this.position) { // L: 143
+			if (this.position == this.limit) { // L: 143
 				if (this.exception != null) { // L: 144
 					throw new IOException(this.exception.toString());
 				} else {
@@ -133,10 +139,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "([BIIB)I",
-		garbageValue = "-55"
+		garbageValue = "-37"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -174,10 +180,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-101"
+		descriptor = "(I)V",
+		garbageValue = "-1863713978"
 	)
 	@Export("close")
 	void close() {
@@ -243,4 +249,66 @@ public class BufferedSource implements Runnable {
 			} // L: 108
 		}
 	}
+
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "538575636"
+	)
+	static final int method7052(int var0, int var1) {
+		int var2 = var1 * 57 + var0; // L: 971
+		var2 ^= var2 << 13; // L: 972
+		int var3 = (var2 * var2 * 15731 + 789221) * var2 + 1376312589 & Integer.MAX_VALUE; // L: 973
+		return var3 >> 19 & 255; // L: 974
+	}
+
+	@ObfuscatedName("gd")
+	@ObfuscatedSignature(
+		descriptor = "(Lkw;III)V",
+		garbageValue = "-1127533475"
+	)
+	@Export("checkIfMinimapClicked")
+	static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
+		if (Client.minimapState == 0 || Client.minimapState == 3) { // L: 3578
+			if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !Renderable.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) { // L: 3579
+				SpriteMask var3 = var0.getSpriteMask(true); // L: 3580
+				if (var3 == null) { // L: 3581
+					return;
+				}
+
+				int var4 = MouseHandler.MouseHandler_lastPressedX - var1; // L: 3582
+				int var5 = MouseHandler.MouseHandler_lastPressedY - var2; // L: 3583
+				if (var3.contains(var4, var5)) { // L: 3584
+					var4 -= var3.width / 2; // L: 3585
+					var5 -= var3.height / 2; // L: 3586
+					int var6 = Client.camAngleY & 2047; // L: 3587
+					int var7 = Rasterizer3D.Rasterizer3D_sine[var6]; // L: 3588
+					int var8 = Rasterizer3D.Rasterizer3D_cosine[var6]; // L: 3589
+					int var9 = var8 * var4 + var7 * var5 >> 11; // L: 3590
+					int var10 = var8 * var5 - var4 * var7 >> 11; // L: 3591
+					int var11 = var9 + class67.localPlayer.x >> 7; // L: 3592
+					int var12 = class67.localPlayer.y - var10 >> 7; // L: 3593
+					PacketBufferNode var13 = class120.getPacketBufferNode(ClientPacket.field2977, Client.packetWriter.isaacCipher); // L: 3595
+					var13.packetBuffer.writeByte(18); // L: 3596
+					var13.packetBuffer.method7962(class128.baseX * 64 + var11); // L: 3597
+					var13.packetBuffer.writeShort(WorldMapData_1.baseY * 64 + var12); // L: 3598
+					var13.packetBuffer.method7952(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0); // L: 3599
+					var13.packetBuffer.writeByte(var4); // L: 3600
+					var13.packetBuffer.writeByte(var5); // L: 3601
+					var13.packetBuffer.writeShort(Client.camAngleY); // L: 3602
+					var13.packetBuffer.writeByte(57); // L: 3603
+					var13.packetBuffer.writeByte(0); // L: 3604
+					var13.packetBuffer.writeByte(0); // L: 3605
+					var13.packetBuffer.writeByte(89); // L: 3606
+					var13.packetBuffer.writeShort(class67.localPlayer.x); // L: 3607
+					var13.packetBuffer.writeShort(class67.localPlayer.y); // L: 3608
+					var13.packetBuffer.writeByte(63); // L: 3609
+					Client.packetWriter.addNode(var13); // L: 3610
+					Client.destinationX = var11; // L: 3611
+					Client.destinationY = var12; // L: 3612
+				}
+			}
+
+		}
+	} // L: 3615
 }
