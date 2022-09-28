@@ -1,71 +1,59 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("oz")
-public abstract class class392 extends class249 implements class449 {
-	@ObfuscatedSignature(
-		descriptor = "(Lkx;Llb;I)V"
-	)
-	protected class392(StudioGame var1, Language var2, int var3) {
-		super(var1, var2, var3); // L: 15
-	} // L: 16
-
+@ObfuscatedName("oi")
+public enum class392 implements MouseWheel {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(II)Loj;",
-		garbageValue = "-231569171"
+		descriptor = "Loi;"
 	)
-	protected abstract class394 vmethod7521(int var1);
-
-	@ObfuscatedName("v")
+	field4462(1, 1),
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1559402072"
+		descriptor = "Loi;"
 	)
-	public int method7058() {
-		return super.field2884; // L: 19
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ljava/lang/Object;",
-		garbageValue = "1786905463"
-	)
-	public Object vmethod8027(int var1) {
-		class394 var2 = this.vmethod7521(var1); // L: 24
-		return var2 != null && var2.method7074() ? var2.method7082() : null; // L: 25 26
-	}
-
+	field4457(0, 2),
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)Lqr;",
-		garbageValue = "-145331804"
+		descriptor = "Loi;"
 	)
-	public class450 method7060(Buffer var1) {
-		int var2 = var1.readUnsignedShort(); // L: 30
-		class394 var3 = this.vmethod7521(var2); // L: 31
-		class450 var4 = new class450(var2); // L: 32
-		Class var5 = var3.field4428.field4659; // L: 33
-		if (var5 == Integer.class) { // L: 34
-			var4.field4766 = var1.readInt();
-		} else if (var5 == Long.class) {
-			var4.field4766 = var1.readLong(); // L: 35
-		} else if (var5 == String.class) { // L: 36
-			var4.field4766 = var1.readStringCp1252NullCircumfixed();
-		} else {
-			if (!class445.class.isAssignableFrom(var5)) { // L: 37
-				throw new IllegalStateException(); // L: 46
-			}
+	field4458(2, 3),
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Loi;"
+	)
+	field4459(3, 10);
 
-			try {
-				class445 var6 = (class445)var5.newInstance(); // L: 39
-				var6.method8005(var1); // L: 40
-				var4.field4766 = var6; // L: 41
-			} catch (InstantiationException var7) { // L: 43
-			} catch (IllegalAccessException var8) { // L: 44
-			}
-		}
+	@ObfuscatedName("ik")
+	@ObfuscatedGetter(
+		intValue = 1324658111
+	)
+	static int field4456;
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = -501705567
+	)
+	final int field4460;
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = -759638905
+	)
+	final int field4461;
 
-		return var4; // L: 47
+	class392(int var3, int var4) {
+		this.field4460 = var3; // L: 20
+		this.field4461 = var4; // L: 21
+	} // L: 22
+
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "1"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field4461; // L: 26
 	}
 }

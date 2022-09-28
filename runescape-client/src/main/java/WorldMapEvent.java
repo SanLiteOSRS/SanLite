@@ -4,35 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iy")
+@ObfuscatedName("in")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-	@ObfuscatedName("eg")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	static Archive field2882;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 285885713
+		intValue = -1057426347
 	)
 	@Export("mapElement")
 	public int mapElement;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lkz;"
 	)
 	@Export("coord1")
 	public Coord coord1;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lkz;"
 	)
 	@Export("coord2")
 	public Coord coord2;
 
 	@ObfuscatedSignature(
-		descriptor = "(ILkd;Lkd;)V"
+		descriptor = "(ILkz;Lkz;)V"
 	)
 	public WorldMapEvent(int var1, Coord var2, Coord var3) {
 		this.mapElement = var1; // L: 11
@@ -40,46 +35,53 @@ public class WorldMapEvent {
 		this.coord2 = var3; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(DDIB)[D",
-		garbageValue = "-87"
+		descriptor = "(B)[Ljl;",
+		garbageValue = "127"
 	)
-	public static double[] method5119(double var0, double var2, int var4) {
-		int var5 = var4 * 2 + 1; // L: 18
-		double[] var6 = new double[var5]; // L: 19
-		int var7 = -var4;
-
-		for (int var8 = 0; var7 <= var4; ++var8) {
-			var6[var8] = class357.method6530((double)var7, var0, var2); // L: 21
-			++var7; // L: 20
-		}
-
-		return var6; // L: 23
+	@Export("ServerPacket_values")
+	public static ServerPacket[] ServerPacket_values() {
+		return new ServerPacket[]{ServerPacket.field3134, ServerPacket.field3174, ServerPacket.field3073, ServerPacket.field3074, ServerPacket.field3145, ServerPacket.field3076, ServerPacket.field3077, ServerPacket.field3125, ServerPacket.field3120, ServerPacket.field3080, ServerPacket.field3081, ServerPacket.field3141, ServerPacket.field3083, ServerPacket.field3084, ServerPacket.field3085, ServerPacket.field3086, ServerPacket.field3087, ServerPacket.field3071, ServerPacket.field3142, ServerPacket.field3090, ServerPacket.field3095, ServerPacket.field3092, ServerPacket.field3093, ServerPacket.field3079, ServerPacket.field3104, ServerPacket.field3149, ServerPacket.field3097, ServerPacket.field3098, ServerPacket.field3099, ServerPacket.field3147, ServerPacket.field3101, ServerPacket.field3102, ServerPacket.field3103, ServerPacket.field3165, ServerPacket.field3105, ServerPacket.field3106, ServerPacket.field3107, ServerPacket.field3153, ServerPacket.field3109, ServerPacket.field3110, ServerPacket.field3113, ServerPacket.field3175, ServerPacket.field3115, ServerPacket.field3114, ServerPacket.field3078, ServerPacket.field3116, ServerPacket.field3117, ServerPacket.field3118, ServerPacket.field3119, ServerPacket.field3127, ServerPacket.field3121, ServerPacket.field3151, ServerPacket.field3123, ServerPacket.field3124, ServerPacket.field3072, ServerPacket.field3126, ServerPacket.field3096, ServerPacket.field3100, ServerPacket.field3129, ServerPacket.field3130, ServerPacket.field3131, ServerPacket.field3132, ServerPacket.field3133, ServerPacket.field3091, ServerPacket.field3135, ServerPacket.field3136, ServerPacket.field3137, ServerPacket.field3138, ServerPacket.field3139, ServerPacket.field3140, ServerPacket.field3170, ServerPacket.field3172, ServerPacket.field3143, ServerPacket.field3144, ServerPacket.field3094, ServerPacket.field3146, ServerPacket.field3158, ServerPacket.field3112, ServerPacket.field3177, ServerPacket.field3111, ServerPacket.field3150, ServerPacket.field3152, ServerPacket.field3089, ServerPacket.field3160, ServerPacket.field3155, ServerPacket.field3156, ServerPacket.field3157, ServerPacket.field3164, ServerPacket.field3159, ServerPacket.field3082, ServerPacket.field3161, ServerPacket.field3088, ServerPacket.field3163, ServerPacket.field3075, ServerPacket.field3154, ServerPacket.field3162, ServerPacket.field3167, ServerPacket.field3168, ServerPacket.field3169, ServerPacket.field3122, ServerPacket.field3171, ServerPacket.field3128, ServerPacket.field3173, ServerPacket.field3108, ServerPacket.field3166, ServerPacket.field3176}; // L: 115
 	}
 
-	@ObfuscatedName("kb")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-2116126418"
+		descriptor = "(II)Ldv;",
+		garbageValue = "-958717632"
 	)
-	static final void method5120(int var0) {
-		var0 = Math.max(Math.min(var0, 100), 0); // L: 11823
-		var0 = 100 - var0; // L: 11824
-		float var1 = (float)var0 / 200.0F + 0.5F; // L: 11825
-		Rasterizer3D.Rasterizer3D_setBrightness((double)var1); // L: 11827
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness((double)var1); // L: 11828
-		Projectile.method1959(); // L: 11829
-		class19.clientPreferences.method2255((double)var1); // L: 11830
-	} // L: 11832
+	static class119 method5257(int var0) {
+		class119[] var1 = new class119[]{class119.field1480, class119.field1470, class119.field1473, class119.field1472, class119.field1471, class119.field1474}; // L: 33
+		class119 var2 = (class119)Varps.findEnumerated(var1, var0); // L: 35
+		if (var2 == null) { // L: 36
+			var2 = class119.field1480;
+		}
 
-	@ObfuscatedName("kn")
+		return var2; // L: 37
+	}
+
+	@ObfuscatedName("hd")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "124"
+		descriptor = "(Lcl;I)Z",
+		garbageValue = "2125074657"
 	)
-	static final void method5121(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 127); // L: 11861
-		class19.clientPreferences.method2341(var0); // L: 11862
-	} // L: 11863
+	static boolean method5256(Player var0) {
+		if (Client.drawPlayerNames == 0) { // L: 4796
+			return false;
+		} else {
+			boolean var1;
+			if (class67.localPlayer == var0) { // L: 4797
+				var1 = (Client.drawPlayerNames & 8) != 0; // L: 4811
+				return var1; // L: 4813
+			} else {
+				var1 = UserComparator4.method2730() || class137.method3085() && var0.isFriend(); // L: 4798
+				if (!var1) { // L: 4799
+					boolean var2 = (Client.drawPlayerNames & 2) != 0; // L: 4802
+					var1 = var2 && var0.isFriendsChatMember(); // L: 4804
+				}
+
+				return var1; // L: 4806
+			}
+		}
+	}
 }
