@@ -4,104 +4,130 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jf")
+@ObfuscatedName("je")
 @Implements("Calendar")
 public class Calendar {
 	@ObfuscatedName("c")
 	@Export("MONTH_NAMES_ENGLISH_GERMAN")
 	static final String[][] MONTH_NAMES_ENGLISH_GERMAN;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@Export("DAYS_OF_THE_WEEK")
 	static final String[] DAYS_OF_THE_WEEK;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@Export("Calendar_calendar")
 	static java.util.Calendar Calendar_calendar;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lqu;"
+	)
+	static IndexedSprite field3331;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "[[Lkw;"
+	)
+	@Export("Widget_interfaceComponents")
+	public static Widget[][] Widget_interfaceComponents;
 
 	static {
 		MONTH_NAMES_ENGLISH_GERMAN = new String[][]{{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}, {"Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"}, {"jan", "fév", "mars", "avr", "mai", "juin", "juil", "août", "sept", "oct", "nov", "déc"}, {"jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"}, {"jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"}, {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}, {"ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"}}; // L: 8
 		DAYS_OF_THE_WEEK = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}; // L: 18
-		java.util.Calendar.getInstance();
-		Calendar_calendar = java.util.Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-	}
+		java.util.Calendar.getInstance(); // L: 22
+		Calendar_calendar = java.util.Calendar.getInstance(TimeZone.getTimeZone("GMT")); // L: 23
+	} // L: 24
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;IZI)Lgh;",
-		garbageValue = "603221838"
+		descriptor = "(Ljava/lang/CharSequence;IZI)I",
+		garbageValue = "954997773"
 	)
-	public static Frames method5499(AbstractArchive var0, AbstractArchive var1, int var2, boolean var3) {
-		boolean var4 = true; // L: 11
-		int[] var5 = var0.getGroupFileIds(var2); // L: 12
+	static int method5674(CharSequence var0, int var1, boolean var2) {
+		if (var1 >= 2 && var1 <= 36) { // L: 76
+			boolean var3 = false; // L: 77
+			boolean var4 = false; // L: 78
+			int var5 = 0; // L: 79
+			int var6 = var0.length(); // L: 80
 
-		for (int var6 = 0; var6 < var5.length; ++var6) { // L: 13
-			byte[] var7 = var0.getFile(var2, var5[var6]); // L: 14
-			if (var7 == null) { // L: 15
-				var4 = false; // L: 16
-			} else {
-				int var8 = (var7[0] & 255) << 8 | var7[1] & 255; // L: 19
-				byte[] var9;
-				if (var3) {
-					var9 = var1.getFile(0, var8);
+			for (int var7 = 0; var7 < var6; ++var7) { // L: 81
+				char var8 = var0.charAt(var7); // L: 82
+				if (var7 == 0) { // L: 83
+					if (var8 == '-') { // L: 84
+						var3 = true; // L: 85
+						continue;
+					}
+
+					if (var8 == '+') { // L: 88
+						continue;
+					}
+				}
+
+				int var10;
+				if (var8 >= '0' && var8 <= '9') {
+					var10 = var8 - '0'; // L: 90
+				} else if (var8 >= 'A' && var8 <= 'Z') { // L: 91
+					var10 = var8 - '7';
 				} else {
-					var9 = var1.getFile(var8, 0);
+					if (var8 < 'a' || var8 > 'z') { // L: 92
+						throw new NumberFormatException(); // L: 93
+					}
+
+					var10 = var8 - 'W';
 				}
 
-				if (var9 == null) {
-					var4 = false;
+				if (var10 >= var1) { // L: 94
+					throw new NumberFormatException();
 				}
+
+				if (var3) { // L: 95
+					var10 = -var10;
+				}
+
+				int var9 = var5 * var1 + var10; // L: 96
+				if (var9 / var1 != var5) { // L: 97
+					throw new NumberFormatException();
+				}
+
+				var5 = var9; // L: 98
+				var4 = true; // L: 99
 			}
-		}
 
-		if (!var4) {
-			return null;
+			if (!var4) { // L: 101
+				throw new NumberFormatException();
+			} else {
+				return var5; // L: 102
+			}
 		} else {
-			try {
-				return new Frames(var0, var1, var2, var3);
-			} catch (Exception var11) { // L: 29
-				return null; // L: 30
-			}
+			throw new IllegalArgumentException("" + var1);
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfc;",
-		garbageValue = "71"
+		descriptor = "(ZI)V",
+		garbageValue = "790353390"
 	)
-	@Export("getInvDefinition")
-	public static InvDefinition getInvDefinition(int var0) {
-		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0); // L: 21
-		if (var1 != null) { // L: 22
-			return var1;
-		} else {
-			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0); // L: 23
-			var1 = new InvDefinition(); // L: 24
-			if (var2 != null) { // L: 25
-				var1.decode(new Buffer(var2));
+	@Export("Login_promptCredentials")
+	static void Login_promptCredentials(boolean var0) {
+		if (!IgnoreList.client.method1190() && !IgnoreList.client.isOtlTokenRequesterInitialized()) { // L: 1117
+			Login.Login_response1 = ""; // L: 1121
+			Login.Login_response2 = "Enter your username/email & password."; // L: 1122
+			Login.Login_response3 = ""; // L: 1123
+			class139.method3101(2); // L: 1124
+			if (var0) { // L: 1125
+				Login.Login_password = "";
 			}
 
-			InvDefinition.InvDefinition_cached.put(var1, (long)var0); // L: 26
-			return var1; // L: 27
+			if (Login.Login_username == null || Login.Login_username.length() <= 0) { // L: 1127
+				if (Player.clientPreferences.method2407() != null) { // L: 1128
+					Login.Login_username = Player.clientPreferences.method2407(); // L: 1129
+					Client.Login_isUsernameRemembered = true; // L: 1130
+				} else {
+					Client.Login_isUsernameRemembered = false; // L: 1132
+				}
+			}
+
+			class65.method2029(); // L: 1134
+		} else {
+			class139.method3101(10); // L: 1118
 		}
-	}
-
-	@ObfuscatedName("al")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-197646586"
-	)
-	protected static final void method5504() {
-		class10.clock.mark(); // L: 408
-
-		int var0;
-		for (var0 = 0; var0 < 32; ++var0) { // L: 409
-			GameEngine.graphicsTickTimes[var0] = 0L;
-		}
-
-		for (var0 = 0; var0 < 32; ++var0) { // L: 410
-			GameEngine.clientTickTimes[var0] = 0L;
-		}
-
-		Messages.gameCyclesToDo = 0; // L: 411
-	} // L: 412
+	} // L: 1119 1135
 }
