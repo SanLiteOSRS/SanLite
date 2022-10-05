@@ -1,80 +1,75 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eo")
-public class class137 extends class128 {
+@ObfuscatedName("ez")
+public class class137 extends class145 {
+	@ObfuscatedName("a")
+	@Export("ByteArrayPool_altSizeArrayCounts")
+	static int[] ByteArrayPool_altSizeArrayCounts;
 	@ObfuscatedName("c")
-	String field1616;
+	@ObfuscatedGetter(
+		intValue = 232681789
+	)
+	int field1617;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lem;"
 	)
-	final class131 this$0;
+	final class146 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lem;)V"
 	)
-	class137(class131 var1) {
-		this.this$0 = var1; // L: 229
-	}
+	class137(class146 var1) {
+		this.this$0 = var1;
+		this.field1617 = -1; // L: 82
+	} // L: 84
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lqq;I)V",
+		garbageValue = "-64301329"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1616 = var1.readStringCp1252NullTerminated(); // L: 232
-		var1.readInt(); // L: 233
-	} // L: 234
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.name = this.field1616; // L: 237
-	} // L: 238
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-1955259353"
-	)
-	public static int method2931(int var0, int var1, int var2) {
-		int var3 = VarpDefinition.method3374(var2 - var1 + 1); // L: 37
-		var3 <<= var1; // L: 38
-		return var0 & ~var3; // L: 39
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(CLlb;I)I",
-		garbageValue = "991712888"
-	)
-	@Export("lowercaseChar")
-	static int lowercaseChar(char var0, Language var1) {
-		int var2 = var0 << 4; // L: 104
-		if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) { // L: 105
-			var0 = Character.toLowerCase(var0); // L: 106
-			var2 = (var0 << 4) + 1; // L: 107
+	void vmethod3300(Buffer var1) {
+		this.field1617 = var1.readUnsignedShort(); // L: 87
+		var1.readUnsignedByte(); // L: 88
+		if (var1.readUnsignedByte() != 255) { // L: 89
+			--var1.offset; // L: 90
+			var1.readLong(); // L: 91
 		}
 
-		if (var0 == 241 && var1 == Language.Language_ES) { // L: 109
-			var2 = 1762;
-		}
+	} // L: 93
 
-		return var2; // L: 110
-	}
-
-	@ObfuscatedName("br")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(II)Ljava/lang/Object;",
-		garbageValue = "1239702190"
+		descriptor = "(Ler;B)V",
+		garbageValue = "97"
 	)
-	static Object method2937(int var0) {
-		return InvDefinition.method3360((class432)Actor.findEnumerated(class432.method7566(), var0)); // L: 5010
+	void vmethod3302(ClanChannel var1) {
+		var1.removeMember(this.field1617); // L: 96
+	} // L: 97
+
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;II)V",
+		garbageValue = "2036973926"
+	)
+	static final void method3075(String var0, int var1) {
+		PacketBufferNode var2 = class120.getPacketBufferNode(ClientPacket.field2989, Client.packetWriter.isaacCipher); // L: 228
+		var2.packetBuffer.writeByte(class357.stringCp1252NullTerminatedByteSize(var0) + 1); // L: 229
+		var2.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 230
+		var2.packetBuffer.method8136(var1); // L: 231
+		Client.packetWriter.addNode(var2); // L: 232
+	} // L: 233
+
+	@ObfuscatedName("hu")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-1753739766"
+	)
+	static boolean method3085() {
+		return (Client.drawPlayerNames & 1) != 0; // L: 4792
 	}
 }

@@ -2,23 +2,23 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("au")
+@ObfuscatedName("ah")
 @Implements("VorbisCodebook")
 public class VorbisCodebook {
 	@ObfuscatedName("c")
 	@Export("dimensions")
 	int dimensions;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@Export("entries")
 	int entries;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@Export("lengthMap")
 	int[] lengthMap;
-	@ObfuscatedName("f")
-	int[] field357;
-	@ObfuscatedName("j")
-	float[][] field358;
-	@ObfuscatedName("e")
+	@ObfuscatedName("n")
+	int[] field367;
+	@ObfuscatedName("k")
+	float[][] field370;
+	@ObfuscatedName("w")
 	@Export("keys")
 	int[] keys;
 
@@ -35,7 +35,7 @@ public class VorbisCodebook {
 			var2 = 0; // L: 47
 
 			for (var3 = VorbisSample.readBits(5) + 1; var2 < this.entries; ++var3) { // L: 48 49 52
-				int var4 = VorbisSample.readBits(Messages.iLog(this.entries - var2)); // L: 50
+				int var4 = VorbisSample.readBits(Archive.iLog(this.entries - var2)); // L: 50
 
 				for (var5 = 0; var5 < var4; ++var5) { // L: 51
 					this.lengthMap[var2++] = var3;
@@ -53,7 +53,7 @@ public class VorbisCodebook {
 			}
 		}
 
-		this.method955(); // L: 62
+		this.method1043(); // L: 62
 		var2 = VorbisSample.readBits(4); // L: 63
 		if (var2 > 0) { // L: 64
 			float var15 = VorbisSample.float32Unpack(VorbisSample.readBits(32)); // L: 65
@@ -67,14 +67,14 @@ public class VorbisCodebook {
 				var7 = this.entries * this.dimensions; // L: 71
 			}
 
-			this.field357 = new int[var7]; // L: 72
+			this.field367 = new int[var7]; // L: 72
 
 			int var8;
 			for (var8 = 0; var8 < var7; ++var8) { // L: 73
-				this.field357[var8] = VorbisSample.readBits(var5);
+				this.field367[var8] = VorbisSample.readBits(var5);
 			}
 
-			this.field358 = new float[this.entries][this.dimensions]; // L: 74
+			this.field370 = new float[this.entries][this.dimensions]; // L: 74
 			float var9;
 			int var10;
 			int var11;
@@ -85,8 +85,8 @@ public class VorbisCodebook {
 
 					for (var11 = 0; var11 < this.dimensions; ++var11) { // L: 79
 						int var12 = var8 / var10 % var7; // L: 80
-						float var13 = (float)this.field357[var12] * var16 + var15 + var9; // L: 81
-						this.field358[var8][var11] = var13; // L: 82
+						float var13 = (float)this.field367[var12] * var16 + var15 + var9; // L: 81
+						this.field370[var8][var11] = var13; // L: 82
 						if (var6) { // L: 83
 							var9 = var13;
 						}
@@ -100,8 +100,8 @@ public class VorbisCodebook {
 					var10 = var8 * this.dimensions; // L: 91
 
 					for (var11 = 0; var11 < this.dimensions; ++var11) { // L: 92
-						float var17 = (float)this.field357[var10] * var16 + var15 + var9; // L: 93
-						this.field358[var8][var11] = var17; // L: 94
+						float var17 = (float)this.field367[var10] * var16 + var15 + var9; // L: 93
+						this.field370[var8][var11] = var17; // L: 94
 						if (var6) { // L: 95
 							var9 = var17;
 						}
@@ -114,8 +114,8 @@ public class VorbisCodebook {
 
 	} // L: 101
 
-	@ObfuscatedName("v")
-	void method955() {
+	@ObfuscatedName("p")
+	void method1043() {
 		int[] var1 = new int[this.entries]; // L: 104
 		int[] var2 = new int[33]; // L: 106
 
@@ -208,8 +208,8 @@ public class VorbisCodebook {
 
 	} // L: 167
 
-	@ObfuscatedName("q")
-	int method956() {
+	@ObfuscatedName("f")
+	int method1044() {
 		int var1;
 		for (var1 = 0; this.keys[var1] >= 0; var1 = VorbisSample.readBit() != 0 ? this.keys[var1] : var1 + 1) { // L: 170 171
 		}
@@ -217,9 +217,9 @@ public class VorbisCodebook {
 		return ~this.keys[var1]; // L: 172
 	}
 
-	@ObfuscatedName("f")
-	float[] method957() {
-		return this.field358[this.method956()]; // L: 176
+	@ObfuscatedName("n")
+	float[] method1045() {
+		return this.field370[this.method1044()]; // L: 176
 	}
 
 	@ObfuscatedName("c")
@@ -242,7 +242,7 @@ public class VorbisCodebook {
 
 			int var3;
 			if (var5 == 1) { // L: 28
-				var3 = var6 * var4; // L: 29
+				var3 = var4 * var6; // L: 29
 			} else {
 				var3 = var6; // L: 32
 			}

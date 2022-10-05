@@ -4,48 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ge")
+@ObfuscatedName("gi")
 @Implements("GroundObject")
 public final class GroundObject {
-	@ObfuscatedName("ff")
-	@ObfuscatedGetter(
-		intValue = 512715127
-	)
-	@Export("worldPort")
-	static int worldPort;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1018448231
+		intValue = 1749648961
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 934546239
+		intValue = -1722441719
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 230480863
+		intValue = -472964851
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lgg;"
 	)
 	@Export("renderable")
 	public Renderable renderable;
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		longValue = -1913872919662932177L
+		longValue = 5933410536782648867L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1980232569
+		intValue = -79580845
 	)
 	@Export("flags")
 	int flags;

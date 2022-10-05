@@ -1,56 +1,52 @@
+import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bj")
+@ObfuscatedName("bu")
 @Implements("ArchiveLoader")
 public class ArchiveLoader {
-	@ObfuscatedName("au")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lns;"
-	)
-	static Bounds field1022;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Llb;"
 	)
 	@Export("archive")
 	final Archive archive;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -955851169
+		intValue = -85341739
 	)
 	@Export("groupCount")
 	final int groupCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 982415587
+		intValue = 969908513
 	)
 	@Export("loadedCount")
 	int loadedCount;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llc;Ljava/lang/String;)V"
+		descriptor = "(Llb;Ljava/lang/String;)V"
 	)
 	ArchiveLoader(Archive var1, String var2) {
 		this.loadedCount = 0; // L: 9
-		this.archive = var1;
-		this.groupCount = var1.getGroupCount();
+		this.archive = var1; // L: 12
+		this.groupCount = var1.getGroupCount(); // L: 13
 	} // L: 14
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "102"
+		garbageValue = "113"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
 		this.loadedCount = 0; // L: 17
 
 		for (int var1 = 0; var1 < this.groupCount; ++var1) { // L: 18
-			if (!this.archive.method5806(var1) || this.archive.method5805(var1)) {
+			if (!this.archive.method5973(var1) || this.archive.method5972(var1)) {
 				++this.loadedCount; // L: 19
 			}
 		}
@@ -60,45 +56,43 @@ public class ArchiveLoader {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
+		descriptor = "(Ljava/awt/Component;I)V",
+		garbageValue = "-2126456503"
+	)
+	static void method2210(Component var0) {
+		var0.addMouseListener(MouseHandler.MouseHandler_instance); // L: 37
+		var0.addMouseMotionListener(MouseHandler.MouseHandler_instance); // L: 38
+		var0.addFocusListener(MouseHandler.MouseHandler_instance); // L: 39
+	} // L: 40
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Llv;Llv;I)V",
+		garbageValue = "1582268773"
+	)
+	public static void method2211(AbstractArchive var0, AbstractArchive var1) {
+		HealthBarDefinition.HealthBarDefinition_archive = var0; // L: 30
+		HealthBarDefinition.field1896 = var1; // L: 31
+	} // L: 32
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
 		descriptor = "(II)I",
-		garbageValue = "1248295079"
+		garbageValue = "-2061155895"
 	)
-	public static int method2075(int var0) {
-		return var0 != 0 && var0 != 1 ? -1 : 0; // L: 12 13 15
+	public static int method2208(int var0) {
+		return class272.field3209[var0]; // L: 24
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("hm")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "280590426"
+		descriptor = "(I)V",
+		garbageValue = "325486249"
 	)
-	static int method2073(int var0, Script var1, boolean var2) {
-		if (var0 != 3700 && var0 != 3701) { // L: 2707
-			if (var0 == 3702) { // L: 2712
-				++class446.Interpreter_intStackSize; // L: 2713
-				return 1; // L: 2714
-			} else {
-				return 2; // L: 2716
-			}
-		} else {
-			--class446.Interpreter_intStackSize; // L: 2708
-			--Interpreter.Interpreter_stringStackSize; // L: 2709
-			return 1; // L: 2710
+	static void method2212() {
+		if (class67.localPlayer.x >> 7 == Client.destinationX && class67.localPlayer.y >> 7 == Client.destinationY) { // L: 4642
+			Client.destinationX = 0; // L: 4643
 		}
-	}
 
-	@ObfuscatedName("lc")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-818413481"
-	)
-	@Export("clanKickUser")
-	static final void clanKickUser(String var0) {
-		if (Huffman.friendsChatManager != null) { // L: 12225
-			PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2923, Client.packetWriter.isaacCipher); // L: 12226
-			var1.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0)); // L: 12227
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12228
-			Client.packetWriter.addNode(var1); // L: 12229
-		}
-	} // L: 12230
+	} // L: 4645
 }
