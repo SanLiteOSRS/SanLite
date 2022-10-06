@@ -1,20 +1,23 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ds")
+@ObfuscatedName("dl")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("e")
-	@Export("PcmPlayer_stereo")
-	protected static boolean PcmPlayer_stereo;
-	@ObfuscatedName("in")
-	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = 1111006345
 	)
-	@Export("crossSprites")
-	static SpritePixels[] crossSprites;
+	static int field1396;
+	@ObfuscatedName("fk")
+	@ObfuscatedGetter(
+		intValue = -54248331
+	)
+	@Export("currentPort")
+	static int currentPort;
 	@ObfuscatedName("c")
 	@Export("reversed")
 	final boolean reversed;
@@ -25,8 +28,8 @@ public class BuddyRankComparator extends AbstractUserComparator {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;B)I",
-		garbageValue = "114"
+		descriptor = "(Lnr;Lnr;I)I",
+		garbageValue = "1824850774"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -41,36 +44,24 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 21
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lfj;",
-		garbageValue = "273043499"
+		descriptor = "([BI)[B",
+		garbageValue = "-168568172"
 	)
-	@Export("getNpcDefinition")
-	public static NPCComposition getNpcDefinition(int var0) {
-		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0); // L: 65
-		if (var1 != null) { // L: 66
-			return var1;
-		} else {
-			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0); // L: 67
-			var1 = new NPCComposition(); // L: 68
-			var1.id = var0; // L: 69
-			if (var2 != null) { // L: 70
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.postDecode(); // L: 71
-			NPCComposition.NpcDefinition_cached.put(var1, (long)var0); // L: 72
-			return var1; // L: 73
-		}
+	public static byte[] method2790(byte[] var0) {
+		int var1 = var0.length; // L: 22
+		byte[] var2 = new byte[var1]; // L: 23
+		System.arraycopy(var0, 0, var2, 0, var1); // L: 24
+		return var2; // L: 25
 	}
 
-	@ObfuscatedName("br")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)I",
-		garbageValue = "-107"
+		descriptor = "(IB)Z",
+		garbageValue = "0"
 	)
-	public static int method2620(String var0) {
-		return var0.length() + 2; // L: 128
+	public static boolean method2791(int var0) {
+		return var0 >= WorldMapDecorationType.field3579.id && var0 <= WorldMapDecorationType.field3560.id; // L: 47
 	}
 }
