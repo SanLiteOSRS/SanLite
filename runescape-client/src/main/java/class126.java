@@ -1,91 +1,200 @@
-import java.util.Iterator;
+import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("du")
-public class class126 extends class128 {
+@ObfuscatedName("dq")
+public class class126 implements class342 {
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1519;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1529;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1514;
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1525;
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1512;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1517;
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1518;
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1513;
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Ldq;"
 	)
-	@Export("Widget_modelsArchive")
-	public static AbstractArchive Widget_modelsArchive;
-	@ObfuscatedName("cx")
+	static final class126 field1520;
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
+		descriptor = "Ldq;"
 	)
-	@Export("worldSelectFlagSprites")
-	static IndexedSprite[] worldSelectFlagSprites;
-	@ObfuscatedName("ig")
+	static final class126 field1524;
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
+		descriptor = "Ldq;"
 	)
-	@Export("scrollBarSprites")
-	static IndexedSprite[] scrollBarSprites;
-	@ObfuscatedName("c")
+	static final class126 field1522;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1523;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1515;
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1528;
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1526;
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1532;
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		descriptor = "Ldq;"
+	)
+	static final class126 field1527;
+	@ObfuscatedName("ao")
+	@Export("fontHelvetica13")
+	static java.awt.Font fontHelvetica13;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		longValue = -8228182624755456153L
+		intValue = -2084525283
 	)
-	long field1562;
-	@ObfuscatedName("v")
-	String field1559;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lej;"
+	final int field1521;
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = 1661889385
 	)
-	final class131 this$0;
+	final int field1530;
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = 241060171
+	)
+	final int field1531;
+
+	static {
+		field1519 = new class126(0, 0, (String)null, -1, -1); // L: 42
+		field1529 = new class126(1, 1, (String)null, 0, 2); // L: 43
+		field1514 = new class126(2, 2, (String)null, 1, 2); // L: 44
+		field1525 = new class126(3, 3, (String)null, 2, 2); // L: 45
+		field1512 = new class126(4, 4, (String)null, 3, 1); // L: 46
+		field1517 = new class126(5, 5, (String)null, 4, 1); // L: 47
+		field1518 = new class126(6, 6, (String)null, 5, 1); // L: 48
+		field1513 = new class126(7, 7, (String)null, 6, 3); // L: 49
+		field1520 = new class126(8, 8, (String)null, 7, 3); // L: 50
+		field1524 = new class126(9, 9, (String)null, 8, 3); // L: 51
+		field1522 = new class126(10, 10, (String)null, 0, 7); // L: 52
+		field1523 = new class126(11, 11, (String)null, 1, 7); // L: 53
+		field1515 = new class126(12, 12, (String)null, 2, 7); // L: 54
+		field1528 = new class126(13, 13, (String)null, 3, 7); // L: 55
+		field1526 = new class126(14, 14, (String)null, 4, 7); // L: 56
+		field1532 = new class126(15, 15, (String)null, 5, 7); // L: 57
+		field1527 = new class126(16, 16, (String)null, 0, 5); // L: 58
+	}
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(IILjava/lang/String;II)V",
+		garbageValue = "-1"
 	)
-	class126(class131 var1) {
-		this.this$0 = var1;
-		this.field1562 = -1L; // L: 74
-		this.field1559 = null; // L: 75
-	} // L: 77
+	class126(int var1, int var2, String var3, int var4, int var5) {
+		this.field1521 = var1; // L: 68
+		this.field1530 = var2; // L: 69
+		this.field1531 = var4; // L: 70
+	} // L: 71
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(B)I",
+		garbageValue = "0"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 80
-			--var1.offset; // L: 81
-			this.field1562 = var1.readLong(); // L: 82
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1530; // L: 74
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1737952549"
+	)
+	int method2907() {
+		return this.field1531; // L: 78
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/io/File;I)V",
+		garbageValue = "-1465265881"
+	)
+	public static void method2917(File var0) {
+		FileSystem.FileSystem_cacheDir = var0; // L: 16
+		if (!FileSystem.FileSystem_cacheDir.exists()) { // L: 17
+			throw new RuntimeException("");
+		} else {
+			FileSystem.FileSystem_hasPermissions = true; // L: 18
+		}
+	} // L: 19
+
+	@ObfuscatedName("ml")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-166821717"
+	)
+	static void method2911() {
+		if (Client.field500 && class296.localPlayer != null) { // L: 12762
+			int var0 = class296.localPlayer.pathX[0]; // L: 12763
+			int var1 = class296.localPlayer.pathY[0]; // L: 12764
+			if (var0 < 0 || var1 < 0 || var0 >= 104 || var1 >= 104) { // L: 12765
+				return;
+			}
+
+			class31.oculusOrbFocalPointX = class296.localPlayer.x; // L: 12766
+			int var2 = class132.getTileHeight(class296.localPlayer.x, class296.localPlayer.y, ApproximateRouteStrategy.Client_plane) - Client.camFollowHeight; // L: 12767
+			if (var2 < VarpDefinition.field1869) { // L: 12768
+				VarpDefinition.field1869 = var2;
+			}
+
+			PendingSpawn.oculusOrbFocalPointY = class296.localPlayer.y; // L: 12769
+			Client.field500 = false; // L: 12770
 		}
 
-		this.field1559 = var1.readStringCp1252NullTerminatedOrNull(); // L: 84
-	} // L: 85
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2956(this.field1562, this.field1559, 0); // L: 88
-	} // L: 89
-
-	@ObfuscatedName("km")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "78"
-	)
-	@Export("FriendSystem_invalidateIgnoreds")
-	static final void FriendSystem_invalidateIgnoreds() {
-		Iterator var0 = Messages.Messages_hashTable.iterator(); // L: 12195
-
-		while (var0.hasNext()) {
-			Message var1 = (Message)var0.next(); // L: 12196
-			var1.clearIsFromIgnored(); // L: 12198
-		}
-
-		if (Huffman.friendsChatManager != null) { // L: 12202
-			Huffman.friendsChatManager.invalidateIgnoreds(); // L: 12203
-		}
-
-	} // L: 12205
+	} // L: 12772
 }

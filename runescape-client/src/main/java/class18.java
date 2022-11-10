@@ -1,90 +1,71 @@
 import java.util.Comparator;
 import java.util.Map.Entry;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("l")
+@ObfuscatedName("w")
 class class18 implements Comparator {
-	@ObfuscatedName("fm")
-	@ObfuscatedGetter(
-		intValue = 872496551
-	)
-	@Export("js5Port")
-	static int js5Port;
-	@ObfuscatedName("jt")
-	@ObfuscatedGetter(
-		intValue = 437863053
-	)
-	@Export("cameraX")
-	static int cameraX;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Ls;"
+		descriptor = "Ll;"
 	)
 	final class10 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ls;)V"
+		descriptor = "(Ll;)V"
 	)
 	class18(class10 var1) {
 		this.this$0 = var1; // L: 50
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Map$Entry;Ljava/util/Map$Entry;I)I",
-		garbageValue = "-175722815"
+		descriptor = "(Ljava/util/Map$Entry;Ljava/util/Map$Entry;B)I",
+		garbageValue = "-16"
 	)
-	int method233(Entry var1, Entry var2) {
+	int method261(Entry var1, Entry var2) {
 		return ((Float)var2.getValue()).compareTo((Float)var1.getValue()); // L: 52
-	}
-
-	public int compare(Object var1, Object var2) {
-		return this.method233((Entry)var1, (Entry)var2); // L: 56
 	}
 
 	public boolean equals(Object var1) {
 		return super.equals(var1); // L: 60
 	}
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)Lbr;",
-		garbageValue = "123"
-	)
-	@Export("Messages_getByChannelAndID")
-	static Message Messages_getByChannelAndID(int var0, int var1) {
-		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 35
-		return var2.getMessage(var1); // L: 36
+	public int compare(Object var1, Object var2) {
+		return this.method261((Entry)var1, (Entry)var2); // L: 56
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-80"
+		descriptor = "(I)V",
+		garbageValue = "-827032220"
 	)
-	@Export("isKeyDown")
-	public static final boolean isKeyDown() {
-		synchronized(KeyHandler.KeyHandler_instance) { // L: 175
-			if (KeyHandler.field127 == KeyHandler.field147) { // L: 176
-				return false;
-			} else {
-				class272.field3196 = KeyHandler.field148[KeyHandler.field147]; // L: 177
-				HealthBar.field1258 = KeyHandler.field149[KeyHandler.field147]; // L: 178
-				KeyHandler.field147 = KeyHandler.field147 + 1 & 127; // L: 179
-				return true; // L: 180
-			}
-		}
-	}
+	public static void method267() {
+		class37.reflectionChecks = new IterableNodeDeque(); // L: 24
+	} // L: 25
 
-	@ObfuscatedName("im")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-15"
+		descriptor = "(Llg;IIIZB)V",
+		garbageValue = "55"
 	)
-	static final boolean method234() {
-		return Client.isMenuOpen; // L: 8499
-	}
+	public static void method266(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
+		class283.musicPlayerStatus = 1; // L: 34
+		DevicePcmPlayerProvider.musicTrackArchive = var0; // L: 35
+		class283.musicTrackGroupId = var1; // L: 36
+		class283.musicTrackFileId = var2; // L: 37
+		Messages.musicTrackVolume = var3; // L: 38
+		GrandExchangeEvents.musicTrackBoolean = var4; // L: 39
+		class19.pcmSampleLength = 10000; // L: 40
+	} // L: 41
+
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "0"
+	)
+	public static void method268() {
+		NPCComposition.NpcDefinition_cached.clear(); // L: 291
+		NPCComposition.NpcDefinition_cachedModels.clear(); // L: 292
+	} // L: 293
 }
