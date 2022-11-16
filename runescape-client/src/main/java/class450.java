@@ -1,41 +1,37 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qr")
-public class class450 {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 599765167
+@ObfuscatedName("qy")
+final class class450 implements class449 {
+	@ObfuscatedName("j")
+	@Export("SpriteBuffer_spriteWidths")
+	static int[] SpriteBuffer_spriteWidths;
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Object;Lqr;I)V",
+		garbageValue = "-1814111354"
 	)
-	public final int field4765;
-	@ObfuscatedName("v")
-	public Object field4766;
+	public void vmethod8274(Object var1, Buffer var2) {
+		this.method8232((Integer)var1, var2); // L: 21
+	} // L: 22
 
-	public class450(int var1) {
-		this.field4765 = var1; // L: 8
-	} // L: 9
-
-	public class450(int var1, Object var2) {
-		this.field4765 = var1; // L: 12
-		this.field4766 = var2; // L: 13
-	} // L: 14
-
-	public boolean equals(Object var1) {
-		if (!(var1 instanceof class450)) { // L: 23
-			return false;
-		} else {
-			class450 var2 = (class450)var1; // L: 24
-			if (var2.field4766 == null && this.field4766 != null) { // L: 25
-				return false;
-			} else if (this.field4766 == null && var2.field4766 != null) { // L: 26
-				return false;
-			} else {
-				return var2.field4765 == this.field4765 && var2.field4766.equals(this.field4766); // L: 27
-			}
-		}
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(Lqr;I)Ljava/lang/Object;",
+		garbageValue = "1394013597"
+	)
+	public Object vmethod8273(Buffer var1) {
+		return var1.readInt(); // L: 17
 	}
 
-	public int hashCode() {
-		return super.hashCode(); // L: 18
-	}
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Integer;Lqr;I)V",
+		garbageValue = "-1013011153"
+	)
+	void method8232(Integer var1, Buffer var2) {
+		var2.writeInt(var1); // L: 12
+	} // L: 13
 }

@@ -3,127 +3,101 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
-public class class150 extends class128 {
-	@ObfuscatedName("rf")
+@ObfuscatedName("ei")
+public class class150 extends class135 {
+	@ObfuscatedName("et")
 	@ObfuscatedSignature(
-		descriptor = "Lex;"
+		descriptor = "Llx;"
 	)
-	@Export("guestClanChannel")
-	static ClanChannel guestClanChannel;
+	@Export("archive5")
+	static Archive archive5;
+	@ObfuscatedName("ih")
+	@ObfuscatedSignature(
+		descriptor = "Lri;"
+	)
+	@Export("redHintArrowSprite")
+	static SpritePixels redHintArrowSprite;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		longValue = 1521218636482726287L
+	)
+	long field1711;
+	@ObfuscatedName("f")
+	String field1705;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		longValue = -8713006525766535939L
+		intValue = -330562841
 	)
-	long field1707;
-	@ObfuscatedName("v")
-	String field1708;
+	int field1708;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lel;"
 	)
-	final class131 this$0;
+	final class138 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lel;)V"
 	)
-	class150(class131 var1) {
+	class150(class138 var1) {
 		this.this$0 = var1;
-		this.field1707 = -1L; // L: 194
-		this.field1708 = null; // L: 195
-	} // L: 197
+		this.field1711 = -1L; // L: 93
+		this.field1705 = null; // L: 94
+		this.field1708 = 0; // L: 95
+	} // L: 97
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "-1428026624"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 200
-			--var1.offset; // L: 201
-			this.field1707 = var1.readLong(); // L: 202
+	void vmethod3254(Buffer var1) {
+		if (var1.readUnsignedByte() != 255) { // L: 100
+			--var1.offset; // L: 101
+			this.field1711 = var1.readLong(); // L: 102
 		}
 
-		this.field1708 = var1.readStringCp1252NullTerminatedOrNull(); // L: 204
-	} // L: 205
+		this.field1705 = var1.readStringCp1252NullTerminatedOrNull(); // L: 104
+		this.field1708 = var1.readUnsignedShort(); // L: 105
+	} // L: 106
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Ler;B)V",
+		garbageValue = "-110"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2959(this.field1707, this.field1708); // L: 208
-	} // L: 209
+	void vmethod3248(ClanSettings var1) {
+		var1.method3080(this.field1711, this.field1705, this.field1708); // L: 109
+	} // L: 110
 
-	@ObfuscatedName("iv")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-22445945"
+		descriptor = "(Ldb;[F[FB)V",
+		garbageValue = "0"
 	)
-	static final void method3135(int var0, int var1) {
-		if (Client.menuOptionsCount >= 2 || Client.isItemSelected != 0 || Client.isSpellSelected) { // L: 8437
-			if (Client.showMouseOverText) { // L: 8438
-				int var2 = class240.method5005(); // L: 8439
-				String var3;
-				if (Client.isItemSelected == 1 && Client.menuOptionsCount < 2) { // L: 8441
-					var3 = "Use" + " " + Client.selectedItemName + " " + "->";
-				} else if (Client.isSpellSelected && Client.menuOptionsCount < 2) { // L: 8442
-					var3 = Client.selectedSpellActionName + " " + Client.selectedSpellName + " " + "->";
-				} else {
-					String var4;
-					if (var2 < 0) { // L: 8446
-						var4 = ""; // L: 8447
-					} else if (Client.menuTargets[var2].length() > 0) { // L: 8450
-						var4 = Client.menuActions[var2] + " " + Client.menuTargets[var2];
-					} else {
-						var4 = Client.menuActions[var2]; // L: 8451
-					}
-
-					var3 = var4; // L: 8453
-				}
-
-				if (Client.menuOptionsCount > 2) { // L: 8455
-					var3 = var3 + class122.colorStartTag(16777215) + " " + '/' + " " + (Client.menuOptionsCount - 2) + " more options";
-				}
-
-				TileItem.fontBold12.drawRandomAlphaAndSpacing(var3, var0 + 4, var1 + 15, 16777215, 0, Client.cycle / 1000); // L: 8456
-			}
-		}
-	} // L: 8457
-
-	@ObfuscatedName("jy")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;Lgs;IIZB)V",
-		garbageValue = "119"
-	)
-	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
-		String[] var5 = var1.inventoryActions; // L: 10868
-		byte var6 = -1; // L: 10869
-		String var7 = null; // L: 10870
-		if (var5 != null && var5[var3] != null) { // L: 10871
-			if (var3 == 0) { // L: 10872
-				var6 = 33;
-			} else if (var3 == 1) { // L: 10873
-				var6 = 34;
-			} else if (var3 == 2) {
-				var6 = 35; // L: 10874
-			} else if (var3 == 3) { // L: 10875
-				var6 = 36;
-			} else {
-				var6 = 37; // L: 10876
+	static void method3171(class124 var0, float[] var1, float[] var2) {
+		if (var0 != null) { // L: 297
+			var0.field1485 = var1[0]; // L: 300
+			float var3 = var1[3] - var1[0]; // L: 301
+			float var4 = var2[3] - var2[0]; // L: 302
+			float var5 = var1[1] - var1[0]; // L: 303
+			float var6 = 0.0F; // L: 304
+			float var7 = 0.0F; // L: 305
+			if ((double)var5 != 0.0D) { // L: 306
+				var6 = (var2[1] - var2[0]) / var5; // L: 307
 			}
 
-			var7 = var5[var3]; // L: 10877
-		} else if (var3 == 4) { // L: 10880
-			var6 = 37; // L: 10881
-			var7 = "Drop"; // L: 10882
-		}
+			var5 = var1[3] - var1[2]; // L: 309
+			if (0.0D != (double)var5) { // L: 310
+				var7 = (var2[3] - var2[2]) / var5; // L: 311
+			}
 
-		if (var6 != -1 && var7 != null) { // L: 10885
-			class268.insertMenuItem(var7, class122.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4); // L: 10886
+			float var8 = 1.0F / (var3 * var3); // L: 313
+			float var9 = var3 * var6; // L: 314
+			float var10 = var7 * var3; // L: 315
+			var0.field1487[0] = var8 * (var10 + var9 - var4 - var4) / var3; // L: 316
+			var0.field1487[1] = var8 * (var4 + var4 + var4 - var9 - var9 - var10); // L: 317
+			var0.field1487[2] = var6; // L: 318
+			var0.field1487[3] = var2[0]; // L: 319
 		}
-
-	} // L: 10888
+	} // L: 298 320
 }
