@@ -3,87 +3,94 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("ij")
+@ObfuscatedName("ia")
 @Implements("WorldMapRectangle")
 public final class WorldMapRectangle {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1451061377
+		intValue = -1171532599
 	)
 	@Export("width")
 	int width;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -216115115
+		intValue = 2064295769
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("q")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -90003499
+		intValue = -294423873
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1498862133
+		intValue = 1121577211
 	)
 	@Export("y")
 	int y;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lhm;"
+		descriptor = "Lil;"
 	)
 	final WorldMapManager this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lhm;)V"
+		descriptor = "(Lil;)V"
 	)
 	WorldMapRectangle(WorldMapManager var1) {
-		this.this$0 = var1; // L: 305
+		this.this$0 = var1; // L: 303
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("jv")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
-		garbageValue = "-2108490134"
+		descriptor = "(Lkn;IIZB)V",
+		garbageValue = "48"
 	)
-	@Export("loadClassFromDescriptor")
-	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-		if (var0.equals("B")) { // L: 222
-			return Byte.TYPE;
-		} else if (var0.equals("I")) { // L: 223
-			return Integer.TYPE;
-		} else if (var0.equals("S")) { // L: 224
-			return Short.TYPE;
-		} else if (var0.equals("J")) { // L: 225
-			return Long.TYPE;
-		} else if (var0.equals("Z")) { // L: 226
-			return Boolean.TYPE;
-		} else if (var0.equals("F")) { // L: 227
-			return Float.TYPE;
-		} else if (var0.equals("D")) { // L: 228
-			return Double.TYPE;
-		} else if (var0.equals("C")) { // L: 229
-			return Character.TYPE;
-		} else {
-			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0); // L: 230 231
-		}
-	}
-
-	@ObfuscatedName("li")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Lps;",
-		garbageValue = "46"
-	)
-	static class436 method4988(int var0) {
-		class436 var1 = (class436)Client.Widget_cachedFonts.get((long)var0); // L: 12486
-		if (var1 == null) { // L: 12487
-			var1 = new class436(class132.field1588, var0); // L: 12488
+	@Export("alignWidgetSize")
+	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
+		int var4 = var0.width; // L: 10904
+		int var5 = var0.height; // L: 10905
+		if (var0.widthAlignment == 0) { // L: 10906
+			var0.width = var0.rawWidth;
+		} else if (var0.widthAlignment == 1) { // L: 10907
+			var0.width = var1 - var0.rawWidth;
+		} else if (var0.widthAlignment == 2) { // L: 10908
+			var0.width = var0.rawWidth * var1 >> 14;
 		}
 
-		return var1; // L: 12490
-	}
+		if (var0.heightAlignment == 0) { // L: 10909
+			var0.height = var0.rawHeight;
+		} else if (var0.heightAlignment == 1) { // L: 10910
+			var0.height = var2 - var0.rawHeight;
+		} else if (var0.heightAlignment == 2) { // L: 10911
+			var0.height = var2 * var0.rawHeight >> 14;
+		}
+
+		if (var0.widthAlignment == 4) { // L: 10912
+			var0.width = var0.height * var0.field3498 / var0.field3532;
+		}
+
+		if (var0.heightAlignment == 4) { // L: 10913
+			var0.height = var0.field3532 * var0.width / var0.field3498;
+		}
+
+		if (var0.contentType == 1337) { // L: 10914
+			Client.viewportWidget = var0;
+		}
+
+		if (var0.type == 12) { // L: 10915
+			var0.method6076().method5772(var0.width, var0.height); // L: 10916
+		}
+
+		if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) { // L: 10918
+			ScriptEvent var6 = new ScriptEvent(); // L: 10919
+			var6.widget = var0; // L: 10920
+			var6.args = var0.onResize; // L: 10921
+			Client.scriptEvents.addFirst(var6); // L: 10922
+		}
+
+	} // L: 10924
 }
