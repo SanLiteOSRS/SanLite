@@ -1,61 +1,146 @@
 import java.io.IOException;
 import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("p")
+@ObfuscatedName("q")
 public class class20 implements Callable {
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = -1119374455
-	)
-	@Export("clientType")
-	public static int clientType;
-	@ObfuscatedName("nb")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lbk;"
+		descriptor = "Ll;"
 	)
-	@Export("tempMenuAction")
-	static MenuAction tempMenuAction;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Ls;"
-	)
-	final class10 field109;
+	final class10 field110;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lu;"
+		descriptor = "Lo;"
 	)
 	final class14 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lu;Ls;)V"
+		descriptor = "(Lo;Ll;)V"
 	)
 	class20(class14 var1, class10 var2) {
 		this.this$0 = var1; // L: 46
-		this.field109 = var2; // L: 47
+		this.field110 = var2; // L: 47
 	} // L: 48
 
 	public Object call() throws Exception {
 		try {
-			while (this.field109.method78()) { // L: 53
-				DynamicObject.method1991(10L); // L: 54
+			while (this.field110.method84()) { // L: 53
+				class197.method3946(10L); // L: 54
 			}
 		} catch (IOException var2) { // L: 57
 			return new class21("Error servicing REST query: " + var2.getMessage()); // L: 58
 		}
 
-		return this.field109.method90(); // L: 60
+		return this.field110.method83(); // L: 60
 	}
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-2092046767"
+		descriptor = "(II)Lbk;",
+		garbageValue = "-1428844357"
 	)
-	static int method255(int var0) {
-		return (int)Math.pow(2.0D, (double)(7.0F + (float)var0 / 256.0F)); // L: 3847
+	@Export("Messages_getMessage")
+	static Message Messages_getMessage(int var0) {
+		return (Message)Messages.Messages_hashTable.get((long)var0); // L: 44
 	}
+
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "1011849235"
+	)
+	static void method291(String var0, String var1, String var2) {
+		GrandExchangeOfferOwnWorldComparator.method1171(7); // L: 1027
+		MusicPatchNode2.setLoginResponseString(var0, var1, var2); // L: 1028
+	} // L: 1029
+
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-35273894"
+	)
+	static void method289() {
+		Login.worldSelectOpen = false; // L: 1867
+		class313.leftTitleSprite.drawAt(Login.xPadding, 0); // L: 1868
+		HealthBar.rightTitleSprite.drawAt(Login.xPadding + 382, 0); // L: 1869
+		MouseRecorder.logoSprite.drawAt(Login.xPadding + 382 - MouseRecorder.logoSprite.subWidth / 2, 18); // L: 1870
+	} // L: 1871
+
+	@ObfuscatedName("hf")
+	@ObfuscatedSignature(
+		descriptor = "(Lco;ZI)V",
+		garbageValue = "960632480"
+	)
+	@Export("addPlayerToScene")
+	static void addPlayerToScene(Player var0, boolean var1) {
+		if (var0 != null && var0.isVisible() && !var0.isHidden) { // L: 4742
+			var0.isUnanimated = false; // L: 4743
+			if ((Client.isLowDetail && Players.Players_count > 50 || Players.Players_count > 200) && var1 && var0.movementSequence == var0.idleSequence) { // L: 4744 4745
+				var0.isUnanimated = true;
+			}
+
+			int var2 = var0.x >> 7; // L: 4747
+			int var3 = var0.y >> 7; // L: 4748
+			if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) { // L: 4749
+				long var4 = SpotAnimationDefinition.calculateTag(0, 0, 0, false, var0.index); // L: 4750
+				if (var0.model0 != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) { // L: 4751
+					var0.isUnanimated = false; // L: 4752
+					var0.tileHeight = class132.getTileHeight(var0.x, var0.y, ApproximateRouteStrategy.Client_plane); // L: 4753
+					var0.playerCycle = Client.cycle; // L: 4754
+					class139.scene.addNullableObject(ApproximateRouteStrategy.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.minX, var0.minY, var0.maxX, var0.maxY); // L: 4755
+				} else {
+					if ((var0.x & 127) == 64 && (var0.y & 127) == 64) { // L: 4758
+						if (Client.tileLastDrawnActor[var2][var3] == Client.viewportDrawCount) { // L: 4759
+							return;
+						}
+
+						Client.tileLastDrawnActor[var2][var3] = Client.viewportDrawCount; // L: 4760
+					}
+
+					var0.tileHeight = class132.getTileHeight(var0.x, var0.y, ApproximateRouteStrategy.Client_plane); // L: 4762
+					var0.playerCycle = Client.cycle; // L: 4763
+					class139.scene.drawEntity(ApproximateRouteStrategy.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.isWalking); // L: 4764
+				}
+			}
+		}
+
+	} // L: 4768
+
+	@ObfuscatedName("ka")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "101"
+	)
+	static final void method288(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 255); // L: 12171
+		if (var0 != BufferedSink.clientPreferences.method2391()) { // L: 12172
+			if (BufferedSink.clientPreferences.method2391() == 0 && Client.currentTrackGroupId != -1) { // L: 12173
+				class18.method266(ReflectionCheck.archive6, Client.currentTrackGroupId, 0, var0, false); // L: 12174
+				Client.playingJingle = false; // L: 12175
+			} else if (var0 == 0) { // L: 12177
+				class283.midiPcmStream.clear(); // L: 12179
+				class283.musicPlayerStatus = 1; // L: 12180
+				DevicePcmPlayerProvider.musicTrackArchive = null; // L: 12181
+				Client.playingJingle = false; // L: 12183
+			} else {
+				class248.method5162(var0); // L: 12185
+			}
+
+			BufferedSink.clientPreferences.method2390(var0); // L: 12186
+		}
+
+	} // L: 12188
+
+	@ObfuscatedName("me")
+	@ObfuscatedSignature(
+		descriptor = "(S)V",
+		garbageValue = "27419"
+	)
+	static void method292() {
+		Client.packetWriter.addNode(FloorUnderlayDefinition.getPacketBufferNode(ClientPacket.field3036, Client.packetWriter.isaacCipher)); // L: 12751
+		Client.oculusOrbState = 0; // L: 12752
+	} // L: 12753
 }

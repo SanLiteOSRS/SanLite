@@ -4,129 +4,129 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gy")
+@ObfuscatedName("hp")
 @Implements("Tile")
 public final class Tile extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1461576443
+		intValue = 681659587
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 107736561
+		intValue = 1961417551
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1903824993
+		intValue = -1921469309
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 183262573
+		intValue = 294967367
 	)
 	@Export("originalPlane")
 	int originalPlane;
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Lhu;"
-	)
-	@Export("paint")
-	SceneTilePaint paint;
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "Lhs;"
-	)
-	@Export("model")
-	SceneTileModel model;
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "Lhi;"
-	)
-	@Export("wallObject")
-	WallObject wallObject;
-	@ObfuscatedName("w")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "Lhr;"
 	)
-	@Export("decorativeObject")
-	DecorativeObject decorativeObject;
+	@Export("paint")
+	SceneTilePaint paint;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Lhc;"
+	)
+	@Export("model")
+	SceneTileModel model;
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lge;"
+		descriptor = "Lhu;"
+	)
+	@Export("wallObject")
+	WallObject wallObject;
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "Lhi;"
+	)
+	@Export("decorativeObject")
+	DecorativeObject decorativeObject;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Lgn;"
 	)
 	@Export("groundObject")
 	GroundObject groundObject;
-	@ObfuscatedName("i")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		descriptor = "Lgz;"
 	)
 	@Export("itemLayer")
 	ItemLayer itemLayer;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1959220913
+		intValue = 1646797343
 	)
 	@Export("gameObjectsCount")
 	int gameObjectsCount;
-	@ObfuscatedName("t")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "[Lhb;"
+		descriptor = "[Lhs;"
 	)
 	@Export("gameObjects")
 	GameObject[] gameObjects;
-	@ObfuscatedName("z")
+	@ObfuscatedName("p")
 	@Export("gameObjectEdgeMasks")
 	int[] gameObjectEdgeMasks;
-	@ObfuscatedName("r")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1592606351
+		intValue = 821893467
 	)
 	@Export("gameObjectsEdgeMask")
 	int gameObjectsEdgeMask;
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 876783023
+		intValue = 641904321
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("k")
+	@ObfuscatedName("u")
 	@Export("drawPrimary")
 	boolean drawPrimary;
-	@ObfuscatedName("h")
+	@ObfuscatedName("z")
 	@Export("drawSecondary")
 	boolean drawSecondary;
-	@ObfuscatedName("x")
+	@ObfuscatedName("t")
 	@Export("drawGameObjects")
 	boolean drawGameObjects;
-	@ObfuscatedName("l")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1840099321
+		intValue = 1201340535
 	)
 	@Export("drawGameObjectEdges")
 	int drawGameObjectEdges;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1630683853
+		intValue = 991426263
 	)
-	int field2333;
-	@ObfuscatedName("p")
+	int field2405;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1394148627
+		intValue = -609957303
 	)
-	int field2334;
-	@ObfuscatedName("b")
+	int field2399;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1332026471
+		intValue = 2111041405
 	)
-	int field2326;
-	@ObfuscatedName("n")
+	int field2410;
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lgy;"
+		descriptor = "Lhp;"
 	)
 	@Export("linkedBelowTile")
 	Tile linkedBelowTile;
@@ -140,26 +140,13 @@ public final class Tile extends Node {
 		this.y = var3; // L: 33
 	} // L: 34
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("kl")
 	@ObfuscatedSignature(
-		descriptor = "(IZB)Ljava/lang/String;",
-		garbageValue = "69"
+		descriptor = "(B)Z",
+		garbageValue = "-17"
 	)
-	@Export("intToString")
-	public static String intToString(int var0, boolean var1) {
-		return var1 && var0 >= 0 ? class140.method3038(var0, 10, var1) : Integer.toString(var0); // L: 115 116
-	}
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "29"
-	)
-	public static int method4019(int var0) {
-		if (var0 > 0) { // L: 204
-			return 1;
-		} else {
-			return var0 < 0 ? -1 : 0; // L: 205 206
-		}
+	@Export("getTapToDrop")
+	static boolean getTapToDrop() {
+		return Client.tapToDrop; // L: 11300
 	}
 }
