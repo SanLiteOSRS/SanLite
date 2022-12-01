@@ -4,55 +4,49 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fs")
+@ObfuscatedName("gj")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Llg;"
 	)
 	@Export("EnumDefinition_archive")
-	static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("v")
+	public static AbstractArchive EnumDefinition_archive;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Ljx;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("nc")
-	@ObfuscatedGetter(
-		intValue = -2102626567
-	)
-	@Export("selectedItemSlot")
-	static int selectedItemSlot;
-	@ObfuscatedName("q")
+	@ObfuscatedName("c")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -735765161
+		intValue = 727291743
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 367199611
+		intValue = 1642297391
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("d")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("y")
+	@ObfuscatedName("n")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("i")
+	@ObfuscatedName("r")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -65,175 +59,108 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0; // L: 17
 	} // L: 22
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "110"
+		descriptor = "(Lqr;B)V",
+		garbageValue = "-2"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
-				return; // L: 44
+			int var2 = var1.readUnsignedByte(); // L: 36
+			if (var2 == 0) { // L: 37
+				return; // L: 40
 			}
 
-			this.decodeNext(var1, var2); // L: 42
+			this.decodeNext(var1, var2); // L: 38
 		}
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1048481170"
-	)
-	@Export("decodeNext")
-	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 1) { // L: 47
-			this.inputType = (char)var1.readUnsignedByte();
-		} else if (var2 == 2) { // L: 48
-			this.outputType = (char)var1.readUnsignedByte();
-		} else if (var2 == 3) { // L: 49
-			this.defaultStr = var1.readStringCp1252NullTerminated();
-		} else if (var2 == 4) { // L: 50
-			this.defaultInt = var1.readInt();
-		} else {
-			int var3;
-			if (var2 == 5) { // L: 51
-				this.outputCount = var1.readUnsignedShort(); // L: 52
-				this.keys = new int[this.outputCount]; // L: 53
-				this.strVals = new String[this.outputCount]; // L: 54
-
-				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 55
-					this.keys[var3] = var1.readInt(); // L: 56
-					this.strVals[var3] = var1.readStringCp1252NullTerminated(); // L: 57
-				}
-			} else if (var2 == 6) { // L: 60
-				this.outputCount = var1.readUnsignedShort(); // L: 61
-				this.keys = new int[this.outputCount]; // L: 62
-				this.intVals = new int[this.outputCount]; // L: 63
-
-				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 64
-					this.keys[var3] = var1.readInt(); // L: 65
-					this.intVals[var3] = var1.readInt(); // L: 66
-				}
-			}
-		}
-
-	} // L: 70
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "75421574"
-	)
-	@Export("size")
-	public int size() {
-		return this.outputCount; // L: 73
 	}
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lju;Lqv;I)Ljt;",
-		garbageValue = "870680813"
+		descriptor = "(Lqr;II)V",
+		garbageValue = "-828068148"
 	)
-	@Export("getPacketBufferNode")
-	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-		PacketBufferNode var2;
-		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) { // L: 24
-			var2 = new PacketBufferNode(); // L: 25
+	@Export("decodeNext")
+	void decodeNext(Buffer var1, int var2) {
+		if (var2 == 1) { // L: 43
+			this.inputType = (char)var1.readUnsignedByte();
+		} else if (var2 == 2) { // L: 44
+			this.outputType = (char)var1.readUnsignedByte();
+		} else if (var2 == 3) { // L: 45
+			this.defaultStr = var1.readStringCp1252NullTerminated();
+		} else if (var2 == 4) { // L: 46
+			this.defaultInt = var1.readInt();
 		} else {
-			var2 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 28
+			int var3;
+			if (var2 == 5) { // L: 47
+				this.outputCount = var1.readUnsignedShort(); // L: 48
+				this.keys = new int[this.outputCount]; // L: 49
+				this.strVals = new String[this.outputCount]; // L: 50
+
+				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 51
+					this.keys[var3] = var1.readInt(); // L: 52
+					this.strVals[var3] = var1.readStringCp1252NullTerminated(); // L: 53
+				}
+			} else if (var2 == 6) { // L: 56
+				this.outputCount = var1.readUnsignedShort(); // L: 57
+				this.keys = new int[this.outputCount]; // L: 58
+				this.intVals = new int[this.outputCount]; // L: 59
+
+				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 60
+					this.keys[var3] = var1.readInt(); // L: 61
+					this.intVals[var3] = var1.readInt(); // L: 62
+				}
+			}
 		}
 
-		var2.clientPacket = var0; // L: 31
-		var2.clientPacketLength = var0.length; // L: 32
-		if (var2.clientPacketLength == -1) {
-			var2.packetBuffer = new PacketBuffer(260); // L: 33
-		} else if (var2.clientPacketLength == -2) { // L: 34
-			var2.packetBuffer = new PacketBuffer(10000);
-		} else if (var2.clientPacketLength <= 18) { // L: 35
-			var2.packetBuffer = new PacketBuffer(20);
-		} else if (var2.clientPacketLength <= 98) { // L: 36
-			var2.packetBuffer = new PacketBuffer(100);
-		} else {
-			var2.packetBuffer = new PacketBuffer(260); // L: 37
-		}
+	} // L: 66
 
-		var2.packetBuffer.setIsaacCipher(var1); // L: 38
-		var2.packetBuffer.writeByteIsaac(var2.clientPacket.id); // L: 39
-		var2.index = 0; // L: 40
-		return var2; // L: 41
-	}
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgs;",
-		garbageValue = "-21"
+		descriptor = "(B)I",
+		garbageValue = "64"
 	)
-	@Export("ItemComposition_get")
-	public static ItemComposition ItemComposition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemComposition_cached.get((long)var0); // L: 92
-		if (var1 != null) { // L: 93
-			return var1;
-		} else {
-			byte[] var2 = UserComparator4.ItemComposition_archive.takeFile(10, var0); // L: 94
-			var1 = new ItemComposition(); // L: 95
-			var1.id = var0; // L: 96
-			if (var2 != null) { // L: 97
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.post(); // L: 98
-			if (var1.noteTemplate != -1) { // L: 99
-				var1.genCert(ItemComposition_get(var1.noteTemplate), ItemComposition_get(var1.note));
-			}
-
-			if (var1.notedId != -1) { // L: 100
-				var1.genBought(ItemComposition_get(var1.notedId), ItemComposition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) { // L: 101
-				var1.genPlaceholder(ItemComposition_get(var1.placeholderTemplate), ItemComposition_get(var1.placeholder));
-			}
-
-			if (!DevicePcmPlayerProvider.ItemComposition_inMembersWorld && var1.isMembersOnly) { // L: 102
-				var1.name = "Members object"; // L: 103
-				var1.isTradable = false; // L: 104
-
-				int var3;
-				for (var3 = 0; var3 < var1.groundActions.length; ++var3) { // L: 105
-					var1.groundActions[var3] = null; // L: 106
-				}
-
-				for (var3 = 0; var3 < var1.inventoryActions.length; ++var3) { // L: 108
-					if (var3 != 4) { // L: 109
-						var1.inventoryActions[var3] = null; // L: 110
-					}
-				}
-
-				var1.shiftClickIndex = -2; // L: 113
-				var1.team = 0; // L: 114
-				if (var1.params != null) { // L: 115
-					boolean var6 = false; // L: 116
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) { // L: 117
-						ParamComposition var5 = class174.getParamDefinition((int)var4.key); // L: 118
-						if (var5.autoDisable) { // L: 119
-							var4.remove();
-						} else {
-							var6 = true; // L: 120
-						}
-					}
-
-					if (!var6) {
-						var1.params = null; // L: 122
-					}
-				}
-			}
-
-			ItemComposition.ItemComposition_cached.put(var1, (long)var0); // L: 125
-			return var1; // L: 126
-		}
+	@Export("size")
+	public int size() {
+		return this.outputCount; // L: 69
 	}
+
+	@ObfuscatedName("ia")
+	@ObfuscatedSignature(
+		descriptor = "(Lcw;I)V",
+		garbageValue = "-1074689727"
+	)
+	static final void method3528(PendingSpawn var0) {
+		long var1 = 0L; // L: 8065
+		int var3 = -1; // L: 8066
+		int var4 = 0; // L: 8067
+		int var5 = 0; // L: 8068
+		if (var0.type == 0) { // L: 8069
+			var1 = class139.scene.getWallObjectTag(var0.plane, var0.x, var0.y);
+		}
+
+		if (var0.type == 1) { // L: 8070
+			var1 = class139.scene.getDecorativeObjectTag(var0.plane, var0.x, var0.y);
+		}
+
+		if (var0.type == 2) { // L: 8071
+			var1 = class139.scene.getGameObjectTag(var0.plane, var0.x, var0.y);
+		}
+
+		if (var0.type == 3) { // L: 8072
+			var1 = class139.scene.getGroundObjectTag(var0.plane, var0.x, var0.y);
+		}
+
+		if (0L != var1) { // L: 8073
+			int var6 = class139.scene.getObjectFlags(var0.plane, var0.x, var0.y, var1); // L: 8074
+			var3 = AttackOption.Entity_unpackID(var1); // L: 8075
+			var4 = var6 & 31; // L: 8076
+			var5 = var6 >> 6 & 3; // L: 8077
+		}
+
+		var0.objectId = var3; // L: 8079
+		var0.field1126 = var4; // L: 8080
+		var0.field1125 = var5; // L: 8081
+	} // L: 8082
 }

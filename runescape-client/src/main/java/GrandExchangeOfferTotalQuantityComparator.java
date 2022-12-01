@@ -4,54 +4,68 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lv")
+@ObfuscatedName("ln")
 @Implements("GrandExchangeOfferTotalQuantityComparator")
 final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
-	@ObfuscatedName("bv")
-	static String field4045;
-
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Llj;Llj;I)I",
-		garbageValue = "1878854014"
+		descriptor = "Llg;"
+	)
+	@Export("VarbitDefinition_archive")
+	static AbstractArchive VarbitDefinition_archive;
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(Llp;Llp;I)I",
+		garbageValue = "154259144"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
-		return var1.grandExchangeOffer.totalQuantity < var2.grandExchangeOffer.totalQuantity ? -1 : (var2.grandExchangeOffer.totalQuantity == var1.grandExchangeOffer.totalQuantity ? 0 : 1); // L: 69
+		return var1.grandExchangeOffer.totalQuantity < var2.grandExchangeOffer.totalQuantity ? -1 : (var2.grandExchangeOffer.totalQuantity == var1.grandExchangeOffer.totalQuantity ? 0 : 1);
+	}
+
+	public int compare(Object var1, Object var2) {
+		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2); // L: 73
 	}
 
 	public boolean equals(Object var1) {
 		return super.equals(var1); // L: 77
 	}
 
-	public int compare(Object var1, Object var2) {
-		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
-	}
-
-	@ObfuscatedName("e")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "285627704"
+		descriptor = "([Ljava/lang/String;[IIIB)V",
+		garbageValue = "85"
 	)
-	static void method5969(int var0) {
-		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 72
-		if (var1 != null) {
-			var1.remove(); // L: 74
+	static void method6472(String[] var0, int[] var1, int var2, int var3) {
+		if (var2 < var3) { // L: 47
+			int var4 = (var3 + var2) / 2; // L: 48
+			int var5 = var2; // L: 49
+			String var6 = var0[var4]; // L: 50
+			var0[var4] = var0[var3]; // L: 51
+			var0[var3] = var6; // L: 52
+			int var7 = var1[var4]; // L: 53
+			var1[var4] = var1[var3]; // L: 54
+			var1[var3] = var7; // L: 55
+
+			for (int var8 = var2; var8 < var3; ++var8) { // L: 56
+				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) { // L: 57
+					String var9 = var0[var8]; // L: 58
+					var0[var8] = var0[var5]; // L: 59
+					var0[var5] = var9; // L: 60
+					int var10 = var1[var8]; // L: 61
+					var1[var8] = var1[var5]; // L: 62
+					var1[var5++] = var10; // L: 63
+				}
+			}
+
+			var0[var3] = var0[var5]; // L: 67
+			var0[var5] = var6; // L: 68
+			var1[var3] = var1[var5]; // L: 69
+			var1[var5] = var7; // L: 70
+			method6472(var0, var1, var2, var5 - 1); // L: 71
+			method6472(var0, var1, var5 + 1, var3); // L: 72
 		}
-	} // L: 73 75
 
-	@ObfuscatedName("gu")
-	@ObfuscatedSignature(
-		descriptor = "(Lcj;I)V",
-		garbageValue = "-1624008508"
-	)
-	static final void method5970(Actor var0) {
-		int var1 = Math.max(1, var0.field1184 - Client.cycle); // L: 4162
-		int var2 = var0.field1140 * 128 + var0.field1205 * 1526988800; // L: 4163
-		int var3 = var0.field1182 * 128 + var0.field1205 * 1526988800; // L: 4164
-		var0.x += (var2 - var0.x) / var1; // L: 4165
-		var0.y += (var3 - var0.y) / var1; // L: 4166
-		var0.field1202 = 0; // L: 4167
-		var0.orientation = var0.field1186; // L: 4168
-	} // L: 4169
+	} // L: 74
 }
