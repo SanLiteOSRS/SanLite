@@ -7,28 +7,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fr")
+@ObfuscatedName("fp")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
+	@Export("javaVendor")
+	public static String javaVendor;
+	@ObfuscatedName("e")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ha")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "Ldl;"
+	)
+	@Export("urlRequester")
+	static UrlRequester urlRequester;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Lfl;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "Lfl;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("j")
+	@ObfuscatedName("m")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -36,11 +45,11 @@ public class TaskHandler implements Runnable {
 		this.current = null; // L: 11
 		this.task = null; // L: 12
 		this.isClosed = false; // L: 14
-		class360.javaVendor = "Unknown"; // L: 20
+		javaVendor = "Unknown"; // L: 20
 		javaVersion = "1.6"; // L: 21
 
 		try {
-			class360.javaVendor = System.getProperty("java.vendor"); // L: 23
+			javaVendor = System.getProperty("java.vendor"); // L: 23
 			javaVersion = System.getProperty("java.version"); // L: 24
 		} catch (Exception var2) { // L: 26
 		}
@@ -52,10 +61,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start(); // L: 31
 	} // L: 32
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "64"
+		descriptor = "(I)V",
+		garbageValue = "898320509"
 	)
 	@Export("close")
 	public final void close() {
@@ -71,15 +80,15 @@ public class TaskHandler implements Runnable {
 
 	} // L: 43
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;B)Lfm;",
-		garbageValue = "0"
+		descriptor = "(IIILjava/lang/Object;B)Lfl;",
+		garbageValue = "-5"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
-		Task var5 = new Task();
-		var5.type = var1;
+		Task var5 = new Task(); // L: 90
+		var5.type = var1; // L: 91
 		var5.intArgument = var2; // L: 92
 		var5.objectArgument = var4; // L: 93
 		synchronized(this) { // L: 94
@@ -95,20 +104,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;IB)Lfm;",
-		garbageValue = "-14"
+		descriptor = "(Ljava/lang/String;IB)Lfl;",
+		garbageValue = "1"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1); // L: 108
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;II)Lfm;",
-		garbageValue = "966743438"
+		descriptor = "(Ljava/lang/Runnable;IS)Lfl;",
+		garbageValue = "228"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -134,7 +143,7 @@ public class TaskHandler implements Runnable {
 					}
 
 					try {
-						this.wait();
+						this.wait(); // L: 58
 					} catch (InterruptedException var8) { // L: 60
 					}
 				}
@@ -163,79 +172,33 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "-443449853"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "1336568457"
 	)
-	public static String method3240(CharSequence var0) {
-		String var1 = class229.base37DecodeLong(class339.method6244(var0)); // L: 57
-		if (var1 == null) { // L: 58
-			var1 = "";
-		}
+	@Export("setLoginResponseString")
+	static void setLoginResponseString(String var0, String var1, String var2) {
+		Login.Login_response1 = var0; // L: 2321
+		Login.Login_response2 = var1; // L: 2322
+		Login.Login_response3 = var2; // L: 2323
+	} // L: 2324
 
-		return var1; // L: 59
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;B)Ljava/lang/String;",
+		garbageValue = "81"
+	)
+	public static String method3447(CharSequence var0) {
+		return HealthBar.method2525('*', var0.length()); // L: 218
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("mf")
 	@ObfuscatedSignature(
-		descriptor = "(IIIZII)J",
-		garbageValue = "608136618"
+		descriptor = "(I)Z",
+		garbageValue = "-2117100344"
 	)
-	@Export("calculateTag")
-	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
-		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17; // L: 89
-		if (var3) { // L: 90
-			var5 |= 65536L;
-		}
-
-		return var5; // L: 91
+	public static boolean method3443() {
+		return Client.staffModLevel >= 2; // L: 12692
 	}
-
-	@ObfuscatedName("jr")
-	@ObfuscatedSignature(
-		descriptor = "([Lkb;IB)V",
-		garbageValue = "79"
-	)
-	@Export("runComponentCloseListeners")
-	static final void runComponentCloseListeners(Widget[] var0, int var1) {
-		for (int var2 = 0; var2 < var0.length; ++var2) { // L: 11586
-			Widget var3 = var0[var2]; // L: 11587
-			if (var3 != null) { // L: 11588
-				if (var3.type == 0) { // L: 11589
-					if (var3.children != null) { // L: 11590
-						runComponentCloseListeners(var3.children, var1);
-					}
-
-					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id); // L: 11591
-					if (var4 != null) { // L: 11592
-						class7.runIntfCloseListeners(var4.group, var1);
-					}
-				}
-
-				ScriptEvent var5;
-				if (var1 == 0 && var3.onDialogAbort != null) { // L: 11594
-					var5 = new ScriptEvent(); // L: 11595
-					var5.widget = var3; // L: 11596
-					var5.args = var3.onDialogAbort; // L: 11597
-					WallObject.runScriptEvent(var5); // L: 11598
-				}
-
-				if (var1 == 1 && var3.onSubChange != null) { // L: 11600
-					if (var3.childIndex >= 0) { // L: 11601
-						Widget var6 = class140.getWidget(var3.id); // L: 11602
-						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) { // L: 11603
-							continue;
-						}
-					}
-
-					var5 = new ScriptEvent(); // L: 11607
-					var5.widget = var3; // L: 11608
-					var5.args = var3.onSubChange; // L: 11609
-					WallObject.runScriptEvent(var5); // L: 11610
-				}
-			}
-		}
-
-	} // L: 11613
 }

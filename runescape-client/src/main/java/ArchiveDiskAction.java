@@ -1,40 +1,30 @@
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InvalidClassException;
-import java.io.ObjectInputStream;
-import java.io.OptionalDataException;
-import java.io.StreamCorruptedException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("kv")
+@ObfuscatedName("lt")
 @Implements("ArchiveDiskAction")
 public class ArchiveDiskAction extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1477037843
+		intValue = 11477361
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@Export("data")
 	public byte[] data;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lnd;"
+		descriptor = "Loi;"
 	)
 	@Export("archiveDisk")
 	public ArchiveDisk archiveDisk;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lln;"
 	)
 	@Export("archive")
 	public Archive archive;
@@ -44,139 +34,117 @@ public class ArchiveDiskAction extends Node {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Lpq;I)V",
-		garbageValue = "206933702"
+		descriptor = "(Lqx;II)Z",
+		garbageValue = "945337988"
 	)
-	@Export("performReflectionCheck")
-	public static void performReflectionCheck(PacketBuffer var0) {
-		ReflectionCheck var1 = (ReflectionCheck)class33.reflectionChecks.last(); // L: 35
-		if (var1 != null) { // L: 36
-			int var2 = var0.offset; // L: 37
-			var0.writeInt(var1.id); // L: 38
-
-			for (int var3 = 0; var3 < var1.size; ++var3) { // L: 39
-				if (var1.creationErrors[var3] != 0) { // L: 40
-					var0.writeByte(var1.creationErrors[var3]); // L: 41
-				} else {
-					try {
-						int var4 = var1.operations[var3]; // L: 45
-						Field var5;
-						int var6;
-						if (var4 == 0) { // L: 46
-							var5 = var1.fields[var3]; // L: 47
-							var6 = Reflection.getInt(var5, (Object)null); // L: 48
-							var0.writeByte(0); // L: 49
-							var0.writeInt(var6); // L: 50
-						} else if (var4 == 1) { // L: 52
-							var5 = var1.fields[var3]; // L: 53
-							Reflection.setInt(var5, (Object)null, var1.intReplaceValues[var3]); // L: 54
-							var0.writeByte(0); // L: 55
-						} else if (var4 == 2) { // L: 57
-							var5 = var1.fields[var3]; // L: 58
-							var6 = var5.getModifiers(); // L: 59
-							var0.writeByte(0); // L: 60
-							var0.writeInt(var6); // L: 61
-						}
-
-						Method var25;
-						if (var4 != 3) { // L: 63
-							if (var4 == 4) { // L: 83
-								var25 = var1.methods[var3]; // L: 84
-								var6 = var25.getModifiers(); // L: 85
-								var0.writeByte(0); // L: 86
-								var0.writeInt(var6); // L: 87
-							}
-						} else {
-							var25 = var1.methods[var3]; // L: 64
-							byte[][] var10 = var1.arguments[var3]; // L: 65
-							Object[] var7 = new Object[var10.length]; // L: 66
-
-							for (int var8 = 0; var8 < var10.length; ++var8) { // L: 67
-								ObjectInputStream var9 = new ObjectInputStream(new ByteArrayInputStream(var10[var8])); // L: 68
-								var7[var8] = var9.readObject(); // L: 69
-							}
-
-							Object var11 = Reflection.invoke(var25, (Object)null, var7); // L: 71
-							if (var11 == null) { // L: 72
-								var0.writeByte(0);
-							} else if (var11 instanceof Number) { // L: 73
-								var0.writeByte(1); // L: 74
-								var0.writeLong(((Number)var11).longValue()); // L: 75
-							} else if (var11 instanceof String) { // L: 77
-								var0.writeByte(2); // L: 78
-								var0.writeStringCp1252NullTerminated((String)var11); // L: 79
-							} else {
-								var0.writeByte(4); // L: 81
-							}
-						}
-					} catch (ClassNotFoundException var13) { // L: 90
-						var0.writeByte(-10); // L: 91
-					} catch (InvalidClassException var14) { // L: 93
-						var0.writeByte(-11); // L: 94
-					} catch (StreamCorruptedException var15) { // L: 96
-						var0.writeByte(-12); // L: 97
-					} catch (OptionalDataException var16) { // L: 99
-						var0.writeByte(-13); // L: 100
-					} catch (IllegalAccessException var17) { // L: 102
-						var0.writeByte(-14); // L: 103
-					} catch (IllegalArgumentException var18) { // L: 105
-						var0.writeByte(-15); // L: 106
-					} catch (InvocationTargetException var19) { // L: 108
-						var0.writeByte(-16); // L: 109
-					} catch (SecurityException var20) { // L: 111
-						var0.writeByte(-17); // L: 112
-					} catch (IOException var21) { // L: 114
-						var0.writeByte(-18); // L: 115
-					} catch (NullPointerException var22) { // L: 117
-						var0.writeByte(-19); // L: 118
-					} catch (Exception var23) { // L: 120
-						var0.writeByte(-20); // L: 121
-					} catch (Throwable var24) { // L: 123
-						var0.writeByte(-21); // L: 124
-					}
-				}
+	@Export("updateExternalPlayer")
+	static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
+		int var2 = var0.readBits(2); // L: 370
+		int var3;
+		int var4;
+		int var7;
+		int var8;
+		int var9;
+		int var10;
+		if (var2 == 0) { // L: 371
+			if (var0.readBits(1) != 0) { // L: 372
+				updateExternalPlayer(var0, var1);
 			}
 
-			var0.writeCrc(var2); // L: 127
-			var1.remove(); // L: 128
-		}
-	} // L: 129
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "1685326414"
-	)
-	public static String method5777(String var0) {
-		int var1 = var0.length(); // L: 167
-		char[] var2 = new char[var1]; // L: 168
-		byte var3 = 2; // L: 169
-
-		for (int var4 = 0; var4 < var1; ++var4) { // L: 170
-			char var5 = var0.charAt(var4); // L: 171
-			if (var3 == 0) { // L: 172
-				var5 = Character.toLowerCase(var5);
-			} else if (var3 == 2 || Character.isUpperCase(var5)) { // L: 173
-				var5 = class326.method6050(var5);
+			var3 = var0.readBits(13); // L: 373
+			var4 = var0.readBits(13); // L: 374
+			boolean var12 = var0.readBits(1) == 1; // L: 375
+			if (var12) { // L: 376
+				Players.Players_pendingUpdateIndices[++Players.Players_pendingUpdateCount - 1] = var1;
 			}
 
-			if (Character.isLetter(var5)) { // L: 174
-				var3 = 0;
-			} else if (var5 != '.' && var5 != '?' && var5 != '!') { // L: 175
-				if (Character.isSpaceChar(var5)) { // L: 176
-					if (var3 != 2) { // L: 177
-						var3 = 1;
-					}
-				} else {
-					var3 = 1; // L: 179
-				}
+			if (Client.players[var1] != null) { // L: 377
+				throw new RuntimeException(); // L: 378
 			} else {
-				var3 = 2;
+				Player var11 = Client.players[var1] = new Player(); // L: 380
+				var11.index = var1; // L: 381
+				if (Players.field1372[var1] != null) { // L: 382
+					var11.read(Players.field1372[var1]);
+				}
+
+				var11.orientation = Players.Players_orientations[var1]; // L: 383
+				var11.targetIndex = Players.Players_targetIndices[var1]; // L: 384
+				var7 = Players.Players_regions[var1]; // L: 385
+				var8 = var7 >> 28; // L: 386
+				var9 = var7 >> 14 & 255; // L: 387
+				var10 = var7 & 255; // L: 388
+				var11.pathTraversed[0] = Players.field1379[var1]; // L: 389
+				var11.plane = (byte)var8; // L: 390
+				var11.resetPath((var9 << 13) + var3 - class154.baseX * 64, (var10 << 13) + var4 - class365.baseY * 64); // L: 391
+				var11.field1133 = false; // L: 392
+				return true; // L: 393
 			}
+		} else if (var2 == 1) { // L: 395
+			var3 = var0.readBits(2); // L: 396
+			var4 = Players.Players_regions[var1]; // L: 397
+			Players.Players_regions[var1] = (var4 & 268435455) + (((var4 >> 28) + var3 & 3) << 28); // L: 398
+			return false; // L: 399
+		} else {
+			int var5;
+			int var6;
+			if (var2 == 2) { // L: 401
+				var3 = var0.readBits(5); // L: 402
+				var4 = var3 >> 3; // L: 403
+				var5 = var3 & 7; // L: 404
+				var6 = Players.Players_regions[var1]; // L: 405
+				var7 = (var6 >> 28) + var4 & 3; // L: 406
+				var8 = var6 >> 14 & 255; // L: 407
+				var9 = var6 & 255; // L: 408
+				if (var5 == 0) { // L: 409
+					--var8; // L: 410
+					--var9; // L: 411
+				}
 
-			var2[var4] = var5; // L: 180
+				if (var5 == 1) { // L: 413
+					--var9;
+				}
+
+				if (var5 == 2) { // L: 414
+					++var8; // L: 415
+					--var9; // L: 416
+				}
+
+				if (var5 == 3) { // L: 418
+					--var8;
+				}
+
+				if (var5 == 4) { // L: 419
+					++var8;
+				}
+
+				if (var5 == 5) { // L: 420
+					--var8; // L: 421
+					++var9; // L: 422
+				}
+
+				if (var5 == 6) { // L: 424
+					++var9;
+				}
+
+				if (var5 == 7) { // L: 425
+					++var8; // L: 426
+					++var9; // L: 427
+				}
+
+				Players.Players_regions[var1] = (var8 << 14) + var9 + (var7 << 28); // L: 429
+				return false; // L: 430
+			} else {
+				var3 = var0.readBits(18); // L: 432
+				var4 = var3 >> 16; // L: 433
+				var5 = var3 >> 8 & 255; // L: 434
+				var6 = var3 & 255; // L: 435
+				var7 = Players.Players_regions[var1]; // L: 436
+				var8 = (var7 >> 28) + var4 & 3; // L: 437
+				var9 = var5 + (var7 >> 14) & 255; // L: 438
+				var10 = var6 + var7 & 255; // L: 439
+				Players.Players_regions[var1] = (var9 << 14) + var10 + (var8 << 28); // L: 440
+				return false; // L: 441
+			}
 		}
-
-		return new String(var2); // L: 182
 	}
 }
