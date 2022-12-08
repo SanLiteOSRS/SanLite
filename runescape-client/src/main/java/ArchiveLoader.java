@@ -4,53 +4,48 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bj")
+@ObfuscatedName("cq")
 @Implements("ArchiveLoader")
 public class ArchiveLoader {
-	@ObfuscatedName("au")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lns;"
-	)
-	static Bounds field1022;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lln;"
 	)
 	@Export("archive")
 	final Archive archive;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -955851169
+		intValue = 1940986101
 	)
 	@Export("groupCount")
 	final int groupCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 982415587
+		intValue = 2076780085
 	)
 	@Export("loadedCount")
 	int loadedCount;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llc;Ljava/lang/String;)V"
+		descriptor = "(Lln;Ljava/lang/String;)V"
 	)
 	ArchiveLoader(Archive var1, String var2) {
 		this.loadedCount = 0; // L: 9
-		this.archive = var1;
-		this.groupCount = var1.getGroupCount();
+		this.archive = var1; // L: 12
+		this.groupCount = var1.getGroupCount(); // L: 13
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "102"
+		garbageValue = "3"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
 		this.loadedCount = 0; // L: 17
 
 		for (int var1 = 0; var1 < this.groupCount; ++var1) { // L: 18
-			if (!this.archive.method5806(var1) || this.archive.method5805(var1)) {
+			if (!this.archive.method6448(var1) || this.archive.method6424(var1)) {
 				++this.loadedCount; // L: 19
 			}
 		}
@@ -58,47 +53,30 @@ public class ArchiveLoader {
 		return this.loadedCount >= this.groupCount; // L: 21
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("mm")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1248295079"
+		descriptor = "(Lkd;I)Ljava/lang/String;",
+		garbageValue = "764446077"
 	)
-	public static int method2075(int var0) {
-		return var0 != 0 && var0 != 1 ? -1 : 0; // L: 12 13 15
-	}
-
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "280590426"
-	)
-	static int method2073(int var0, Script var1, boolean var2) {
-		if (var0 != 3700 && var0 != 3701) { // L: 2707
-			if (var0 == 3702) { // L: 2712
-				++class446.Interpreter_intStackSize; // L: 2713
-				return 1; // L: 2714
-			} else {
-				return 2; // L: 2716
-			}
+	@Export("Widget_getSpellActionName")
+	static String Widget_getSpellActionName(Widget var0) {
+		if (PacketWriter.Widget_unpackTargetMask(Clock.getWidgetFlags(var0)) == 0) { // L: 12612
+			return null;
 		} else {
-			--class446.Interpreter_intStackSize; // L: 2708
-			--Interpreter.Interpreter_stringStackSize; // L: 2709
-			return 1; // L: 2710
+			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null; // L: 12613 12614 12616
 		}
 	}
 
-	@ObfuscatedName("lc")
+	@ObfuscatedName("mc")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-818413481"
+		descriptor = "([BII)V",
+		garbageValue = "1191186738"
 	)
-	@Export("clanKickUser")
-	static final void clanKickUser(String var0) {
-		if (Huffman.friendsChatManager != null) { // L: 12225
-			PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2923, Client.packetWriter.isaacCipher); // L: 12226
-			var1.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0)); // L: 12227
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12228
-			Client.packetWriter.addNode(var1); // L: 12229
+	static void method2222(byte[] var0, int var1) {
+		if (Client.randomDatData == null) { // L: 12678
+			Client.randomDatData = new byte[24];
 		}
-	} // L: 12230
+
+		class373.writeRandomDat(var0, var1, Client.randomDatData, 0, 24); // L: 12679
+	} // L: 12680
 }
