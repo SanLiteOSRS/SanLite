@@ -1,80 +1,116 @@
+import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("cz")
 @Implements("AttackOption")
-public enum AttackOption implements MouseWheel {
-	@ObfuscatedName("c")
+public enum AttackOption implements class345 {
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lcz;"
 	)
 	@Export("AttackOption_dependsOnCombatLevels")
 	AttackOption_dependsOnCombatLevels(0),
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lcz;"
 	)
 	@Export("AttackOption_alwaysRightClick")
 	AttackOption_alwaysRightClick(1),
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lcz;"
 	)
-	field1288(2),
-	@ObfuscatedName("f")
+	field1347(2),
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lcz;"
 	)
 	@Export("AttackOption_hidden")
 	AttackOption_hidden(3),
-	@ObfuscatedName("j")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lcz;"
 	)
-	field1294(4);
+	field1346(4);
 
-	@ObfuscatedName("sx")
-	@ObfuscatedSignature(
-		descriptor = "Lar;"
-	)
-	@Export("pcmPlayer0")
-	static PcmPlayer pcmPlayer0;
-	@ObfuscatedName("e")
+	@ObfuscatedName("mf")
 	@ObfuscatedGetter(
-		intValue = 1078797137
+		intValue = 1102902677
+	)
+	@Export("menuWidth")
+	static int menuWidth;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = -1340490443
 	)
 	@Export("id")
 	final int id;
 
 	AttackOption(int var3) {
-		this.id = var3; // L: 12508
-	} // L: 12509
+		this.id = var3; // L: 12780
+	} // L: 12781
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "96"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 12513
+		return this.id; // L: 12785
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;IIIZI)V",
-		garbageValue = "-2127504965"
+		descriptor = "(Ljava/awt/Component;B)V",
+		garbageValue = "0"
 	)
-	public static void method2410(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class272.musicPlayerStatus = 1; // L: 26
-		class272.musicTrackArchive = var0; // L: 27
-		class272.musicTrackGroupId = var1; // L: 28
-		class151.musicTrackFileId = var2; // L: 29
-		class272.musicTrackVolume = var3; // L: 30
-		class11.musicTrackBoolean = var4; // L: 31
-		class272.pcmSampleLength = 10000; // L: 32
-	} // L: 33
+	static void method2603(Component var0) {
+		var0.removeMouseListener(MouseHandler.MouseHandler_instance); // L: 37
+		var0.removeMouseMotionListener(MouseHandler.MouseHandler_instance); // L: 38
+		var0.removeFocusListener(MouseHandler.MouseHandler_instance); // L: 39
+		MouseHandler.MouseHandler_currentButtonVolatile = 0; // L: 40
+	} // L: 41
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(III)Lkd;",
+		garbageValue = "-1318941452"
+	)
+	@Export("getWidgetChild")
+	public static Widget getWidgetChild(int var0, int var1) {
+		Widget var2 = class175.getWidget(var0); // L: 252
+		if (var1 == -1) { // L: 253
+			return var2;
+		} else {
+			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null; // L: 254 255
+		}
+	}
+
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(IB)I",
+		garbageValue = "82"
+	)
+	static int method2610(int var0) {
+		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F)); // L: 4223
+	}
+
+	@ObfuscatedName("bw")
+	@ObfuscatedSignature(
+		descriptor = "(ILky;ZB)V",
+		garbageValue = "2"
+	)
+	static void method2608(int var0, Coord var1, boolean var2) {
+		WorldMapArea var3 = Client.getWorldMap().getMapArea(var0); // L: 5105
+		int var4 = class155.localPlayer.plane; // L: 5106
+		int var5 = class154.baseX * 64 + (class155.localPlayer.x >> 7); // L: 5107
+		int var6 = class365.baseY * 64 + (class155.localPlayer.y >> 7); // L: 5108
+		Coord var7 = new Coord(var4, var5, var6); // L: 5109
+		Client.getWorldMap().method8046(var3, var7, var1, var2); // L: 5110
+	} // L: 5111
 }

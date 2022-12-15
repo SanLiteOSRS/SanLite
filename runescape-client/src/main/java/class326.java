@@ -1,45 +1,64 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lg")
-public class class326 {
-	@ObfuscatedName("rz")
-	static boolean field4082;
-	@ObfuscatedName("c")
+@ObfuscatedName("le")
+public enum class326 implements class345 {
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Llg;"
+		descriptor = "Lle;"
 	)
-	static final class326 field4079;
+	field4143(-1),
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "Lle;"
+	)
+	field4140(0),
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Llg;"
+		descriptor = "Lle;"
 	)
-	static final class326 field4083;
-	@ObfuscatedName("q")
+	field4144(1),
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Llg;"
+		descriptor = "Lle;"
 	)
-	static final class326 field4080;
-	@ObfuscatedName("j")
-	@Export("Interpreter_stringLocals")
-	static String[] Interpreter_stringLocals;
+	field4141(2);
 
-	static {
-		field4079 = new class326(); // L: 4
-		field4083 = new class326(); // L: 5
-		field4080 = new class326(); // L: 6
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = 526450303
+	)
+	final int field4142;
+
+	class326(int var3) {
+		this.field4142 = var3; // L: 15
+	} // L: 16
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "96"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field4142; // L: 20
 	}
 
-	class326() {
-	} // L: 8
-
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(CI)C",
-		garbageValue = "-408398263"
+		descriptor = "(B)Loj;",
+		garbageValue = "1"
 	)
-	static char method6050(char var0) {
-		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0; // L: 61 62
+	public static class410 method6395() {
+		synchronized(class410.field4609) { // L: 25
+			if (class410.field4608 == 0) { // L: 26
+				return new class410();
+			} else {
+				class410.field4609[--class410.field4608].method7782(); // L: 28
+				return class410.field4609[class410.field4608]; // L: 29
+			}
+		}
 	}
 }

@@ -4,22 +4,22 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bw")
+@ObfuscatedName("bb")
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
-	@ObfuscatedName("pm")
-	@ObfuscatedGetter(
-		intValue = -1419708281
+	@ObfuscatedName("bp")
+	@ObfuscatedSignature(
+		descriptor = "Lqi;"
 	)
-	static int field960;
-	@ObfuscatedName("c")
+	@Export("loginType")
+	static LoginType loginType;
+	@ObfuscatedName("h")
 	@Export("executor")
 	ExecutorService executor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@Export("future")
 	Future future;
 
@@ -28,10 +28,10 @@ public class SecureRandomFuture {
 		this.future = this.executor.submit(new SecureRandomCallable()); // L: 14
 	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-33"
+		garbageValue = "120"
 	)
 	@Export("shutdown")
 	void shutdown() {
@@ -39,114 +39,165 @@ public class SecureRandomFuture {
 		this.executor = null; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1943813302"
+		garbageValue = "-1647109690"
 	)
 	@Export("isDone")
 	boolean isDone() {
-		return this.future.isDone();
+		return this.future.isDone(); // L: 23
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/security/SecureRandom;",
-		garbageValue = "448481251"
+		garbageValue = "1657619269"
 	)
 	@Export("get")
 	SecureRandom get() {
 		try {
-			return (SecureRandom)this.future.get();
-		} catch (Exception var2) {
-			return NetFileRequest.method5843();
+			return (SecureRandom)this.future.get(); // L: 28
+		} catch (Exception var4) { // L: 30
+			SecureRandom var3 = new SecureRandom(); // L: 33
+			var3.nextInt(); // L: 34
+			return var3; // L: 37
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfi;",
-		garbageValue = "81"
+		descriptor = "([FIFI)F",
+		garbageValue = "-1005552085"
 	)
-	@Export("KitDefinition_get")
-	public static KitDefinition KitDefinition_get(int var0) {
-		KitDefinition var1 = (KitDefinition)KitDefinition.KitDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = KitDefinition.KitDefinition_archive.takeFile(3, var0);
-			var1 = new KitDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
+	static float method2120(float[] var0, int var1, float var2) {
+		float var3 = var0[var1]; // L: 108
 
-			KitDefinition.KitDefinition_cached.put(var1, (long)var0);
-			return var1;
+		for (int var4 = var1 - 1; var4 >= 0; --var4) { // L: 109
+			var3 = var0[var4] + var3 * var2; // L: 110
 		}
-	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;IZI)Lda;",
-		garbageValue = "1850622535"
-	)
-	public static class122 method1963(AbstractArchive var0, AbstractArchive var1, int var2, boolean var3) {
-		boolean var4 = true;
-		byte[] var5 = var0.getFile(var2 >> 16 & 65535, var2 & 65535);
-		if (var5 == null) {
-			var4 = false;
-			return null; // L: 27
-		} else {
-			int var6 = (var5[1] & 255) << 8 | var5[2] & 255;
-			byte[] var7;
-			if (var3) {
-				var7 = var1.getFile(0, var6);
-			} else {
-				var7 = var1.getFile(var6, 0);
-			}
-
-			if (var7 == null) { // L: 33
-				var4 = false;
-			}
-
-			if (!var4) { // L: 34
-				return null;
-			} else {
-				try {
-					return new class122(var0, var1, var2, var3); // L: 36
-				} catch (Exception var9) { // L: 38
-					return null; // L: 39
-				}
-			}
-		}
+		return var3; // L: 112
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "1953508485"
+		descriptor = "(ILbm;ZI)I",
+		garbageValue = "-2142160663"
 	)
-	@Export("addChatMessage")
-	static void addChatMessage(int var0, String var1, String var2, String var3) {
-		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 23
-		if (var4 == null) { // L: 24
-			var4 = new ChatChannel(); // L: 25
-			Messages.Messages_channels.put(var0, var4); // L: 26
+	static int method2119(int var0, Script var1, boolean var2) {
+		if (var0 < 1000) { // L: 432
+			return UserComparator8.method2820(var0, var1, var2);
+		} else if (var0 < 1100) { // L: 433
+			return WorldMapData_1.method5162(var0, var1, var2);
+		} else if (var0 < 1200) { // L: 434
+			return NPC.method2530(var0, var1, var2);
+		} else if (var0 < 1300) { // L: 435
+			return GrandExchangeOfferOwnWorldComparator.method1223(var0, var1, var2);
+		} else if (var0 < 1400) { // L: 436
+			return class32.method466(var0, var1, var2);
+		} else if (var0 < 1500) { // L: 437
+			return MusicPatchNode.method5788(var0, var1, var2);
+		} else if (var0 < 1600) { // L: 438
+			return class71.method2033(var0, var1, var2);
+		} else if (var0 < 1700) { // L: 439
+			return class343.method6671(var0, var1, var2);
+		} else if (var0 < 1800) { // L: 440
+			return MusicPatchPcmStream.method5751(var0, var1, var2);
+		} else if (var0 < 1900) { // L: 441
+			return WorldMapArea.method4967(var0, var1, var2);
+		} else if (var0 < 2000) { // L: 442
+			return class365.method7000(var0, var1, var2);
+		} else if (var0 < 2100) { // L: 443
+			return WorldMapData_1.method5162(var0, var1, var2);
+		} else if (var0 < 2200) { // L: 444
+			return NPC.method2530(var0, var1, var2);
+		} else if (var0 < 2300) { // L: 445
+			return GrandExchangeOfferOwnWorldComparator.method1223(var0, var1, var2);
+		} else if (var0 < 2400) { // L: 446
+			return class32.method466(var0, var1, var2);
+		} else if (var0 < 2500) { // L: 447
+			return MusicPatchNode.method5788(var0, var1, var2);
+		} else if (var0 < 2600) { // L: 448
+			return class14.method172(var0, var1, var2);
+		} else if (var0 < 2700) { // L: 449
+			return class7.method54(var0, var1, var2);
+		} else if (var0 < 2800) { // L: 450
+			return MouseRecorder.method2264(var0, var1, var2);
+		} else if (var0 < 2900) { // L: 451
+			return WorldMapSection2.method4905(var0, var1, var2);
+		} else if (var0 < 3000) { // L: 452
+			return class365.method7000(var0, var1, var2);
+		} else if (var0 < 3200) { // L: 453
+			return class413.method7863(var0, var1, var2);
+		} else if (var0 < 3300) { // L: 454
+			return Client.method1742(var0, var1, var2);
+		} else if (var0 < 3400) { // L: 455
+			return GrandExchangeOfferUnitPriceComparator.method6641(var0, var1, var2);
+		} else if (var0 < 3500) { // L: 456
+			return SoundCache.method893(var0, var1, var2);
+		} else if (var0 < 3600) { // L: 457
+			return FileSystem.method3479(var0, var1, var2);
+		} else if (var0 < 3700) { // L: 458
+			return WorldMapCacheName.method5339(var0, var1, var2);
+		} else if (var0 < 3800) { // L: 459
+			return class20.method292(var0, var1, var2);
+		} else if (var0 < 3900) { // L: 460
+			return SceneTilePaint.method4807(var0, var1, var2);
+		} else if (var0 < 4000) { // L: 461
+			return class358.method6920(var0, var1, var2);
+		} else if (var0 < 4100) { // L: 462
+			return ParamComposition.method3803(var0, var1, var2);
+		} else if (var0 < 4200) {
+			return NPCComposition.method3725(var0, var1, var2); // L: 463
+		} else if (var0 < 4300) { // L: 464
+			return class20.method294(var0, var1, var2);
+		} else if (var0 < 5100) { // L: 465
+			return class144.method3143(var0, var1, var2);
+		} else if (var0 < 5400) { // L: 466
+			return class282.method5508(var0, var1, var2);
+		} else if (var0 < 5600) { // L: 467
+			return class82.method2248(var0, var1, var2);
+		} else if (var0 < 5700) { // L: 468
+			return DecorativeObject.method4827(var0, var1, var2);
+		} else if (var0 < 6300) { // L: 469
+			return class10.method100(var0, var1, var2);
+		} else if (var0 < 6600) { // L: 470
+			return class141.method3107(var0, var1, var2);
+		} else if (var0 < 6700) { // L: 471
+			return class126.method2986(var0, var1, var2);
+		} else if (var0 < 6800) { // L: 472
+			return class26.method378(var0, var1, var2);
+		} else if (var0 < 6900) { // L: 473
+			return Message.method1200(var0, var1, var2);
+		} else if (var0 < 7000) { // L: 474
+			return class300.method5844(var0, var1, var2);
+		} else if (var0 < 7100) { // L: 475
+			return class168.method3481(var0, var1, var2);
+		} else if (var0 < 7200) { // L: 476
+			return Player.method2334(var0, var1, var2);
+		} else if (var0 < 7300) { // L: 477
+			return class199.method4091(var0, var1, var2);
+		} else if (var0 < 7500) { // L: 478
+			return WorldMapLabelSize.method4852(var0, var1, var2);
+		} else if (var0 < 7600) { // L: 479
+			return class417.method7903(var0, var1, var2);
+		} else {
+			return var0 < 7700 ? HealthBarUpdate.method2368(var0, var1, var2) : 2; // L: 480 481
 		}
+	}
 
-		Message var5 = var4.addMessage(var0, var1, var2, var3); // L: 28
-		Messages.Messages_hashTable.put(var5, (long)var5.count); // L: 29
-		Messages.Messages_queue.add(var5); // L: 30
-		Client.chatCycle = Client.cycleCntr; // L: 31
-	} // L: 32
-
-	@ObfuscatedName("ey")
+	@ObfuscatedName("ie")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "7"
+		descriptor = "(B)I",
+		garbageValue = "37"
 	)
-	static final void method1967() {
-		Scene.Scene_isLowDetail = false; // L: 877
-		Client.isLowDetail = false; // L: 878
-	} // L: 879
+	static final int method2118() {
+		if (StructComposition.clientPreferences.method2412()) { // L: 4984
+			return class383.Client_plane;
+		} else {
+			int var0 = SpotAnimationDefinition.getTileHeight(class145.cameraX, ClanChannel.cameraZ, class383.Client_plane); // L: 4985
+			return var0 - class414.cameraY < 800 && (Tiles.Tiles_renderFlags[class383.Client_plane][class145.cameraX >> 7][ClanChannel.cameraZ >> 7] & 4) != 0 ? class383.Client_plane : 3; // L: 4986 4987
+		}
+	}
 }
