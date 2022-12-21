@@ -1,39 +1,55 @@
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nx")
-public class class385 {
-	@ObfuscatedName("c")
-	float field4383;
+@ObfuscatedName("nz")
+public final class class385 implements Comparable {
+	@ObfuscatedName("h")
+	Object field4498;
+	@ObfuscatedName("e")
+	Object field4497;
 	@ObfuscatedName("v")
-	float field4382;
-	@ObfuscatedName("q")
-	float field4384;
-
-	static {
-		new class385(0.0F, 0.0F, 0.0F); // L: 5
-		new class385(1.0F, 1.0F, 1.0F); // L: 9
-		new class385(1.0F, 0.0F, 0.0F); // L: 13
-		new class385(0.0F, 1.0F, 0.0F); // L: 17
-		new class385(0.0F, 0.0F, 1.0F); // L: 21
-	} // L: 26
-
-	class385(float var1, float var2, float var3) {
-		this.field4383 = var1; // L: 33
-		this.field4382 = var2; // L: 34
-		this.field4384 = var3; // L: 35
-	} // L: 36
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(B)F",
-		garbageValue = "84"
+	@ObfuscatedGetter(
+		longValue = -6635718008833307511L
 	)
-	final float method6929() {
-		return (float)Math.sqrt((double)(this.field4384 * this.field4384 + this.field4383 * this.field4383 + this.field4382 * this.field4382)); // L: 39
+	long field4496;
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		longValue = 5181820872538493099L
+	)
+	long field4499;
+
+	class385(Object var1, Object var2) {
+		this.field4498 = var1; // L: 10
+		this.field4497 = var2; // L: 11
+	} // L: 12
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(Lnz;I)I",
+		garbageValue = "16470781"
+	)
+	int method7393(class385 var1) {
+		if (this.field4499 < var1.field4499) {
+			return -1; // L: 15
+		} else {
+			return this.field4499 > var1.field4499 ? 1 : 0; // L: 16 17
+		}
 	}
 
-	public String toString() {
-		return this.field4383 + ", " + this.field4382 + ", " + this.field4384; // L: 44
+	public boolean equals(Object var1) {
+		if (var1 instanceof class385) { // L: 22
+			return this.field4497.equals(((class385)var1).field4497);
+		} else {
+			throw new IllegalArgumentException(); // L: 23
+		}
+	}
+
+	public int hashCode() {
+		return this.field4497.hashCode(); // L: 28
+	}
+
+	public int compareTo(Object var1) {
+		return this.method7393((class385)var1); // L: 32
 	}
 }
