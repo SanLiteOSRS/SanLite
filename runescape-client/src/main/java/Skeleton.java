@@ -4,32 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gm")
+@ObfuscatedName("hn")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("e")
+	@ObfuscatedName("lf")
+	@ObfuscatedSignature(
+		descriptor = "Lht;"
+	)
+	@Export("textureProvider")
+	static TextureProvider textureProvider;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1780002005
+		intValue = 227763471
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -64074659
+		intValue = 15717685
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("w")
+	@ObfuscatedName("r")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("y")
+	@ObfuscatedName("u")
 	@Export("labels")
 	int[][] labels;
-	@ObfuscatedName("i")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Lgq;"
+		descriptor = "Lhi;"
 	)
-	class201 field2376;
+	class213 field2525;
 
 	public Skeleton(int var1, byte[] var2) {
 		this.id = var1; // L: 19
@@ -56,27 +62,38 @@ public class Skeleton extends Node {
 		if (var3.offset < var3.array.length) { // L: 29
 			var4 = var3.readUnsignedShort(); // L: 30
 			if (var4 > 0) { // L: 31
-				this.field2376 = new class201(var3, var4); // L: 32
+				this.field2525 = new class213(var3, var4); // L: 32
 			}
 		}
 
 	} // L: 35
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-58631089"
+		garbageValue = "-2112065673"
 	)
-	public int method4148() {
+	public int method4426() {
 		return this.count; // L: 38
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lgq;",
-		garbageValue = "1269137329"
+		descriptor = "(I)Lhi;",
+		garbageValue = "736109074"
 	)
-	public class201 method4150() {
-		return this.field2376; // L: 42
+	public class213 method4422() {
+		return this.field2525; // L: 42
 	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "81"
+	)
+	static final void method4428() {
+		Object var10000 = null; // L: 123
+		String var0 = "You can't add yourself to your own friend list";
+		KitDefinition.addGameMessage(30, "", var0); // L: 125
+	} // L: 127
 }

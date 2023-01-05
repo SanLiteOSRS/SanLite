@@ -1,71 +1,37 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jd")
+@ObfuscatedName("jb")
 public class class272 {
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "(ILoi;Lln;I)V",
+		garbageValue = "1655477466"
 	)
-	@Export("musicPatchesArchive")
-	public static AbstractArchive musicPatchesArchive;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	@Export("musicSamplesArchive")
-	public static AbstractArchive musicSamplesArchive;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Ljp;"
-	)
-	@Export("midiPcmStream")
-	public static MidiPcmStream midiPcmStream;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = -759925957
-	)
-	@Export("musicPlayerStatus")
-	public static int musicPlayerStatus;
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	@Export("musicTrackArchive")
-	public static AbstractArchive musicTrackArchive;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = -551405229
-	)
-	@Export("musicTrackGroupId")
-	public static int musicTrackGroupId;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = -1837276653
-	)
-	@Export("musicTrackVolume")
-	public static int musicTrackVolume;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -1550491905
-	)
-	@Export("pcmSampleLength")
-	public static int pcmSampleLength;
-	@ObfuscatedName("co")
-	@ObfuscatedGetter(
-		intValue = 208157847
-	)
-	public static int field3196;
-	@ObfuscatedName("hj")
-	@ObfuscatedSignature(
-		descriptor = "Loy;"
-	)
-	@Export("WorldMapElement_fonts")
-	static Fonts WorldMapElement_fonts;
+	static void method5476(int var0, ArchiveDisk var1, Archive var2) {
+		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 18
+		var3.type = 1; // L: 19
+		var3.key = (long)var0; // L: 20
+		var3.archiveDisk = var1; // L: 21
+		var3.archive = var2; // L: 22
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 23
+			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 24
+		} // L: 25
 
-	static {
-		musicPlayerStatus = 0; // L: 11
+		class154.method3300(); // L: 26
+	} // L: 27
+
+	@ObfuscatedName("m")
+	public static boolean method5474(long var0) {
+		return (int)(var0 >>> 16 & 1L) == 1; // L: 60
 	}
+
+	@ObfuscatedName("nb")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-677085282"
+	)
+	static void method5475(int var0) {
+		Client.oculusOrbState = var0; // L: 12696
+	} // L: 12697
 }
