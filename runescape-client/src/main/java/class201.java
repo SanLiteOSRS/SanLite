@@ -1,226 +1,292 @@
+import java.util.Arrays;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gq")
-public class class201 {
-	@ObfuscatedName("v")
+@ObfuscatedName("gc")
+public class class201 implements class30 {
+	@ObfuscatedName("is")
 	@ObfuscatedSignature(
-		descriptor = "[Ldc;"
+		descriptor = "Lrx;"
 	)
-	class115[] field2365;
+	@Export("compass")
+	static SpritePixels compass;
+	@ObfuscatedName("h")
+	char[] field2327;
+	@ObfuscatedName("e")
+	int[] field2316;
+	@ObfuscatedName("v")
+	public int[] field2323;
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = 1561579701
+	)
+	public int field2326;
+	@ObfuscatedName("m")
+	int[] field2319;
 	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -77062685
+		intValue = 784206767
 	)
-	int field2366;
-
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V"
-	)
-	class201(Buffer var1, int var2) {
-		this.field2365 = new class115[var2]; // L: 13
-		this.field2366 = var1.readUnsignedByte(); // L: 14
-
-		for (int var3 = 0; var3 < this.field2365.length; ++var3) { // L: 15
-			class115 var4 = new class115(this.field2366, var1, false); // L: 16
-			this.field2365[var3] = var4; // L: 17
-		}
-
-		this.method4131(); // L: 19
-	} // L: 20
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1005826580"
-	)
-	void method4131() {
-		class115[] var1 = this.field2365; // L: 24
-
-		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 25
-			class115 var3 = var1[var2]; // L: 26
-			if (var3.field1448 >= 0) { // L: 28
-				var3.field1440 = this.field2365[var3.field1448]; // L: 29
-			}
-		}
-
-	} // L: 34
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "3"
-	)
-	public int method4130() {
-		return this.field2365.length; // L: 37
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Ldc;",
-		garbageValue = "-62"
-	)
-	class115 method4123(int var1) {
-		return this.field2365[var1]; // L: 41
-	}
-
+	int field2320;
 	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Ldc;",
-		garbageValue = "1269137329"
+	@ObfuscatedGetter(
+		intValue = -791064279
 	)
-	class115[] method4124() {
-		return this.field2365; // L: 45
+	int field2321;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = -1539729439
+	)
+	int field2322;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = -1119474005
+	)
+	int field2317;
+	@ObfuscatedName("b")
+	boolean[] field2324;
+	@ObfuscatedName("j")
+	boolean[] field2325;
+	@ObfuscatedName("g")
+	boolean[] field2318;
+	@ObfuscatedName("i")
+	public char field2315;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = -1152900247
+	)
+	public int field2328;
+
+	public class201() {
+		this.field2327 = new char[128]; // L: 8
+		this.field2316 = new int[128];
+		this.field2323 = new int[128];
+		this.field2326 = 0;
+		this.field2319 = new int[128];
+		this.field2320 = 0; // L: 13
+		this.field2321 = 0;
+		this.field2322 = 0;
+		this.field2317 = 0;
+		this.field2324 = new boolean[112];
+		this.field2325 = new boolean[112];
+		this.field2318 = new boolean[112]; // L: 19
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Lda;II)V",
-		garbageValue = "-1587521432"
+		descriptor = "(II)Z",
+		garbageValue = "1119176744"
 	)
-	void method4146(class122 var1, int var2) {
-		this.method4126(var1, var2, (boolean[])null, false); // L: 49
-	} // L: 50
+	public boolean vmethod4138(int var1) {
+		this.method4101(var1);
+		this.field2324[var1] = true;
+		this.field2325[var1] = true;
+		this.field2318[var1] = false;
+		this.field2323[++this.field2326 - 1] = var1;
+		return true;
+	}
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Lda;I[ZZI)V",
-		garbageValue = "-482543177"
+		descriptor = "(II)Z",
+		garbageValue = "-916991313"
 	)
-	void method4126(class122 var1, int var2, boolean[] var3, boolean var4) {
-		int var5 = var1.method2766(); // L: 53
-		int var6 = 0; // L: 54
-		class115[] var7 = this.method4124(); // L: 56
+	public boolean vmethod4099(int var1) {
+		this.field2324[var1] = false;
+		this.field2325[var1] = false; // L: 34
+		this.field2318[var1] = true;
+		this.field2319[++this.field2320 - 1] = var1;
+		return true;
+	}
 
-		for (int var8 = 0; var8 < var7.length; ++var8) { // L: 57
-			class115 var9 = var7[var8]; // L: 58
-			if (var3 == null || var4 == var3[var6]) { // L: 60
-				var1.method2790(var2, var9, var6, var5); // L: 61
-			}
-
-			++var6; // L: 63
-		}
-
-	} // L: 67
-
-	@ObfuscatedName("gg")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZI)V",
-		garbageValue = "-102591137"
+		descriptor = "(CI)Z",
+		garbageValue = "-258182"
 	)
-	@Export("setViewportShape")
-	static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
-		if (var2 < 1) { // L: 4718
-			var2 = 1;
+	public boolean vmethod4097(char var1) {
+		int var2 = this.field2322 + 1 & 127; // L: 41
+		if (var2 != this.field2321) { // L: 42
+			this.field2316[this.field2322] = -1; // L: 43
+			this.field2327[this.field2322] = var1; // L: 44
+			this.field2322 = var2; // L: 45
 		}
 
-		if (var3 < 1) { // L: 4719
-			var3 = 1;
+		return false; // L: 47
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "(ZI)Z",
+		garbageValue = "333814410"
+	)
+	public boolean vmethod4102(boolean var1) {
+		return false; // L: 60
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "41"
+	)
+	void method4101(int var1) {
+		int var2 = this.field2322 + 1 & 127; // L: 51
+		if (var2 != this.field2321) { // L: 52
+			this.field2316[this.field2322] = var1; // L: 53
+			this.field2327[this.field2322] = 0; // L: 54
+			this.field2322 = var2; // L: 55
 		}
 
-		int var5 = var3 - 334; // L: 4720
-		int var6;
-		if (var5 < 0) { // L: 4722
-			var6 = Client.field748;
-		} else if (var5 >= 100) { // L: 4723
-			var6 = Client.field749;
+	} // L: 57
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-45"
+	)
+	public void method4103() {
+		this.field2321 = this.field2317; // L: 64
+		this.field2317 = this.field2322; // L: 65
+		this.field2326 = 0; // L: 66
+		this.field2320 = 0; // L: 67
+		Arrays.fill(this.field2325, false); // L: 68
+		Arrays.fill(this.field2318, false); // L: 69
+	} // L: 70
+
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "7"
+	)
+	public final boolean method4114() {
+		if (this.field2317 == this.field2321) { // L: 73
+			return false;
 		} else {
-			var6 = (Client.field749 - Client.field748) * var5 / 100 + Client.field748; // L: 4724
+			this.field2328 = this.field2316[this.field2321]; // L: 74
+			this.field2315 = this.field2327[this.field2321]; // L: 75
+			this.field2321 = this.field2321 + 1 & 127; // L: 76
+			return true; // L: 77
 		}
+	}
 
-		int var7 = var3 * var6 * 512 / (var2 * 334); // L: 4725
-		int var8;
-		int var9;
-		short var17;
-		if (var7 < Client.field754) { // L: 4726
-			var17 = Client.field754; // L: 4727
-			var6 = var17 * var2 * 334 / (var3 * 512); // L: 4728
-			if (var6 > Client.field753) { // L: 4729
-				var6 = Client.field753; // L: 4730
-				var8 = var3 * var6 * 512 / (var17 * 334); // L: 4731
-				var9 = (var2 - var8) / 2; // L: 4732
-				if (var4) { // L: 4733
-					Rasterizer2D.Rasterizer2D_resetClip(); // L: 4734
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var9, var3, -16777216); // L: 4735
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0 + var2 - var9, var1, var9, var3, -16777216); // L: 4736
-				}
-
-				var0 += var9; // L: 4738
-				var2 -= var9 * 2; // L: 4739
-			}
-		} else if (var7 > Client.field755) { // L: 4742
-			var17 = Client.field755; // L: 4743
-			var6 = var17 * var2 * 334 / (var3 * 512); // L: 4744
-			if (var6 < Client.field752) { // L: 4745
-				var6 = Client.field752; // L: 4746
-				var8 = var17 * var2 * 334 / (var6 * 512); // L: 4747
-				var9 = (var3 - var8) / 2; // L: 4748
-				if (var4) { // L: 4749
-					Rasterizer2D.Rasterizer2D_resetClip(); // L: 4750
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var9, -16777216); // L: 4751
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var3 + var1 - var9, var2, var9, -16777216); // L: 4752
-				}
-
-				var1 += var9; // L: 4754
-				var3 -= var9 * 2; // L: 4755
-			}
-		}
-
-		Client.viewportZoom = var3 * var6 / 334; // L: 4758
-		if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) { // L: 4759
-			int[] var16 = new int[9]; // L: 4761
-
-			for (var9 = 0; var9 < var16.length; ++var9) { // L: 4762
-				int var10 = var9 * 32 + 15 + 128; // L: 4763
-				int var11 = GZipDecompressor.method8314(var10); // L: 4764
-				int var12 = Rasterizer3D.Rasterizer3D_sine[var10]; // L: 4765
-				int var14 = var3 - 334; // L: 4768
-				if (var14 < 0) { // L: 4769
-					var14 = 0;
-				} else if (var14 > 100) { // L: 4770
-					var14 = 100;
-				}
-
-				int var15 = (Client.zoomWidth - Client.zoomHeight) * var14 / 100 + Client.zoomHeight; // L: 4771
-				int var13 = var15 * var11 / 256; // L: 4772
-				var16[var9] = var13 * var12 >> 16; // L: 4775
-			}
-
-			Scene.Scene_buildVisiblityMap(var16, 500, 800, var2 * 334 / var3, 334); // L: 4777
-		}
-
-		Client.viewportOffsetX = var0; // L: 4780
-		Client.viewportOffsetY = var1; // L: 4781
-		Client.viewportWidth = var2; // L: 4782
-		Client.viewportHeight = var3; // L: 4783
-	} // L: 4784
-
-	@ObfuscatedName("jp")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIII)V",
-		garbageValue = "868430801"
+		descriptor = "(II)Z",
+		garbageValue = "903181500"
 	)
-	@Export("drawScrollBar")
-	static final void drawScrollBar(int var0, int var1, int var2, int var3, int var4) {
-		class126.scrollBarSprites[0].drawAt(var0, var1); // L: 10751
-		class126.scrollBarSprites[1].drawAt(var0, var3 + var1 - 16); // L: 10752
-		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1 + 16, 16, var3 - 32, Client.field556); // L: 10753
-		int var5 = var3 * (var3 - 32) / var4; // L: 10754
-		if (var5 < 8) { // L: 10755
-			var5 = 8;
+	public boolean method4136(int var1) {
+		return var1 >= 0 && var1 < 112 ? this.field2325[var1] : false; // L: 81 82
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Z",
+		garbageValue = "0"
+	)
+	public boolean method4106(int var1) {
+		return var1 >= 0 && var1 < 112 ? this.field2324[var1] : false; // L: 86 87
+	}
+
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "1557864328"
+	)
+	public boolean method4104(int var1) {
+		return var1 >= 0 && var1 < 112 ? this.field2318[var1] : false; // L: 91 92
+	}
+
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "(B)[I",
+		garbageValue = "5"
+	)
+	public int[] method4108() {
+		int[] var1 = new int[this.field2326]; // L: 96
+
+		for (int var2 = 0; var2 < this.field2326; ++var2) { // L: 97
+			var1[var2] = this.field2323[var2]; // L: 98
 		}
 
-		int var6 = (var3 - 32 - var5) * var2 / (var4 - var3); // L: 10756
-		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var6 + var1 + 16, 16, var5, Client.field653); // L: 10757
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0, var6 + var1 + 16, var5, Client.field553); // L: 10758
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 1, var6 + var1 + 16, var5, Client.field553); // L: 10759
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 16, 16, Client.field553); // L: 10760
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 17, 16, Client.field553); // L: 10761
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 15, var6 + var1 + 16, var5, Client.field558); // L: 10762
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field558); // L: 10763
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var5 + var6 + var1 + 15, 16, Client.field558); // L: 10764
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0 + 1, var5 + var6 + var1 + 14, 15, Client.field558); // L: 10765
-	} // L: 10766
+		return var1; // L: 100
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(I)[I",
+		garbageValue = "-2137693462"
+	)
+	public int[] method4109() {
+		int[] var1 = new int[this.field2320]; // L: 104
+
+		for (int var2 = 0; var2 < this.field2320; ++var2) { // L: 105
+			var1[var2] = this.field2319[var2]; // L: 106
+		}
+
+		return var1; // L: 108
+	}
+
+	@ObfuscatedName("h")
+	public static final int method4112(double var0, double var2, double var4) {
+		double var6 = var4; // L: 9
+		double var8 = var4; // L: 10
+		double var10 = var4; // L: 11
+		if (0.0D != var2) { // L: 12
+			double var12;
+			if (var4 < 0.5D) { // L: 14
+				var12 = (1.0D + var2) * var4;
+			} else {
+				var12 = var4 + var2 - var2 * var4; // L: 15
+			}
+
+			double var14 = var4 * 2.0D - var12; // L: 16
+			double var16 = 0.3333333333333333D + var0; // L: 17
+			if (var16 > 1.0D) { // L: 18
+				--var16;
+			}
+
+			double var20 = var0 - 0.3333333333333333D; // L: 20
+			if (var20 < 0.0D) { // L: 21
+				++var20;
+			}
+
+			if (var16 * 6.0D < 1.0D) { // L: 22
+				var6 = 6.0D * (var12 - var14) * var16 + var14;
+			} else if (var16 * 2.0D < 1.0D) { // L: 23
+				var6 = var12;
+			} else if (var16 * 3.0D < 2.0D) { // L: 24
+				var6 = var14 + 6.0D * (0.6666666666666666D - var16) * (var12 - var14);
+			} else {
+				var6 = var14; // L: 25
+			}
+
+			if (var0 * 6.0D < 1.0D) { // L: 26
+				var8 = var0 * 6.0D * (var12 - var14) + var14;
+			} else if (var0 * 2.0D < 1.0D) { // L: 27
+				var8 = var12;
+			} else if (var0 * 3.0D < 2.0D) {
+				var8 = var14 + 6.0D * (0.6666666666666666D - var0) * (var12 - var14); // L: 28
+			} else {
+				var8 = var14; // L: 29
+			}
+
+			if (var20 * 6.0D < 1.0D) { // L: 30
+				var10 = 6.0D * (var12 - var14) * var20 + var14;
+			} else if (2.0D * var20 < 1.0D) { // L: 31
+				var10 = var12;
+			} else if (var20 * 3.0D < 2.0D) { // L: 32
+				var10 = (var12 - var14) * (0.6666666666666666D - var20) * 6.0D + var14;
+			} else {
+				var10 = var14; // L: 33
+			}
+		}
+
+		int var22 = (int)(var6 * 256.0D); // L: 35
+		int var13 = (int)(var8 * 256.0D); // L: 36
+		int var23 = (int)(256.0D * var10); // L: 37
+		int var15 = var23 + (var13 << 8) + (var22 << 16); // L: 38
+		return var15; // L: 39
+	}
 }

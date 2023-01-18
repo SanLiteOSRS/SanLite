@@ -1,3 +1,4 @@
+import java.awt.FontMetrics;
 import java.util.HashMap;
 import java.util.Map;
 import net.runelite.mapping.Export;
@@ -6,36 +7,33 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cb")
+@ObfuscatedName("da")
 @Implements("Messages")
 public class Messages {
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@Export("Messages_channels")
 	static final Map Messages_channels;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lpb;"
+		descriptor = "Lql;"
 	)
 	@Export("Messages_hashTable")
 	static final IterableNodeHashTable Messages_hashTable;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lmh;"
+		descriptor = "Lmm;"
 	)
 	@Export("Messages_queue")
 	static final IterableDualNodeQueue Messages_queue;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 2048371745
+		intValue = -1199730995
 	)
 	@Export("Messages_count")
 	static int Messages_count;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = 46362835
-	)
-	@Export("gameCyclesToDo")
-	static int gameCyclesToDo;
+	@ObfuscatedName("av")
+	@Export("loginScreenFontMetrics")
+	static FontMetrics loginScreenFontMetrics;
 
 	static {
 		Messages_channels = new HashMap(); // L: 9
@@ -44,114 +42,94 @@ public class Messages {
 		Messages_count = 0; // L: 12
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-472438759"
+		descriptor = "(Lly;B)V",
+		garbageValue = "0"
 	)
-	@Export("iLog")
-	public static int iLog(int var0) {
-		int var1 = 0; // L: 60
-		if (var0 < 0 || var0 >= 65536) { // L: 61
-			var0 >>>= 16; // L: 62
-			var1 += 16; // L: 63
-		}
+	public static void method2719(AbstractArchive var0) {
+		InvDefinition.InvDefinition_archive = var0; // L: 17
+	} // L: 18
 
-		if (var0 >= 256) { // L: 65
-			var0 >>>= 8; // L: 66
-			var1 += 8; // L: 67
-		}
-
-		if (var0 >= 16) { // L: 69
-			var0 >>>= 4; // L: 70
-			var1 += 4; // L: 71
-		}
-
-		if (var0 >= 4) { // L: 73
-			var0 >>>= 2; // L: 74
-			var1 += 2; // L: 75
-		}
-
-		if (var0 >= 1) { // L: 77
-			var0 >>>= 1; // L: 78
-			++var1; // L: 79
-		}
-
-		return var0 + var1; // L: 81
-	}
-
-	@ObfuscatedName("gf")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-587731325"
+		descriptor = "(Lqy;IIIIIII)V",
+		garbageValue = "-1974916673"
 	)
-	static final void method2494() {
-		if (Client.field725 != PacketWriter.Client_plane) { // L: 3807
-			Client.field725 = PacketWriter.Client_plane; // L: 3808
-			int var0 = PacketWriter.Client_plane; // L: 3809
-			int[] var1 = FloorUnderlayDefinition.sceneMinimapSprite.pixels; // L: 3811
-			int var2 = var1.length; // L: 3812
+	@Export("loadTerrain")
+	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		boolean var7 = var1 >= 0 && var1 < 4 && var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104; // L: 175
+		int var8;
+		if (var7) { // L: 177
+			Tiles.Tiles_renderFlags[var1][var2][var3] = 0; // L: 178
 
-			int var3;
-			for (var3 = 0; var3 < var2; ++var3) { // L: 3813
-				var1[var3] = 0;
-			}
-
-			int var4;
-			int var5;
-			for (var3 = 1; var3 < 103; ++var3) { // L: 3814
-				var4 = (103 - var3) * 2048 + 24628; // L: 3815
-
-				for (var5 = 1; var5 < 103; ++var5) { // L: 3816
-					if ((Tiles.Tiles_renderFlags[var0][var5][var3] & 24) == 0) { // L: 3817
-						class356.scene.drawTileMinimap(var1, var4, 512, var0, var5, var3);
-					}
-
-					if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var5][var3] & 8) != 0) {
-						class356.scene.drawTileMinimap(var1, var4, 512, var0 + 1, var5, var3); // L: 3818
-					}
-
-					var4 += 4; // L: 3819
-				}
-			}
-
-			var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10); // L: 3822
-			var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16; // L: 3823
-			FloorUnderlayDefinition.sceneMinimapSprite.setRaster(); // L: 3824
-
-			int var6;
-			for (var5 = 1; var5 < 103; ++var5) { // L: 3825
-				for (var6 = 1; var6 < 103; ++var6) { // L: 3826
-					if ((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) { // L: 3827
-						Decimator.drawObject(var0, var6, var5, var3, var4);
-					}
-
-					if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) { // L: 3828
-						Decimator.drawObject(var0 + 1, var6, var5, var3, var4);
-					}
-				}
-			}
-
-			Client.mapIconCount = 0; // L: 3831
-
-			for (var5 = 0; var5 < 104; ++var5) { // L: 3832
-				for (var6 = 0; var6 < 104; ++var6) { // L: 3833
-					long var7 = class356.scene.getGroundObjectTag(PacketWriter.Client_plane, var5, var6); // L: 3834
-					if (0L != var7) { // L: 3835
-						int var9 = Decimator.Entity_unpackID(var7); // L: 3836
-						int var10 = class162.getObjectDefinition(var9).mapIconId; // L: 3837
-						if (var10 >= 0 && class432.WorldMapElement_get(var10).field1837) { // L: 3838 3839
-							Client.mapIcons[Client.mapIconCount] = class432.WorldMapElement_get(var10).getSpriteBool(false); // L: 3842
-							Client.mapIconXs[Client.mapIconCount] = var5; // L: 3843
-							Client.mapIconYs[Client.mapIconCount] = var6; // L: 3844
-							++Client.mapIconCount; // L: 3845
+			while (true) {
+				var8 = Client.field515 < 209 ? var0.readUnsignedByte() : var0.readUnsignedShort(); // L: 180
+				if (var8 == 0) { // L: 181
+					if (var1 == 0) { // L: 182
+						int[] var15 = Tiles.Tiles_heights[0][var2]; // L: 183
+						int var12 = var4 + 932731; // L: 186
+						int var13 = var5 + 556238; // L: 187
+						int var14 = World.method1801(var12 + 45365, var13 + 91923, 4) - 128 + (World.method1801(10294 + var12, var13 + 37821, 2) - 128 >> 1) + (World.method1801(var12, var13, 1) - 128 >> 2); // L: 189
+						var14 = (int)((double)var14 * 0.3D) + 35; // L: 190
+						if (var14 < 10) { // L: 191
+							var14 = 10;
+						} else if (var14 > 60) { // L: 192
+							var14 = 60;
 						}
+
+						var15[var3] = -var14 * 8; // L: 195
+					} else {
+						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240; // L: 197
+					}
+					break;
+				}
+
+				if (var8 == 1) { // L: 200
+					int var9 = var0.readUnsignedByte(); // L: 201
+					if (var9 == 1) { // L: 202
+						var9 = 0;
+					}
+
+					if (var1 == 0) { // L: 203
+						Tiles.Tiles_heights[0][var2][var3] = -var9 * 8;
+					} else {
+						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var9 * 8; // L: 204
+					}
+					break;
+				}
+
+				if (var8 <= 49) { // L: 207
+					class490.field5062[var1][var2][var3] = Client.field515 < 209 ? (short)var0.readByte() : (short)var0.readShort(); // L: 208
+					Tiles.field1033[var1][var2][var3] = (byte)((var8 - 2) / 4); // L: 209
+					class358.field4344[var1][var2][var3] = (byte)(var8 - 2 + var6 & 3); // L: 210
+				} else if (var8 <= 81) { // L: 213
+					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var8 - 49); // L: 214
+				} else {
+					Tiles.field1028[var1][var2][var3] = (short)(var8 - 81); // L: 217
+				}
+			}
+		} else {
+			while (true) {
+				var8 = Client.field515 < 209 ? var0.readUnsignedByte() : var0.readUnsignedShort(); // L: 222
+				if (var8 == 0) { // L: 223
+					break;
+				}
+
+				if (var8 == 1) { // L: 224
+					var0.readUnsignedByte(); // L: 225
+					break; // L: 226
+				}
+
+				if (var8 <= 49) { // L: 228
+					if (Client.field515 < 209) { // L: 229
+						var0.readByte(); // L: 230
+					} else {
+						var0.readShort(); // L: 233
 					}
 				}
 			}
-
-			Message.rasterProvider.apply(); // L: 3850
 		}
 
-	} // L: 3853
+	} // L: 238
 }

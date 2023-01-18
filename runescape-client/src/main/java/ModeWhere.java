@@ -1,4 +1,6 @@
-import java.io.IOException;
+import java.awt.Desktop;
+import java.awt.Desktop.Action;
+import java.net.URI;
 import java.util.HashSet;
 import java.util.Set;
 import net.runelite.mapping.Export;
@@ -7,244 +9,246 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lz")
+@ObfuscatedName("mr")
 @Implements("ModeWhere")
-public enum ModeWhere implements MouseWheel {
-	@ObfuscatedName("c")
+public enum ModeWhere implements class345 {
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lmr;"
 	)
-	field4106("", 0, new class326[]{class326.field4080}),
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	field4103("", 1, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	field4104("", 2, new class326[]{class326.field4083, class326.field4079, class326.field4080}),
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	field4105("", 3, new class326[]{class326.field4083}),
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	field4115("", 4),
+	field4327("", 0, new class344[]{class344.field4289}),
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lmr;"
 	)
-	field4117("", 5, new class326[]{class326.field4083, class326.field4080}),
+	field4309("", 1, new class344[]{class344.field4287, class344.field4289}),
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	field4311("", 2, new class344[]{class344.field4287, class344.field4288, class344.field4289}),
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	field4310("", 3, new class344[]{class344.field4287}),
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	field4313("", 4),
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	field4314("", 5, new class344[]{class344.field4287, class344.field4289}),
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	field4324("", 6, new class344[]{class344.field4289}),
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	field4316("", 8, new class344[]{class344.field4287, class344.field4289}),
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	field4317("", 9, new class344[]{class344.field4287, class344.field4288}),
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	field4318("", 10, new class344[]{class344.field4287}),
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	field4319("", 11, new class344[]{class344.field4287}),
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lmr;"
 	)
-	field4108("", 6, new class326[]{class326.field4080}),
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	field4102("", 8, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	field4107("", 9, new class326[]{class326.field4083, class326.field4079}),
+	field4326("", 12, new class344[]{class344.field4287, class344.field4289}),
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lmr;"
 	)
-	field4111("", 10, new class326[]{class326.field4083}),
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	field4112("", 11, new class326[]{class326.field4083}),
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	field4113("", 12, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	field4110("", 13, new class326[]{class326.field4083});
+	field4315("", 13, new class344[]{class344.field4287});
 
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "Lqy;"
+	)
+	@Export("NetCache_responseArchiveBuffer")
+	public static Buffer NetCache_responseArchiveBuffer;
+	@ObfuscatedName("bo")
+	@ObfuscatedSignature(
+		descriptor = "Llz;"
+	)
+	static GameBuild field4325;
 	@ObfuscatedName("ix")
 	@ObfuscatedGetter(
-		intValue = -2136536725
+		intValue = -1693192727
 	)
 	@Export("selectedItemWidget")
 	static int selectedItemWidget;
-	@ObfuscatedName("pq")
-	@ObfuscatedSignature(
-		descriptor = "Lpr;"
-	)
-	@Export("Ignored_cached")
-	static class427 Ignored_cached;
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 2136032221
+		intValue = -59463617
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("u")
-	final Set field4116;
-
-	static {
-		method6075(); // L: 28
-	} // L: 29
+	@ObfuscatedName("n")
+	final Set field4323;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I[Llg;)V"
+		descriptor = "(Ljava/lang/String;I[Lmk;)V"
 	)
-	ModeWhere(String var3, int var4, class326[] var5) {
-		this.field4116 = new HashSet();
-		this.id = var4; // L: 43
-		class326[] var6 = var5; // L: 45
+	ModeWhere(String var3, int var4, class344[] var5) {
+		this.field4323 = new HashSet();
+		this.id = var4;
+		class344[] var6 = var5;
 
-		for (int var7 = 0; var7 < var6.length; ++var7) { // L: 46
-			class326 var8 = var6[var7]; // L: 47
-			this.field4116.add(var8); // L: 48
+		for (int var7 = 0; var7 < var6.length; ++var7) {
+			class344 var8 = var6[var7];
+			this.field4323.add(var8);
 		}
 
-	} // L: 51
+	}
 
 	ModeWhere(String var3, int var4) {
-		this.field4116 = new HashSet(); // L: 32
-		this.id = var4; // L: 39
-	} // L: 40
+		this.field4323 = new HashSet();
+		this.id = var4;
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "96"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 55
+		return this.id;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lfk;",
-		garbageValue = "1173982871"
+		descriptor = "(Ljava/lang/String;ZZB)V",
+		garbageValue = "40"
 	)
-	static HorizontalAlignment[] method6076() {
-		return new HorizontalAlignment[]{HorizontalAlignment.field1905, HorizontalAlignment.field1910, HorizontalAlignment.HorizontalAlignment_centered}; // L: 14
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(B)[Llz;",
-		garbageValue = "110"
-	)
-	static ModeWhere[] method6075() {
-		return new ModeWhere[]{field4107, field4106, field4110, field4112, field4102, field4111, field4113, field4108, field4115, field4104, field4105, field4117, field4103}; // L: 35
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "941818161"
-	)
-	public static byte[] method6082() {
-		byte[] var0 = new byte[24]; // L: 277
-
-		try {
-			JagexCache.JagexCache_randomDat.seek(0L); // L: 279
-			JagexCache.JagexCache_randomDat.readFully(var0); // L: 280
-
-			int var1;
-			for (var1 = 0; var1 < 24 && var0[var1] == 0; ++var1) { // L: 281 282 283
+	@Export("openURL")
+	public static void openURL(String var0, boolean var1, boolean var2) {
+		if (var1) { // L: 23
+			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) { // L: 24
+				try {
+					Desktop.getDesktop().browse(new URI(var0)); // L: 26
+					return;
+				} catch (Exception var4) { // L: 29
+				}
 			}
 
-			if (var1 >= 24) {
-				throw new IOException(); // L: 285
+			if (class32.field183.startsWith("win")) {
+				class12.method115(var0, 0);
+			} else if (class32.field183.startsWith("mac")) {
+				HealthBarUpdate.method2363(var0, 1, "openjs"); // L: 38
+			} else {
+				class12.method115(var0, 2);
 			}
-		} catch (Exception var4) {
-			for (int var2 = 0; var2 < 24; ++var2) { // L: 288
-				var0[var2] = -1;
-			}
-		}
-
-		return var0; // L: 290
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "16"
-	)
-	static final int method6079(int var0, int var1) {
-		if (var0 == -2) { // L: 927
-			return 12345678;
-		} else if (var0 == -1) { // L: 928
-			if (var1 < 2) { // L: 929
-				var1 = 2;
-			} else if (var1 > 126) { // L: 930
-				var1 = 126;
-			}
-
-			return var1; // L: 931
 		} else {
-			var1 = (var0 & 127) * var1 / 128; // L: 933
-			if (var1 < 2) { // L: 934
-				var1 = 2;
-			} else if (var1 > 126) { // L: 935
-				var1 = 126;
+			class12.method115(var0, 3);
+		}
+
+	}
+
+	@ObfuscatedName("e")
+	@Export("base37DecodeLong")
+	public static String base37DecodeLong(long var0) {
+		if (var0 > 0L && var0 < 6582952005840035281L) { // L: 31
+			if (var0 % 37L == 0L) { // L: 32
+				return null;
+			} else {
+				int var2 = 0; // L: 33
+
+				for (long var3 = var0; var3 != 0L; var3 /= 37L) { // L: 34 35 37
+					++var2; // L: 36
+				}
+
+				StringBuilder var5;
+				char var8;
+				for (var5 = new StringBuilder(var2); var0 != 0L; var5.append(var8)) { // L: 39 40 49
+					long var6 = var0; // L: 41
+					var0 /= 37L; // L: 42
+					var8 = class362.base37Table[(int)(var6 - 37L * var0)]; // L: 43
+					if (var8 == '_') { // L: 44
+						int var9 = var5.length() - 1; // L: 45
+						var5.setCharAt(var9, Character.toUpperCase(var5.charAt(var9))); // L: 46
+						var8 = 160; // L: 47
+					}
+				}
+
+				var5.reverse(); // L: 51
+				var5.setCharAt(0, Character.toUpperCase(var5.charAt(0))); // L: 52
+				return var5.toString(); // L: 53
 			}
-
-			return (var0 & 65408) + var1; // L: 936
+		} else {
+			return null;
 		}
 	}
 
-	@ObfuscatedName("ff")
+	@ObfuscatedName("gt")
 	@ObfuscatedSignature(
-		descriptor = "(IZZZZI)Llc;",
-		garbageValue = "-1168566075"
+		descriptor = "(I)V",
+		garbageValue = "742396295"
 	)
-	@Export("newArchive")
-	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
-		ArchiveDisk var5 = null; // L: 2030
-		if (JagexCache.JagexCache_dat2File != null) { // L: 2031
-			var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, class359.JagexCache_idxFiles[var0], 1000000);
-		}
-
-		return new Archive(var5, CollisionMap.masterDisk, var0, var1, var2, var3, var4); // L: 2032
-	}
-
-	@ObfuscatedName("lu")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)Ljava/lang/String;",
-		garbageValue = "4"
-	)
-	static String method6080(String var0, boolean var1) {
-		String var2 = var1 ? "https://" : "http://"; // L: 12330
-		if (Client.gameBuild == 1) { // L: 12331
-			var0 = var0 + "-wtrc";
-		} else if (Client.gameBuild == 2) { // L: 12332
-			var0 = var0 + "-wtqa";
-		} else if (Client.gameBuild == 3) { // L: 12333
-			var0 = var0 + "-wtwip";
-		} else if (Client.gameBuild == 5) { // L: 12334
-			var0 = var0 + "-wti";
-		} else if (Client.gameBuild == 4) { // L: 12335
-			var0 = "local";
-		}
-
-		String var3 = ""; // L: 12336
-		if (GrandExchangeOfferTotalQuantityComparator.field4045 != null) { // L: 12337
-			var3 = "/p=" + GrandExchangeOfferTotalQuantityComparator.field4045;
-		}
-
-		String var4 = "runescape.com"; // L: 12338
-		return var2 + var0 + "." + var4 + "/l=" + class134.clientLanguage + "/a=" + class17.field99 + var3 + "/"; // L: 12339
-	}
+	static final void method6699() {
+		class154.method3299(); // L: 2721
+		FloorUnderlayDefinition.FloorUnderlayDefinition_cached.clear(); // L: 2723
+		ScriptFrame.method1173(); // L: 2725
+		ObjectComposition.ObjectDefinition_cached.clear(); // L: 2727
+		ObjectComposition.ObjectDefinition_cachedModelData.clear(); // L: 2728
+		ObjectComposition.ObjectDefinition_cachedEntities.clear(); // L: 2729
+		ObjectComposition.ObjectDefinition_cachedModels.clear(); // L: 2730
+		class369.method7151(); // L: 2732
+		ItemComposition.ItemComposition_cached.clear(); // L: 2734
+		ItemComposition.ItemComposition_cachedModels.clear(); // L: 2735
+		ItemComposition.ItemComposition_cachedSprites.clear(); // L: 2736
+		SequenceDefinition.SequenceDefinition_cached.clear(); // L: 2739
+		SequenceDefinition.SequenceDefinition_cachedFrames.clear(); // L: 2740
+		SequenceDefinition.SequenceDefinition_cachedModel.clear(); // L: 2741
+		class149.method3257(); // L: 2743
+		VarbitComposition.VarbitDefinition_cached.clear(); // L: 2745
+		ScriptFrame.method1174(); // L: 2747
+		class137.HitSplatDefinition_cachedSprites.method8344(); // L: 2748
+		class34.Ignored_cached.method8344(); // L: 2749
+		HorizontalAlignment.method3658(); // L: 2750
+		DecorativeObject.method4828(); // L: 2751
+		class273.method5480(); // L: 2752
+		class143.method3127(); // L: 2753
+		WorldMapElement.WorldMapElement_cachedSprites.clear(); // L: 2755
+		class459.DBTableType_cache.clear(); // L: 2758
+		class420.method7904(); // L: 2760
+		Client.Widget_cachedModels.clear(); // L: 2761
+		Client.Widget_cachedFonts.clear(); // L: 2762
+		class34.method489(); // L: 2763
+		HorizontalAlignment.method3653(); // L: 2764
+		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear(); // L: 2765
+		Script.Script_cached.clear(); // L: 2766
+		Client.archive5.method7387(); // L: 2767
+		HealthBar.field1306.clearFiles(); // L: 2768
+		class9.archive7.clearFiles(); // L: 2769
+		FloorUnderlayDefinition.archive4.clearFiles(); // L: 2770
+		WorldMapSection0.archive9.clearFiles(); // L: 2771
+		class4.field7.clearFiles(); // L: 2772
+		class162.archive6.clearFiles(); // L: 2773
+		class301.archive11.clearFiles(); // L: 2774
+		ClientPreferences.archive8.clearFiles(); // L: 2775
+		Frames.archive10.clearFiles(); // L: 2776
+		ClanChannelMember.field1666.clearFiles(); // L: 2777
+		class21.field123.clearFiles(); // L: 2778
+		class71.archive12.clearFiles(); // L: 2779
+		Ignored.field4539.clearFiles(); // L: 2780
+	} // L: 2781
 }
