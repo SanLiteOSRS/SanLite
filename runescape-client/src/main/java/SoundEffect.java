@@ -3,24 +3,24 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("an")
+@ObfuscatedName("ak")
 @Implements("SoundEffect")
 public class SoundEffect {
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "[Lbp;"
 	)
 	@Export("instruments")
 	Instrument[] instruments;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@Export("start")
 	int start;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@Export("end")
 	int end;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;)V"
+		descriptor = "(Lqy;)V"
 	)
 	SoundEffect(Buffer var1) {
 		this.instruments = new Instrument[10]; // L: 10
@@ -38,7 +38,7 @@ public class SoundEffect {
 		this.end = var1.readUnsignedShort(); // L: 29
 	} // L: 30
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "()Laf;"
 	)
@@ -48,7 +48,7 @@ public class SoundEffect {
 		return new RawSound(22050, var1, this.start * 22050 / 1000, this.end * 22050 / 1000); // L: 34
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@Export("calculateDelay")
 	public final int calculateDelay() {
 		int var1 = 9999999; // L: 38
@@ -83,7 +83,7 @@ public class SoundEffect {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@Export("mix")
 	final byte[] mix() {
 		int var1 = 0; // L: 57
@@ -122,9 +122,9 @@ public class SoundEffect {
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;II)Lan;"
+		descriptor = "(Lly;II)Lak;"
 	)
 	@Export("readSoundEffect")
 	public static SoundEffect readSoundEffect(AbstractArchive var0, int var1, int var2) {
