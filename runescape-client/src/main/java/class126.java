@@ -1,91 +1,112 @@
-import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("du")
-public class class126 extends class128 {
-	@ObfuscatedName("n")
+@ObfuscatedName("dk")
+public class class126 implements class349 {
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Ldk;"
 	)
-	@Export("Widget_modelsArchive")
-	public static AbstractArchive Widget_modelsArchive;
-	@ObfuscatedName("cx")
+	static final class126 field1546;
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
+		descriptor = "Ldk;"
 	)
-	@Export("worldSelectFlagSprites")
-	static IndexedSprite[] worldSelectFlagSprites;
-	@ObfuscatedName("ig")
+	static final class126 field1548;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
+		descriptor = "Ldk;"
 	)
-	@Export("scrollBarSprites")
-	static IndexedSprite[] scrollBarSprites;
-	@ObfuscatedName("c")
+	static final class126 field1555;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Ldk;"
+	)
+	static final class126 field1550;
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		descriptor = "Ldk;"
+	)
+	static final class126 field1552;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Ldk;"
+	)
+	static final class126 field1551;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		longValue = -8228182624755456153L
+		intValue = -162414941
 	)
-	long field1562;
+	final int field1547;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = -1294570757
+	)
+	final int field1553;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = -1207176119
+	)
+	final int field1554;
+
+	static {
+		field1546 = new class126(0, 0, (String)null, 0); // L: 14
+		field1548 = new class126(1, 1, (String)null, 9); // L: 15
+		field1555 = new class126(2, 2, (String)null, 3); // L: 16
+		field1550 = new class126(3, 3, (String)null, 6); // L: 17
+		field1552 = new class126(4, 4, (String)null, 1); // L: 18
+		field1551 = new class126(5, 5, (String)null, 3); // L: 19
+	}
+
+	class126(int var1, int var2, String var3, int var4) {
+		this.field1547 = var1; // L: 25
+		this.field1553 = var2; // L: 26
+		this.field1554 = var4; // L: 27
+	} // L: 28
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "3"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1553; // L: 36
+	}
+
 	@ObfuscatedName("v")
-	String field1559;
-	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "(B)I",
+		garbageValue = "20"
 	)
-	final class131 this$0;
+	int method3072() {
+		return this.field1554; // L: 31
+	}
 
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(CI)Z",
+		garbageValue = "1018736825"
 	)
-	class126(class131 var1) {
-		this.this$0 = var1;
-		this.field1562 = -1L; // L: 74
-		this.field1559 = null; // L: 75
-	} // L: 77
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
-	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 80
-			--var1.offset; // L: 81
-			this.field1562 = var1.readLong(); // L: 82
+	@Export("isCharPrintable")
+	public static boolean isCharPrintable(char var0) {
+		if (var0 >= ' ' && var0 <= '~') { // L: 192
+			return true;
+		} else if (var0 >= 160 && var0 <= 255) { // L: 193
+			return true;
+		} else {
+			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376; // L: 194
 		}
+	}
 
-		this.field1559 = var1.readStringCp1252NullTerminatedOrNull(); // L: 84
-	} // L: 85
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("bj")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(ILba;ZB)I",
+		garbageValue = "50"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2956(this.field1562, this.field1559, 0); // L: 88
-	} // L: 89
-
-	@ObfuscatedName("km")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "78"
-	)
-	@Export("FriendSystem_invalidateIgnoreds")
-	static final void FriendSystem_invalidateIgnoreds() {
-		Iterator var0 = Messages.Messages_hashTable.iterator(); // L: 12195
-
-		while (var0.hasNext()) {
-			Message var1 = (Message)var0.next(); // L: 12196
-			var1.clearIsFromIgnored(); // L: 12198
-		}
-
-		if (Huffman.friendsChatManager != null) { // L: 12202
-			Huffman.friendsChatManager.invalidateIgnoreds(); // L: 12203
-		}
-
-	} // L: 12205
+	static int method3074(int var0, Script var1, boolean var2) {
+		return 2; // L: 5102
+	}
 }
