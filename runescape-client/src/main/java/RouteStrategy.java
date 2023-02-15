@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gu")
+@ObfuscatedName("gt")
 @Implements("RouteStrategy")
 public abstract class RouteStrategy {
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1648462545
+		intValue = 1813601119
 	)
 	@Export("approxDestinationX")
 	public int approxDestinationX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -235998971
+		intValue = 582937053
 	)
 	@Export("approxDestinationY")
 	public int approxDestinationY;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -2103328385
+		intValue = -1144807893
 	)
 	@Export("approxDestinationSizeX")
 	public int approxDestinationSizeX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 738835935
+		intValue = 1308573933
 	)
 	@Export("approxDestinationSizeY")
 	public int approxDestinationSizeY;
@@ -35,11 +35,20 @@ public abstract class RouteStrategy {
 	protected RouteStrategy() {
 	} // L: 9
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(IIILgv;I)Z",
-		garbageValue = "1278947831"
+		garbageValue = "118374037"
 	)
 	@Export("hasArrived")
 	public abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-546644607"
+	)
+	static final void method4218() {
+		Decimator.method1115("Your ignore list is full. Max of 100 for free users, and 400 for members"); // L: 170
+	} // L: 171
 }
