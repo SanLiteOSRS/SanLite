@@ -1,19 +1,54 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pt")
-public interface class420 extends Iterable {
-	@ObfuscatedName("c")
+@ObfuscatedName("px")
+public enum class420 implements class349 {
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-2111872296"
+		descriptor = "Lpx;"
 	)
-	int vmethod7440(int var1);
-
+	field4667(0, 1),
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "Lpx;"
+	)
+	field4666(3, 2),
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/Object;S)V",
-		garbageValue = "31470"
+		descriptor = "Lpx;"
 	)
-	void vmethod7441(int var1, Object var2);
+	field4665(1, 3),
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lpx;"
+	)
+	field4668(2, 10);
+
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = -1778165817
+	)
+	final int field4669;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 1123956495
+	)
+	final int field4670;
+
+	class420(int var3, int var4) {
+		this.field4669 = var3; // L: 16
+		this.field4670 = var4; // L: 17
+	} // L: 18
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "3"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field4670; // L: 22
+	}
 }

@@ -1,27 +1,22 @@
-import java.util.HashMap;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lp")
+@ObfuscatedName("lt")
 public class class328 {
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	@Export("ObjectDefinition_archive")
-	static AbstractArchive ObjectDefinition_archive;
-
 	static {
-		new HashMap();
-	} // L: 9
+		int var0 = 0; // L: 9
+		int var1 = 0; // L: 10
+		class323[] var2 = FontName.method8320(); // L: 12
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1400532526"
-	)
-	public static void method6056(int var0) {
-		MouseHandler.MouseHandler_idleCycles = var0; // L: 45
-	} // L: 46
+		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 13
+			class323 var4 = var2[var3]; // L: 14
+			if (var4.field3799 > var0) {
+				var0 = var4.field3799; // L: 16
+			}
+
+			if (var4.field3797 > var1) { // L: 17
+				var1 = var4.field3797;
+			}
+		}
+
+	} // L: 21
 }

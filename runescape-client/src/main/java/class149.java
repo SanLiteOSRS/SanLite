@@ -1,24 +1,67 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ey")
-public class class149 {
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(IIIB)Lbi;",
-		garbageValue = "-90"
+@ObfuscatedName("ef")
+public class class149 extends class139 {
+	@ObfuscatedName("ha")
+	@ObfuscatedGetter(
+		longValue = -8606153842002377145L
 	)
-	@Export("getWorldMapScript")
-	static Script getWorldMapScript(int var0, int var1, int var2) {
-		int var3 = (var1 << 8) + var0; // L: 40
-		Script var5 = Huffman.method5480(var3, var0); // L: 43
-		if (var5 != null) { // L: 44
-			return var5; // L: 45
-		} else {
-			int var6 = (-3 - var2 << 8) + var0; // L: 49
-			var5 = Huffman.method5480(var6, var0); // L: 52
-			return var5 != null ? var5 : null; // L: 53 56
-		}
+	static long field1709;
+	@ObfuscatedName("og")
+	@ObfuscatedGetter(
+		intValue = 1194823683
+	)
+	@Export("selectedSpellFlags")
+	static int selectedSpellFlags;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = 1462145335
+	)
+	int field1708;
+	@ObfuscatedName("w")
+	String field1710;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lex;"
+	)
+	final class142 this$0;
+
+	@ObfuscatedSignature(
+		descriptor = "(Lex;)V"
+	)
+	class149(class142 var1) {
+		this.this$0 = var1; // L: 323
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(Lrd;S)V",
+		garbageValue = "-5782"
+	)
+	void vmethod3394(Buffer var1) {
+		this.field1708 = var1.readInt(); // L: 326
+		this.field1710 = var1.readStringCp1252NullTerminated(); // L: 327
+	} // L: 328
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(Leb;B)V",
+		garbageValue = "-26"
+	)
+	void vmethod3393(ClanSettings var1) {
+		var1.method3242(this.field1708, this.field1710); // L: 331
+	} // L: 332
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "1768978340"
+	)
+	@Export("colorStartTag")
+	static String colorStartTag(int var0) {
+		return "<col=" + Integer.toHexString(var0) + ">"; // L: 22
 	}
 }

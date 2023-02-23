@@ -3,53 +3,48 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mi")
+@ObfuscatedName("om")
 @Implements("IgnoreList")
 public class IgnoreList extends NameableContainer {
-	@ObfuscatedName("w")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	static IndexedSprite field4284;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Lpe;"
+		descriptor = "Lqj;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpe;)V"
+		descriptor = "(Lqj;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400); // L: 13
 		this.loginType = var1; // L: 14
 	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lne;",
-		garbageValue = "-7122"
+		descriptor = "(I)Low;",
+		garbageValue = "-2146736820"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Ignored(); // L: 19
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lne;",
-		garbageValue = "77510907"
+		descriptor = "(II)[Low;",
+		garbageValue = "1411048209"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Ignored[var1]; // L: 24
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "1241534529"
+		descriptor = "(Lrd;IB)V",
+		garbageValue = "10"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -64,7 +59,7 @@ public class IgnoreList extends NameableContainer {
 					Ignored var7 = (Ignored)this.getByCurrentUsername(var5); // L: 35
 					if (var4) { // L: 36
 						Ignored var8 = (Ignored)this.getByCurrentUsername(var6); // L: 37
-						if (var8 != null && var7 != var8) { // L: 38
+						if (var8 != null && var8 != var7) { // L: 38
 							if (var7 != null) { // L: 39
 								this.remove(var8); // L: 40
 							} else {
@@ -73,14 +68,14 @@ public class IgnoreList extends NameableContainer {
 						}
 					}
 
-					if (var7 != null) { // L: 47
-						this.changeName(var7, var5, var6); // L: 48
+					if (var7 != null) {
+						this.changeName(var7, var5, var6);
 						continue;
 					}
 
 					if (this.getSize() < 400) { // L: 50
-						int var9 = this.getSize(); // L: 51
-						var7 = (Ignored)this.addLast(var5, var6); // L: 52
+						int var9 = this.getSize();
+						var7 = (Ignored)this.addLast(var5, var6);
 						var7.id = var9; // L: 53
 					}
 					continue;
@@ -91,5 +86,21 @@ public class IgnoreList extends NameableContainer {
 
 			return; // L: 57
 		}
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "([BIII)I",
+		garbageValue = "-1742873444"
+	)
+	public static int method7524(byte[] var0, int var1, int var2) {
+		int var3 = -1; // L: 47
+
+		for (int var4 = var1; var4 < var2; ++var4) { // L: 48
+			var3 = var3 >>> 8 ^ Buffer.crc32Table[(var3 ^ var0[var4]) & 255]; // L: 49
+		}
+
+		var3 = ~var3; // L: 51
+		return var3; // L: 52
 	}
 }
