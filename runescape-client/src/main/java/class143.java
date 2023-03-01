@@ -1,65 +1,65 @@
+import java.security.SecureRandom;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ek")
-public class class143 extends class128 {
-	@ObfuscatedName("ur")
-	@ObfuscatedSignature(
-		descriptor = "Lls;"
-	)
-	@Export("grandExchangeEvents")
-	static GrandExchangeEvents grandExchangeEvents;
-	@ObfuscatedName("c")
+@ObfuscatedName("eh")
+public class class143 extends class139 {
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		longValue = -4142648210474393183L
+		intValue = -312550919
 	)
-	long field1668;
-	@ObfuscatedName("v")
-	String field1667;
-	@ObfuscatedName("q")
+	@Export("loginBoxCenter")
+	static int loginBoxCenter;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 81354487
+		intValue = 1159970201
 	)
-	int field1669;
+	int field1668;
+	@ObfuscatedName("w")
+	byte field1671;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lex;"
 	)
-	final class131 this$0;
+	final class142 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lex;)V"
 	)
-	class143(class131 var1) {
+	class143(class142 var1) {
 		this.this$0 = var1;
-		this.field1668 = -1L; // L: 93
-		this.field1667 = null; // L: 94
-		this.field1669 = 0; // L: 95
-	} // L: 97
+		this.field1668 = -1; // L: 128
+	} // L: 131
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lrd;S)V",
+		garbageValue = "-5782"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 100
-			--var1.offset; // L: 101
-			this.field1668 = var1.readLong(); // L: 102
-		}
+	void vmethod3394(Buffer var1) {
+		this.field1668 = var1.readUnsignedShort(); // L: 134
+		this.field1671 = var1.readByte(); // L: 135
+	} // L: 136
 
-		this.field1667 = var1.readStringCp1252NullTerminatedOrNull(); // L: 104
-		this.field1669 = var1.readUnsignedShort(); // L: 105
-	} // L: 106
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Leb;B)V",
+		garbageValue = "-26"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2956(this.field1668, this.field1667, this.field1669); // L: 109
-	} // L: 110
+	void vmethod3393(ClanSettings var1) {
+		var1.method3261(this.field1668, this.field1671); // L: 139
+	} // L: 140
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/security/SecureRandom;",
+		garbageValue = "-1336695793"
+	)
+	static SecureRandom method3179() {
+		SecureRandom var0 = new SecureRandom(); // L: 39
+		var0.nextInt(); // L: 40
+		return var0; // L: 41
+	}
 }
