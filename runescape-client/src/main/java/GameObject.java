@@ -1,159 +1,193 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("hb")
+@ObfuscatedName("iu")
 @Implements("GameObject")
 public final class GameObject {
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 555755513
+		intValue = -1692376787
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 1199180827
+		intValue = 1487795535
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1171704683
+		intValue = -85158661
 	)
 	@Export("centerX")
 	int centerX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1998426191
+		intValue = -1653532281
 	)
 	@Export("centerY")
 	int centerY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lhd;"
 	)
 	@Export("renderable")
 	public Renderable renderable;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 2060742587
+		intValue = 1532913499
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 780367115
+		intValue = 2094223063
 	)
 	@Export("startX")
 	int startX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -16124731
+		intValue = 1521710851
 	)
 	@Export("endX")
 	int endX;
-	@ObfuscatedName("y")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1663298221
+		intValue = -277724547
 	)
 	@Export("startY")
 	int startY;
-	@ObfuscatedName("i")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -2083887369
+		intValue = -1740988579
 	)
 	@Export("endY")
 	int endY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1662545459
+		intValue = 1657816971
 	)
-	int field2655;
-	@ObfuscatedName("t")
+	int field2801;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1055321127
+		intValue = -809829645
 	)
 	@Export("lastDrawn")
 	int lastDrawn;
-	@ObfuscatedName("z")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		longValue = -5445393225516942137L
+		longValue = 4495018918080100601L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("r")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1409812671
+		intValue = 16792299
 	)
 	@Export("flags")
 	int flags;
 
 	GameObject() {
-		this.tag = 0L; // L: 16
+		this.tag = 0L;
 		this.flags = 0; // L: 17
-	} // L: 19
-
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "(S)Ljava/util/Date;",
-		garbageValue = "206"
-	)
-	static Date method4552() throws ParseException {
-		SimpleDateFormat var0 = new SimpleDateFormat("ddMMyyyyHH", Locale.ENGLISH); // L: 1132
-		var0.setLenient(false); // L: 1133
-		StringBuilder var1 = new StringBuilder(); // L: 1134
-		String[] var2 = Login.field911; // L: 1136
-
-		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 1137
-			String var4 = var2[var3]; // L: 1138
-			if (var4 == null) { // L: 1140
-				GraphicsObject.method1877("Date not valid.", "Please ensure all characters are populated.", ""); // L: 1141
-				return null; // L: 1142
-			}
-
-			var1.append(var4); // L: 1144
-		}
-
-		var1.append("12"); // L: 1148
-		return var0.parse(var1.toString()); // L: 1149
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-1762087173"
+		descriptor = "(Ljava/lang/CharSequence;B)Ljava/lang/String;",
+		garbageValue = "71"
 	)
-	static int method4553(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class124.scriptDotWidget : GrandExchangeOfferOwnWorldComparator.scriptActiveWidget; // L: 1209
-		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) { // L: 1210
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.itemId; // L: 1211
-			return 1; // L: 1212
-		} else if (var0 == ScriptOpcodes.CC_GETINVCOUNT) { // L: 1214
-			if (var3.itemId != -1) { // L: 1215
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.itemQuantity;
+	public static String method4868(CharSequence var0) {
+		int var1 = var0.length(); // L: 11
+		StringBuilder var2 = new StringBuilder(var1); // L: 12
+
+		for (int var3 = 0; var3 < var1; ++var3) { // L: 13
+			char var4 = var0.charAt(var3); // L: 14
+			if ((var4 < 'a' || var4 > 'z') && (var4 < 'A' || var4 > 'Z') && (var4 < '0' || var4 > '9') && var4 != '.' && var4 != '-' && var4 != '*' && var4 != '_') { // L: 15
+				if (var4 == ' ') { // L: 16
+					var2.append('+');
+				} else {
+					byte var5 = class31.charToByteCp1252(var4); // L: 18
+					var2.append('%'); // L: 19
+					int var6 = var5 >> 4 & 15; // L: 20
+					if (var6 >= 10) { // L: 21
+						var2.append((char)(var6 + 55));
+					} else {
+						var2.append((char)(var6 + 48)); // L: 22
+					}
+
+					var6 = var5 & 15; // L: 23
+					if (var6 >= 10) { // L: 24
+						var2.append((char)(var6 + 55));
+					} else {
+						var2.append((char)(var6 + 48));
+					}
+				}
 			} else {
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = 0; // L: 1216
+				var2.append(var4); // L: 25
+			}
+		}
+
+		return var2.toString(); // L: 28
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "([Ljava/lang/String;[IIII)V",
+		garbageValue = "988147954"
+	)
+	public static void method4867(String[] var0, int[] var1, int var2, int var3) {
+		if (var2 < var3) { // L: 39
+			int var4 = (var3 + var2) / 2; // L: 40
+			int var5 = var2; // L: 41
+			String var6 = var0[var4]; // L: 42
+			var0[var4] = var0[var3]; // L: 43
+			var0[var3] = var6; // L: 44
+			int var7 = var1[var4]; // L: 45
+			var1[var4] = var1[var3]; // L: 46
+			var1[var3] = var7; // L: 47
+
+			for (int var8 = var2; var8 < var3; ++var8) { // L: 48
+				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) { // L: 49
+					String var9 = var0[var8]; // L: 50
+					var0[var8] = var0[var5]; // L: 51
+					var0[var5] = var9; // L: 52
+					int var10 = var1[var8]; // L: 53
+					var1[var8] = var1[var5]; // L: 54
+					var1[var5++] = var10; // L: 55
+				}
 			}
 
-			return 1; // L: 1217
-		} else if (var0 == ScriptOpcodes.CC_GETID) { // L: 1219
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.childIndex; // L: 1220
-			return 1; // L: 1221
-		} else if (var0 == 1707) { // L: 1223
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.method5680() ? 1 : 0; // L: 1224
-			return 1; // L: 1225
-		} else if (var0 == 1708) { // L: 1227
-			return class29.method363(var3); // L: 1228
-		} else {
-			return var0 == 1709 ? WorldMapSection0.method4947(var3) : 2; // L: 1230 1231 1233
+			var0[var3] = var0[var5]; // L: 59
+			var0[var5] = var6; // L: 60
+			var1[var3] = var1[var5]; // L: 61
+			var1[var5] = var7; // L: 62
+			method4867(var0, var1, var2, var5 - 1); // L: 63
+			method4867(var0, var1, var5 + 1, var3); // L: 64
 		}
-	}
+
+	} // L: 66
+
+	@ObfuscatedName("mu")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "24"
+	)
+	static void method4866() {
+		if (class136.field1633 != null) { // L: 13363
+			Client.field796 = Client.cycle; // L: 13364
+			class136.field1633.method6759(); // L: 13365
+
+			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 13366
+				if (Client.players[var0] != null) { // L: 13367
+					class136.field1633.method6744(ParamComposition.baseX * 64 + (Client.players[var0].x >> 7), Client.baseY * 64 + (Client.players[var0].y >> 7)); // L: 13368
+				}
+			}
+		}
+
+	} // L: 13372
 }

@@ -1,17 +1,18 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dd")
+@ObfuscatedName("df")
 @Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
-	@ObfuscatedName("el")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
+	@ObfuscatedName("ty")
+	@ObfuscatedGetter(
+		intValue = -943480781
 	)
-	static Archive field1383;
-	@ObfuscatedName("c")
+	static int field1444;
+	@ObfuscatedName("f")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -19,10 +20,10 @@ public class UserComparator7 extends AbstractUserComparator {
 		this.reversed = var1; // L: 10
 	} // L: 11
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "-1964984147"
+		descriptor = "(Loa;Loa;I)I",
+		garbageValue = "-743510609"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -37,35 +38,32 @@ public class UserComparator7 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 21
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("la")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfs;",
-		garbageValue = "-125"
+		descriptor = "(I)V",
+		garbageValue = "-805212170"
 	)
-	@Export("getEnum")
-	public static EnumComposition getEnum(int var0) {
-		EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0); // L: 29
-		if (var1 != null) { // L: 30
-			return var1;
-		} else {
-			byte[] var2 = EnumComposition.EnumDefinition_archive.takeFile(8, var0); // L: 31
-			var1 = new EnumComposition(); // L: 32
-			if (var2 != null) { // L: 33
-				var1.decode(new Buffer(var2));
+	static final void method2926() {
+		Client.field709 = Client.cycleCntr; // L: 13112
+	} // L: 13113
+
+	@ObfuscatedName("lu")
+	@ObfuscatedSignature(
+		descriptor = "(IIZI)V",
+		garbageValue = "993311164"
+	)
+	static final void method2927(int var0, int var1, boolean var2) {
+		if (Client.currentClanChannels[var0] != null) { // L: 13177
+			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method3359()) { // L: 13178
+				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1); // L: 13179
+				PacketBufferNode var4 = Renderable.getPacketBufferNode(ClientPacket.field3085, Client.packetWriter.isaacCipher); // L: 13180
+				var4.packetBuffer.writeByte(4 + class96.stringCp1252NullTerminatedByteSize(var3.username.getName())); // L: 13181
+				var4.packetBuffer.writeByte(var0); // L: 13182
+				var4.packetBuffer.writeShort(var1); // L: 13183
+				var4.packetBuffer.writeBoolean(var2); // L: 13184
+				var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName()); // L: 13185
+				Client.packetWriter.addNode(var4); // L: 13186
 			}
-
-			EnumComposition.EnumDefinition_cached.put(var1, (long)var0); // L: 34
-			return var1; // L: 35
 		}
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lbr;",
-		garbageValue = "260622968"
-	)
-	@Export("Messages_getMessage")
-	static Message Messages_getMessage(int var0) {
-		return (Message)Messages.Messages_hashTable.get((long)var0); // L: 40
-	}
+	} // L: 13187
 }

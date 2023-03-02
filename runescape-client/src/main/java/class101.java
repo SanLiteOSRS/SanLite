@@ -1,159 +1,103 @@
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URLConnection;
-import javax.net.ssl.HttpsURLConnection;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cl")
-public class class101 extends UrlRequester {
-	@ObfuscatedName("df")
-	static boolean field1366;
-	@ObfuscatedName("lb")
+@ObfuscatedName("ci")
+final class class101 implements class301 {
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lci;"
+		descriptor = "Lkz;"
 	)
-	@Export("localPlayer")
-	static Player localPlayer;
-	@ObfuscatedName("j")
-	final boolean field1364;
+	final Widget val$cc;
 
-	public class101(boolean var1, int var2) {
-		super(var2); // L: 13
-		this.field1364 = var1; // L: 14
-	} // L: 15
-
-	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lct;I)V",
-		garbageValue = "1538294108"
+		descriptor = "(Lkz;)V"
 	)
-	void vmethod2537(UrlRequest var1) throws IOException {
-		URLConnection var2 = null; // L: 19
-
-		try {
-			try {
-				String var3 = var1.url.getProtocol(); // L: 21
-				if (var3.equals("http")) { // L: 22
-					var2 = this.method2548(var1); // L: 23
-				} else {
-					if (!var3.equals("https")) { // L: 25
-						var1.isDone0 = true; // L: 29
-						return; // L: 30
-					}
-
-					var2 = this.method2540(var1); // L: 26
-				}
-
-				this.method2522(var2, var1); // L: 32
-			} catch (IOException var7) {
-			}
-
-		} finally {
-			var1.isDone0 = true; // L: 36
-			if (var2 != null) { // L: 37
-				if (var2 instanceof HttpURLConnection) { // L: 38
-					((HttpURLConnection)var2).disconnect(); // L: 39
-				} else if (var2 instanceof HttpsURLConnection) { // L: 41
-					((HttpsURLConnection)var2).disconnect(); // L: 42
-				}
-			}
-
-		}
-	} // L: 46
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(Lct;S)Ljava/net/URLConnection;",
-		garbageValue = "6416"
-	)
-	URLConnection method2548(UrlRequest var1) throws IOException {
-		URLConnection var2 = var1.url.openConnection(); // L: 49
-		this.method2520(var2); // L: 50
-		return var2; // L: 51
+	class101(Widget var1) {
+		this.val$cc = var1; // L: 518
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lct;I)Ljava/net/URLConnection;",
-		garbageValue = "2028242666"
+		descriptor = "(I)V",
+		garbageValue = "-1666573426"
 	)
-	URLConnection method2540(UrlRequest var1) throws IOException {
-		HttpsURLConnection var2 = (HttpsURLConnection)var1.url.openConnection(); // L: 55
-		if (!this.field1364) { // L: 56
-			if (class15.field85 == null) { // L: 60
-				class15.field85 = new class15(); // L: 61
-			}
-
-			class15 var4 = class15.field85; // L: 63
-			var2.setSSLSocketFactory(var4); // L: 65
+	public void vmethod5862() {
+		if (this.val$cc != null && this.val$cc.method6228().field3481 != null) { // L: 520
+			ScriptEvent var1 = new ScriptEvent(); // L: 521
+			var1.method2313(this.val$cc); // L: 522
+			var1.setArgs(this.val$cc.method6228().field3481); // L: 523
+			class12.method171().addFirst(var1); // L: 524
 		}
 
-		this.method2520(var2); // L: 67
-		return var2; // L: 68
-	}
+	} // L: 526
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIII)Z",
-		garbageValue = "-585632517"
+		descriptor = "([BIIS)Ljava/lang/String;",
+		garbageValue = "-26255"
 	)
-	static final boolean method2549(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var7 = ViewportMouse.ViewportMouse_y + var6; // L: 107
-		if (var7 < var0 && var7 < var1 && var7 < var2) { // L: 108
-			return false;
-		} else {
-			var7 = ViewportMouse.ViewportMouse_y - var6; // L: 109
-			if (var7 > var0 && var7 > var1 && var7 > var2) {
-				return false; // L: 110
-			} else {
-				var7 = ViewportMouse.ViewportMouse_x + var6; // L: 111
-				if (var7 < var3 && var7 < var4 && var7 < var5) { // L: 112
-					return false;
-				} else {
-					var7 = ViewportMouse.ViewportMouse_x - var6; // L: 113
-					return var7 <= var3 || var7 <= var4 || var7 <= var5; // L: 114
+	@Export("decodeStringCp1252")
+	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
+		char[] var3 = new char[var2]; // L: 105
+		int var4 = 0; // L: 106
+
+		for (int var5 = 0; var5 < var2; ++var5) { // L: 107
+			int var6 = var0[var5 + var1] & 255; // L: 108
+			if (var6 != 0) { // L: 109
+				if (var6 >= 128 && var6 < 160) { // L: 110
+					char var7 = class362.cp1252AsciiExtension[var6 - 128]; // L: 111
+					if (var7 == 0) { // L: 112
+						var7 = '?';
+					}
+
+					var6 = var7; // L: 113
 				}
+
+				var3[var4++] = (char)var6; // L: 115
 			}
 		}
+
+		return new String(var3, 0, var4); // L: 117
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(ZB)V",
-		garbageValue = "1"
+		descriptor = "(ILba;ZB)I",
+		garbageValue = "42"
 	)
-	static void method2547(boolean var0) {
-		byte var1 = 0; // L: 1178
-		boolean var2 = class19.clientPreferences.method2266() >= Client.field482; // L: 1181
-		if (!var2) { // L: 1183
-			var1 = 12; // L: 1184
-		} else if (class353.client.method1102() || class353.client.isOtlTokenRequesterInitialized()) { // L: 1186
-			var1 = 10; // L: 1187
+	static int method2732(int var0, Script var1, boolean var2) {
+		int var3;
+		if (var0 == ScriptOpcodes.CAM_FORCEANGLE) { // L: 4194
+			class302.Interpreter_intStackSize -= 2; // L: 4195
+			var3 = Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize]; // L: 4196
+			int var4 = Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize + 1]; // L: 4197
+			if (!Client.isCameraLocked) { // L: 4198
+				Client.camAngleX = var3; // L: 4199
+				Client.camAngleY = var4; // L: 4200
+			}
+
+			return 1; // L: 4202
+		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_XA) { // L: 4204
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = Client.camAngleX; // L: 4205
+			return 1; // L: 4206
+		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_YA) { // L: 4208
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = Client.camAngleY; // L: 4209
+			return 1; // L: 4210
+		} else if (var0 == ScriptOpcodes.CAM_SETFOLLOWHEIGHT) { // L: 4212
+			var3 = Interpreter.Interpreter_intStack[--class302.Interpreter_intStackSize]; // L: 4213
+			if (var3 < 0) { // L: 4214
+				var3 = 0;
+			}
+
+			Client.camFollowHeight = var3; // L: 4215
+			return 1; // L: 4216
+		} else if (var0 == ScriptOpcodes.CAM_GETFOLLOWHEIGHT) { // L: 4218
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = Client.camFollowHeight; // L: 4219
+			return 1; // L: 4220
+		} else {
+			return 2; // L: 4222
 		}
-
-		WorldMapData_1.method4872(var1); // L: 1189
-		if (var0) { // L: 1190
-			Login.Login_username = ""; // L: 1191
-			Login.Login_password = ""; // L: 1192
-			class240.field2846 = 0; // L: 1193
-			World.otp = ""; // L: 1194
-		}
-
-		KeyHandler.method286(); // L: 1196
-		class29.method357(); // L: 1197
-	} // L: 1198
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;B)V",
-		garbageValue = "0"
-	)
-	@Export("setLoginResponseString")
-	static void setLoginResponseString(String var0, String var1, String var2) {
-		Login.Login_response1 = var0; // L: 1829
-		Login.Login_response2 = var1; // L: 1830
-		Login.Login_response3 = var2; // L: 1831
-	} // L: 1832
+	}
 }

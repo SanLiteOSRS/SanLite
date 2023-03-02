@@ -1,219 +1,214 @@
-import java.util.AbstractQueue;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mo")
-public class class347 extends AbstractQueue {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "[Lmn;"
-	)
-	class345[] field4166;
-	@ObfuscatedName("v")
-	Map field4167;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 1349227939
-	)
-	int field4165;
+@ObfuscatedName("mu")
+public class class347 {
+	@ObfuscatedName("l")
+	static int[] field4307;
 	@ObfuscatedName("f")
-	final Comparator field4168;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 500600827
-	)
-	int field4169;
-
-	public class347(int var1, Comparator var2) {
-		this.field4169 = 0; // L: 10
-		this.field4166 = new class345[var1]; // L: 17
-		this.field4167 = new HashMap(); // L: 18
-		this.field4168 = var2; // L: 19
-	} // L: 20
-
-	public class347(int var1) {
-		this(var1, (Comparator)null); // L: 13
-	} // L: 14
-
-	@ObfuscatedName("c")
+	@Export("spriteMap")
+	final HashMap spriteMap;
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "111"
+		descriptor = "Loj;"
 	)
-	void method6341() {
-		int var1 = (this.field4166.length << 1) + 1; // L: 23
-		this.field4166 = (class345[])((class345[])Arrays.copyOf(this.field4166, var1)); // L: 24
-	} // L: 25
+	@Export("bounds")
+	Bounds bounds;
+	@ObfuscatedName("v")
+	int[] field4302;
+	@ObfuscatedName("s")
+	int[] field4304;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = 1580575271
+	)
+	int field4301;
+
+	public class347() {
+		this.spriteMap = new HashMap(); // L: 10
+		this.bounds = new Bounds(0, 0); // L: 11
+		this.field4302 = new int[2048]; // L: 12
+		this.field4304 = new int[2048]; // L: 13
+		this.field4301 = 0; // L: 14
+		field4307 = new int[2000]; // L: 22
+		int var1 = 0; // L: 23
+		int var2 = 240; // L: 24
+
+		int var4;
+		for (byte var3 = 12; var1 < 16; var2 -= var3) { // L: 25
+			var4 = SecureRandomCallable.method2282((double)((float)var2 / 360.0F), 0.9998999834060669D, (double)(0.425F * (float)var1 / 16.0F + 0.075F)); // L: 27
+			field4307[var1] = var4; // L: 28
+			++var1; // L: 26
+		}
+
+		var2 = 48; // L: 30
+
+		for (int var6 = var2 / 6; var1 < field4307.length; var2 -= var6) { // L: 31 32 38
+			var4 = var1 * 2; // L: 33
+
+			for (int var5 = SecureRandomCallable.method2282((double)((float)var2 / 360.0F), 0.9998999834060669D, 0.5D); var1 < var4 && var1 < field4307.length; ++var1) { // L: 34 35
+				field4307[var1] = var5; // L: 36
+			}
+		}
+
+	} // L: 41
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "16"
+	)
+	void method6740(int var1) {
+		int var2 = var1 * 2 + 1; // L: 44
+		double var4 = (double)((float)var1 / 3.0F); // L: 46
+		int var6 = var1 * 2 + 1; // L: 48
+		double[] var7 = new double[var6]; // L: 49
+		int var8 = -var1;
+
+		for (int var9 = 0; var8 <= var1; ++var9) {
+			double var20 = class6.method46((double)(var8 - 0) / var4) / var4; // L: 55
+			var7[var9] = var20; // L: 57
+			++var8; // L: 50
+		}
+
+		double[] var14 = var7; // L: 61
+		double var15 = var7[var1] * var7[var1]; // L: 62
+		int[] var17 = new int[var2 * var2]; // L: 63
+		boolean var10 = false; // L: 64
+
+		for (int var11 = 0; var11 < var2; ++var11) { // L: 65
+			for (int var12 = 0; var12 < var2; ++var12) { // L: 66
+				int var13 = var17[var12 + var2 * var11] = (int)(256.0D * (var14[var11] * var14[var12] / var15)); // L: 67
+				if (!var10 && var13 > 0) { // L: 68
+					var10 = true; // L: 69
+				}
+			}
+		}
+
+		SpritePixels var18 = new SpritePixels(var17, var2, var2); // L: 73
+		this.spriteMap.put(var1, var18); // L: 74
+	} // L: 75
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Lrs;",
+		garbageValue = "-1"
+	)
+	SpritePixels method6742(int var1) {
+		if (!this.spriteMap.containsKey(var1)) { // L: 78
+			this.method6740(var1); // L: 79
+		}
+
+		return (SpritePixels)this.spriteMap.get(var1); // L: 81
+	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1035999073"
+		descriptor = "(III)V",
+		garbageValue = "-699862924"
 	)
-	void method6342(int var1) {
-		class345 var2;
-		int var3;
-		for (var2 = this.field4166[var1]; var1 > 0; var1 = var3) { // L: 96 97 108
-			var3 = var1 - 1 >>> 1; // L: 98
-			class345 var4 = this.field4166[var3]; // L: 99
-			if (this.field4168 != null) { // L: 100
-				if (this.field4168.compare(var2.field4159, var4.field4159) >= 0) { // L: 101
-					break;
-				}
-			} else if (((Comparable)var2.field4159).compareTo(var4.field4159) >= 0) { // L: 104
-				break;
-			}
-
-			this.field4166[var1] = var4; // L: 106
-			this.field4166[var1].field4158 = var1; // L: 107
+	public final void method6744(int var1, int var2) {
+		if (this.field4301 < this.field4302.length) { // L: 85
+			this.field4302[this.field4301] = var1; // L: 86
+			this.field4304[this.field4301] = var2; // L: 87
+			++this.field4301; // L: 88
 		}
+	} // L: 89
 
-		this.field4166[var1] = var2; // L: 110
-		this.field4166[var1].field4158 = var1; // L: 111
-	} // L: 112
-
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1952216372"
+		descriptor = "(I)V",
+		garbageValue = "-1874686349"
 	)
-	void method6354(int var1) {
-		class345 var2 = this.field4166[var1]; // L: 116
+	public final void method6759() {
+		this.field4301 = 0; // L: 92
+	} // L: 93
 
-		int var8;
-		for (int var3 = this.field4165 >>> 1; var1 < var3; var1 = var8) { // L: 117 118 140
-			int var4 = (var1 << 1) + 1; // L: 119
-			class345 var5 = this.field4166[var4]; // L: 120
-			int var6 = (var1 << 1) + 2; // L: 121
-			class345 var7 = this.field4166[var6]; // L: 122
-			if (this.field4168 != null) { // L: 124
-				if (var6 < this.field4165 && this.field4168.compare(var5.field4159, var7.field4159) > 0) { // L: 125
-					var8 = var6;
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		descriptor = "(IILrs;FI)V",
+		garbageValue = "582476905"
+	)
+	public final void method6760(int var1, int var2, SpritePixels var3, float var4) {
+		int var5 = (int)(var4 * 18.0F); // L: 96
+		SpritePixels var6 = this.method6742(var5); // L: 97
+		int var7 = var5 * 2 + 1; // L: 98
+		Bounds var8 = new Bounds(0, 0, var3.subWidth, var3.subHeight); // L: 99
+		Bounds var9 = new Bounds(0, 0); // L: 100
+		this.bounds.setHigh(var7, var7); // L: 101
+		System.nanoTime(); // L: 102
+
+		int var10;
+		int var11;
+		int var12;
+		for (var10 = 0; var10 < this.field4301; ++var10) { // L: 103
+			var11 = this.field4302[var10]; // L: 104
+			var12 = this.field4304[var10]; // L: 105
+			int var13 = (int)(var4 * (float)(var11 - var1)) - var5; // L: 106
+			int var14 = (int)((float)var3.subHeight - (float)(var12 - var2) * var4) - var5; // L: 107
+			this.bounds.setLow(var13, var14); // L: 108
+			this.bounds.method7852(var8, var9); // L: 109
+			this.method6745(var6, var3, var9); // L: 110
+		}
+
+		System.nanoTime(); // L: 112
+		System.nanoTime(); // L: 113
+
+		for (var10 = 0; var10 < var3.pixels.length; ++var10) { // L: 114
+			if (var3.pixels[var10] == 0) { // L: 115
+				var3.pixels[var10] = -16777216; // L: 116
+			} else {
+				var11 = (var3.pixels[var10] + 64 - 1) / 256; // L: 119
+				if (var11 <= 0) { // L: 120
+					var3.pixels[var10] = -16777216; // L: 121
 				} else {
-					var8 = var4; // L: 126
-				}
-			} else if (var6 < this.field4165 && ((Comparable)var5.field4159).compareTo(var7.field4159) > 0) { // L: 129
-				var8 = var6;
-			} else {
-				var8 = var4; // L: 130
-			}
+					if (var11 > field4307.length) { // L: 124
+						var11 = field4307.length;
+					}
 
-			if (this.field4168 != null) { // L: 132
-				if (this.field4168.compare(var2.field4159, this.field4166[var8].field4159) <= 0) { // L: 133
-					break;
+					var12 = field4307[var11 - 1]; // L: 125
+					var3.pixels[var10] = -16777216 | var12; // L: 126
 				}
-			} else if (((Comparable)var2.field4159).compareTo(this.field4166[var8].field4159) <= 0) { // L: 136
-				break;
 			}
-
-			this.field4166[var1] = this.field4166[var8]; // L: 138
-			this.field4166[var1].field4158 = var1; // L: 139
 		}
 
-		this.field4166[var1] = var2; // L: 142
-		this.field4166[var1].field4158 = var1; // L: 143
-	} // L: 144
+		System.nanoTime(); // L: 128
+	} // L: 129
 
-	public boolean remove(Object var1) {
-		class345 var2 = (class345)this.field4167.remove(var1); // L: 77
-		if (var2 == null) { // L: 78
-			return false;
-		} else {
-			++this.field4169; // L: 79
-			--this.field4165; // L: 80
-			if (var2.field4158 == this.field4165) { // L: 81
-				this.field4166[this.field4165] = null; // L: 82
-				return true; // L: 83
-			} else {
-				class345 var3 = this.field4166[this.field4165]; // L: 85
-				this.field4166[this.field4165] = null; // L: 86
-				this.field4166[var2.field4158] = var3; // L: 87
-				this.field4166[var2.field4158].field4158 = var2.field4158; // L: 88
-				this.method6354(var2.field4158); // L: 89
-				if (var3 == this.field4166[var2.field4158]) { // L: 90
-					this.method6342(var2.field4158);
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(Lrs;Lrs;Loj;B)V",
+		garbageValue = "44"
+	)
+	void method6745(SpritePixels var1, SpritePixels var2, Bounds var3) {
+		if (var3.highX != 0 && var3.highY != 0) { // L: 132
+			int var4 = 0; // L: 133
+			int var5 = 0; // L: 134
+			if (var3.lowX == 0) { // L: 135
+				var4 = var1.subWidth - var3.highX;
+			}
+
+			if (var3.lowY == 0) { // L: 136
+				var5 = var1.subHeight - var3.highY;
+			}
+
+			int var6 = var4 + var5 * var1.subWidth; // L: 137
+			int var7 = var2.subWidth * var3.lowY + var3.lowX; // L: 138
+
+			for (int var8 = 0; var8 < var3.highY; ++var8) { // L: 139
+				for (int var9 = 0; var9 < var3.highX; ++var9) { // L: 140
+					int[] var10000 = var2.pixels; // L: 141
+					int var10001 = var7++;
+					var10000[var10001] += var1.pixels[var6++];
 				}
 
-				return true; // L: 91
-			}
-		}
-	}
-
-	public Object peek() {
-		return this.field4165 == 0 ? null : this.field4166[0].field4159; // L: 54 55
-	}
-
-	public int size() {
-		return this.field4165; // L: 29
-	}
-
-	public boolean offer(Object var1) {
-		if (this.field4167.containsKey(var1)) { // L: 34
-			throw new IllegalArgumentException("");
-		} else {
-			++this.field4169; // L: 35
-			int var2 = this.field4165; // L: 36
-			if (var2 >= this.field4166.length) { // L: 37
-				this.method6341();
+				var6 += var1.subWidth - var3.highX; // L: 143
+				var7 += var2.subWidth - var3.highX; // L: 144
 			}
 
-			++this.field4165; // L: 38
-			if (var2 == 0) { // L: 39
-				this.field4166[0] = new class345(var1, 0); // L: 40
-				this.field4167.put(var1, this.field4166[0]); // L: 41
-			} else {
-				this.field4166[var2] = new class345(var1, var2); // L: 44
-				this.field4167.put(var1, this.field4166[var2]); // L: 45
-				this.method6342(var2); // L: 46
-			}
-
-			return true; // L: 48
 		}
-	}
-
-	public Object[] toArray() {
-		Object[] var1 = super.toArray(); // L: 154
-		if (this.field4168 != null) {
-			Arrays.sort(var1, this.field4168); // L: 155
-		} else {
-			Arrays.sort(var1); // L: 156
-		}
-
-		return var1; // L: 157
-	}
-
-	public Object poll() {
-		if (this.field4165 == 0) { // L: 61
-			return null;
-		} else {
-			++this.field4169; // L: 62
-			Object var1 = this.field4166[0].field4159; // L: 63
-			this.field4167.remove(var1); // L: 64
-			--this.field4165; // L: 65
-			if (this.field4165 == 0) {
-				this.field4166[this.field4165] = null; // L: 66
-			} else {
-				this.field4166[0] = this.field4166[this.field4165]; // L: 68
-				this.field4166[0].field4158 = 0; // L: 69
-				this.field4166[this.field4165] = null; // L: 70
-				this.method6354(0); // L: 71
-			}
-
-			return var1; // L: 73
-		}
-	}
-
-	public boolean contains(Object var1) {
-		return this.field4167.containsKey(var1); // L: 148
-	}
-
-	public Iterator iterator() {
-		return new class346(this); // L: 162
-	}
+	} // L: 146
 }
