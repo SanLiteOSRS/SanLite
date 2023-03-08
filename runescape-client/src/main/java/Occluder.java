@@ -1,144 +1,149 @@
+import java.applet.Applet;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gb")
+@ObfuscatedName("hx")
 @Implements("Occluder")
 public final class Occluder {
-	@ObfuscatedName("uw")
-	@ObfuscatedSignature(
-		descriptor = "Los;"
-	)
-	@Export("platformInfo")
-	static PlatformInfo platformInfo;
-	@ObfuscatedName("c")
+	@ObfuscatedName("th")
 	@ObfuscatedGetter(
-		intValue = -1913259521
+		intValue = -1719025664
+	)
+	static int field2636;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -1892245081
 	)
 	@Export("minTileX")
 	int minTileX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -743836359
+		intValue = 514373031
 	)
 	@Export("maxTileX")
 	int maxTileX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1643298167
+		intValue = -1916583407
 	)
 	@Export("minTileY")
 	int minTileY;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1894194977
+		intValue = 1037281985
 	)
 	@Export("maxTileY")
 	int maxTileY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -741467087
+		intValue = -1080102931
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 360875993
+		intValue = -821427861
 	)
 	@Export("minX")
 	int minX;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1324054405
+		intValue = -1466699159
 	)
 	@Export("maxX")
 	int maxX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1977577685
+		intValue = -1277702437
 	)
 	@Export("minZ")
 	int minZ;
-	@ObfuscatedName("y")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 690008559
+		intValue = 1587170153
 	)
 	@Export("maxZ")
 	int maxZ;
-	@ObfuscatedName("i")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 638283975
+		intValue = -1761060981
 	)
 	@Export("minY")
 	int minY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1747045819
+		intValue = -934931019
 	)
 	@Export("maxY")
 	int maxY;
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = -1792742847
-	)
-	int field2470;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = 963802065
-	)
-	int field2472;
 	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1423983461
+		intValue = -2054486103
 	)
-	int field2466;
-	@ObfuscatedName("u")
+	int field2627;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 942298147
+		intValue = -1792552595
 	)
-	int field2467;
-	@ObfuscatedName("k")
+	int field2633;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -740983489
+		intValue = 8708161
 	)
-	int field2468;
+	int field2632;
+	@ObfuscatedName("t")
+	@ObfuscatedGetter(
+		intValue = -801880649
+	)
+	int field2635;
 	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 336673989
+		intValue = 428701389
 	)
-	int field2462;
-	@ObfuscatedName("x")
+	int field2634;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 680765335
+		intValue = 1960214883
 	)
-	int field2473;
+	int field2639;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = 124194473
+	)
+	int field2638;
 
 	Occluder() {
-	} // L: 23
+	}
 
-	@ObfuscatedName("kc")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-49313522"
+		descriptor = "(Ljava/applet/Applet;Ljava/lang/String;I)V",
+		garbageValue = "1977226602"
 	)
-	static final void method4354() {
-		PacketBufferNode var0 = EnumComposition.getPacketBufferNode(ClientPacket.field2987, Client.packetWriter.isaacCipher); // L: 11980
-		Client.packetWriter.addNode(var0); // L: 11981
-		Interpreter.field842 = true; // L: 11982
-
-		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) { // L: 11983
-			if (var1.type == 0 || var1.type == 3) { // L: 11984
-				MusicPatchPcmStream.closeInterface(var1, true);
-			}
+	public static void method4650(Applet var0, String var1) {
+		class31.field190 = var0; // L: 22
+		if (var1 != null) { // L: 23
+			class31.field186 = var1;
 		}
 
-		if (Client.meslayerContinueWidget != null) { // L: 11986
-			ChatChannel.invalidateWidget(Client.meslayerContinueWidget); // L: 11987
-			Client.meslayerContinueWidget = null; // L: 11988
+	} // L: 24
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "-76"
+	)
+	static void method4649(String var0) {
+		String var1;
+		if (var0 != null && !var0.isEmpty() && var0.charAt(0) != '#') { // L: 1892
+			var1 = var0; // L: 1896
+		} else {
+			var1 = ""; // L: 1893
 		}
 
-		Interpreter.field842 = false; // L: 11990
-	} // L: 11991
+		Login.field927 = var1; // L: 1898
+	} // L: 1899
 }

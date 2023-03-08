@@ -3,1032 +3,897 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("jn")
+@ObfuscatedName("jg")
 @Implements("ServerPacket")
 public class ServerPacket {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3093;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3037;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3038;
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3118;
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3040;
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3041;
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3142;
+	public static final ServerPacket field3294;
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3109;
-	@ObfuscatedName("y")
+	public static final ServerPacket field3193;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3130;
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3067;
+	public static final ServerPacket field3284;
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3046;
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3113;
+	public static final ServerPacket field3195;
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3048;
-	@ObfuscatedName("r")
+	public static final ServerPacket field3196;
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3049;
-	@ObfuscatedName("u")
+	public static final ServerPacket field3197;
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3050;
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3039;
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3052;
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3053;
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3054;
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3055;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3056;
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3057;
+	public static final ServerPacket field3237;
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3058;
-	@ObfuscatedName("o")
+	public static final ServerPacket field3199;
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3097;
+	public static final ServerPacket field3305;
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3201;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3202;
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3267;
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3204;
 	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3079;
+	public static final ServerPacket field3205;
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3273;
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3207;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3208;
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3209;
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3210;
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3211;
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3259;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3213;
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3061;
-	@ObfuscatedName("ad")
+	public static final ServerPacket field3231;
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3051;
-	@ObfuscatedName("ak")
+	public static final ServerPacket field3215;
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3063;
-	@ObfuscatedName("al")
+	public static final ServerPacket field3206;
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3044;
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3059;
-	@ObfuscatedName("ab")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3066;
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3092;
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3068;
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3119;
-	@ObfuscatedName("aj")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3070;
-	@ObfuscatedName("am")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3071;
-	@ObfuscatedName("an")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3129;
+	public static final ServerPacket field3217;
 	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3042;
-	@ObfuscatedName("ax")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3069;
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3075;
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3076;
-	@ObfuscatedName("ag")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3110;
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3078;
-	@ObfuscatedName("ah")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3127;
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3080;
-	@ObfuscatedName("az")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3126;
-	@ObfuscatedName("av")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3082;
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3083;
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3084;
+	public static final ServerPacket field3218;
 	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3085;
+	public static final ServerPacket field3219;
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3220;
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3221;
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3222;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3223;
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3224;
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3282;
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3226;
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3198;
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3200;
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3229;
 	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3086;
+	public static final ServerPacket field3230;
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3296;
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3216;
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3233;
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3227;
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3235;
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3236;
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3306;
+	@ObfuscatedName("ad")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3238;
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3239;
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3240;
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3248;
 	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3087;
-	@ObfuscatedName("be")
+	public static final ServerPacket field3242;
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3088;
-	@ObfuscatedName("bz")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3060;
-	@ObfuscatedName("bp")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3090;
-	@ObfuscatedName("bf")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3091;
-	@ObfuscatedName("bg")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3096;
-	@ObfuscatedName("br")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3140;
-	@ObfuscatedName("bn")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3094;
-	@ObfuscatedName("bq")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3095;
-	@ObfuscatedName("bc")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3045;
-	@ObfuscatedName("bl")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3043;
-	@ObfuscatedName("bv")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3062;
-	@ObfuscatedName("bt")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3138;
-	@ObfuscatedName("bh")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3100;
-	@ObfuscatedName("bs")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3101;
-	@ObfuscatedName("bk")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3064;
-	@ObfuscatedName("bb")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3099;
-	@ObfuscatedName("ba")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3104;
-	@ObfuscatedName("bu")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3105;
-	@ObfuscatedName("bw")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3047;
-	@ObfuscatedName("bi")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3107;
-	@ObfuscatedName("bo")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3081;
-	@ObfuscatedName("bx")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3106;
-	@ObfuscatedName("bm")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3074;
-	@ObfuscatedName("by")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3111;
+	public static final ServerPacket field3243;
 	@ObfuscatedName("bj")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3112;
+	public static final ServerPacket field3244;
+	@ObfuscatedName("bf")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3287;
+	@ObfuscatedName("bz")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3246;
+	@ObfuscatedName("br")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3247;
+	@ObfuscatedName("bm")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3253;
+	@ObfuscatedName("be")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3214;
+	@ObfuscatedName("bo")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3250;
+	@ObfuscatedName("bl")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3303;
+	@ObfuscatedName("bq")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3194;
+	@ObfuscatedName("bn")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3212;
+	@ObfuscatedName("bi")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3254;
+	@ObfuscatedName("bw")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3255;
+	@ObfuscatedName("bt")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3256;
 	@ObfuscatedName("bd")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3073;
-	@ObfuscatedName("cr")
+	public static final ServerPacket field3276;
+	@ObfuscatedName("bg")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3114;
-	@ObfuscatedName("cq")
+	public static final ServerPacket field3258;
+	@ObfuscatedName("bb")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3077;
-	@ObfuscatedName("cw")
+	public static final ServerPacket field3279;
+	@ObfuscatedName("bk")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3116;
-	@ObfuscatedName("cx")
+	public static final ServerPacket field3260;
+	@ObfuscatedName("bs")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3117;
-	@ObfuscatedName("cc")
+	public static final ServerPacket field3261;
+	@ObfuscatedName("by")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3108;
-	@ObfuscatedName("cm")
+	public static final ServerPacket field3234;
+	@ObfuscatedName("bu")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3089;
-	@ObfuscatedName("ci")
+	public static final ServerPacket field3281;
+	@ObfuscatedName("bp")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3120;
-	@ObfuscatedName("cg")
+	public static final ServerPacket field3264;
+	@ObfuscatedName("bc")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3121;
-	@ObfuscatedName("cj")
+	public static final ServerPacket field3265;
+	@ObfuscatedName("ba")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3122;
-	@ObfuscatedName("cp")
+	public static final ServerPacket field3271;
+	@ObfuscatedName("bh")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3123;
-	@ObfuscatedName("cf")
+	public static final ServerPacket field3252;
+	@ObfuscatedName("bx")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3124;
-	@ObfuscatedName("cv")
+	public static final ServerPacket field3251;
+	@ObfuscatedName("bv")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3125;
-	@ObfuscatedName("cn")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3072;
-	@ObfuscatedName("co")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3103;
-	@ObfuscatedName("cz")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3128;
+	public static final ServerPacket field3269;
 	@ObfuscatedName("cu")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3102;
-	@ObfuscatedName("ce")
+	public static final ServerPacket field3270;
+	@ObfuscatedName("cr")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3065;
-	@ObfuscatedName("cy")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3131;
-	@ObfuscatedName("ca")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3132;
-	@ObfuscatedName("ck")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3133;
-	@ObfuscatedName("cb")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3134;
+	public static final ServerPacket field3245;
 	@ObfuscatedName("cs")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3135;
+	public static final ServerPacket field3272;
+	@ObfuscatedName("cp")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3266;
+	@ObfuscatedName("cq")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3291;
 	@ObfuscatedName("cd")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3136;
-	@ObfuscatedName("cl")
+	public static final ServerPacket field3275;
+	@ObfuscatedName("cc")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3137;
-	@ObfuscatedName("ct")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static final ServerPacket field3115;
+	public static final ServerPacket field3232;
 	@ObfuscatedName("ch")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3139;
+	public static final ServerPacket field3277;
+	@ObfuscatedName("ck")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3278;
+	@ObfuscatedName("cl")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3225;
+	@ObfuscatedName("cx")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3280;
+	@ObfuscatedName("ct")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3263;
+	@ObfuscatedName("cb")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3249;
+	@ObfuscatedName("cz")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3283;
+	@ObfuscatedName("ca")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3274;
+	@ObfuscatedName("cy")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3285;
+	@ObfuscatedName("cv")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3286;
+	@ObfuscatedName("cf")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3241;
+	@ObfuscatedName("cm")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3192;
+	@ObfuscatedName("ce")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3289;
+	@ObfuscatedName("co")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3290;
+	@ObfuscatedName("cg")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3293;
+	@ObfuscatedName("cj")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3292;
+	@ObfuscatedName("ci")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3228;
+	@ObfuscatedName("cn")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3288;
+	@ObfuscatedName("cw")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3295;
+	@ObfuscatedName("dw")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3257;
+	@ObfuscatedName("dz")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3297;
+	@ObfuscatedName("db")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3298;
+	@ObfuscatedName("di")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3299;
+	@ObfuscatedName("dy")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3300;
+	@ObfuscatedName("dg")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3301;
 	@ObfuscatedName("dm")
 	@ObfuscatedSignature(
-		descriptor = "Ljn;"
+		descriptor = "Ljg;"
 	)
-	public static final ServerPacket field3098;
-	@ObfuscatedName("dd")
+	public static final ServerPacket field3302;
+	@ObfuscatedName("dn")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3262;
+	@ObfuscatedName("df")
+	@ObfuscatedSignature(
+		descriptor = "Ljg;"
+	)
+	public static final ServerPacket field3304;
+	@ObfuscatedName("da")
+	static boolean field3307;
+	@ObfuscatedName("dv")
 	@ObfuscatedGetter(
-		intValue = 1936739439
+		intValue = -1282844463
 	)
 	@Export("id")
 	public final int id;
-	@ObfuscatedName("dz")
+	@ObfuscatedName("dr")
 	@ObfuscatedGetter(
-		intValue = 615071029
+		intValue = -1354345063
 	)
 	@Export("length")
 	public final int length;
 
 	static {
-		field3093 = new ServerPacket(0, -2); // L: 5
-		field3037 = new ServerPacket(1, 12); // L: 6
-		field3038 = new ServerPacket(2, 3); // L: 7
-		field3118 = new ServerPacket(3, 15); // L: 8
-		field3040 = new ServerPacket(4, 5); // L: 9
-		field3041 = new ServerPacket(5, 6); // L: 10
-		field3142 = new ServerPacket(6, 2); // L: 11
-		field3109 = new ServerPacket(7, -1); // L: 12
-		field3130 = new ServerPacket(8, 0); // L: 13
-		field3067 = new ServerPacket(9, 6); // L: 14
-		field3046 = new ServerPacket(10, -2); // L: 15
-		field3113 = new ServerPacket(11, -1); // L: 16
-		field3048 = new ServerPacket(12, -1); // L: 17
-		field3049 = new ServerPacket(13, 8); // L: 18
-		field3050 = new ServerPacket(14, 14); // L: 19
-		field3039 = new ServerPacket(15, 4); // L: 20
-		field3052 = new ServerPacket(16, 8); // L: 21
-		field3053 = new ServerPacket(17, 5); // L: 22
-		field3054 = new ServerPacket(18, 7); // L: 23
-		field3055 = new ServerPacket(19, 0); // L: 24
-		field3056 = new ServerPacket(20, -2); // L: 25
-		field3057 = new ServerPacket(21, 5); // L: 26
-		field3058 = new ServerPacket(22, -2); // L: 27
-		field3097 = new ServerPacket(23, -2); // L: 28
-		field3079 = new ServerPacket(24, 2); // L: 29
-		field3061 = new ServerPacket(25, 2); // L: 30
-		field3051 = new ServerPacket(26, 2); // L: 31
-		field3063 = new ServerPacket(27, 5); // L: 32
-		field3044 = new ServerPacket(28, 0); // L: 33
-		field3059 = new ServerPacket(29, 5); // L: 34
-		field3066 = new ServerPacket(30, -2); // L: 35
-		field3092 = new ServerPacket(31, 28); // L: 36
-		field3068 = new ServerPacket(32, 0); // L: 37
-		field3119 = new ServerPacket(33, 8); // L: 38
-		field3070 = new ServerPacket(34, 2); // L: 39
-		field3071 = new ServerPacket(35, 1); // L: 40
-		field3129 = new ServerPacket(36, 4); // L: 41
-		field3042 = new ServerPacket(37, -2); // L: 42
-		field3069 = new ServerPacket(38, -1); // L: 43
-		field3075 = new ServerPacket(39, 1); // L: 44
-		field3076 = new ServerPacket(40, 0); // L: 45
-		field3110 = new ServerPacket(41, 1); // L: 46
-		field3078 = new ServerPacket(42, 4); // L: 47
-		field3127 = new ServerPacket(43, 0); // L: 48
-		field3080 = new ServerPacket(44, 4); // L: 49
-		field3126 = new ServerPacket(45, 6); // L: 50
-		field3082 = new ServerPacket(46, -2); // L: 51
-		field3083 = new ServerPacket(47, -2); // L: 52
-		field3084 = new ServerPacket(48, 2); // L: 53
-		field3085 = new ServerPacket(49, 7); // L: 54
-		field3086 = new ServerPacket(50, -1); // L: 55
-		field3087 = new ServerPacket(51, 8); // L: 56
-		field3088 = new ServerPacket(52, -2); // L: 57
-		field3060 = new ServerPacket(53, 10); // L: 58
-		field3090 = new ServerPacket(54, -2); // L: 59
-		field3091 = new ServerPacket(55, 6); // L: 60
-		field3096 = new ServerPacket(56, 1); // L: 61
-		field3140 = new ServerPacket(57, 4); // L: 62
-		field3094 = new ServerPacket(58, 20); // L: 63
-		field3095 = new ServerPacket(59, 5); // L: 64
-		field3045 = new ServerPacket(60, -1); // L: 65
-		field3043 = new ServerPacket(61, 6); // L: 66
-		field3062 = new ServerPacket(62, -2); // L: 67
-		field3138 = new ServerPacket(63, 6); // L: 68
-		field3100 = new ServerPacket(64, 6); // L: 69
-		field3101 = new ServerPacket(65, 2); // L: 70
-		field3064 = new ServerPacket(66, -2); // L: 71
-		field3099 = new ServerPacket(67, -2); // L: 72
-		field3104 = new ServerPacket(68, 6); // L: 73
-		field3105 = new ServerPacket(69, -2); // L: 74
-		field3047 = new ServerPacket(70, 6); // L: 75
-		field3107 = new ServerPacket(71, 0); // L: 76
-		field3081 = new ServerPacket(72, 6); // L: 77
-		field3106 = new ServerPacket(73, -2); // L: 78
-		field3074 = new ServerPacket(74, 10); // L: 79
-		field3111 = new ServerPacket(75, 1); // L: 80
-		field3112 = new ServerPacket(76, -2); // L: 81
-		field3073 = new ServerPacket(77, 1); // L: 82
-		field3114 = new ServerPacket(78, -1); // L: 83
-		field3077 = new ServerPacket(79, 4); // L: 84
-		field3116 = new ServerPacket(80, 17); // L: 85
-		field3117 = new ServerPacket(81, 8); // L: 86
-		field3108 = new ServerPacket(82, 2); // L: 87
-		field3089 = new ServerPacket(83, -2); // L: 88
-		field3120 = new ServerPacket(84, -2); // L: 89
-		field3121 = new ServerPacket(85, 6); // L: 90
-		field3122 = new ServerPacket(86, 0); // L: 91
-		field3123 = new ServerPacket(87, 8); // L: 92
-		field3124 = new ServerPacket(88, -1); // L: 93
-		field3125 = new ServerPacket(89, 4); // L: 94
-		field3072 = new ServerPacket(90, 0); // L: 95
-		field3103 = new ServerPacket(91, 6); // L: 96
-		field3128 = new ServerPacket(92, -1); // L: 97
-		field3102 = new ServerPacket(93, 8); // L: 98
-		field3065 = new ServerPacket(94, -2);
-		field3131 = new ServerPacket(95, -2);
-		field3132 = new ServerPacket(96, 3); // L: 101
-		field3133 = new ServerPacket(97, 4); // L: 102
-		field3134 = new ServerPacket(98, -2);
-		field3135 = new ServerPacket(99, 2);
-		field3136 = new ServerPacket(100, -2); // L: 105
-		field3137 = new ServerPacket(101, -2); // L: 106
-		field3115 = new ServerPacket(102, -2); // L: 107
-		field3139 = new ServerPacket(103, 2);
-		field3098 = new ServerPacket(104, -2); // L: 109
+		field3294 = new ServerPacket(0, -2); // L: 5
+		field3193 = new ServerPacket(1, 2); // L: 6
+		field3284 = new ServerPacket(2, -2); // L: 7
+		field3195 = new ServerPacket(3, -2); // L: 8
+		field3196 = new ServerPacket(4, 6); // L: 9
+		field3197 = new ServerPacket(5, 2); // L: 10
+		field3237 = new ServerPacket(6, 6); // L: 11
+		field3199 = new ServerPacket(7, -2); // L: 12
+		field3305 = new ServerPacket(8, 0); // L: 13
+		field3201 = new ServerPacket(9, -2);
+		field3202 = new ServerPacket(10, 4); // L: 15
+		field3267 = new ServerPacket(11, 0); // L: 16
+		field3204 = new ServerPacket(12, 2);
+		field3205 = new ServerPacket(13, 2);
+		field3273 = new ServerPacket(14, 0);
+		field3207 = new ServerPacket(15, -2);
+		field3208 = new ServerPacket(16, 4);
+		field3209 = new ServerPacket(17, 20);
+		field3210 = new ServerPacket(18, -2);
+		field3211 = new ServerPacket(19, 2);
+		field3259 = new ServerPacket(20, -2);
+		field3213 = new ServerPacket(21, -2);
+		field3231 = new ServerPacket(22, 1);
+		field3215 = new ServerPacket(23, 5);
+		field3206 = new ServerPacket(24, 7);
+		field3217 = new ServerPacket(25, -2);
+		field3218 = new ServerPacket(26, 6);
+		field3219 = new ServerPacket(27, -1);
+		field3220 = new ServerPacket(28, 9);
+		field3221 = new ServerPacket(29, -2);
+		field3222 = new ServerPacket(30, -2);
+		field3223 = new ServerPacket(31, 14);
+		field3224 = new ServerPacket(32, -1);
+		field3282 = new ServerPacket(33, -2);
+		field3226 = new ServerPacket(34, 1);
+		field3198 = new ServerPacket(35, 6);
+		field3200 = new ServerPacket(36, 0);
+		field3229 = new ServerPacket(37, 6);
+		field3230 = new ServerPacket(38, 7);
+		field3296 = new ServerPacket(39, 2);
+		field3216 = new ServerPacket(40, 8);
+		field3233 = new ServerPacket(41, 15);
+		field3227 = new ServerPacket(42, 17);
+		field3235 = new ServerPacket(43, 4);
+		field3236 = new ServerPacket(44, -2);
+		field3306 = new ServerPacket(45, 5); // L: 50
+		field3238 = new ServerPacket(46, 12); // L: 51
+		field3239 = new ServerPacket(47, 10); // L: 52
+		field3240 = new ServerPacket(48, 2); // L: 53
+		field3248 = new ServerPacket(49, 0);
+		field3242 = new ServerPacket(50, 5);
+		field3243 = new ServerPacket(51, 2);
+		field3244 = new ServerPacket(52, -2); // L: 57
+		field3287 = new ServerPacket(53, -2); // L: 58
+		field3246 = new ServerPacket(54, 4); // L: 59
+		field3247 = new ServerPacket(55, 5); // L: 60
+		field3253 = new ServerPacket(56, -1); // L: 61
+		field3214 = new ServerPacket(57, 0); // L: 62
+		field3250 = new ServerPacket(58, 6);
+		field3303 = new ServerPacket(59, 8);
+		field3194 = new ServerPacket(60, 4);
+		field3212 = new ServerPacket(61, -1);
+		field3254 = new ServerPacket(62, 8);
+		field3255 = new ServerPacket(63, -2); // L: 68
+		field3256 = new ServerPacket(64, 4); // L: 69
+		field3276 = new ServerPacket(65, 1); // L: 70
+		field3258 = new ServerPacket(66, 10); // L: 71
+		field3279 = new ServerPacket(67, 6); // L: 72
+		field3260 = new ServerPacket(68, -1); // L: 73
+		field3261 = new ServerPacket(69, 8); // L: 74
+		field3234 = new ServerPacket(70, -2); // L: 75
+		field3281 = new ServerPacket(71, 0); // L: 76
+		field3264 = new ServerPacket(72, -2); // L: 77
+		field3265 = new ServerPacket(73, -2); // L: 78
+		field3271 = new ServerPacket(74, 28); // L: 79
+		field3252 = new ServerPacket(75, 2); // L: 80
+		field3251 = new ServerPacket(76, -2); // L: 81
+		field3269 = new ServerPacket(77, 6); // L: 82
+		field3270 = new ServerPacket(78, 6); // L: 83
+		field3245 = new ServerPacket(79, 0); // L: 84
+		field3272 = new ServerPacket(80, 8); // L: 85
+		field3266 = new ServerPacket(81, -1); // L: 86
+		field3291 = new ServerPacket(82, -2); // L: 87
+		field3275 = new ServerPacket(83, -2); // L: 88
+		field3232 = new ServerPacket(84, -1); // L: 89
+		field3277 = new ServerPacket(85, 1); // L: 90
+		field3278 = new ServerPacket(86, -2); // L: 91
+		field3225 = new ServerPacket(87, -1); // L: 92
+		field3280 = new ServerPacket(88, 6); // L: 93
+		field3263 = new ServerPacket(89, 7); // L: 94
+		field3249 = new ServerPacket(90, 2); // L: 95
+		field3283 = new ServerPacket(91, 5); // L: 96
+		field3274 = new ServerPacket(92, 2); // L: 97
+		field3285 = new ServerPacket(93, -2); // L: 98
+		field3286 = new ServerPacket(94, 8); // L: 99
+		field3241 = new ServerPacket(95, 1); // L: 100
+		field3192 = new ServerPacket(96, -2); // L: 101
+		field3289 = new ServerPacket(97, 3); // L: 102
+		field3290 = new ServerPacket(98, 6); // L: 103
+		field3293 = new ServerPacket(99, 0); // L: 104
+		field3292 = new ServerPacket(100, 6); // L: 105
+		field3228 = new ServerPacket(101, 14); // L: 106
+		field3288 = new ServerPacket(102, 5); // L: 107
+		field3295 = new ServerPacket(103, 4); // L: 108
+		field3257 = new ServerPacket(104, 6); // L: 109
+		field3297 = new ServerPacket(105, -2); // L: 110
+		field3298 = new ServerPacket(106, 17); // L: 111
+		field3299 = new ServerPacket(107, 16); // L: 112
+		field3300 = new ServerPacket(108, 0); // L: 113
+		field3301 = new ServerPacket(109, 4); // L: 114
+		field3302 = new ServerPacket(110, 8); // L: 115
+		field3262 = new ServerPacket(111, -1); // L: 116
+		field3304 = new ServerPacket(112, 11); // L: 117
 	}
 
 	ServerPacket(int var1, int var2) {
-		this.id = var1;
-		this.length = var2;
+		this.id = var1; // L: 126
+		this.length = var2; // L: 127
+	} // L: 128
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(Lrd;Ljava/lang/String;I)I",
+		garbageValue = "1788578065"
+	)
+	public static int method5563(Buffer var0, String var1) {
+		int var2 = var0.offset; // L: 14
+		int var4 = var1.length(); // L: 17
+		byte[] var5 = new byte[var4]; // L: 18
+
+		for (int var6 = 0; var6 < var4; ++var6) { // L: 19
+			char var7 = var1.charAt(var6); // L: 20
+			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) { // L: 21
+				var5[var6] = (byte)var7;
+			} else if (var7 == 8364) { // L: 22
+				var5[var6] = -128;
+			} else if (var7 == 8218) { // L: 23
+				var5[var6] = -126;
+			} else if (var7 == 402) { // L: 24
+				var5[var6] = -125;
+			} else if (var7 == 8222) { // L: 25
+				var5[var6] = -124;
+			} else if (var7 == 8230) { // L: 26
+				var5[var6] = -123;
+			} else if (var7 == 8224) { // L: 27
+				var5[var6] = -122;
+			} else if (var7 == 8225) { // L: 28
+				var5[var6] = -121;
+			} else if (var7 == 710) { // L: 29
+				var5[var6] = -120;
+			} else if (var7 == 8240) { // L: 30
+				var5[var6] = -119;
+			} else if (var7 == 352) { // L: 31
+				var5[var6] = -118;
+			} else if (var7 == 8249) { // L: 32
+				var5[var6] = -117;
+			} else if (var7 == 338) { // L: 33
+				var5[var6] = -116;
+			} else if (var7 == 381) { // L: 34
+				var5[var6] = -114;
+			} else if (var7 == 8216) { // L: 35
+				var5[var6] = -111;
+			} else if (var7 == 8217) { // L: 36
+				var5[var6] = -110;
+			} else if (var7 == 8220) { // L: 37
+				var5[var6] = -109;
+			} else if (var7 == 8221) { // L: 38
+				var5[var6] = -108;
+			} else if (var7 == 8226) { // L: 39
+				var5[var6] = -107;
+			} else if (var7 == 8211) { // L: 40
+				var5[var6] = -106;
+			} else if (var7 == 8212) { // L: 41
+				var5[var6] = -105;
+			} else if (var7 == 732) { // L: 42
+				var5[var6] = -104;
+			} else if (var7 == 8482) { // L: 43
+				var5[var6] = -103;
+			} else if (var7 == 353) { // L: 44
+				var5[var6] = -102;
+			} else if (var7 == 8250) { // L: 45
+				var5[var6] = -101;
+			} else if (var7 == 339) { // L: 46
+				var5[var6] = -100;
+			} else if (var7 == 382) { // L: 47
+				var5[var6] = -98;
+			} else if (var7 == 376) { // L: 48
+				var5[var6] = -97;
+			} else {
+				var5[var6] = 63; // L: 49
+			}
+		}
+
+		var0.writeSmartByteShort(var5.length); // L: 54
+		var0.offset += class312.huffman.compress(var5, 0, var5.length, var0.array, var0.offset); // L: 55
+		return var0.offset - var2; // L: 56
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;Ljava/lang/String;Ljava/lang/String;B)Lmt;",
-		garbageValue = "30"
+		descriptor = "(Lrd;J)V"
 	)
-	public static Font method5211(AbstractArchive var0, AbstractArchive var1, String var2, String var3) {
-		int var4 = var0.getGroupId(var2); // L: 99
-		int var5 = var0.getFileId(var4, var3); // L: 100
-		Font var6;
-		if (!Ignored.method6774(var0, var4, var5)) { // L: 103
-			var6 = null; // L: 104
-		} else {
-			byte[] var8 = var1.takeFile(var4, var5); // L: 108
-			Font var7;
-			if (var8 == null) { // L: 110
-				var7 = null; // L: 111
-			} else {
-				Font var9 = new Font(var8, class426.SpriteBuffer_xOffsets, class142.SpriteBuffer_yOffsets, class359.SpriteBuffer_spriteWidths, class456.SpriteBuffer_spriteHeights, class13.SpriteBuffer_spritePalette, class421.SpriteBuffer_pixels); // L: 114
-				class426.SpriteBuffer_xOffsets = null; // L: 116
-				class142.SpriteBuffer_yOffsets = null; // L: 117
-				class359.SpriteBuffer_spriteWidths = null; // L: 118
-				class456.SpriteBuffer_spriteHeights = null; // L: 119
-				class13.SpriteBuffer_spritePalette = null; // L: 120
-				class421.SpriteBuffer_pixels = null; // L: 121
-				var7 = var9; // L: 123
-			}
-
-			var6 = var7; // L: 125
+	static void method5560(Buffer var0, long var1) {
+		var1 /= 10L; // L: 63
+		if (var1 < 0L) { // L: 64
+			var1 = 0L;
+		} else if (var1 > 65535L) { // L: 65
+			var1 = 65535L;
 		}
 
-		return var6; // L: 127
+		var0.writeShort((int)var1); // L: 66
+	} // L: 67
+
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(ILba;ZB)I",
+		garbageValue = "0"
+	)
+	static int method5564(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.VIEWPORT_SETFOV) { // L: 4242
+			class302.Interpreter_intStackSize -= 2; // L: 4243
+			Client.field773 = (short)ItemLayer.method4228(Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize]); // L: 4244
+			if (Client.field773 <= 0) { // L: 4245
+				Client.field773 = 256;
+			}
+
+			Client.field774 = (short)ItemLayer.method4228(Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize + 1]); // L: 4246
+			if (Client.field774 <= 0) { // L: 4247
+				Client.field774 = 256;
+			}
+
+			return 1; // L: 4248
+		} else if (var0 == ScriptOpcodes.VIEWPORT_SETZOOM) { // L: 4250
+			class302.Interpreter_intStackSize -= 2; // L: 4251
+			Client.zoomHeight = (short)Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize]; // L: 4252
+			if (Client.zoomHeight <= 0) { // L: 4253
+				Client.zoomHeight = 256;
+			}
+
+			Client.zoomWidth = (short)Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize + 1]; // L: 4254
+			if (Client.zoomWidth <= 0) { // L: 4255
+				Client.zoomWidth = 320;
+			}
+
+			return 1; // L: 4256
+		} else if (var0 == ScriptOpcodes.VIEWPORT_CLAMPFOV) { // L: 4258
+			class302.Interpreter_intStackSize -= 4; // L: 4259
+			Client.field763 = (short)Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize]; // L: 4260
+			if (Client.field763 <= 0) { // L: 4261
+				Client.field763 = 1;
+			}
+
+			Client.field778 = (short)Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize + 1]; // L: 4262
+			if (Client.field778 <= 0) { // L: 4263
+				Client.field778 = 32767;
+			} else if (Client.field778 < Client.field763) { // L: 4264
+				Client.field778 = Client.field763;
+			}
+
+			Client.field779 = (short)Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize + 2]; // L: 4265
+			if (Client.field779 <= 0) { // L: 4266
+				Client.field779 = 1;
+			}
+
+			Client.field780 = (short)Interpreter.Interpreter_intStack[class302.Interpreter_intStackSize + 3]; // L: 4267
+			if (Client.field780 <= 0) { // L: 4268
+				Client.field780 = 32767;
+			} else if (Client.field780 < Client.field779) { // L: 4269
+				Client.field780 = Client.field779;
+			}
+
+			return 1; // L: 4270
+		} else if (var0 == ScriptOpcodes.VIEWPORT_GETEFFECTIVESIZE) { // L: 4272
+			if (Client.viewportWidget != null) { // L: 4273
+				MusicPatchPcmStream.setViewportShape(0, 0, Client.viewportWidget.width, Client.viewportWidget.height, false); // L: 4274
+				Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = Client.viewportWidth; // L: 4275
+				Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = Client.viewportHeight; // L: 4276
+			} else {
+				Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = -1; // L: 4279
+				Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = -1; // L: 4280
+			}
+
+			return 1; // L: 4282
+		} else if (var0 == ScriptOpcodes.VIEWPORT_GETZOOM) { // L: 4284
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = Client.zoomHeight; // L: 4285
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = Client.zoomWidth; // L: 4286
+			return 1; // L: 4287
+		} else if (var0 == ScriptOpcodes.VIEWPORT_GETFOV) { // L: 4289
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = MouseRecorder.method2327(Client.field773); // L: 4290
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = MouseRecorder.method2327(Client.field774); // L: 4291
+			return 1; // L: 4292
+		} else if (var0 == 6220) { // L: 4294
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = 0; // L: 4295
+			return 1; // L: 4296
+		} else if (var0 == 6221) { // L: 4298
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = 0; // L: 4299
+			return 1; // L: 4300
+		} else if (var0 == 6222) { // L: 4302
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = GameEngine.canvasWidth; // L: 4303
+			return 1; // L: 4304
+		} else if (var0 == 6223) { // L: 4306
+			Interpreter.Interpreter_intStack[++class302.Interpreter_intStackSize - 1] = class127.canvasHeight; // L: 4307
+			return 1; // L: 4308
+		} else {
+			return 2; // L: 4310
+		}
 	}
-
-	@ObfuscatedName("bf")
-	@ObfuscatedSignature(
-		descriptor = "(ILkd;ZI)V",
-		garbageValue = "-26625372"
-	)
-	static void method5210(int var0, Coord var1, boolean var2) {
-		WorldMapArea var3 = GrandExchangeOfferAgeComparator.getWorldMap().getMapArea(var0); // L: 4987
-		int var4 = class101.localPlayer.plane; // L: 4988
-		int var5 = class28.baseX * 64 + (class101.localPlayer.x >> 7); // L: 4989
-		int var6 = WorldMapLabelSize.baseY * 64 + (class101.localPlayer.y >> 7); // L: 4990
-		Coord var7 = new Coord(var4, var5, var6); // L: 4991
-		GrandExchangeOfferAgeComparator.getWorldMap().method7292(var3, var7, var1, var2); // L: 4992
-	} // L: 4993
-
-	@ObfuscatedName("gm")
-	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "-1821871039"
-	)
-	@Export("drawEntities")
-	static final void drawEntities(int var0, int var1, int var2, int var3) {
-		++Client.viewportDrawCount; // L: 4501
-		if (class101.localPlayer.x >> 7 == Client.destinationX && class101.localPlayer.y >> 7 == Client.destinationY) { // L: 4503
-			Client.destinationX = 0; // L: 4504
-		}
-
-		HealthBarUpdate.method2204(); // L: 4507
-		if (Client.combatTargetPlayerIndex >= 0 && Client.players[Client.combatTargetPlayerIndex] != null) { // L: 4509
-			ByteArrayPool.addPlayerToScene(Client.players[Client.combatTargetPlayerIndex], false); // L: 4510
-		}
-
-		AbstractArchive.addNpcsToScene(true); // L: 4513
-		class135.method2917(); // L: 4514
-		AbstractArchive.addNpcsToScene(false); // L: 4515
-		World.method1627(); // L: 4516
-		CollisionMap.method3907(); // L: 4517
-		class201.setViewportShape(var0, var1, var2, var3, true); // L: 4518
-		var0 = Client.viewportOffsetX; // L: 4519
-		var1 = Client.viewportOffsetY; // L: 4520
-		var2 = Client.viewportWidth; // L: 4521
-		var3 = Client.viewportHeight; // L: 4522
-		Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1); // L: 4523
-		Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D(); // L: 4524
-		int var4 = Client.camAngleX; // L: 4525
-		if (Client.field681 / 256 > var4) { // L: 4526
-			var4 = Client.field681 / 256;
-		}
-
-		if (Client.field743[4] && Client.field745[4] + 128 > var4) { // L: 4527
-			var4 = Client.field745[4] + 128;
-		}
-
-		int var5 = Client.camAngleY & 2047; // L: 4528
-		KeyHandler.method301(InterfaceParent.oculusOrbFocalPointX, class181.field1992, class141.oculusOrbFocalPointY, var4, var5, GZipDecompressor.method8314(var4), var3); // L: 4529
-		int var6;
-		int var7;
-		int var8;
-		if (!Client.isCameraLocked) { // L: 4531
-			var6 = class427.method7523();
-		} else {
-			if (class19.clientPreferences.method2245()) { // L: 4535
-				var7 = PacketWriter.Client_plane; // L: 4536
-			} else {
-				var8 = SceneTilePaint.getTileHeight(class18.cameraX, class228.cameraZ, PacketWriter.Client_plane); // L: 4539
-				if (var8 - class16.cameraY < 800 && (Tiles.Tiles_renderFlags[PacketWriter.Client_plane][class18.cameraX >> 7][class228.cameraZ >> 7] & 4) != 0) { // L: 4540
-					var7 = PacketWriter.Client_plane; // L: 4541
-				} else {
-					var7 = 3; // L: 4544
-				}
-			}
-
-			var6 = var7; // L: 4546
-		}
-
-		var7 = class18.cameraX; // L: 4548
-		var8 = class16.cameraY; // L: 4549
-		int var9 = class228.cameraZ; // L: 4550
-		int var10 = ViewportMouse.cameraPitch; // L: 4551
-		int var11 = SoundCache.cameraYaw; // L: 4552
-
-		int var12;
-		int var13;
-		for (var12 = 0; var12 < 5; ++var12) { // L: 4553
-			if (Client.field743[var12]) { // L: 4554
-				var13 = (int)(Math.random() * (double)(Client.field762[var12] * 2 + 1) - (double)Client.field762[var12] + Math.sin((double)Client.field537[var12] / 100.0D * (double)Client.field747[var12]) * (double)Client.field745[var12]); // L: 4555
-				if (var12 == 0) { // L: 4556
-					class18.cameraX += var13;
-				}
-
-				if (var12 == 1) { // L: 4557
-					class16.cameraY += var13;
-				}
-
-				if (var12 == 2) { // L: 4558
-					class228.cameraZ += var13;
-				}
-
-				if (var12 == 3) { // L: 4559
-					SoundCache.cameraYaw = var13 + SoundCache.cameraYaw & 2047;
-				}
-
-				if (var12 == 4) { // L: 4560
-					ViewportMouse.cameraPitch += var13; // L: 4561
-					if (ViewportMouse.cameraPitch < 128) { // L: 4562
-						ViewportMouse.cameraPitch = 128;
-					}
-
-					if (ViewportMouse.cameraPitch > 383) { // L: 4563
-						ViewportMouse.cameraPitch = 383;
-					}
-				}
-			}
-		}
-
-		var12 = MouseHandler.MouseHandler_x; // L: 4567
-		var13 = MouseHandler.MouseHandler_y; // L: 4568
-		if (MouseHandler.MouseHandler_lastButton != 0) { // L: 4569
-			var12 = MouseHandler.MouseHandler_lastPressedX; // L: 4570
-			var13 = MouseHandler.MouseHandler_lastPressedY; // L: 4571
-		}
-
-		int var14;
-		if (var12 >= var0 && var12 < var0 + var2 && var13 >= var1 && var13 < var3 + var1) { // L: 4573
-			var14 = var12 - var0; // L: 4574
-			int var15 = var13 - var1; // L: 4575
-			ViewportMouse.ViewportMouse_x = var14; // L: 4577
-			ViewportMouse.ViewportMouse_y = var15; // L: 4578
-			ViewportMouse.ViewportMouse_isInViewport = true; // L: 4579
-			ViewportMouse.ViewportMouse_entityCount = 0; // L: 4580
-			ViewportMouse.ViewportMouse_false0 = false; // L: 4581
-		} else {
-			ViewportMouse.ViewportMouse_isInViewport = false; // L: 4586
-			ViewportMouse.ViewportMouse_entityCount = 0; // L: 4587
-		}
-
-		Renderable.playPcmPlayers(); // L: 4590
-		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, 0); // L: 4591
-		Renderable.playPcmPlayers(); // L: 4592
-		var14 = Rasterizer3D.Rasterizer3D_zoom; // L: 4593
-		Rasterizer3D.Rasterizer3D_zoom = Client.viewportZoom; // L: 4594
-		class356.scene.draw(class18.cameraX, class16.cameraY, class228.cameraZ, ViewportMouse.cameraPitch, SoundCache.cameraYaw, var6); // L: 4595
-		Rasterizer3D.Rasterizer3D_zoom = var14; // L: 4596
-		Renderable.playPcmPlayers(); // L: 4597
-		class356.scene.clearTempGameObjects(); // L: 4598
-		Client.overheadTextCount = 0; // L: 4600
-		boolean var32 = false; // L: 4601
-		int var16 = -1; // L: 4602
-		int var17 = -1; // L: 4603
-		int var18 = Players.Players_count; // L: 4604
-		int[] var19 = Players.Players_indices; // L: 4605
-
-		int var20;
-		for (var20 = 0; var20 < var18 + Client.npcCount; ++var20) { // L: 4606
-			Object var31;
-			if (var20 < var18) { // L: 4608
-				var31 = Client.players[var19[var20]]; // L: 4609
-				if (var19[var20] == Client.combatTargetPlayerIndex) { // L: 4610
-					var32 = true; // L: 4611
-					var16 = var20; // L: 4612
-					continue;
-				}
-
-				if (var31 == class101.localPlayer) { // L: 4615
-					var17 = var20; // L: 4616
-					continue; // L: 4617
-				}
-			} else {
-				var31 = Client.npcs[Client.npcIndices[var20 - var18]]; // L: 4620
-			}
-
-			class154.drawActor2d((Actor)var31, var20, var0, var1, var2, var3); // L: 4621
-		}
-
-		if (Client.renderSelf && var17 != -1) { // L: 4623
-			class154.drawActor2d(class101.localPlayer, var17, var0, var1, var2, var3); // L: 4624
-		}
-
-		if (var32) { // L: 4626
-			class154.drawActor2d(Client.players[Client.combatTargetPlayerIndex], var16, var0, var1, var2, var3); // L: 4627
-		}
-
-		for (var20 = 0; var20 < Client.overheadTextCount; ++var20) { // L: 4629
-			int var21 = Client.overheadTextXs[var20]; // L: 4630
-			int var22 = Client.overheadTextYs[var20]; // L: 4631
-			int var23 = Client.overheadTextXOffsets[var20]; // L: 4632
-			int var24 = Client.overheadTextAscents[var20]; // L: 4633
-			boolean var25 = true; // L: 4634
-
-			while (var25) {
-				var25 = false; // L: 4636
-
-				for (int var30 = 0; var30 < var20; ++var30) { // L: 4637
-					if (var22 + 2 > Client.overheadTextYs[var30] - Client.overheadTextAscents[var30] && var22 - var24 < Client.overheadTextYs[var30] + 2 && var21 - var23 < Client.overheadTextXs[var30] + Client.overheadTextXOffsets[var30] && var23 + var21 > Client.overheadTextXs[var30] - Client.overheadTextXOffsets[var30] && Client.overheadTextYs[var30] - Client.overheadTextAscents[var30] < var22) { // L: 4638 4639
-						var22 = Client.overheadTextYs[var30] - Client.overheadTextAscents[var30]; // L: 4640
-						var25 = true; // L: 4641
-					}
-				}
-			}
-
-			Client.viewportTempX = Client.overheadTextXs[var20]; // L: 4646
-			Client.viewportTempY = Client.overheadTextYs[var20] = var22; // L: 4647
-			String var26 = Client.overheadText[var20]; // L: 4648
-			if (Client.chatEffects == 0) { // L: 4649
-				int var27 = 16776960; // L: 4650
-				if (Client.overheadTextColors[var20] < 6) { // L: 4651
-					var27 = Client.field773[Client.overheadTextColors[var20]];
-				}
-
-				if (Client.overheadTextColors[var20] == 6) { // L: 4652
-					var27 = Client.viewportDrawCount % 20 < 10 ? 16711680 : 16776960;
-				}
-
-				if (Client.overheadTextColors[var20] == 7) { // L: 4653
-					var27 = Client.viewportDrawCount % 20 < 10 ? 255 : '\uffff';
-				}
-
-				if (Client.overheadTextColors[var20] == 8) { // L: 4654
-					var27 = Client.viewportDrawCount % 20 < 10 ? '뀀' : 8454016;
-				}
-
-				int var28;
-				if (Client.overheadTextColors[var20] == 9) { // L: 4655
-					var28 = 150 - Client.overheadTextCyclesRemaining[var20]; // L: 4656
-					if (var28 < 50) { // L: 4657
-						var27 = var28 * 1280 + 16711680;
-					} else if (var28 < 100) { // L: 4658
-						var27 = 16776960 - (var28 - 50) * 327680;
-					} else if (var28 < 150) { // L: 4659
-						var27 = (var28 - 100) * 5 + 65280;
-					}
-				}
-
-				if (Client.overheadTextColors[var20] == 10) { // L: 4661
-					var28 = 150 - Client.overheadTextCyclesRemaining[var20]; // L: 4662
-					if (var28 < 50) { // L: 4663
-						var27 = var28 * 5 + 16711680;
-					} else if (var28 < 100) { // L: 4664
-						var27 = 16711935 - (var28 - 50) * 327680;
-					} else if (var28 < 150) { // L: 4665
-						var27 = (var28 - 100) * 327680 + 255 - (var28 - 100) * 5;
-					}
-				}
-
-				if (Client.overheadTextColors[var20] == 11) { // L: 4667
-					var28 = 150 - Client.overheadTextCyclesRemaining[var20]; // L: 4668
-					if (var28 < 50) { // L: 4669
-						var27 = 16777215 - var28 * 327685;
-					} else if (var28 < 100) { // L: 4670
-						var27 = (var28 - 50) * 327685 + 65280;
-					} else if (var28 < 150) { // L: 4671
-						var27 = 16777215 - (var28 - 100) * 327680;
-					}
-				}
-
-				if (Client.overheadTextEffects[var20] == 0) { // L: 4673
-					TileItem.fontBold12.drawCentered(var26, var0 + Client.viewportTempX, Client.viewportTempY + var1, var27, 0);
-				}
-
-				if (Client.overheadTextEffects[var20] == 1) { // L: 4674
-					TileItem.fontBold12.drawCenteredWave(var26, var0 + Client.viewportTempX, Client.viewportTempY + var1, var27, 0, Client.viewportDrawCount);
-				}
-
-				if (Client.overheadTextEffects[var20] == 2) { // L: 4675
-					TileItem.fontBold12.drawCenteredWave2(var26, var0 + Client.viewportTempX, Client.viewportTempY + var1, var27, 0, Client.viewportDrawCount);
-				}
-
-				if (Client.overheadTextEffects[var20] == 3) { // L: 4676
-					TileItem.fontBold12.drawCenteredShake(var26, var0 + Client.viewportTempX, Client.viewportTempY + var1, var27, 0, Client.viewportDrawCount, 150 - Client.overheadTextCyclesRemaining[var20]);
-				}
-
-				if (Client.overheadTextEffects[var20] == 4) { // L: 4677
-					var28 = (150 - Client.overheadTextCyclesRemaining[var20]) * (TileItem.fontBold12.stringWidth(var26) + 100) / 150; // L: 4678
-					Rasterizer2D.Rasterizer2D_expandClip(var0 + Client.viewportTempX - 50, var1, var0 + Client.viewportTempX + 50, var3 + var1); // L: 4679
-					TileItem.fontBold12.draw(var26, var0 + Client.viewportTempX + 50 - var28, Client.viewportTempY + var1, var27, 0); // L: 4680
-					Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1); // L: 4681
-				}
-
-				if (Client.overheadTextEffects[var20] == 5) { // L: 4683
-					var28 = 150 - Client.overheadTextCyclesRemaining[var20]; // L: 4684
-					int var29 = 0; // L: 4685
-					if (var28 < 25) { // L: 4686
-						var29 = var28 - 25;
-					} else if (var28 > 125) { // L: 4687
-						var29 = var28 - 125;
-					}
-
-					Rasterizer2D.Rasterizer2D_expandClip(var0, Client.viewportTempY + var1 - TileItem.fontBold12.ascent - 1, var0 + var2, Client.viewportTempY + var1 + 5); // L: 4688
-					TileItem.fontBold12.drawCentered(var26, var0 + Client.viewportTempX, var29 + Client.viewportTempY + var1, var27, 0); // L: 4689
-					Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1); // L: 4690
-				}
-			} else {
-				TileItem.fontBold12.drawCentered(var26, var0 + Client.viewportTempX, Client.viewportTempY + var1, 16776960, 0); // L: 4694
-			}
-		}
-
-		if (Client.hintArrowType == 2) { // L: 4699
-			class220.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - class28.baseX * 64 << 7), (Client.hintArrowY - WorldMapLabelSize.baseY * 64 << 7) + Client.hintArrowSubY * 4096, Client.hintArrowHeight * 4); // L: 4700
-			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) { // L: 4701
-				UserComparator4.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
-			}
-		}
-
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).animate(Client.field555); // L: 4703
-		HealthBar.method2349(var0, var1, var2, var3); // L: 4704
-		class18.cameraX = var7; // L: 4705
-		class16.cameraY = var8; // L: 4706
-		class228.cameraZ = var9; // L: 4707
-		ViewportMouse.cameraPitch = var10; // L: 4708
-		SoundCache.cameraYaw = var11; // L: 4709
-		if (Client.isLoading && UrlRequest.method2557(true, false) == 0) { // L: 4710
-			Client.isLoading = false;
-		}
-
-		if (Client.isLoading) { // L: 4711
-			Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, 0); // L: 4712
-			SequenceDefinition.drawLoadingMessage("Loading - please wait.", false); // L: 4713
-		}
-
-	} // L: 4715
-
-	@ObfuscatedName("ls")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "503977504"
-	)
-	static final void method5209(int var0, int var1) {
-		if (Client.currentClanChannels[var0] != null) { // L: 12263
-			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method3113()) { // L: 12264
-				ClanChannelMember var2 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1); // L: 12265
-				if (var2.rank == -1) {
-					PacketBufferNode var3 = EnumComposition.getPacketBufferNode(ClientPacket.field3000, Client.packetWriter.isaacCipher); // L: 12267
-					var3.packetBuffer.writeByte(3 + ScriptEvent.stringCp1252NullTerminatedByteSize(var2.username.getName())); // L: 12268
-					var3.packetBuffer.writeByte(var0); // L: 12269
-					var3.packetBuffer.writeShort(var1); // L: 12270
-					var3.packetBuffer.writeStringCp1252NullTerminated(var2.username.getName()); // L: 12271
-					Client.packetWriter.addNode(var3); // L: 12272
-				}
-			}
-		}
-	} // L: 12266 12273
 }

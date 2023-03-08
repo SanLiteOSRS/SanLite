@@ -4,46 +4,63 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("na")
+@ObfuscatedName("of")
 @Implements("DefaultsGroup")
 public class DefaultsGroup {
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lna;"
+		descriptor = "Lof;"
 	)
-	static final DefaultsGroup field4363;
-	@ObfuscatedName("v")
+	static final DefaultsGroup field4610;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 44353579
+		intValue = -101445755
 	)
 	@Export("group")
 	final int group;
 
 	static {
-		field4363 = new DefaultsGroup(3); // L: 4
+		field4610 = new DefaultsGroup(3); // L: 4
 	}
 
 	DefaultsGroup(int var1) {
 		this.group = var1; // L: 8
 	} // L: 9
 
-	@ObfuscatedName("fc")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1365746841"
+		descriptor = "(IB)Lgc;",
+		garbageValue = "7"
 	)
-	@Export("forceDisconnect")
-	static final void forceDisconnect(int var0) {
-		MouseRecorder.logOut(); // L: 2923
-		switch(var0) { // L: 2924
-		case 1:
-			WorldMapData_1.method4872(24); // L: 2936
-			class101.setLoginResponseString("", "You were disconnected from the server.", ""); // L: 2937
-			break;
-		case 2:
-			WorldMapData_1.method4872(24); // L: 2928
-			class101.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", ""); // L: 2929
-		}
+	public static FloorUnderlayDefinition method7840(int var0) {
+		FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = FloorUnderlayDefinition.FloorUnderlayDefinition_archive.takeFile(1, var0);
+			var1 = new FloorUnderlayDefinition();
+			if (var2 != null) { // L: 25
+				var1.decode(new Buffer(var2), var0);
+			}
 
-	} // L: 2942
+			var1.postDecode(); // L: 26
+			FloorUnderlayDefinition.FloorUnderlayDefinition_cached.put(var1, (long)var0); // L: 27
+			return var1; // L: 28
+		}
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "-1039832513"
+	)
+	@Export("ItemContainer_getCount")
+	static int ItemContainer_getCount(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 21
+		if (var2 == null) { // L: 22
+			return 0;
+		} else {
+			return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0; // L: 23 24
+		}
+	}
 }

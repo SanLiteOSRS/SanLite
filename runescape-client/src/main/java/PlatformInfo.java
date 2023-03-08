@@ -4,188 +4,209 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("os")
+@ObfuscatedName("pu")
 @Implements("PlatformInfo")
 public class PlatformInfo extends Node {
-	@ObfuscatedName("ac")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 1580091961
+		intValue = 157418053
 	)
-	int field4486;
-	@ObfuscatedName("ae")
-	boolean field4480;
+	int field4717;
+	@ObfuscatedName("at")
+	boolean field4726;
 	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -1628861631
+		intValue = -49893931
 	)
-	int field4481;
-	@ObfuscatedName("am")
-	@ObfuscatedGetter(
-		intValue = 1799182673
-	)
-	int field4487;
-	@ObfuscatedName("an")
-	@ObfuscatedGetter(
-		intValue = 1323987311
-	)
-	int field4483;
-	@ObfuscatedName("af")
-	@ObfuscatedGetter(
-		intValue = -1460214999
-	)
-	int field4484;
+	int field4724;
 	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 2121235893
+		intValue = 735467929
 	)
-	int field4485;
-	@ObfuscatedName("ar")
-	boolean field4476;
-	@ObfuscatedName("at")
-	@ObfuscatedGetter(
-		intValue = -1677230917
-	)
-	int field4499;
-	@ObfuscatedName("ag")
-	@ObfuscatedGetter(
-		intValue = 1325520739
-	)
-	int field4488;
-	@ObfuscatedName("ah")
-	@ObfuscatedGetter(
-		intValue = -1528943489
-	)
-	int field4489;
-	@ObfuscatedName("ai")
-	@ObfuscatedGetter(
-		intValue = -819514533
-	)
-	int field4471;
+	int field4728;
 	@ObfuscatedName("az")
-	String field4491;
-	@ObfuscatedName("av")
-	String field4492;
-	@ObfuscatedName("aw")
-	String field4493;
-	@ObfuscatedName("au")
-	String field4494;
-	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = -2110844387
+		intValue = 1390513459
 	)
-	int field4495;
+	int field4735;
+	@ObfuscatedName("ap")
+	@ObfuscatedGetter(
+		intValue = 1777154845
+	)
+	int field4731;
 	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -698136029
+		intValue = -1791776075
 	)
-	int field4496;
+	int field4720;
+	@ObfuscatedName("ac")
+	boolean field4732;
+	@ObfuscatedName("av")
+	@ObfuscatedGetter(
+		intValue = -1233820199
+	)
+	int field4730;
+	@ObfuscatedName("aq")
+	@ObfuscatedGetter(
+		intValue = -1281215561
+	)
+	int field4734;
+	@ObfuscatedName("au")
+	@ObfuscatedGetter(
+		intValue = 701970541
+	)
+	int field4748;
+	@ObfuscatedName("ae")
+	@ObfuscatedGetter(
+		intValue = 365972939
+	)
+	int field4736;
+	@ObfuscatedName("ah")
+	String field4737;
+	@ObfuscatedName("ad")
+	String field4738;
+	@ObfuscatedName("ab")
+	String field4739;
+	@ObfuscatedName("an")
+	String field4740;
+	@ObfuscatedName("am")
+	@ObfuscatedGetter(
+		intValue = -618051943
+	)
+	int field4741;
 	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 1588093075
+		intValue = 1518623831
 	)
-	int field4497;
-	@ObfuscatedName("be")
+	int field4727;
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 488512067
+		intValue = -554434077
 	)
-	int field4498;
-	@ObfuscatedName("bz")
-	String field4479;
-	@ObfuscatedName("bp")
-	String field4500;
+	int field4743;
+	@ObfuscatedName("bj")
+	@ObfuscatedGetter(
+		intValue = 1007178449
+	)
+	int field4744;
 	@ObfuscatedName("bf")
-	int[] field4501;
-	@ObfuscatedName("bg")
-	@ObfuscatedGetter(
-		intValue = 306566493
-	)
-	int field4502;
+	String field4719;
+	@ObfuscatedName("bz")
+	String field4746;
 	@ObfuscatedName("br")
-	String field4503;
+	int[] field4747;
+	@ObfuscatedName("bm")
+	@ObfuscatedGetter(
+		intValue = 1466787915
+	)
+	int field4742;
+	@ObfuscatedName("be")
+	String field4749;
+	@ObfuscatedName("bo")
+	String field4750;
 
-	PlatformInfo(int var1, boolean var2, int var3, int var4, int var5, int var6, int var7, boolean var8, int var9, int var10, int var11, int var12, String var13, String var14, String var15, String var16, int var17, int var18, int var19, int var20, String var21, String var22, int[] var23, int var24, String var25) {
-		this.field4501 = new int[3]; // L: 62
-		this.field4486 = var1; // L: 67
-		this.field4480 = var2; // L: 68
-		this.field4481 = var3; // L: 69
-		this.field4487 = var4; // L: 70
-		this.field4483 = var5; // L: 71
-		this.field4484 = var6; // L: 72
-		this.field4485 = var7; // L: 73
-		this.field4476 = var8; // L: 74
-		this.field4499 = var9; // L: 75
-		this.field4488 = var10; // L: 76
-		this.field4489 = var11; // L: 77
-		this.field4471 = var12; // L: 78
-		this.field4491 = var13; // L: 79
-		this.field4492 = var14; // L: 80
-		this.field4493 = var15; // L: 81
-		this.field4494 = var16; // L: 82
-		this.field4495 = var17; // L: 83
-		this.field4496 = var18; // L: 84
-		this.field4497 = var19; // L: 85
-		this.field4498 = var20; // L: 86
-		this.field4479 = var21; // L: 87
-		this.field4500 = var22; // L: 88
-		this.field4501 = var23; // L: 89
-		this.field4502 = var24; // L: 90
-		this.field4503 = var25; // L: 91
-	} // L: 92
+	PlatformInfo(int var1, boolean var2, int var3, int var4, int var5, int var6, int var7, boolean var8, int var9, int var10, int var11, int var12, String var13, String var14, String var15, String var16, int var17, int var18, int var19, int var20, String var21, String var22, int[] var23, int var24, String var25, String var26) {
+		this.field4747 = new int[3]; // L: 62
+		this.field4717 = var1; // L: 68
+		this.field4726 = var2; // L: 69
+		this.field4724 = var3; // L: 70
+		this.field4728 = var4; // L: 71
+		this.field4735 = var5; // L: 72
+		this.field4731 = var6; // L: 73
+		this.field4720 = var7; // L: 74
+		this.field4732 = var8; // L: 75
+		this.field4730 = var9; // L: 76
+		this.field4734 = var10; // L: 77
+		this.field4748 = var11; // L: 78
+		this.field4736 = var12; // L: 79
+		this.field4737 = var13; // L: 80
+		this.field4738 = var14; // L: 81
+		this.field4739 = var15; // L: 82
+		this.field4740 = var16; // L: 83
+		this.field4741 = var17; // L: 84
+		this.field4727 = var18; // L: 85
+		this.field4743 = var19; // L: 86
+		this.field4744 = var20; // L: 87
+		this.field4719 = var21; // L: 88
+		this.field4746 = var22; // L: 89
+		this.field4747 = var23; // L: 90
+		this.field4742 = var24; // L: 91
+		this.field4749 = var25; // L: 92
+		this.field4750 = var26; // L: 93
+	} // L: 94
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;S)V",
-		garbageValue = "-6227"
+		descriptor = "(Lrd;I)V",
+		garbageValue = "1532139983"
 	)
 	@Export("write")
 	public void write(Buffer var1) {
-		var1.writeByte(8); // L: 95
-		var1.writeByte(this.field4486); // L: 96
-		var1.writeByte(this.field4480 ? 1 : 0); // L: 97
-		var1.writeShort(this.field4481); // L: 98
-		var1.writeByte(this.field4487); // L: 99
-		var1.writeByte(this.field4483); // L: 100
-		var1.writeByte(this.field4484); // L: 101
-		var1.writeByte(this.field4485); // L: 102
-		var1.writeByte(this.field4476 ? 1 : 0); // L: 103
-		var1.writeShort(this.field4499); // L: 104
-		var1.writeByte(this.field4488); // L: 105
-		var1.writeMedium(this.field4489); // L: 106
-		var1.writeShort(this.field4471); // L: 107
-		var1.writeStringCp1252NullCircumfixed(this.field4491); // L: 108
-		var1.writeStringCp1252NullCircumfixed(this.field4492); // L: 109
-		var1.writeStringCp1252NullCircumfixed(this.field4493); // L: 110
-		var1.writeStringCp1252NullCircumfixed(this.field4494); // L: 111
-		var1.writeByte(this.field4496); // L: 112
-		var1.writeShort(this.field4495); // L: 113
-		var1.writeStringCp1252NullCircumfixed(this.field4479); // L: 114
-		var1.writeStringCp1252NullCircumfixed(this.field4500); // L: 115
-		var1.writeByte(this.field4497); // L: 116
-		var1.writeByte(this.field4498); // L: 117
+		var1.writeByte(9); // L: 97
+		var1.writeByte(this.field4717); // L: 98
+		var1.writeByte(this.field4726 ? 1 : 0); // L: 99
+		var1.writeShort(this.field4724); // L: 100
+		var1.writeByte(this.field4728); // L: 101
+		var1.writeByte(this.field4735); // L: 102
+		var1.writeByte(this.field4731); // L: 103
+		var1.writeByte(this.field4720); // L: 104
+		var1.writeByte(this.field4732 ? 1 : 0); // L: 105
+		var1.writeShort(this.field4730); // L: 106
+		var1.writeByte(this.field4734); // L: 107
+		var1.writeMedium(this.field4748); // L: 108
+		var1.writeShort(this.field4736); // L: 109
+		var1.writeStringCp1252NullCircumfixed(this.field4737); // L: 110
+		var1.writeStringCp1252NullCircumfixed(this.field4738); // L: 111
+		var1.writeStringCp1252NullCircumfixed(this.field4739); // L: 112
+		var1.writeStringCp1252NullCircumfixed(this.field4740); // L: 113
+		var1.writeByte(this.field4727); // L: 114
+		var1.writeShort(this.field4741); // L: 115
+		var1.writeStringCp1252NullCircumfixed(this.field4719); // L: 116
+		var1.writeStringCp1252NullCircumfixed(this.field4746); // L: 117
+		var1.writeByte(this.field4743); // L: 118
+		var1.writeByte(this.field4744); // L: 119
 
-		for (int var2 = 0; var2 < this.field4501.length; ++var2) { // L: 118
-			var1.writeInt(this.field4501[var2]);
+		for (int var2 = 0; var2 < this.field4747.length; ++var2) { // L: 120
+			var1.writeInt(this.field4747[var2]);
 		}
 
-		var1.writeInt(this.field4502); // L: 119
-		var1.writeStringCp1252NullCircumfixed(this.field4503); // L: 120
-	} // L: 121
+		var1.writeInt(this.field4742); // L: 121
+		var1.writeStringCp1252NullCircumfixed(this.field4749); // L: 122
+		var1.writeStringCp1252NullCircumfixed(this.field4750); // L: 123
+	} // L: 124
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "379416083"
+		garbageValue = "-1699578121"
 	)
 	@Export("size")
 	public int size() {
-		byte var1 = 39; // L: 124
-		int var2 = var1 + BuddyRankComparator.method2620(this.field4491); // L: 125
-		var2 += BuddyRankComparator.method2620(this.field4492); // L: 126
-		var2 += BuddyRankComparator.method2620(this.field4493); // L: 127
-		var2 += BuddyRankComparator.method2620(this.field4494); // L: 128
-		var2 += BuddyRankComparator.method2620(this.field4479); // L: 129
-		var2 += BuddyRankComparator.method2620(this.field4500); // L: 130
-		var2 += BuddyRankComparator.method2620(this.field4503); // L: 131
-		return var2; // L: 132
+		byte var1 = 39; // L: 127
+		String var4 = this.field4737; // L: 130
+		int var3 = var4.length() + 2; // L: 132
+		int var26 = var1 + var3; // L: 134
+		String var7 = this.field4738; // L: 137
+		int var6 = var7.length() + 2; // L: 139
+		var26 += var6; // L: 141
+		String var10 = this.field4739; // L: 144
+		int var9 = var10.length() + 2; // L: 146
+		var26 += var9; // L: 148
+		String var13 = this.field4740; // L: 151
+		int var12 = var13.length() + 2; // L: 153
+		var26 += var12; // L: 155
+		String var16 = this.field4719; // L: 158
+		int var15 = var16.length() + 2; // L: 160
+		var26 += var15; // L: 162
+		String var19 = this.field4746; // L: 165
+		int var18 = var19.length() + 2; // L: 167
+		var26 += var18; // L: 169
+		String var22 = this.field4749; // L: 172
+		int var21 = var22.length() + 2; // L: 174
+		var26 += var21; // L: 176
+		String var25 = this.field4750; // L: 179
+		int var24 = var25.length() + 2; // L: 181
+		var26 += var24; // L: 183
+		return var26; // L: 184
 	}
 }
