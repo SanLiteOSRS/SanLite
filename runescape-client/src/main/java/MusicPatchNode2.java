@@ -4,97 +4,75 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jv")
+@ObfuscatedName("lj")
 @Implements("MusicPatchNode2")
 public class MusicPatchNode2 {
-	@ObfuscatedName("i")
-	@Export("Tiles_hue")
-	static int[] Tiles_hue;
-	@ObfuscatedName("c")
-	byte[] field3184;
-	@ObfuscatedName("v")
-	byte[] field3181;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aj")
+	byte[] field3319;
+	@ObfuscatedName("al")
+	byte[] field3314;
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 444022475
+		intValue = 1679456389
 	)
-	int field3182;
-	@ObfuscatedName("f")
+	int field3315;
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = -1028117213
+		intValue = 1615838477
 	)
-	int field3190;
-	@ObfuscatedName("j")
+	int field3316;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -1704743957
+		intValue = -1904454123
 	)
-	int field3185;
-	@ObfuscatedName("e")
+	int field3321;
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 1934945847
+		intValue = 165480893
 	)
-	int field3183;
-	@ObfuscatedName("g")
+	int field3318;
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = 986515665
+		intValue = 920429853
 	)
-	int field3186;
-	@ObfuscatedName("w")
+	int field3320;
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = 952644039
+		intValue = -446800421
 	)
-	int field3187;
-	@ObfuscatedName("y")
+	int field3313;
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 270113767
+		intValue = 1265521917
 	)
-	int field3188;
+	int field3317;
 
 	MusicPatchNode2() {
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lfe;",
-		garbageValue = "527401858"
+		descriptor = "(III)V",
+		garbageValue = "-43135671"
 	)
-	public static HealthBarDefinition method5244(int var0) {
-		HealthBarDefinition var1 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var0); // L: 32
-		if (var1 != null) { // L: 33
-			return var1;
-		} else {
-			byte[] var2 = HealthBarDefinition.HealthBarDefinition_archive.takeFile(33, var0); // L: 34
-			var1 = new HealthBarDefinition(); // L: 35
-			if (var2 != null) { // L: 36
-				var1.decode(new Buffer(var2));
+	@Export("changeWorldSelectSorting")
+	static void changeWorldSelectSorting(int var0, int var1) {
+		int[] var2 = new int[4]; // L: 63
+		int[] var3 = new int[4]; // L: 64
+		var2[0] = var0; // L: 65
+		var3[0] = var1; // L: 66
+		int var4 = 1; // L: 67
+
+		for (int var5 = 0; var5 < 4; ++var5) { // L: 68
+			if (World.World_sortOption1[var5] != var0) { // L: 69
+				var2[var4] = World.World_sortOption1[var5]; // L: 70
+				var3[var4] = World.World_sortOption2[var5]; // L: 71
+				++var4; // L: 72
 			}
-
-			HealthBarDefinition.HealthBarDefinition_cached.put(var1, (long)var0); // L: 37
-			return var1; // L: 38
 		}
-	}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-1387162064"
-	)
-	public static boolean method5243(char var0) {
-		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) { // L: 45
-			if (var0 != 0) { // L: 46
-				char[] var1 = class340.cp1252AsciiExtension; // L: 48
-
-				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 49
-					char var3 = var1[var2]; // L: 50
-					if (var0 == var3) { // L: 52
-						return true;
-					}
-				}
-			}
-
-			return false; // L: 57
-		} else {
-			return true;
-		}
-	}
+		World.World_sortOption1 = var2; // L: 75
+		World.World_sortOption2 = var3; // L: 76
+		class16.sortWorlds(class260.World_worlds, 0, class260.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 77
+	} // L: 78
 }
