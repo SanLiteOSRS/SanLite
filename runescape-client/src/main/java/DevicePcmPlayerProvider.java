@@ -3,103 +3,95 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("m")
+@ObfuscatedName("aw")
 @Implements("DevicePcmPlayerProvider")
-public class DevicePcmPlayerProvider implements class47 {
-	@ObfuscatedName("w")
-	@Export("ItemComposition_inMembersWorld")
-	static boolean ItemComposition_inMembersWorld;
-	@ObfuscatedName("hx")
+public class DevicePcmPlayerProvider implements class50 {
+	@ObfuscatedName("bw")
 	@ObfuscatedSignature(
-		descriptor = "Lmt;"
+		descriptor = "Lqy;"
 	)
-	@Export("fontPlain12")
-	static Font fontPlain12;
+	static Bounds field118;
 
 	DevicePcmPlayerProvider() {
 	} // L: 7
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lar;",
-		garbageValue = "71"
+		descriptor = "(I)Lbd;",
+		garbageValue = "1985011377"
 	)
 	@Export("player")
 	public PcmPlayer player() {
 		return new DevicePcmPlayer(); // L: 11
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "933240326"
+		descriptor = "(II)Lha;",
+		garbageValue = "341640175"
 	)
-	static int method305(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0); // L: 50
-		if (var1 == null) { // L: 51
-			return -1;
+	@Export("SpotAnimationDefinition_get")
+	public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
+		SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0); // L: 32
+		if (var1 != null) { // L: 33
+			return var1;
 		} else {
-			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count; // L: 52 53
+			byte[] var2 = SpotAnimationDefinition.SpotAnimationDefinition_archive.takeFile(13, var0); // L: 34
+			var1 = new SpotAnimationDefinition(); // L: 35
+			var1.id = var0; // L: 36
+			if (var2 != null) { // L: 37
+				var1.decode(new Buffer(var2));
+			}
+
+			SpotAnimationDefinition.SpotAnimationDefinition_cached.put(var1, (long)var0); // L: 38
+			return var1; // L: 39
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;II)V",
-		garbageValue = "-1946812407"
+		descriptor = "(Lmx;IIIBZB)V",
+		garbageValue = "10"
 	)
-	static final void method309(String var0, int var1) {
-		PacketBufferNode var2 = EnumComposition.getPacketBufferNode(ClientPacket.field2971, Client.packetWriter.isaacCipher); // L: 260
-		var2.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0) + 1); // L: 261
-		var2.packetBuffer.method7762(var1); // L: 262
-		var2.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 263
-		Client.packetWriter.addNode(var2); // L: 264
-	} // L: 265
-
-	@ObfuscatedName("ll")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)V",
-		garbageValue = "20"
-	)
-	@Export("findItemDefinitions")
-	static void findItemDefinitions(String var0, boolean var1) {
-		var0 = var0.toLowerCase(); // L: 12361
-		short[] var2 = new short[16]; // L: 12362
-		int var3 = 0; // L: 12363
-
-		for (int var4 = 0; var4 < PacketBufferNode.ItemComposition_fileCount; ++var4) { // L: 12364
-			ItemComposition var9 = EnumComposition.ItemComposition_get(var4); // L: 12365
-			if ((!var1 || var9.isTradable) && var9.noteTemplate == -1 && var9.name.toLowerCase().indexOf(var0) != -1) { // L: 12366 12367 12368
-				if (var3 >= 250) { // L: 12369
-					HealthBarUpdate.foundItemIdCount = -1; // L: 12370
-					class10.foundItemIds = null; // L: 12371
-					return; // L: 12372
-				}
-
-				if (var3 >= var2.length) { // L: 12374
-					short[] var6 = new short[var2.length * 2]; // L: 12375
-
-					for (int var7 = 0; var7 < var3; ++var7) { // L: 12376
-						var6[var7] = var2[var7];
+	@Export("requestNetFile")
+	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
+		long var6 = (long)((var1 << 16) + var2); // L: 62
+		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6); // L: 63
+		if (var8 == null) { // L: 64
+			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6); // L: 65
+			if (var8 == null) { // L: 66
+				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6); // L: 67
+				if (var8 != null) { // L: 68
+					if (var5) { // L: 69
+						var8.removeDual(); // L: 70
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 71
+						--NetCache.NetCache_pendingWritesCount; // L: 72
+						++NetCache.NetCache_pendingPriorityWritesCount; // L: 73
 					}
 
-					var2 = var6; // L: 12377
-				}
+				} else {
+					if (!var5) { // L: 77
+						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6); // L: 78
+						if (var8 != null) { // L: 79
+							return;
+						}
+					}
 
-				var2[var3++] = (short)var4; // L: 12379
+					var8 = new NetFileRequest(); // L: 81
+					var8.archive = var0; // L: 82
+					var8.crc = var3; // L: 83
+					var8.padding = var4; // L: 84
+					if (var5) { // L: 85
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 86
+						++NetCache.NetCache_pendingPriorityWritesCount; // L: 87
+					} else {
+						NetCache.NetCache_pendingWritesQueue.addFirst(var8); // L: 90
+						NetCache.NetCache_pendingWrites.put(var8, var6); // L: 91
+						++NetCache.NetCache_pendingWritesCount; // L: 92
+					}
+
+				}
 			}
 		}
-
-		class10.foundItemIds = var2; // L: 12381
-		TriBool.foundItemIndex = 0; // L: 12382
-		HealthBarUpdate.foundItemIdCount = var3; // L: 12383
-		String[] var8 = new String[HealthBarUpdate.foundItemIdCount]; // L: 12384
-
-		for (int var5 = 0; var5 < HealthBarUpdate.foundItemIdCount; ++var5) { // L: 12385
-			var8[var5] = EnumComposition.ItemComposition_get(var2[var5]).name;
-		}
-
-		short[] var10 = class10.foundItemIds; // L: 12386
-		ObjectSound.sortItemsByName(var8, var10, 0, var8.length - 1); // L: 12388
-	} // L: 12390
+	} // L: 75 94
 }

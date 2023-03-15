@@ -4,55 +4,55 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fs")
+@ObfuscatedName("hg")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lne;"
 	)
 	@Export("EnumDefinition_archive")
 	static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Lkt;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("nc")
-	@ObfuscatedGetter(
-		intValue = -2102626567
+	@ObfuscatedName("jx")
+	@ObfuscatedSignature(
+		descriptor = "[Lsn;"
 	)
-	@Export("selectedItemSlot")
-	static int selectedItemSlot;
-	@ObfuscatedName("q")
+	@Export("headIconHintSprites")
+	static SpritePixels[] headIconHintSprites;
+	@ObfuscatedName("ac")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -735765161
+		intValue = -1280965073
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("g")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = 367199611
+		intValue = -363214541
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("aq")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ap")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("i")
+	@ObfuscatedName("ar")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -65,16 +65,16 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0; // L: 17
 	} // L: 22
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "110"
+		descriptor = "(Lsy;I)V",
+		garbageValue = "1329154788"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
+			int var2 = var1.readUnsignedByte(); // L: 40
+			if (var2 == 0) { // L: 41
 				return; // L: 44
 			}
 
@@ -82,10 +82,10 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1048481170"
+		descriptor = "(Lsy;IB)V",
+		garbageValue = "-35"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -122,118 +122,126 @@ public class EnumComposition extends DualNode {
 
 	} // L: 70
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "75421574"
+		garbageValue = "-548958041"
 	)
 	@Export("size")
 	public int size() {
 		return this.outputCount; // L: 73
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("hb")
 	@ObfuscatedSignature(
-		descriptor = "(Lju;Lqv;I)Ljt;",
-		garbageValue = "870680813"
+		descriptor = "(I)V",
+		garbageValue = "-297669766"
 	)
-	@Export("getPacketBufferNode")
-	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-		PacketBufferNode var2;
-		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) { // L: 24
-			var2 = new PacketBufferNode(); // L: 25
-		} else {
-			var2 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 28
+	@Export("playPcmPlayers")
+	static final void playPcmPlayers() {
+		if (ViewportMouse.pcmPlayer1 != null) { // L: 3562
+			ViewportMouse.pcmPlayer1.run();
 		}
 
-		var2.clientPacket = var0; // L: 31
-		var2.clientPacketLength = var0.length; // L: 32
-		if (var2.clientPacketLength == -1) {
-			var2.packetBuffer = new PacketBuffer(260); // L: 33
-		} else if (var2.clientPacketLength == -2) { // L: 34
-			var2.packetBuffer = new PacketBuffer(10000);
-		} else if (var2.clientPacketLength <= 18) { // L: 35
-			var2.packetBuffer = new PacketBuffer(20);
-		} else if (var2.clientPacketLength <= 98) { // L: 36
-			var2.packetBuffer = new PacketBuffer(100);
-		} else {
-			var2.packetBuffer = new PacketBuffer(260); // L: 37
+		if (Interpreter.pcmPlayer0 != null) { // L: 3563
+			Interpreter.pcmPlayer0.run();
 		}
 
-		var2.packetBuffer.setIsaacCipher(var1); // L: 38
-		var2.packetBuffer.writeByteIsaac(var2.clientPacket.id); // L: 39
-		var2.index = 0; // L: 40
-		return var2; // L: 41
-	}
+	} // L: 3564
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("hc")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgs;",
-		garbageValue = "-21"
+		descriptor = "(I)V",
+		garbageValue = "323203445"
 	)
-	@Export("ItemComposition_get")
-	public static ItemComposition ItemComposition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemComposition_cached.get((long)var0); // L: 92
-		if (var1 != null) { // L: 93
-			return var1;
-		} else {
-			byte[] var2 = UserComparator4.ItemComposition_archive.takeFile(10, var0); // L: 94
-			var1 = new ItemComposition(); // L: 95
-			var1.id = var0; // L: 96
-			if (var2 != null) { // L: 97
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.post(); // L: 98
-			if (var1.noteTemplate != -1) { // L: 99
-				var1.genCert(ItemComposition_get(var1.noteTemplate), ItemComposition_get(var1.note));
-			}
-
-			if (var1.notedId != -1) { // L: 100
-				var1.genBought(ItemComposition_get(var1.notedId), ItemComposition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) { // L: 101
-				var1.genPlaceholder(ItemComposition_get(var1.placeholderTemplate), ItemComposition_get(var1.placeholder));
-			}
-
-			if (!DevicePcmPlayerProvider.ItemComposition_inMembersWorld && var1.isMembersOnly) { // L: 102
-				var1.name = "Members object"; // L: 103
-				var1.isTradable = false; // L: 104
-
-				int var3;
-				for (var3 = 0; var3 < var1.groundActions.length; ++var3) { // L: 105
-					var1.groundActions[var3] = null; // L: 106
-				}
-
-				for (var3 = 0; var3 < var1.inventoryActions.length; ++var3) { // L: 108
-					if (var3 != 4) { // L: 109
-						var1.inventoryActions[var3] = null; // L: 110
+	static final void method3652() {
+		for (int var0 = 0; var0 < Client.soundEffectCount; ++var0) { // L: 3567
+			int var10002 = Client.queuedSoundEffectDelays[var0]--; // L: 3568
+			if (Client.queuedSoundEffectDelays[var0] >= -10) { // L: 3569
+				SoundEffect var1 = Client.soundEffects[var0]; // L: 3581
+				if (var1 == null) { // L: 3582
+					Object var10000 = null; // L: 3583
+					var1 = SoundEffect.readSoundEffect(class175.archive9, Client.soundEffectIds[var0], 0);
+					if (var1 == null) { // L: 3584
+						continue;
 					}
+
+					int[] var13 = Client.queuedSoundEffectDelays; // L: 3585
+					var13[var0] += var1.calculateDelay();
+					Client.soundEffects[var0] = var1; // L: 3586
 				}
 
-				var1.shiftClickIndex = -2; // L: 113
-				var1.team = 0; // L: 114
-				if (var1.params != null) { // L: 115
-					boolean var6 = false; // L: 116
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) { // L: 117
-						ParamComposition var5 = class174.getParamDefinition((int)var4.key); // L: 118
-						if (var5.autoDisable) { // L: 119
-							var4.remove();
-						} else {
-							var6 = true; // L: 120
+				if (Client.queuedSoundEffectDelays[var0] < 0) { // L: 3592
+					int var2;
+					if (Client.soundLocations[var0] != 0) { // L: 3594
+						int var3 = (Client.soundLocations[var0] & 255) * 128; // L: 3595
+						int var4 = Client.soundLocations[var0] >> 16 & 255; // L: 3596
+						int var5 = var4 * 128 + 64 - BuddyRankComparator.localPlayer.x; // L: 3597
+						if (var5 < 0) { // L: 3598
+							var5 = -var5;
 						}
+
+						int var6 = Client.soundLocations[var0] >> 8 & 255; // L: 3599
+						int var7 = var6 * 128 + 64 - BuddyRankComparator.localPlayer.y; // L: 3600
+						if (var7 < 0) { // L: 3601
+							var7 = -var7;
+						}
+
+						int var8 = var7 + var5 - 128; // L: 3602
+						if (var8 > var3) { // L: 3603
+							Client.queuedSoundEffectDelays[var0] = -100; // L: 3604
+							continue; // L: 3605
+						}
+
+						if (var8 < 0) { // L: 3607
+							var8 = 0;
+						}
+
+						var2 = (var3 - var8) * WorldMapSectionType.clientPreferences.method2463() / var3; // L: 3608
+					} else {
+						var2 = WorldMapSectionType.clientPreferences.method2442(); // L: 3610
 					}
 
-					if (!var6) {
-						var1.params = null; // L: 122
+					if (var2 > 0) { // L: 3611
+						RawSound var9 = var1.toRawSound().resample(TaskHandler.decimator); // L: 3612
+						RawPcmStream var10 = RawPcmStream.createRawPcmStream(var9, 100, var2); // L: 3613
+						var10.setNumLoops(Client.queuedSoundEffectLoops[var0] - 1); // L: 3614
+						class323.pcmStreamMixer.addSubStream(var10); // L: 3615
 					}
+
+					Client.queuedSoundEffectDelays[var0] = -100; // L: 3617
 				}
+			} else {
+				--Client.soundEffectCount; // L: 3570
+
+				for (int var11 = var0; var11 < Client.soundEffectCount; ++var11) { // L: 3571
+					Client.soundEffectIds[var11] = Client.soundEffectIds[var11 + 1]; // L: 3572
+					Client.soundEffects[var11] = Client.soundEffects[var11 + 1]; // L: 3573
+					Client.queuedSoundEffectLoops[var11] = Client.queuedSoundEffectLoops[var11 + 1]; // L: 3574
+					Client.queuedSoundEffectDelays[var11] = Client.queuedSoundEffectDelays[var11 + 1]; // L: 3575
+					Client.soundLocations[var11] = Client.soundLocations[var11 + 1]; // L: 3576
+				}
+
+				--var0; // L: 3578
+			}
+		}
+
+		if (Client.playingJingle) { // L: 3620
+			boolean var12;
+			if (class293.musicPlayerStatus != 0) { // L: 3623
+				var12 = true; // L: 3624
+			} else {
+				var12 = class293.midiPcmStream.isReady(); // L: 3627
 			}
 
-			ItemComposition.ItemComposition_cached.put(var1, (long)var0); // L: 125
-			return var1; // L: 126
+			if (!var12) { // L: 3629
+				if (WorldMapSectionType.clientPreferences.method2440() != 0 && Client.currentTrackGroupId != -1) { // L: 3630
+					class163.method3352(class308.archive6, Client.currentTrackGroupId, 0, WorldMapSectionType.clientPreferences.method2440(), false);
+				}
+
+				Client.playingJingle = false; // L: 3631
+			}
 		}
-	}
+
+	} // L: 3634
 }
