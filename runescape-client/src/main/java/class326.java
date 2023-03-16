@@ -1,45 +1,42 @@
-import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lg")
+@ObfuscatedName("mr")
 public class class326 {
-	@ObfuscatedName("rz")
-	static boolean field4082;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Llg;"
+		descriptor = "Lmr;"
 	)
-	static final class326 field4079;
-	@ObfuscatedName("v")
+	static final class326 field3762;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Llg;"
+		descriptor = "Lmr;"
 	)
-	static final class326 field4083;
-	@ObfuscatedName("q")
+	static final class326 field3763;
+	@ObfuscatedName("cl")
 	@ObfuscatedSignature(
-		descriptor = "Llg;"
+		descriptor = "Lmf;"
 	)
-	static final class326 field4080;
-	@ObfuscatedName("j")
-	@Export("Interpreter_stringLocals")
-	static String[] Interpreter_stringLocals;
+	static GameBuild field3765;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		intValue = 353586457
+	)
+	final int field3764;
+	@ObfuscatedName("ab")
+	@ObfuscatedGetter(
+		intValue = -668488671
+	)
+	final int field3768;
 
 	static {
-		field4079 = new class326(); // L: 4
-		field4083 = new class326(); // L: 5
-		field4080 = new class326(); // L: 6
+		field3762 = new class326(51, 27, 800, 0, 16, 16); // L: 29
+		field3763 = new class326(25, 28, 800, 656, 40, 40); // L: 30
 	}
 
-	class326() {
-	} // L: 8
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(CI)C",
-		garbageValue = "-408398263"
-	)
-	static char method6050(char var0) {
-		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0; // L: 61 62
-	}
+	class326(int var1, int var2, int var3, int var4, int var5, int var6) {
+		this.field3764 = var5; // L: 39
+		this.field3768 = var6; // L: 40
+	} // L: 41
 }

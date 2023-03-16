@@ -1,30 +1,17 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dz")
+@ObfuscatedName("el")
 @Implements("UserComparator5")
 public class UserComparator5 extends AbstractUserComparator {
-	@ObfuscatedName("h")
+	@ObfuscatedName("ft")
 	@ObfuscatedSignature(
-		descriptor = "Lex;"
+		descriptor = "Lmx;"
 	)
-	static ClanChannel field1386;
-	@ObfuscatedName("ci")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	static IndexedSprite field1385;
-	@ObfuscatedName("gx")
-	static String field1387;
-	@ObfuscatedName("pb")
-	@ObfuscatedGetter(
-		intValue = 1731263595
-	)
-	static int field1389;
-	@ObfuscatedName("c")
+	static Archive field1419;
+	@ObfuscatedName("aj")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -32,143 +19,82 @@ public class UserComparator5 extends AbstractUserComparator {
 		this.reversed = var1; // L: 10
 	} // L: 11
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;B)I",
-		garbageValue = "-4"
+		descriptor = "(Lpt;Lpt;B)I",
+		garbageValue = "17"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
 		if (var1.world != 0) { // L: 14
-			if (var2.world == 0) {
-				return this.reversed ? -1 : 1; // L: 15
+			if (var2.world == 0) { // L: 15
+				return this.reversed ? -1 : 1;
 			}
 		} else if (var2.world != 0) {
 			return this.reversed ? 1 : -1; // L: 18
 		}
 
-		return this.compareUser(var1, var2);
+		return this.compareUser(var1, var2); // L: 20
 	}
 
 	public int compare(Object var1, Object var2) {
-		return this.compareBuddy((Buddy)var1, (Buddy)var2);
+		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 24
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;Lpe;I)Ljava/lang/String;",
-		garbageValue = "-1070606136"
+		descriptor = "(IB)Z",
+		garbageValue = "10"
 	)
-	public static String method2580(CharSequence var0, LoginType var1) {
-		if (var0 == null) { // L: 20
-			return null;
-		} else {
-			int var2 = 0; // L: 21
+	public static boolean method2862(int var0) {
+		return (var0 >> 22 & 1) != 0; // L: 25
+	}
 
-			int var3;
-			for (var3 = var0.length(); var2 < var3 && class154.method3163(var0.charAt(var2)); ++var2) { // L: 22 23
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Lcz;Lcz;IZI)I",
+		garbageValue = "746547975"
+	)
+	@Export("compareWorlds")
+	static int compareWorlds(World var0, World var1, int var2, boolean var3) {
+		if (var2 == 1) { // L: 211
+			int var4 = var0.population; // L: 212
+			int var5 = var1.population; // L: 213
+			if (!var3) { // L: 214
+				if (var4 == -1) { // L: 215
+					var4 = 2001;
+				}
+
+				if (var5 == -1) { // L: 216
+					var5 = 2001;
+				}
 			}
 
-			while (var3 > var2 && class154.method3163(var0.charAt(var3 - 1))) { // L: 24
-				--var3;
-			}
-
-			int var4 = var3 - var2; // L: 25
-			if (var4 >= 1) { // L: 27
-				byte var6;
-				if (var1 == null) { // L: 31
-					var6 = 12; // L: 32
+			return var4 - var5; // L: 218
+		} else if (var2 == 2) { // L: 220
+			return var0.location - var1.location;
+		} else if (var2 == 3) { // L: 221
+			if (var0.activity.equals("-")) { // L: 222
+				if (var1.activity.equals("-")) { // L: 223
+					return 0;
 				} else {
-					switch(var1.field4618) { // L: 35
-					case 4:
-						var6 = 20; // L: 37
-						break; // L: 38
-					default:
-						var6 = 12; // L: 40
-					}
+					return var3 ? -1 : 1; // L: 224
 				}
-
-				if (var4 <= var6) { // L: 44
-					StringBuilder var12 = new StringBuilder(var4); // L: 48
-
-					for (int var14 = var2; var14 < var3; ++var14) { // L: 49
-						char var7 = var0.charAt(var14); // L: 50
-						boolean var8;
-						if (Character.isISOControl(var7)) { // L: 53
-							var8 = false; // L: 54
-						} else if (FloorOverlayDefinition.isAlphaNumeric(var7)) { // L: 57
-							var8 = true; // L: 58
-						} else {
-							char[] var9 = class423.field4622; // L: 62
-							int var10 = 0;
-
-							label84:
-							while (true) {
-								char var11;
-								if (var10 >= var9.length) {
-									var9 = class423.field4625; // L: 72
-
-									for (var10 = 0; var10 < var9.length; ++var10) { // L: 73
-										var11 = var9[var10]; // L: 74
-										if (var11 == var7) { // L: 75
-											var8 = true; // L: 76
-											break label84; // L: 77
-										}
-									}
-
-									var8 = false; // L: 81
-									break;
-								}
-
-								var11 = var9[var10]; // L: 64
-								if (var7 == var11) { // L: 65
-									var8 = true; // L: 66
-									break; // L: 67
-								}
-
-								++var10; // L: 63
-							}
-						}
-
-						if (var8) { // L: 83
-							char var13 = PacketBufferNode.method5203(var7); // L: 84
-							if (var13 != 0) { // L: 85
-								var12.append(var13); // L: 86
-							}
-						}
-					}
-
-					if (var12.length() == 0) { // L: 88
-						return null;
-					}
-
-					return var12.toString(); // L: 89
-				}
+			} else if (var1.activity.equals("-")) { // L: 226
+				return var3 ? 1 : -1;
+			} else {
+				return var0.activity.compareTo(var1.activity); // L: 227
 			}
-
-			return null; // L: 46
+		} else if (var2 == 4) { // L: 229
+			return var0.method1785() ? (var1.method1785() ? 0 : 1) : (var1.method1785() ? -1 : 0);
+		} else if (var2 == 5) { // L: 230
+			return var0.method1833() ? (var1.method1833() ? 0 : 1) : (var1.method1833() ? -1 : 0);
+		} else if (var2 == 6) { // L: 231
+			return var0.isPvp() ? (var1.isPvp() ? 0 : 1) : (var1.isPvp() ? -1 : 0);
+		} else if (var2 == 7) { // L: 232
+			return var0.isMembersOnly() ? (var1.isMembersOnly() ? 0 : 1) : (var1.isMembersOnly() ? -1 : 0);
+		} else {
+			return var0.id - var1.id; // L: 233
 		}
 	}
-
-	@ObfuscatedName("ks")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "24"
-	)
-	static final void method2586() {
-		Client.field525 = Client.cycleCntr; // L: 12220
-		class326.field4082 = true; // L: 12221
-	} // L: 12222
-
-	@ObfuscatedName("lh")
-	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "7108"
-	)
-	@Export("Clan_leaveChat")
-	static final void Clan_leaveChat() {
-		PacketBufferNode var0 = EnumComposition.getPacketBufferNode(ClientPacket.field2942, Client.packetWriter.isaacCipher); // L: 12243
-		var0.packetBuffer.writeByte(0); // L: 12244
-		Client.packetWriter.addNode(var0); // L: 12245
-	} // L: 12246
 }

@@ -1,12 +1,19 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qz")
+@ObfuscatedName("td")
 @Implements("IntHashTable")
 public class IntHashTable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("av")
+	@ObfuscatedGetter(
+		intValue = 1497388317
+	)
+	@Export("musicTrackGroupId")
+	public static int musicTrackGroupId;
+	@ObfuscatedName("aj")
 	@Export("array")
 	int[] array;
 
@@ -32,10 +39,10 @@ public class IntHashTable {
 
 	} // L: 17
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "(II)I",
-		garbageValue = "-1743119884"
+		garbageValue = "-1554439415"
 	)
 	@Export("get")
 	public int get(int var1) {

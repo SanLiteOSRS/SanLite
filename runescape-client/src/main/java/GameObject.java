@@ -1,97 +1,98 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("hb")
+@ObfuscatedName("jm")
 @Implements("GameObject")
 public final class GameObject {
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Lmy;"
+	)
+	@Export("scriptDotWidget")
+	static Widget scriptDotWidget;
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 555755513
+		intValue = 1334453607
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 1199180827
+		intValue = -204624613
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 1171704683
+		intValue = -445636047
 	)
 	@Export("centerX")
 	int centerX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = -1998426191
+		intValue = -1941335121
 	)
 	@Export("centerY")
 	int centerY;
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Lgj;"
-	)
-	@Export("renderable")
-	public Renderable renderable;
-	@ObfuscatedName("e")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 2060742587
-	)
-	@Export("orientation")
-	int orientation;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = 780367115
+		intValue = 1237306913
 	)
 	@Export("startX")
 	int startX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Liq;"
+	)
+	@Export("renderable")
+	public Renderable renderable;
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -16124731
+		intValue = 405751931
+	)
+	@Export("orientation")
+	int orientation;
+	@ObfuscatedName("aq")
+	@ObfuscatedGetter(
+		intValue = 739083279
 	)
 	@Export("endX")
 	int endX;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 1663298221
+		intValue = -904563983
 	)
 	@Export("startY")
 	int startY;
-	@ObfuscatedName("i")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -2083887369
+		intValue = 1485400867
 	)
 	@Export("endY")
 	int endY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = -1662545459
+		intValue = 87893493
 	)
-	int field2655;
-	@ObfuscatedName("t")
+	int field2798;
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 1055321127
+		intValue = 1344380565
 	)
 	@Export("lastDrawn")
 	int lastDrawn;
-	@ObfuscatedName("z")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		longValue = -5445393225516942137L
+		longValue = -8829904473065290459L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("r")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -1409812671
+		intValue = -102078043
 	)
 	@Export("flags")
 	int flags;
@@ -101,59 +102,22 @@ public final class GameObject {
 		this.flags = 0; // L: 17
 	} // L: 19
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(S)Ljava/util/Date;",
-		garbageValue = "206"
+		descriptor = "(IB)I",
+		garbageValue = "-88"
 	)
-	static Date method4552() throws ParseException {
-		SimpleDateFormat var0 = new SimpleDateFormat("ddMMyyyyHH", Locale.ENGLISH); // L: 1132
-		var0.setLenient(false); // L: 1133
-		StringBuilder var1 = new StringBuilder(); // L: 1134
-		String[] var2 = Login.field911; // L: 1136
-
-		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 1137
-			String var4 = var2[var3]; // L: 1138
-			if (var4 == null) { // L: 1140
-				GraphicsObject.method1877("Date not valid.", "Please ensure all characters are populated.", ""); // L: 1141
-				return null; // L: 1142
-			}
-
-			var1.append(var4); // L: 1144
-		}
-
-		var1.append("12"); // L: 1148
-		return var0.parse(var1.toString()); // L: 1149
+	public static int method4778(int var0) {
+		return var0 >>> 4 & class473.field4885; // L: 22
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-1762087173"
+		descriptor = "(B)[Lsc;",
+		garbageValue = "-41"
 	)
-	static int method4553(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class124.scriptDotWidget : GrandExchangeOfferOwnWorldComparator.scriptActiveWidget; // L: 1209
-		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) { // L: 1210
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.itemId; // L: 1211
-			return 1; // L: 1212
-		} else if (var0 == ScriptOpcodes.CC_GETINVCOUNT) { // L: 1214
-			if (var3.itemId != -1) { // L: 1215
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.itemQuantity;
-			} else {
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = 0; // L: 1216
-			}
-
-			return 1; // L: 1217
-		} else if (var0 == ScriptOpcodes.CC_GETID) { // L: 1219
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.childIndex; // L: 1220
-			return 1; // L: 1221
-		} else if (var0 == 1707) { // L: 1223
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.method5680() ? 1 : 0; // L: 1224
-			return 1; // L: 1225
-		} else if (var0 == 1708) { // L: 1227
-			return class29.method363(var3); // L: 1228
-		} else {
-			return var0 == 1709 ? WorldMapSection0.method4947(var3) : 2; // L: 1230 1231 1233
-		}
+	@Export("FillMode_values")
+	public static class489[] FillMode_values() {
+		return new class489[]{class489.field4982, class489.field4983, class489.SOLID}; // L: 15
 	}
 }
