@@ -1,54 +1,46 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("km")
-public enum class308 implements MouseWheel {
-	@ObfuscatedName("c")
+@ObfuscatedName("la")
+public class class308 {
+	@ObfuscatedName("ar")
+	public static short[] field3457;
+	@ObfuscatedName("fy")
 	@ObfuscatedSignature(
-		descriptor = "Lkm;"
+		descriptor = "Lmx;"
 	)
-	field3939(-1),
-	@ObfuscatedName("v")
+	@Export("archive6")
+	static Archive archive6;
+	@ObfuscatedName("gx")
+	static String field3460;
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Lkm;"
+		descriptor = "Llo;"
 	)
-	field3938(0),
-	@ObfuscatedName("q")
+	public class310 field3458;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lkm;"
+		descriptor = "Lle;"
 	)
-	field3940(1),
-	@ObfuscatedName("f")
+	class305 field3451;
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lkm;"
+		descriptor = "Lbv;"
 	)
-	field3941(2);
+	class27 field3452;
+	@ObfuscatedName("ab")
+	public Object[] field3459;
+	@ObfuscatedName("an")
+	public Object[] field3454;
+	@ObfuscatedName("ao")
+	public Object[] field3450;
+	@ObfuscatedName("av")
+	public Object[] field3453;
 
-	@ObfuscatedName("pi")
-	@ObfuscatedSignature(
-		descriptor = "Lck;"
-	)
-	@Export("varcs")
-	static Varcs varcs;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 1827131377
-	)
-	final int field3944;
-
-	class308(int var3) {
-		this.field3944 = var3; // L: 15
-	} // L: 16
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
-	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field3944; // L: 20
-	}
+	class308() {
+		this.field3458 = new class310(); // L: 6
+		this.field3451 = new class305(); // L: 7
+		this.field3452 = new class27(); // L: 8
+	} // L: 14
 }

@@ -1,34 +1,43 @@
+import java.util.Comparator;
+import java.util.Map.Entry;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ok")
-public class class391 implements class396 {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lpt;"
+@ObfuscatedName("pi")
+class class391 implements Comparator {
+	@ObfuscatedName("aq")
+	@ObfuscatedGetter(
+		intValue = 935004533
 	)
-	public final class420 field4424;
+	static int field4473;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lpu;"
+	)
+	final class390 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpl;)V"
+		descriptor = "(Lpu;)V"
 	)
-	class391(class421 var1) {
-		this.field4424 = var1; // L: 14
-	} // L: 15
+	class391(class390 var1) {
+		this.this$0 = var1; // L: 84
+	}
 
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Loz;)V"
+		descriptor = "(Ljava/util/Map$Entry;Ljava/util/Map$Entry;B)I",
+		garbageValue = "71"
 	)
-	public class391(class392 var1) {
-		this(new class421(var1)); // L: 10
-	} // L: 11
+	int method7401(Entry var1, Entry var2) {
+		return ((Float)var2.getValue()).compareTo((Float)var1.getValue()); // L: 86
+	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-275089160"
-	)
-	public int method7055(int var1) {
-		return this.field4424.vmethod7440(var1); // L: 18
+	public int compare(Object var1, Object var2) {
+		return this.method7401((Entry)var1, (Entry)var2); // L: 90
+	}
+
+	public boolean equals(Object var1) {
+		return super.equals(var1); // L: 94
 	}
 }
