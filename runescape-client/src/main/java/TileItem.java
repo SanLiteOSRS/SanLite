@@ -4,51 +4,85 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cy")
+@ObfuscatedName("do")
 @Implements("TileItem")
 public final class TileItem extends Renderable {
-	@ObfuscatedName("ar")
-	protected static String field1301;
-	@ObfuscatedName("aw")
-	static String field1299;
-	@ObfuscatedName("hi")
-	@ObfuscatedSignature(
-		descriptor = "Lmt;"
-	)
-	@Export("fontBold12")
-	static Font fontBold12;
-	@ObfuscatedName("c")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -1688540919
+		intValue = 1417914255
+	)
+	static int field1314;
+	@ObfuscatedName("as")
+	@Export("Tiles_hueMultiplier")
+	static int[] Tiles_hueMultiplier;
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = -126580705
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = -895126303
+		intValue = 1272655955
 	)
 	@Export("quantity")
 	int quantity;
+	@ObfuscatedName("ab")
+	@ObfuscatedGetter(
+		intValue = 1678180761
+	)
+	int field1317;
 
 	TileItem() {
-	} // L: 11
+		this.field1317 = 31; // L: 11
+	} // L: 13
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhy;",
-		garbageValue = "1081110576"
+		descriptor = "(II)V",
+		garbageValue = "2082293600"
+	)
+	void method2649(int var1) {
+		this.field1317 = var1; // L: 16
+	} // L: 17
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lix;",
+		garbageValue = "-1998422213"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return EnumComposition.ItemComposition_get(this.id).getModel(this.quantity); // L: 14
+		return ParamComposition.ItemComposition_get(this.id).getModel(this.quantity); // L: 27
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1179876648"
+		descriptor = "(II)Z",
+		garbageValue = "1678542179"
 	)
-	public static int method2414(int var0) {
-		return class7.method51(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 73
+	boolean method2651(int var1) {
+		if (var1 >= 0 && var1 <= 4) { // L: 20
+			return (this.field1317 & 1 << var1) != 0; // L: 21
+		} else {
+			return true; // L: 23
+		}
 	}
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "112"
+	)
+	@Export("clearItemContainer")
+	static void clearItemContainer(int var0) {
+		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 63
+		if (var1 != null) { // L: 64
+			for (int var2 = 0; var2 < var1.ids.length; ++var2) { // L: 65
+				var1.ids[var2] = -1; // L: 66
+				var1.quantities[var2] = 0; // L: 67
+			}
+
+		}
+	} // L: 69
 }

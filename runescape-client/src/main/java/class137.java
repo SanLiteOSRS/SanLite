@@ -1,80 +1,82 @@
-import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eo")
-public class class137 extends class128 {
-	@ObfuscatedName("c")
-	String field1616;
+@ObfuscatedName("ff")
+public class class137 extends class140 {
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = 1725738051
+	)
+	int field1605;
+	@ObfuscatedName("al")
+	@ObfuscatedGetter(
+		intValue = -1808263
+	)
+	int field1602;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		intValue = 1958108075
+	)
+	int field1601;
+	@ObfuscatedName("ab")
+	@ObfuscatedGetter(
+		intValue = 1879712205
+	)
+	int field1603;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfo;"
 	)
-	final class131 this$0;
+	final class143 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfo;)V"
 	)
-	class137(class131 var1) {
-		this.this$0 = var1; // L: 229
-	}
+	class137(class143 var1) {
+		this.this$0 = var1;
+		this.field1605 = -1; // L: 158
+	} // L: 163
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lsy;I)V",
+		garbageValue = "-1979280996"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1616 = var1.readStringCp1252NullTerminated(); // L: 232
-		var1.readInt(); // L: 233
-	} // L: 234
+	void vmethod3361(Buffer var1) {
+		this.field1605 = var1.readUnsignedShort(); // L: 166
+		this.field1602 = var1.readInt(); // L: 167
+		this.field1601 = var1.readUnsignedByte(); // L: 168
+		this.field1603 = var1.readUnsignedByte(); // L: 169
+	} // L: 170
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Lfi;B)V",
+		garbageValue = "29"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.name = this.field1616; // L: 237
-	} // L: 238
+	void vmethod3362(ClanSettings var1) {
+		var1.method3200(this.field1605, this.field1602, this.field1601, this.field1603); // L: 173
+	} // L: 174
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-1955259353"
+		descriptor = "(Lne;I)V",
+		garbageValue = "951788277"
 	)
-	public static int method2931(int var0, int var1, int var2) {
-		int var3 = VarpDefinition.method3374(var2 - var1 + 1); // L: 37
-		var3 <<= var1; // L: 38
-		return var0 & ~var3; // L: 39
-	}
+	public static void method3086(AbstractArchive var0) {
+		StructComposition.StructDefinition_archive = var0; // L: 19
+	} // L: 20
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(CLlb;I)I",
-		garbageValue = "991712888"
+		descriptor = "(III)I",
+		garbageValue = "1523830717"
 	)
-	@Export("lowercaseChar")
-	static int lowercaseChar(char var0, Language var1) {
-		int var2 = var0 << 4; // L: 104
-		if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) { // L: 105
-			var0 = Character.toLowerCase(var0); // L: 106
-			var2 = (var0 << 4) + 1; // L: 107
-		}
-
-		if (var0 == 241 && var1 == Language.Language_ES) { // L: 109
-			var2 = 1762;
-		}
-
-		return var2; // L: 110
-	}
-
-	@ObfuscatedName("br")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ljava/lang/Object;",
-		garbageValue = "1239702190"
-	)
-	static Object method2937(int var0) {
-		return InvDefinition.method3360((class432)Actor.findEnumerated(class432.method7566(), var0)); // L: 5010
+	static final int method3080(int var0, int var1) {
+		int var2 = class11.method102(var0 - 1, var1 - 1) + class11.method102(1 + var0, var1 - 1) + class11.method102(var0 - 1, 1 + var1) + class11.method102(var0 + 1, var1 + 1); // L: 972
+		int var3 = class11.method102(var0 - 1, var1) + class11.method102(1 + var0, var1) + class11.method102(var0, var1 - 1) + class11.method102(var0, var1 + 1); // L: 973
+		int var4 = class11.method102(var0, var1); // L: 974
+		return var2 / 16 + var3 / 8 + var4 / 4; // L: 975
 	}
 }
