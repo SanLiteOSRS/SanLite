@@ -1,83 +1,75 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("eq")
-public class class138 extends class128 {
-	@ObfuscatedName("he")
-	@ObfuscatedSignature(
-		descriptor = "Lcd;"
-	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
-	@ObfuscatedName("c")
+@ObfuscatedName("fb")
+public class class138 extends class140 {
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -1956537991
+		longValue = 5970519739755097027L
 	)
-	int field1623;
-	@ObfuscatedName("v")
-	String field1620;
+	long field1610;
+	@ObfuscatedName("al")
+	String field1608;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfo;"
 	)
-	final class131 this$0;
+	final class143 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfo;)V"
 	)
-	class138(class131 var1) {
-		this.this$0 = var1; // L: 323
-	}
+	class138(class143 var1) {
+		this.this$0 = var1;
+		this.field1610 = -1L; // L: 74
+		this.field1608 = null; // L: 75
+	} // L: 77
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lsy;I)V",
+		garbageValue = "-1979280996"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1623 = var1.readInt(); // L: 326
-		this.field1620 = var1.readStringCp1252NullTerminated(); // L: 327
-	} // L: 328
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2968(this.field1623, this.field1620); // L: 331
-	} // L: 332
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "4"
-	)
-	public static void method2948(AbstractArchive var0) {
-		class435.field4666 = var0; // L: 19
-	} // L: 20
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IZIZI)V",
-		garbageValue = "1195912675"
-	)
-	@Export("sortWorldList")
-	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-		if (class362.World_worlds != null) { // L: 171
-			class131.doWorldSorting(0, class362.World_worlds.length - 1, var0, var1, var2, var3); // L: 172
+	void vmethod3361(Buffer var1) {
+		if (var1.readUnsignedByte() != 255) { // L: 80
+			--var1.offset; // L: 81
+			this.field1610 = var1.readLong(); // L: 82
 		}
 
-	} // L: 174
+		this.field1608 = var1.readStringCp1252NullTerminatedOrNull(); // L: 84
+	} // L: 85
 
-	@ObfuscatedName("hj")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1549613437"
+		descriptor = "(Lfi;B)V",
+		garbageValue = "29"
 	)
-	static boolean method2944() {
-		return (Client.drawPlayerNames & 8) != 0; // L: 4953
+	void vmethod3362(ClanSettings var1) {
+		var1.method3199(this.field1610, this.field1608, 0); // L: 88
+	} // L: 89
+
+	@ObfuscatedName("bc")
+	@ObfuscatedSignature(
+		descriptor = "(ILcv;ZI)I",
+		garbageValue = "1640153201"
+	)
+	static int method3096(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.LOGOUT) { // L: 4335
+			Client.logoutTimer = 250; // L: 4336
+			return 1; // L: 4337
+		} else {
+			return 2; // L: 4339
+		}
+	}
+
+	@ObfuscatedName("gp")
+	@ObfuscatedSignature(
+		descriptor = "(I)J",
+		garbageValue = "-959228999"
+	)
+	static long method3095() {
+		return Client.field671; // L: 2989
 	}
 }

@@ -3,26 +3,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ix")
+@ObfuscatedName("ji")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 1217125903
+		intValue = -192568909
 	)
 	@Export("objectDefinitionId")
 	final int objectDefinitionId;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = -1822794685
+		intValue = 1253616953
 	)
 	@Export("decoration")
 	final int decoration;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -1636858953
+		intValue = -1349259141
 	)
 	@Export("rotation")
 	final int rotation;
@@ -33,64 +32,53 @@ public class WorldMapDecoration {
 		this.rotation = var3; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-2049294776"
+		descriptor = "([BIILir;[Liz;B)V",
+		garbageValue = "64"
 	)
-	static int method4992(int var0, Script var1, boolean var2) {
-		Widget var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1322
-		if (var0 == ScriptOpcodes.IF_GETX) { // L: 1323
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.x; // L: 1324
-			return 1; // L: 1325
-		} else if (var0 == ScriptOpcodes.IF_GETY) { // L: 1327
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.y; // L: 1328
-			return 1; // L: 1329
-		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) { // L: 1331
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.width; // L: 1332
-			return 1; // L: 1333
-		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) { // L: 1335
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.height; // L: 1336
-			return 1; // L: 1337
-		} else if (var0 == ScriptOpcodes.IF_GETHIDE) { // L: 1339
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1340
-			return 1; // L: 1341
-		} else if (var0 == ScriptOpcodes.IF_GETLAYER) { // L: 1343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.parentId; // L: 1344
-			return 1; // L: 1345
-		} else {
-			return 2; // L: 1347
-		}
-	}
+	static final void method5220(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
+		Buffer var5 = new Buffer(var0); // L: 279
+		int var6 = -1; // L: 280
 
-	@ObfuscatedName("ig")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-80"
-	)
-	@Export("Widget_runOnTargetLeave")
-	static void Widget_runOnTargetLeave() {
-		if (Client.isSpellSelected) { // L: 9573
-			Widget var0 = ScriptFrame.getWidgetChild(NetCache.selectedSpellWidget, Client.selectedSpellChildIndex); // L: 9574
-			if (var0 != null && var0.onTargetLeave != null) { // L: 9575
-				ScriptEvent var1 = new ScriptEvent(); // L: 9576
-				var1.widget = var0; // L: 9577
-				var1.args = var0.onTargetLeave; // L: 9578
-				WallObject.runScriptEvent(var1); // L: 9579
+		while (true) {
+			int var7 = var5.method8696(); // L: 282
+			if (var7 == 0) { // L: 283
+				return; // L: 307
 			}
 
-			Client.selectedSpellItemId = -1; // L: 9581
-			Client.isSpellSelected = false; // L: 9582
-			ChatChannel.invalidateWidget(var0); // L: 9583
-		}
-	} // L: 9584
+			var6 += var7; // L: 284
+			int var8 = 0; // L: 285
 
-	@ObfuscatedName("lp")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1243783436"
-	)
-	static void method4991(int var0) {
-		Client.oculusOrbState = var0; // L: 12414
-	} // L: 12415
+			while (true) {
+				int var9 = var5.readUShortSmart(); // L: 287
+				if (var9 == 0) { // L: 288
+					break;
+				}
+
+				var8 += var9 - 1; // L: 289
+				int var10 = var8 & 63; // L: 290
+				int var11 = var8 >> 6 & 63; // L: 291
+				int var12 = var8 >> 12; // L: 292
+				int var13 = var5.readUnsignedByte(); // L: 293
+				int var14 = var13 >> 2; // L: 294
+				int var15 = var13 & 3; // L: 295
+				int var16 = var11 + var1; // L: 296
+				int var17 = var10 + var2; // L: 297
+				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) { // L: 298
+					int var18 = var12; // L: 299
+					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) { // L: 300
+						var18 = var12 - 1;
+					}
+
+					CollisionMap var19 = null; // L: 301
+					if (var18 >= 0) { // L: 302
+						var19 = var4[var18];
+					}
+
+					class30.addObjects(var12, var16, var17, var6, var15, var14, var3, var19); // L: 303
+				}
+			}
+		}
+	}
 }

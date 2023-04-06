@@ -1,55 +1,90 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bn")
+@ObfuscatedName("cy")
 @Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
-	@ObfuscatedName("ek")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive10")
-	static Archive archive10;
-	@ObfuscatedName("hp")
-	@ObfuscatedGetter(
-		intValue = 998883341
-	)
-	static int field466;
-
 	ApproximateRouteStrategy() {
-	} // L: 12551
+	} // L: 12459
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(IIILgv;I)Z",
-		garbageValue = "1278947831"
-	)
-	@Export("hasArrived")
-	public boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
-		return var2 == super.approxDestinationX && var3 == super.approxDestinationY; // L: 12555
-	}
-
-	@ObfuscatedName("lt")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
+		descriptor = "(IIILiz;B)Z",
 		garbageValue = "1"
 	)
-	static final void method1086(int var0, int var1) {
-		ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : class150.guestClanChannel; // L: 12249
-		if (var2 != null && var1 >= 0 && var1 < var2.method3113()) { // L: 12250
-			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1); // L: 12251
-			if (var3.rank == -1) { // L: 12252
-				String var4 = var3.username.getName(); // L: 12253
-				PacketBufferNode var5 = EnumComposition.getPacketBufferNode(ClientPacket.field2914, Client.packetWriter.isaacCipher); // L: 12254
-				var5.packetBuffer.writeByte(3 + ScriptEvent.stringCp1252NullTerminatedByteSize(var4)); // L: 12255
-				var5.packetBuffer.writeByte(var0); // L: 12256
-				var5.packetBuffer.writeShort(var1); // L: 12257
-				var5.packetBuffer.writeStringCp1252NullTerminated(var4); // L: 12258
-				Client.packetWriter.addNode(var5); // L: 12259
-			}
+	@Export("hasArrived")
+	protected boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
+		return var2 == super.approxDestinationX && var3 == super.approxDestinationY; // L: 12463
+	}
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lej;",
+		garbageValue = "-2100418601"
+	)
+	static class125 method1203(int var0) {
+		class125 var1 = (class125)SpriteMask.findEnumerated(Occluder.method4564(), var0); // L: 156
+		if (var1 == null) {
+			var1 = class125.field1490; // L: 157
 		}
-	} // L: 12260
+
+		return var1; // L: 158
+	}
+
+	@ObfuscatedName("ll")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "92"
+	)
+	@Export("Widget_resetModelFrames")
+	static final void Widget_resetModelFrames(int var0) {
+		if (GrandExchangeEvent.loadInterface(var0)) { // L: 11548
+			Widget[] var1 = class155.Widget_interfaceComponents[var0]; // L: 11549
+
+			for (int var2 = 0; var2 < var1.length; ++var2) { // L: 11550
+				Widget var3 = var1[var2]; // L: 11551
+				if (var3 != null) { // L: 11552
+					var3.modelFrame = 0; // L: 11553
+					var3.modelFrameCycle = 0; // L: 11554
+				}
+			}
+
+		}
+	} // L: 11556
+
+	@ObfuscatedName("lo")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "957157213"
+	)
+	static final void method1201(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 127); // L: 11660
+		WorldMapSectionType.clientPreferences.updateSoundEffectVolume(var0); // L: 11661
+	} // L: 11662
+
+	@ObfuscatedName("nk")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "872602777"
+	)
+	static void method1202(String var0) {
+		FontName.field4790 = var0; // L: 12124
+
+		try {
+			String var1 = class392.client.getParameter(Integer.toString(18)); // L: 12126
+			String var2 = class392.client.getParameter(Integer.toString(13)); // L: 12127
+			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2; // L: 12128
+			if (var0.length() == 0) { // L: 12129
+				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
+			} else {
+				var3 = var3 + "; Expires=" + class140.method3114(WorldMapSection2.method4844() + 94608000000L) + "; Max-Age=" + 94608000L; // L: 12130
+			}
+
+			class26.method381(class392.client, "document.cookie=\"" + var3 + "\""); // L: 12131
+		} catch (Throwable var4) { // L: 12133
+		}
+
+	} // L: 12134
 }
