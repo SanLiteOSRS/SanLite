@@ -3,46 +3,46 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gd")
+@ObfuscatedName("ii")
 @Implements("Texture")
 public class Texture extends Node {
-	@ObfuscatedName("u")
+	@ObfuscatedName("am")
 	@Export("Texture_animatedPixels")
 	static int[] Texture_animatedPixels;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@Export("averageRGB")
 	int averageRGB;
-	@ObfuscatedName("e")
-	boolean field2293;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ao")
+	boolean field2423;
+	@ObfuscatedName("av")
 	@Export("fileIds")
 	int[] fileIds;
-	@ObfuscatedName("w")
-	int[] field2301;
-	@ObfuscatedName("y")
-	int[] field2296;
-	@ObfuscatedName("i")
-	int[] field2295;
-	@ObfuscatedName("s")
+	@ObfuscatedName("aq")
+	int[] field2424;
+	@ObfuscatedName("ap")
+	int[] field2422;
+	@ObfuscatedName("ar")
+	int[] field2429;
+	@ObfuscatedName("ak")
 	@Export("animationDirection")
 	int animationDirection;
-	@ObfuscatedName("t")
+	@ObfuscatedName("ax")
 	@Export("animationSpeed")
 	int animationSpeed;
-	@ObfuscatedName("z")
+	@ObfuscatedName("as")
 	@Export("pixels")
 	int[] pixels;
-	@ObfuscatedName("r")
+	@ObfuscatedName("ay")
 	@Export("isLoaded")
 	boolean isLoaded;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;)V"
+		descriptor = "(Lsy;)V"
 	)
 	Texture(Buffer var1) {
 		this.isLoaded = false; // L: 25
 		this.averageRGB = var1.readUnsignedShort(); // L: 29
-		this.field2293 = var1.readUnsignedByte() == 1; // L: 30
+		this.field2423 = var1.readUnsignedByte() == 1; // L: 30
 		int var2 = var1.readUnsignedByte(); // L: 31
 		if (var2 >= 1 && var2 <= 4) { // L: 32
 			this.fileIds = new int[var2]; // L: 35
@@ -53,25 +53,25 @@ public class Texture extends Node {
 			}
 
 			if (var2 > 1) { // L: 37
-				this.field2301 = new int[var2 - 1]; // L: 38
+				this.field2424 = new int[var2 - 1]; // L: 38
 
 				for (var3 = 0; var3 < var2 - 1; ++var3) { // L: 39
-					this.field2301[var3] = var1.readUnsignedByte();
+					this.field2424[var3] = var1.readUnsignedByte();
 				}
 			}
 
 			if (var2 > 1) { // L: 41
-				this.field2296 = new int[var2 - 1]; // L: 42
+				this.field2422 = new int[var2 - 1]; // L: 42
 
 				for (var3 = 0; var3 < var2 - 1; ++var3) { // L: 43
-					this.field2296[var3] = var1.readUnsignedByte();
+					this.field2422[var3] = var1.readUnsignedByte();
 				}
 			}
 
-			this.field2295 = new int[var2]; // L: 45
+			this.field2429 = new int[var2]; // L: 45
 
 			for (var3 = 0; var3 < var2; ++var3) { // L: 46
-				this.field2295[var3] = var1.readInt();
+				this.field2429[var3] = var1.readInt();
 			}
 
 			this.animationDirection = var1.readUnsignedByte(); // L: 47
@@ -82,9 +82,9 @@ public class Texture extends Node {
 		}
 	} // L: 50
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(DILlh;)Z"
+		descriptor = "(DILne;)Z"
 	)
 	@Export("load")
 	boolean load(double var1, int var3, AbstractArchive var4) {
@@ -99,11 +99,11 @@ public class Texture extends Node {
 		this.pixels = new int[var5]; // L: 57
 
 		for (int var6 = 0; var6 < this.fileIds.length; ++var6) { // L: 58
-			IndexedSprite var7 = AbstractSocket.method6819(var4, this.fileIds[var6]); // L: 59
+			IndexedSprite var7 = SoundCache.method855(var4, this.fileIds[var6]); // L: 59
 			var7.normalize(); // L: 60
 			byte[] var8 = var7.pixels; // L: 61
 			int[] var9 = var7.palette; // L: 62
-			int var10 = this.field2295[var6]; // L: 63
+			int var10 = this.field2429[var6]; // L: 63
 			if ((var10 & -16777216) == 16777216) { // L: 64
 			}
 
@@ -134,7 +134,7 @@ public class Texture extends Node {
 			if (var6 == 0) { // L: 79
 				var11 = 0;
 			} else {
-				var11 = this.field2301[var6 - 1]; // L: 80
+				var11 = this.field2424[var6 - 1]; // L: 80
 			}
 
 			if (var11 == 0) { // L: 81
@@ -178,13 +178,13 @@ public class Texture extends Node {
 		return true; // L: 105
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@Export("reset")
 	void reset() {
 		this.pixels = null; // L: 109
 	} // L: 110
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@Export("animate")
 	void animate(int var1) {
 		if (this.pixels != null) { // L: 113
