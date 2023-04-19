@@ -8,18 +8,19 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bw")
+@ObfuscatedName("cj")
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
-	@ObfuscatedName("pm")
+	@ObfuscatedName("oo")
 	@ObfuscatedGetter(
-		intValue = -1419708281
+		intValue = 1457791911
 	)
-	static int field960;
-	@ObfuscatedName("c")
+	@Export("selectedSpellFlags")
+	static int selectedSpellFlags;
+	@ObfuscatedName("af")
 	@Export("executor")
 	ExecutorService executor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@Export("future")
 	Future future;
 
@@ -28,10 +29,10 @@ public class SecureRandomFuture {
 		this.future = this.executor.submit(new SecureRandomCallable()); // L: 14
 	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-33"
+		descriptor = "(I)V",
+		garbageValue = "1244424155"
 	)
 	@Export("shutdown")
 	void shutdown() {
@@ -39,114 +40,117 @@ public class SecureRandomFuture {
 		this.executor = null; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1943813302"
+		descriptor = "(B)Z",
+		garbageValue = "85"
 	)
 	@Export("isDone")
 	boolean isDone() {
-		return this.future.isDone();
+		return this.future.isDone(); // L: 23
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/security/SecureRandom;",
-		garbageValue = "448481251"
+		descriptor = "(B)Ljava/security/SecureRandom;",
+		garbageValue = "14"
 	)
 	@Export("get")
 	SecureRandom get() {
 		try {
-			return (SecureRandom)this.future.get();
-		} catch (Exception var2) {
-			return NetFileRequest.method5843();
+			return (SecureRandom)this.future.get(); // L: 28
+		} catch (Exception var4) { // L: 30
+			SecureRandom var3 = new SecureRandom(); // L: 33
+			var3.nextInt(); // L: 34
+			return var3; // L: 37
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfi;",
-		garbageValue = "81"
+		descriptor = "(I)I",
+		garbageValue = "-1033120927"
 	)
-	@Export("KitDefinition_get")
-	public static KitDefinition KitDefinition_get(int var0) {
-		KitDefinition var1 = (KitDefinition)KitDefinition.KitDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = KitDefinition.KitDefinition_archive.takeFile(3, var0);
-			var1 = new KitDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			KitDefinition.KitDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
+	public static int method2128() {
+		return ++MouseHandler.MouseHandler_idleCycles - 1; // L: 51
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;IZI)Lda;",
-		garbageValue = "1850622535"
+		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
+		garbageValue = "-86032975"
 	)
-	public static class122 method1963(AbstractArchive var0, AbstractArchive var1, int var2, boolean var3) {
-		boolean var4 = true;
-		byte[] var5 = var0.getFile(var2 >> 16 & 65535, var2 & 65535);
-		if (var5 == null) {
-			var4 = false;
-			return null; // L: 27
-		} else {
-			int var6 = (var5[1] & 255) << 8 | var5[2] & 255;
-			byte[] var7;
-			if (var3) {
-				var7 = var1.getFile(0, var6);
-			} else {
-				var7 = var1.getFile(var6, 0);
-			}
+	public static String method2130(CharSequence var0) {
+		String var1 = FloorUnderlayDefinition.base37DecodeLong(class172.method3585(var0));
+		if (var1 == null) {
+			var1 = "";
+		}
 
-			if (var7 == null) { // L: 33
-				var4 = false;
-			}
+		return var1;
+	}
 
-			if (!var4) { // L: 34
-				return null;
-			} else {
-				try {
-					return new class122(var0, var1, var2, var3); // L: 36
-				} catch (Exception var9) { // L: 38
-					return null; // L: 39
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;IZB)I",
+		garbageValue = "-45"
+	)
+	public static int method2122(CharSequence var0, int var1, boolean var2) {
+		if (var1 >= 2 && var1 <= 36) { // L: 72
+			boolean var3 = false; // L: 73
+			boolean var4 = false; // L: 74
+			int var5 = 0; // L: 75
+			int var6 = var0.length(); // L: 76
+
+			for (int var7 = 0; var7 < var6; ++var7) { // L: 77
+				char var8 = var0.charAt(var7); // L: 78
+				if (var7 == 0) { // L: 79
+					if (var8 == '-') { // L: 80
+						var3 = true; // L: 81
+						continue;
+					}
+
+					if (var8 == '+') { // L: 84
+						continue;
+					}
 				}
+
+				int var10;
+				if (var8 >= '0' && var8 <= '9') {
+					var10 = var8 - '0'; // L: 86
+				} else if (var8 >= 'A' && var8 <= 'Z') { // L: 87
+					var10 = var8 - '7';
+				} else {
+					if (var8 < 'a' || var8 > 'z') { // L: 88
+						throw new NumberFormatException(); // L: 89
+					}
+
+					var10 = var8 - 'W';
+				}
+
+				if (var10 >= var1) { // L: 90
+					throw new NumberFormatException();
+				}
+
+				if (var3) { // L: 91
+					var10 = -var10;
+				}
+
+				int var9 = var10 + var5 * var1; // L: 92
+				if (var9 / var1 != var5) { // L: 93
+					throw new NumberFormatException();
+				}
+
+				var5 = var9; // L: 94
+				var4 = true; // L: 95
 			}
+
+			if (!var4) { // L: 97
+				throw new NumberFormatException();
+			} else {
+				return var5; // L: 98
+			}
+		} else {
+			throw new IllegalArgumentException("" + var1);
 		}
 	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "1953508485"
-	)
-	@Export("addChatMessage")
-	static void addChatMessage(int var0, String var1, String var2, String var3) {
-		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 23
-		if (var4 == null) { // L: 24
-			var4 = new ChatChannel(); // L: 25
-			Messages.Messages_channels.put(var0, var4); // L: 26
-		}
-
-		Message var5 = var4.addMessage(var0, var1, var2, var3); // L: 28
-		Messages.Messages_hashTable.put(var5, (long)var5.count); // L: 29
-		Messages.Messages_queue.add(var5); // L: 30
-		Client.chatCycle = Client.cycleCntr; // L: 31
-	} // L: 32
-
-	@ObfuscatedName("ey")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "7"
-	)
-	static final void method1967() {
-		Scene.Scene_isLowDetail = false; // L: 877
-		Client.isLowDetail = false; // L: 878
-	} // L: 879
 }

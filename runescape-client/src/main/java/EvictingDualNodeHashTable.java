@@ -3,30 +3,30 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ii")
+@ObfuscatedName("kh")
 @Implements("EvictingDualNodeHashTable")
 public final class EvictingDualNodeHashTable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Loo;"
+		descriptor = "Lrk;"
 	)
 	@Export("dualNode")
 	DualNode dualNode;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aw")
 	@Export("remainingCapacity")
 	int remainingCapacity;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lpb;"
+		descriptor = "Lro;"
 	)
 	@Export("hashTable")
 	IterableNodeHashTable hashTable;
-	@ObfuscatedName("j")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lmh;"
+		descriptor = "Lox;"
 	)
 	@Export("deque")
 	IterableDualNodeQueue deque;
@@ -44,9 +44,9 @@ public final class EvictingDualNodeHashTable {
 		this.hashTable = new IterableNodeHashTable(var2); // L: 19
 	} // L: 20
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(J)Loo;"
+		descriptor = "(J)Lrk;"
 	)
 	@Export("get")
 	public DualNode get(long var1) {
@@ -58,7 +58,7 @@ public final class EvictingDualNodeHashTable {
 		return var3; // L: 29
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@Export("remove")
 	public void remove(long var1) {
 		DualNode var3 = (DualNode)this.hashTable.get(var1); // L: 33
@@ -70,9 +70,9 @@ public final class EvictingDualNodeHashTable {
 
 	} // L: 39
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Loo;J)V"
+		descriptor = "(Lrk;J)V"
 	)
 	@Export("put")
 	public void put(DualNode var1, long var2) {
@@ -93,7 +93,7 @@ public final class EvictingDualNodeHashTable {
 		this.deque.add(var1); // L: 54
 	} // L: 55
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ac")
 	@Export("clear")
 	public void clear() {
 		this.deque.clear(); // L: 58
