@@ -1,32 +1,49 @@
+import java.util.HashMap;
+import java.util.TimeZone;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kk")
-public class class292 {
-	@ObfuscatedName("c")
-	public static final short[] field3351;
-	@ObfuscatedName("v")
-	public static final short[][] field3349;
-	@ObfuscatedName("q")
-	public static final short[] field3350;
-	@ObfuscatedName("f")
-	public static final short[][] field3352;
+@lj
+@ObfuscatedName("lu")
+public final class class292 {
+	@ObfuscatedName("aw")
+	static final HashMap field3358;
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "Ltc;"
+	)
+	static IndexedSprite field3361;
 
 	static {
-		field3351 = new short[]{6798, 8741, 25238, 4626, 4550}; // L: 4
-		field3349 = new short[][]{{6798, 107, 10283, 16, 4797, 7744, 5799, 4634, -31839, 22433, 2983, -11343, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010}, {8741, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 25239, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010}, {25238, 8742, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010}, {4626, 11146, 6439, 12, 4758, 10270}, {4550, 4537, 5681, 5673, 5790, 6806, 8076, 4574, 17050, 0, 127, -31821, -17991}}; // L: 5
-		field3350 = new short[]{-10304, 9104, -1, -1, -1}; // L: 12
-		field3352 = new short[][]{{6554, 115, 10304, 28, 5702, 7756, 5681, 4510, -31835, 22437, 2859, -11339, 16, 5157, 10446, 3658, -27314, -21965, 472, 580, 784, 21966, 28950, -15697, -14002}, {9104, 10275, 7595, 3610, 7975, 8526, 918, -26734, 24466, 10145, -6882, 5027, 1457, 16565, -30545, 25486, 24, 5392, 10429, 3673, -27335, -21957, 192, 687, 412, 21821, 28835, -15460, -14019}, new short[0], new short[0], new short[0]}; // L: 13
+		field3358 = new HashMap(); // L: 11
+		java.util.Calendar.getInstance(method5717("Europe/London")); // L: 14
+	} // L: 15
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)Ljava/util/TimeZone;",
+		garbageValue = "-1017888567"
+	)
+	static TimeZone method5717(String var0) {
+		synchronized(field3358) { // L: 22
+			TimeZone var2 = (TimeZone)field3358.get(var0); // L: 23
+			if (var2 == null) { // L: 24
+				var2 = TimeZone.getTimeZone(var0); // L: 25
+				field3358.put(var0, var2); // L: 26
+			}
+
+			return var2; // L: 28
+		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(II)[B",
-		garbageValue = "-682770392"
+		descriptor = "(II)Z",
+		garbageValue = "-964267539"
 	)
-	@Export("ByteArrayPool_getArray")
-	public static synchronized byte[] ByteArrayPool_getArray(int var0) {
-		return ByteArrayPool.ByteArrayPool_getArrayBool(var0, false); // L: 94
+	@Export("isWorldMapEvent")
+	public static boolean isWorldMapEvent(int var0) {
+		return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17; // L: 19
 	}
 }
