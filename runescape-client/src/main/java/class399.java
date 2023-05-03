@@ -1,72 +1,90 @@
-import java.io.UnsupportedEncodingException;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-@ObfuscatedName("om")
-public class class399 implements class398 {
-	@ObfuscatedName("q")
-	JSONObject field4436;
-
-	public class399(byte[] var1) throws UnsupportedEncodingException {
-		this.method7098(var1); // L: 17
-	} // L: 18
-
-	public class399(String var1) throws UnsupportedEncodingException {
-		this.method7099(var1); // L: 13
-	} // L: 14
-
-	@ObfuscatedName("c")
+@ObfuscatedName("pj")
+public final class class399 implements Comparable {
+	@ObfuscatedName("wm")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "793389020"
+		descriptor = "Lgv;"
 	)
-	public byte[] vmethod7114() throws UnsupportedEncodingException {
-		return this.field4436 == null ? new byte[0] : this.field4436.toString().getBytes("UTF-8"); // L: 50 51 53
+	@Export("clock")
+	static Clock clock;
+	@ObfuscatedName("fw")
+	@ObfuscatedSignature(
+		descriptor = "Lnd;"
+	)
+	@Export("archive6")
+	static Archive archive6;
+	@ObfuscatedName("af")
+	Object field4542;
+	@ObfuscatedName("an")
+	Object field4543;
+	@ObfuscatedName("aw")
+	@ObfuscatedGetter(
+		longValue = 3457501928509627443L
+	)
+	long field4544;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		longValue = -8679189461794727135L
+	)
+	long field4545;
+
+	class399(Object var1, Object var2) {
+		this.field4542 = var1; // L: 10
+		this.field4543 = var2; // L: 11
+	} // L: 12
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(Lpj;I)I",
+		garbageValue = "-331222916"
+	)
+	int method7721(class399 var1) {
+		if (this.field4545 < var1.field4545) {
+			return -1; // L: 15
+		} else {
+			return this.field4545 > var1.field4545 ? 1 : 0; // L: 16 17
+		}
 	}
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "-448448712"
-	)
-	void method7098(byte[] var1) throws UnsupportedEncodingException {
-		String var2 = new String(var1, "UTF-8"); // L: 21
-		this.method7099(var2); // L: 22
-	} // L: 23
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "2042516666"
-	)
-	void method7099(String var1) throws UnsupportedEncodingException {
-		try {
-			if (var1.charAt(0) == '{') { // L: 27
-				this.field4436 = new JSONObject(var1); // L: 28
-			} else {
-				if (var1.charAt(0) != '[') { // L: 30
-					throw new UnsupportedEncodingException("Invalid JSON passed to the JSON content builder."); // L: 36
-				}
-
-				JSONArray var2 = new JSONArray(var1); // L: 31
-				this.field4436 = new JSONObject(); // L: 32
-				this.field4436.put("arrayValues", var2); // L: 33
-			}
-
-		} catch (JSONException var3) { // L: 39
-			throw new UnsupportedEncodingException(var3.getMessage()); // L: 40
+	public boolean equals(Object var1) {
+		if (var1 instanceof class399) {
+			return this.field4543.equals(((class399)var1).field4543);
+		} else {
+			throw new IllegalArgumentException(); // L: 23
 		}
-	} // L: 42
+	}
 
-	@ObfuscatedName("i")
+	public int hashCode() {
+		return this.field4543.hashCode();
+	}
+
+	public int compareTo(Object var1) {
+		return this.method7721((class399)var1); // L: 32
+	}
+
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lorg/json/JSONObject;",
-		garbageValue = "1036463091"
+		descriptor = "(II)Ltf;",
+		garbageValue = "-108064052"
 	)
-	public JSONObject method7100() {
-		return this.field4436; // L: 45
+	public static PrivateChatMode method7732(int var0) {
+		PrivateChatMode[] var1 = new PrivateChatMode[]{PrivateChatMode.field5130, PrivateChatMode.field5129, PrivateChatMode.field5128}; // L: 18
+		PrivateChatMode[] var2 = var1; // L: 20
+
+		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 21
+			PrivateChatMode var4 = var2[var3]; // L: 22
+			if (var0 == var4.field5131) { // L: 24
+				return var4;
+			}
+		}
+
+		return null; // L: 28
 	}
 }

@@ -3,47 +3,59 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("na")
+@ObfuscatedName("qp")
 @Implements("DefaultsGroup")
 public class DefaultsGroup {
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lna;"
+		descriptor = "Lqp;"
 	)
-	static final DefaultsGroup field4363;
-	@ObfuscatedName("v")
+	static final DefaultsGroup field4635;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 44353579
+		intValue = 595484225
 	)
 	@Export("group")
 	final int group;
 
 	static {
-		field4363 = new DefaultsGroup(3); // L: 4
+		field4635 = new DefaultsGroup(3); // L: 4
 	}
 
 	DefaultsGroup(int var1) {
 		this.group = var1; // L: 8
 	} // L: 9
 
-	@ObfuscatedName("fc")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1365746841"
+		descriptor = "(ILch;ZI)I",
+		garbageValue = "1228806354"
 	)
-	@Export("forceDisconnect")
-	static final void forceDisconnect(int var0) {
-		MouseRecorder.logOut(); // L: 2923
-		switch(var0) { // L: 2924
-		case 1:
-			WorldMapData_1.method4872(24); // L: 2936
-			class101.setLoginResponseString("", "You were disconnected from the server.", ""); // L: 2937
-			break;
-		case 2:
-			WorldMapData_1.method4872(24); // L: 2928
-			class101.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", ""); // L: 2929
-		}
+	static int method8080(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? SoundSystem.scriptDotWidget : class1.field5; // L: 1515
+		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) { // L: 1516
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemId; // L: 1517
+			return 1; // L: 1518
+		} else if (var0 == ScriptOpcodes.CC_GETINVCOUNT) { // L: 1520
+			if (var3.itemId != -1) { // L: 1521
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemQuantity;
+			} else {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0; // L: 1522
+			}
 
-	} // L: 2942
+			return 1; // L: 1523
+		} else if (var0 == ScriptOpcodes.CC_GETID) { // L: 1525
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.childIndex; // L: 1526
+			return 1; // L: 1527
+		} else if (var0 == 1707) { // L: 1529
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.method6382() ? 1 : 0; // L: 1530
+			return 1; // L: 1531
+		} else if (var0 == 1708) { // L: 1533
+			return BufferedSource.method8029(var3); // L: 1534
+		} else {
+			return var0 == 1709 ? class4.method22(var3) : 2; // L: 1536 1537 1539
+		}
+	}
 }
