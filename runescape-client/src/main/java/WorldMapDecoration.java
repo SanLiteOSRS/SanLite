@@ -3,26 +3,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ix")
+@ObfuscatedName("jl")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = 1217125903
+		intValue = 2080162465
 	)
 	@Export("objectDefinitionId")
 	final int objectDefinitionId;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -1822794685
+		intValue = 1504481025
 	)
 	@Export("decoration")
 	final int decoration;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -1636858953
+		intValue = -1419490017
 	)
 	@Export("rotation")
 	final int rotation;
@@ -33,64 +32,39 @@ public class WorldMapDecoration {
 		this.rotation = var3; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("ij")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-2049294776"
+		descriptor = "(Ljava/lang/String;ZI)V",
+		garbageValue = "-215676095"
 	)
-	static int method4992(int var0, Script var1, boolean var2) {
-		Widget var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1322
-		if (var0 == ScriptOpcodes.IF_GETX) { // L: 1323
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.x; // L: 1324
-			return 1; // L: 1325
-		} else if (var0 == ScriptOpcodes.IF_GETY) { // L: 1327
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.y; // L: 1328
-			return 1; // L: 1329
-		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) { // L: 1331
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.width; // L: 1332
-			return 1; // L: 1333
-		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) { // L: 1335
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.height; // L: 1336
-			return 1; // L: 1337
-		} else if (var0 == ScriptOpcodes.IF_GETHIDE) { // L: 1339
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1340
-			return 1; // L: 1341
-		} else if (var0 == ScriptOpcodes.IF_GETLAYER) { // L: 1343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.parentId; // L: 1344
-			return 1; // L: 1345
-		} else {
-			return 2; // L: 1347
-		}
-	}
+	@Export("drawLoadingMessage")
+	static final void drawLoadingMessage(String var0, boolean var1) {
+		if (Client.showLoadingMessages) { // L: 4366
+			byte var2 = 4; // L: 4367
+			int var3 = var2 + 6; // L: 4368
+			int var4 = var2 + 6; // L: 4369
+			int var5 = DecorativeObject.fontPlain12.lineWidth(var0, 250); // L: 4370
+			int var6 = DecorativeObject.fontPlain12.lineCount(var0, 250) * 13; // L: 4371
+			Rasterizer2D.Rasterizer2D_fillRectangle(var3 - var2, var4 - var2, var2 + var2 + var5, var2 + var2 + var6, 0); // L: 4372
+			Rasterizer2D.Rasterizer2D_drawRectangle(var3 - var2, var4 - var2, var5 + var2 + var2, var6 + var2 + var2, 16777215); // L: 4373
+			DecorativeObject.fontPlain12.drawLines(var0, var3, var4, var5, var6, 16777215, -1, 1, 1, 0); // L: 4374
+			int var7 = var3 - var2; // L: 4375
+			int var8 = var4 - var2; // L: 4376
+			int var9 = var5 + var2 + var2; // L: 4377
+			int var10 = var2 + var6 + var2; // L: 4378
 
-	@ObfuscatedName("ig")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-80"
-	)
-	@Export("Widget_runOnTargetLeave")
-	static void Widget_runOnTargetLeave() {
-		if (Client.isSpellSelected) { // L: 9573
-			Widget var0 = ScriptFrame.getWidgetChild(NetCache.selectedSpellWidget, Client.selectedSpellChildIndex); // L: 9574
-			if (var0 != null && var0.onTargetLeave != null) { // L: 9575
-				ScriptEvent var1 = new ScriptEvent(); // L: 9576
-				var1.widget = var0; // L: 9577
-				var1.args = var0.onTargetLeave; // L: 9578
-				WallObject.runScriptEvent(var1); // L: 9579
+			for (int var11 = 0; var11 < Client.rootWidgetCount; ++var11) { // L: 4380
+				if (Client.rootWidgetWidths[var11] + Client.rootWidgetXs[var11] > var7 && Client.rootWidgetXs[var11] < var9 + var7 && Client.rootWidgetYs[var11] + Client.rootWidgetHeights[var11] > var8 && Client.rootWidgetYs[var11] < var8 + var10) { // L: 4381
+					Client.field705[var11] = true;
+				}
 			}
 
-			Client.selectedSpellItemId = -1; // L: 9581
-			Client.isSpellSelected = false; // L: 9582
-			ChatChannel.invalidateWidget(var0); // L: 9583
-		}
-	} // L: 9584
+			if (var1) { // L: 4384
+				RouteStrategy.rasterProvider.drawFull(0, 0); // L: 4385
+			} else {
+				FriendsChatManager.method7771(var3, var4, var5, var6); // L: 4388
+			}
 
-	@ObfuscatedName("lp")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1243783436"
-	)
-	static void method4991(int var0) {
-		Client.oculusOrbState = var0; // L: 12414
-	} // L: 12415
+		}
+	} // L: 4390
 }
