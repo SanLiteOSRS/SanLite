@@ -4,86 +4,68 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cq")
+@ObfuscatedName("di")
 @Implements("InterfaceParent")
 public class InterfaceParent extends Node {
-	@ObfuscatedName("sm")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -1985635931
-	)
-	static int field1043;
-	@ObfuscatedName("jy")
-	@ObfuscatedGetter(
-		intValue = -1949636447
-	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 315980607
+		intValue = 944864121
 	)
 	@Export("group")
 	int group;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1762148949
+		intValue = -1702664641
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("q")
-	boolean field1040;
+	@ObfuscatedName("aw")
+	boolean field1038;
 
 	InterfaceParent() {
-		this.field1040 = false; // L: 8
+		this.field1038 = false; // L: 8
 	} // L: 10
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "896944894"
+		descriptor = "([BB)V",
+		garbageValue = "7"
 	)
-	public static int method2095(int var0) {
-		long var2 = ViewportMouse.ViewportMouse_entityTags[var0]; // L: 65
-		int var1 = (int)(var2 >>> 7 & 127L); // L: 67
-		return var1; // L: 69
-	}
-
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "1938605488"
-	)
-	static int method2097(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == 3500) { // L: 2332
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2333
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method764(var3) ? 1 : 0; // L: 2334
-			return 1; // L: 2335
-		} else if (var0 == 3501) { // L: 2337
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2338
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = VertexNormal.method4528(var3) ? 1 : 0; // L: 2339
-			return 1; // L: 2340
-		} else if (var0 == 3502) { // L: 2342
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method753(var3) ? 1 : 0; // L: 2344
-			return 1; // L: 2345
+	@Export("ByteArrayPool_release")
+	public static synchronized void ByteArrayPool_release(byte[] var0) {
+		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field4469) { // L: 116
+			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0; // L: 117
+		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field4470) { // L: 120
+			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0; // L: 121
+		} else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field4471) { // L: 124
+			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0; // L: 125
+		} else if (var0.length == 30000 && ByteArrayPool.field4476 < ByteArrayPool.field4463) { // L: 128
+			ByteArrayPool.field4474[++ByteArrayPool.field4476 - 1] = var0; // L: 129
 		} else {
-			return 2; // L: 2347
-		}
-	}
+			if (UserComparator3.ByteArrayPool_arrays != null) { // L: 132
+				for (int var1 = 0; var1 < ClanChannel.ByteArrayPool_alternativeSizes.length; ++var1) { // L: 133
+					if (var0.length == ClanChannel.ByteArrayPool_alternativeSizes[var1] && class136.ByteArrayPool_altSizeArrayCounts[var1] < UserComparator3.ByteArrayPool_arrays[var1].length) { // L: 134
+						UserComparator3.ByteArrayPool_arrays[var1][class136.ByteArrayPool_altSizeArrayCounts[var1]++] = var0; // L: 135
+						return; // L: 136
+					}
+				}
+			}
 
-	@ObfuscatedName("il")
+		}
+	} // L: 118 122 126 130 140
+
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-62"
+		descriptor = "(I)V",
+		garbageValue = "-1880388281"
 	)
-	@Export("addCancelMenuEntry")
-	static void addCancelMenuEntry() {
-		class125.method2824(); // L: 8428
-		Client.menuActions[0] = "Cancel"; // L: 8429
-		Client.menuTargets[0] = ""; // L: 8430
-		Client.menuOpcodes[0] = 1006; // L: 8431
-		Client.menuShiftClick[0] = false; // L: 8432
-		Client.menuOptionsCount = 1; // L: 8433
-	} // L: 8434
+	public static void method2252() {
+		StructComposition.StructDefinition_cached.clear(); // L: 71
+	} // L: 72
+
+	@ObfuscatedName("at")
+	@Export("Entity_unpackID")
+	public static int Entity_unpackID(long var0) {
+		return (int)(var0 >>> 17 & 4294967295L); // L: 89
+	}
 }

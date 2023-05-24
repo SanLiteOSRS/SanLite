@@ -1,419 +1,143 @@
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-@ObfuscatedName("es")
-public class class155 {
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = -793347601
-	)
-	int field1726;
-	@ObfuscatedName("i")
-	String field1730;
-	@ObfuscatedName("s")
+@ObfuscatedName("fu")
+public abstract class class155 extends Node {
+	class155() {
+	} // L: 49
+
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lct;"
+		descriptor = "(Lsg;I)V",
+		garbageValue = "-1949352075"
 	)
-	UrlRequest field1729;
-	@ObfuscatedName("t")
-	String field1732;
-	@ObfuscatedName("z")
-	float[] field1733;
-	@ObfuscatedName("r")
-	ArrayList field1734;
-	@ObfuscatedName("u")
-	ArrayList field1735;
-	@ObfuscatedName("k")
-	ArrayList field1736;
-	@ObfuscatedName("h")
-	Map field1731;
-	@ObfuscatedName("x")
-	Map field1724;
+	abstract void vmethod3448(Buffer var1);
 
-	public class155() {
-		this.field1726 = -1; // L: 24
-		this.field1732 = null; // L: 27
-		this.field1733 = new float[4]; // L: 28
-		this.field1734 = new ArrayList(); // L: 29
-		this.field1735 = new ArrayList(); // L: 30
-		this.field1736 = new ArrayList(); // L: 31
-		this.field1731 = new HashMap();
-		this.field1724 = new HashMap(); // L: 33
-	}
-
-	@ObfuscatedName("c")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lcd;I)Z",
-		garbageValue = "-34327555"
+		descriptor = "(Lgj;B)V",
+		garbageValue = "-49"
 	)
-	public boolean method3174(String var1, UrlRequester var2) {
-		if (var1 != null && !var1.isEmpty()) { // L: 36
-			if (var2 == null) { // L: 39
-				return false; // L: 40
-			} else {
-				this.method3226(); // L: 42
+	abstract void vmethod3450(ClanChannel var1);
 
-				try {
-					this.field1730 = var1; // L: 44
-					this.field1729 = var2.request(new URL(this.field1730)); // L: 45
-					this.field1726 = 0; // L: 46
-					return true; // L: 47
-				} catch (MalformedURLException var4) { // L: 49
-					this.method3226(); // L: 50
-					this.field1726 = 100; // L: 51
-					return false; // L: 52
-				}
-			}
-		} else {
-			return false; // L: 37
-		}
-	}
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("mb")
 	@ObfuscatedSignature(
-		descriptor = "(Lcd;I)V",
-		garbageValue = "1224527567"
+		descriptor = "(Lmq;IIII)V",
+		garbageValue = "715793835"
 	)
-	public void method3175(UrlRequester var1) {
-		switch(this.field1726) { // L: 57
-		case 0:
-			this.method3185(var1); // L: 62
-			break; // L: 63
-		case 1:
-			this.method3186(); // L: 59
-			break;
-		default:
-			return; // L: 65
-		}
+	@Export("drawMinimap")
+	static final void drawMinimap(Widget var0, int var1, int var2, int var3) {
+		class323.playPcmPlayers(); // L: 11863
+		SpriteMask var4 = var0.getSpriteMask(false); // L: 11864
+		if (var4 != null) { // L: 11865
+			Rasterizer2D.Rasterizer2D_setClip(var1, var2, var4.width + var1, var2 + var4.height); // L: 11866
+			if (Client.minimapState != 2 && Client.minimapState != 5) { // L: 11867
+				int var5 = Client.camAngleY & 2047; // L: 11868
+				int var6 = MusicPatchNode.localPlayer.x / 32 + 48; // L: 11869
+				int var7 = 464 - MusicPatchNode.localPlayer.y / 32; // L: 11870
+				UrlRequester.sceneMinimapSprite.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, var6, var7, var5, 256, var4.xStarts, var4.xWidths); // L: 11871
 
-	} // L: 67
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1504474906"
-	)
-	public int method3176() {
-		return this.field1726; // L: 70
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)I",
-		garbageValue = "-2119043872"
-	)
-	public int method3196(String var1) {
-		return this.field1731.containsKey(var1) ? (Integer)this.field1731.get(var1) : -1; // L: 74
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "1630145340"
-	)
-	public String method3178(String var1) {
-		return (String)((String)(this.field1724.containsKey(var1) ? this.field1724.get(var1) : null)); // L: 78
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/util/ArrayList;",
-		garbageValue = "1021496869"
-	)
-	public ArrayList method3179() {
-		return this.field1735; // L: 82
-	}
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/util/ArrayList;",
-		garbageValue = "100"
-	)
-	public ArrayList method3190() {
-		return this.field1736; // L: 86
-	}
-
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "2042009009"
-	)
-	public String method3201() {
-		return this.field1732; // L: 90
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(I)[F",
-		garbageValue = "208203188"
-	)
-	public float[] method3182() {
-		return this.field1733; // L: 94
-	}
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/util/ArrayList;",
-		garbageValue = "1"
-	)
-	public ArrayList method3183() {
-		return this.field1734; // L: 98
-	}
-
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "-10689"
-	)
-	void method3226() {
-		this.field1729 = null; // L: 102
-		this.field1732 = null; // L: 103
-		this.field1733[0] = 0.0F; // L: 104
-		this.field1733[1] = 0.0F; // L: 105
-		this.field1733[2] = 1.0F; // L: 106
-		this.field1733[3] = 1.0F; // L: 107
-		this.field1734.clear(); // L: 108
-		this.field1735.clear(); // L: 109
-		this.field1736.clear(); // L: 110
-		this.field1731.clear(); // L: 111
-		this.field1724.clear(); // L: 112
-	} // L: 113
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "(Lcd;B)V",
-		garbageValue = "9"
-	)
-	void method3185(UrlRequester var1) {
-		if (this.field1729 != null && this.field1729.isDone()) { // L: 116
-			byte[] var2 = this.field1729.getResponse(); // L: 119
-			if (var2 == null) { // L: 120
-				this.method3226(); // L: 121
-				this.field1726 = 100; // L: 122
-			} else {
-				JSONObject var3;
-				try {
-					class399 var4 = new class399(var2); // L: 127
-					var3 = var4.method7100(); // L: 128
-					var3 = var3.getJSONObject("message"); // L: 129
-				} catch (Exception var9) { // L: 131
-					this.method3226(); // L: 132
-					this.field1726 = 102; // L: 133
-					return; // L: 134
+				int var8;
+				int var10;
+				int var16;
+				for (var8 = 0; var8 < Client.mapIconCount; ++var8) { // L: 11872
+					var16 = Client.mapIconXs[var8] * 4 + 2 - MusicPatchNode.localPlayer.x / 32; // L: 11873
+					var10 = Client.mapIconYs[var8] * 4 + 2 - MusicPatchNode.localPlayer.y / 32; // L: 11874
+					class426.drawSpriteOnMinimap(var1, var2, var16, var10, Client.mapIcons[var8], var4); // L: 11875
 				}
 
-				try {
-					this.method3202(var3.getJSONArray("images"), var1); // L: 137
-				} catch (Exception var8) { // L: 139
-					this.field1735.clear(); // L: 140
-				}
-
-				try {
-					this.method3191(var3.getJSONArray("labels")); // L: 143
-				} catch (Exception var7) { // L: 145
-					this.field1736.clear(); // L: 146
-				}
-
-				try {
-					this.method3177(var3.getJSONObject("behaviour")); // L: 149
-				} catch (Exception var6) { // L: 151
-					this.field1732 = null; // L: 152
-					this.field1733[0] = 0.0F; // L: 153
-					this.field1733[1] = 0.0F; // L: 154
-					this.field1733[2] = 1.0F; // L: 155
-					this.field1733[3] = 1.0F; // L: 156
-					this.field1734.clear(); // L: 157
-				}
-
-				try {
-					this.method3189(var3.getJSONObject("meta")); // L: 160
-				} catch (Exception var5) { // L: 162
-					this.field1731.clear(); // L: 163
-					this.field1724.clear(); // L: 164
-				}
-
-				this.field1726 = this.field1735.size() > 0 ? 1 : 2; // L: 166
-				this.field1729 = null; // L: 167
-			}
-		}
-	} // L: 117 123 168
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-29"
-	)
-	void method3186() {
-		Iterator var1 = this.field1735.iterator(); // L: 171
-
-		class160 var2;
-		do {
-			if (!var1.hasNext()) {
-				var1 = this.field1735.iterator(); // L: 179
-
-				while (var1.hasNext()) {
-					var2 = (class160)var1.next(); // L: 180
-					if (var2.field1772 != null) { // L: 182
-						byte[] var3 = var2.field1772.getResponse(); // L: 183
-						if (var3 != null && var3.length > 0) { // L: 184
-							this.field1726 = 2; // L: 185
-							return; // L: 186
+				int var11;
+				int var12;
+				for (var8 = 0; var8 < 104; ++var8) { // L: 11877
+					for (var16 = 0; var16 < 104; ++var16) { // L: 11878
+						NodeDeque var14 = Client.groundItems[GameEngine.Client_plane][var8][var16]; // L: 11879
+						if (var14 != null) { // L: 11880
+							var11 = var8 * 4 + 2 - MusicPatchNode.localPlayer.x / 32; // L: 11881
+							var12 = var16 * 4 + 2 - MusicPatchNode.localPlayer.y / 32; // L: 11882
+							class426.drawSpriteOnMinimap(var1, var2, var11, var12, class477.mapDotSprites[0], var4); // L: 11883
 						}
 					}
 				}
 
-				this.method3226(); // L: 191
-				this.field1726 = 101; // L: 192
-				return; // L: 193
-			}
+				for (var8 = 0; var8 < Client.npcCount; ++var8) { // L: 11887
+					NPC var9 = Client.npcs[Client.npcIndices[var8]]; // L: 11888
+					if (var9 != null && var9.isVisible()) { // L: 11889
+						NPCComposition var18 = var9.definition; // L: 11890
+						if (var18 != null && var18.transforms != null) { // L: 11891
+							var18 = var18.transform();
+						}
 
-			var2 = (class160)var1.next(); // L: 172
-		} while(var2.field1772 == null || var2.field1772.isDone()); // L: 174
-
-	} // L: 175
-
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "(Lorg/json/JSONArray;Lcd;B)V",
-		garbageValue = "1"
-	)
-	void method3202(JSONArray var1, UrlRequester var2) throws JSONException {
-		if (var1 != null) { // L: 196
-			for (int var3 = 0; var3 < var1.length(); ++var3) { // L: 197
-				try {
-					JSONObject var4 = var1.getJSONObject(var3); // L: 199
-					class160 var5 = new class160(this); // L: 200
-					var5.field1772 = var2.request(new URL(var4.getString("src"))); // L: 201
-					var5.field1770 = class181.method3566(var4, "placement"); // L: 202
-					this.field1735.add(var5); // L: 203
-				} catch (MalformedURLException var6) { // L: 205
-				}
-			}
-
-		}
-	} // L: 207
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "(Lorg/json/JSONArray;B)V",
-		garbageValue = "112"
-	)
-	void method3191(JSONArray var1) throws JSONException {
-		if (var1 != null) { // L: 210
-			for (int var2 = 0; var2 < var1.length(); ++var2) { // L: 211
-				JSONObject var3 = var1.getJSONObject(var2); // L: 212
-				class161 var4 = new class161(this); // L: 213
-				var4.field1775 = var3.getString("text"); // L: 214
-				String var7 = var3.getString("align_x"); // L: 217
-				byte var6;
-				if (var7.equals("centre")) { // L: 219
-					var6 = 1; // L: 220
-				} else if (!var7.equals("bottom") && !var7.equals("right")) { // L: 223
-					var6 = 0; // L: 227
-				} else {
-					var6 = 2; // L: 224
-				}
-
-				var4.field1773 = var6; // L: 229
-				String var10 = var3.getString("align_y"); // L: 232
-				byte var9;
-				if (var10.equals("centre")) { // L: 234
-					var9 = 1; // L: 235
-				} else if (!var10.equals("bottom") && !var10.equals("right")) { // L: 238
-					var9 = 0; // L: 242
-				} else {
-					var9 = 2; // L: 239
-				}
-
-				var4.field1777 = var9; // L: 244
-				var4.field1779 = var3.getInt("font"); // L: 245
-				var4.field1776 = class181.method3566(var3, "placement"); // L: 246
-				this.field1736.add(var4); // L: 247
-			}
-
-		}
-	} // L: 249
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(Lorg/json/JSONObject;I)V",
-		garbageValue = "-1263600305"
-	)
-	void method3177(JSONObject var1) throws JSONException {
-		if (var1 != null) { // L: 252
-			this.field1733 = class181.method3566(var1, "clickbounds"); // L: 253
-			this.field1732 = var1.getString("endpoint"); // L: 254
-			String[] var2 = JSONObject.getNames(var1); // L: 255
-
-			for (int var3 = 0; var3 < var1.length(); ++var3) { // L: 256
-				if (!var2[var3].equals("clickbounds") && !var2[var3].equals("endpoint")) { // L: 257
-					try {
-						int var4 = var1.getInt(var2[var3]); // L: 259
-						this.field1734.add(new class162(this, var2[var3], var4)); // L: 260
-					} catch (Exception var8) {
-						try {
-							String var5 = var1.getString(var2[var3]); // L: 264
-							if (var5.equals("true")) { // L: 265
-								this.field1734.add(new class162(this, var2[var3], 1)); // L: 266
-							} else if (var5.equals("false")) { // L: 268
-								this.field1734.add(new class162(this, var2[var3], 0)); // L: 269
-							} else {
-								this.field1734.add(new class154(this, var2[var3], var5)); // L: 272
-							}
-						} catch (Exception var7) { // L: 275
+						if (var18 != null && var18.drawMapDot && var18.isInteractable) { // L: 11892
+							var11 = var9.x / 32 - MusicPatchNode.localPlayer.x / 32; // L: 11893
+							var12 = var9.y / 32 - MusicPatchNode.localPlayer.y / 32; // L: 11894
+							class426.drawSpriteOnMinimap(var1, var2, var11, var12, class477.mapDotSprites[1], var4); // L: 11895
 						}
 					}
 				}
-			}
 
-		}
-	} // L: 279
+				var8 = Players.Players_count; // L: 11899
+				int[] var17 = Players.Players_indices; // L: 11900
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "(Lorg/json/JSONObject;I)V",
-		garbageValue = "-1948226322"
-	)
-	void method3189(JSONObject var1) throws JSONException {
-		String[] var2 = JSONObject.getNames(var1); // L: 282
-
-		for (int var3 = 0; var3 < var1.length(); ++var3) { // L: 283
-			try {
-				int var4 = var1.getInt(var2[var3]); // L: 285
-				this.field1731.put(var2[var3], var4); // L: 286
-			} catch (Exception var8) {
-				try {
-					String var5 = var1.getString(var2[var3]); // L: 290
-					if (var5.equals("true")) { // L: 291
-						this.field1731.put(var2[var3], 1); // L: 292
-					} else if (var5.equals("false")) { // L: 294
-						this.field1731.put(var2[var3], 0); // L: 295
-					} else {
-						this.field1724.put(var2[var3], var5); // L: 298
+				for (var10 = 0; var10 < var8; ++var10) { // L: 11901
+					Player var15 = Client.players[var17[var10]]; // L: 11902
+					if (var15 != null && var15.isVisible() && !var15.isHidden && var15 != MusicPatchNode.localPlayer) { // L: 11903
+						var12 = var15.x / 32 - MusicPatchNode.localPlayer.x / 32; // L: 11904
+						int var13 = var15.y / 32 - MusicPatchNode.localPlayer.y / 32; // L: 11905
+						if (var15.isFriend()) { // L: 11906
+							class426.drawSpriteOnMinimap(var1, var2, var12, var13, class477.mapDotSprites[3], var4);
+						} else if (MusicPatchNode.localPlayer.team != 0 && var15.team != 0 && var15.team == MusicPatchNode.localPlayer.team) { // L: 11907
+							class426.drawSpriteOnMinimap(var1, var2, var12, var13, class477.mapDotSprites[4], var4);
+						} else if (var15.isFriendsChatMember()) { // L: 11908
+							class426.drawSpriteOnMinimap(var1, var2, var12, var13, class477.mapDotSprites[5], var4);
+						} else if (var15.isClanMember()) { // L: 11909
+							class426.drawSpriteOnMinimap(var1, var2, var12, var13, class477.mapDotSprites[6], var4);
+						} else {
+							class426.drawSpriteOnMinimap(var1, var2, var12, var13, class477.mapDotSprites[2], var4); // L: 11910
+						}
 					}
-				} catch (Exception var7) { // L: 301
 				}
+
+				if (Client.hintArrowType != 0 && Client.cycle % 20 < 10) { // L: 11913
+					if (Client.hintArrowType == 1 && Client.hintArrowNpcIndex >= 0 && Client.hintArrowNpcIndex < Client.npcs.length) { // L: 11914
+						NPC var19 = Client.npcs[Client.hintArrowNpcIndex]; // L: 11915
+						if (var19 != null) { // L: 11916
+							var11 = var19.x / 32 - MusicPatchNode.localPlayer.x / 32; // L: 11917
+							var12 = var19.y / 32 - MusicPatchNode.localPlayer.y / 32; // L: 11918
+							class485.worldToMinimap(var1, var2, var11, var12, Players.mapMarkerSprites[1], var4); // L: 11919
+						}
+					}
+
+					if (Client.hintArrowType == 2) { // L: 11922
+						var10 = Client.field653 * 4 - WorldMapData_0.baseX * 256 + 2 - MusicPatchNode.localPlayer.x / 32; // L: 11923
+						var11 = Client.field511 * 4 - GameObject.baseY * 256 + 2 - MusicPatchNode.localPlayer.y / 32; // L: 11924
+						class485.worldToMinimap(var1, var2, var10, var11, Players.mapMarkerSprites[1], var4); // L: 11925
+					}
+
+					if (Client.hintArrowType == 10 && Client.hintArrowPlayerIndex >= 0 && Client.hintArrowPlayerIndex < Client.players.length) { // L: 11927
+						Player var20 = Client.players[Client.hintArrowPlayerIndex]; // L: 11928
+						if (var20 != null) { // L: 11929
+							var11 = var20.x / 32 - MusicPatchNode.localPlayer.x / 32; // L: 11930
+							var12 = var20.y / 32 - MusicPatchNode.localPlayer.y / 32; // L: 11931
+							class485.worldToMinimap(var1, var2, var11, var12, Players.mapMarkerSprites[1], var4); // L: 11932
+						}
+					}
+				}
+
+				if (Client.destinationX != 0) { // L: 11936
+					var10 = Client.destinationX * 4 + 2 - MusicPatchNode.localPlayer.x / 32; // L: 11937
+					var11 = Client.destinationY * 4 + 2 - MusicPatchNode.localPlayer.y / 32; // L: 11938
+					class426.drawSpriteOnMinimap(var1, var2, var10, var11, Players.mapMarkerSprites[0], var4); // L: 11939
+				}
+
+				if (!MusicPatchNode.localPlayer.isHidden) { // L: 11941
+					Rasterizer2D.Rasterizer2D_fillRectangle(var4.width / 2 + var1 - 1, var4.height / 2 + var2 - 1, 3, 3, 16777215);
+				}
+			} else {
+				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths); // L: 11943
 			}
+
+			Client.field706[var3] = true; // L: 11944
 		}
-
-	} // L: 304
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-1008936985"
-	)
-	public static int method3194(int var0) {
-		return class401.field4443[var0 & 16383]; // L: 32
-	}
+	} // L: 11945
 }
