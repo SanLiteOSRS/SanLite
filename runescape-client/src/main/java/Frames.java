@@ -3,31 +3,31 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gh")
+@ObfuscatedName("io")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "[Lgl;"
+		descriptor = "[Lin;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;IZ)V"
+		descriptor = "(Lni;Lni;IZ)V"
 	)
 	Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
-		NodeDeque var5 = new NodeDeque();
+		NodeDeque var5 = new NodeDeque(); // L: 35
 		int var6 = var1.getGroupFileCount(var3);
-		this.frames = new Animation[var6]; // L: 37
-		int[] var7 = var1.getGroupFileIds(var3); // L: 38
+		this.frames = new Animation[var6];
+		int[] var7 = var1.getGroupFileIds(var3);
 
-		for (int var8 = 0; var8 < var7.length; ++var8) {
+		for (int var8 = 0; var8 < var7.length; ++var8) { // L: 39
 			byte[] var9 = var1.takeFile(var3, var7[var8]); // L: 40
 			Skeleton var10 = null; // L: 41
 			int var11 = (var9[0] & 255) << 8 | var9[1] & 255; // L: 42
 
-			for (Skeleton var12 = (Skeleton)var5.last(); var12 != null; var12 = (Skeleton)var5.previous()) { // L: 43 49
+			for (Skeleton var12 = (Skeleton)var5.last(); var12 != null; var12 = (Skeleton)var5.previous()) { // L: 43 44 49
 				if (var11 == var12.id) { // L: 45
 					var10 = var12; // L: 46
 					break;
@@ -51,61 +51,58 @@ public class Frames extends DualNode {
 
 	} // L: 60
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "-473814926"
+		garbageValue = "497879722"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform; // L: 63
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
+	@Export("base37DecodeLong")
+	public static String base37DecodeLong(long var0) {
+		if (var0 > 0L && var0 < 6582952005840035281L) { // L: 16
+			if (var0 % 37L == 0L) { // L: 17
+				return null;
+			} else {
+				int var2 = 0; // L: 18
+
+				for (long var3 = var0; 0L != var3; var3 /= 37L) { // L: 19 20 22
+					++var2; // L: 21
+				}
+
+				StringBuilder var5;
+				char var8;
+				for (var5 = new StringBuilder(var2); 0L != var0; var5.append(var8)) { // L: 24 25 34
+					long var6 = var0; // L: 26
+					var0 /= 37L; // L: 27
+					var8 = class386.base37Table[(int)(var6 - var0 * 37L)]; // L: 28
+					if (var8 == '_') { // L: 29
+						int var9 = var5.length() - 1; // L: 30
+						var5.setCharAt(var9, Character.toUpperCase(var5.charAt(var9))); // L: 31
+						var8 = 160; // L: 32
+					}
+				}
+
+				var5.reverse(); // L: 36
+				var5.setCharAt(0, Character.toUpperCase(var5.charAt(0))); // L: 37
+				return var5.toString(); // L: 38
+			}
+		} else {
+			return null;
+		}
+	}
+
+	@ObfuscatedName("mb")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "117"
+		garbageValue = "-42"
 	)
-	public static int method4349() {
-		return ViewportMouse.ViewportMouse_entityCount; // L: 44
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;[II)[Ljava/lang/Object;",
-		garbageValue = "746047274"
-	)
-	static Object[] method4353(Buffer var0, int[] var1) {
-		int var2 = var0.readUShortSmart(); // L: 30
-		Object[] var3 = new Object[var1.length * var2]; // L: 31
-
-		for (int var4 = 0; var4 < var2; ++var4) { // L: 32
-			for (int var5 = 0; var5 < var1.length; ++var5) { // L: 33
-				int var6 = var1.length * var4 + var5; // L: 34
-				class432 var7 = MusicPatchNode.method5472(var1[var5]); // L: 35
-				var3[var6] = var7.method7565(var0); // L: 36
-			}
-		}
-
-		return var3; // L: 39
-	}
-
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "20"
-	)
-	static int method4350(int var0) {
-		return (int)((Math.log((double)var0) / Interpreter.field845 - 7.0D) * 256.0D); // L: 3851
-	}
-
-	@ObfuscatedName("ln")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)Z",
-		garbageValue = "-824638040"
-	)
-	@Export("isComponentHidden")
-	static boolean isComponentHidden(Widget var0) {
-		return var0.isHidden; // L: 12305
+	static final int method4692() {
+		float var0 = 200.0F * ((float)WorldMapManager.clientPreferences.method2427() - 0.5F); // L: 11988
+		return 100 - Math.round(var0); // L: 11989
 	}
 }

@@ -1,71 +1,72 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mq")
-public class class350 {
-	@ObfuscatedName("c")
-	@Export("writeRandomDat")
-	public static void writeRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-		if (var2 == var0) { // L: 12
-			if (var3 == var1) { // L: 13
-				return;
-			}
+@ObfuscatedName("ns")
+public enum class350 implements class369 {
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lns;"
+	)
+	field4201(-1),
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "Lns;"
+	)
+	field4198(0),
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lns;"
+	)
+	field4199(1),
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "Lns;"
+	)
+	field4200(2);
 
-			if (var3 > var1 && var3 < var4 + var1) { // L: 14
-				--var4; // L: 15
-				var1 += var4; // L: 16
-				var3 += var4; // L: 17
-				var4 = var1 - var4; // L: 18
+	@ObfuscatedName("at")
+	@ObfuscatedGetter(
+		intValue = 206645297
+	)
+	final int field4203;
 
-				for (var4 += 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 19 20 28
-					var2[var3--] = var0[var1--]; // L: 21
-					var2[var3--] = var0[var1--]; // L: 22
-					var2[var3--] = var0[var1--]; // L: 23
-					var2[var3--] = var0[var1--]; // L: 24
-					var2[var3--] = var0[var1--]; // L: 25
-					var2[var3--] = var0[var1--]; // L: 26
-					var2[var3--] = var0[var1--]; // L: 27
-				}
+	class350(int var3) {
+		this.field4203 = var3; // L: 15
+	} // L: 16
 
-				for (var4 -= 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 30 31
-				}
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1108588956"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field4203; // L: 20
+	}
 
-				return; // L: 32
-			}
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "615497483"
+	)
+	@Export("isDigit")
+	public static boolean isDigit(char var0) {
+		return var0 >= '0' && var0 <= '9'; // L: 152
+	}
+
+	@ObfuscatedName("ba")
+	@ObfuscatedSignature(
+		descriptor = "(ILdk;ZI)I",
+		garbageValue = "2094900164"
+	)
+	static int method6650(int var0, Script var1, boolean var2) {
+		if (var0 == 7108) { // L: 5061
+			Interpreter.Interpreter_intStack[++class336.Interpreter_intStackSize - 1] = class10.method89() ? 1 : 0; // L: 5062
+			return 1; // L: 5063
+		} else {
+			return 2; // L: 5065
 		}
-
-		var4 += var1; // L: 35
-
-		for (var4 -= 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 36 37 45
-			var2[var3++] = var0[var1++]; // L: 38
-			var2[var3++] = var0[var1++]; // L: 39
-			var2[var3++] = var0[var1++]; // L: 40
-			var2[var3++] = var0[var1++]; // L: 41
-			var2[var3++] = var0[var1++]; // L: 42
-			var2[var3++] = var0[var1++]; // L: 43
-			var2[var3++] = var0[var1++]; // L: 44
-		}
-
-		for (var4 += 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 47 48
-		}
-
-	} // L: 49
-
-	@ObfuscatedName("i")
-	@Export("clearIntArray")
-	public static void clearIntArray(int[] var0, int var1, int var2) {
-		for (var2 = var2 + var1 - 7; var1 < var2; var0[var1++] = 0) { // L: 364 365 373
-			var0[var1++] = 0; // L: 366
-			var0[var1++] = 0; // L: 367
-			var0[var1++] = 0; // L: 368
-			var0[var1++] = 0; // L: 369
-			var0[var1++] = 0; // L: 370
-			var0[var1++] = 0; // L: 371
-			var0[var1++] = 0; // L: 372
-		}
-
-		for (var2 += 7; var1 < var2; var0[var1++] = 0) { // L: 375 376
-		}
-
-	} // L: 377
+	}
 }

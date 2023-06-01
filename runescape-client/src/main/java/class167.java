@@ -1,23 +1,74 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fy")
-public class class167 {
-	@ObfuscatedName("q")
-	public short[] field1814;
-	@ObfuscatedName("f")
-	public short[] field1815;
+@ObfuscatedName("gl")
+public class class167 extends class143 {
+	@ObfuscatedName("uu")
+	@ObfuscatedGetter(
+		intValue = -1103206757
+	)
+	static int field1798;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		intValue = 1549497375
+	)
+	static int field1793;
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "Lpa;"
+	)
+	@Export("ItemComposition_fontPlain11")
+	public static Font ItemComposition_fontPlain11;
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = 1490516225
+	)
+	int field1795;
+	@ObfuscatedName("an")
+	@ObfuscatedGetter(
+		longValue = 7943670806656934331L
+	)
+	long field1794;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lfh;"
+	)
+	final class146 this$0;
 
-	class167(int var1) {
-		ItemComposition var2 = EnumComposition.ItemComposition_get(var1); // L: 12
-		if (var2.method3737()) { // L: 13
-			this.field1814 = new short[var2.recolorTo.length]; // L: 14
-			System.arraycopy(var2.recolorTo, 0, this.field1814, 0, this.field1814.length); // L: 15
-		}
+	@ObfuscatedSignature(
+		descriptor = "(Lfh;)V"
+	)
+	class167(class146 var1) {
+		this.this$0 = var1; // L: 307
+	}
 
-		if (var2.method3728()) { // L: 17
-			this.field1815 = new short[var2.retextureTo.length]; // L: 18
-			System.arraycopy(var2.retextureTo, 0, this.field1815, 0, this.field1815.length); // L: 19
-		}
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Ltc;B)V",
+		garbageValue = "1"
+	)
+	void vmethod3345(Buffer var1) {
+		this.field1795 = var1.readInt(); // L: 310
+		this.field1794 = var1.readLong(); // L: 311
+	} // L: 312
 
-	} // L: 21
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(Lfb;I)V",
+		garbageValue = "-621392079"
+	)
+	void vmethod3346(ClanSettings var1) {
+		var1.method3206(this.field1795, this.field1794); // L: 315
+	} // L: 316
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "1642555198"
+	)
+	public static boolean method3350(int var0) {
+		return (var0 >> 22 & 1) != 0; // L: 21
+	}
 }

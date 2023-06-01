@@ -4,98 +4,83 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fe")
+@ObfuscatedName("hc")
 @Implements("HealthBarDefinition")
 public class HealthBarDefinition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lni;"
 	)
-	@Export("HealthBarDefinition_archive")
-	public static AbstractArchive HealthBarDefinition_archive;
-	@ObfuscatedName("v")
+	public static AbstractArchive field1962;
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	public static AbstractArchive field1877;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Llo;"
 	)
 	@Export("HealthBarDefinition_cached")
-	static EvictingDualNodeHashTable HealthBarDefinition_cached;
-	@ObfuscatedName("f")
+	public static EvictingDualNodeHashTable HealthBarDefinition_cached;
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Llo;"
 	)
 	@Export("HealthBarDefinition_cachedSprites")
-	static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites;
-	@ObfuscatedName("br")
-	@ObfuscatedSignature(
-		descriptor = "Lpe;"
-	)
-	@Export("loginType")
-	static LoginType loginType;
-	@ObfuscatedName("fp")
+	public static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites;
+	@ObfuscatedName("gs")
+	static String field1970;
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 693787955
+		intValue = 997143673
 	)
-	static int field1888;
-	@ObfuscatedName("j")
+	public int field1959;
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 1094973945
-	)
-	public int field1876;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -2143269191
+		intValue = 585036195
 	)
 	@Export("int1")
 	public int int1;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -131797823
+		intValue = -362934123
 	)
 	@Export("int2")
 	public int int2;
-	@ObfuscatedName("i")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = 546193187
+		intValue = -216445993
 	)
 	@Export("int3")
 	public int int3;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = 701454719
+		intValue = -830718327
 	)
-	public int field1881;
-	@ObfuscatedName("t")
+	public int field1964;
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 1633864587
+		intValue = 2042389419
 	)
 	@Export("int5")
 	public int int5;
-	@ObfuscatedName("z")
+	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
-		intValue = -1383515023
+		intValue = -382348375
 	)
 	@Export("frontSpriteID")
 	int frontSpriteID;
-	@ObfuscatedName("r")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 534190147
+		intValue = -385609535
 	)
 	@Export("backSpriteID")
 	int backSpriteID;
-	@ObfuscatedName("u")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 1354984089
+		intValue = -56300383
 	)
 	@Export("width")
 	public int width;
-	@ObfuscatedName("k")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = -548301543
+		intValue = 2556683
 	)
 	@Export("widthPadding")
 	public int widthPadding;
@@ -109,109 +94,126 @@ public class HealthBarDefinition extends DualNode {
 		this.int1 = 255; // L: 19
 		this.int2 = 255; // L: 20
 		this.int3 = -1; // L: 21
-		this.field1881 = 1; // L: 22
+		this.field1964 = 1; // L: 22
 		this.int5 = 70; // L: 23
 		this.frontSpriteID = -1; // L: 24
 		this.backSpriteID = -1; // L: 25
-		this.width = 30; // L: 26
+		this.width = 30;
 		this.widthPadding = 0; // L: 27
 	} // L: 29
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "2126050734"
+		descriptor = "(Ltc;B)V",
+		garbageValue = "-69"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 43
-			if (var2 == 0) { // L: 44
-				return; // L: 47
+			int var2 = var1.readUnsignedByte(); // L: 46
+			if (var2 == 0) { // L: 47
+				return; // L: 50
 			}
 
-			this.decodeNext(var1, var2); // L: 45
+			this.decodeNext(var1, var2); // L: 48
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "442152840"
+		descriptor = "(Ltc;IB)V",
+		garbageValue = "23"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 1) { // L: 50
-			var1.readUnsignedShort(); // L: 51
-		} else if (var2 == 2) { // L: 53
+		if (var2 == 1) { // L: 53
+			var1.readUnsignedShort(); // L: 54
+		} else if (var2 == 2) { // L: 56
 			this.int1 = var1.readUnsignedByte();
-		} else if (var2 == 3) { // L: 54
+		} else if (var2 == 3) { // L: 57
 			this.int2 = var1.readUnsignedByte();
-		} else if (var2 == 4) { // L: 55
+		} else if (var2 == 4) { // L: 58
 			this.int3 = 0;
-		} else if (var2 == 5) { // L: 56
+		} else if (var2 == 5) { // L: 59
 			this.int5 = var1.readUnsignedShort();
-		} else if (var2 == 6) { // L: 57
-			var1.readUnsignedByte(); // L: 58
-		} else if (var2 == 7) { // L: 60
-			this.frontSpriteID = var1.method7752();
-		} else if (var2 == 8) { // L: 61
-			this.backSpriteID = var1.method7752();
-		} else if (var2 == 11) { // L: 62
+		} else if (var2 == 6) { // L: 60
+			var1.readUnsignedByte(); // L: 61
+		} else if (var2 == 7) { // L: 63
+			this.frontSpriteID = var1.method9095();
+		} else if (var2 == 8) { // L: 64
+			this.backSpriteID = var1.method9095();
+		} else if (var2 == 11) { // L: 65
 			this.int3 = var1.readUnsignedShort();
-		} else if (var2 == 14) { // L: 63
+		} else if (var2 == 14) { // L: 66
 			this.width = var1.readUnsignedByte();
-		} else if (var2 == 15) { // L: 64
+		} else if (var2 == 15) { // L: 67
 			this.widthPadding = var1.readUnsignedByte();
 		}
 
-	} // L: 66
+	} // L: 69
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lqe;",
-		garbageValue = "-83"
+		descriptor = "(I)Ltt;",
+		garbageValue = "-1850204026"
 	)
-	@Export("getFrontSprite")
-	public SpritePixels getFrontSprite() {
-		if (this.frontSpriteID < 0) { // L: 69
+	public SpritePixels method3620() {
+		if (this.frontSpriteID < 0) { // L: 72
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cachedSprites.get((long)this.frontSpriteID); // L: 70
-			if (var1 != null) {
-				return var1; // L: 71
+			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cachedSprites.get((long)this.frontSpriteID); // L: 73
+			if (var1 != null) { // L: 74
+				return var1;
 			} else {
-				var1 = class7.SpriteBuffer_getSprite(field1877, this.frontSpriteID, 0); // L: 72
-				if (var1 != null) { // L: 73
+				var1 = class302.SpriteBuffer_getSprite(field1962, this.frontSpriteID, 0); // L: 75
+				if (var1 != null) { // L: 76
 					HealthBarDefinition_cachedSprites.put(var1, (long)this.frontSpriteID);
 				}
 
-				return var1; // L: 75
+				return var1; // L: 78
 			}
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lqe;",
-		garbageValue = "-1408497685"
+		descriptor = "(B)Ltt;",
+		garbageValue = "-1"
 	)
-	@Export("getBackSprite")
-	public SpritePixels getBackSprite() {
-		if (this.backSpriteID < 0) { // L: 79
+	@Export("getFrontSprite")
+	public SpritePixels getFrontSprite() {
+		if (this.backSpriteID < 0) { // L: 82
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cachedSprites.get((long)this.backSpriteID); // L: 80
+			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cachedSprites.get((long)this.backSpriteID); // L: 83
 			if (var1 != null) {
-				return var1; // L: 81
+				return var1; // L: 84
 			} else {
-				var1 = class7.SpriteBuffer_getSprite(field1877, this.backSpriteID, 0); // L: 82
-				if (var1 != null) {
-					HealthBarDefinition_cachedSprites.put(var1, (long)this.backSpriteID); // L: 83
+				var1 = class302.SpriteBuffer_getSprite(field1962, this.backSpriteID, 0); // L: 85
+				if (var1 != null) { // L: 86
+					HealthBarDefinition_cachedSprites.put(var1, (long)this.backSpriteID);
 				}
 
-				return var1; // L: 85
+				return var1; // L: 88
 			}
 		}
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(III)Z",
+		garbageValue = "-1619615379"
+	)
+	static boolean method3637(int var0, int var1) {
+		return var0 != 4 || var1 < 8; // L: 26
+	}
+
+	@ObfuscatedName("bd")
+	@ObfuscatedSignature(
+		descriptor = "(ILdk;ZB)I",
+		garbageValue = "123"
+	)
+	static int method3628(int var0, Script var1, boolean var2) {
+		return 2; // L: 5053
 	}
 }

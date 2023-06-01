@@ -3,67 +3,57 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("go")
+@ObfuscatedName("ht")
 public class class193 {
-	@ObfuscatedName("q")
-	@Export("directions")
-	public static int[][] directions;
-	@ObfuscatedName("f")
-	@Export("distances")
-	public static int[][] distances;
-	@ObfuscatedName("j")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -1258310083
+		intValue = -1170540391
 	)
-	public static int field2219;
-	@ObfuscatedName("w")
-	@Export("bufferX")
-	public static int[] bufferX;
-	@ObfuscatedName("y")
-	@Export("bufferY")
-	public static int[] bufferY;
+	static int field2001;
+	@ObfuscatedName("hc")
+	static String field2002;
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		longValue = -6159865846472935773L
+	)
+	public long field2000;
+	@ObfuscatedName("an")
+	int[] field1997;
+	@ObfuscatedName("ar")
+	short[] field1998;
+	@ObfuscatedName("ab")
+	short[] field1999;
+	@ObfuscatedName("at")
+	public boolean field2004;
 
-	static {
-		directions = new int[128][128]; // L: 6
-		distances = new int[128][128]; // L: 7
-		bufferX = new int[4096]; // L: 11
-		bufferY = new int[4096]; // L: 12
-	}
+	public class193(long var1, int[] var3, short[] var4, short[] var5, boolean var6) {
+		this.field2004 = false; // L: 8
+		this.field2000 = var1; // L: 11
+		this.field1997 = var3; // L: 12
+		this.field1998 = var4; // L: 13
+		this.field1999 = var5; // L: 14
+		this.field2004 = var6; // L: 15
+	} // L: 16
 
-	@ObfuscatedName("ju")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIII)V",
-		garbageValue = "628542116"
+		descriptor = "(IB)Ldk;",
+		garbageValue = "62"
 	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (WorldMapSection2.loadInterface(var0)) { // L: 10078
-			class12.field62 = null; // L: 10085
-			class14.drawInterface(SoundCache.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7); // L: 10086
-			if (class12.field62 != null) { // L: 10087
-				class14.drawInterface(class12.field62, -1412584499, var1, var2, var3, var4, UserComparator5.field1389, SecureRandomFuture.field960, var7); // L: 10088
-				class12.field62 = null; // L: 10089
-			}
-
+	@Export("getScript")
+	static Script getScript(int var0) {
+		Script var1 = (Script)Script.Script_cached.get((long)var0); // L: 26
+		if (var1 != null) { // L: 27
+			return var1;
 		} else {
-			if (var7 != -1) { // L: 10079
-				Client.field703[var7] = true;
+			byte[] var2 = FriendsList.archive12.takeFile(var0, 0); // L: 28
+			if (var2 == null) { // L: 29
+				return null; // L: 30
 			} else {
-				for (int var8 = 0; var8 < 100; ++var8) { // L: 10081
-					Client.field703[var8] = true;
-				}
+				var1 = ObjectSound.newScript(var2); // L: 32
+				Script.Script_cached.put(var1, (long)var0); // L: 33
+				return var1; // L: 34
 			}
-
 		}
-	} // L: 10083 10091
-
-	@ObfuscatedName("ke")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "98"
-	)
-	static final int method3919() {
-		float var0 = 200.0F * ((float)class19.clientPreferences.method2254() - 0.5F); // L: 11835
-		return 100 - Math.round(var0); // L: 11836
 	}
 }

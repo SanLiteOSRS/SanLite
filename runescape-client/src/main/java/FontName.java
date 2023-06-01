@@ -3,91 +3,113 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pd")
+@ObfuscatedName("ss")
 @Implements("FontName")
 public class FontName {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lss;"
 	)
 	@Export("FontName_plain11")
 	public static final FontName FontName_plain11;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lss;"
 	)
 	@Export("FontName_plain12")
 	public static final FontName FontName_plain12;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lss;"
 	)
 	@Export("FontName_bold12")
 	public static final FontName FontName_bold12;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lss;"
 	)
 	@Export("FontName_verdana11")
 	public static final FontName FontName_verdana11;
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lss;"
 	)
 	@Export("FontName_verdana13")
 	public static final FontName FontName_verdana13;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lss;"
 	)
 	@Export("FontName_verdana15")
 	public static final FontName FontName_verdana15;
-	@ObfuscatedName("qt")
+	@ObfuscatedName("cg")
 	@ObfuscatedSignature(
-		descriptor = "Lok;"
+		descriptor = "Lnd;"
 	)
-	static class391 field4584;
-	@ObfuscatedName("g")
+	static GameBuild field4894;
+	@ObfuscatedName("dq")
+	@ObfuscatedSignature(
+		descriptor = "[Lty;"
+	)
+	@Export("worldSelectStars")
+	static IndexedSprite[] worldSelectStars;
+	@ObfuscatedName("al")
 	@Export("name")
 	String name;
 
 	static {
 		FontName_plain11 = new FontName("p11_full"); // L: 7
 		FontName_plain12 = new FontName("p12_full"); // L: 8
-		FontName_bold12 = new FontName("b12_full");
+		FontName_bold12 = new FontName("b12_full"); // L: 9
 		FontName_verdana11 = new FontName("verdana_11pt_regular"); // L: 10
 		FontName_verdana13 = new FontName("verdana_13pt_regular"); // L: 11
 		FontName_verdana15 = new FontName("verdana_15pt_regular"); // L: 12
 	}
 
 	FontName(String var1) {
-		this.name = var1; // L: 20
-	} // L: 21
+		this.name = var1; // L: 16
+	} // L: 17
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lpd;",
-		garbageValue = "0"
+		descriptor = "(III)I",
+		garbageValue = "907255937"
 	)
-	public static FontName[] method7382() {
-		return new FontName[]{FontName_verdana15, FontName_plain12, FontName_bold12, FontName_verdana11, FontName_plain11, FontName_verdana13}; // L: 16
+	static final int method8641(int var0, int var1) {
+		if (var0 == -1) { // L: 962
+			return 12345678;
+		} else {
+			var1 = (var0 & 127) * var1 / 128; // L: 963
+			if (var1 < 2) { // L: 964
+				var1 = 2;
+			} else if (var1 > 126) { // L: 965
+				var1 = 126;
+			}
+
+			return (var0 & 65408) + var1; // L: 966
+		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("hn")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-1771875487"
+		descriptor = "(ZB)V",
+		garbageValue = "6"
 	)
-	public static boolean method7385(int var0) {
-		return (var0 & 1) != 0; // L: 9
-	}
+	static final void method8639(boolean var0) {
+		if (var0) { // L: 3140
+			Client.field521 = Login.field909 ? class139.field1599 : class139.field1610; // L: 3141
+		} else {
+			Client.field521 = WorldMapManager.clientPreferences.method2488(Login.Login_username) ? class139.field1600 : class139.field1601; // L: 3144
+		}
 
-	@ObfuscatedName("w")
+	} // L: 3146
+
+	@ObfuscatedName("ld")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1224707658"
+		descriptor = "(I)I",
+		garbageValue = "94899185"
 	)
-	public static boolean method7386(int var0) {
-		return (var0 >> 31 & 1) != 0; // L: 37
+	static final int method8640() {
+		return Client.menuOptionsCount - 1; // L: 9930
 	}
 }

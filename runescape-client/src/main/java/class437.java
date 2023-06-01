@@ -1,110 +1,126 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("px")
-public class class437 extends DualNode {
-	@ObfuscatedName("c")
+@ObfuscatedName("qa")
+public final class class437 {
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "[Lqa;"
 	)
-	static AbstractArchive field4675;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lii;"
-	)
-	@Export("DBRowType_cache")
-	static EvictingDualNodeHashTable DBRowType_cache;
-	@ObfuscatedName("q")
-	Object[][] field4676;
-	@ObfuscatedName("f")
-	int[][] field4677;
-	@ObfuscatedName("j")
+	static class437[] field4689;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1231945791
+		intValue = 1948402603
 	)
-	public int field4678;
+	static int field4684;
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = -843730395
+	)
+	static int field4683;
+	@ObfuscatedName("ab")
+	float field4686;
+	@ObfuscatedName("at")
+	float field4687;
+	@ObfuscatedName("ax")
+	float field4688;
+	@ObfuscatedName("al")
+	float field4691;
 
 	static {
-		DBRowType_cache = new EvictingDualNodeHashTable(64); // L: 11
-	}
+		field4689 = new class437[0]; // L: 4
+		field4684 = 100; // L: 10
+		field4689 = new class437[100]; // L: 11
+		field4683 = 0; // L: 12
+		new class437();
+	} // L: 18
 
 	class437() {
-	} // L: 17
+		this.method8115(); // L: 42
+	} // L: 43
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "1"
-	)
-	void method7635(Buffer var1) {
-		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 36
-			if (var2 == 0) { // L: 37
-				return; // L: 40
-			}
-
-			this.method7627(var1, var2); // L: 38
-		}
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IB)[Ljava/lang/Object;",
-		garbageValue = "-23"
-	)
-	public Object[] method7625(int var1) {
-		return this.field4676 == null ? null : this.field4676[var1]; // L: 43 44
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1966368366"
-	)
-	void method7627(Buffer var1, int var2) {
-		if (var2 == 3) { // L: 48
-			int var3 = var1.readUnsignedByte(); // L: 49
-			if (this.field4676 == null) { // L: 50
-				this.field4676 = new Object[var3][]; // L: 51
-				this.field4677 = new int[var3][]; // L: 52
-			}
-
-			for (int var4 = var1.readUnsignedByte(); var4 != 255; var4 = var1.readUnsignedByte()) { // L: 54 55 78
-				int var5 = var1.readUnsignedByte(); // L: 56
-				int[] var6 = new int[var5]; // L: 57
-
-				for (int var7 = 0; var7 < var5; ++var7) { // L: 58
-					var6[var7] = var1.readUShortSmart(); // L: 59
-				}
-
-				Object[][] var16 = this.field4676; // L: 61
-				int var10 = var1.readUShortSmart(); // L: 65
-				Object[] var11 = new Object[var6.length * var10]; // L: 66
-
-				for (int var12 = 0; var12 < var10; ++var12) { // L: 67
-					for (int var13 = 0; var13 < var6.length; ++var13) { // L: 68
-						int var14 = var13 + var6.length * var12; // L: 69
-						class432 var15 = MusicPatchNode.method5472(var6[var13]); // L: 70
-						var11[var14] = var15.method7565(var1); // L: 71
-					}
-				}
-
-				var16[var4] = var11; // L: 76
-				this.field4677[var4] = var6; // L: 77
-			}
-		} else if (var2 == 4) { // L: 81
-			this.field4678 = var1.method7754(); // L: 82
-		}
-
-	} // L: 85
-
-	@ObfuscatedName("e")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-110987764"
+		garbageValue = "-44503310"
 	)
-	void method7636() {
-	} // L: 87
+	public void method8118() {
+		synchronized(field4689) { // L: 36
+			if (field4683 < field4684 - 1) { // L: 37
+				field4689[++field4683 - 1] = this;
+			}
+
+		}
+	} // L: 39
+
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(FFFFI)V",
+		garbageValue = "1396741989"
+	)
+	void method8114(float var1, float var2, float var3, float var4) {
+		this.field4686 = var1; // L: 46
+		this.field4687 = var2; // L: 47
+		this.field4688 = var3; // L: 48
+		this.field4691 = var4; // L: 49
+	} // L: 50
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(FFFFI)V",
+		garbageValue = "1812578810"
+	)
+	public void method8137(float var1, float var2, float var3, float var4) {
+		float var5 = (float)Math.sin((double)(var4 * 0.5F)); // L: 53
+		float var6 = (float)Math.cos((double)(var4 * 0.5F)); // L: 54
+		this.field4686 = var1 * var5; // L: 55
+		this.field4687 = var5 * var2; // L: 56
+		this.field4688 = var5 * var3; // L: 57
+		this.field4691 = var6; // L: 58
+	} // L: 59
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "0"
+	)
+	final void method8115() {
+		this.field4688 = 0.0F; // L: 62
+		this.field4687 = 0.0F; // L: 63
+		this.field4686 = 0.0F; // L: 64
+		this.field4691 = 1.0F; // L: 65
+	} // L: 66
+
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "(Lqa;I)V",
+		garbageValue = "1569948236"
+	)
+	public final void method8116(class437 var1) {
+		this.method8114(this.field4688 * var1.field4687 + var1.field4686 * this.field4691 + this.field4686 * var1.field4691 - var1.field4688 * this.field4687, this.field4687 * var1.field4691 - var1.field4686 * this.field4688 + this.field4691 * var1.field4687 + this.field4686 * var1.field4688, this.field4688 * var1.field4691 + var1.field4686 * this.field4687 - var1.field4687 * this.field4686 + var1.field4688 * this.field4691, this.field4691 * var1.field4691 - this.field4686 * var1.field4686 - this.field4687 * var1.field4687 - var1.field4688 * this.field4688); // L: 69
+	} // L: 70
+
+	public int hashCode() {
+		boolean var1 = true; // L: 83
+		float var2 = 1.0F; // L: 84
+		var2 = var2 * 31.0F + this.field4686; // L: 85
+		var2 = this.field4687 + 31.0F * var2; // L: 86
+		var2 = var2 * 31.0F + this.field4688; // L: 87
+		var2 = this.field4691 + 31.0F * var2; // L: 88
+		return (int)var2; // L: 89
+	}
+
+	public String toString() {
+		return this.field4686 + "," + this.field4687 + "," + this.field4688 + "," + this.field4691; // L: 94
+	}
+
+	public boolean equals(Object var1) {
+		if (!(var1 instanceof class437)) { // L: 74
+			return false; // L: 78
+		} else {
+			class437 var2 = (class437)var1; // L: 75
+			return var2.field4686 == this.field4686 && var2.field4687 == this.field4687 && this.field4688 == var2.field4688 && var2.field4691 == this.field4691; // L: 76
+		}
+	}
 }

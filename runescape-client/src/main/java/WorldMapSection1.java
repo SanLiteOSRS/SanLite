@@ -4,42 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ir")
+@ObfuscatedName("kw")
 @Implements("WorldMapSection1")
 public class WorldMapSection1 implements WorldMapSection {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -2036174811
+		intValue = -172548833
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1537995989
+		intValue = 1748120497
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -300775863
+		intValue = 1884871101
 	)
 	@Export("regionStartX")
 	int regionStartX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 1381396249
+		intValue = -942039983
 	)
 	@Export("regionStartY")
 	int regionStartY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1589676553
+		intValue = 813017915
 	)
 	@Export("regionEndX")
 	int regionEndX;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 1377237821
+		intValue = -667785063
 	)
 	@Export("regionEndY")
 	int regionEndY;
@@ -47,10 +47,10 @@ public class WorldMapSection1 implements WorldMapSection {
 	WorldMapSection1() {
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lhg;I)V",
-		garbageValue = "1585435431"
+		descriptor = "(Lju;B)V",
+		garbageValue = "-106"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -72,10 +72,10 @@ public class WorldMapSection1 implements WorldMapSection {
 
 	} // L: 22
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)Z",
-		garbageValue = "-929111713"
+		descriptor = "(IIIB)Z",
+		garbageValue = "0"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -86,20 +86,20 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(III)Z",
-		garbageValue = "-47549823"
+		garbageValue = "326256885"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
-		return var1 >> 6 == this.regionEndX && var2 >> 6 == this.regionEndY; // L: 34
+		return var1 >> 6 == this.regionEndX && var2 >> 6 == this.regionEndY;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)[I",
-		garbageValue = "-561571792"
+		descriptor = "(IIIS)[I",
+		garbageValue = "3148"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -111,10 +111,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lkd;",
-		garbageValue = "531454030"
+		descriptor = "(III)Lms;",
+		garbageValue = "-2137162191"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -127,10 +127,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "-27"
+		descriptor = "(Ltc;B)V",
+		garbageValue = "8"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -143,12 +143,54 @@ public class WorldMapSection1 implements WorldMapSection {
 		this.postRead(); // L: 66
 	} // L: 67
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1018712398"
+		descriptor = "(B)V",
+		garbageValue = "28"
 	)
 	@Export("postRead")
 	void postRead() {
 	} // L: 69
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "1129359607"
+	)
+	static int method5518(int var0, int var1, int var2) {
+		return var0 << 28 | var1 << 14 | var2; // L: 34
+	}
+
+	@ObfuscatedName("cj")
+	@ObfuscatedSignature(
+		descriptor = "([BI)[B",
+		garbageValue = "-1102163779"
+	)
+	@Export("decompressBytes")
+	static final byte[] decompressBytes(byte[] var0) {
+		Buffer var1 = new Buffer(var0); // L: 441
+		int var2 = var1.readUnsignedByte(); // L: 442
+		int var3 = var1.readInt(); // L: 443
+		if (var3 < 0 || AbstractArchive.field4273 != 0 && var3 > AbstractArchive.field4273) { // L: 444
+			throw new RuntimeException(); // L: 445
+		} else if (var2 == 0) { // L: 447
+			byte[] var6 = new byte[var3]; // L: 448
+			var1.readBytes(var6, 0, var3); // L: 449
+			return var6; // L: 450
+		} else {
+			int var4 = var1.readInt(); // L: 453
+			if (var4 >= 0 && (AbstractArchive.field4273 == 0 || var4 <= AbstractArchive.field4273)) { // L: 454
+				byte[] var5 = new byte[var4]; // L: 457
+				if (var2 == 1) { // L: 458
+					BZip2Decompressor.BZip2Decompressor_decompress(var5, var4, var0, var3, 9);
+				} else {
+					AbstractArchive.gzipDecompressor.decompress(var1, var5); // L: 459
+				}
+
+				return var5; // L: 460
+			} else {
+				throw new RuntimeException(); // L: 455
+			}
+		}
+	}
 }

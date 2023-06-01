@@ -6,410 +6,522 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("d")
+@ObfuscatedName("aa")
 @Implements("Canvas")
 public final class Canvas extends java.awt.Canvas {
-	@ObfuscatedName("h")
-	@Export("ByteArrayPool_alternativeSizes")
-	public static int[] ByteArrayPool_alternativeSizes;
-	@ObfuscatedName("n")
+	@ObfuscatedName("ua")
 	@ObfuscatedGetter(
-		intValue = -1814972075
+		intValue = -1618841573
 	)
-	@Export("loginBoxCenter")
-	static int loginBoxCenter;
-	@ObfuscatedName("c")
+	static int field101;
+	@ObfuscatedName("ay")
 	@Export("component")
 	Component component;
 
 	Canvas(Component var1) {
-		this.component = var1; // L: 11
-	} // L: 12
-
-	public final void update(Graphics var1) {
-		this.component.update(var1); // L: 15
-	} // L: 16
+		this.component = var1;
+	}
 
 	public final void paint(Graphics var1) {
-		this.component.paint(var1); // L: 19
+		this.component.paint(var1);
 	} // L: 20
 
-	@ObfuscatedName("q")
-	public static boolean method322(long var0) {
-		boolean var2 = var0 != 0L; // L: 52
-		if (var2) { // L: 53
-			boolean var3 = (int)(var0 >>> 16 & 1L) == 1; // L: 56
-			var2 = !var3; // L: 58
-		}
-
-		return var2; // L: 60
+	public final void update(Graphics var1) {
+		this.component.update(var1);
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "([BIIIIIII[Lgv;B)V",
-		garbageValue = "70"
+		descriptor = "(I)J",
+		garbageValue = "172449687"
 	)
-	static final void method315(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, CollisionMap[] var8) {
+	public static final synchronized long method310() {
+		long var0 = System.currentTimeMillis(); // L: 14
+		if (var0 < class135.field1574) { // L: 15
+			class370.field4352 += class135.field1574 - var0; // L: 16
+		}
+
+		class135.field1574 = var0; // L: 18
+		return class370.field4352 + var0; // L: 19
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "1766927881"
+	)
+	public static int method311(int var0, int var1, int var2) {
+		var2 &= 3; // L: 9
+		if (var2 == 0) { // L: 10
+			return var0;
+		} else if (var2 == 1) { // L: 11
+			return var1;
+		} else {
+			return var2 == 2 ? 7 - var0 : 7 - var1; // L: 12 13
+		}
+	}
+
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Lih;[Lir;I)V",
+		garbageValue = "1042131122"
+	)
+	static final void method307(Scene var0, CollisionMap[] var1) {
+		int var2;
+		int var3;
+		int var4;
+		int var5;
+		for (var2 = 0; var2 < 4; ++var2) { // L: 597
+			for (var3 = 0; var3 < 104; ++var3) { // L: 598
+				for (var4 = 0; var4 < 104; ++var4) { // L: 599
+					if ((Tiles.Tiles_renderFlags[var2][var3][var4] & 1) == 1) { // L: 600
+						var5 = var2; // L: 601
+						if ((Tiles.Tiles_renderFlags[1][var3][var4] & 2) == 2) { // L: 602
+							var5 = var2 - 1;
+						}
+
+						if (var5 >= 0) { // L: 603
+							var1[var5].setBlockedByFloor(var3, var4);
+						}
+					}
+				}
+			}
+		}
+
+		Tiles.rndHue += (int)(Math.random() * 5.0D) - 2; // L: 608
+		if (Tiles.rndHue < -8) { // L: 609
+			Tiles.rndHue = -8;
+		}
+
+		if (Tiles.rndHue > 8) { // L: 610
+			Tiles.rndHue = 8;
+		}
+
+		Tiles.rndLightness += (int)(Math.random() * 5.0D) - 2; // L: 611
+		if (Tiles.rndLightness < -16) { // L: 612
+			Tiles.rndLightness = -16;
+		}
+
+		if (Tiles.rndLightness > 16) { // L: 613
+			Tiles.rndLightness = 16;
+		}
+
+		int var9;
 		int var10;
-		for (int var9 = 0; var9 < 8; ++var9) { // L: 111
-			for (var10 = 0; var10 < 8; ++var10) { // L: 112
-				if (var9 + var2 > 0 && var9 + var2 < 103 && var3 + var10 > 0 && var3 + var10 < 103) {
-					int[] var10000 = var8[var1].flags[var9 + var2]; // L: 113
-					var10000[var3 + var10] &= -16777217;
+		int var11;
+		int var12;
+		int var13;
+		int var14;
+		int var15;
+		int var16;
+		int[] var10000;
+		int var17;
+		int var18;
+		for (var2 = 0; var2 < 4; ++var2) { // L: 614
+			byte[][] var45 = Tiles.field995[var2]; // L: 615
+			boolean var53 = true; // L: 616
+			boolean var54 = true; // L: 617
+			boolean var6 = true; // L: 618
+			boolean var7 = true; // L: 619
+			boolean var8 = true; // L: 620
+			var9 = (int)Math.sqrt(5100.0D); // L: 621
+			var10 = var9 * 768 >> 8; // L: 622
+
+			int var19;
+			for (var11 = 1; var11 < 103; ++var11) { // L: 623
+				for (var12 = 1; var12 < 103; ++var12) { // L: 624
+					var13 = Tiles.Tiles_heights[var2][var12 + 1][var11] - Tiles.Tiles_heights[var2][var12 - 1][var11]; // L: 625
+					var14 = Tiles.Tiles_heights[var2][var12][var11 + 1] - Tiles.Tiles_heights[var2][var12][var11 - 1]; // L: 626
+					var15 = (int)Math.sqrt((double)(var14 * var14 + var13 * var13 + 65536)); // L: 627
+					var16 = (var13 << 8) / var15; // L: 628
+					var17 = 65536 / var15; // L: 629
+					var18 = (var14 << 8) / var15; // L: 630
+					var19 = (var16 * -50 + var18 * -50 + var17 * -10) / var10 + 96; // L: 631
+					int var52 = (var45[var12 - 1][var11] >> 2) + (var45[var12][var11 - 1] >> 2) + (var45[var12 + 1][var11] >> 3) + (var45[var12][var11 + 1] >> 3) + (var45[var12][var11] >> 1); // L: 632
+					Tiles.field996[var12][var11] = var19 - var52; // L: 633
 				}
 			}
-		}
 
-		Buffer var13 = new Buffer(var0); // L: 116
-
-		for (var10 = 0; var10 < 4; ++var10) { // L: 117
-			for (int var11 = 0; var11 < 64; ++var11) { // L: 118
-				for (int var12 = 0; var12 < 64; ++var12) { // L: 119
-					if (var10 == var4 && var11 >= var5 && var11 < var5 + 8 && var12 >= var6 && var12 < var6 + 8) { // L: 120
-						Players.loadTerrain(var13, var1, var2 + class122.method2763(var11 & 7, var12 & 7, var7), var3 + FloorOverlayDefinition.method3818(var11 & 7, var12 & 7, var7), 0, 0, var7); // L: 121
-					} else {
-						Players.loadTerrain(var13, 0, -1, -1, 0, 0, 0); // L: 123
-					}
-				}
+			for (var11 = 0; var11 < 104; ++var11) { // L: 636
+				class85.Tiles_hue[var11] = 0; // L: 637
+				Tiles.Tiles_saturation[var11] = 0; // L: 638
+				class209.Tiles_lightness[var11] = 0; // L: 639
+				MusicPatch.Tiles_hueMultiplier[var11] = 0; // L: 640
+				Tiles.field1004[var11] = 0; // L: 641
 			}
-		}
 
-	} // L: 127
-
-	@ObfuscatedName("fv")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-113372020"
-	)
-	@Export("getLoginError")
-	static void getLoginError(int var0) {
-		int var1 = Login.loginIndex; // L: 2788
-		if (var0 == -3) { // L: 2791
-			class101.setLoginResponseString("Connection timed out.", "Please try using a different world.", "");
-		} else if (var0 == -2) { // L: 2792
-			class101.setLoginResponseString("Error connecting to server.", "Please try using a different world.", "");
-		} else if (var0 == -1) { // L: 2793
-			class101.setLoginResponseString("No response from server.", "Please try using a different world.", "");
-		} else if (var0 == 3) { // L: 2794
-			WorldMapData_1.method4872(3); // L: 2795
-			Login.field902 = 1; // L: 2796
-		} else if (var0 == 4) { // L: 2798
-			WorldMapData_1.method4872(14); // L: 2800
-			Login.field897 = 0; // L: 2801
-		} else if (var0 == 5) { // L: 2804
-			Login.field902 = 2; // L: 2805
-			class101.setLoginResponseString("Your account has not logged out from its last", "session or the server is too busy right now.", "Please try again in a few minutes."); // L: 2806
-		} else if (var0 != 68 && (Client.onMobile || var0 != 6)) { // L: 2808
-			if (var0 == 7) { // L: 2811
-				class101.setLoginResponseString("This world is full.", "Please use a different world.", "");
-			} else if (var0 == 8) { // L: 2812
-				class101.setLoginResponseString("Unable to connect.", "Login server offline.", "");
-			} else if (var0 == 9) { // L: 2813
-				class101.setLoginResponseString("Login limit exceeded.", "Too many connections from your address.", "");
-			} else if (var0 == 10) { // L: 2814
-				class101.setLoginResponseString("Unable to connect.", "Bad session id.", "");
-			} else if (var0 == 11) { // L: 2815
-				class101.setLoginResponseString("We suspect someone knows your password.", "Press 'change your password' on front page.", "");
-			} else if (var0 == 12) { // L: 2816
-				class101.setLoginResponseString("You need a members account to login to this world.", "Please subscribe, or use a different world.", "");
-			} else if (var0 == 13) { // L: 2817
-				class101.setLoginResponseString("Could not complete login.", "Please try using a different world.", "");
-			} else if (var0 == 14) { // L: 2818
-				class101.setLoginResponseString("The server is being updated.", "Please wait 1 minute and try again.", "");
-			} else if (var0 == 16) { // L: 2819
-				class101.setLoginResponseString("Too many login attempts.", "Please wait a few minutes before trying again.", "");
-			} else if (var0 == 17) { // L: 2820
-				class101.setLoginResponseString("To access this free world, log into a", "members world and move your character", "to a non-members area.");
-			} else if (var0 == 18) { // L: 2821
-				WorldMapData_1.method4872(14); // L: 2823
-				Login.field897 = 1; // L: 2824
-			} else if (var0 == 19) { // L: 2827
-				class101.setLoginResponseString("This world is running a closed Beta.", "Sorry invited players only.", "Please use a different world.");
-			} else if (var0 == 20) { // L: 2828
-				class101.setLoginResponseString("Invalid loginserver requested.", "Please try using a different world.", "");
-			} else if (var0 == 22) { // L: 2829
-				class101.setLoginResponseString("Malformed login packet.", "Please try again.", "");
-			} else if (var0 == 23) { // L: 2830
-				class101.setLoginResponseString("No reply from loginserver.", "Please wait 1 minute and try again.", "");
-			} else if (var0 == 24) { // L: 2831
-				class101.setLoginResponseString("Error loading your profile.", "Please contact customer support.", "");
-			} else if (var0 == 25) { // L: 2832
-				class101.setLoginResponseString("Unexpected loginserver response.", "Please try using a different world.", "");
-			} else if (var0 == 26) { // L: 2833
-				class101.setLoginResponseString("This computers address has been blocked", "as it was used to break our rules.", "");
-			} else if (var0 == 27) { // L: 2834
-				class101.setLoginResponseString("", "Service unavailable.", "");
-			} else if (var0 == 31) { // L: 2835
-				class101.setLoginResponseString("Your account must have a displayname set", "in order to play the game.  Please set it", "via the website, or the main game.");
-			} else if (var0 == 32) { // L: 2836
-				class101.setLoginResponseString("Your attempt to log into your account was", "unsuccessful.  Don't worry, you can sort", "this out by visiting the billing system.");
-			} else if (var0 == 37) { // L: 2837
-				class101.setLoginResponseString("Your account is currently inaccessible.", "Please try again in a few minutes.", "");
-			} else if (var0 == 38) { // L: 2838
-				class101.setLoginResponseString("You need to vote to play!", "Visit runescape.com and vote,", "and then come back here!");
-			} else if (var0 == 55) { // L: 2839
-				WorldMapData_1.method4872(8); // L: 2840
-			} else {
-				if (var0 == 56) { // L: 2842
-					class101.setLoginResponseString("Enter the 6-digit code generated by your", "authenticator app.", ""); // L: 2843
-					HealthBarUpdate.updateGameState(11); // L: 2844
-					return; // L: 2845
-				}
-
-				if (var0 == 57) { // L: 2847
-					class101.setLoginResponseString("The code you entered was incorrect.", "Please try again.", ""); // L: 2848
-					HealthBarUpdate.updateGameState(11); // L: 2849
-					return; // L: 2850
-				}
-
-				if (var0 == 61) { // L: 2852
-					class101.setLoginResponseString("", "Please enter your date of birth (DD/MM/YYYY)", ""); // L: 2853
-					WorldMapData_1.method4872(7); // L: 2854
-				} else {
-					if (var0 == 62) { // L: 2856
-						HealthBarUpdate.updateGameState(10); // L: 2857
-						WorldMapData_1.method4872(9); // L: 2858
-						class101.setLoginResponseString("Login attempt timed out.", "Please try again.", ""); // L: 2859
-						return; // L: 2860
+			for (var11 = -5; var11 < 109; ++var11) { // L: 643
+				for (var12 = 0; var12 < 104; ++var12) { // L: 644
+					var13 = var11 + 5; // L: 645
+					int var10002;
+					if (var13 >= 0 && var13 < 104) { // L: 646
+						long var46 = (long)Math.pow(2.0D, 15.0D) - 1L; // L: 652
+						var16 = (int)var46; // L: 654
+						var17 = Tiles.field998[var2][var13][var12] & var16; // L: 655
+						if (var17 > 0) { // L: 656
+							FloorUnderlayDefinition var48 = class12.method162(var17 - 1); // L: 657
+							var10000 = class85.Tiles_hue; // L: 658
+							var10000[var12] += var48.hue;
+							var10000 = Tiles.Tiles_saturation; // L: 659
+							var10000[var12] += var48.saturation;
+							var10000 = class209.Tiles_lightness; // L: 660
+							var10000[var12] += var48.lightness;
+							var10000 = MusicPatch.Tiles_hueMultiplier; // L: 661
+							var10000[var12] += var48.hueMultiplier;
+							var10002 = Tiles.field1004[var12]++; // L: 662
+						}
 					}
 
-					if (var0 == 63) { // L: 2862
-						HealthBarUpdate.updateGameState(10); // L: 2863
-						WorldMapData_1.method4872(9); // L: 2864
-						class101.setLoginResponseString("You were signed out.", "Please sign in again.", ""); // L: 2865
-						return; // L: 2866
-					}
-
-					if (var0 == 65 || var0 == 67) { // L: 2868
-						HealthBarUpdate.updateGameState(10); // L: 2869
-						WorldMapData_1.method4872(9); // L: 2870
-						class101.setLoginResponseString("Failed to login.", "Please try again.", ""); // L: 2871
-						return; // L: 2872
-					}
-
-					if (var0 == 71) { // L: 2874
-						HealthBarUpdate.updateGameState(10); // L: 2875
-						WorldMapData_1.method4872(7); // L: 2876
-						class101.setLoginResponseString("There was a problem updating your DOB.", "Please try again later. If the problem ", "persists, please contact Jagex Support."); // L: 2877
-					} else if (var0 == 73) { // L: 2879
-						HealthBarUpdate.updateGameState(10); // L: 2880
-						WorldMapData_1.method4872(6); // L: 2881
-						class101.setLoginResponseString("Your date of birth information is waiting", "to be reviewed by our staff.", "It will be processed shortly."); // L: 2882
-					} else if (var0 == 72) { // L: 2884
-						HealthBarUpdate.updateGameState(10); // L: 2885
-						WorldMapData_1.method4872(26); // L: 2886
-					} else {
-						class101.setLoginResponseString("Unexpected server response", "Please try using a different world.", ""); // L: 2888
+					var14 = var11 - 5; // L: 665
+					if (var14 >= 0 && var14 < 104) { // L: 666
+						long var49 = (long)Math.pow(2.0D, 15.0D) - 1L; // L: 672
+						var17 = (int)var49; // L: 674
+						var18 = Tiles.field998[var2][var14][var12] & var17; // L: 675
+						if (var18 > 0) { // L: 676
+							FloorUnderlayDefinition var51 = class12.method162(var18 - 1); // L: 677
+							var10000 = class85.Tiles_hue; // L: 678
+							var10000[var12] -= var51.hue;
+							var10000 = Tiles.Tiles_saturation; // L: 679
+							var10000[var12] -= var51.saturation;
+							var10000 = class209.Tiles_lightness; // L: 680
+							var10000[var12] -= var51.lightness;
+							var10000 = MusicPatch.Tiles_hueMultiplier; // L: 681
+							var10000[var12] -= var51.hueMultiplier;
+							var10002 = Tiles.field1004[var12]--; // L: 682
+						}
 					}
 				}
-			}
-		} else {
-			class101.setLoginResponseString("RuneScape has been updated!", "Please reload this page.", ""); // L: 2809
-		}
 
-		HealthBarUpdate.updateGameState(10); // L: 2889
-		int var4 = Login.loginIndex; // L: 2893
-		boolean var5 = var4 != var1; // L: 2895
-		if (!var5 && Client.field516.method8008()) { // L: 2896
-			WorldMapData_1.method4872(9); // L: 2897
-		}
+				if (var11 >= 1 && var11 < 103) { // L: 686
+					var12 = 0; // L: 687
+					var13 = 0; // L: 688
+					var14 = 0; // L: 689
+					var15 = 0; // L: 690
+					var16 = 0; // L: 691
 
-	} // L: 2899
+					for (var17 = -5; var17 < 109; ++var17) { // L: 692
+						var18 = var17 + 5; // L: 693
+						if (var18 >= 0 && var18 < 104) { // L: 694
+							var12 += class85.Tiles_hue[var18]; // L: 695
+							var13 += Tiles.Tiles_saturation[var18]; // L: 696
+							var14 += class209.Tiles_lightness[var18]; // L: 697
+							var15 += MusicPatch.Tiles_hueMultiplier[var18]; // L: 698
+							var16 += Tiles.field1004[var18]; // L: 699
+						}
 
-	@ObfuscatedName("hf")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIIII)V",
-		garbageValue = "-525734760"
-	)
-	@Export("updatePendingSpawn")
-	static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
-		PendingSpawn var9 = null; // L: 7757
+						var19 = var17 - 5; // L: 701
+						if (var19 >= 0 && var19 < 104) { // L: 702
+							var12 -= class85.Tiles_hue[var19]; // L: 703
+							var13 -= Tiles.Tiles_saturation[var19]; // L: 704
+							var14 -= class209.Tiles_lightness[var19]; // L: 705
+							var15 -= MusicPatch.Tiles_hueMultiplier[var19]; // L: 706
+							var16 -= Tiles.field1004[var19]; // L: 707
+						}
 
-		for (PendingSpawn var10 = (PendingSpawn)Client.pendingSpawns.last(); var10 != null; var10 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 7758 7759 7764
-			if (var0 == var10.plane && var10.x == var1 && var2 == var10.y && var3 == var10.type) { // L: 7760
-				var9 = var10; // L: 7761
-				break;
-			}
-		}
+						if (var17 >= 1 && var17 < 103 && (!Client.isLowDetail || (Tiles.Tiles_renderFlags[0][var11][var17] & 2) != 0 || (Tiles.Tiles_renderFlags[var2][var11][var17] & 16) == 0)) { // L: 709 710 711 712
+							if (var2 < Tiles.Tiles_minPlane) { // L: 715
+								Tiles.Tiles_minPlane = var2;
+							}
 
-		if (var9 == null) { // L: 7766
-			var9 = new PendingSpawn(); // L: 7767
-			var9.plane = var0; // L: 7768
-			var9.type = var3; // L: 7769
-			var9.x = var1; // L: 7770
-			var9.y = var2; // L: 7771
-			class151.method3146(var9); // L: 7772
-			Client.pendingSpawns.addFirst(var9); // L: 7773
-		}
+							long var20 = (long)Math.pow(2.0D, 15.0D) - 1L; // L: 721
+							int var22 = (int)var20; // L: 723
+							int var23 = Tiles.field998[var2][var11][var17] & var22; // L: 724
+							int var24 = Tiles.field993[var2][var11][var17] & var22; // L: 725
+							if (var23 > 0 || var24 > 0) { // L: 726
+								int var25 = Tiles.Tiles_heights[var2][var11][var17]; // L: 727
+								int var26 = Tiles.Tiles_heights[var2][var11 + 1][var17]; // L: 728
+								int var27 = Tiles.Tiles_heights[var2][var11 + 1][var17 + 1]; // L: 729
+								int var28 = Tiles.Tiles_heights[var2][var11][var17 + 1]; // L: 730
+								int var29 = Tiles.field996[var11][var17]; // L: 731
+								int var30 = Tiles.field996[var11 + 1][var17]; // L: 732
+								int var31 = Tiles.field996[var11 + 1][var17 + 1]; // L: 733
+								int var32 = Tiles.field996[var11][var17 + 1]; // L: 734
+								int var33 = -1; // L: 735
+								int var34 = -1; // L: 736
+								int var35;
+								int var36;
+								if (var23 > 0) { // L: 737
+									var35 = var12 * 256 / var15; // L: 738
+									var36 = var13 / var16; // L: 739
+									int var37 = var14 / var16; // L: 740
+									var33 = class496.method8900(var35, var36, var37); // L: 741
+									var35 = var35 + Tiles.rndHue & 255; // L: 742
+									var37 += Tiles.rndLightness; // L: 743
+									if (var37 < 0) { // L: 744
+										var37 = 0;
+									} else if (var37 > 255) { // L: 745
+										var37 = 255;
+									}
 
-		var9.id = var4; // L: 7775
-		var9.field1125 = var5; // L: 7776
-		var9.orientation = var6; // L: 7777
-		var9.delay = var7; // L: 7778
-		var9.hitpoints = var8; // L: 7779
-	} // L: 7780
+									var34 = class496.method8900(var35, var36, var37); // L: 746
+								}
 
-	@ObfuscatedName("jg")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;IB)I",
-		garbageValue = "9"
-	)
-	static final int method319(Widget var0, int var1) {
-		if (var0.cs1Instructions != null && var1 < var0.cs1Instructions.length) { // L: 10788
-			try {
-				int[] var2 = var0.cs1Instructions[var1]; // L: 10790
-				int var3 = 0; // L: 10791
-				int var4 = 0; // L: 10792
-				byte var5 = 0; // L: 10793
+								if (var2 > 0) { // L: 748
+									boolean var59 = true; // L: 749
+									if (var23 == 0 && Tiles.field994[var2][var11][var17] != 0) { // L: 750
+										var59 = false;
+									}
 
-				while (true) {
-					int var6 = var2[var4++]; // L: 10795
-					int var7 = 0; // L: 10796
-					byte var8 = 0; // L: 10797
-					if (var6 == 0) { // L: 10798
-						return var3;
-					}
+									if (var24 > 0 && !StructComposition.method3821(var24 - 1).hideUnderlay) { // L: 751
+										var59 = false;
+									}
 
-					if (var6 == 1) { // L: 10799
-						var7 = Client.currentLevels[var2[var4++]];
-					}
+									if (var59 && var26 == var25 && var27 == var25 && var25 == var28) { // L: 752 753
+										var10000 = Tiles.field999[var2][var11];
+										var10000[var17] |= 2340;
+									}
+								}
 
-					if (var6 == 2) { // L: 10800
-						var7 = Client.levels[var2[var4++]];
-					}
+								var35 = 0; // L: 756
+								if (var34 != -1) { // L: 757
+									var35 = Rasterizer3D.Rasterizer3D_colorPalette[FontName.method8641(var34, 96)];
+								}
 
-					if (var6 == 3) { // L: 10801
-						var7 = Client.experience[var2[var4++]];
-					}
+								if (var24 == 0) { // L: 758
+									var0.addTile(var2, var11, var17, 0, 0, -1, var25, var26, var27, var28, FontName.method8641(var33, var29), FontName.method8641(var33, var30), FontName.method8641(var33, var31), FontName.method8641(var33, var32), 0, 0, 0, 0, var35, 0); // L: 759
+								} else {
+									var36 = Tiles.field994[var2][var11][var17] + 1; // L: 762
+									byte var60 = WorldMapRectangle.field3005[var2][var11][var17]; // L: 763
+									FloorOverlayDefinition var38 = StructComposition.method3821(var24 - 1); // L: 764
+									int var39 = var38.texture; // L: 765
+									int var40;
+									int var41;
+									int var42;
+									int var43;
+									if (var39 >= 0) { // L: 768
+										var41 = Rasterizer3D.field2512.Rasterizer3D_textureLoader.getAverageTextureRGB(var39); // L: 769
+										var40 = -1; // L: 770
+									} else if (var38.primaryRgb == 16711935) { // L: 773
+										var40 = -2; // L: 774
+										var39 = -1; // L: 775
+										var41 = -2; // L: 776
+									} else {
+										var40 = class496.method8900(var38.hue, var38.saturation, var38.lightness); // L: 779
+										var42 = var38.hue + Tiles.rndHue & 255; // L: 780
+										var43 = var38.lightness + Tiles.rndLightness; // L: 781
+										if (var43 < 0) { // L: 782
+											var43 = 0;
+										} else if (var43 > 255) { // L: 783
+											var43 = 255;
+										}
 
-					int var9;
-					Widget var10;
-					int var11;
-					int var12;
-					if (var6 == 4) { // L: 10802
-						var9 = var2[var4++] << 16; // L: 10803
-						var9 += var2[var4++]; // L: 10804
-						var10 = class140.getWidget(var9); // L: 10805
-						var11 = var2[var4++]; // L: 10806
-						if (var11 != -1 && (!EnumComposition.ItemComposition_get(var11).isMembersOnly || Client.isMembersWorld)) { // L: 10807
-							for (var12 = 0; var12 < var10.itemIds.length; ++var12) { // L: 10808
-								if (var11 + 1 == var10.itemIds[var12]) { // L: 10809
-									var7 += var10.itemQuantities[var12];
+										var41 = class496.method8900(var42, var38.saturation, var43); // L: 784
+									}
+
+									var42 = 0; // L: 787
+									if (var41 != -2) { // L: 788
+										var42 = Rasterizer3D.Rasterizer3D_colorPalette[class217.method4208(var41, 96)];
+									}
+
+									if (var38.secondaryRgb != -1) { // L: 789
+										var43 = var38.secondaryHue + Tiles.rndHue & 255; // L: 790
+										int var44 = var38.secondaryLightness + Tiles.rndLightness; // L: 791
+										if (var44 < 0) { // L: 792
+											var44 = 0;
+										} else if (var44 > 255) { // L: 793
+											var44 = 255;
+										}
+
+										var41 = class496.method8900(var43, var38.secondarySaturation, var44); // L: 794
+										var42 = Rasterizer3D.Rasterizer3D_colorPalette[class217.method4208(var41, 96)]; // L: 795
+									}
+
+									var0.addTile(var2, var11, var17, var36, var60, var39, var25, var26, var27, var28, FontName.method8641(var33, var29), FontName.method8641(var33, var30), FontName.method8641(var33, var31), FontName.method8641(var33, var32), class217.method4208(var40, var29), class217.method4208(var40, var30), class217.method4208(var40, var31), class217.method4208(var40, var32), var35, var42); // L: 797
 								}
 							}
 						}
 					}
+				}
+			}
 
-					if (var6 == 5) { // L: 10813
-						var7 = Varps.Varps_main[var2[var4++]];
-					}
+			for (var11 = 1; var11 < 103; ++var11) { // L: 804
+				for (var12 = 1; var12 < 103; ++var12) { // L: 805
+					var0.setTileMinPlane(var2, var12, var11, DefaultsGroup.method8055(var2, var12, var11)); // L: 806
+				}
+			}
 
-					if (var6 == 6) { // L: 10814
-						var7 = Skills.Skills_experienceTable[Client.levels[var2[var4++]] - 1];
-					}
+			Tiles.field998[var2] = null; // L: 809
+			Tiles.field993[var2] = null; // L: 810
+			Tiles.field994[var2] = null; // L: 811
+			WorldMapRectangle.field3005[var2] = null; // L: 812
+			Tiles.field995[var2] = null; // L: 813
+		}
 
-					if (var6 == 7) { // L: 10815
-						var7 = Varps.Varps_main[var2[var4++]] * 100 / 46875;
-					}
+		var0.method4512(-50, -10, -50); // L: 815
 
-					if (var6 == 8) { // L: 10816
-						var7 = class101.localPlayer.combatLevel;
-					}
+		for (var2 = 0; var2 < 104; ++var2) { // L: 816
+			for (var3 = 0; var3 < 104; ++var3) { // L: 817
+				if ((Tiles.Tiles_renderFlags[1][var2][var3] & 2) == 2) { // L: 818
+					var0.setLinkBelow(var2, var3);
+				}
+			}
+		}
 
-					if (var6 == 9) { // L: 10817
-						for (var9 = 0; var9 < 25; ++var9) { // L: 10818
-							if (Skills.Skills_enabled[var9]) { // L: 10819
-								var7 += Client.levels[var9];
+		var2 = 1; // L: 821
+		var3 = 2; // L: 822
+		var4 = 4; // L: 823
+
+		for (var5 = 0; var5 < 4; ++var5) { // L: 824
+			if (var5 > 0) { // L: 825
+				var2 <<= 3; // L: 826
+				var3 <<= 3; // L: 827
+				var4 <<= 3; // L: 828
+			}
+
+			for (int var55 = 0; var55 <= var5; ++var55) { // L: 830
+				for (int var56 = 0; var56 <= 104; ++var56) { // L: 831
+					for (int var57 = 0; var57 <= 104; ++var57) { // L: 832
+						short var58;
+						if ((Tiles.field999[var55][var57][var56] & var2) != 0) { // L: 833
+							var9 = var56; // L: 834
+							var10 = var56; // L: 835
+							var11 = var55; // L: 836
+
+							for (var12 = var55; var9 > 0 && (Tiles.field999[var55][var57][var9 - 1] & var2) != 0; --var9) { // L: 837 838
+							}
+
+							while (var10 < 104 && (Tiles.field999[var55][var57][var10 + 1] & var2) != 0) { // L: 839
+								++var10;
+							}
+
+							label427:
+							while (var11 > 0) { // L: 840
+								for (var13 = var9; var13 <= var10; ++var13) { // L: 841
+									if ((Tiles.field999[var11 - 1][var57][var13] & var2) == 0) {
+										break label427;
+									}
+								}
+
+								--var11; // L: 842
+							}
+
+							label416:
+							while (var12 < var5) { // L: 844
+								for (var13 = var9; var13 <= var10; ++var13) { // L: 845
+									if ((Tiles.field999[var12 + 1][var57][var13] & var2) == 0) {
+										break label416;
+									}
+								}
+
+								++var12; // L: 846
+							}
+
+							var13 = (var12 + 1 - var11) * (var10 - var9 + 1); // L: 848
+							if (var13 >= 8) { // L: 849
+								var58 = 240; // L: 850
+								var15 = Tiles.Tiles_heights[var12][var57][var9] - var58; // L: 851
+								var16 = Tiles.Tiles_heights[var11][var57][var9]; // L: 852
+								Scene.Scene_addOccluder(var5, 1, var57 * 128, var57 * 128, var9 * 128, var10 * 128 + 128, var15, var16); // L: 853
+
+								for (var17 = var11; var17 <= var12; ++var17) { // L: 854
+									for (var18 = var9; var18 <= var10; ++var18) { // L: 855
+										var10000 = Tiles.field999[var17][var57];
+										var10000[var18] &= ~var2;
+									}
+								}
 							}
 						}
-					}
 
-					if (var6 == 10) { // L: 10822
-						var9 = var2[var4++] << 16; // L: 10823
-						var9 += var2[var4++]; // L: 10824
-						var10 = class140.getWidget(var9); // L: 10825
-						var11 = var2[var4++]; // L: 10826
-						if (var11 != -1 && (!EnumComposition.ItemComposition_get(var11).isMembersOnly || Client.isMembersWorld)) { // L: 10827
-							for (var12 = 0; var12 < var10.itemIds.length; ++var12) { // L: 10828
-								if (var11 + 1 == var10.itemIds[var12]) { // L: 10829
-									var7 = 999999999; // L: 10830
-									break; // L: 10831
+						if ((Tiles.field999[var55][var57][var56] & var3) != 0) { // L: 859
+							var9 = var57; // L: 860
+							var10 = var57; // L: 861
+							var11 = var55; // L: 862
+
+							for (var12 = var55; var9 > 0 && (Tiles.field999[var55][var9 - 1][var56] & var3) != 0; --var9) { // L: 863 864
+							}
+
+							while (var10 < 104 && (Tiles.field999[var55][var10 + 1][var56] & var3) != 0) { // L: 865
+								++var10;
+							}
+
+							label480:
+							while (var11 > 0) { // L: 866
+								for (var13 = var9; var13 <= var10; ++var13) { // L: 867
+									if ((Tiles.field999[var11 - 1][var13][var56] & var3) == 0) {
+										break label480;
+									}
+								}
+
+								--var11; // L: 868
+							}
+
+							label469:
+							while (var12 < var5) { // L: 870
+								for (var13 = var9; var13 <= var10; ++var13) { // L: 871
+									if ((Tiles.field999[var12 + 1][var13][var56] & var3) == 0) {
+										break label469;
+									}
+								}
+
+								++var12; // L: 872
+							}
+
+							var13 = (var10 - var9 + 1) * (var12 + 1 - var11); // L: 874
+							if (var13 >= 8) { // L: 875
+								var58 = 240; // L: 876
+								var15 = Tiles.Tiles_heights[var12][var9][var56] - var58; // L: 877
+								var16 = Tiles.Tiles_heights[var11][var9][var56]; // L: 878
+								Scene.Scene_addOccluder(var5, 2, var9 * 128, var10 * 128 + 128, var56 * 128, var56 * 128, var15, var16); // L: 879
+
+								for (var17 = var11; var17 <= var12; ++var17) { // L: 880
+									for (var18 = var9; var18 <= var10; ++var18) { // L: 881
+										var10000 = Tiles.field999[var17][var18];
+										var10000[var56] &= ~var3;
+									}
+								}
+							}
+						}
+
+						if ((Tiles.field999[var55][var57][var56] & var4) != 0) { // L: 885
+							var9 = var57; // L: 886
+							var10 = var57; // L: 887
+							var11 = var56; // L: 888
+
+							for (var12 = var56; var11 > 0 && (Tiles.field999[var55][var57][var11 - 1] & var4) != 0; --var11) { // L: 889 890
+							}
+
+							while (var12 < 104 && (Tiles.field999[var55][var57][var12 + 1] & var4) != 0) { // L: 891
+								++var12;
+							}
+
+							label533:
+							while (var9 > 0) { // L: 892
+								for (var13 = var11; var13 <= var12; ++var13) { // L: 893
+									if ((Tiles.field999[var55][var9 - 1][var13] & var4) == 0) {
+										break label533;
+									}
+								}
+
+								--var9; // L: 894
+							}
+
+							label522:
+							while (var10 < 104) { // L: 896
+								for (var13 = var11; var13 <= var12; ++var13) { // L: 897
+									if ((Tiles.field999[var55][var10 + 1][var13] & var4) == 0) {
+										break label522;
+									}
+								}
+
+								++var10; // L: 898
+							}
+
+							if ((var10 - var9 + 1) * (var12 - var11 + 1) >= 4) { // L: 900
+								var13 = Tiles.Tiles_heights[var55][var9][var11]; // L: 901
+								Scene.Scene_addOccluder(var5, 4, var9 * 128, var10 * 128 + 128, var11 * 128, var12 * 128 + 128, var13, var13); // L: 902
+
+								for (var14 = var9; var14 <= var10; ++var14) { // L: 903
+									for (var15 = var11; var15 <= var12; ++var15) { // L: 904
+										var10000 = Tiles.field999[var55][var14];
+										var10000[var15] &= ~var4;
+									}
 								}
 							}
 						}
 					}
-
-					if (var6 == 11) { // L: 10836
-						var7 = Client.runEnergy;
-					}
-
-					if (var6 == 12) { // L: 10837
-						var7 = Client.weight;
-					}
-
-					if (var6 == 13) { // L: 10838
-						var9 = Varps.Varps_main[var2[var4++]]; // L: 10839
-						int var13 = var2[var4++]; // L: 10840
-						var7 = (var9 & 1 << var13) != 0 ? 1 : 0; // L: 10841
-					}
-
-					if (var6 == 14) { // L: 10843
-						var9 = var2[var4++]; // L: 10844
-						var7 = class388.getVarbit(var9); // L: 10845
-					}
-
-					if (var6 == 15) { // L: 10847
-						var8 = 1;
-					}
-
-					if (var6 == 16) { // L: 10848
-						var8 = 2;
-					}
-
-					if (var6 == 17) { // L: 10849
-						var8 = 3;
-					}
-
-					if (var6 == 18) { // L: 10850
-						var7 = class28.baseX * 64 + (class101.localPlayer.x >> 7);
-					}
-
-					if (var6 == 19) { // L: 10851
-						var7 = WorldMapLabelSize.baseY * 64 + (class101.localPlayer.y >> 7);
-					}
-
-					if (var6 == 20) { // L: 10852
-						var7 = var2[var4++];
-					}
-
-					if (var8 == 0) { // L: 10853
-						if (var5 == 0) { // L: 10854
-							var3 += var7;
-						}
-
-						if (var5 == 1) { // L: 10855
-							var3 -= var7;
-						}
-
-						if (var5 == 2 && var7 != 0) { // L: 10856
-							var3 /= var7;
-						}
-
-						if (var5 == 3) { // L: 10857
-							var3 *= var7;
-						}
-
-						var5 = 0; // L: 10858
-					} else {
-						var5 = var8; // L: 10860
-					}
 				}
-			} catch (Exception var14) { // L: 10863
-				return -1; // L: 10864
 			}
-		} else {
-			return -2;
 		}
-	}
+
+	} // L: 912
 }

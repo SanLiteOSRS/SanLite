@@ -1,25 +1,24 @@
+import java.awt.image.BufferedImage;
+import java.awt.image.PixelGrabber;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bw")
+@ObfuscatedName("cf")
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
-	@ObfuscatedName("pm")
-	@ObfuscatedGetter(
-		intValue = -1419708281
-	)
-	static int field960;
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@Export("executor")
 	ExecutorService executor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@Export("future")
 	Future future;
 
@@ -28,125 +27,101 @@ public class SecureRandomFuture {
 		this.future = this.executor.submit(new SecureRandomCallable()); // L: 14
 	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-33"
+		garbageValue = "-63"
 	)
 	@Export("shutdown")
 	void shutdown() {
 		this.executor.shutdown(); // L: 18
 		this.executor = null; // L: 19
-	} // L: 20
+	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1943813302"
+		garbageValue = "-899066512"
 	)
 	@Export("isDone")
 	boolean isDone() {
 		return this.future.isDone();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/security/SecureRandom;",
-		garbageValue = "448481251"
+		garbageValue = "-356451704"
 	)
 	@Export("get")
 	SecureRandom get() {
 		try {
 			return (SecureRandom)this.future.get();
-		} catch (Exception var2) {
-			return NetFileRequest.method5843();
+		} catch (Exception var4) {
+			SecureRandom var3 = new SecureRandom();
+			var3.nextInt();
+			return var3;
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfi;",
-		garbageValue = "81"
+		descriptor = "([BI)Ltt;",
+		garbageValue = "860100351"
 	)
-	@Export("KitDefinition_get")
-	public static KitDefinition KitDefinition_get(int var0) {
-		KitDefinition var1 = (KitDefinition)KitDefinition.KitDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = KitDefinition.KitDefinition_archive.takeFile(3, var0);
-			var1 = new KitDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
+	public static final SpritePixels method2112(byte[] var0) {
+		BufferedImage var1 = null; // L: 20
 
-			KitDefinition.KitDefinition_cached.put(var1, (long)var0);
-			return var1;
+		try {
+			Class var2 = ImageIO.class; // L: 22
+			synchronized(ImageIO.class) {
+				var1 = ImageIO.read(new ByteArrayInputStream(var0)); // L: 23
+			} // L: 24
+
+			int var6 = var1.getWidth(); // L: 25
+			int var7 = var1.getHeight(); // L: 26
+			int[] var4 = new int[var7 * var6]; // L: 27
+			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var6, var7, var4, 0, var6); // L: 28
+			var5.grabPixels();
+			return new SpritePixels(var4, var6, var7);
+		} catch (IOException var9) {
+		} catch (InterruptedException var10) {
 		}
+
+		return new SpritePixels(0, 0);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;IZI)Lda;",
-		garbageValue = "1850622535"
+		descriptor = "(Ltc;B)Ljava/lang/String;",
+		garbageValue = "-34"
 	)
-	public static class122 method1963(AbstractArchive var0, AbstractArchive var1, int var2, boolean var3) {
-		boolean var4 = true;
-		byte[] var5 = var0.getFile(var2 >> 16 & 65535, var2 & 65535);
-		if (var5 == null) {
-			var4 = false;
-			return null; // L: 27
-		} else {
-			int var6 = (var5[1] & 255) << 8 | var5[2] & 255;
-			byte[] var7;
-			if (var3) {
-				var7 = var1.getFile(0, var6);
-			} else {
-				var7 = var1.getFile(var6, 0);
+	public static String method2113(Buffer var0) {
+		String var1;
+		try {
+			int var2 = var0.readUShortSmart(); // L: 29
+			if (var2 > 32767) { // L: 30
+				var2 = 32767;
 			}
 
-			if (var7 == null) { // L: 33
-				var4 = false;
-			}
-
-			if (!var4) { // L: 34
-				return null;
-			} else {
-				try {
-					return new class122(var0, var1, var2, var3); // L: 36
-				} catch (Exception var9) { // L: 38
-					return null; // L: 39
-				}
-			}
+			byte[] var3 = new byte[var2]; // L: 31
+			var0.offset += class332.huffman.decompress(var0.array, var0.offset, var3, 0, var2); // L: 32
+			String var4 = class149.decodeStringCp1252(var3, 0, var2); // L: 33
+			var1 = var4; // L: 34
+		} catch (Exception var6) { // L: 36
+			var1 = "Cabbage"; // L: 37
 		}
+
+		return var1; // L: 40
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "1953508485"
+		descriptor = "(II)Lco;",
+		garbageValue = "-1399550661"
 	)
-	@Export("addChatMessage")
-	static void addChatMessage(int var0, String var1, String var2, String var3) {
-		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 23
-		if (var4 == null) { // L: 24
-			var4 = new ChatChannel(); // L: 25
-			Messages.Messages_channels.put(var0, var4); // L: 26
-		}
-
-		Message var5 = var4.addMessage(var0, var1, var2, var3); // L: 28
-		Messages.Messages_hashTable.put(var5, (long)var5.count); // L: 29
-		Messages.Messages_queue.add(var5); // L: 30
-		Client.chatCycle = Client.cycleCntr; // L: 31
-	} // L: 32
-
-	@ObfuscatedName("ey")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "7"
-	)
-	static final void method1967() {
-		Scene.Scene_isLowDetail = false; // L: 877
-		Client.isLowDetail = false; // L: 878
-	} // L: 879
+	@Export("Messages_getMessage")
+	static Message Messages_getMessage(int var0) {
+		return (Message)Messages.Messages_hashTable.get((long)var0); // L: 44
+	}
 }

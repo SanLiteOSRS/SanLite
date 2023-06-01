@@ -1,129 +1,105 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-@ObfuscatedName("ev")
-public class class150 extends class128 {
-	@ObfuscatedName("rf")
-	@ObfuscatedSignature(
-		descriptor = "Lex;"
-	)
-	@Export("guestClanChannel")
-	static ClanChannel guestClanChannel;
-	@ObfuscatedName("c")
+@ObfuscatedName("fk")
+public class class150 extends class143 {
+	@ObfuscatedName("gx")
 	@ObfuscatedGetter(
-		longValue = -8713006525766535939L
+		intValue = -89539893
 	)
-	long field1707;
-	@ObfuscatedName("v")
-	String field1708;
+	static int field1680;
+	@ObfuscatedName("ay")
+	boolean field1677;
+	@ObfuscatedName("an")
+	byte field1672;
+	@ObfuscatedName("ar")
+	byte field1673;
+	@ObfuscatedName("ab")
+	byte field1671;
+	@ObfuscatedName("at")
+	byte field1674;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfh;"
 	)
-	final class131 this$0;
+	final class146 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfh;)V"
 	)
-	class150(class131 var1) {
-		this.this$0 = var1;
-		this.field1707 = -1L; // L: 194
-		this.field1708 = null; // L: 195
-	} // L: 197
+	class150(class146 var1) {
+		this.this$0 = var1; // L: 248
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Ltc;B)V",
+		garbageValue = "1"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 200
-			--var1.offset; // L: 201
-			this.field1707 = var1.readLong(); // L: 202
+	void vmethod3345(Buffer var1) {
+		this.field1677 = var1.readUnsignedByte() == 1; // L: 251
+		this.field1672 = var1.readByte(); // L: 252
+		this.field1673 = var1.readByte(); // L: 253
+		this.field1671 = var1.readByte(); // L: 254
+		this.field1674 = var1.readByte(); // L: 255
+	} // L: 256
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(Lfb;I)V",
+		garbageValue = "-621392079"
+	)
+	void vmethod3346(ClanSettings var1) {
+		var1.allowGuests = this.field1677; // L: 259
+		var1.field1698 = this.field1672; // L: 260
+		var1.field1699 = this.field1673; // L: 261
+		var1.field1700 = this.field1671; // L: 262
+		var1.field1701 = this.field1674; // L: 263
+	} // L: 264
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "-1676842506"
+	)
+	public static int method3164(int var0, int var1) {
+		return (int)Math.round(Math.atan2((double)var0, (double)var1) * 2607.5945876176133D) & 16383; // L: 29
+	}
+
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Lorg/json/JSONObject;Ljava/lang/String;B)[F",
+		garbageValue = "3"
+	)
+	static float[] method3162(JSONObject var0, String var1) throws JSONException {
+		float[] var2 = new float[4]; // L: 329
+
+		try {
+			JSONArray var3 = var0.getJSONArray(var1); // L: 331
+			var2[0] = (float)var3.optDouble(0, 0.0D); // L: 332
+			var2[1] = (float)var3.optDouble(1, 0.0D); // L: 333
+			var2[2] = (float)var3.optDouble(2, 1.0D); // L: 334
+			var2[3] = (float)var3.optDouble(3, 1.0D); // L: 335
+		} catch (JSONException var4) { // L: 337
+			var2[0] = 0.0F; // L: 338
+			var2[1] = 0.0F; // L: 339
+			var2[2] = 1.0F; // L: 340
+			var2[3] = 1.0F; // L: 341
 		}
 
-		this.field1708 = var1.readStringCp1252NullTerminatedOrNull(); // L: 204
-	} // L: 205
+		return var2; // L: 343
+	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("lt")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIII)V",
+		garbageValue = "-1761537082"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2959(this.field1707, this.field1708); // L: 208
-	} // L: 209
-
-	@ObfuscatedName("iv")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-22445945"
-	)
-	static final void method3135(int var0, int var1) {
-		if (Client.menuOptionsCount >= 2 || Client.isItemSelected != 0 || Client.isSpellSelected) { // L: 8437
-			if (Client.showMouseOverText) { // L: 8438
-				int var2 = class240.method5005(); // L: 8439
-				String var3;
-				if (Client.isItemSelected == 1 && Client.menuOptionsCount < 2) { // L: 8441
-					var3 = "Use" + " " + Client.selectedItemName + " " + "->";
-				} else if (Client.isSpellSelected && Client.menuOptionsCount < 2) { // L: 8442
-					var3 = Client.selectedSpellActionName + " " + Client.selectedSpellName + " " + "->";
-				} else {
-					String var4;
-					if (var2 < 0) { // L: 8446
-						var4 = ""; // L: 8447
-					} else if (Client.menuTargets[var2].length() > 0) { // L: 8450
-						var4 = Client.menuActions[var2] + " " + Client.menuTargets[var2];
-					} else {
-						var4 = Client.menuActions[var2]; // L: 8451
-					}
-
-					var3 = var4; // L: 8453
-				}
-
-				if (Client.menuOptionsCount > 2) { // L: 8455
-					var3 = var3 + class122.colorStartTag(16777215) + " " + '/' + " " + (Client.menuOptionsCount - 2) + " more options";
-				}
-
-				TileItem.fontBold12.drawRandomAlphaAndSpacing(var3, var0 + 4, var1 + 15, 16777215, 0, Client.cycle / 1000); // L: 8456
-			}
-		}
-	} // L: 8457
-
-	@ObfuscatedName("jy")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;Lgs;IIZB)V",
-		garbageValue = "119"
-	)
-	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
-		String[] var5 = var1.inventoryActions; // L: 10868
-		byte var6 = -1; // L: 10869
-		String var7 = null; // L: 10870
-		if (var5 != null && var5[var3] != null) { // L: 10871
-			if (var3 == 0) { // L: 10872
-				var6 = 33;
-			} else if (var3 == 1) { // L: 10873
-				var6 = 34;
-			} else if (var3 == 2) {
-				var6 = 35; // L: 10874
-			} else if (var3 == 3) { // L: 10875
-				var6 = 36;
-			} else {
-				var6 = 37; // L: 10876
-			}
-
-			var7 = var5[var3]; // L: 10877
-		} else if (var3 == 4) { // L: 10880
-			var6 = 37; // L: 10881
-			var7 = "Drop"; // L: 10882
-		}
-
-		if (var6 != -1 && var7 != null) { // L: 10885
-			class268.insertMenuItem(var7, class122.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4); // L: 10886
-		}
-
-	} // L: 10888
+	static final void method3163(String var0, String var1, int var2, int var3, int var4, int var5, int var6) {
+		TileItem.method2645(var0, var1, var2, var3, var4, var5, var6, false); // L: 9911
+	} // L: 9912
 }
