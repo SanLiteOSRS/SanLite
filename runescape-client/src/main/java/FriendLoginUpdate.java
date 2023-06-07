@@ -4,64 +4,98 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nh")
+@ObfuscatedName("qf")
 @Implements("FriendLoginUpdate")
 public class FriendLoginUpdate extends Link {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 105823237
+		intValue = 1108724319
 	)
-	public int field4300;
-	@ObfuscatedName("v")
+	public int field4591;
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lun;"
 	)
 	@Export("username")
 	public Username username;
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@Export("world")
 	public short world;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqa;I)V"
+		descriptor = "(Lun;I)V"
 	)
 	FriendLoginUpdate(Username var1, int var2) {
-		this.field4300 = (int)(class115.method2692() / 1000L); // L: 109
-		this.username = var1; // L: 110
+		this.field4591 = (int)(WallObject.method5027() / 1000L);
+		this.username = var1;
 		this.world = (short)var2; // L: 111
-	} // L: 112
+	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lpx;",
-		garbageValue = "-1096065009"
+		descriptor = "(Lnq;Lnq;Lnq;B)V",
+		garbageValue = "1"
 	)
-	public static class437 method6631(int var0) {
-		class437 var1 = (class437)class437.DBRowType_cache.get((long)var0); // L: 24
-		if (var1 != null) { // L: 25
-			return var1;
-		} else {
-			byte[] var2 = class437.field4675.takeFile(38, var0); // L: 26
-			var1 = new class437(); // L: 27
-			if (var2 != null) { // L: 28
-				var1.method7635(new Buffer(var2));
+	public static void method7785(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
+		SequenceDefinition.SequenceDefinition_archive = var0; // L: 51
+		SequenceDefinition.SequenceDefinition_animationsArchive = var1; // L: 52
+		class305.SequenceDefinition_skeletonsArchive = var2; // L: 53
+	} // L: 54
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "([FIFI)F",
+		garbageValue = "-35912619"
+	)
+	static float method7784(float[] var0, int var1, float var2) {
+		float var3 = var0[var1]; // L: 108
+
+		for (int var4 = var1 - 1; var4 >= 0; --var4) { // L: 109
+			var3 = var0[var4] + var3 * var2; // L: 110
+		}
+
+		return var3; // L: 112
+	}
+
+	@ObfuscatedName("gy")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "119"
+	)
+	static int method7786() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1543
+			int var0 = 0; // L: 1544
+
+			for (int var1 = 0; var1 <= Client.archiveLoadersDone; ++var1) { // L: 1545
+				var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount; // L: 1546
 			}
 
-			var1.method7636(); // L: 29
-			class437.DBRowType_cache.put(var1, (long)var0); // L: 30
-			return var1; // L: 31
+			return var0 * 10000 / Client.field767; // L: 1548
+		} else {
+			return 10000;
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ks")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
+		descriptor = "(IIIIB)V",
 		garbageValue = "-1"
 	)
-	static final void method6632(String var0) {
-		StringBuilder var10000 = (new StringBuilder()).append(var0);
-		Object var10001 = null;
-		String var1 = var10000.append(" is already on your friend list").toString(); // L: 135
-		class290.addGameMessage(30, "", var1); // L: 137
-	} // L: 139
+	@Export("selectSpell")
+	static void selectSpell(int var0, int var1, int var2, int var3) {
+		Widget var4 = class158.getWidgetChild(var0, var1); // L: 9983
+		if (var4 != null && var4.onTargetEnter != null) { // L: 9984
+			ScriptEvent var5 = new ScriptEvent(); // L: 9985
+			var5.widget = var4; // L: 9986
+			var5.args = var4.onTargetEnter; // L: 9987
+			Clock.runScriptEvent(var5); // L: 9988
+		}
+
+		Client.selectedSpellItemId = var3; // L: 9990
+		Client.isSpellSelected = true; // L: 9991
+		ScriptFrame.selectedSpellWidget = var0; // L: 9992
+		Client.selectedSpellChildIndex = var1; // L: 9993
+		class125.selectedSpellFlags = var2; // L: 9994
+		Messages.invalidateWidget(var4); // L: 9995
+	} // L: 9996
 }
