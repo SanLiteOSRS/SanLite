@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gu")
+@ObfuscatedName("ig")
 @Implements("RouteStrategy")
 public abstract class RouteStrategy {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1648462545
+		intValue = 59947595
 	)
 	@Export("approxDestinationX")
 	public int approxDestinationX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -235998971
+		intValue = -662612897
 	)
 	@Export("approxDestinationY")
 	public int approxDestinationY;
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -2103328385
+		intValue = -1804274713
 	)
 	@Export("approxDestinationSizeX")
 	public int approxDestinationSizeX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 738835935
+		intValue = -584396795
 	)
 	@Export("approxDestinationSizeY")
 	public int approxDestinationSizeY;
@@ -35,11 +35,32 @@ public abstract class RouteStrategy {
 	protected RouteStrategy() {
 	} // L: 9
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(IIILgv;I)Z",
-		garbageValue = "1278947831"
+		descriptor = "(IIILic;B)Z",
+		garbageValue = "-38"
 	)
 	@Export("hasArrived")
-	public abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
+	protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
+
+	@ObfuscatedName("ls")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIIIS)V",
+		garbageValue = "246"
+	)
+	@Export("updateRootInterface")
+	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		if (Client.loadInterface(var0)) { // L: 11362
+			UserComparator3.updateInterface(class16.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6); // L: 11363
+		}
+	} // L: 11364
+
+	@ObfuscatedName("ne")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "972113387"
+	)
+	public static boolean method4214() {
+		return Client.staffModLevel >= 2; // L: 12735
+	}
 }
