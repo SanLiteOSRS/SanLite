@@ -4,47 +4,47 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ka")
+@ObfuscatedName("nt")
 @Implements("GameBuild")
 public class GameBuild {
-	@ObfuscatedName("to")
-	@ObfuscatedGetter(
-		intValue = 688457543
-	)
-	static int field3588;
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "Lnt;"
 	)
 	@Export("LIVE")
 	static final GameBuild LIVE;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "Lnt;"
 	)
 	@Export("BUILDLIVE")
 	static final GameBuild BUILDLIVE;
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "Lnt;"
 	)
 	@Export("RC")
 	static final GameBuild RC;
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "Lnt;"
 	)
 	@Export("WIP")
 	static final GameBuild WIP;
-	@ObfuscatedName("j")
+	@ObfuscatedName("cf")
+	@ObfuscatedSignature(
+		descriptor = "Lng;"
+	)
+	static StudioGame field3841;
+	@ObfuscatedName("ax")
 	@Export("name")
 	public final String name;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 413873867
+		intValue = 243254949
 	)
 	@Export("buildId")
-	public final int buildId;
+	final int buildId;
 
 	static {
 		LIVE = new GameBuild("LIVE", 0); // L: 5
