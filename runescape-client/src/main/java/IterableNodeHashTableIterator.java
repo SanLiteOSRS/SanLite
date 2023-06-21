@@ -4,41 +4,41 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pw")
+@ObfuscatedName("sc")
 @Implements("IterableNodeHashTableIterator")
 public class IterableNodeHashTableIterator implements Iterator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lpb;"
+		descriptor = "Lsv;"
 	)
 	@Export("hashTable")
 	IterableNodeHashTable hashTable;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Loh;"
+		descriptor = "Lrz;"
 	)
 	@Export("head")
 	Node head;
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@Export("index")
 	int index;
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Loh;"
+		descriptor = "Lrz;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpb;)V"
+		descriptor = "(Lsv;)V"
 	)
-	IterableNodeHashTableIterator(IterableNodeHashTable var1) {
+	public IterableNodeHashTableIterator(IterableNodeHashTable var1) {
 		this.last = null; // L: 10
 		this.hashTable = var1; // L: 13
 		this.start(); // L: 14
 	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@Export("start")
 	void start() {
 		this.head = this.hashTable.buckets[0].previous; // L: 18
@@ -46,47 +46,60 @@ public class IterableNodeHashTableIterator implements Iterator {
 		this.last = null; // L: 20
 	} // L: 21
 
-	public Object next() {
-		Node var1;
-		if (this.hashTable.buckets[this.index - 1] != this.head) { // L: 25
-			var1 = this.head; // L: 26
-			this.head = var1.previous; // L: 27
-			this.last = var1; // L: 28
-			return var1; // L: 29
-		} else {
-			do {
-				if (this.index >= this.hashTable.size) { // L: 31
-					return null; // L: 39
-				}
-
-				var1 = this.hashTable.buckets[this.index++].previous; // L: 32
-			} while(var1 == this.hashTable.buckets[this.index - 1]); // L: 33
-
-			this.head = var1.previous; // L: 34
-			this.last = var1; // L: 35
-			return var1; // L: 36
-		}
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "()Lrz;"
+	)
+	public Node method8589() {
+		this.start(); // L: 24
+		return (Node)this.next(); // L: 25
 	}
 
-	public boolean hasNext() {
-		if (this.hashTable.buckets[this.index - 1] != this.head) { // L: 43
-			return true;
+	public Object next() {
+		Node var1;
+		if (this.hashTable.buckets[this.index - 1] != this.head) { // L: 30
+			var1 = this.head; // L: 31
+			this.head = var1.previous; // L: 32
+			this.last = var1; // L: 33
+			return var1; // L: 34
 		} else {
-			while (this.index < this.hashTable.size) { // L: 44
-				if (this.hashTable.buckets[this.index++].previous != this.hashTable.buckets[this.index - 1]) { // L: 45
-					this.head = this.hashTable.buckets[this.index - 1].previous; // L: 46
-					return true; // L: 47
+			do {
+				if (this.index >= this.hashTable.size) { // L: 36
+					return null; // L: 44
 				}
 
-				this.head = this.hashTable.buckets[this.index - 1]; // L: 50
-			}
+				var1 = this.hashTable.buckets[this.index++].previous; // L: 37
+			} while(var1 == this.hashTable.buckets[this.index - 1]); // L: 38
 
-			return false; // L: 53
+			this.head = var1.previous; // L: 39
+			this.last = var1; // L: 40
+			return var1; // L: 41
 		}
 	}
 
 	public void remove() {
-		this.last.remove(); // L: 58
-		this.last = null; // L: 59
-	} // L: 60
+		if (this.last == null) { // L: 62
+			throw new IllegalStateException();
+		} else {
+			this.last.remove(); // L: 63
+			this.last = null; // L: 64
+		}
+	} // L: 65
+
+	public boolean hasNext() {
+		if (this.hashTable.buckets[this.index - 1] != this.head) { // L: 48
+			return true;
+		} else {
+			while (this.index < this.hashTable.size) { // L: 49
+				if (this.hashTable.buckets[this.index++].previous != this.hashTable.buckets[this.index - 1]) { // L: 50
+					this.head = this.hashTable.buckets[this.index - 1].previous; // L: 51
+					return true; // L: 52
+				}
+
+				this.head = this.hashTable.buckets[this.index - 1]; // L: 55
+			}
+
+			return false; // L: 58
+		}
+	}
 }
