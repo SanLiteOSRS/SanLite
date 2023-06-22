@@ -4,72 +4,77 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hr")
+@ObfuscatedName("js")
 @Implements("DecorativeObject")
 public final class DecorativeObject {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ul")
 	@ObfuscatedGetter(
-		intValue = 1818161665
+		intValue = -1524978369
+	)
+	static int field2828;
+	@ObfuscatedName("at")
+	@ObfuscatedGetter(
+		intValue = 1768831305
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -394717143
-	)
-	@Export("x")
-	int x;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -732373363
-	)
-	@Export("y")
-	int y;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = -568181089
-	)
-	@Export("orientation")
-	int orientation;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 1054718707
-	)
-	@Export("orientation2")
-	int orientation2;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -1599500981
+		intValue = 743465745
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("g")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -1858126929
+		intValue = 248971679
+	)
+	@Export("x")
+	int x;
+	@ObfuscatedName("as")
+	@ObfuscatedGetter(
+		intValue = 1620925779
+	)
+	@Export("y")
+	int y;
+	@ObfuscatedName("ax")
+	@ObfuscatedGetter(
+		intValue = 266433617
+	)
+	@Export("orientation")
+	int orientation;
+	@ObfuscatedName("ap")
+	@ObfuscatedGetter(
+		intValue = -874216225
+	)
+	@Export("orientation2")
+	int orientation2;
+	@ObfuscatedName("ab")
+	@ObfuscatedGetter(
+		intValue = -1906641877
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lim;"
 	)
 	@Export("renderable1")
 	public Renderable renderable1;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lim;"
 	)
 	@Export("renderable2")
 	public Renderable renderable2;
-	@ObfuscatedName("i")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		longValue = 1587928550129983111L
+		longValue = -1468641823099948599L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 1186627599
+		intValue = -1745333937
 	)
 	@Export("flags")
 	int flags;
@@ -79,12 +84,26 @@ public final class DecorativeObject {
 		this.flags = 0; // L: 14
 	} // L: 16
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("bq")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "106"
+		descriptor = "(Lhx;I)Z",
+		garbageValue = "-300819598"
 	)
-	public static boolean method4551(int var0) {
-		return (var0 >> 22 & 1) != 0; // L: 29
+	static boolean method5043(ObjectComposition var0) {
+		if (var0.transforms != null) { // L: 575
+			int[] var1 = var0.transforms; // L: 577
+
+			for (int var2 = 0; var2 < var1.length; ++var2) { // L: 578
+				int var3 = var1[var2]; // L: 579
+				ObjectComposition var4 = class175.getObjectDefinition(var3); // L: 581
+				if (var4.mapIconId != -1) { // L: 582
+					return true; // L: 583
+				}
+			}
+		} else if (var0.mapIconId != -1) { // L: 589
+			return true; // L: 590
+		}
+
+		return false; // L: 592
 	}
 }
