@@ -1,42 +1,93 @@
+import java.util.concurrent.ThreadFactory;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kz")
-public class class305 {
-	static {
-		int var0 = 0; // L: 9
-		int var1 = 0; // L: 10
-		class301[] var2 = new class301[]{class301.field3575, class301.field3576}; // L: 14
-		class301[] var3 = var2; // L: 16
+@ObfuscatedName("lv")
+final class class305 implements ThreadFactory {
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Lnq;"
+	)
+	@Export("VarpDefinition_archive")
+	public static AbstractArchive VarpDefinition_archive;
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "Lnq;"
+	)
+	@Export("SequenceDefinition_skeletonsArchive")
+	static AbstractArchive SequenceDefinition_skeletonsArchive;
+	@ObfuscatedName("ak")
+	static byte[][][] field3399;
+	@ObfuscatedName("eb")
+	@Export("mouseCam")
+	static boolean mouseCam;
+	@ObfuscatedName("fd")
+	@ObfuscatedSignature(
+		descriptor = "Lny;"
+	)
+	@Export("archive9")
+	static Archive archive9;
 
-		for (int var4 = 0; var4 < var3.length; ++var4) { // L: 17
-			class301 var5 = var3[var4]; // L: 18
-			if (var5.field3580 > var0) { // L: 20
-				var0 = var5.field3580;
+	public Thread newThread(Runnable var1) {
+		return new Thread(var1, "OSRS WAV Load"); // L: 105
+	}
+
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "([BIIB)Z",
+		garbageValue = "-56"
+	)
+	static final boolean method5722(byte[] var0, int var1, int var2) {
+		boolean var3 = true; // L: 214
+		Buffer var4 = new Buffer(var0); // L: 215
+		int var5 = -1; // L: 216
+
+		label69:
+		while (true) {
+			int var6 = var4.method9023(); // L: 218
+			if (var6 == 0) { // L: 219
+				return var3; // L: 250
 			}
 
-			if (var5.field3578 > var1) { // L: 21
-				var1 = var5.field3578;
+			var5 += var6; // L: 220
+			int var7 = 0; // L: 221
+			boolean var8 = false; // L: 222
+
+			while (true) {
+				int var9;
+				while (!var8) { // L: 224
+					var9 = var4.readUShortSmart(); // L: 230
+					if (var9 == 0) { // L: 231
+						continue label69;
+					}
+
+					var7 += var9 - 1; // L: 232
+					int var10 = var7 & 63; // L: 233
+					int var11 = var7 >> 6 & 63; // L: 234
+					int var12 = var4.readUnsignedByte() >> 2; // L: 235
+					int var13 = var11 + var1; // L: 236
+					int var14 = var10 + var2; // L: 237
+					if (var13 > 0 && var14 > 0 && var13 < 103 && var14 < 103) { // L: 238
+						ObjectComposition var15 = class175.getObjectDefinition(var5); // L: 239
+						if (var12 != 22 || !Client.isLowDetail || var15.int1 != 0 || var15.interactType == 1 || var15.boolean2) { // L: 240
+							if (!var15.needsModelFiles()) { // L: 241
+								++Client.field574; // L: 242
+								var3 = false; // L: 243
+							}
+
+							var8 = true; // L: 245
+						}
+					}
+				}
+
+				var9 = var4.readUShortSmart(); // L: 225
+				if (var9 == 0) { // L: 226
+					break;
+				}
+
+				var4.readUnsignedByte(); // L: 227
 			}
 		}
-
-	} // L: 25
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(ILnd;Llc;B)V",
-		garbageValue = "82"
-	)
-	static void method5764(int var0, ArchiveDisk var1, Archive var2) {
-		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 30
-		var3.type = 1; // L: 31
-		var3.key = (long)var0; // L: 32
-		var3.archiveDisk = var1; // L: 33
-		var3.archive = var2; // L: 34
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 35
-			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 36
-		} // L: 37
-
-		Tiles.method2065(); // L: 38
-	} // L: 39
+	}
 }

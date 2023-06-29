@@ -1,71 +1,90 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
+import netscape.javascript.JSObject;
 
-@ObfuscatedName("mq")
-public class class350 {
-	@ObfuscatedName("c")
-	@Export("writeRandomDat")
-	public static void writeRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-		if (var2 == var0) { // L: 12
-			if (var3 == var1) { // L: 13
-				return;
+@ObfuscatedName("nb")
+public enum class350 implements class369 {
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Lnb;"
+	)
+	field4190(-1),
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "Lnb;"
+	)
+	field4195(0),
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "Lnb;"
+	)
+	field4192(1),
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Lnb;"
+	)
+	field4193(2);
+
+	@ObfuscatedName("fk")
+	@ObfuscatedSignature(
+		descriptor = "Lny;"
+	)
+	@Export("archive18")
+	static Archive archive18;
+	@ObfuscatedName("ax")
+	@ObfuscatedGetter(
+		intValue = 1585725759
+	)
+	final int field4191;
+
+	class350(int var3) {
+		this.field4191 = var3; // L: 15
+	} // L: 16
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-14"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field4191; // L: 20
+	}
+
+	@ObfuscatedName("gm")
+	@ObfuscatedSignature(
+		descriptor = "(B)Lil;",
+		garbageValue = "0"
+	)
+	public static class211 method6624() {
+		return Client.field739; // L: 1050
+	}
+
+	@ObfuscatedName("nn")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;S)V",
+		garbageValue = "-21759"
+	)
+	static void method6623(String var0) {
+		class443.field4710 = var0; // L: 12664
+
+		try {
+			String var1 = class347.client.getParameter(Integer.toString(18)); // L: 12666
+			String var2 = class347.client.getParameter(Integer.toString(13)); // L: 12667
+			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2; // L: 12668
+			if (var0.length() == 0) { // L: 12669
+				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
+			} else {
+				var3 = var3 + "; Expires=" + HorizontalAlignment.method3685(WallObject.method5027() + 94608000000L) + "; Max-Age=" + 94608000L; // L: 12670
 			}
 
-			if (var3 > var1 && var3 < var4 + var1) { // L: 14
-				--var4; // L: 15
-				var1 += var4; // L: 16
-				var3 += var4; // L: 17
-				var4 = var1 - var4; // L: 18
-
-				for (var4 += 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 19 20 28
-					var2[var3--] = var0[var1--]; // L: 21
-					var2[var3--] = var0[var1--]; // L: 22
-					var2[var3--] = var0[var1--]; // L: 23
-					var2[var3--] = var0[var1--]; // L: 24
-					var2[var3--] = var0[var1--]; // L: 25
-					var2[var3--] = var0[var1--]; // L: 26
-					var2[var3--] = var0[var1--]; // L: 27
-				}
-
-				for (var4 -= 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 30 31
-				}
-
-				return; // L: 32
-			}
+			Client var4 = class347.client; // L: 12671
+			String var5 = "document.cookie=\"" + var3 + "\""; // L: 12672
+			JSObject.getWindow(var4).eval(var5); // L: 12675
+		} catch (Throwable var6) { // L: 12678
 		}
 
-		var4 += var1; // L: 35
-
-		for (var4 -= 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 36 37 45
-			var2[var3++] = var0[var1++]; // L: 38
-			var2[var3++] = var0[var1++]; // L: 39
-			var2[var3++] = var0[var1++]; // L: 40
-			var2[var3++] = var0[var1++]; // L: 41
-			var2[var3++] = var0[var1++]; // L: 42
-			var2[var3++] = var0[var1++]; // L: 43
-			var2[var3++] = var0[var1++]; // L: 44
-		}
-
-		for (var4 += 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 47 48
-		}
-
-	} // L: 49
-
-	@ObfuscatedName("i")
-	@Export("clearIntArray")
-	public static void clearIntArray(int[] var0, int var1, int var2) {
-		for (var2 = var2 + var1 - 7; var1 < var2; var0[var1++] = 0) { // L: 364 365 373
-			var0[var1++] = 0; // L: 366
-			var0[var1++] = 0; // L: 367
-			var0[var1++] = 0; // L: 368
-			var0[var1++] = 0; // L: 369
-			var0[var1++] = 0; // L: 370
-			var0[var1++] = 0; // L: 371
-			var0[var1++] = 0; // L: 372
-		}
-
-		for (var2 += 7; var1 < var2; var0[var1++] = 0) { // L: 375 376
-		}
-
-	} // L: 377
+	} // L: 12679
 }
