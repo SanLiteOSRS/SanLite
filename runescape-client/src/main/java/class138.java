@@ -3,81 +3,68 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eq")
-public class class138 extends class128 {
-	@ObfuscatedName("he")
+@ObfuscatedName("fw")
+public enum class138 implements class369 {
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lcd;"
+		descriptor = "Lfw;"
 	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
-	@ObfuscatedName("c")
+	field1607(1, 0),
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "Lfw;"
+	)
+	field1606(0, 1),
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "Lfw;"
+	)
+	field1608(2, 2),
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Lfw;"
+	)
+	field1609(4, 3),
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Lfw;"
+	)
+	field1610(3, 4);
+
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -1956537991
+		intValue = -2124771113
 	)
-	int field1623;
-	@ObfuscatedName("v")
-	String field1620;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lej;"
+	public final int field1611;
+	@ObfuscatedName("ab")
+	@ObfuscatedGetter(
+		intValue = 516056089
 	)
-	final class131 this$0;
+	@Export("id")
+	final int id;
 
+	class138(int var3, int var4) {
+		this.field1611 = var3; // L: 17
+		this.id = var4; // L: 18
+	} // L: 19
+
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(B)I",
+		garbageValue = "-14"
 	)
-	class138(class131 var1) {
-		this.this$0 = var1; // L: 323
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.id; // L: 23
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("kb")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIII)V",
+		garbageValue = "-1617334204"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1623 = var1.readInt(); // L: 326
-		this.field1620 = var1.readStringCp1252NullTerminated(); // L: 327
-	} // L: 328
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2968(this.field1623, this.field1620); // L: 331
-	} // L: 332
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "4"
-	)
-	public static void method2948(AbstractArchive var0) {
-		class435.field4666 = var0; // L: 19
-	} // L: 20
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IZIZI)V",
-		garbageValue = "1195912675"
-	)
-	@Export("sortWorldList")
-	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-		if (class362.World_worlds != null) { // L: 171
-			class131.doWorldSorting(0, class362.World_worlds.length - 1, var0, var1, var2, var3); // L: 172
-		}
-
-	} // L: 174
-
-	@ObfuscatedName("hj")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1549613437"
-	)
-	static boolean method2944() {
-		return (Client.drawPlayerNames & 8) != 0; // L: 4953
-	}
+	@Export("insertMenuItemNoShift")
+	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
+		WorldMapID.method5467(var0, var1, var2, var3, var4, var5, -1, false); // L: 10156
+	} // L: 10157
 }
