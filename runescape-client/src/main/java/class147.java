@@ -3,48 +3,82 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("em")
-public class class147 extends class128 {
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	@Export("SpotAnimationDefinition_modelArchive")
-	public static AbstractArchive SpotAnimationDefinition_modelArchive;
-	@ObfuscatedName("c")
+@ObfuscatedName("fo")
+public class class147 extends class142 {
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1269941877
+		intValue = 821551795
 	)
-	int field1686;
+	int field1650;
+	@ObfuscatedName("an")
+	@ObfuscatedGetter(
+		intValue = 162489921
+	)
+	int field1646;
+	@ObfuscatedName("av")
+	@ObfuscatedGetter(
+		intValue = 501218191
+	)
+	int field1648;
+	@ObfuscatedName("as")
+	@ObfuscatedGetter(
+		intValue = 787234283
+	)
+	int field1647;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfh;"
 	)
-	final class131 this$0;
+	final class145 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfh;)V"
 	)
-	class147(class131 var1) {
-		this.this$0 = var1;
-		this.field1686 = -1; // L: 144
-	} // L: 146
+	class147(class145 var1) {
+		this.this$0 = var1; // L: 289
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Ltz;B)V",
+		garbageValue = "59"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1686 = var1.readUnsignedShort(); // L: 149
-	} // L: 150
+	void vmethod3381(Buffer var1) {
+		this.field1650 = var1.readInt(); // L: 292
+		this.field1647 = var1.readInt(); // L: 293
+		this.field1646 = var1.readUnsignedByte(); // L: 294
+		this.field1648 = var1.readUnsignedByte(); // L: 295
+	} // L: 296
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Lfs;B)V",
+		garbageValue = "-72"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method3016(this.field1686); // L: 153
-	} // L: 154
+	void vmethod3382(ClanSettings var1) {
+		var1.method3217(this.field1650, this.field1647, this.field1646, this.field1648); // L: 299
+	} // L: 300
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lht;",
+		garbageValue = "-1850954136"
+	)
+	@Export("WorldMapElement_get")
+	public static WorldMapElement WorldMapElement_get(int var0) {
+		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0); // L: 62 63
+	}
+
+	@ObfuscatedName("nv")
+	@ObfuscatedSignature(
+		descriptor = "(Lmb;II)Ljava/lang/String;",
+		garbageValue = "-1101437538"
+	)
+	static String method3159(Widget var0, int var1) {
+		if (!class60.method1131(StudioGame.getWidgetFlags(var0), var1) && var0.onOp == null) { // L: 12635
+			return null;
+		} else {
+			return var0.actions != null && var0.actions.length > var1 && var0.actions[var1] != null && var0.actions[var1].trim().length() != 0 ? var0.actions[var1] : null; // L: 12636 12637 12639
+		}
+	}
 }
