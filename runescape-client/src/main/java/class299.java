@@ -1,41 +1,50 @@
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.TimeZone;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kq")
+@mn
+@ObfuscatedName("ls")
 public final class class299 {
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
+	static final HashMap field3356;
+	@ObfuscatedName("do")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lcv;",
-		garbageValue = "268550387"
+		descriptor = "Ltj;"
 	)
-	static ClientPreferences method5754() {
-		AccessFile var0 = null; // L: 112
-		ClientPreferences var1 = new ClientPreferences(); // L: 113
+	@Export("worldSelectLeftSprite")
+	static IndexedSprite worldSelectLeftSprite;
 
-		try {
-			var0 = class67.getPreferencesFile("", class285.field3313.name, false); // L: 115
-			byte[] var2 = new byte[(int)var0.length()]; // L: 116
-
-			int var4;
-			for (int var3 = 0; var3 < var2.length; var3 += var4) { // L: 117 118 121
-				var4 = var0.read(var2, var3, var2.length - var3); // L: 119
-				if (var4 == -1) {
-					throw new IOException(); // L: 120
-				}
+	static {
+		field3356 = new HashMap(); // L: 11
+		TimeZone var0;
+		synchronized(field3356) { // L: 16
+			TimeZone var2 = (TimeZone)field3356.get("Europe/London"); // L: 17
+			if (var2 == null) { // L: 18
+				var2 = TimeZone.getTimeZone("Europe/London"); // L: 19
+				field3356.put("Europe/London", var2); // L: 20
 			}
 
-			var1 = new ClientPreferences(new Buffer(var2)); // L: 123
-		} catch (Exception var6) { // L: 125
+			var0 = var2; // L: 22
 		}
 
-		try {
-			if (var0 != null) { // L: 127
-				var0.close();
-			}
-		} catch (Exception var5) { // L: 129
-		}
+		java.util.Calendar.getInstance(var0); // L: 25
+	} // L: 26
 
-		return var1; // L: 130
+	@ObfuscatedName("bm")
+	@ObfuscatedSignature(
+		descriptor = "(ILdd;ZB)I",
+		garbageValue = "-69"
+	)
+	static int method5682(int var0, Script var1, boolean var2) {
+		if (var0 == 6809) { // L: 5043
+			int var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 5044
+			ObjectComposition var4 = class175.getObjectDefinition(var3); // L: 5045
+			Interpreter.Interpreter_stringStack[++class149.Interpreter_stringStackSize - 1] = var4 != null ? var4.name : ""; // L: 5046
+			return 1; // L: 5047
+		} else {
+			return 2; // L: 5049
+		}
 	}
 }

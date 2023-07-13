@@ -1,65 +1,58 @@
-import java.net.MalformedURLException;
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ki")
+@ObfuscatedName("la")
 public class class290 {
-	@ObfuscatedName("c")
+	@ObfuscatedName("tv")
 	@ObfuscatedSignature(
-		descriptor = "Lct;"
+		descriptor = "Lbi;"
 	)
-	UrlRequest field3331;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lqe;"
-	)
-	SpritePixels field3332;
+	@Export("pcmPlayer1")
+	static PcmPlayer pcmPlayer1;
 
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lcd;)V"
+		descriptor = "(Ljava/lang/String;S)Ljava/lang/String;",
+		garbageValue = "-6836"
 	)
-	class290(String var1, UrlRequester var2) {
-		try {
-			this.field3331 = var2.request(new URL(var1)); // L: 16
-		} catch (MalformedURLException var4) { // L: 18
-			this.field3331 = null;
-		}
+	public static String method5660(String var0) {
+		int var1 = var0.length(); // L: 162
+		char[] var2 = new char[var1]; // L: 163
+		byte var3 = 2; // L: 164
 
-	} // L: 21
+		for (int var4 = 0; var4 < var1; ++var4) { // L: 165
+			char var5 = var0.charAt(var4); // L: 166
+			if (var3 == 0) { // L: 167
+				var5 = Character.toLowerCase(var5);
+			} else if (var3 == 2 || Character.isUpperCase(var5)) { // L: 168
+				char var6;
+				if (var5 != 181 && var5 != 402) { // L: 171
+					var6 = Character.toTitleCase(var5); // L: 175
+				} else {
+					var6 = var5; // L: 172
+				}
 
-	@ObfuscatedSignature(
-		descriptor = "(Lct;)V"
-	)
-	class290(UrlRequest var1) {
-		this.field3331 = var1; // L: 24
-	} // L: 25
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(B)Lqe;",
-		garbageValue = "47"
-	)
-	SpritePixels method5562() {
-		if (this.field3332 == null && this.field3331 != null && this.field3331.isDone()) { // L: 28
-			if (this.field3331.getResponse() != null) { // L: 29
-				this.field3332 = ItemLayer.method3920(this.field3331.getResponse()); // L: 30
+				var5 = var6; // L: 177
 			}
 
-			this.field3331 = null; // L: 32
+			if (Character.isLetter(var5)) {
+				var3 = 0; // L: 179
+			} else if (var5 != '.' && var5 != '?' && var5 != '!') { // L: 180
+				if (Character.isSpaceChar(var5)) { // L: 181
+					if (var3 != 2) {
+						var3 = 1;
+					}
+				} else {
+					var3 = 1; // L: 184
+				}
+			} else {
+				var3 = 2; // L: 182
+			}
+
+			var2[var4] = var5; // L: 185
 		}
 
-		return this.field3332; // L: 34
+		return new String(var2); // L: 187
 	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "21073206"
-	)
-	@Export("addGameMessage")
-	static void addGameMessage(int var0, String var1, String var2) {
-		SecureRandomFuture.addChatMessage(var0, var1, var2, (String)null); // L: 19
-	} // L: 20
 }
