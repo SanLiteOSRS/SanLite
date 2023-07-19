@@ -1,24 +1,30 @@
 import java.awt.Component;
 import java.awt.Graphics;
+import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("d")
+@ObfuscatedName("ah")
 @Implements("Canvas")
 public final class Canvas extends java.awt.Canvas {
-	@ObfuscatedName("h")
-	@Export("ByteArrayPool_alternativeSizes")
-	public static int[] ByteArrayPool_alternativeSizes;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = -1814972075
+	@ObfuscatedName("wv")
+	static List field110;
+	@ObfuscatedName("fv")
+	@ObfuscatedSignature(
+		descriptor = "Lng;"
 	)
-	@Export("loginBoxCenter")
-	static int loginBoxCenter;
-	@ObfuscatedName("c")
+	@Export("archive13")
+	static Archive archive13;
+	@ObfuscatedName("ot")
+	@ObfuscatedGetter(
+		intValue = -1224052835
+	)
+	@Export("selectedSpellWidget")
+	static int selectedSpellWidget;
+	@ObfuscatedName("ai")
 	@Export("component")
 	Component component;
 
@@ -34,382 +40,602 @@ public final class Canvas extends java.awt.Canvas {
 		this.component.paint(var1); // L: 19
 	} // L: 20
 
-	@ObfuscatedName("q")
-	public static boolean method322(long var0) {
-		boolean var2 = var0 != 0L; // L: 52
-		if (var2) { // L: 53
-			boolean var3 = (int)(var0 >>> 16 & 1L) == 1; // L: 56
-			var2 = !var3; // L: 58
-		}
-
-		return var2; // L: 60
-	}
-
-	@ObfuscatedName("j")
+	@ObfuscatedName("kk")
 	@ObfuscatedSignature(
-		descriptor = "([BIIIIIII[Lgv;B)V",
-		garbageValue = "70"
+		descriptor = "([Lme;IIIIIIIIB)V",
+		garbageValue = "83"
 	)
-	static final void method315(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, CollisionMap[] var8) {
-		int var10;
-		for (int var9 = 0; var9 < 8; ++var9) { // L: 111
-			for (var10 = 0; var10 < 8; ++var10) { // L: 112
-				if (var9 + var2 > 0 && var9 + var2 < 103 && var3 + var10 > 0 && var3 + var10 < 103) {
-					int[] var10000 = var8[var1].flags[var9 + var2]; // L: 113
-					var10000[var3 + var10] &= -16777217;
-				}
-			}
-		}
+	@Export("drawInterface")
+	static final void drawInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+		Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5); // L: 10562
+		Rasterizer3D.method4490(); // L: 10563
 
-		Buffer var13 = new Buffer(var0); // L: 116
-
-		for (var10 = 0; var10 < 4; ++var10) { // L: 117
-			for (int var11 = 0; var11 < 64; ++var11) { // L: 118
-				for (int var12 = 0; var12 < 64; ++var12) { // L: 119
-					if (var10 == var4 && var11 >= var5 && var11 < var5 + 8 && var12 >= var6 && var12 < var6 + 8) { // L: 120
-						Players.loadTerrain(var13, var1, var2 + class122.method2763(var11 & 7, var12 & 7, var7), var3 + FloorOverlayDefinition.method3818(var11 & 7, var12 & 7, var7), 0, 0, var7); // L: 121
-					} else {
-						Players.loadTerrain(var13, 0, -1, -1, 0, 0, 0); // L: 123
-					}
-				}
-			}
-		}
-
-	} // L: 127
-
-	@ObfuscatedName("fv")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-113372020"
-	)
-	@Export("getLoginError")
-	static void getLoginError(int var0) {
-		int var1 = Login.loginIndex; // L: 2788
-		if (var0 == -3) { // L: 2791
-			class101.setLoginResponseString("Connection timed out.", "Please try using a different world.", "");
-		} else if (var0 == -2) { // L: 2792
-			class101.setLoginResponseString("Error connecting to server.", "Please try using a different world.", "");
-		} else if (var0 == -1) { // L: 2793
-			class101.setLoginResponseString("No response from server.", "Please try using a different world.", "");
-		} else if (var0 == 3) { // L: 2794
-			WorldMapData_1.method4872(3); // L: 2795
-			Login.field902 = 1; // L: 2796
-		} else if (var0 == 4) { // L: 2798
-			WorldMapData_1.method4872(14); // L: 2800
-			Login.field897 = 0; // L: 2801
-		} else if (var0 == 5) { // L: 2804
-			Login.field902 = 2; // L: 2805
-			class101.setLoginResponseString("Your account has not logged out from its last", "session or the server is too busy right now.", "Please try again in a few minutes."); // L: 2806
-		} else if (var0 != 68 && (Client.onMobile || var0 != 6)) { // L: 2808
-			if (var0 == 7) { // L: 2811
-				class101.setLoginResponseString("This world is full.", "Please use a different world.", "");
-			} else if (var0 == 8) { // L: 2812
-				class101.setLoginResponseString("Unable to connect.", "Login server offline.", "");
-			} else if (var0 == 9) { // L: 2813
-				class101.setLoginResponseString("Login limit exceeded.", "Too many connections from your address.", "");
-			} else if (var0 == 10) { // L: 2814
-				class101.setLoginResponseString("Unable to connect.", "Bad session id.", "");
-			} else if (var0 == 11) { // L: 2815
-				class101.setLoginResponseString("We suspect someone knows your password.", "Press 'change your password' on front page.", "");
-			} else if (var0 == 12) { // L: 2816
-				class101.setLoginResponseString("You need a members account to login to this world.", "Please subscribe, or use a different world.", "");
-			} else if (var0 == 13) { // L: 2817
-				class101.setLoginResponseString("Could not complete login.", "Please try using a different world.", "");
-			} else if (var0 == 14) { // L: 2818
-				class101.setLoginResponseString("The server is being updated.", "Please wait 1 minute and try again.", "");
-			} else if (var0 == 16) { // L: 2819
-				class101.setLoginResponseString("Too many login attempts.", "Please wait a few minutes before trying again.", "");
-			} else if (var0 == 17) { // L: 2820
-				class101.setLoginResponseString("To access this free world, log into a", "members world and move your character", "to a non-members area.");
-			} else if (var0 == 18) { // L: 2821
-				WorldMapData_1.method4872(14); // L: 2823
-				Login.field897 = 1; // L: 2824
-			} else if (var0 == 19) { // L: 2827
-				class101.setLoginResponseString("This world is running a closed Beta.", "Sorry invited players only.", "Please use a different world.");
-			} else if (var0 == 20) { // L: 2828
-				class101.setLoginResponseString("Invalid loginserver requested.", "Please try using a different world.", "");
-			} else if (var0 == 22) { // L: 2829
-				class101.setLoginResponseString("Malformed login packet.", "Please try again.", "");
-			} else if (var0 == 23) { // L: 2830
-				class101.setLoginResponseString("No reply from loginserver.", "Please wait 1 minute and try again.", "");
-			} else if (var0 == 24) { // L: 2831
-				class101.setLoginResponseString("Error loading your profile.", "Please contact customer support.", "");
-			} else if (var0 == 25) { // L: 2832
-				class101.setLoginResponseString("Unexpected loginserver response.", "Please try using a different world.", "");
-			} else if (var0 == 26) { // L: 2833
-				class101.setLoginResponseString("This computers address has been blocked", "as it was used to break our rules.", "");
-			} else if (var0 == 27) { // L: 2834
-				class101.setLoginResponseString("", "Service unavailable.", "");
-			} else if (var0 == 31) { // L: 2835
-				class101.setLoginResponseString("Your account must have a displayname set", "in order to play the game.  Please set it", "via the website, or the main game.");
-			} else if (var0 == 32) { // L: 2836
-				class101.setLoginResponseString("Your attempt to log into your account was", "unsuccessful.  Don't worry, you can sort", "this out by visiting the billing system.");
-			} else if (var0 == 37) { // L: 2837
-				class101.setLoginResponseString("Your account is currently inaccessible.", "Please try again in a few minutes.", "");
-			} else if (var0 == 38) { // L: 2838
-				class101.setLoginResponseString("You need to vote to play!", "Visit runescape.com and vote,", "and then come back here!");
-			} else if (var0 == 55) { // L: 2839
-				WorldMapData_1.method4872(8); // L: 2840
-			} else {
-				if (var0 == 56) { // L: 2842
-					class101.setLoginResponseString("Enter the 6-digit code generated by your", "authenticator app.", ""); // L: 2843
-					HealthBarUpdate.updateGameState(11); // L: 2844
-					return; // L: 2845
-				}
-
-				if (var0 == 57) { // L: 2847
-					class101.setLoginResponseString("The code you entered was incorrect.", "Please try again.", ""); // L: 2848
-					HealthBarUpdate.updateGameState(11); // L: 2849
-					return; // L: 2850
-				}
-
-				if (var0 == 61) { // L: 2852
-					class101.setLoginResponseString("", "Please enter your date of birth (DD/MM/YYYY)", ""); // L: 2853
-					WorldMapData_1.method4872(7); // L: 2854
+		for (int var9 = 0; var9 < var0.length; ++var9) { // L: 10564
+			Widget var10 = var0[var9]; // L: 10565
+			if (var10 != null && (var10.parentId == var1 || var1 == -1412584499 && var10 == Client.clickedWidget)) { // L: 10566 10567
+				int var11;
+				if (var8 == -1) { // L: 10569
+					Client.rootWidgetXs[Client.rootWidgetCount] = var10.x + var6; // L: 10570
+					Client.rootWidgetYs[Client.rootWidgetCount] = var7 + var10.y; // L: 10571
+					Client.rootWidgetWidths[Client.rootWidgetCount] = var10.width; // L: 10572
+					Client.rootWidgetHeights[Client.rootWidgetCount] = var10.height; // L: 10573
+					var11 = ++Client.rootWidgetCount - 1; // L: 10574
 				} else {
-					if (var0 == 62) { // L: 2856
-						HealthBarUpdate.updateGameState(10); // L: 2857
-						WorldMapData_1.method4872(9); // L: 2858
-						class101.setLoginResponseString("Login attempt timed out.", "Please try again.", ""); // L: 2859
-						return; // L: 2860
-					}
-
-					if (var0 == 63) { // L: 2862
-						HealthBarUpdate.updateGameState(10); // L: 2863
-						WorldMapData_1.method4872(9); // L: 2864
-						class101.setLoginResponseString("You were signed out.", "Please sign in again.", ""); // L: 2865
-						return; // L: 2866
-					}
-
-					if (var0 == 65 || var0 == 67) { // L: 2868
-						HealthBarUpdate.updateGameState(10); // L: 2869
-						WorldMapData_1.method4872(9); // L: 2870
-						class101.setLoginResponseString("Failed to login.", "Please try again.", ""); // L: 2871
-						return; // L: 2872
-					}
-
-					if (var0 == 71) { // L: 2874
-						HealthBarUpdate.updateGameState(10); // L: 2875
-						WorldMapData_1.method4872(7); // L: 2876
-						class101.setLoginResponseString("There was a problem updating your DOB.", "Please try again later. If the problem ", "persists, please contact Jagex Support."); // L: 2877
-					} else if (var0 == 73) { // L: 2879
-						HealthBarUpdate.updateGameState(10); // L: 2880
-						WorldMapData_1.method4872(6); // L: 2881
-						class101.setLoginResponseString("Your date of birth information is waiting", "to be reviewed by our staff.", "It will be processed shortly."); // L: 2882
-					} else if (var0 == 72) { // L: 2884
-						HealthBarUpdate.updateGameState(10); // L: 2885
-						WorldMapData_1.method4872(26); // L: 2886
-					} else {
-						class101.setLoginResponseString("Unexpected server response", "Please try using a different world.", ""); // L: 2888
-					}
+					var11 = var8; // L: 10576
 				}
-			}
-		} else {
-			class101.setLoginResponseString("RuneScape has been updated!", "Please reload this page.", ""); // L: 2809
-		}
 
-		HealthBarUpdate.updateGameState(10); // L: 2889
-		int var4 = Login.loginIndex; // L: 2893
-		boolean var5 = var4 != var1; // L: 2895
-		if (!var5 && Client.field516.method8008()) { // L: 2896
-			WorldMapData_1.method4872(9); // L: 2897
-		}
-
-	} // L: 2899
-
-	@ObfuscatedName("hf")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIIII)V",
-		garbageValue = "-525734760"
-	)
-	@Export("updatePendingSpawn")
-	static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
-		PendingSpawn var9 = null; // L: 7757
-
-		for (PendingSpawn var10 = (PendingSpawn)Client.pendingSpawns.last(); var10 != null; var10 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 7758 7759 7764
-			if (var0 == var10.plane && var10.x == var1 && var2 == var10.y && var3 == var10.type) { // L: 7760
-				var9 = var10; // L: 7761
-				break;
-			}
-		}
-
-		if (var9 == null) { // L: 7766
-			var9 = new PendingSpawn(); // L: 7767
-			var9.plane = var0; // L: 7768
-			var9.type = var3; // L: 7769
-			var9.x = var1; // L: 7770
-			var9.y = var2; // L: 7771
-			class151.method3146(var9); // L: 7772
-			Client.pendingSpawns.addFirst(var9); // L: 7773
-		}
-
-		var9.id = var4; // L: 7775
-		var9.field1125 = var5; // L: 7776
-		var9.orientation = var6; // L: 7777
-		var9.delay = var7; // L: 7778
-		var9.hitpoints = var8; // L: 7779
-	} // L: 7780
-
-	@ObfuscatedName("jg")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;IB)I",
-		garbageValue = "9"
-	)
-	static final int method319(Widget var0, int var1) {
-		if (var0.cs1Instructions != null && var1 < var0.cs1Instructions.length) { // L: 10788
-			try {
-				int[] var2 = var0.cs1Instructions[var1]; // L: 10790
-				int var3 = 0; // L: 10791
-				int var4 = 0; // L: 10792
-				byte var5 = 0; // L: 10793
-
-				while (true) {
-					int var6 = var2[var4++]; // L: 10795
-					int var7 = 0; // L: 10796
-					byte var8 = 0; // L: 10797
-					if (var6 == 0) { // L: 10798
-						return var3;
+				var10.rootIndex = var11; // L: 10577
+				var10.cycle = Client.cycle; // L: 10578
+				if (!var10.isIf3 || !UserComparator4.isComponentHidden(var10)) { // L: 10579
+					if (var10.contentType > 0) { // L: 10580
+						method343(var10);
 					}
 
-					if (var6 == 1) { // L: 10799
-						var7 = Client.currentLevels[var2[var4++]];
+					int var12 = var10.x + var6; // L: 10581
+					int var13 = var7 + var10.y; // L: 10582
+					int var14 = var10.transparencyTop; // L: 10583
+					int var15;
+					int var16;
+					if (var10 == Client.clickedWidget) { // L: 10584
+						if (var1 != -1412584499 && !var10.isScrollBar) { // L: 10585
+							class72.field899 = var0; // L: 10586
+							SoundSystem.field311 = var6; // L: 10587
+							DynamicObject.field996 = var7; // L: 10588
+							continue; // L: 10589
+						}
+
+						if (Client.isDraggingWidget && Client.field684) { // L: 10591
+							var15 = MouseHandler.MouseHandler_x; // L: 10592
+							var16 = MouseHandler.MouseHandler_y; // L: 10593
+							var15 -= Client.widgetClickX; // L: 10594
+							var16 -= Client.widgetClickY; // L: 10595
+							if (var15 < Client.field685) { // L: 10596
+								var15 = Client.field685;
+							}
+
+							if (var15 + var10.width > Client.field685 + Client.clickedWidgetParent.width) { // L: 10597
+								var15 = Client.field685 + Client.clickedWidgetParent.width - var10.width;
+							}
+
+							if (var16 < Client.field776) { // L: 10598
+								var16 = Client.field776;
+							}
+
+							if (var16 + var10.height > Client.field776 + Client.clickedWidgetParent.height) { // L: 10599
+								var16 = Client.field776 + Client.clickedWidgetParent.height - var10.height;
+							}
+
+							var12 = var15; // L: 10600
+							var13 = var16; // L: 10601
+						}
+
+						if (!var10.isScrollBar) { // L: 10603
+							var14 = 128;
+						}
 					}
 
-					if (var6 == 2) { // L: 10800
-						var7 = Client.levels[var2[var4++]];
+					int var17;
+					int var18;
+					int var19;
+					int var20;
+					int var21;
+					int var22;
+					if (var10.type == 9) { // L: 10609
+						var19 = var12; // L: 10610
+						var20 = var13; // L: 10611
+						var21 = var12 + var10.width; // L: 10612
+						var22 = var13 + var10.height; // L: 10613
+						if (var21 < var12) { // L: 10614
+							var19 = var21; // L: 10616
+							var21 = var12; // L: 10617
+						}
+
+						if (var22 < var13) { // L: 10619
+							var20 = var22; // L: 10621
+							var22 = var13; // L: 10622
+						}
+
+						++var21; // L: 10624
+						++var22; // L: 10625
+						var15 = var19 > var2 ? var19 : var2; // L: 10626
+						var16 = var20 > var3 ? var20 : var3; // L: 10627
+						var17 = var21 < var4 ? var21 : var4; // L: 10628
+						var18 = var22 < var5 ? var22 : var5; // L: 10629
+					} else {
+						var19 = var12 + var10.width; // L: 10632
+						var20 = var13 + var10.height; // L: 10633
+						var15 = var12 > var2 ? var12 : var2; // L: 10634
+						var16 = var13 > var3 ? var13 : var3; // L: 10635
+						var17 = var19 < var4 ? var19 : var4; // L: 10636
+						var18 = var20 < var5 ? var20 : var5; // L: 10637
 					}
 
-					if (var6 == 3) { // L: 10801
-						var7 = Client.experience[var2[var4++]];
-					}
+					if (!var10.isIf3 || var15 < var17 && var16 < var18) { // L: 10639
+						if (var10.contentType != 0) { // L: 10640
+							if (var10.contentType == 1336) { // L: 10641
+								if (ScriptFrame.clientPreferences.method2510()) { // L: 10642
+									var13 += 15; // L: 10643
+									StudioGame.fontPlain12.drawRightAligned("Fps:" + GameEngine.fps, var12 + var10.width, var13, 16776960, -1); // L: 10644
+									var13 += 15; // L: 10645
+									Runtime var41 = Runtime.getRuntime(); // L: 10646
+									var20 = (int)((var41.totalMemory() - var41.freeMemory()) / 1024L); // L: 10647
+									var21 = 16776960; // L: 10648
+									if (var20 > 327680 && !Client.isLowDetail) { // L: 10649
+										var21 = 16711680;
+									}
 
-					int var9;
-					Widget var10;
-					int var11;
-					int var12;
-					if (var6 == 4) { // L: 10802
-						var9 = var2[var4++] << 16; // L: 10803
-						var9 += var2[var4++]; // L: 10804
-						var10 = class140.getWidget(var9); // L: 10805
-						var11 = var2[var4++]; // L: 10806
-						if (var11 != -1 && (!EnumComposition.ItemComposition_get(var11).isMembersOnly || Client.isMembersWorld)) { // L: 10807
-							for (var12 = 0; var12 < var10.itemIds.length; ++var12) { // L: 10808
-								if (var11 + 1 == var10.itemIds[var12]) { // L: 10809
-									var7 += var10.itemQuantities[var12];
+									StudioGame.fontPlain12.drawRightAligned("Mem:" + var20 + "k", var12 + var10.width, var13, var21, -1); // L: 10650
+									var13 += 15; // L: 10651
+								}
+								continue;
+							}
+
+							if (var10.contentType == 1337) { // L: 10655
+								Client.viewportX = var12; // L: 10656
+								Client.viewportY = var13; // L: 10657
+								class72.drawEntities(var12, var13, var10.width, var10.height); // L: 10658
+								Client.field717[var10.rootIndex] = true; // L: 10659
+								Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5); // L: 10660
+								continue; // L: 10661
+							}
+
+							if (var10.contentType == 1338) { // L: 10663
+								class357.drawMinimap(var10, var12, var13, var11); // L: 10664
+								Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5); // L: 10665
+								continue; // L: 10666
+							}
+
+							if (var10.contentType == 1339) { // L: 10668
+								class398.drawCompass(var10, var12, var13, var11); // L: 10669
+								Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5); // L: 10670
+								continue; // L: 10671
+							}
+
+							if (var10.contentType == 1400) { // L: 10673
+								ScriptFrame.worldMap.draw(var12, var13, var10.width, var10.height, Client.cycle); // L: 10674
+							}
+
+							if (var10.contentType == 1401) { // L: 10676
+								ScriptFrame.worldMap.drawOverview(var12, var13, var10.width, var10.height); // L: 10677
+							}
+
+							if (var10.contentType == 1402) { // L: 10679
+								ModelData0.loginScreenRunesAnimation.draw(var12, Client.cycle); // L: 10680
+							}
+						}
+
+						if (var10.type == 0) { // L: 10683
+							if (!var10.isIf3 && UserComparator4.isComponentHidden(var10) && var10 != class308.mousedOverWidgetIf1) { // L: 10684
+								continue;
+							}
+
+							if (!var10.isIf3) { // L: 10685
+								if (var10.scrollY > var10.scrollHeight - var10.height) { // L: 10686
+									var10.scrollY = var10.scrollHeight - var10.height;
+								}
+
+								if (var10.scrollY < 0) { // L: 10687
+									var10.scrollY = 0;
+								}
+							}
+
+							drawInterface(var0, var10.id, var15, var16, var17, var18, var12 - var10.scrollX, var13 - var10.scrollY, var11); // L: 10689
+							if (var10.children != null) { // L: 10690
+								drawInterface(var10.children, var10.id, var15, var16, var17, var18, var12 - var10.scrollX, var13 - var10.scrollY, var11);
+							}
+
+							InterfaceParent var28 = (InterfaceParent)Client.interfaceParents.get((long)var10.id); // L: 10691
+							if (var28 != null) { // L: 10692
+								RouteStrategy.drawWidgets(var28.group, var15, var16, var17, var18, var12, var13, var11); // L: 10693
+							}
+
+							Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5); // L: 10695
+							Rasterizer3D.method4490(); // L: 10696
+						} else if (var10.type == 11) { // L: 10698
+							if (UserComparator4.isComponentHidden(var10) && var10 != class308.mousedOverWidgetIf1) { // L: 10699
+								continue;
+							}
+
+							if (var10.children != null) { // L: 10700
+								drawInterface(var10.children, var10.id, var15, var16, var17, var18, var12 - var10.scrollX, var13 - var10.scrollY, var11);
+							}
+
+							Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5); // L: 10701
+							Rasterizer3D.method4490(); // L: 10702
+						}
+
+						if (Client.isResizable || Client.field719[var11] || Client.field724 > 1) { // L: 10704
+							if (var10.type == 0 && !var10.isIf3 && var10.scrollHeight > var10.height) { // L: 10705 10706
+								MusicPatchPcmStream.drawScrollBar(var12 + var10.width, var13, var10.scrollY, var10.height, var10.scrollHeight);
+							}
+
+							if (var10.type != 1) { // L: 10708
+								if (var10.type == 3) { // L: 10711
+									if (MenuAction.runCs1(var10)) { // L: 10713
+										var19 = var10.color2; // L: 10714
+										if (var10 == class308.mousedOverWidgetIf1 && var10.field3655 != 0) { // L: 10715
+											var19 = var10.field3655;
+										}
+									} else {
+										var19 = var10.color; // L: 10718
+										if (var10 == class308.mousedOverWidgetIf1 && var10.field3654 != 0) { // L: 10719
+											var19 = var10.field3654;
+										}
+									}
+
+									if (var10.fill) { // L: 10721
+										switch(var10.fillMode.field5147) { // L: 10722
+										case 1:
+											Rasterizer2D.Rasterizer2D_fillRectangleGradient(var12, var13, var10.width, var10.height, var10.color, var10.color2); // L: 10731
+											break; // L: 10732
+										case 2:
+											Rasterizer2D.Rasterizer2D_fillRectangleGradientAlpha(var12, var13, var10.width, var10.height, var10.color, var10.color2, 255 - (var10.transparencyTop & 255), 255 - (var10.transparencyBot & 255)); // L: 10728
+											break; // L: 10729
+										default:
+											if (var14 == 0) { // L: 10724
+												Rasterizer2D.Rasterizer2D_fillRectangle(var12, var13, var10.width, var10.height, var19);
+											} else {
+												Rasterizer2D.Rasterizer2D_fillRectangleAlpha(var12, var13, var10.width, var10.height, var19, 256 - (var14 & 255)); // L: 10725
+											}
+										}
+									} else if (var14 == 0) { // L: 10736
+										Rasterizer2D.Rasterizer2D_drawRectangle(var12, var13, var10.width, var10.height, var19);
+									} else {
+										Rasterizer2D.Rasterizer2D_drawRectangleAlpha(var12, var13, var10.width, var10.height, var19, 256 - (var14 & 255)); // L: 10737
+									}
+								} else if (var10.type == 4) { // L: 10741
+									Font var40 = var10.getFont(); // L: 10742
+									if (var40 == null) { // L: 10743
+										if (Widget.field3769) { // L: 10744
+											class303.invalidateWidget(var10);
+										}
+									} else {
+										String var42 = var10.text; // L: 10748
+										if (MenuAction.runCs1(var10)) { // L: 10749
+											var20 = var10.color2; // L: 10750
+											if (var10 == class308.mousedOverWidgetIf1 && var10.field3655 != 0) { // L: 10751
+												var20 = var10.field3655;
+											}
+
+											if (var10.field3771.length() > 0) { // L: 10752
+												var42 = var10.field3771;
+											}
+										} else {
+											var20 = var10.color; // L: 10755
+											if (var10 == class308.mousedOverWidgetIf1 && var10.field3654 != 0) { // L: 10756
+												var20 = var10.field3654;
+											}
+										}
+
+										if (var10.isIf3 && var10.itemId != -1) { // L: 10758
+											ItemComposition var43 = class141.ItemComposition_get(var10.itemId); // L: 10759
+											var42 = var43.name; // L: 10760
+											if (var42 == null) { // L: 10761
+												var42 = "null";
+											}
+
+											if ((var43.isStackable == 1 || var10.itemQuantity != 1) && var10.itemQuantity != -1) { // L: 10762
+												var42 = class17.colorStartTag(16748608) + var42 + "</col>" + " " + 'x' + formatItemStacks(var10.itemQuantity);
+											}
+										}
+
+										if (var10 == Client.meslayerContinueWidget) { // L: 10764
+											var42 = "Please wait..."; // L: 10765
+											var20 = var10.color; // L: 10766
+										}
+
+										if (!var10.isIf3) { // L: 10768
+											var42 = KitDefinition.method3729(var42, var10);
+										}
+
+										var40.method7575(var42, var12, var13, var10.width, var10.height, var20, var10.textShadowed ? 0 : -1, DefaultsGroup.method8138(var10.transparencyTop), var10.textXAlignment, var10.textYAlignment, var10.textLineHeight); // L: 10769
+									}
+								} else {
+									int var23;
+									int var24;
+									int var25;
+									if (var10.type == 5) { // L: 10772
+										SpritePixels var38;
+										if (!var10.isIf3) { // L: 10773
+											var38 = var10.getSprite(MenuAction.runCs1(var10), class327.urlRequester); // L: 10774
+											if (var38 != null) { // L: 10775
+												var38.drawTransBgAt(var12, var13);
+											} else if (Widget.field3769) { // L: 10776
+												class303.invalidateWidget(var10);
+											}
+										} else {
+											if (var10.itemId != -1) { // L: 10780
+												var38 = World.getItemSprite(var10.itemId, var10.itemQuantity, var10.outline, var10.spriteShadow, var10.itemQuantityMode, false);
+											} else {
+												var38 = var10.getSprite(false, class327.urlRequester); // L: 10781
+											}
+
+											if (var38 == null) { // L: 10782
+												if (Widget.field3769) { // L: 10806
+													class303.invalidateWidget(var10);
+												}
+											} else {
+												var20 = var38.width; // L: 10783
+												var21 = var38.height; // L: 10784
+												if (!var10.spriteTiling) { // L: 10785
+													var22 = var10.width * 4096 / var20; // L: 10799
+													if (var10.spriteAngle != 0) { // L: 10800
+														var38.method9548(var10.width / 2 + var12, var10.height / 2 + var13, var10.spriteAngle, var22);
+													} else if (var14 != 0) { // L: 10801
+														var38.drawTransScaledAt(var12, var13, var10.width, var10.height, 256 - (var14 & 255));
+													} else if (var20 == var10.width && var21 == var10.height) { // L: 10802
+														var38.drawTransBgAt(var12, var13); // L: 10803
+													} else {
+														var38.drawScaledAt(var12, var13, var10.width, var10.height);
+													}
+												} else {
+													Rasterizer2D.Rasterizer2D_expandClip(var12, var13, var12 + var10.width, var13 + var10.height); // L: 10786
+													var22 = (var20 - 1 + var10.width) / var20; // L: 10787
+													var23 = (var21 - 1 + var10.height) / var21; // L: 10788
+
+													for (var24 = 0; var24 < var22; ++var24) { // L: 10789
+														for (var25 = 0; var25 < var23; ++var25) { // L: 10790
+															if (var10.spriteAngle != 0) { // L: 10791
+																var38.method9548(var20 / 2 + var12 + var20 * var24, var21 / 2 + var13 + var21 * var25, var10.spriteAngle, 4096);
+															} else if (var14 != 0) { // L: 10792
+																var38.drawTransAt(var12 + var20 * var24, var13 + var25 * var21, 256 - (var14 & 255));
+															} else {
+																var38.drawTransBgAt(var12 + var24 * var20, var13 + var25 * var21); // L: 10793
+															}
+														}
+													}
+
+													Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5); // L: 10796
+												}
+											}
+										}
+									} else {
+										int var26;
+										if (var10.type == 6) { // L: 10810
+											boolean var36 = MenuAction.runCs1(var10); // L: 10811
+											if (var36) { // L: 10813
+												var20 = var10.sequenceId2;
+											} else {
+												var20 = var10.sequenceId; // L: 10814
+											}
+
+											Model var39 = null; // L: 10815
+											var22 = 0; // L: 10816
+											if (var10.itemId != -1) { // L: 10817
+												ItemComposition var44 = class141.ItemComposition_get(var10.itemId); // L: 10818
+												if (var44 != null) { // L: 10819
+													var44 = var44.getCountObj(var10.itemQuantity); // L: 10820
+													var39 = var44.getModel(1); // L: 10821
+													if (var39 != null) { // L: 10822
+														var39.calculateBoundsCylinder(); // L: 10823
+														var22 = var39.height / 2; // L: 10824
+													} else {
+														class303.invalidateWidget(var10); // L: 10826
+													}
+												}
+											} else if (var10.modelType == 5) { // L: 10829
+												if (var10.modelId == 0) { // L: 10830
+													var39 = Client.playerAppearance.getModel((SequenceDefinition)null, -1, (SequenceDefinition)null, -1);
+												} else {
+													var39 = class27.localPlayer.getModel(); // L: 10831
+												}
+											} else if (var10.modelType == 7) { // L: 10833
+												var39 = var10.field3685.getModel((SequenceDefinition)null, -1, class140.SequenceDefinition_get(class27.localPlayer.idleSequence), class27.localPlayer.movementFrame); // L: 10834
+											} else {
+												NPCComposition var45 = null; // L: 10837
+												class194 var33 = null; // L: 10838
+												if (var10.modelType == 6) { // L: 10839
+													var25 = var10.modelId; // L: 10840
+													if (var25 >= 0 && var25 < Client.npcs.length) { // L: 10841
+														NPC var34 = Client.npcs[var25]; // L: 10842
+														if (var34 != null) { // L: 10843
+															var45 = var34.definition; // L: 10844
+															var33 = var34.method2640(); // L: 10845
+														}
+													}
+												}
+
+												SequenceDefinition var35 = null; // L: 10849
+												var26 = -1; // L: 10850
+												if (var20 != -1) { // L: 10851
+													var35 = class140.SequenceDefinition_get(var20); // L: 10852
+													var26 = var10.modelFrame; // L: 10853
+												}
+
+												var39 = var10.method6527(var35, var26, var36, class27.localPlayer.appearance, var45, var33); // L: 10855
+												if (var39 == null && Widget.field3769) { // L: 10856
+													class303.invalidateWidget(var10);
+												}
+											}
+
+											Rasterizer3D.method4493(var10.width / 2 + var12, var10.height / 2 + var13); // L: 10858
+											var23 = Rasterizer3D.Rasterizer3D_sine[var10.modelAngleX] * var10.modelZoom >> 16; // L: 10859
+											var24 = Rasterizer3D.Rasterizer3D_cosine[var10.modelAngleX] * var10.modelZoom >> 16; // L: 10860
+											if (var39 != null) { // L: 10861
+												if (!var10.isIf3) { // L: 10862
+													var39.method4897(0, var10.modelAngleY, 0, var10.modelAngleX, 0, var23, var24);
+												} else {
+													var39.calculateBoundsCylinder(); // L: 10864
+													if (var10.modelOrthog) { // L: 10865
+														var39.method4866(0, var10.modelAngleY, var10.modelAngleZ, var10.modelAngleX, var10.modelOffsetX, var22 + var23 + var10.modelOffsetY, var24 + var10.modelOffsetY, var10.modelZoom);
+													} else {
+														var39.method4897(0, var10.modelAngleY, var10.modelAngleZ, var10.modelAngleX, var10.modelOffsetX, var22 + var23 + var10.modelOffsetY, var24 + var10.modelOffsetY); // L: 10866
+													}
+												}
+											}
+
+											Rasterizer3D.method4492(); // L: 10869
+										} else {
+											Font var29;
+											if (var10.type == 8 && var10 == class4.field11 && Client.field658 == Client.field659) { // L: 10872 10873
+												var19 = 0; // L: 10874
+												var20 = 0; // L: 10875
+												var29 = StudioGame.fontPlain12; // L: 10876
+												String var30 = var10.text; // L: 10877
+
+												String var31;
+												for (var30 = KitDefinition.method3729(var30, var10); var30.length() > 0; var20 = var20 + var29.ascent + 1) { // L: 10879 10880 10892
+													var24 = var30.indexOf("<br>"); // L: 10881
+													if (var24 != -1) { // L: 10882
+														var31 = var30.substring(0, var24); // L: 10883
+														var30 = var30.substring(var24 + 4); // L: 10884
+													} else {
+														var31 = var30; // L: 10887
+														var30 = ""; // L: 10888
+													}
+
+													var25 = var29.stringWidth(var31); // L: 10890
+													if (var25 > var19) { // L: 10891
+														var19 = var25;
+													}
+												}
+
+												var19 += 6; // L: 10894
+												var20 += 7; // L: 10895
+												var24 = var12 + var10.width - 5 - var19; // L: 10896
+												var25 = var13 + var10.height + 5; // L: 10897
+												if (var24 < var12 + 5) { // L: 10898
+													var24 = var12 + 5;
+												}
+
+												if (var24 + var19 > var4) { // L: 10899
+													var24 = var4 - var19;
+												}
+
+												if (var25 + var20 > var5) { // L: 10900
+													var25 = var5 - var20;
+												}
+
+												Rasterizer2D.Rasterizer2D_fillRectangle(var24, var25, var19, var20, 16777120); // L: 10901
+												Rasterizer2D.Rasterizer2D_drawRectangle(var24, var25, var19, var20, 0); // L: 10902
+												var30 = var10.text; // L: 10903
+												var26 = var25 + var29.ascent + 2; // L: 10904
+
+												for (var30 = KitDefinition.method3729(var30, var10); var30.length() > 0; var26 = var26 + var29.ascent + 1) { // L: 10905 10906 10917
+													int var27 = var30.indexOf("<br>"); // L: 10907
+													if (var27 != -1) { // L: 10908
+														var31 = var30.substring(0, var27); // L: 10909
+														var30 = var30.substring(var27 + 4); // L: 10910
+													} else {
+														var31 = var30; // L: 10913
+														var30 = ""; // L: 10914
+													}
+
+													var29.draw(var31, var24 + 3, var26, 0, -1); // L: 10916
+												}
+											}
+
+											if (var10.type == 9) { // L: 10921
+												if (var10.field3661) { // L: 10926
+													var19 = var12; // L: 10927
+													var20 = var13 + var10.height; // L: 10928
+													var21 = var12 + var10.width; // L: 10929
+													var22 = var13; // L: 10930
+												} else {
+													var19 = var12; // L: 10933
+													var20 = var13; // L: 10934
+													var21 = var12 + var10.width; // L: 10935
+													var22 = var13 + var10.height; // L: 10936
+												}
+
+												if (var10.lineWid == 1) { // L: 10938
+													Rasterizer2D.Rasterizer2D_drawLine(var19, var20, var21, var22, var10.color); // L: 10939
+												} else {
+													EnumComposition.method3787(var19, var20, var21, var22, var10.color, var10.lineWid); // L: 10942
+												}
+											} else if (var10.type == 12) { // L: 10946
+												class329 var37 = var10.method6470(); // L: 10947
+												class324 var32 = var10.method6471(); // L: 10948
+												if (var37 != null && var32 != null && var37.method6218()) { // L: 10949
+													var29 = var10.getFont(); // L: 10950
+													if (var29 != null) { // L: 10951
+														Client.field709.method9677(var12, var13, var10.width, var10.height, var37.method6346(), var37.method6220(), var37.method6177(), var37.method6263(), var37.method6215()); // L: 10952
+														var22 = var10.textShadowed ? var10.spriteShadow : -1; // L: 10953
+														if (!var37.method6434() && var37.method6210().method7452()) { // L: 10954
+															Client.field709.method9679(var32.field3540, var22, var32.field3539, var32.field3538); // L: 10955
+															Client.field709.method9680(var37.method6219(), var29); // L: 10956
+														} else {
+															Client.field709.method9679(var10.color, var22, var32.field3539, var32.field3538); // L: 10959
+															Client.field709.method9680(var37.method6210(), var29); // L: 10960
+														}
+
+														Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5); // L: 10962
+													}
+												}
+											}
+										}
+									}
 								}
 							}
 						}
 					}
-
-					if (var6 == 5) { // L: 10813
-						var7 = Varps.Varps_main[var2[var4++]];
-					}
-
-					if (var6 == 6) { // L: 10814
-						var7 = Skills.Skills_experienceTable[Client.levels[var2[var4++]] - 1];
-					}
-
-					if (var6 == 7) { // L: 10815
-						var7 = Varps.Varps_main[var2[var4++]] * 100 / 46875;
-					}
-
-					if (var6 == 8) { // L: 10816
-						var7 = class101.localPlayer.combatLevel;
-					}
-
-					if (var6 == 9) { // L: 10817
-						for (var9 = 0; var9 < 25; ++var9) { // L: 10818
-							if (Skills.Skills_enabled[var9]) { // L: 10819
-								var7 += Client.levels[var9];
-							}
-						}
-					}
-
-					if (var6 == 10) { // L: 10822
-						var9 = var2[var4++] << 16; // L: 10823
-						var9 += var2[var4++]; // L: 10824
-						var10 = class140.getWidget(var9); // L: 10825
-						var11 = var2[var4++]; // L: 10826
-						if (var11 != -1 && (!EnumComposition.ItemComposition_get(var11).isMembersOnly || Client.isMembersWorld)) { // L: 10827
-							for (var12 = 0; var12 < var10.itemIds.length; ++var12) { // L: 10828
-								if (var11 + 1 == var10.itemIds[var12]) { // L: 10829
-									var7 = 999999999; // L: 10830
-									break; // L: 10831
-								}
-							}
-						}
-					}
-
-					if (var6 == 11) { // L: 10836
-						var7 = Client.runEnergy;
-					}
-
-					if (var6 == 12) { // L: 10837
-						var7 = Client.weight;
-					}
-
-					if (var6 == 13) { // L: 10838
-						var9 = Varps.Varps_main[var2[var4++]]; // L: 10839
-						int var13 = var2[var4++]; // L: 10840
-						var7 = (var9 & 1 << var13) != 0 ? 1 : 0; // L: 10841
-					}
-
-					if (var6 == 14) { // L: 10843
-						var9 = var2[var4++]; // L: 10844
-						var7 = class388.getVarbit(var9); // L: 10845
-					}
-
-					if (var6 == 15) { // L: 10847
-						var8 = 1;
-					}
-
-					if (var6 == 16) { // L: 10848
-						var8 = 2;
-					}
-
-					if (var6 == 17) { // L: 10849
-						var8 = 3;
-					}
-
-					if (var6 == 18) { // L: 10850
-						var7 = class28.baseX * 64 + (class101.localPlayer.x >> 7);
-					}
-
-					if (var6 == 19) { // L: 10851
-						var7 = WorldMapLabelSize.baseY * 64 + (class101.localPlayer.y >> 7);
-					}
-
-					if (var6 == 20) { // L: 10852
-						var7 = var2[var4++];
-					}
-
-					if (var8 == 0) { // L: 10853
-						if (var5 == 0) { // L: 10854
-							var3 += var7;
-						}
-
-						if (var5 == 1) { // L: 10855
-							var3 -= var7;
-						}
-
-						if (var5 == 2 && var7 != 0) { // L: 10856
-							var3 /= var7;
-						}
-
-						if (var5 == 3) { // L: 10857
-							var3 *= var7;
-						}
-
-						var5 = 0; // L: 10858
-					} else {
-						var5 = var8; // L: 10860
-					}
 				}
-			} catch (Exception var14) { // L: 10863
-				return -1; // L: 10864
 			}
+		}
+
+	} // L: 10967
+
+	@ObfuscatedName("kz")
+	@ObfuscatedSignature(
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "1524127494"
+	)
+	@Export("formatItemStacks")
+	static final String formatItemStacks(int var0) {
+		String var1 = Integer.toString(var0); // L: 11015
+
+		for (int var2 = var1.length() - 3; var2 > 0; var2 -= 3) { // L: 11016
+			var1 = var1.substring(0, var2) + "," + var1.substring(var2); // L: 11017
+		}
+
+		if (var1.length() > 9) { // L: 11019
+			return " " + class17.colorStartTag(65408) + var1.substring(0, var1.length() - 8) + "M" + " " + " (" + var1 + ")" + "</col>";
 		} else {
-			return -2;
+			return var1.length() > 6 ? " " + class17.colorStartTag(16777215) + var1.substring(0, var1.length() - 4) + "K" + " " + " (" + var1 + ")" + "</col>" : " " + class17.colorStartTag(16776960) + var1 + "</col>"; // L: 11020 11021
 		}
 	}
+
+	@ObfuscatedName("mz")
+	@ObfuscatedSignature(
+		descriptor = "(Lme;I)V",
+		garbageValue = "-1738173771"
+	)
+	static final void method343(Widget var0) {
+		int var1 = var0.contentType; // L: 12311
+		if (var1 == 324) { // L: 12312
+			if (Client.field783 == -1) { // L: 12313
+				Client.field783 = var0.spriteId2; // L: 12314
+				Client.field784 = var0.spriteId; // L: 12315
+			}
+
+			if (Client.playerAppearance.field3563 == 1) { // L: 12317
+				var0.spriteId2 = Client.field783;
+			} else {
+				var0.spriteId2 = Client.field784; // L: 12318
+			}
+
+		} else if (var1 == 325) { // L: 12321
+			if (Client.field783 == -1) { // L: 12322
+				Client.field783 = var0.spriteId2; // L: 12323
+				Client.field784 = var0.spriteId; // L: 12324
+			}
+
+			if (Client.playerAppearance.field3563 == 1) { // L: 12326
+				var0.spriteId2 = Client.field784;
+			} else {
+				var0.spriteId2 = Client.field783; // L: 12327
+			}
+
+		} else if (var1 == 327) { // L: 12330
+			var0.modelAngleX = 150; // L: 12331
+			var0.modelAngleY = (int)(Math.sin((double)Client.cycle / 40.0D) * 256.0D) & 2047; // L: 12332
+			var0.modelType = 5; // L: 12333
+			var0.modelId = 0; // L: 12334
+		} else if (var1 == 328) { // L: 12337
+			var0.modelAngleX = 150; // L: 12338
+			var0.modelAngleY = (int)(Math.sin((double)Client.cycle / 40.0D) * 256.0D) & 2047; // L: 12339
+			var0.modelType = 5; // L: 12340
+			var0.modelId = 1; // L: 12341
+		}
+	} // L: 12319 12328 12335 12342 12344
 }

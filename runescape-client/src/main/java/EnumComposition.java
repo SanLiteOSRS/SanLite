@@ -4,55 +4,54 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fs")
+@ObfuscatedName("hl")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lnr;"
 	)
 	@Export("EnumDefinition_archive")
 	static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Llh;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("nc")
+	@ObfuscatedName("gx")
 	@ObfuscatedGetter(
-		intValue = -2102626567
+		intValue = 377539259
 	)
-	@Export("selectedItemSlot")
-	static int selectedItemSlot;
-	@ObfuscatedName("q")
+	static int field1983;
+	@ObfuscatedName("ac")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ay")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -735765161
+		intValue = -2142082893
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("g")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = 367199611
+		intValue = 1580592865
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("an")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("y")
+	@ObfuscatedName("au")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("i")
+	@ObfuscatedName("az")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -65,16 +64,16 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0; // L: 17
 	} // L: 22
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "110"
+		descriptor = "(Ltl;I)V",
+		garbageValue = "537828130"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
+			int var2 = var1.readUnsignedByte(); // L: 40
+			if (var2 == 0) { // L: 41
 				return; // L: 44
 			}
 
@@ -82,10 +81,10 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1048481170"
+		descriptor = "(Ltl;IB)V",
+		garbageValue = "1"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -122,118 +121,142 @@ public class EnumComposition extends DualNode {
 
 	} // L: 70
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "75421574"
+		garbageValue = "195595626"
 	)
 	@Export("size")
 	public int size() {
-		return this.outputCount; // L: 73
+		return this.outputCount;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(Lju;Lqv;I)Ljt;",
-		garbageValue = "870680813"
+		descriptor = "(Lca;Lca;IZI)I",
+		garbageValue = "-264569282"
 	)
-	@Export("getPacketBufferNode")
-	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-		PacketBufferNode var2;
-		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) { // L: 24
-			var2 = new PacketBufferNode(); // L: 25
-		} else {
-			var2 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 28
-		}
+	@Export("compareWorlds")
+	static int compareWorlds(World var0, World var1, int var2, boolean var3) {
+		if (var2 == 1) { // L: 222
+			int var4 = var0.population; // L: 223
+			int var5 = var1.population; // L: 224
+			if (!var3) { // L: 225
+				if (var4 == -1) { // L: 226
+					var4 = 2001;
+				}
 
-		var2.clientPacket = var0; // L: 31
-		var2.clientPacketLength = var0.length; // L: 32
-		if (var2.clientPacketLength == -1) {
-			var2.packetBuffer = new PacketBuffer(260); // L: 33
-		} else if (var2.clientPacketLength == -2) { // L: 34
-			var2.packetBuffer = new PacketBuffer(10000);
-		} else if (var2.clientPacketLength <= 18) { // L: 35
-			var2.packetBuffer = new PacketBuffer(20);
-		} else if (var2.clientPacketLength <= 98) { // L: 36
-			var2.packetBuffer = new PacketBuffer(100);
-		} else {
-			var2.packetBuffer = new PacketBuffer(260); // L: 37
-		}
+				if (var5 == -1) { // L: 227
+					var5 = 2001;
+				}
+			}
 
-		var2.packetBuffer.setIsaacCipher(var1); // L: 38
-		var2.packetBuffer.writeByteIsaac(var2.clientPacket.id); // L: 39
-		var2.index = 0; // L: 40
-		return var2; // L: 41
+			return var4 - var5; // L: 229
+		} else if (var2 == 2) { // L: 231
+			return var0.location - var1.location;
+		} else if (var2 == 3) { // L: 232
+			if (var0.activity.equals("-")) { // L: 233
+				if (var1.activity.equals("-")) { // L: 234
+					return 0;
+				} else {
+					return var3 ? -1 : 1; // L: 235
+				}
+			} else if (var1.activity.equals("-")) { // L: 237
+				return var3 ? 1 : -1;
+			} else {
+				return var0.activity.compareTo(var1.activity); // L: 238
+			}
+		} else if (var2 == 4) { // L: 240
+			return var0.method1816() ? (var1.method1816() ? 0 : 1) : (var1.method1816() ? -1 : 0);
+		} else if (var2 == 5) { // L: 241
+			return var0.method1814() ? (var1.method1814() ? 0 : 1) : (var1.method1814() ? -1 : 0);
+		} else if (var2 == 6) { // L: 242
+			return var0.isPvp() ? (var1.isPvp() ? 0 : 1) : (var1.isPvp() ? -1 : 0);
+		} else if (var2 == 7) { // L: 243
+			return var0.isMembersOnly() ? (var1.isMembersOnly() ? 0 : 1) : (var1.isMembersOnly() ? -1 : 0);
+		} else {
+			return var0.id - var1.id; // L: 244
+		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgs;",
-		garbageValue = "-21"
+		descriptor = "(IB)I",
+		garbageValue = "14"
 	)
-	@Export("ItemComposition_get")
-	public static ItemComposition ItemComposition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemComposition_cached.get((long)var0); // L: 92
-		if (var1 != null) { // L: 93
-			return var1;
-		} else {
-			byte[] var2 = UserComparator4.ItemComposition_archive.takeFile(10, var0); // L: 94
-			var1 = new ItemComposition(); // L: 95
-			var1.id = var0; // L: 96
-			if (var2 != null) { // L: 97
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.post(); // L: 98
-			if (var1.noteTemplate != -1) { // L: 99
-				var1.genCert(ItemComposition_get(var1.noteTemplate), ItemComposition_get(var1.note));
-			}
-
-			if (var1.notedId != -1) { // L: 100
-				var1.genBought(ItemComposition_get(var1.notedId), ItemComposition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) { // L: 101
-				var1.genPlaceholder(ItemComposition_get(var1.placeholderTemplate), ItemComposition_get(var1.placeholder));
-			}
-
-			if (!DevicePcmPlayerProvider.ItemComposition_inMembersWorld && var1.isMembersOnly) { // L: 102
-				var1.name = "Members object"; // L: 103
-				var1.isTradable = false; // L: 104
-
-				int var3;
-				for (var3 = 0; var3 < var1.groundActions.length; ++var3) { // L: 105
-					var1.groundActions[var3] = null; // L: 106
-				}
-
-				for (var3 = 0; var3 < var1.inventoryActions.length; ++var3) { // L: 108
-					if (var3 != 4) { // L: 109
-						var1.inventoryActions[var3] = null; // L: 110
-					}
-				}
-
-				var1.shiftClickIndex = -2; // L: 113
-				var1.team = 0; // L: 114
-				if (var1.params != null) { // L: 115
-					boolean var6 = false; // L: 116
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) { // L: 117
-						ParamComposition var5 = class174.getParamDefinition((int)var4.key); // L: 118
-						if (var5.autoDisable) { // L: 119
-							var4.remove();
-						} else {
-							var6 = true; // L: 120
-						}
-					}
-
-					if (!var6) {
-						var1.params = null; // L: 122
-					}
-				}
-			}
-
-			ItemComposition.ItemComposition_cached.put(var1, (long)var0); // L: 125
-			return var1; // L: 126
+	@Export("iLog")
+	public static int iLog(int var0) {
+		int var1 = 0; // L: 73
+		if (var0 < 0 || var0 >= 65536) { // L: 74
+			var0 >>>= 16; // L: 75
+			var1 += 16; // L: 76
 		}
+
+		if (var0 >= 256) { // L: 78
+			var0 >>>= 8; // L: 79
+			var1 += 8; // L: 80
+		}
+
+		if (var0 >= 16) { // L: 82
+			var0 >>>= 4; // L: 83
+			var1 += 4; // L: 84
+		}
+
+		if (var0 >= 4) { // L: 86
+			var0 >>>= 2; // L: 87
+			var1 += 2; // L: 88
+		}
+
+		if (var0 >= 1) { // L: 90
+			var0 >>>= 1; // L: 91
+			++var1; // L: 92
+		}
+
+		return var0 + var1; // L: 94
 	}
+
+	@ObfuscatedName("kq")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIIB)V",
+		garbageValue = "31"
+	)
+	static final void method3787(int var0, int var1, int var2, int var3, int var4, int var5) {
+		int var6 = var2 - var0; // L: 10970
+		int var7 = var3 - var1; // L: 10971
+		int var8 = var6 >= 0 ? var6 : -var6; // L: 10972
+		int var9 = var7 >= 0 ? var7 : -var7; // L: 10973
+		int var10 = var8; // L: 10974
+		if (var8 < var9) { // L: 10975
+			var10 = var9;
+		}
+
+		if (var10 != 0) { // L: 10976
+			int var11 = (var6 << 16) / var10; // L: 10977
+			int var12 = (var7 << 16) / var10; // L: 10978
+			if (var12 <= var11) { // L: 10979
+				var11 = -var11;
+			} else {
+				var12 = -var12; // L: 10980
+			}
+
+			int var13 = var5 * var12 >> 17; // L: 10981
+			int var14 = var5 * var12 + 1 >> 17; // L: 10982
+			int var15 = var5 * var11 >> 17; // L: 10983
+			int var16 = var5 * var11 + 1 >> 17; // L: 10984
+			var0 -= Rasterizer2D.Rasterizer2D_xClipStart; // L: 10985
+			var1 -= Rasterizer2D.Rasterizer2D_yClipStart; // L: 10986
+			int var17 = var0 + var13; // L: 10987
+			int var18 = var0 - var14; // L: 10988
+			int var19 = var0 + var6 - var14; // L: 10989
+			int var20 = var0 + var6 + var13; // L: 10990
+			int var21 = var15 + var1; // L: 10991
+			int var22 = var1 - var16; // L: 10992
+			int var23 = var7 + var1 - var16; // L: 10993
+			int var24 = var7 + var15 + var1; // L: 10994
+			Rasterizer3D.method4494(var17, var18, var19); // L: 10995
+			Rasterizer3D.method4544(var21, var22, var23, var17, var18, var19, 0.0F, 0.0F, 0.0F, var4); // L: 10996
+			Rasterizer3D.method4494(var17, var19, var20); // L: 10997
+			Rasterizer3D.method4544(var21, var23, var24, var17, var19, var20, 0.0F, 0.0F, 0.0F, var4); // L: 10998
+		}
+	} // L: 10999
 }

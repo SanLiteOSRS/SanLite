@@ -1,54 +1,81 @@
+import java.util.concurrent.ThreadFactory;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("km")
-public enum class308 implements MouseWheel {
-	@ObfuscatedName("c")
+@ObfuscatedName("lx")
+class class308 implements ThreadFactory {
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Lkm;"
+		descriptor = "Lum;"
 	)
-	field3939(-1),
-	@ObfuscatedName("v")
+	static IndexedSprite field3453;
+	@ObfuscatedName("oy")
 	@ObfuscatedSignature(
-		descriptor = "Lkm;"
+		descriptor = "Lme;"
 	)
-	field3938(0),
-	@ObfuscatedName("q")
+	@Export("mousedOverWidgetIf1")
+	static Widget mousedOverWidgetIf1;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lkm;"
+		descriptor = "Llm;"
 	)
-	field3940(1),
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Lkm;"
-	)
-	field3941(2);
+	final MidiPcmStream this$0;
 
-	@ObfuscatedName("pi")
 	@ObfuscatedSignature(
-		descriptor = "Lck;"
+		descriptor = "(Llm;)V"
 	)
-	@Export("varcs")
-	static Varcs varcs;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 1827131377
-	)
-	final int field3944;
-
-	class308(int var3) {
-		this.field3944 = var3; // L: 15
-	} // L: 16
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
-	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field3944; // L: 20
+	class308(MidiPcmStream var1) {
+		this.this$0 = var1; // L: 111
 	}
+
+	public Thread newThread(Runnable var1) {
+		return new Thread(var1, "OSRS WAV Load"); // L: 114
+	}
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(IIS)I",
+		garbageValue = "-27822"
+	)
+	@Export("ItemContainer_getCount")
+	static int ItemContainer_getCount(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 21
+		if (var2 == null) { // L: 22
+			return 0;
+		} else {
+			return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0; // L: 23 24
+		}
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "([BB)[B",
+		garbageValue = "10"
+	)
+	public static byte[] method6013(byte[] var0) {
+		int var1 = var0.length; // L: 35
+		byte[] var2 = new byte[var1]; // L: 36
+		System.arraycopy(var0, 0, var2, 0, var1); // L: 37
+		return var2; // L: 38
+	}
+
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-21"
+	)
+	static void method6016() {
+		synchronized(ArchiveDiskActionHandler.field4240) { // L: 62
+			if (ArchiveDiskActionHandler.field4239 == 0) { // L: 63
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler()); // L: 64
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setDaemon(true); // L: 65
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.start(); // L: 66
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setPriority(5); // L: 67
+			}
+
+			ArchiveDiskActionHandler.field4239 = 600; // L: 69
+			ArchiveDiskActionHandler.field4236 = false; // L: 70
+		}
+	} // L: 72
 }

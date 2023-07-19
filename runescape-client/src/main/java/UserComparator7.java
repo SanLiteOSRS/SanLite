@@ -3,15 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dd")
+@ObfuscatedName("ed")
 @Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
-	@ObfuscatedName("el")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	static Archive field1383;
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -19,10 +14,10 @@ public class UserComparator7 extends AbstractUserComparator {
 		this.reversed = var1; // L: 10
 	} // L: 11
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "-1964984147"
+		descriptor = "(Lqd;Lqd;I)I",
+		garbageValue = "-1530089447"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -37,35 +32,31 @@ public class UserComparator7 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 21
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfs;",
-		garbageValue = "-125"
+		descriptor = "([BI)V",
+		garbageValue = "1092791707"
 	)
-	@Export("getEnum")
-	public static EnumComposition getEnum(int var0) {
-		EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0); // L: 29
-		if (var1 != null) { // L: 30
-			return var1;
+	@Export("ByteArrayPool_release")
+	public static synchronized void ByteArrayPool_release(byte[] var0) {
+		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field4542) { // L: 116
+			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0; // L: 117
+		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field4537) { // L: 120
+			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0; // L: 121
+		} else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field4536) { // L: 124
+			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0; // L: 125
+		} else if (var0.length == 30000 && ByteArrayPool.field4535 < ByteArrayPool.field4539) { // L: 128
+			ByteArrayPool.field4543[++ByteArrayPool.field4535 - 1] = var0; // L: 129
 		} else {
-			byte[] var2 = EnumComposition.EnumDefinition_archive.takeFile(8, var0); // L: 31
-			var1 = new EnumComposition(); // L: 32
-			if (var2 != null) { // L: 33
-				var1.decode(new Buffer(var2));
+			if (class140.ByteArrayPool_arrays != null) { // L: 132
+				for (int var1 = 0; var1 < UserComparator5.ByteArrayPool_alternativeSizes.length; ++var1) { // L: 133
+					if (var0.length == UserComparator5.ByteArrayPool_alternativeSizes[var1] && class125.ByteArrayPool_altSizeArrayCounts[var1] < class140.ByteArrayPool_arrays[var1].length) { // L: 134
+						class140.ByteArrayPool_arrays[var1][class125.ByteArrayPool_altSizeArrayCounts[var1]++] = var0; // L: 135
+						return; // L: 136
+					}
+				}
 			}
 
-			EnumComposition.EnumDefinition_cached.put(var1, (long)var0); // L: 34
-			return var1; // L: 35
 		}
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lbr;",
-		garbageValue = "260622968"
-	)
-	@Export("Messages_getMessage")
-	static Message Messages_getMessage(int var0) {
-		return (Message)Messages.Messages_hashTable.get((long)var0); // L: 40
-	}
+	} // L: 118 122 126 130 140
 }

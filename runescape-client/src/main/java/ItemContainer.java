@@ -1,21 +1,31 @@
+import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bd")
+@ObfuscatedName("dk")
 @Implements("ItemContainer")
 public class ItemContainer extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lpm;"
+		descriptor = "Lsy;"
 	)
 	@Export("itemContainers")
 	static NodeHashTable itemContainers;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
+	@Export("cacheDir")
+	static File cacheDir;
+	@ObfuscatedName("bw")
+	@ObfuscatedSignature(
+		descriptor = "Lnr;"
+	)
+	@Export("Widget_fontsArchive")
+	static AbstractArchive Widget_fontsArchive;
+	@ObfuscatedName("aj")
 	@Export("ids")
 	int[] ids;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@Export("quantities")
 	int[] quantities;
 

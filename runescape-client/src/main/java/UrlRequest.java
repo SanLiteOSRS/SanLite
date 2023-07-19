@@ -1,66 +1,70 @@
 import java.net.URL;
-import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("er")
 @Implements("UrlRequest")
 public class UrlRequest {
-	@ObfuscatedName("us")
-	static List field1373;
-	@ObfuscatedName("c")
-	@Export("url")
-	final URL url;
-	@ObfuscatedName("v")
-	@Export("isDone0")
-	volatile boolean isDone0;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = -1301376859
+	)
+	static int field1441;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		intValue = 1712855317
+	)
+	static int field1440;
+	@ObfuscatedName("ai")
+	final URL field1442;
+	@ObfuscatedName("aw")
+	@ObfuscatedGetter(
+		intValue = 680423851
+	)
+	volatile int field1443;
+	@ObfuscatedName("ay")
 	@Export("response0")
 	volatile byte[] response0;
 
-	UrlRequest(URL var1) {
-		this.url = var1; // L: 118
-	} // L: 119
+	static {
+		field1441 = -1; // L: 133
+		field1440 = -2; // L: 134
+	}
 
-	@ObfuscatedName("c")
+	UrlRequest(URL var1) {
+		this.field1443 = field1441; // L: 135
+		this.field1442 = var1; // L: 139
+	} // L: 140
+
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-60"
+		descriptor = "(I)Z",
+		garbageValue = "-1693986434"
 	)
 	@Export("isDone")
 	public boolean isDone() {
-		return this.isDone0; // L: 122
+		return this.field1443 != field1441; // L: 143
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "(I)[B",
-		garbageValue = "-1112773966"
+		garbageValue = "-1110449656"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
-		return this.response0; // L: 126
+		return this.response0; // L: 147
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-2136536725"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "17"
 	)
-	public String method2553() {
-		return this.url.toString(); // L: 130
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(ZZI)I",
-		garbageValue = "-1626715483"
-	)
-	public static int method2557(boolean var0, boolean var1) {
-		byte var2 = 0; // L: 143
-		int var3 = var2 + NetCache.NetCache_pendingPriorityWritesCount + NetCache.NetCache_pendingPriorityResponsesCount; // L: 144
-		return var3; // L: 145
+	public String method2912() {
+		return this.field1442.toString(); // L: 151
 	}
 }

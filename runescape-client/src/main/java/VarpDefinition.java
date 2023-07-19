@@ -4,31 +4,29 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fp")
+@ObfuscatedName("hv")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "Lnr;"
+	)
+	@Export("VarpDefinition_archive")
+	static AbstractArchive VarpDefinition_archive;
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = 1427154081
+	)
+	public static int field1913;
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "Llh;"
 	)
-	@Export("VarpDefinition_archive")
-	public static AbstractArchive VarpDefinition_archive;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 486330385
-	)
-	public static int field1822;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Lii;"
-	)
 	@Export("VarpDefinition_cached")
 	public static EvictingDualNodeHashTable VarpDefinition_cached;
-	@ObfuscatedName("ct")
-	static boolean field1821;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -737478807
+		intValue = -1662471169
 	)
 	@Export("type")
 	public int type;
@@ -41,60 +39,74 @@ public class VarpDefinition extends DualNode {
 		this.type = 0; // L: 13
 	} // L: 15
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "-1095475514"
+		descriptor = "(Ltl;I)V",
+		garbageValue = "-1222007644"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 29
-			if (var2 == 0) { // L: 30
-				return; // L: 33
+			int var2 = var1.readUnsignedByte(); // L: 34
+			if (var2 == 0) { // L: 35
+				return; // L: 38
 			}
 
-			this.decodeNext(var1, var2); // L: 31
+			this.decodeNext(var1, var2); // L: 36
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "1370423223"
+		descriptor = "(Ltl;IB)V",
+		garbageValue = "51"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 5) { // L: 36
+		if (var2 == 5) { // L: 41
 			this.type = var1.readUnsignedShort();
 		}
 
-	} // L: 38
+	} // L: 43
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1678307117"
+		descriptor = "(Lnr;I)V",
+		garbageValue = "1934809985"
 	)
-	public static int method3374(int var0) {
-		return class270.field3179[var0]; // L: 24
+	public static void method3690(AbstractArchive var0) {
+		class505.field5042 = var0;
 	}
 
-	@ObfuscatedName("iy")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1226531684"
+		descriptor = "(IS)Lho;",
+		garbageValue = "-30162"
 	)
-	static final boolean method3373(int var0) {
-		if (var0 < 0) { // L: 8693
-			return false;
+	@Export("getInvDefinition")
+	public static InvDefinition getInvDefinition(int var0) {
+		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0); // L: 17
+		if (var1 != null) { // L: 18
+			return var1;
 		} else {
-			int var1 = Client.menuOpcodes[var0]; // L: 8694
-			if (var1 >= 2000) { // L: 8695
-				var1 -= 2000;
+			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0); // L: 19
+			var1 = new InvDefinition(); // L: 20
+			if (var2 != null) { // L: 21
+				var1.decode(new Buffer(var2));
 			}
 
-			return var1 == 1007; // L: 8696
+			InvDefinition.InvDefinition_cached.put(var1, (long)var0); // L: 22
+			return var1; // L: 23
 		}
 	}
+
+	@ObfuscatedName("mh")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "85"
+	)
+	static final void method3688(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 127); // L: 12208
+		ScriptFrame.clientPreferences.updateSoundEffectVolume(var0); // L: 12209
+	} // L: 12210
 }

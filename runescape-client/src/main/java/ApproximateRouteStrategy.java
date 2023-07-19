@@ -1,55 +1,58 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bn")
+@ObfuscatedName("cs")
 @Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
-	@ObfuscatedName("ek")
+	@ObfuscatedName("tl")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lbu;"
 	)
-	@Export("archive10")
-	static Archive archive10;
-	@ObfuscatedName("hp")
-	@ObfuscatedGetter(
-		intValue = 998883341
-	)
-	static int field466;
+	@Export("pcmStreamMixer")
+	static PcmStreamMixer pcmStreamMixer;
 
 	ApproximateRouteStrategy() {
-	} // L: 12551
+	} // L: 12974
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(IIILgv;I)Z",
-		garbageValue = "1278947831"
+		descriptor = "(IIILig;B)Z",
+		garbageValue = "-69"
 	)
 	@Export("hasArrived")
 	public boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
-		return var2 == super.approxDestinationX && var3 == super.approxDestinationY; // L: 12555
+		return var2 == super.approxDestinationX && var3 == super.approxDestinationY; // L: 12978
 	}
 
-	@ObfuscatedName("lt")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "1"
+		descriptor = "(IIIB)I",
+		garbageValue = "45"
 	)
-	static final void method1086(int var0, int var1) {
-		ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : class150.guestClanChannel; // L: 12249
-		if (var2 != null && var1 >= 0 && var1 < var2.method3113()) { // L: 12250
-			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1); // L: 12251
-			if (var3.rank == -1) { // L: 12252
-				String var4 = var3.username.getName(); // L: 12253
-				PacketBufferNode var5 = EnumComposition.getPacketBufferNode(ClientPacket.field2914, Client.packetWriter.isaacCipher); // L: 12254
-				var5.packetBuffer.writeByte(3 + ScriptEvent.stringCp1252NullTerminatedByteSize(var4)); // L: 12255
-				var5.packetBuffer.writeByte(var0); // L: 12256
-				var5.packetBuffer.writeShort(var1); // L: 12257
-				var5.packetBuffer.writeStringCp1252NullTerminated(var4); // L: 12258
-				Client.packetWriter.addNode(var5); // L: 12259
-			}
-		}
-	} // L: 12260
+	static final int method1230(int var0, int var1, int var2) {
+		int var3 = var0 / var2; // L: 899
+		int var4 = var0 & var2 - 1; // L: 900
+		int var5 = var1 / var2; // L: 901
+		int var6 = var1 & var2 - 1; // L: 902
+		int var7 = WorldMapDecoration.method5544(var3, var5); // L: 903
+		int var8 = WorldMapDecoration.method5544(var3 + 1, var5); // L: 904
+		int var9 = WorldMapDecoration.method5544(var3, var5 + 1); // L: 905
+		int var10 = WorldMapDecoration.method5544(var3 + 1, var5 + 1); // L: 906
+		int var11 = SecureRandomCallable.method2273(var7, var8, var4, var2); // L: 907
+		int var12 = SecureRandomCallable.method2273(var9, var10, var4, var2); // L: 908
+		int var14 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var6 * 1024 / var2] >> 1; // L: 911
+		int var13 = ((65536 - var14) * var11 >> 16) + (var12 * var14 >> 16); // L: 912
+		return var13; // L: 914
+	}
+
+	@ObfuscatedName("bv")
+	@ObfuscatedSignature(
+		descriptor = "(ILdr;ZB)I",
+		garbageValue = "-32"
+	)
+	static int method1231(int var0, Script var1, boolean var2) {
+		return 2; // L: 5092
+	}
 }

@@ -1,91 +1,65 @@
-import java.util.Iterator;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("du")
-public class class126 extends class128 {
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	@Export("Widget_modelsArchive")
-	public static AbstractArchive Widget_modelsArchive;
-	@ObfuscatedName("cx")
-	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
-	)
-	@Export("worldSelectFlagSprites")
-	static IndexedSprite[] worldSelectFlagSprites;
-	@ObfuscatedName("ig")
-	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
-	)
-	@Export("scrollBarSprites")
-	static IndexedSprite[] scrollBarSprites;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		longValue = -8228182624755456153L
-	)
-	long field1562;
-	@ObfuscatedName("v")
-	String field1559;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lej;"
-	)
-	final class131 this$0;
+@ObfuscatedName("ec")
+public class class126 {
+	@ObfuscatedName("aw")
+	public static final float field1494;
+	@ObfuscatedName("ay")
+	public static final float field1495;
+	@ObfuscatedName("ap")
+	static float[] field1492;
+	@ObfuscatedName("av")
+	static float[] field1491;
 
-	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
-	)
-	class126(class131 var1) {
-		this.this$0 = var1;
-		this.field1562 = -1L; // L: 74
-		this.field1559 = null; // L: 75
-	} // L: 77
+	static {
+		field1494 = Math.ulp(1.0F); // L: 10
+		field1495 = 2.0F * field1494; // L: 11
+		field1492 = new float[4]; // L: 12
+		field1491 = new float[5]; // L: 13
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(CB)Z",
+		garbageValue = "-83"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 80
-			--var1.offset; // L: 81
-			this.field1562 = var1.readLong(); // L: 82
+	static boolean method2994(char var0) {
+		return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"ï¿½$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".indexOf(var0) != -1; // L: 1140
+	}
+
+	@ObfuscatedName("by")
+	@ObfuscatedSignature(
+		descriptor = "(ILdr;ZI)I",
+		garbageValue = "2105463740"
+	)
+	static int method3003(int var0, Script var1, boolean var2) {
+		int var3;
+		if (var0 == 3500) { // L: 2862
+			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 2863
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.field519.method4285(var3) ? 1 : 0; // L: 2864
+			return 1; // L: 2865
+		} else if (var0 == 3501) { // L: 2867
+			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 2868
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.field519.method4260(var3) ? 1 : 0; // L: 2869
+			return 1; // L: 2870
+		} else if (var0 == 3502) { // L: 2872
+			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 2873
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.field519.method4268(var3) ? 1 : 0; // L: 2874
+			return 1; // L: 2875
+		} else {
+			return 2; // L: 2877
 		}
+	}
 
-		this.field1559 = var1.readStringCp1252NullTerminatedOrNull(); // L: 84
-	} // L: 85
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("nr")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(II)V",
+		garbageValue = "723515974"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2956(this.field1562, this.field1559, 0); // L: 88
-	} // L: 89
-
-	@ObfuscatedName("km")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "78"
-	)
-	@Export("FriendSystem_invalidateIgnoreds")
-	static final void FriendSystem_invalidateIgnoreds() {
-		Iterator var0 = Messages.Messages_hashTable.iterator(); // L: 12195
-
-		while (var0.hasNext()) {
-			Message var1 = (Message)var0.next(); // L: 12196
-			var1.clearIsFromIgnored(); // L: 12198
+	static void method3006(int var0) {
+		if (var0 != Client.loginState) { // L: 12844
+			Client.loginState = var0; // L: 12845
 		}
-
-		if (Huffman.friendsChatManager != null) { // L: 12202
-			Huffman.friendsChatManager.invalidateIgnoreds(); // L: 12203
-		}
-
-	} // L: 12205
+	} // L: 12846
 }

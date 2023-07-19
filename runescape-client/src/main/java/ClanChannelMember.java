@@ -4,21 +4,28 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ew")
+@ObfuscatedName("fx")
 @Implements("ClanChannelMember")
 public class ClanChannelMember {
-	@ObfuscatedName("c")
+	@ObfuscatedName("gj")
+	static String field1653;
+	@ObfuscatedName("ux")
+	@ObfuscatedGetter(
+		intValue = -1436564919
+	)
+	static int field1656;
+	@ObfuscatedName("ai")
 	@Export("rank")
 	public byte rank;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 44459875
+		intValue = -1388126921
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lur;"
 	)
 	@Export("username")
 	public Username username;
@@ -26,52 +33,41 @@ public class ClanChannelMember {
 	ClanChannelMember() {
 	} // L: 10
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;III)[Lqu;",
-		garbageValue = "658098688"
+		descriptor = "(IIS)I",
+		garbageValue = "27347"
 	)
-	public static IndexedSprite[] method2867(AbstractArchive var0, int var1, int var2) {
-		if (!Ignored.method6774(var0, var1, var2)) { // L: 23
-			return null;
+	static final int method3228(int var0, int var1) {
+		int var2 = var0 + var1 * 57; // L: 930
+		var2 ^= var2 << 13; // L: 931
+		int var3 = (var2 * var2 * 15731 + 789221) * var2 + 1376312589 & Integer.MAX_VALUE; // L: 932
+		return var3 >> 19 & 255; // L: 933
+	}
+
+	@ObfuscatedName("kh")
+	@ObfuscatedSignature(
+		descriptor = "(III)Ljava/lang/String;",
+		garbageValue = "1606857461"
+	)
+	static final String method3229(int var0, int var1) {
+		int var2 = var1 - var0; // L: 10532
+		if (var2 < -9) { // L: 10533
+			return class17.colorStartTag(16711680);
+		} else if (var2 < -6) { // L: 10534
+			return class17.colorStartTag(16723968);
+		} else if (var2 < -3) { // L: 10535
+			return class17.colorStartTag(16740352);
+		} else if (var2 < 0) { // L: 10536
+			return class17.colorStartTag(16756736);
+		} else if (var2 > 9) { // L: 10537
+			return class17.colorStartTag(65280);
+		} else if (var2 > 6) { // L: 10538
+			return class17.colorStartTag(4259584);
+		} else if (var2 > 3) { // L: 10539
+			return class17.colorStartTag(8453888);
 		} else {
-			IndexedSprite[] var4 = new IndexedSprite[class456.SpriteBuffer_spriteCount]; // L: 26
-
-			for (int var5 = 0; var5 < class456.SpriteBuffer_spriteCount; ++var5) { // L: 27
-				IndexedSprite var6 = var4[var5] = new IndexedSprite(); // L: 28
-				var6.width = ModelData0.SpriteBuffer_spriteWidth; // L: 29
-				var6.height = class456.SpriteBuffer_spriteHeight; // L: 30
-				var6.xOffset = class426.SpriteBuffer_xOffsets[var5]; // L: 31
-				var6.yOffset = class142.SpriteBuffer_yOffsets[var5]; // L: 32
-				var6.subWidth = class359.SpriteBuffer_spriteWidths[var5]; // L: 33
-				var6.subHeight = class456.SpriteBuffer_spriteHeights[var5]; // L: 34
-				var6.palette = class13.SpriteBuffer_spritePalette; // L: 35
-				var6.pixels = class421.SpriteBuffer_pixels[var5]; // L: 36
-			}
-
-			class426.SpriteBuffer_xOffsets = null; // L: 39
-			class142.SpriteBuffer_yOffsets = null; // L: 40
-			class359.SpriteBuffer_spriteWidths = null; // L: 41
-			class456.SpriteBuffer_spriteHeights = null; // L: 42
-			class13.SpriteBuffer_spritePalette = null; // L: 43
-			class421.SpriteBuffer_pixels = null;
-			return var4;
+			return var2 > 0 ? class17.colorStartTag(12648192) : class17.colorStartTag(16776960); // L: 10540 10541
 		}
-	}
-
-	@ObfuscatedName("v")
-	static boolean method2865(long var0) {
-		return class7.method51(var0) == 2; // L: 48
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "88442168"
-	)
-	@Export("Messages_getHistorySize")
-	static int Messages_getHistorySize(int var0) {
-		ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 44
-		return var1 == null ? 0 : var1.size(); // L: 45 46
 	}
 }

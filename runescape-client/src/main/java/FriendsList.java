@@ -4,76 +4,76 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ng")
+@ObfuscatedName("qm")
 @Implements("FriendsList")
 public class FriendsList extends NameableContainer {
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lpe;"
+		descriptor = "Lsl;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -1848201845
+		intValue = 305365899
 	)
-	int field4286;
-	@ObfuscatedName("j")
+	int field4613;
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lli;"
+		descriptor = "Los;"
 	)
 	@Export("friendLoginUpdates")
 	public LinkDeque friendLoginUpdates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpe;)V"
+		descriptor = "(Lsl;)V"
 	)
 	public FriendsList(LoginType var1) {
 		super(400); // L: 18
-		this.field4286 = 1; // L: 14
+		this.field4613 = 1; // L: 14
 		this.friendLoginUpdates = new LinkDeque(); // L: 15
 		this.loginType = var1; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lne;",
-		garbageValue = "-7122"
+		descriptor = "(B)Lqh;",
+		garbageValue = "-76"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Friend(); // L: 24
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lne;",
-		garbageValue = "77510907"
+		descriptor = "(IB)[Lqh;",
+		garbageValue = "24"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Friend[var1]; // L: 29
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lqa;ZB)Z",
-		garbageValue = "-49"
+		descriptor = "(Lur;ZI)Z",
+		garbageValue = "1535970692"
 	)
 	@Export("isFriended")
 	public boolean isFriended(Username var1, boolean var2) {
 		Friend var3 = (Friend)this.getByUsername(var1); // L: 33
-		if (var3 == null) {
-			return false; // L: 34
+		if (var3 == null) { // L: 34
+			return false;
 		} else {
 			return !var2 || var3.world != 0; // L: 35
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;IB)V",
-		garbageValue = "1"
+		descriptor = "(Ltl;II)V",
+		garbageValue = "715795535"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -137,17 +137,17 @@ public class FriendsList extends NameableContainer {
 					}
 
 					if (var6 != var11.world) { // L: 91
-						var11.int2 = ++this.field4286 - 1; // L: 92
+						var11.int2 = ++this.field4613 - 1; // L: 92
 						if (var11.world == -1 && var6 == 0) { // L: 93
-							var11.int2 = -(var11.int2 * -1691529257) * 1716524007;
+							var11.int2 = -(var11.int2 * -129953703) * 1942829033;
 						}
 
 						var11.world = var6; // L: 94
 					}
 
 					var11.rank = var7; // L: 96
-					var11.field4299 = var9; // L: 97
-					var11.field4298 = var10; // L: 98
+					var11.field4624 = var9; // L: 97
+					var11.field4625 = var10; // L: 98
 					continue; // L: 99
 				}
 
@@ -159,788 +159,394 @@ public class FriendsList extends NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("iw")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(IIIILjava/lang/String;Ljava/lang/String;IIB)V",
-		garbageValue = "1"
+		descriptor = "(Ldw;Ldr;IIB)V",
+		garbageValue = "-89"
 	)
-	@Export("menuAction")
-	static final void menuAction(int var0, int var1, int var2, int var3, String var4, String var5, int var6, int var7) {
-		if (var2 >= 2000) { // L: 8710
-			var2 -= 2000;
-		}
+	static void method7850(ScriptEvent var0, Script var1, int var2, int var3) {
+		Object[] var4 = var0.args; // L: 125
+		Interpreter.Interpreter_intStackSize = 0; // L: 126
+		class179.Interpreter_stringStackSize = 0; // L: 127
+		int var5 = -1; // L: 128
+		int[] var6 = var1.opcodes; // L: 129
+		int[] var7 = var1.intOperands; // L: 130
+		byte var8 = -1; // L: 131
+		Interpreter.Interpreter_frameDepth = 0; // L: 132
+		Interpreter.field871 = false; // L: 133
+		boolean var9 = false; // L: 134
+		int var10 = 0; // L: 135
+		boolean var29 = false;
 
-		PacketBufferNode var8;
-		if (var2 == 1) { // L: 8711
-			Client.mouseCrossX = var6; // L: 8837
-			Client.mouseCrossY = var7; // L: 8838
-			Client.mouseCrossColor = 2; // L: 8839
-			Client.mouseCrossState = 0; // L: 8840
-			Client.destinationX = var0; // L: 8841
-			Client.destinationY = var1; // L: 8842
-			var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2979, Client.packetWriter.isaacCipher); // L: 8844
-			var8.packetBuffer.method7863(EnumComposition.selectedItemSlot); // L: 8845
-			var8.packetBuffer.writeShort(WorldMapLabelSize.baseY * 64 + var1); // L: 8846
-			var8.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8847
-			var8.packetBuffer.writeIntME(var3); // L: 8848
-			var8.packetBuffer.writeShort(WorldMapIcon_0.selectedItemId); // L: 8849
-			var8.packetBuffer.method7784(ModeWhere.selectedItemWidget); // L: 8850
-			var8.packetBuffer.writeShort(class28.baseX * 64 + var0); // L: 8851
-			Client.packetWriter.addNode(var8); // L: 8852
-		} else if (var2 == 2) {
-			Client.mouseCrossX = var6; // L: 8930
-			Client.mouseCrossY = var7; // L: 8931
-			Client.mouseCrossColor = 2; // L: 8932
-			Client.mouseCrossState = 0; // L: 8933
-			Client.destinationX = var0; // L: 8934
-			Client.destinationY = var1; // L: 8935
-			var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2992, Client.packetWriter.isaacCipher); // L: 8936
-			var8.packetBuffer.writeIntME(WorldMapLabelSize.baseY * 64 + var1); // L: 8937
-			var8.packetBuffer.writeShort(var3); // L: 8938
-			var8.packetBuffer.method7929(class28.baseX * 64 + var0); // L: 8939
-			var8.packetBuffer.writeIntME(Client.selectedSpellChildIndex); // L: 8940
-			var8.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8941
-			var8.packetBuffer.method7784(NetCache.selectedSpellWidget); // L: 8942
-			var8.packetBuffer.method7863(Client.selectedSpellItemId); // L: 8943
-			Client.packetWriter.addNode(var8); // L: 8944
-		} else if (var2 == 3) {
-			Client.mouseCrossX = var6; // L: 8971
-			Client.mouseCrossY = var7; // L: 8972
-			Client.mouseCrossColor = 2; // L: 8973
-			Client.mouseCrossState = 0; // L: 8974
-			Client.destinationX = var0; // L: 8975
-			Client.destinationY = var1; // L: 8976
-			var8 = EnumComposition.getPacketBufferNode(ClientPacket.field3005, Client.packetWriter.isaacCipher); // L: 8978
-			var8.packetBuffer.method7929(WorldMapLabelSize.baseY * 64 + var1); // L: 8979
-			var8.packetBuffer.method7929(class28.baseX * 64 + var0); // L: 8980
-			var8.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8981
-			var8.packetBuffer.writeIntME(var3); // L: 8982
-			Client.packetWriter.addNode(var8); // L: 8983
-		} else if (var2 == 4) {
-			Client.mouseCrossX = var6; // L: 9076
-			Client.mouseCrossY = var7; // L: 9077
-			Client.mouseCrossColor = 2; // L: 9078
-			Client.mouseCrossState = 0; // L: 9079
-			Client.destinationX = var0; // L: 9080
-			Client.destinationY = var1; // L: 9081
-			var8 = EnumComposition.getPacketBufferNode(ClientPacket.field3003, Client.packetWriter.isaacCipher); // L: 9083
-			var8.packetBuffer.method7762(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9084
-			var8.packetBuffer.writeShort(WorldMapLabelSize.baseY * 64 + var1); // L: 9085
-			var8.packetBuffer.writeShort(class28.baseX * 64 + var0); // L: 9086
-			var8.packetBuffer.method7929(var3); // L: 9087
-			Client.packetWriter.addNode(var8); // L: 9088
-		} else if (var2 == 5) {
-			Client.mouseCrossX = var6; // L: 8870
-			Client.mouseCrossY = var7; // L: 8871
-			Client.mouseCrossColor = 2; // L: 8872
-			Client.mouseCrossState = 0; // L: 8873
-			Client.destinationX = var0; // L: 8874
-			Client.destinationY = var1; // L: 8875
-			var8 = EnumComposition.getPacketBufferNode(ClientPacket.field3009, Client.packetWriter.isaacCipher); // L: 8877
-			var8.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8878
-			var8.packetBuffer.method7863(class28.baseX * 64 + var0); // L: 8879
-			var8.packetBuffer.method7863(WorldMapLabelSize.baseY * 64 + var1); // L: 8880
-			var8.packetBuffer.writeShort(var3); // L: 8881
-			Client.packetWriter.addNode(var8); // L: 8882
-		} else if (var2 == 6) {
-			Client.mouseCrossX = var6; // L: 9323
-			Client.mouseCrossY = var7; // L: 9324
-			Client.mouseCrossColor = 2; // L: 9325
-			Client.mouseCrossState = 0; // L: 9326
-			Client.destinationX = var0; // L: 9327
-			Client.destinationY = var1; // L: 9328
-			var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2936, Client.packetWriter.isaacCipher); // L: 9330
-			var8.packetBuffer.method7929(WorldMapLabelSize.baseY * 64 + var1); // L: 9331
-			var8.packetBuffer.writeShort(class28.baseX * 64 + var0); // L: 9332
-			var8.packetBuffer.method7762(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9333
-			var8.packetBuffer.method7863(var3); // L: 9334
-			Client.packetWriter.addNode(var8); // L: 9335
-		} else {
-			PacketBufferNode var9;
-			NPC var13;
-			if (var2 == 7) {
-				var13 = Client.npcs[var3]; // L: 9444
-				if (var13 != null) { // L: 9445
-					Client.mouseCrossX = var6; // L: 9446
-					Client.mouseCrossY = var7; // L: 9447
-					Client.mouseCrossColor = 2; // L: 9448
-					Client.mouseCrossState = 0; // L: 9449
-					Client.destinationX = var0; // L: 9450
-					Client.destinationY = var1; // L: 9451
-					var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2910, Client.packetWriter.isaacCipher); // L: 9453
-					var9.packetBuffer.writeInt(ModeWhere.selectedItemWidget); // L: 9454
-					var9.packetBuffer.writeIntME(EnumComposition.selectedItemSlot); // L: 9455
-					var9.packetBuffer.method7929(var3); // L: 9456
-					var9.packetBuffer.writeIntME(WorldMapIcon_0.selectedItemId); // L: 9457
-					var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9458
-					Client.packetWriter.addNode(var9); // L: 9459
-				}
-			} else if (var2 == 8) {
-				var13 = Client.npcs[var3]; // L: 9005
-				if (var13 != null) { // L: 9006
-					Client.mouseCrossX = var6; // L: 9007
-					Client.mouseCrossY = var7; // L: 9008
-					Client.mouseCrossColor = 2; // L: 9009
-					Client.mouseCrossState = 0; // L: 9010
-					Client.destinationX = var0; // L: 9011
-					Client.destinationY = var1; // L: 9012
-					var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2911, Client.packetWriter.isaacCipher); // L: 9013
-					var9.packetBuffer.method7760(NetCache.selectedSpellWidget); // L: 9014
-					var9.packetBuffer.writeShort(Client.selectedSpellChildIndex); // L: 9015
-					var9.packetBuffer.writeShort(Client.selectedSpellItemId); // L: 9016
-					var9.packetBuffer.method7929(var3); // L: 9017
-					var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9018
-					Client.packetWriter.addNode(var9); // L: 9019
-				}
-			} else if (var2 == 9) {
-				var13 = Client.npcs[var3]; // L: 9275
-				if (var13 != null) { // L: 9276
-					Client.mouseCrossX = var6; // L: 9277
-					Client.mouseCrossY = var7; // L: 9278
-					Client.mouseCrossColor = 2; // L: 9279
-					Client.mouseCrossState = 0; // L: 9280
-					Client.destinationX = var0; // L: 9281
-					Client.destinationY = var1; // L: 9282
-					var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2939, Client.packetWriter.isaacCipher); // L: 9284
-					var9.packetBuffer.method7863(var3); // L: 9285
-					var9.packetBuffer.method7764(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9286
-					Client.packetWriter.addNode(var9); // L: 9287
-				}
-			} else if (var2 == 10) {
-				var13 = Client.npcs[var3]; // L: 8712
-				if (var13 != null) { // L: 8713
-					Client.mouseCrossX = var6; // L: 8714
-					Client.mouseCrossY = var7; // L: 8715
-					Client.mouseCrossColor = 2; // L: 8716
-					Client.mouseCrossState = 0; // L: 8717
-					Client.destinationX = var0; // L: 8718
-					Client.destinationY = var1; // L: 8719
-					var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2948, Client.packetWriter.isaacCipher); // L: 8721
-					var9.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8722
-					var9.packetBuffer.writeIntME(var3); // L: 8723
-					Client.packetWriter.addNode(var9); // L: 8724
-				}
-			} else if (var2 == 11) {
-				var13 = Client.npcs[var3]; // L: 9463
-				if (var13 != null) { // L: 9464
-					Client.mouseCrossX = var6; // L: 9465
-					Client.mouseCrossY = var7; // L: 9466
-					Client.mouseCrossColor = 2; // L: 9467
-					Client.mouseCrossState = 0; // L: 9468
-					Client.destinationX = var0; // L: 9469
-					Client.destinationY = var1; // L: 9470
-					var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2984, Client.packetWriter.isaacCipher); // L: 9472
-					var9.packetBuffer.method7863(var3); // L: 9473
-					var9.packetBuffer.method7762(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9474
-					Client.packetWriter.addNode(var9); // L: 9475
-				}
-			} else if (var2 == 12) {
-				var13 = Client.npcs[var3]; // L: 9045
-				if (var13 != null) { // L: 9046
-					Client.mouseCrossX = var6; // L: 9047
-					Client.mouseCrossY = var7; // L: 9048
-					Client.mouseCrossColor = 2; // L: 9049
-					Client.mouseCrossState = 0; // L: 9050
-					Client.destinationX = var0; // L: 9051
-					Client.destinationY = var1; // L: 9052
-					var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2940, Client.packetWriter.isaacCipher); // L: 9054
-					var9.packetBuffer.writeShort(var3); // L: 9055
-					var9.packetBuffer.method7764(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9056
-					Client.packetWriter.addNode(var9); // L: 9057
-				}
-			} else if (var2 == 13) {
-				var13 = Client.npcs[var3]; // L: 8752
-				if (var13 != null) { // L: 8753
-					Client.mouseCrossX = var6; // L: 8754
-					Client.mouseCrossY = var7; // L: 8755
-					Client.mouseCrossColor = 2; // L: 8756
-					Client.mouseCrossState = 0; // L: 8757
-					Client.destinationX = var0; // L: 8758
-					Client.destinationY = var1; // L: 8759
-					var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2907, Client.packetWriter.isaacCipher); // L: 8761
-					var9.packetBuffer.method7929(var3); // L: 8762
-					var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8763
-					Client.packetWriter.addNode(var9); // L: 8764
-				}
-			} else {
-				Player var15;
-				if (var2 == 14) {
-					var15 = Client.players[var3]; // L: 8768
-					if (var15 != null) { // L: 8769
-						Client.mouseCrossX = var6; // L: 8770
-						Client.mouseCrossY = var7; // L: 8771
-						Client.mouseCrossColor = 2; // L: 8772
-						Client.mouseCrossState = 0; // L: 8773
-						Client.destinationX = var0; // L: 8774
-						Client.destinationY = var1; // L: 8775
-						var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2908, Client.packetWriter.isaacCipher); // L: 8777
-						var9.packetBuffer.method7863(var3); // L: 8778
-						var9.packetBuffer.method7863(WorldMapIcon_0.selectedItemId); // L: 8779
-						var9.packetBuffer.method7764(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8780
-						var9.packetBuffer.method7863(EnumComposition.selectedItemSlot); // L: 8781
-						var9.packetBuffer.writeInt(ModeWhere.selectedItemWidget); // L: 8782
-						Client.packetWriter.addNode(var9); // L: 8783
-					}
-				} else if (var2 == 15) {
-					var15 = Client.players[var3]; // L: 9184
-					if (var15 != null) { // L: 9185
-						Client.mouseCrossX = var6; // L: 9186
-						Client.mouseCrossY = var7; // L: 9187
-						Client.mouseCrossColor = 2; // L: 9188
-						Client.mouseCrossState = 0; // L: 9189
-						Client.destinationX = var0; // L: 9190
-						Client.destinationY = var1; // L: 9191
-						var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2924, Client.packetWriter.isaacCipher); // L: 9192
-						var9.packetBuffer.writeShort(Client.selectedSpellChildIndex); // L: 9193
-						var9.packetBuffer.method7929(var3); // L: 9194
-						var9.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9195
-						var9.packetBuffer.writeInt(NetCache.selectedSpellWidget); // L: 9196
-						var9.packetBuffer.writeIntME(Client.selectedSpellItemId); // L: 9197
-						Client.packetWriter.addNode(var9); // L: 9198
-					}
-				} else if (var2 == 16) {
-					Client.mouseCrossX = var6; // L: 8900
-					Client.mouseCrossY = var7; // L: 8901
-					Client.mouseCrossColor = 2; // L: 8902
-					Client.mouseCrossState = 0; // L: 8903
-					Client.destinationX = var0; // L: 8904
-					Client.destinationY = var1; // L: 8905
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2997, Client.packetWriter.isaacCipher); // L: 8907
-					var8.packetBuffer.writeShort(WorldMapLabelSize.baseY * 64 + var1); // L: 8908
-					var8.packetBuffer.writeInt(ModeWhere.selectedItemWidget); // L: 8909
-					var8.packetBuffer.method7929(EnumComposition.selectedItemSlot); // L: 8910
-					var8.packetBuffer.method7863(WorldMapIcon_0.selectedItemId); // L: 8911
-					var8.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8912
-					var8.packetBuffer.method7863(var3); // L: 8913
-					var8.packetBuffer.writeShort(class28.baseX * 64 + var0); // L: 8914
-					Client.packetWriter.addNode(var8); // L: 8915
-				} else if (var2 == 17) {
-					Client.mouseCrossX = var6; // L: 9479
-					Client.mouseCrossY = var7; // L: 9480
-					Client.mouseCrossColor = 2; // L: 9481
-					Client.mouseCrossState = 0; // L: 9482
-					Client.destinationX = var0; // L: 9483
-					Client.destinationY = var1; // L: 9484
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2980, Client.packetWriter.isaacCipher); // L: 9485
-					var8.packetBuffer.writeIntME(var3); // L: 9486
-					var8.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9487
-					var8.packetBuffer.method7863(class28.baseX * 64 + var0); // L: 9488
-					var8.packetBuffer.method7929(Client.selectedSpellChildIndex); // L: 9489
-					var8.packetBuffer.writeIntME(Client.selectedSpellItemId); // L: 9490
-					var8.packetBuffer.method7863(WorldMapLabelSize.baseY * 64 + var1); // L: 9491
-					var8.packetBuffer.method7760(NetCache.selectedSpellWidget); // L: 9492
-					Client.packetWriter.addNode(var8); // L: 9493
-				} else if (var2 == 18) {
-					Client.mouseCrossX = var6; // L: 9061
-					Client.mouseCrossY = var7; // L: 9062
-					Client.mouseCrossColor = 2; // L: 9063
-					Client.mouseCrossState = 0; // L: 9064
-					Client.destinationX = var0; // L: 9065
-					Client.destinationY = var1; // L: 9066
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2909, Client.packetWriter.isaacCipher); // L: 9068
-					var8.packetBuffer.method7929(class28.baseX * 64 + var0); // L: 9069
-					var8.packetBuffer.method7863(var3); // L: 9070
-					var8.packetBuffer.writeShort(WorldMapLabelSize.baseY * 64 + var1); // L: 9071
-					var8.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9072
-					Client.packetWriter.addNode(var8); // L: 9073
-				} else if (var2 == 19) {
-					Client.mouseCrossX = var6; // L: 8885
-					Client.mouseCrossY = var7; // L: 8886
-					Client.mouseCrossColor = 2; // L: 8887
-					Client.mouseCrossState = 0; // L: 8888
-					Client.destinationX = var0; // L: 8889
-					Client.destinationY = var1; // L: 8890
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2919, Client.packetWriter.isaacCipher); // L: 8892
-					var8.packetBuffer.method7929(WorldMapLabelSize.baseY * 64 + var1); // L: 8893
-					var8.packetBuffer.method7929(var3); // L: 8894
-					var8.packetBuffer.method7762(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8895
-					var8.packetBuffer.method7929(class28.baseX * 64 + var0); // L: 8896
-					Client.packetWriter.addNode(var8); // L: 8897
-				} else if (var2 == 20) {
-					Client.mouseCrossX = var6; // L: 9247
-					Client.mouseCrossY = var7; // L: 9248
-					Client.mouseCrossColor = 2; // L: 9249
-					Client.mouseCrossState = 0; // L: 9250
-					Client.destinationX = var0; // L: 9251
-					Client.destinationY = var1; // L: 9252
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2920, Client.packetWriter.isaacCipher); // L: 9254
-					var8.packetBuffer.writeShort(WorldMapLabelSize.baseY * 64 + var1); // L: 9255
-					var8.packetBuffer.method7764(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9256
-					var8.packetBuffer.method7863(var3); // L: 9257
-					var8.packetBuffer.writeIntME(class28.baseX * 64 + var0); // L: 9258
-					Client.packetWriter.addNode(var8); // L: 9259
-				} else if (var2 == 21) {
-					Client.mouseCrossX = var6; // L: 8855
-					Client.mouseCrossY = var7; // L: 8856
-					Client.mouseCrossColor = 2; // L: 8857
-					Client.mouseCrossState = 0; // L: 8858
-					Client.destinationX = var0; // L: 8859
-					Client.destinationY = var1; // L: 8860
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2955, Client.packetWriter.isaacCipher); // L: 8862
-					var8.packetBuffer.method7863(class28.baseX * 64 + var0); // L: 8863
-					var8.packetBuffer.method7929(var3); // L: 8864
-					var8.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8865
-					var8.packetBuffer.writeShort(WorldMapLabelSize.baseY * 64 + var1); // L: 8866
-					Client.packetWriter.addNode(var8); // L: 8867
-				} else if (var2 == 22) {
-					Client.mouseCrossX = var6; // L: 9169
-					Client.mouseCrossY = var7; // L: 9170
-					Client.mouseCrossColor = 2; // L: 9171
-					Client.mouseCrossState = 0; // L: 9172
-					Client.destinationX = var0; // L: 9173
-					Client.destinationY = var1; // L: 9174
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2961, Client.packetWriter.isaacCipher); // L: 9176
-					var8.packetBuffer.method7863(class28.baseX * 64 + var0); // L: 9177
-					var8.packetBuffer.method7764(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9178
-					var8.packetBuffer.method7929(var3); // L: 9179
-					var8.packetBuffer.writeShort(WorldMapLabelSize.baseY * 64 + var1); // L: 9180
-					Client.packetWriter.addNode(var8); // L: 9181
-				} else if (var2 == 23) {
-					if (Client.isMenuOpen) { // L: 8744
-						class356.scene.setViewportWalking(); // L: 8745
-					} else {
-						class356.scene.menuOpen(PacketWriter.Client_plane, var0, var1, true); // L: 8748
-					}
-				} else {
-					PacketBufferNode var12;
-					Widget var16;
-					if (var2 == 24) {
-						var16 = class140.getWidget(var1); // L: 8947
-						if (var16 != null) { // L: 8948
-							boolean var11 = true; // L: 8949
-							if (var16.contentType > 0) { // L: 8950
-								var11 = Message.method1065(var16);
-							}
+		label932: {
+			label933: {
+				try {
+					int var13;
+					try {
+						var29 = true; // L: 137
+						IntHashTable.Interpreter_intLocals = new int[var1.localIntCount]; // L: 138
+						int var11 = 0; // L: 139
+						class11.Interpreter_stringLocals = new String[var1.localStringCount]; // L: 140
+						int var12 = 0;
 
-							if (var11) { // L: 8951
-								var12 = EnumComposition.getPacketBufferNode(ClientPacket.field2999, Client.packetWriter.isaacCipher); // L: 8953
-								var12.packetBuffer.writeInt(var1); // L: 8954
-								Client.packetWriter.addNode(var12); // L: 8955
-							}
-						}
-					} else {
-						if (var2 == 25) {
-							var16 = ScriptFrame.getWidgetChild(var1, var0); // L: 9262
-							if (var16 != null) { // L: 9263
-								WorldMapDecoration.Widget_runOnTargetLeave(); // L: 9264
-								GrandExchangeOfferAgeComparator.selectSpell(var1, var0, WorldMapID.Widget_unpackTargetMask(class124.getWidgetFlags(var16)), var16.itemId); // L: 9265
-								Client.isItemSelected = 0; // L: 9266
-								Client.selectedSpellActionName = WorldMapIcon_0.Widget_getSpellActionName(var16); // L: 9267
-								if (Client.selectedSpellActionName == null) { // L: 9268
-									Client.selectedSpellActionName = "null";
+						int var14;
+						String var20;
+						for (var13 = 1; var13 < var4.length; ++var13) { // L: 141
+							if (var4[var13] instanceof Integer) { // L: 142
+								var14 = (Integer)var4[var13]; // L: 143
+								if (var14 == -2147483647) { // L: 144
+									var14 = var0.mouseX;
 								}
 
-								if (var16.isIf3) { // L: 9269
-									Client.selectedSpellName = var16.dataText + class122.colorStartTag(16777215);
+								if (var14 == -2147483646) { // L: 145
+									var14 = var0.mouseY;
+								}
+
+								if (var14 == -2147483645) { // L: 146
+									var14 = var0.widget != null ? var0.widget.id : -1;
+								}
+
+								if (var14 == -2147483644) { // L: 147
+									var14 = var0.opIndex;
+								}
+
+								if (var14 == -2147483643) { // L: 148
+									var14 = var0.widget != null ? var0.widget.childIndex : -1;
+								}
+
+								if (var14 == -2147483642) { // L: 149
+									var14 = var0.dragTarget != null ? var0.dragTarget.id : -1;
+								}
+
+								if (var14 == -2147483641) { // L: 150
+									var14 = var0.dragTarget != null ? var0.dragTarget.childIndex : -1;
+								}
+
+								if (var14 == -2147483640) { // L: 151
+									var14 = var0.keyTyped;
+								}
+
+								if (var14 == -2147483639) { // L: 152
+									var14 = var0.keyPressed;
+								}
+
+								IntHashTable.Interpreter_intLocals[var11++] = var14; // L: 153
+							} else if (var4[var13] instanceof String) { // L: 155
+								var20 = (String)var4[var13]; // L: 156
+								if (var20.equals("event_opbase")) { // L: 157
+									var20 = var0.targetName;
+								}
+
+								class11.Interpreter_stringLocals[var12++] = var20; // L: 158
+							}
+						}
+
+						Interpreter.field867 = var0.field1077; // L: 162
+
+						label919:
+						while (true) {
+							++var10; // L: 164
+							if (var10 > var2) { // L: 165
+								throw new RuntimeException();
+							}
+
+							++var5; // L: 166
+							int var32 = var6[var5];
+							if (var32 >= 100) { // L: 167
+								boolean var34;
+								if (var1.intOperands[var5] == 1) { // L: 385
+									var34 = true;
 								} else {
-									Client.selectedSpellName = class122.colorStartTag(65280) + var16.spellName + class122.colorStartTag(16777215); // L: 9270
+									var34 = false; // L: 386
 								}
-							}
 
-							return; // L: 9272
-						}
+								var14 = class74.method2094(var32, var1, var34); // L: 387
+								switch(var14) { // L: 388
+								case 0:
+									var29 = false;
+									break label919;
+								case 1:
+								default:
+									break;
+								case 2:
+									throw new IllegalStateException(); // L: 391
+								}
+							} else if (var32 == 0) { // L: 168
+								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7[var5]; // L: 169
+							} else if (var32 == 1) { // L: 172
+								var13 = var7[var5]; // L: 173
+								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Varps.Varps_main[var13]; // L: 174
+							} else if (var32 == 2) { // L: 177
+								var13 = var7[var5]; // L: 178
+								Varps.Varps_main[var13] = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 179
+								Varcs.changeGameOptions(var13); // L: 180
+							} else if (var32 == 3) { // L: 183
+								Interpreter.Interpreter_stringStack[++class179.Interpreter_stringStackSize - 1] = var1.stringOperands[var5]; // L: 184
+							} else if (var32 == 6) { // L: 187
+								var5 += var7[var5]; // L: 188
+							} else if (var32 == 7) { // L: 191
+								Interpreter.Interpreter_intStackSize -= 2; // L: 192
+								if (Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] != Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]) { // L: 193
+									var5 += var7[var5];
+								}
+							} else if (var32 == 8) { // L: 196
+								Interpreter.Interpreter_intStackSize -= 2; // L: 197
+								if (Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] == Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]) { // L: 198
+									var5 += var7[var5];
+								}
+							} else if (var32 == 9) { // L: 201
+								Interpreter.Interpreter_intStackSize -= 2; // L: 202
+								if (Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] < Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]) { // L: 203
+									var5 += var7[var5];
+								}
+							} else if (var32 == 10) { // L: 206
+								Interpreter.Interpreter_intStackSize -= 2; // L: 207
+								if (Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] > Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]) { // L: 208
+									var5 += var7[var5];
+								}
+							} else if (var32 == 21) { // L: 211
+								if (Interpreter.Interpreter_frameDepth == 0) {
+									var29 = false;
+									break label933;
+								}
 
-						if (var2 == 26) {
-							Occluder.method4354(); // L: 9002
-						} else {
-							int var10;
-							Widget var14;
-							if (var2 == 28) {
-								var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2999, Client.packetWriter.isaacCipher); // L: 8919
-								var8.packetBuffer.writeInt(var1); // L: 8920
-								Client.packetWriter.addNode(var8); // L: 8921
-								var14 = class140.getWidget(var1); // L: 8922
-								if (var14 != null && var14.cs1Instructions != null && var14.cs1Instructions[0][0] == 5) { // L: 8923
-									var10 = var14.cs1Instructions[0][1]; // L: 8924
-									Varps.Varps_main[var10] = 1 - Varps.Varps_main[var10]; // L: 8925
-									class306.changeGameOptions(var10); // L: 8926
+								ScriptFrame var39 = Interpreter.Interpreter_frames[--Interpreter.Interpreter_frameDepth]; // L: 213
+								var1 = var39.script; // L: 214
+								var6 = var1.opcodes; // L: 215
+								var7 = var1.intOperands; // L: 216
+								var5 = var39.pc; // L: 217
+								IntHashTable.Interpreter_intLocals = var39.intLocals; // L: 218
+								class11.Interpreter_stringLocals = var39.stringLocals; // L: 219
+							} else if (var32 == 25) { // L: 222
+								var13 = var7[var5]; // L: 223
+								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = GrandExchangeOfferOwnWorldComparator.getVarbit(var13); // L: 224
+							} else if (var32 == 27) { // L: 227
+								var13 = var7[var5]; // L: 228
+								LoginPacket.method5768(var13, Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]); // L: 229
+							} else if (var32 == 31) { // L: 232
+								Interpreter.Interpreter_intStackSize -= 2; // L: 233
+								if (Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] <= Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]) { // L: 234
+									var5 += var7[var5];
 								}
-							} else if (var2 == 29) {
-								var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2999, Client.packetWriter.isaacCipher); // L: 9417
-								var8.packetBuffer.writeInt(var1); // L: 9418
-								Client.packetWriter.addNode(var8); // L: 9419
-								var14 = class140.getWidget(var1); // L: 9420
-								if (var14 != null && var14.cs1Instructions != null && var14.cs1Instructions[0][0] == 5) { // L: 9421
-									var10 = var14.cs1Instructions[0][1]; // L: 9422
-									if (Varps.Varps_main[var10] != var14.cs1ComparisonValues[0]) { // L: 9423
-										Varps.Varps_main[var10] = var14.cs1ComparisonValues[0]; // L: 9424
-										class306.changeGameOptions(var10); // L: 9425
-									}
+							} else if (var32 == 32) { // L: 237
+								Interpreter.Interpreter_intStackSize -= 2; // L: 238
+								if (Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] >= Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]) { // L: 239
+									var5 += var7[var5];
 								}
-							} else if (var2 == 30) {
-								if (Client.meslayerContinueWidget == null) { // L: 9213
-									class362.resumePauseWidget(var1, var0); // L: 9214
-									Client.meslayerContinueWidget = ScriptFrame.getWidgetChild(var1, var0); // L: 9215
-									ChatChannel.invalidateWidget(Client.meslayerContinueWidget); // L: 9216
-								}
-							} else if (var2 == 31) {
-								var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2993, Client.packetWriter.isaacCipher); // L: 9431
-								var8.packetBuffer.method7929(EnumComposition.selectedItemSlot); // L: 9432
-								var8.packetBuffer.method7784(var1); // L: 9433
-								var8.packetBuffer.method7783(ModeWhere.selectedItemWidget); // L: 9434
-								var8.packetBuffer.method7929(var0); // L: 9435
-								var8.packetBuffer.method7863(WorldMapIcon_0.selectedItemId); // L: 9436
-								var8.packetBuffer.writeIntME(var3); // L: 9437
-								Client.packetWriter.addNode(var8); // L: 9438
-								Client.field599 = 0; // L: 9439
-								class1.field4 = class140.getWidget(var1); // L: 9440
-								Client.field600 = var0; // L: 9441
-							} else if (var2 == 32) {
-								var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2933, Client.packetWriter.isaacCipher); // L: 9298
-								var8.packetBuffer.writeInt(var1); // L: 9299
-								var8.packetBuffer.writeShort(var3); // L: 9300
-								var8.packetBuffer.writeIntME(Client.selectedSpellChildIndex); // L: 9301
-								var8.packetBuffer.method7760(NetCache.selectedSpellWidget); // L: 9302
-								var8.packetBuffer.method7929(var0); // L: 9303
-								Client.packetWriter.addNode(var8); // L: 9304
-								Client.field599 = 0; // L: 9305
-								class1.field4 = class140.getWidget(var1); // L: 9306
-								Client.field600 = var0; // L: 9307
-							} else if (var2 == 33) {
-								var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2988, Client.packetWriter.isaacCipher); // L: 9203
-								var8.packetBuffer.method7760(var1); // L: 9204
-								var8.packetBuffer.writeIntME(var0); // L: 9205
-								var8.packetBuffer.method7929(var3); // L: 9206
-								Client.packetWriter.addNode(var8); // L: 9207
-								Client.field599 = 0; // L: 9208
-								class1.field4 = class140.getWidget(var1); // L: 9209
-								Client.field600 = var0; // L: 9210
-							} else if (var2 == 34) {
-								var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2943, Client.packetWriter.isaacCipher); // L: 9221
-								var8.packetBuffer.method7929(var0); // L: 9222
-								var8.packetBuffer.method7784(var1); // L: 9223
-								var8.packetBuffer.method7863(var3); // L: 9224
-								Client.packetWriter.addNode(var8); // L: 9225
-								Client.field599 = 0; // L: 9226
-								class1.field4 = class140.getWidget(var1); // L: 9227
-								Client.field600 = var0; // L: 9228
-							} else if (var2 == 35) {
-								var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2998, Client.packetWriter.isaacCipher); // L: 9108
-								var8.packetBuffer.method7863(var3); // L: 9109
-								var8.packetBuffer.method7760(var1); // L: 9110
-								var8.packetBuffer.writeIntME(var0); // L: 9111
-								Client.packetWriter.addNode(var8); // L: 9112
-								Client.field599 = 0; // L: 9113
-								class1.field4 = class140.getWidget(var1); // L: 9114
-								Client.field600 = var0; // L: 9115
-							} else if (var2 == 36) {
-								var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2975, Client.packetWriter.isaacCipher); // L: 8816
-								var8.packetBuffer.writeShort(var3); // L: 8817
-								var8.packetBuffer.method7929(var0); // L: 8818
-								var8.packetBuffer.method7783(var1); // L: 8819
-								Client.packetWriter.addNode(var8); // L: 8820
-								Client.field599 = 0; // L: 8821
-								class1.field4 = class140.getWidget(var1); // L: 8822
-								Client.field600 = var0; // L: 8823
-							} else if (var2 == 37) {
-								var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2968, Client.packetWriter.isaacCipher); // L: 9024
-								var8.packetBuffer.writeInt(var1); // L: 9025
-								var8.packetBuffer.writeIntME(var0); // L: 9026
-								var8.packetBuffer.method7863(var3); // L: 9027
-								Client.packetWriter.addNode(var8); // L: 9028
-								Client.field599 = 0; // L: 9029
-								class1.field4 = class140.getWidget(var1); // L: 9030
-								Client.field600 = var0; // L: 9031
+							} else if (var32 == 33) { // L: 242
+								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = IntHashTable.Interpreter_intLocals[var7[var5]]; // L: 243
+							} else if (var32 == 34) { // L: 246
+								IntHashTable.Interpreter_intLocals[var7[var5]] = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 247
+							} else if (var32 == 35) { // L: 250
+								Interpreter.Interpreter_stringStack[++class179.Interpreter_stringStackSize - 1] = class11.Interpreter_stringLocals[var7[var5]]; // L: 251
+							} else if (var32 == 36) { // L: 254
+								class11.Interpreter_stringLocals[var7[var5]] = Interpreter.Interpreter_stringStack[--class179.Interpreter_stringStackSize]; // L: 255
+							} else if (var32 == 37) { // L: 258
+								var13 = var7[var5]; // L: 259
+								class179.Interpreter_stringStackSize -= var13; // L: 260
+								var20 = Tiles.method2268(Interpreter.Interpreter_stringStack, class179.Interpreter_stringStackSize, var13); // L: 261
+								Interpreter.Interpreter_stringStack[++class179.Interpreter_stringStackSize - 1] = var20; // L: 262
+							} else if (var32 == 38) { // L: 265
+								--Interpreter.Interpreter_intStackSize; // L: 266
+							} else if (var32 == 39) { // L: 269
+								--class179.Interpreter_stringStackSize; // L: 270
 							} else {
-								if (var2 == 38) {
-									WorldMapDecoration.Widget_runOnTargetLeave(); // L: 8787
-									var16 = class140.getWidget(var1); // L: 8788
-									Client.isItemSelected = 1; // L: 8789
-									EnumComposition.selectedItemSlot = var0; // L: 8790
-									ModeWhere.selectedItemWidget = var1; // L: 8791
-									WorldMapIcon_0.selectedItemId = var3; // L: 8792
-									ChatChannel.invalidateWidget(var16); // L: 8793
-									Client.selectedItemName = class122.colorStartTag(16748608) + EnumComposition.ItemComposition_get(var3).name + class122.colorStartTag(16777215); // L: 8794
-									if (Client.selectedItemName == null) { // L: 8795
-										Client.selectedItemName = "null";
-									}
+								int var17;
+								if (var32 != 40) { // L: 273
+									if (var32 == 42) { // L: 296
+										Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class144.varcs.getInt(var7[var5]); // L: 297
+									} else if (var32 == 43) { // L: 300
+										class144.varcs.setInt(var7[var5], Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]); // L: 301
+									} else if (var32 == 44) { // L: 304
+										var13 = var7[var5] >> 16; // L: 305
+										var14 = var7[var5] & 65535; // L: 306
+										int var23 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 307
+										if (var23 < 0 || var23 > 5000) { // L: 308
+											throw new RuntimeException(); // L: 309
+										}
 
-									return; // L: 8796
-								}
+										Interpreter.Interpreter_arrayLengths[var13] = var23; // L: 311
+										byte var24 = -1; // L: 312
+										if (var14 == 105) { // L: 313
+											var24 = 0;
+										}
 
-								if (var2 == 39) {
-									var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2938, Client.packetWriter.isaacCipher); // L: 9035
-									var8.packetBuffer.method7760(var1); // L: 9036
-									var8.packetBuffer.method7929(var0); // L: 9037
-									var8.packetBuffer.writeShort(var3); // L: 9038
-									Client.packetWriter.addNode(var8); // L: 9039
-									Client.field599 = 0; // L: 9040
-									class1.field4 = class140.getWidget(var1); // L: 9041
-									Client.field600 = var0; // L: 9042
-								} else if (var2 == 40) {
-									var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2978, Client.packetWriter.isaacCipher); // L: 9129
-									var8.packetBuffer.method7783(var1); // L: 9130
-									var8.packetBuffer.method7863(var0); // L: 9131
-									var8.packetBuffer.writeIntME(var3); // L: 9132
-									Client.packetWriter.addNode(var8); // L: 9133
-									Client.field599 = 0; // L: 9134
-									class1.field4 = class140.getWidget(var1); // L: 9135
-									Client.field600 = var0; // L: 9136
-								} else if (var2 == 41) {
-									var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2967, Client.packetWriter.isaacCipher); // L: 9355
-									var8.packetBuffer.method7863(var3); // L: 9356
-									var8.packetBuffer.method7784(var1); // L: 9357
-									var8.packetBuffer.writeShort(var0); // L: 9358
-									Client.packetWriter.addNode(var8); // L: 9359
-									Client.field599 = 0; // L: 9360
-									class1.field4 = class140.getWidget(var1); // L: 9361
-									Client.field600 = var0; // L: 9362
-								} else if (var2 == 42) {
-									var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2977, Client.packetWriter.isaacCipher); // L: 8827
-									var8.packetBuffer.method7863(var0); // L: 8828
-									var8.packetBuffer.writeShort(var3); // L: 8829
-									var8.packetBuffer.method7783(var1); // L: 8830
-									Client.packetWriter.addNode(var8); // L: 8831
-									Client.field599 = 0; // L: 8832
-									class1.field4 = class140.getWidget(var1); // L: 8833
-									Client.field600 = var0; // L: 8834
-								} else if (var2 == 43) {
-									var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2935, Client.packetWriter.isaacCipher); // L: 8961
-									var8.packetBuffer.method7929(var0); // L: 8962
-									var8.packetBuffer.method7783(var1); // L: 8963
-									var8.packetBuffer.method7929(var3); // L: 8964
-									Client.packetWriter.addNode(var8); // L: 8965
-									Client.field599 = 0; // L: 8966
-									class1.field4 = class140.getWidget(var1); // L: 8967
-									Client.field600 = var0; // L: 8968
-								} else if (var2 == 44) {
-									var15 = Client.players[var3]; // L: 9091
-									if (var15 != null) { // L: 9092
-										Client.mouseCrossX = var6; // L: 9093
-										Client.mouseCrossY = var7; // L: 9094
-										Client.mouseCrossColor = 2; // L: 9095
-										Client.mouseCrossState = 0; // L: 9096
-										Client.destinationX = var0; // L: 9097
-										Client.destinationY = var1; // L: 9098
-										var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2970, Client.packetWriter.isaacCipher); // L: 9100
-										var9.packetBuffer.writeShort(var3); // L: 9101
-										var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9102
-										Client.packetWriter.addNode(var9); // L: 9103
-									}
-								} else if (var2 == 45) {
-									var15 = Client.players[var3]; // L: 8986
-									if (var15 != null) { // L: 8987
-										Client.mouseCrossX = var6; // L: 8988
-										Client.mouseCrossY = var7; // L: 8989
-										Client.mouseCrossColor = 2; // L: 8990
-										Client.mouseCrossState = 0; // L: 8991
-										Client.destinationX = var0; // L: 8992
-										Client.destinationY = var1; // L: 8993
-										var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2994, Client.packetWriter.isaacCipher); // L: 8995
-										var9.packetBuffer.method7863(var3); // L: 8996
-										var9.packetBuffer.method7762(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8997
-										Client.packetWriter.addNode(var9); // L: 8998
-									}
-								} else if (var2 == 46) {
-									var15 = Client.players[var3]; // L: 8728
-									if (var15 != null) { // L: 8729
-										Client.mouseCrossX = var6; // L: 8730
-										Client.mouseCrossY = var7; // L: 8731
-										Client.mouseCrossColor = 2; // L: 8732
-										Client.mouseCrossState = 0; // L: 8733
-										Client.destinationX = var0; // L: 8734
-										Client.destinationY = var1; // L: 8735
-										var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2986, Client.packetWriter.isaacCipher); // L: 8737
-										var9.packetBuffer.method7929(var3); // L: 8738
-										var9.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8739
-										Client.packetWriter.addNode(var9); // L: 8740
-									}
-								} else if (var2 == 47) {
-									var15 = Client.players[var3]; // L: 8799
-									if (var15 != null) { // L: 8800
-										Client.mouseCrossX = var6; // L: 8801
-										Client.mouseCrossY = var7; // L: 8802
-										Client.mouseCrossColor = 2; // L: 8803
-										Client.mouseCrossState = 0; // L: 8804
-										Client.destinationX = var0; // L: 8805
-										Client.destinationY = var1; // L: 8806
-										var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2991, Client.packetWriter.isaacCipher); // L: 8808
-										var9.packetBuffer.method7762(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 8809
-										var9.packetBuffer.method7863(var3); // L: 8810
-										Client.packetWriter.addNode(var9); // L: 8811
-									}
-								} else if (var2 == 48) {
-									var15 = Client.players[var3]; // L: 9139
-									if (var15 != null) { // L: 9140
-										Client.mouseCrossX = var6; // L: 9141
-										Client.mouseCrossY = var7; // L: 9142
-										Client.mouseCrossColor = 2; // L: 9143
-										Client.mouseCrossState = 0; // L: 9144
-										Client.destinationX = var0; // L: 9145
-										Client.destinationY = var1; // L: 9146
-										var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2953, Client.packetWriter.isaacCipher); // L: 9148
-										var9.packetBuffer.writeIntME(var3); // L: 9149
-										var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9150
-										Client.packetWriter.addNode(var9); // L: 9151
-									}
-								} else if (var2 == 49) {
-									var15 = Client.players[var3]; // L: 9338
-									if (var15 != null) { // L: 9339
-										Client.mouseCrossX = var6; // L: 9340
-										Client.mouseCrossY = var7; // L: 9341
-										Client.mouseCrossColor = 2; // L: 9342
-										Client.mouseCrossState = 0; // L: 9343
-										Client.destinationX = var0; // L: 9344
-										Client.destinationY = var1; // L: 9345
-										var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2965, Client.packetWriter.isaacCipher); // L: 9347
-										var9.packetBuffer.writeIntME(var3); // L: 9348
-										var9.packetBuffer.method7762(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9349
-										Client.packetWriter.addNode(var9); // L: 9350
-									}
-								} else if (var2 == 50) {
-									var15 = Client.players[var3]; // L: 9231
-									if (var15 != null) { // L: 9232
-										Client.mouseCrossX = var6; // L: 9233
-										Client.mouseCrossY = var7; // L: 9234
-										Client.mouseCrossColor = 2; // L: 9235
-										Client.mouseCrossState = 0; // L: 9236
-										Client.destinationX = var0; // L: 9237
-										Client.destinationY = var1; // L: 9238
-										var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2947, Client.packetWriter.isaacCipher); // L: 9240
-										var9.packetBuffer.writeShort(var3); // L: 9241
-										var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9242
-										Client.packetWriter.addNode(var9); // L: 9243
-									}
-								} else if (var2 == 51) {
-									var15 = Client.players[var3]; // L: 9380
-									if (var15 != null) { // L: 9381
-										Client.mouseCrossX = var6; // L: 9382
-										Client.mouseCrossY = var7; // L: 9383
-										Client.mouseCrossColor = 2; // L: 9384
-										Client.mouseCrossState = 0; // L: 9385
-										Client.destinationX = var0; // L: 9386
-										Client.destinationY = var1; // L: 9387
-										var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2959, Client.packetWriter.isaacCipher); // L: 9389
-										var9.packetBuffer.method7763(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9390
-										var9.packetBuffer.writeShort(var3); // L: 9391
-										Client.packetWriter.addNode(var9); // L: 9392
+										for (var17 = 0; var17 < var23; ++var17) { // L: 314
+											Interpreter.Interpreter_arrays[var13][var17] = var24;
+										}
+									} else if (var32 == 45) { // L: 317
+										var13 = var7[var5]; // L: 318
+										var14 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]; // L: 319
+										if (var14 < 0 || var14 >= Interpreter.Interpreter_arrayLengths[var13]) { // L: 320
+											throw new RuntimeException(); // L: 321
+										}
+
+										Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Interpreter.Interpreter_arrays[var13][var14]; // L: 323
+									} else if (var32 == 46) { // L: 326
+										var13 = var7[var5]; // L: 327
+										Interpreter.Interpreter_intStackSize -= 2; // L: 328
+										var14 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize]; // L: 329
+										if (var14 < 0 || var14 >= Interpreter.Interpreter_arrayLengths[var13]) { // L: 330
+											throw new RuntimeException(); // L: 331
+										}
+
+										Interpreter.Interpreter_arrays[var13][var14] = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]; // L: 333
+									} else {
+										String var21;
+										if (var32 == 47) { // L: 336
+											var21 = class144.varcs.getStringOld(var7[var5]); // L: 337
+											if (var21 == null) { // L: 338
+												var21 = "null";
+											}
+
+											Interpreter.Interpreter_stringStack[++class179.Interpreter_stringStackSize - 1] = var21; // L: 339
+										} else if (var32 == 48) { // L: 342
+											class144.varcs.setStringOld(var7[var5], Interpreter.Interpreter_stringStack[--class179.Interpreter_stringStackSize]); // L: 343
+										} else if (var32 == 49) { // L: 346
+											var21 = class144.varcs.getString(var7[var5]); // L: 347
+											Interpreter.Interpreter_stringStack[++class179.Interpreter_stringStackSize - 1] = var21; // L: 348
+										} else if (var32 == 50) { // L: 351
+											class144.varcs.setString(var7[var5], Interpreter.Interpreter_stringStack[--class179.Interpreter_stringStackSize]); // L: 352
+										} else if (var32 == 60) { // L: 355
+											IterableNodeHashTable var37 = var1.switches[var7[var5]]; // L: 356
+											IntegerNode var36 = (IntegerNode)var37.get((long)Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]); // L: 357
+											if (var36 != null) { // L: 358
+												var5 += var36.integer;
+											}
+										} else {
+											Integer var38;
+											if (var32 == 74) { // L: 361
+												var38 = class305.field3406.getTitleGroupValue(var7[var5]); // L: 362
+												if (var38 == null) { // L: 363
+													Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1; // L: 364
+												} else {
+													Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var38; // L: 367
+												}
+											} else {
+												if (var32 != 76) { // L: 371
+													throw new IllegalStateException(); // L: 381
+												}
+
+												var38 = class72.field895.method8294(var7[var5]); // L: 372
+												if (var38 == null) { // L: 373
+													Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1; // L: 374
+												} else {
+													Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var38; // L: 377
+												}
+											}
+										}
 									}
 								} else {
-									label654: {
-										if (var2 != 57) {
-											if (var2 == 58) {
-												var16 = ScriptFrame.getWidgetChild(var1, var0); // L: 9155
-												if (var16 != null) { // L: 9156
-													var9 = EnumComposition.getPacketBufferNode(ClientPacket.field2925, Client.packetWriter.isaacCipher); // L: 9158
-													var9.packetBuffer.method7929(Client.selectedSpellItemId); // L: 9159
-													var9.packetBuffer.method7863(Client.selectedSpellChildIndex); // L: 9160
-													var9.packetBuffer.method7760(NetCache.selectedSpellWidget); // L: 9161
-													var9.packetBuffer.method7929(var16.itemId); // L: 9162
-													var9.packetBuffer.writeShort(var0); // L: 9163
-													var9.packetBuffer.method7783(var1); // L: 9164
-													Client.packetWriter.addNode(var9); // L: 9165
-												}
-												break label654;
-											}
+									var13 = var7[var5]; // L: 274
+									Script var35 = class465.getScript(var13); // L: 275
+									int[] var15 = new int[var35.localIntCount]; // L: 276
+									String[] var16 = new String[var35.localStringCount]; // L: 277
 
-											if (var2 == 1001) {
-												Client.mouseCrossX = var6; // L: 9365
-												Client.mouseCrossY = var7; // L: 9366
-												Client.mouseCrossColor = 2; // L: 9367
-												Client.mouseCrossState = 0; // L: 9368
-												Client.destinationX = var0; // L: 9369
-												Client.destinationY = var1; // L: 9370
-												var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2937, Client.packetWriter.isaacCipher); // L: 9372
-												var8.packetBuffer.method7929(class28.baseX * 64 + var0); // L: 9373
-												var8.packetBuffer.method7863(var3); // L: 9374
-												var8.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0); // L: 9375
-												var8.packetBuffer.method7929(WorldMapLabelSize.baseY * 64 + var1); // L: 9376
-												Client.packetWriter.addNode(var8); // L: 9377
-												break label654;
-											}
-
-											if (var2 == 1002) {
-												Client.mouseCrossX = var6; // L: 9118
-												Client.mouseCrossY = var7; // L: 9119
-												Client.mouseCrossColor = 2; // L: 9120
-												Client.mouseCrossState = 0; // L: 9121
-												var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2976, Client.packetWriter.isaacCipher); // L: 9123
-												var8.packetBuffer.method7863(var3); // L: 9124
-												Client.packetWriter.addNode(var8); // L: 9125
-												break label654;
-											}
-
-											if (var2 == 1003) {
-												Client.mouseCrossX = var6; // L: 9396
-												Client.mouseCrossY = var7; // L: 9397
-												Client.mouseCrossColor = 2; // L: 9398
-												Client.mouseCrossState = 0; // L: 9399
-												var13 = Client.npcs[var3]; // L: 9400
-												if (var13 != null) { // L: 9401
-													NPCComposition var17 = var13.definition; // L: 9402
-													if (var17.transforms != null) { // L: 9403
-														var17 = var17.transform();
-													}
-
-													if (var17 != null) { // L: 9404
-														var12 = EnumComposition.getPacketBufferNode(ClientPacket.field2941, Client.packetWriter.isaacCipher); // L: 9406
-														var12.packetBuffer.writeIntME(var17.id); // L: 9407
-														Client.packetWriter.addNode(var12); // L: 9408
-													}
-												}
-												break label654;
-											}
-
-											if (var2 == 1004) {
-												Client.mouseCrossX = var6; // L: 9496
-												Client.mouseCrossY = var7; // L: 9497
-												Client.mouseCrossColor = 2; // L: 9498
-												Client.mouseCrossState = 0; // L: 9499
-												var8 = EnumComposition.getPacketBufferNode(ClientPacket.field3004, Client.packetWriter.isaacCipher); // L: 9501
-												var8.packetBuffer.method7929(var3); // L: 9502
-												Client.packetWriter.addNode(var8); // L: 9503
-												break label654;
-											}
-
-											if (var2 == 1005) {
-												var16 = class140.getWidget(var1); // L: 9310
-												if (var16 != null && var16.itemQuantities[var0] >= 100000) { // L: 9311
-													class290.addGameMessage(27, "", var16.itemQuantities[var0] + " x " + EnumComposition.ItemComposition_get(var3).name);
-												} else {
-													var9 = EnumComposition.getPacketBufferNode(ClientPacket.field3004, Client.packetWriter.isaacCipher); // L: 9314
-													var9.packetBuffer.method7929(var3); // L: 9315
-													Client.packetWriter.addNode(var9); // L: 9316
-												}
-
-												Client.field599 = 0; // L: 9318
-												class1.field4 = class140.getWidget(var1); // L: 9319
-												Client.field600 = var0; // L: 9320
-												break label654;
-											}
-
-											if (var2 != 1007) {
-												if (var2 == 1011 || var2 == 1008 || var2 == 1009 || var2 == 1010 || var2 == 1012) {
-													class121.worldMap.worldMapMenuAction(var2, var3, new Coord(var0), new Coord(var1)); // L: 9413
-												}
-												break label654;
-											}
-										}
-
-										var16 = ScriptFrame.getWidgetChild(var1, var0); // L: 9291
-										if (var16 != null) { // L: 9292
-											TextureProvider.widgetDefaultMenuAction(var3, var1, var0, var16.itemId, var5); // L: 9293
-										}
+									for (var17 = 0; var17 < var35.intArgumentCount; ++var17) { // L: 278
+										var15[var17] = Interpreter.Interpreter_intStack[var17 + (Interpreter.Interpreter_intStackSize - var35.intArgumentCount)];
 									}
+
+									for (var17 = 0; var17 < var35.stringArgumentCount; ++var17) { // L: 279
+										var16[var17] = Interpreter.Interpreter_stringStack[var17 + (class179.Interpreter_stringStackSize - var35.stringArgumentCount)];
+									}
+
+									Interpreter.Interpreter_intStackSize -= var35.intArgumentCount; // L: 280
+									class179.Interpreter_stringStackSize -= var35.stringArgumentCount; // L: 281
+									ScriptFrame var22 = new ScriptFrame(); // L: 282
+									var22.script = var1; // L: 283
+									var22.pc = var5; // L: 284
+									var22.intLocals = IntHashTable.Interpreter_intLocals; // L: 285
+									var22.stringLocals = class11.Interpreter_stringLocals; // L: 286
+									Interpreter.Interpreter_frames[++Interpreter.Interpreter_frameDepth - 1] = var22; // L: 287
+									var1 = var35; // L: 288
+									var6 = var35.opcodes; // L: 289
+									var7 = var35.intOperands; // L: 290
+									var5 = -1; // L: 291
+									IntHashTable.Interpreter_intLocals = var15; // L: 292
+									class11.Interpreter_stringLocals = var16; // L: 293
 								}
 							}
 						}
+					} catch (Exception var30) { // L: 401
+						var9 = true; // L: 402
+						StringBuilder var26 = new StringBuilder(30); // L: 404
+						var26.append("").append(var1.key).append(" "); // L: 405
+
+						for (var13 = Interpreter.Interpreter_frameDepth - 1; var13 >= 0; --var13) { // L: 406
+							var26.append("").append(Interpreter.Interpreter_frames[var13].script.key).append(" ");
+						}
+
+						var26.append("").append(var8); // L: 407
+						MusicPatchNode.RunException_sendStackTrace(var26.toString(), var30); // L: 408
+						var29 = false;
+						break label932;
+					}
+				} finally {
+					if (var29) {
+						while (Interpreter.field866.size() > 0) {
+							class102 var19 = (class102)Interpreter.field866.remove(0); // L: 413
+							class33.widgetDefaultMenuAction(var19.method2698(), var19.method2699(), var19.method2703(), var19.method2711(), "");
+						}
+
+						if (Interpreter.field871) { // L: 416
+							Interpreter.field871 = false; // L: 417
+							SoundCache.method880(); // L: 418
+						}
+
+						if (!var9 && var3 > 0 && var10 >= var3) {
+							MusicPatchNode.RunException_sendStackTrace("Warning: Script " + var1.field985 + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
+						}
+
 					}
 				}
+
+				while (Interpreter.field866.size() > 0) {
+					class102 var33 = (class102)Interpreter.field866.remove(0);
+					class33.widgetDefaultMenuAction(var33.method2698(), var33.method2699(), var33.method2703(), var33.method2711(), ""); // L: 414
+				}
+
+				if (Interpreter.field871) {
+					Interpreter.field871 = false;
+					SoundCache.method880();
+				}
+
+				if (!var9 && var3 > 0 && var10 >= var3) { // L: 420
+					MusicPatchNode.RunException_sendStackTrace("Warning: Script " + var1.field985 + " finished at op count " + var10 + " of max " + var2, (Throwable)null); // L: 421
+				}
+
+				return; // L: 396
 			}
+
+			while (Interpreter.field866.size() > 0) {
+				class102 var40 = (class102)Interpreter.field866.remove(0);
+				class33.widgetDefaultMenuAction(var40.method2698(), var40.method2699(), var40.method2703(), var40.method2711(), "");
+			}
+
+			if (Interpreter.field871) {
+				Interpreter.field871 = false;
+				SoundCache.method880();
+			}
+
+			if (!var9 && var3 > 0 && var10 >= var3) {
+				MusicPatchNode.RunException_sendStackTrace("Warning: Script " + var1.field985 + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
+			}
+
+			return; // L: 212
 		}
 
-		if (Client.isItemSelected != 0) { // L: 9505
-			Client.isItemSelected = 0; // L: 9506
-			ChatChannel.invalidateWidget(class140.getWidget(ModeWhere.selectedItemWidget)); // L: 9507
+		while (Interpreter.field866.size() > 0) { // L: 412
+			class102 var25 = (class102)Interpreter.field866.remove(0);
+			class33.widgetDefaultMenuAction(var25.method2698(), var25.method2699(), var25.method2703(), var25.method2711(), "");
 		}
 
-		if (Client.isSpellSelected) { // L: 9509
-			WorldMapDecoration.Widget_runOnTargetLeave();
+		if (Interpreter.field871) {
+			Interpreter.field871 = false;
+			SoundCache.method880();
 		}
 
-		if (class1.field4 != null && Client.field599 == 0) { // L: 9510
-			ChatChannel.invalidateWidget(class1.field4);
+		if (!var9 && var3 > 0 && var10 >= var3) {
+			MusicPatchNode.RunException_sendStackTrace("Warning: Script " + var1.field985 + " finished at op count " + var10 + " of max " + var2, (Throwable)null);
 		}
 
-	} // L: 9511
+	} // L: 424
 }
