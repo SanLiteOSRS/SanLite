@@ -4,64 +4,53 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nh")
+@ObfuscatedName("qt")
 @Implements("FriendLoginUpdate")
 public class FriendLoginUpdate extends Link {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 105823237
+		intValue = -1900654953
 	)
-	public int field4300;
-	@ObfuscatedName("v")
+	public int field4648;
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lui;"
 	)
 	@Export("username")
 	public Username username;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@Export("world")
 	public short world;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqa;I)V"
+		descriptor = "(Lui;I)V"
 	)
 	FriendLoginUpdate(Username var1, int var2) {
-		this.field4300 = (int)(class115.method2692() / 1000L); // L: 109
+		this.field4648 = (int)(class113.method2835() / 1000L); // L: 109
 		this.username = var1; // L: 110
 		this.world = (short)var2; // L: 111
 	} // L: 112
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ja")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lpx;",
-		garbageValue = "-1096065009"
+		descriptor = "(I)V",
+		garbageValue = "1532325121"
 	)
-	public static class437 method6631(int var0) {
-		class437 var1 = (class437)class437.DBRowType_cache.get((long)var0); // L: 24
-		if (var1 != null) { // L: 25
-			return var1;
-		} else {
-			byte[] var2 = class437.field4675.takeFile(38, var0); // L: 26
-			var1 = new class437(); // L: 27
-			if (var2 != null) { // L: 28
-				var1.method7635(new Buffer(var2));
-			}
-
-			var1.method7636(); // L: 29
-			class437.DBRowType_cache.put(var1, (long)var0); // L: 30
-			return var1; // L: 31
+	static final void method7930() {
+		Client.field637 = 0; // L: 5702
+		int var0 = AbstractArchive.baseX * 64 + (class136.localPlayer.x >> 7); // L: 5703
+		int var1 = class148.baseY * 64 + (class136.localPlayer.y >> 7); // L: 5704
+		if (var0 >= 3053 && var0 <= 3156 && var1 >= 3056 && var1 <= 3136) { // L: 5705
+			Client.field637 = 1;
 		}
-	}
 
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "-1"
-	)
-	static final void method6632(String var0) {
-		StringBuilder var10000 = (new StringBuilder()).append(var0);
-		Object var10001 = null;
-		String var1 = var10000.append(" is already on your friend list").toString(); // L: 135
-		class290.addGameMessage(30, "", var1); // L: 137
-	} // L: 139
+		if (var0 >= 3072 && var0 <= 3118 && var1 >= 9492 && var1 <= 9535) { // L: 5706
+			Client.field637 = 1;
+		}
+
+		if (Client.field637 == 1 && var0 >= 3139 && var0 <= 3199 && var1 >= 3008 && var1 <= 3062) { // L: 5707
+			Client.field637 = 0;
+		}
+
+	} // L: 5708
 }

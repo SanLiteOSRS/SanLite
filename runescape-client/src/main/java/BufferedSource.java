@@ -7,37 +7,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nw")
+@ObfuscatedName("qy")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 647895995
+		intValue = -391637301
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("j")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 2104008339
+		intValue = 475016461
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("e")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 678269677
+		intValue = 1521298383
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ag")
 	@Export("exception")
 	IOException exception;
 
@@ -52,10 +52,10 @@ public class BufferedSource implements Runnable {
 		this.thread.start(); // L: 76
 	} // L: 77
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "2131773931"
+		garbageValue = "-1308813308"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -86,10 +86,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-31"
+		descriptor = "(I)I",
+		garbageValue = "647536706"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -110,15 +110,15 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1293599351"
+		garbageValue = "1535921504"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
 		synchronized(this) { // L: 142
-			if (this.limit == this.position) { // L: 143
+			if (this.position == this.limit) { // L: 143
 				if (this.exception != null) { // L: 144
 					throw new IOException(this.exception.toString());
 				} else {
@@ -133,10 +133,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)I",
-		garbageValue = "-55"
+		descriptor = "([BIII)I",
+		garbageValue = "-1691910602"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -174,10 +174,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-101"
+		descriptor = "(I)V",
+		garbageValue = "-1404907821"
 	)
 	@Export("close")
 	void close() {
@@ -243,4 +243,118 @@ public class BufferedSource implements Runnable {
 			} // L: 108
 		}
 	}
+
+	@ObfuscatedName("ld")
+	@ObfuscatedSignature(
+		descriptor = "(IIIILjava/lang/String;B)V",
+		garbageValue = "9"
+	)
+	@Export("widgetDefaultMenuAction")
+	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
+		Widget var5 = MouseRecorder.getWidgetChild(var1, var2); // L: 10088
+		if (var5 != null) { // L: 10089
+			if (var5.onOp != null) { // L: 10090
+				ScriptEvent var6 = new ScriptEvent(); // L: 10091
+				var6.widget = var5; // L: 10092
+				var6.opIndex = var0; // L: 10093
+				var6.targetName = var4; // L: 10094
+				var6.args = var5.onOp; // L: 10095
+				GrandExchangeOfferOwnWorldComparator.runScriptEvent(var6); // L: 10096
+			}
+
+			boolean var11 = true; // L: 10098
+			if (var5.contentType > 0) { // L: 10099
+				var11 = class467.method8437(var5);
+			}
+
+			if (var11) { // L: 10100
+				int var8 = UserComparator8.getWidgetFlags(var5); // L: 10102
+				int var9 = var0 - 1; // L: 10103
+				boolean var7 = (var8 >> var9 + 1 & 1) != 0; // L: 10105
+				if (var7) { // L: 10107
+					PacketBufferNode var10;
+					if (var0 == 1) { // L: 10110
+						var10 = class503.getPacketBufferNode(ClientPacket.field3129, Client.packetWriter.isaacCipher); // L: 10112
+						var10.packetBuffer.writeInt(var1); // L: 10113
+						var10.packetBuffer.writeShort(var2); // L: 10114
+						var10.packetBuffer.writeShort(var3); // L: 10115
+						Client.packetWriter.addNode(var10); // L: 10116
+					}
+
+					if (var0 == 2) { // L: 10118
+						var10 = class503.getPacketBufferNode(ClientPacket.field3178, Client.packetWriter.isaacCipher); // L: 10120
+						var10.packetBuffer.writeInt(var1); // L: 10121
+						var10.packetBuffer.writeShort(var2); // L: 10122
+						var10.packetBuffer.writeShort(var3); // L: 10123
+						Client.packetWriter.addNode(var10); // L: 10124
+					}
+
+					if (var0 == 3) { // L: 10126
+						var10 = class503.getPacketBufferNode(ClientPacket.field3096, Client.packetWriter.isaacCipher); // L: 10128
+						var10.packetBuffer.writeInt(var1); // L: 10129
+						var10.packetBuffer.writeShort(var2); // L: 10130
+						var10.packetBuffer.writeShort(var3); // L: 10131
+						Client.packetWriter.addNode(var10); // L: 10132
+					}
+
+					if (var0 == 4) { // L: 10134
+						var10 = class503.getPacketBufferNode(ClientPacket.field3131, Client.packetWriter.isaacCipher); // L: 10136
+						var10.packetBuffer.writeInt(var1); // L: 10137
+						var10.packetBuffer.writeShort(var2); // L: 10138
+						var10.packetBuffer.writeShort(var3); // L: 10139
+						Client.packetWriter.addNode(var10); // L: 10140
+					}
+
+					if (var0 == 5) { // L: 10142
+						var10 = class503.getPacketBufferNode(ClientPacket.field3127, Client.packetWriter.isaacCipher); // L: 10144
+						var10.packetBuffer.writeInt(var1); // L: 10145
+						var10.packetBuffer.writeShort(var2); // L: 10146
+						var10.packetBuffer.writeShort(var3); // L: 10147
+						Client.packetWriter.addNode(var10); // L: 10148
+					}
+
+					if (var0 == 6) { // L: 10150
+						var10 = class503.getPacketBufferNode(ClientPacket.field3100, Client.packetWriter.isaacCipher); // L: 10152
+						var10.packetBuffer.writeInt(var1); // L: 10153
+						var10.packetBuffer.writeShort(var2); // L: 10154
+						var10.packetBuffer.writeShort(var3); // L: 10155
+						Client.packetWriter.addNode(var10); // L: 10156
+					}
+
+					if (var0 == 7) { // L: 10158
+						var10 = class503.getPacketBufferNode(ClientPacket.field3177, Client.packetWriter.isaacCipher); // L: 10160
+						var10.packetBuffer.writeInt(var1); // L: 10161
+						var10.packetBuffer.writeShort(var2); // L: 10162
+						var10.packetBuffer.writeShort(var3); // L: 10163
+						Client.packetWriter.addNode(var10); // L: 10164
+					}
+
+					if (var0 == 8) { // L: 10166
+						var10 = class503.getPacketBufferNode(ClientPacket.field3151, Client.packetWriter.isaacCipher); // L: 10168
+						var10.packetBuffer.writeInt(var1); // L: 10169
+						var10.packetBuffer.writeShort(var2); // L: 10170
+						var10.packetBuffer.writeShort(var3); // L: 10171
+						Client.packetWriter.addNode(var10); // L: 10172
+					}
+
+					if (var0 == 9) { // L: 10174
+						var10 = class503.getPacketBufferNode(ClientPacket.field3119, Client.packetWriter.isaacCipher); // L: 10176
+						var10.packetBuffer.writeInt(var1); // L: 10177
+						var10.packetBuffer.writeShort(var2); // L: 10178
+						var10.packetBuffer.writeShort(var3); // L: 10179
+						Client.packetWriter.addNode(var10); // L: 10180
+					}
+
+					if (var0 == 10) { // L: 10182
+						var10 = class503.getPacketBufferNode(ClientPacket.field3117, Client.packetWriter.isaacCipher); // L: 10184
+						var10.packetBuffer.writeInt(var1); // L: 10185
+						var10.packetBuffer.writeShort(var2); // L: 10186
+						var10.packetBuffer.writeShort(var3); // L: 10187
+						Client.packetWriter.addNode(var10); // L: 10188
+					}
+
+				}
+			}
+		}
+	} // L: 10108 10190
 }

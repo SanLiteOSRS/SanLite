@@ -5,119 +5,178 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bt")
+@ObfuscatedName("ck")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("tx")
-	@ObfuscatedGetter(
-		intValue = -1240555931
-	)
-	static int field846;
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@Export("Interpreter_intLocals")
 	static int[] Interpreter_intLocals;
-	@ObfuscatedName("e")
+	@ObfuscatedName("as")
+	@Export("Interpreter_stringLocals")
+	static String[] Interpreter_stringLocals;
+	@ObfuscatedName("aj")
 	@Export("Interpreter_arrayLengths")
 	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ag")
 	@Export("Interpreter_arrays")
 	static int[][] Interpreter_arrays;
-	@ObfuscatedName("w")
+	@ObfuscatedName("az")
 	@Export("Interpreter_intStack")
 	static int[] Interpreter_intStack;
-	@ObfuscatedName("i")
+	@ObfuscatedName("av")
+	@ObfuscatedGetter(
+		intValue = -1226471323
+	)
+	@Export("Interpreter_intStackSize")
+	static int Interpreter_intStackSize;
+	@ObfuscatedName("ap")
 	@Export("Interpreter_stringStack")
 	static String[] Interpreter_stringStack;
-	@ObfuscatedName("s")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = 183300013
+		intValue = 1385664005
 	)
 	@Export("Interpreter_stringStackSize")
 	static int Interpreter_stringStackSize;
-	@ObfuscatedName("t")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -2041512145
+		intValue = -1317950821
 	)
 	@Export("Interpreter_frameDepth")
 	static int Interpreter_frameDepth;
-	@ObfuscatedName("z")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "[Lbg;"
+		descriptor = "[Lca;"
 	)
 	@Export("Interpreter_frames")
 	static ScriptFrame[] Interpreter_frames;
-	@ObfuscatedName("x")
-	@ObfuscatedGetter(
-		intValue = 987199293
-	)
-	static int field838;
-	@ObfuscatedName("l")
+	@ObfuscatedName("ad")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("a")
+	@ObfuscatedName("ao")
 	@Export("Interpreter_MONTHS")
 	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("b")
-	static boolean field829;
-	@ObfuscatedName("n")
-	static boolean field842;
-	@ObfuscatedName("o")
-	static ArrayList field843;
-	@ObfuscatedName("m")
+	@ObfuscatedName("ak")
+	static boolean field878;
+	@ObfuscatedName("an")
+	static boolean field864;
+	@ObfuscatedName("af")
+	static ArrayList field880;
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = -186588537
+		intValue = 767172181
 	)
-	static int field850;
-	@ObfuscatedName("al")
-	static final double field845;
-	@ObfuscatedName("lc")
+	static int field881;
+	@ObfuscatedName("bn")
+	static final double field882;
+	@ObfuscatedName("cw")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lot;"
 	)
-	@Export("dragInventoryWidget")
-	static Widget dragInventoryWidget;
+	@Export("clientLanguage")
+	static Language clientLanguage;
+	@ObfuscatedName("gp")
+	@ObfuscatedSignature(
+		descriptor = "Lny;"
+	)
+	static Archive field885;
 
 	static {
-		Interpreter_arrayLengths = new int[5]; // L: 83
-		Interpreter_arrays = new int[5][5000]; // L: 84
-		Interpreter_intStack = new int[1000]; // L: 85
-		Interpreter_stringStack = new String[1000]; // L: 87
-		Interpreter_frameDepth = 0; // L: 89
-		Interpreter_frames = new ScriptFrame[50]; // L: 90
-		Interpreter_calendar = java.util.Calendar.getInstance(); // L: 96
-		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}; // L: 99
-		field829 = false; // L: 102
-		field842 = false; // L: 103
-		field843 = new ArrayList(); // L: 104
-		field850 = 0; // L: 105
-		field845 = Math.log(2.0D); // L: 109
+		Interpreter_arrayLengths = new int[5]; // L: 71
+		Interpreter_arrays = new int[5][5000]; // L: 72
+		Interpreter_intStack = new int[1000]; // L: 73
+		Interpreter_stringStack = new String[1000]; // L: 75
+		Interpreter_frameDepth = 0; // L: 77
+		Interpreter_frames = new ScriptFrame[50]; // L: 78
+		Interpreter_calendar = java.util.Calendar.getInstance(); // L: 84
+		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}; // L: 87
+		field878 = false;
+		field864 = false;
+		field880 = new ArrayList();
+		field881 = 0;
+		field882 = Math.log(2.0D); // L: 97
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Ldf;",
-		garbageValue = "1105102872"
+		descriptor = "(Lag;I)Lam;",
+		garbageValue = "-654808051"
 	)
-	static class123[] method1866() {
-		return new class123[]{class123.field1535, class123.field1529, class123.field1542, class123.field1531, class123.field1536, class123.field1533, class123.field1534, class123.field1532, class123.field1528}; // L: 113
+	public static class3 method2069(class6 var0) {
+		switch(var0.field20) { // L: 9
+		case 0:
+			return new class0(); // L: 16
+		default:
+			throw new IllegalArgumentException(); // L: 12
+		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1772742726"
+		descriptor = "(Lnd;Lnd;ZLpc;I)V",
+		garbageValue = "2044314347"
 	)
-	public static void method1868() {
-		StructComposition.StructDefinition_cached.clear(); // L: 71
-	} // L: 72
+	public static void method2070(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
+		Frames.ItemComposition_archive = var0; // L: 90
+		class140.ItemComposition_modelArchive = var1; // L: 91
+		class502.ItemComposition_inMembersWorld = var2; // L: 92
+		class239.ItemComposition_fileCount = Frames.ItemComposition_archive.getGroupFileCount(10); // L: 93
+		GroundObject.ItemComposition_fontPlain11 = var3; // L: 94
+	} // L: 95
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lbc;",
-		garbageValue = "1"
+		descriptor = "(IB)Ldc;",
+		garbageValue = "-81"
 	)
-	@Export("getNextWorldListWorld")
-	static World getNextWorldListWorld() {
-		return World.World_listCount < World.World_count ? class362.World_worlds[++World.World_listCount - 1] : null; // L: 242 243
+	@Export("getScript")
+	static Script getScript(int var0) {
+		Script var1 = (Script)Script.Script_cached.get((long)var0); // L: 26
+		if (var1 != null) { // L: 27
+			return var1;
+		} else {
+			byte[] var2 = class126.archive12.takeFile(var0, 0); // L: 28
+			if (var2 == null) { // L: 29
+				return null; // L: 30
+			} else {
+				var1 = SoundCache.newScript(var2); // L: 32
+				Script.Script_cached.put(var1, (long)var0); // L: 33
+				return var1; // L: 34
+			}
+		}
 	}
+
+	@ObfuscatedName("bf")
+	@ObfuscatedSignature(
+		descriptor = "(ILdc;ZI)I",
+		garbageValue = "-2066860268"
+	)
+	static int method2073(int var0, Script var1, boolean var2) {
+		return 2; // L: 3238
+	}
+
+	@ObfuscatedName("iw")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)V",
+		garbageValue = "81"
+	)
+	static void method1995(int var0, int var1) {
+		if (class150.clientPreferences.method2478() != 0 && var0 != -1) { // L: 3927
+			ArrayList var2 = new ArrayList(); // L: 3928
+			var2.add(new class318(GrandExchangeOfferOwnWorldComparator.field511, var0, 0, class150.clientPreferences.method2478(), false)); // L: 3929
+			UserComparator4.method2858(var2, 0, 0, 0, 0, true); // L: 3930
+			Client.playingJingle = true; // L: 3931
+		}
+
+	} // L: 3933
+
+	@ObfuscatedName("mt")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "-47"
+	)
+	static final void method1966(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 127); // L: 12297
+		class150.clientPreferences.method2556(var0); // L: 12298
+	} // L: 12299
 }
