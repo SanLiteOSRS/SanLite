@@ -3,10 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dm")
+@ObfuscatedName("es")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class UserComparator8 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "1682683031"
+		descriptor = "(Lqa;Lqa;I)I",
+		garbageValue = "315336460"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,55 +36,38 @@ public class UserComparator8 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 25
 	}
 
-	@ObfuscatedName("if")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "6"
+		descriptor = "(Ldi;III)V",
+		garbageValue = "-574325390"
 	)
-	static void method2571(int var0, int var1) {
-		int var2 = TileItem.fontBold12.stringWidth("Choose Option"); // L: 8663
-
-		int var3;
-		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) { // L: 8664
-			Font var7 = TileItem.fontBold12; // L: 8665
-			String var8;
-			if (var3 < 0) { // L: 8668
-				var8 = ""; // L: 8669
-			} else if (Client.menuTargets[var3].length() > 0) { // L: 8672
-				var8 = Client.menuActions[var3] + " " + Client.menuTargets[var3];
-			} else {
-				var8 = Client.menuActions[var3]; // L: 8673
-			}
-
-			int var6 = var7.stringWidth(var8); // L: 8675
-			if (var6 > var2) { // L: 8676
-				var2 = var6;
-			}
+	@Export("runScript")
+	static void runScript(ScriptEvent var0, int var1, int var2) {
+		Object[] var3 = var0.args; // L: 108
+		Script var4;
+		if (class345.isWorldMapEvent(var0.type)) { // L: 110
+			ScriptFrame.worldMapEvent = (WorldMapEvent)var3[0]; // L: 111
+			WorldMapElement var6 = SequenceDefinition.WorldMapElement_get(ScriptFrame.worldMapEvent.mapElement); // L: 112
+			var4 = GameEngine.getWorldMapScript(var0.type, var6.objectId, var6.category); // L: 113
+		} else {
+			int var5 = (Integer)var3[0]; // L: 116
+			var4 = Interpreter.getScript(var5); // L: 117
 		}
 
-		var2 += 8; // L: 8678
-		var3 = Client.menuOptionsCount * 15 + 22; // L: 8679
-		int var4 = var0 - var2 / 2; // L: 8680
-		if (var2 + var4 > Script.canvasWidth) { // L: 8681
-			var4 = Script.canvasWidth - var2;
+		if (var4 != null) { // L: 119
+			class18.method270(var0, var4, var1, var2); // L: 120
 		}
 
-		if (var4 < 0) { // L: 8682
-			var4 = 0;
-		}
+	} // L: 122
 
-		int var5 = var1; // L: 8683
-		if (var3 + var1 > class78.canvasHeight) { // L: 8684
-			var5 = class78.canvasHeight - var3;
-		}
-
-		if (var5 < 0) { // L: 8685
-			var5 = 0;
-		}
-
-		UserComparator3.menuX = var4; // L: 8686
-		ViewportMouse.menuY = var5; // L: 8687
-		Language.menuWidth = var2; // L: 8688
-		Player.menuHeight = Client.menuOptionsCount * 15 + 22; // L: 8689
-	} // L: 8690
+	@ObfuscatedName("nt")
+	@ObfuscatedSignature(
+		descriptor = "(Lmt;B)I",
+		garbageValue = "-68"
+	)
+	@Export("getWidgetFlags")
+	static int getWidgetFlags(Widget var0) {
+		IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32)); // L: 12707
+		return var1 != null ? var1.integer : var0.flags; // L: 12708 12709
+	}
 }

@@ -1,8 +1,61 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kc")
+@ObfuscatedName("ln")
 public class class300 {
-	static {
-		Math.sqrt(8192.0D); // L: 9
-	} // L: 10
+	@ObfuscatedName("ax")
+	@ObfuscatedGetter(
+		intValue = -1561607663
+	)
+	static int field3348;
+	@ObfuscatedName("qu")
+	@ObfuscatedGetter(
+		intValue = 1488535679
+	)
+	static int field3351;
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Throwable;Ljava/lang/String;)Luf;"
+	)
+	@Export("newRunException")
+	public static RunException newRunException(Throwable var0, String var1) {
+		RunException var2;
+		if (var0 instanceof RunException) { // L: 58
+			var2 = (RunException)var0; // L: 59
+			var2.message = var2.message + ' ' + var1; // L: 60
+		} else {
+			var2 = new RunException(var0, var1); // L: 62
+		}
+
+		return var2; // L: 63
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "-1871273953"
+	)
+	@Export("changeWorldSelectSorting")
+	static void changeWorldSelectSorting(int var0, int var1) {
+		int[] var2 = new int[4]; // L: 64
+		int[] var3 = new int[4]; // L: 65
+		var2[0] = var0; // L: 66
+		var3[0] = var1; // L: 67
+		int var4 = 1; // L: 68
+
+		for (int var5 = 0; var5 < 4; ++var5) { // L: 69
+			if (World.World_sortOption1[var5] != var0) { // L: 70
+				var2[var4] = World.World_sortOption1[var5]; // L: 71
+				var3[var4] = World.World_sortOption2[var5]; // L: 72
+				++var4; // L: 73
+			}
+		}
+
+		World.World_sortOption1 = var2; // L: 76
+		World.World_sortOption2 = var3; // L: 77
+		VarbitComposition.sortWorlds(class387.World_worlds, 0, class387.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 78
+	} // L: 79
 }

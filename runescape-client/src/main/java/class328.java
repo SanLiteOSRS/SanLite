@@ -1,27 +1,61 @@
-import java.util.HashMap;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lp")
+@ObfuscatedName("mz")
 public class class328 {
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lmo;"
 	)
-	@Export("ObjectDefinition_archive")
-	static AbstractArchive ObjectDefinition_archive;
+	public class330 field3552;
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lmy;"
+	)
+	class325 field3555;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lbb;"
+	)
+	class27 field3551;
+	@ObfuscatedName("am")
+	public Object[] field3553;
+	@ObfuscatedName("as")
+	public Object[] field3557;
+	@ObfuscatedName("aj")
+	public Object[] field3556;
+	@ObfuscatedName("ag")
+	public Object[] field3554;
 
-	static {
-		new HashMap();
-	} // L: 9
+	class328() {
+		this.field3552 = new class330(); // L: 6
+		this.field3555 = new class325(); // L: 7
+		this.field3551 = new class27(); // L: 8
+	} // L: 14
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "([FIFI)F",
+		garbageValue = "39231924"
+	)
+	static float method6114(float[] var0, int var1, float var2) {
+		float var3 = var0[var1]; // L: 200
+
+		for (int var4 = var1 - 1; var4 >= 0; --var4) { // L: 201
+			var3 = var2 * var3 + var0[var4]; // L: 202
+		}
+
+		return var3; // L: 204
+	}
+
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "1400532526"
+		garbageValue = "-2079868844"
 	)
-	public static void method6056(int var0) {
-		MouseHandler.MouseHandler_idleCycles = var0; // L: 45
-	} // L: 46
+	static void method6115(int var0) {
+		if (var0 != Login.loginIndex) { // L: 2157
+			Login.loginIndex = var0; // L: 2158
+		}
+	} // L: 2159
 }

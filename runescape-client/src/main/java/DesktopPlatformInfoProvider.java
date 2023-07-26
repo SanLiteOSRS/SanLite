@@ -4,38 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("og")
+@ObfuscatedName("su")
 @Implements("DesktopPlatformInfoProvider")
-public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
-	@ObfuscatedName("f")
+public class DesktopPlatformInfoProvider implements class476 {
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -199170423
+		intValue = 934001659
 	)
-	int field4467;
-	@ObfuscatedName("j")
+	int field4823;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 1842203815
+		intValue = -350512903
 	)
-	int field4468;
-	@ObfuscatedName("e")
+	int field4820;
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -1586858741
+		intValue = -1643880639
 	)
-	int field4469;
+	int field4822;
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(I)Los;",
-		garbageValue = "51821248"
+		descriptor = "(I)Lsy;",
+		garbageValue = "1568411855"
 	)
 	@Export("get")
 	public PlatformInfo get() {
 		byte var1;
-		if (NetFileRequest.formattedOperatingSystemName.startsWith("win")) { // L: 16
+		if (CollisionMap.field2347.startsWith("win")) { // L: 16
 			var1 = 1;
-		} else if (NetFileRequest.formattedOperatingSystemName.startsWith("mac")) { // L: 17
+		} else if (CollisionMap.field2347.startsWith("mac")) { // L: 17
 			var1 = 2;
-		} else if (NetFileRequest.formattedOperatingSystemName.startsWith("linux")) { // L: 18
+		} else if (CollisionMap.field2347.startsWith("linux")) { // L: 18
 			var1 = 3;
 		} else {
 			var1 = 4; // L: 19
@@ -44,14 +44,14 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 		String var2;
 		try {
 			var2 = System.getProperty("os.arch").toLowerCase(); // L: 23
-		} catch (Exception var30) { // L: 25
+		} catch (Exception var31) { // L: 25
 			var2 = ""; // L: 26
 		}
 
 		String var3;
 		try {
 			var3 = System.getProperty("os.version").toLowerCase(); // L: 29
-		} catch (Exception var29) { // L: 31
+		} catch (Exception var30) { // L: 31
 			var3 = ""; // L: 32
 		}
 
@@ -61,14 +61,14 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 		try {
 			var4 = System.getProperty("java.vendor"); // L: 37
 			var5 = System.getProperty("java.version"); // L: 38
-		} catch (Exception var28) { // L: 40
+		} catch (Exception var29) { // L: 40
 		}
 
-		boolean var27;
+		boolean var28;
 		if (!var2.startsWith("amd64") && !var2.startsWith("x86_64")) { // L: 42
-			var27 = false; // L: 43
+			var28 = false; // L: 43
 		} else {
-			var27 = true;
+			var28 = true;
 		}
 
 		byte var7 = 0; // L: 44
@@ -111,8 +111,8 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 				var7 = 25;
 			} else if (var3.indexOf("10.10") != -1) { // L: 65
 				var7 = 26;
-			} else if (var3.indexOf("10.11") != -1) { // L: 66
-				var7 = 27;
+			} else if (var3.indexOf("10.11") != -1) {
+				var7 = 27; // L: 66
 			} else if (var3.indexOf("10.12") != -1) { // L: 67
 				var7 = 28;
 			} else if (var3.indexOf("10.13") != -1) { // L: 68
@@ -133,11 +133,11 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 			var8 = 4; // L: 75
 		}
 
-		this.method7151(var5); // L: 76
+		this.method8451(var5); // L: 76
 		boolean var9 = false; // L: 77
 		int var10 = (int)(Runtime.getRuntime().maxMemory() / 1048576L) + 1; // L: 78
 		int var11;
-		if (this.field4467 > 3) { // L: 81
+		if (this.field4823 > 3) { // L: 81
 			var11 = Runtime.getRuntime().availableProcessors();
 		} else {
 			var11 = 0; // L: 82
@@ -157,56 +157,103 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 		int[] var23 = new int[3]; // L: 94
 		boolean var24 = false; // L: 95
 		String var25 = ""; // L: 96
-		boolean var26 = false; // L: 97
-		return new PlatformInfo(var1, var27, var7, var8, this.field4467, this.field4468, this.field4469, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, ""); // L: 98
+		String var26 = ""; // L: 97
+		boolean var27 = false; // L: 98
+		return new PlatformInfo(var1, var28, var7, var8, this.field4823, this.field4820, this.field4822, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "", ""); // L: 99
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-1038587213"
+		garbageValue = "-738858129"
 	)
-	void method7151(String var1) {
-		if (var1.startsWith("1.")) { // L: 102
-			this.method7152(var1); // L: 103
+	void method8451(String var1) {
+		if (var1.startsWith("1.")) { // L: 103
+			this.method8459(var1); // L: 104
 		} else {
-			this.method7153(var1); // L: 106
+			this.method8453(var1); // L: 107
 		}
 
-	} // L: 108
+	} // L: 109
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-1489289662"
+		garbageValue = "234184738"
 	)
-	void method7152(String var1) {
-		String[] var2 = var1.split("\\."); // L: 111
+	void method8459(String var1) {
+		String[] var2 = var1.split("\\."); // L: 112
 
 		try {
-			this.field4467 = Integer.parseInt(var2[1]); // L: 113
-			var2 = var2[2].split("_"); // L: 114
-			this.field4468 = Integer.parseInt(var2[0]); // L: 115
-			this.field4469 = Integer.parseInt(var2[1]); // L: 116
-		} catch (Exception var4) { // L: 118
+			this.field4823 = Integer.parseInt(var2[1]);
+			var2 = var2[2].split("_");
+			this.field4820 = Integer.parseInt(var2[0]); // L: 116
+			this.field4822 = Integer.parseInt(var2[1]); // L: 117
+		} catch (Exception var4) { // L: 119
 		}
 
-	} // L: 119
+	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "530635410"
+		garbageValue = "21471391"
 	)
-	void method7153(String var1) {
-		String[] var2 = var1.split("\\."); // L: 122
+	void method8453(String var1) {
+		String[] var2 = var1.split("\\."); // L: 123
 
 		try {
-			this.field4467 = Integer.parseInt(var2[0]); // L: 124
-			this.field4468 = Integer.parseInt(var2[1]); // L: 125
-			this.field4469 = Integer.parseInt(var2[2]); // L: 126
-		} catch (Exception var4) { // L: 128
+			this.field4823 = Integer.parseInt(var2[0]);
+			this.field4820 = Integer.parseInt(var2[1]);
+			this.field4822 = Integer.parseInt(var2[2]); // L: 127
+		} catch (Exception var4) {
 		}
 
-	} // L: 129
+	} // L: 130
+
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(Lnd;Ljava/lang/String;Ljava/lang/String;I)[Luu;",
+		garbageValue = "-578185470"
+	)
+	public static IndexedSprite[] method8449(AbstractArchive var0, String var1, String var2) {
+		if (!var0.isValidFileName(var1, var2)) { // L: 113
+			return null;
+		} else {
+			int var3 = var0.getGroupId(var1); // L: 114
+			int var4 = var0.getFileId(var3, var2); // L: 115
+			byte[] var7 = var0.takeFile(var3, var4); // L: 120
+			boolean var6;
+			if (var7 == null) { // L: 121
+				var6 = false; // L: 122
+			} else {
+				VarbitComposition.SpriteBuffer_decode(var7); // L: 125
+				var6 = true; // L: 126
+			}
+
+			IndexedSprite[] var5;
+			if (!var6) { // L: 128
+				var5 = null; // L: 129
+			} else {
+				IndexedSprite[] var8 = new IndexedSprite[class528.SpriteBuffer_spriteCount]; // L: 134
+
+				for (int var9 = 0; var9 < class528.SpriteBuffer_spriteCount; ++var9) { // L: 135
+					IndexedSprite var10 = var8[var9] = new IndexedSprite(); // L: 136
+					var10.width = class528.SpriteBuffer_spriteWidth; // L: 137
+					var10.height = class528.SpriteBuffer_spriteHeight; // L: 138
+					var10.xOffset = class492.SpriteBuffer_xOffsets[var9]; // L: 139
+					var10.yOffset = class134.SpriteBuffer_yOffsets[var9]; // L: 140
+					var10.subWidth = class172.SpriteBuffer_spriteWidths[var9]; // L: 141
+					var10.subHeight = class528.SpriteBuffer_spriteHeights[var9]; // L: 142
+					var10.palette = class528.SpriteBuffer_spritePalette; // L: 143
+					var10.pixels = ArchiveDiskAction.SpriteBuffer_pixels[var9]; // L: 144
+				}
+
+				class506.method8985(); // L: 146
+				var5 = var8; // L: 149
+			}
+
+			return var5; // L: 151
+		}
+	}
 }
