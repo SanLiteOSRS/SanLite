@@ -3,31 +3,31 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pm")
+@ObfuscatedName("sm")
 @Implements("NodeHashTable")
 public final class NodeHashTable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@Export("size")
 	int size;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "[Loh;"
+		descriptor = "[Lsb;"
 	)
 	@Export("buckets")
 	Node[] buckets;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Loh;"
+		descriptor = "Lsb;"
 	)
 	@Export("currentGet")
 	Node currentGet;
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Loh;"
+		descriptor = "Lsb;"
 	)
 	@Export("current")
 	Node current;
-	@ObfuscatedName("j")
+	@ObfuscatedName("as")
 	@Export("index")
 	int index;
 
@@ -44,9 +44,9 @@ public final class NodeHashTable {
 
 	} // L: 20
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(J)Loh;"
+		descriptor = "(J)Lsb;"
 	)
 	@Export("get")
 	public Node get(long var1) {
@@ -64,56 +64,71 @@ public final class NodeHashTable {
 		return null; // L: 34
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
+	public int method8791() {
+		int var1 = 0; // L: 38
+
+		for (int var2 = 0; var2 < this.size; ++var2) { // L: 39
+			Node var3 = this.buckets[var2]; // L: 40
+
+			for (Node var4 = var3.previous; var4 != var3; var4 = var4.previous) { // L: 41 42 44
+				++var1; // L: 43
+			}
+		}
+
+		return var1; // L: 47
+	}
+
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Loh;J)V"
+		descriptor = "(Lsb;J)V"
 	)
 	@Export("put")
 	public void put(Node var1, long var2) {
-		if (var1.next != null) { // L: 38
+		if (var1.next != null) { // L: 51
 			var1.remove();
 		}
 
-		Node var4 = this.buckets[(int)(var2 & (long)(this.size - 1))]; // L: 39
-		var1.next = var4.next; // L: 40
-		var1.previous = var4; // L: 41
-		var1.next.previous = var1; // L: 42
-		var1.previous.next = var1; // L: 43
-		var1.key = var2; // L: 44
-	} // L: 45
+		Node var4 = this.buckets[(int)(var2 & (long)(this.size - 1))]; // L: 52
+		var1.next = var4.next; // L: 53
+		var1.previous = var4; // L: 54
+		var1.next.previous = var1; // L: 55
+		var1.previous.next = var1; // L: 56
+		var1.key = var2; // L: 57
+	} // L: 58
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "()Loh;"
+		descriptor = "()Lsb;"
 	)
 	@Export("first")
 	public Node first() {
-		this.index = 0; // L: 48
-		return this.next(); // L: 49
+		this.index = 0; // L: 61
+		return this.next(); // L: 62
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "()Loh;"
+		descriptor = "()Lsb;"
 	)
 	@Export("next")
 	public Node next() {
 		Node var1;
-		if (this.index > 0 && this.buckets[this.index - 1] != this.current) { // L: 53
-			var1 = this.current; // L: 54
-			this.current = var1.previous; // L: 55
-			return var1; // L: 56
+		if (this.index > 0 && this.buckets[this.index - 1] != this.current) { // L: 66
+			var1 = this.current; // L: 67
+			this.current = var1.previous; // L: 68
+			return var1; // L: 69
 		} else {
 			do {
-				if (this.index >= this.size) { // L: 58
-					return null; // L: 65
+				if (this.index >= this.size) { // L: 71
+					return null; // L: 78
 				}
 
-				var1 = this.buckets[this.index++].previous; // L: 59
-			} while(var1 == this.buckets[this.index - 1]); // L: 60
+				var1 = this.buckets[this.index++].previous; // L: 72
+			} while(var1 == this.buckets[this.index - 1]); // L: 73
 
-			this.current = var1.previous; // L: 61
-			return var1; // L: 62
+			this.current = var1.previous; // L: 74
+			return var1; // L: 75
 		}
 	}
 }

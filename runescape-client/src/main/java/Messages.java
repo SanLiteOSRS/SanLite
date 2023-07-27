@@ -6,36 +6,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cb")
+@ObfuscatedName("eo")
 @Implements("Messages")
 public class Messages {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@Export("Messages_channels")
 	static final Map Messages_channels;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lpb;"
+		descriptor = "Lsa;"
 	)
 	@Export("Messages_hashTable")
 	static final IterableNodeHashTable Messages_hashTable;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lmh;"
+		descriptor = "Loz;"
 	)
 	@Export("Messages_queue")
 	static final IterableDualNodeQueue Messages_queue;
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 2048371745
+		intValue = -1617029295
 	)
 	@Export("Messages_count")
 	static int Messages_count;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = 46362835
-	)
-	@Export("gameCyclesToDo")
-	static int gameCyclesToDo;
 
 	static {
 		Messages_channels = new HashMap(); // L: 9
@@ -44,114 +38,12 @@ public class Messages {
 		Messages_count = 0; // L: 12
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-472438759"
+		descriptor = "(I)[Lls;",
+		garbageValue = "-1826957735"
 	)
-	@Export("iLog")
-	public static int iLog(int var0) {
-		int var1 = 0; // L: 60
-		if (var0 < 0 || var0 >= 65536) { // L: 61
-			var0 >>>= 16; // L: 62
-			var1 += 16; // L: 63
-		}
-
-		if (var0 >= 256) { // L: 65
-			var0 >>>= 8; // L: 66
-			var1 += 8; // L: 67
-		}
-
-		if (var0 >= 16) { // L: 69
-			var0 >>>= 4; // L: 70
-			var1 += 4; // L: 71
-		}
-
-		if (var0 >= 4) { // L: 73
-			var0 >>>= 2; // L: 74
-			var1 += 2; // L: 75
-		}
-
-		if (var0 >= 1) { // L: 77
-			var0 >>>= 1; // L: 78
-			++var1; // L: 79
-		}
-
-		return var0 + var1; // L: 81
+	public static ServerPacket[] method2777() {
+		return new ServerPacket[]{ServerPacket.field3333, ServerPacket.field3216, ServerPacket.field3278, ServerPacket.field3218, ServerPacket.field3261, ServerPacket.field3305, ServerPacket.field3221, ServerPacket.field3222, ServerPacket.field3236, ServerPacket.field3244, ServerPacket.field3225, ServerPacket.field3226, ServerPacket.field3235, ServerPacket.field3228, ServerPacket.field3229, ServerPacket.field3230, ServerPacket.field3231, ServerPacket.field3217, ServerPacket.field3233, ServerPacket.field3234, ServerPacket.field3320, ServerPacket.field3314, ServerPacket.field3237, ServerPacket.field3312, ServerPacket.field3239, ServerPacket.field3331, ServerPacket.field3241, ServerPacket.field3242, ServerPacket.field3243, ServerPacket.field3263, ServerPacket.field3307, ServerPacket.field3250, ServerPacket.field3240, ServerPacket.field3248, ServerPacket.field3249, ServerPacket.field3335, ServerPacket.field3251, ServerPacket.field3252, ServerPacket.field3253, ServerPacket.field3254, ServerPacket.field3255, ServerPacket.field3219, ServerPacket.field3257, ServerPacket.field3258, ServerPacket.field3259, ServerPacket.field3260, ServerPacket.field3277, ServerPacket.field3288, ServerPacket.field3309, ServerPacket.field3246, ServerPacket.field3265, ServerPacket.field3296, ServerPacket.field3262, ServerPacket.field3268, ServerPacket.field3269, ServerPacket.field3215, ServerPacket.field3271, ServerPacket.field3272, ServerPacket.field3273, ServerPacket.field3274, ServerPacket.field3275, ServerPacket.field3276, ServerPacket.field3264, ServerPacket.field3291, ServerPacket.field3279, ServerPacket.field3304, ServerPacket.field3281, ServerPacket.field3256, ServerPacket.field3283, ServerPacket.field3284, ServerPacket.field3285, ServerPacket.field3286, ServerPacket.field3287, ServerPacket.field3282, ServerPacket.field3289, ServerPacket.field3290, ServerPacket.field3227, ServerPacket.field3292, ServerPacket.field3238, ServerPacket.field3294, ServerPacket.field3232, ServerPacket.field3223, ServerPacket.field3297, ServerPacket.field3298, ServerPacket.field3322, ServerPacket.field3300, ServerPacket.field3280, ServerPacket.field3302, ServerPacket.field3299, ServerPacket.field3267, ServerPacket.field3245, ServerPacket.field3306, ServerPacket.field3224, ServerPacket.field3308, ServerPacket.field3266, ServerPacket.field3310, ServerPacket.field3311, ServerPacket.field3295, ServerPacket.field3313, ServerPacket.field3293, ServerPacket.field3315, ServerPacket.field3316, ServerPacket.field3317, ServerPacket.field3318, ServerPacket.field3319, ServerPacket.field3303, ServerPacket.field3321, ServerPacket.field3247, ServerPacket.field3323, ServerPacket.field3324, ServerPacket.field3325, ServerPacket.field3326, ServerPacket.field3327, ServerPacket.field3328, ServerPacket.field3329, ServerPacket.field3330, ServerPacket.field3332, ServerPacket.field3270, ServerPacket.field3220, ServerPacket.field3334, ServerPacket.field3301, ServerPacket.field3336}; // L: 131
 	}
-
-	@ObfuscatedName("gf")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-587731325"
-	)
-	static final void method2494() {
-		if (Client.field725 != PacketWriter.Client_plane) { // L: 3807
-			Client.field725 = PacketWriter.Client_plane; // L: 3808
-			int var0 = PacketWriter.Client_plane; // L: 3809
-			int[] var1 = FloorUnderlayDefinition.sceneMinimapSprite.pixels; // L: 3811
-			int var2 = var1.length; // L: 3812
-
-			int var3;
-			for (var3 = 0; var3 < var2; ++var3) { // L: 3813
-				var1[var3] = 0;
-			}
-
-			int var4;
-			int var5;
-			for (var3 = 1; var3 < 103; ++var3) { // L: 3814
-				var4 = (103 - var3) * 2048 + 24628; // L: 3815
-
-				for (var5 = 1; var5 < 103; ++var5) { // L: 3816
-					if ((Tiles.Tiles_renderFlags[var0][var5][var3] & 24) == 0) { // L: 3817
-						class356.scene.drawTileMinimap(var1, var4, 512, var0, var5, var3);
-					}
-
-					if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var5][var3] & 8) != 0) {
-						class356.scene.drawTileMinimap(var1, var4, 512, var0 + 1, var5, var3); // L: 3818
-					}
-
-					var4 += 4; // L: 3819
-				}
-			}
-
-			var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10); // L: 3822
-			var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16; // L: 3823
-			FloorUnderlayDefinition.sceneMinimapSprite.setRaster(); // L: 3824
-
-			int var6;
-			for (var5 = 1; var5 < 103; ++var5) { // L: 3825
-				for (var6 = 1; var6 < 103; ++var6) { // L: 3826
-					if ((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) { // L: 3827
-						Decimator.drawObject(var0, var6, var5, var3, var4);
-					}
-
-					if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) { // L: 3828
-						Decimator.drawObject(var0 + 1, var6, var5, var3, var4);
-					}
-				}
-			}
-
-			Client.mapIconCount = 0; // L: 3831
-
-			for (var5 = 0; var5 < 104; ++var5) { // L: 3832
-				for (var6 = 0; var6 < 104; ++var6) { // L: 3833
-					long var7 = class356.scene.getGroundObjectTag(PacketWriter.Client_plane, var5, var6); // L: 3834
-					if (0L != var7) { // L: 3835
-						int var9 = Decimator.Entity_unpackID(var7); // L: 3836
-						int var10 = class162.getObjectDefinition(var9).mapIconId; // L: 3837
-						if (var10 >= 0 && class432.WorldMapElement_get(var10).field1837) { // L: 3838 3839
-							Client.mapIcons[Client.mapIconCount] = class432.WorldMapElement_get(var10).getSpriteBool(false); // L: 3842
-							Client.mapIconXs[Client.mapIconCount] = var5; // L: 3843
-							Client.mapIconYs[Client.mapIconCount] = var6; // L: 3844
-							++Client.mapIconCount; // L: 3845
-						}
-					}
-				}
-			}
-
-			Message.rasterProvider.apply(); // L: 3850
-		}
-
-	} // L: 3853
 }
