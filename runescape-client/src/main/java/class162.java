@@ -1,111 +1,62 @@
-import java.awt.Image;
-import java.lang.management.GarbageCollectorMXBean;
-import net.runelite.mapping.Export;
+import java.util.ArrayList;
+import java.util.Iterator;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fl")
-public class class162 extends class165 {
-	@ObfuscatedName("aj")
-	static Image field1781;
-	@ObfuscatedName("av")
-	@Export("garbageCollector")
-	static GarbageCollectorMXBean garbageCollector;
-	@ObfuscatedName("c")
+@ObfuscatedName("go")
+public class class162 extends class143 {
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -454332877
+		intValue = 94323223
 	)
-	int field1784;
+	int field1770;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Les;"
+		descriptor = "Lfr;"
 	)
-	final class155 this$0;
+	final class146 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Les;Ljava/lang/String;I)V"
+		descriptor = "(Lfr;)V"
 	)
-	class162(class155 var1, String var2, int var3) {
-		super(var1, var2); // L: 372
-		this.this$0 = var1; // L: 371
-		this.field1784 = var3; // L: 373
-	} // L: 374
+	class162(class146 var1) {
+		this.this$0 = var1;
+		this.field1770 = -1; // L: 144
+	} // L: 146
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-118"
+		descriptor = "(Lty;B)V",
+		garbageValue = "1"
 	)
-	public int vmethod3314() {
-		return 0; // L: 377
-	}
+	void vmethod3412(Buffer var1) {
+		this.field1770 = var1.readUnsignedShort(); // L: 149
+	} // L: 150
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "16777215"
+		descriptor = "(Lfx;B)V",
+		garbageValue = "-72"
 	)
-	public int vmethod3318() {
-		return this.field1784; // L: 382
-	}
+	void vmethod3419(ClanSettings var1) {
+		var1.method3232(this.field1770); // L: 153
+	} // L: 154
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lgk;",
-		garbageValue = "540611824"
+		descriptor = "(B)Ljava/util/ArrayList;",
+		garbageValue = "1"
 	)
-	@Export("getObjectDefinition")
-	public static ObjectComposition getObjectDefinition(int var0) {
-		ObjectComposition var1 = (ObjectComposition)ObjectComposition.ObjectDefinition_cached.get((long)var0); // L: 79
-		if (var1 != null) { // L: 80
-			return var1;
-		} else {
-			byte[] var2 = class328.ObjectDefinition_archive.takeFile(6, var0); // L: 81
-			var1 = new ObjectComposition(); // L: 82
-			var1.id = var0; // L: 83
-			if (var2 != null) { // L: 84
-				var1.decode(new Buffer(var2));
-			}
+	static ArrayList method3356() {
+		ArrayList var0 = new ArrayList(); // L: 199
+		Iterator var1 = class306.field3394.iterator(); // L: 200
 
-			var1.postDecode(); // L: 85
-			if (var1.isSolid) { // L: 86
-				var1.interactType = 0; // L: 87
-				var1.boolean1 = false; // L: 88
-			}
-
-			ObjectComposition.ObjectDefinition_cached.put(var1, (long)var0); // L: 90
-			return var1; // L: 91
+		while (var1.hasNext()) {
+			class318 var2 = (class318)var1.next(); // L: 201
+			var0.add(var2); // L: 203
 		}
-	}
 
-	@ObfuscatedName("az")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "1499243899"
-	)
-	static int method3298(int var0, Script var1, boolean var2) {
-		if (var0 == 6800) { // L: 4521
-			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = ""; // L: 4522
-			return 1; // L: 4523
-		} else if (var0 != 6801 && var0 != 6802) { // L: 4525
-			if (var0 == 6850) { // L: 4529
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = ""; // L: 4530
-				return 1; // L: 4531
-			} else if (var0 != 6851 && var0 != 6852) { // L: 4533
-				if (var0 == 6853) { // L: 4537
-					Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = 0; // L: 4538
-					return 1; // L: 4539
-				} else {
-					return 2; // L: 4541
-				}
-			} else {
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = -1; // L: 4534
-				return 1; // L: 4535
-			}
-		} else {
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = -1; // L: 4526
-			return 1; // L: 4527
-		}
+		return var0; // L: 206
 	}
 }
