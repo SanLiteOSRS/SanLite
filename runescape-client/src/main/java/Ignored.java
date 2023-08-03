@@ -4,12 +4,12 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nb")
+@ObfuscatedName("qn")
 @Implements("Ignored")
 public class Ignored extends Nameable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -1766830117
+		intValue = -1713746187
 	)
 	@Export("id")
 	int id;
@@ -17,20 +17,20 @@ public class Ignored extends Nameable {
 	Ignored() {
 	} // L: 6
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lnb;I)I",
-		garbageValue = "-1083429285"
+		descriptor = "(Lqn;I)I",
+		garbageValue = "-315070761"
 	)
 	@Export("compareTo_ignored")
 	int compareTo_ignored(Ignored var1) {
 		return this.id - var1.id; // L: 9
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lne;B)I",
-		garbageValue = "-81"
+		descriptor = "(Lqe;B)I",
+		garbageValue = "114"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
@@ -41,37 +41,26 @@ public class Ignored extends Nameable {
 		return this.compareTo_ignored((Ignored)var1); // L: 17
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lqg;",
-		garbageValue = "-15"
+		descriptor = "([BI)[I",
+		garbageValue = "-957986123"
 	)
-	public static PrivateChatMode method6780(int var0) {
-		PrivateChatMode[] var1 = new PrivateChatMode[]{PrivateChatMode.field4818, PrivateChatMode.field4817, PrivateChatMode.field4819}; // L: 18
-		PrivateChatMode[] var2 = var1; // L: 20
+	public static int[] method8066(byte[] var0) {
+		if (var0 != null && var0.length != 0 && var0.length <= 8) { // L: 168
+			int[] var1 = new int[var0.length]; // L: 171
 
-		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 21
-			PrivateChatMode var4 = var2[var3]; // L: 22
-			if (var0 == var4.field4820) { // L: 24
-				return var4;
+			for (int var2 = 0; var2 < var0.length; ++var2) { // L: 172
+				if (var0[var2] < 0 || var0[var2] > class538.field5229.length) { // L: 173
+					return null; // L: 174
+				}
+
+				var1[var2] = class538.field5229[var0[var2]]; // L: 176
 			}
-		}
 
-		return null; // L: 28
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;IIB)Z",
-		garbageValue = "-50"
-	)
-	public static boolean method6774(AbstractArchive var0, int var1, int var2) {
-		byte[] var3 = var0.takeFile(var1, var2); // L: 176
-		if (var3 == null) { // L: 177
-			return false;
+			return var1; // L: 178
 		} else {
-			ChatChannel.SpriteBuffer_decode(var3); // L: 178
-			return true; // L: 179
+			return null; // L: 169
 		}
 	}
 }
