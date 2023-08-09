@@ -1,72 +1,156 @@
-import java.io.UnsupportedEncodingException;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-@ObfuscatedName("om")
-public class class399 implements class398 {
-	@ObfuscatedName("q")
-	JSONObject field4436;
+@ObfuscatedName("po")
+public class class399 {
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lpt;"
+	)
+	class395 field4508;
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = -1377527347
+	)
+	int field4506;
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = -1582717359
+	)
+	int field4507;
 
-	public class399(byte[] var1) throws UnsupportedEncodingException {
-		this.method7098(var1); // L: 17
-	} // L: 18
-
-	public class399(String var1) throws UnsupportedEncodingException {
-		this.method7099(var1); // L: 13
+	@ObfuscatedSignature(
+		descriptor = "(Lpt;II)V"
+	)
+	class399(class395 var1, int var2, int var3) {
+		this.field4506 = 0; // L: 7
+		this.field4507 = 0; // L: 8
+		this.field4508 = var1; // L: 11
+		this.field4506 = var2; // L: 12
+		this.field4507 = var3; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "793389020"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "-1809601354"
 	)
-	public byte[] vmethod7114() throws UnsupportedEncodingException {
-		return this.field4436 == null ? new byte[0] : this.field4436.toString().getBytes("UTF-8"); // L: 50 51 53
-	}
+	public String method7582() {
+		if (this.method7584()) { // L: 17
+			return "";
+		} else {
+			StringBuilder var1 = new StringBuilder(this.method7585()); // L: 18
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "-448448712"
-	)
-	void method7098(byte[] var1) throws UnsupportedEncodingException {
-		String var2 = new String(var1, "UTF-8"); // L: 21
-		this.method7099(var2); // L: 22
-	} // L: 23
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "2042516666"
-	)
-	void method7099(String var1) throws UnsupportedEncodingException {
-		try {
-			if (var1.charAt(0) == '{') { // L: 27
-				this.field4436 = new JSONObject(var1); // L: 28
-			} else {
-				if (var1.charAt(0) != '[') { // L: 30
-					throw new UnsupportedEncodingException("Invalid JSON passed to the JSON content builder."); // L: 36
-				}
-
-				JSONArray var2 = new JSONArray(var1); // L: 31
-				this.field4436 = new JSONObject(); // L: 32
-				this.field4436.put("arrayValues", var2); // L: 33
+			for (int var2 = this.field4506; var2 < this.field4507; ++var2) { // L: 19
+				class397 var3 = this.field4508.method7312(var2); // L: 20
+				var1.append(var3.field4480); // L: 21
 			}
 
-		} catch (JSONException var3) { // L: 39
-			throw new UnsupportedEncodingException(var3.getMessage()); // L: 40
+			return var1.toString(); // L: 23
 		}
-	} // L: 42
+	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lorg/json/JSONObject;",
-		garbageValue = "1036463091"
+		descriptor = "(II)Z",
+		garbageValue = "1827126332"
 	)
-	public JSONObject method7100() {
-		return this.field4436; // L: 45
+	boolean method7604(int var1) {
+		return this.field4508.method7343() == 2 || this.field4508.method7343() == 1 && (!this.field4508.field4462 || this.field4507 - 1 != var1); // L: 27
+	}
+
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-587840558"
+	)
+	public boolean method7584() {
+		return this.field4506 == this.field4507; // L: 31
+	}
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "107"
+	)
+	public int method7585() {
+		return this.field4507 - this.field4506; // L: 35
+	}
+
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(Lpz;I)Z",
+		garbageValue = "-1646717603"
+	)
+	boolean method7586(class397 var1) {
+		if (this.field4508.field4472 == 2) { // L: 39
+			return true;
+		} else if (this.field4508.field4472 == 0) { // L: 40
+			return false;
+		} else {
+			return this.field4508.method7313() != var1; // L: 41
+		}
+	}
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1502136655"
+	)
+	int method7591() {
+		if (this.method7584()) { // L: 46
+			return 0;
+		} else {
+			class397 var1 = this.field4508.method7312(this.field4507 - 1); // L: 47
+			if (var1.field4480 == '\n') { // L: 48
+				return 0;
+			} else if (this.method7586(var1)) {
+				return this.field4508.field4461.advances[42]; // L: 49
+			} else {
+				int var2 = this.field4508.field4461.advances[var1.field4480]; // L: 50
+				if (var2 == 0) { // L: 51
+					return var1.field4480 == '\t' ? this.field4508.field4461.advances[32] * 3 : this.field4508.field4461.advances[32]; // L: 52 53 56
+				} else {
+					return var2; // L: 60
+				}
+			}
+		}
+	}
+
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lsf;",
+		garbageValue = "-631307887"
+	)
+	public class486 method7588() {
+		if (this.method7584()) { // L: 65
+			return new class486(0, 0); // L: 66
+		} else {
+			class397 var1 = this.field4508.method7312(this.field4507 - 1); // L: 68
+			return new class486(var1.field4479 + this.method7591(), var1.field4481); // L: 69
+		}
+	}
+
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lpz;",
+		garbageValue = "-2132806837"
+	)
+	public class397 method7589(int var1) {
+		return var1 >= 0 && var1 < this.method7585() ? this.field4508.method7312(this.field4506 + var1) : null; // L: 73 74
+	}
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "687406142"
+	)
+	static int method7610(int var0, int var1, int var2) {
+		if ((Tiles.Tiles_renderFlags[var0][var1][var2] & 8) != 0) { // L: 936
+			return 0;
+		} else {
+			return var0 > 0 && (Tiles.Tiles_renderFlags[1][var1][var2] & 2) != 0 ? var0 - 1 : var0; // L: 937
+		}
 	}
 }
