@@ -4,31 +4,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bg")
+@ObfuscatedName("ca")
 @Implements("ScriptFrame")
 public class ScriptFrame {
-	@ObfuscatedName("cw")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
+		descriptor = "Lud;"
 	)
-	@Export("worldSelectBackSprites")
-	static SpritePixels[] worldSelectBackSprites;
-	@ObfuscatedName("c")
+	@Export("rightTitleSprite")
+	static SpritePixels rightTitleSprite;
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lbi;"
+		descriptor = "Lkl;"
+	)
+	@Export("worldMapEvent")
+	static WorldMapEvent worldMapEvent;
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Ldc;"
 	)
 	@Export("script")
 	Script script;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = 1512825097
+		intValue = -1665755063
 	)
 	@Export("pc")
 	int pc;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@Export("intLocals")
 	int[] intLocals;
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@Export("stringLocals")
 	String[] stringLocals;
 
@@ -36,55 +42,45 @@ public class ScriptFrame {
 		this.pc = -1; // L: 5
 	} // L: 9
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("cz")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgc;",
-		garbageValue = "12"
+		descriptor = "(II)V",
+		garbageValue = "-922438804"
 	)
-	@Export("SequenceDefinition_get")
-	public static SequenceDefinition SequenceDefinition_get(int var0) {
-		SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0); // L: 52
-		if (var1 != null) { // L: 53
-			return var1;
-		} else {
-			byte[] var2 = SequenceDefinition.SequenceDefinition_archive.takeFile(12, var0); // L: 54
-			var1 = new SequenceDefinition(); // L: 55
-			if (var2 != null) { // L: 56
-				var1.decode(new Buffer(var2));
+	@Export("runWidgetOnLoadListener")
+	static void runWidgetOnLoadListener(int var0) {
+		if (var0 != -1) { // L: 5284
+			if (Login.loadInterface(var0)) { // L: 5285
+				Widget[] var1 = ArchiveLoader.Widget_interfaceComponents[var0]; // L: 5286
+
+				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 5287
+					Widget var3 = var1[var2]; // L: 5288
+					if (var3.onLoad != null) { // L: 5289
+						ScriptEvent var4 = new ScriptEvent(); // L: 5290
+						var4.widget = var3; // L: 5291
+						var4.args = var3.onLoad; // L: 5292
+						UserComparator8.runScript(var4, 5000000, 0); // L: 5293
+					}
+				}
+
 			}
-
-			var1.postDecode(); // L: 57
-			SequenceDefinition.SequenceDefinition_cached.put(var1, (long)var0); // L: 58
-			return var1; // L: 59
 		}
-	}
+	} // L: 5296
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ke")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lkb;",
-		garbageValue = "114682209"
+		descriptor = "(B)V",
+		garbageValue = "-77"
 	)
-	@Export("getWidgetChild")
-	public static Widget getWidgetChild(int var0, int var1) {
-		Widget var2 = class140.getWidget(var0); // L: 230
-		if (var1 == -1) { // L: 231
-			return var2;
-		} else {
-			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null; // L: 232 233
-		}
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ldf;",
-		garbageValue = "-246877585"
-	)
-	static class123 method1052(int var0) {
-		class123 var1 = (class123)Actor.findEnumerated(Interpreter.method1866(), var0); // L: 126
-		if (var1 == null) {
-			var1 = class123.field1528; // L: 127
+	static final void method1208() {
+		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 8455 8456 8462
+			if (var0.hitpoints == -1) { // L: 8457
+				var0.delay = 0; // L: 8458
+				class11.method112(var0); // L: 8459
+			} else {
+				var0.remove(); // L: 8461
+			}
 		}
 
-		return var1; // L: 128
-	}
+	} // L: 8464
 }

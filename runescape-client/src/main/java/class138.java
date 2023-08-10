@@ -3,81 +3,102 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eq")
-public class class138 extends class128 {
-	@ObfuscatedName("he")
+@ObfuscatedName("fj")
+public enum class138 implements class372 {
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lcd;"
+		descriptor = "Lfj;"
 	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1956537991
-	)
-	int field1623;
-	@ObfuscatedName("v")
-	String field1620;
-	// $FF: synthetic field
+	field1618(0, 0),
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfj;"
 	)
-	final class131 this$0;
+	field1616(1, 1),
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lfj;"
+	)
+	field1622(2, 2),
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Lfj;"
+	)
+	field1615(3, 3),
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Lfj;"
+	)
+	field1619(4, 4),
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "Lfj;"
+	)
+	field1617(5, 5),
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "Lfj;"
+	)
+	field1621(6, 6),
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "Lfj;"
+	)
+	field1620(7, 7),
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "Lfj;"
+	)
+	field1623(8, 8);
 
-	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+	@ObfuscatedName("ap")
+	@ObfuscatedGetter(
+		intValue = 1823179125
 	)
-	class138(class131 var1) {
-		this.this$0 = var1; // L: 323
+	final int field1624;
+	@ObfuscatedName("aq")
+	@ObfuscatedGetter(
+		intValue = 1944390957
+	)
+	final int field1625;
+
+	class138(int var3, int var4) {
+		this.field1624 = var3; // L: 101
+		this.field1625 = var4; // L: 102
+	} // L: 103
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1644350448"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1625; // L: 106
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(B)Lrm;",
+		garbageValue = "16"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1623 = var1.readInt(); // L: 326
-		this.field1620 = var1.readStringCp1252NullTerminated(); // L: 327
-	} // L: 328
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2968(this.field1623, this.field1620); // L: 331
-	} // L: 332
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "4"
-	)
-	public static void method2948(AbstractArchive var0) {
-		class435.field4666 = var0; // L: 19
-	} // L: 20
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IZIZI)V",
-		garbageValue = "1195912675"
-	)
-	@Export("sortWorldList")
-	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-		if (class362.World_worlds != null) { // L: 171
-			class131.doWorldSorting(0, class362.World_worlds.length - 1, var0, var1, var2, var3); // L: 172
+	public static class451 method3097() {
+		synchronized(class451.field4744) { // L: 25
+			if (class451.field4742 == 0) { // L: 26
+				return new class451();
+			} else {
+				class451.field4744[--class451.field4742].method8249(); // L: 28
+				return class451.field4744[class451.field4742]; // L: 29
+			}
 		}
+	}
 
-	} // L: 174
-
-	@ObfuscatedName("hj")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1549613437"
+		descriptor = "(I)[Llx;",
+		garbageValue = "1787686386"
 	)
-	static boolean method2944() {
-		return (Client.drawPlayerNames & 8) != 0; // L: 4953
+	static LoginPacket[] method3096() {
+		return new LoginPacket[]{LoginPacket.field3344, LoginPacket.field3345, LoginPacket.field3340, LoginPacket.field3341, LoginPacket.field3343, LoginPacket.field3342}; // L: 22
 	}
 }

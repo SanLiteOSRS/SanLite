@@ -1,129 +1,157 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
-public class class150 extends class128 {
-	@ObfuscatedName("rf")
+@ObfuscatedName("fk")
+public class class150 extends class143 {
+	@ObfuscatedName("vx")
 	@ObfuscatedSignature(
-		descriptor = "Lex;"
+		descriptor = "Lda;"
 	)
-	@Export("guestClanChannel")
-	static ClanChannel guestClanChannel;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		longValue = -8713006525766535939L
-	)
-	long field1707;
-	@ObfuscatedName("v")
-	String field1708;
+	@Export("clientPreferences")
+	static ClientPreferences clientPreferences;
+	@ObfuscatedName("aw")
+	boolean field1686;
+	@ObfuscatedName("ay")
+	byte field1684;
+	@ObfuscatedName("ar")
+	byte field1683;
+	@ObfuscatedName("am")
+	byte field1687;
+	@ObfuscatedName("as")
+	byte field1689;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfr;"
 	)
-	final class131 this$0;
+	final class146 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfr;)V"
 	)
-	class150(class131 var1) {
-		this.this$0 = var1;
-		this.field1707 = -1L; // L: 194
-		this.field1708 = null; // L: 195
-	} // L: 197
+	class150(class146 var1) {
+		this.this$0 = var1; // L: 248
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lty;B)V",
+		garbageValue = "1"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 200
-			--var1.offset; // L: 201
-			this.field1707 = var1.readLong(); // L: 202
-		}
+	void vmethod3412(Buffer var1) {
+		this.field1686 = var1.readUnsignedByte() == 1; // L: 251
+		this.field1684 = var1.readByte(); // L: 252
+		this.field1683 = var1.readByte(); // L: 253
+		this.field1687 = var1.readByte(); // L: 254
+		this.field1689 = var1.readByte(); // L: 255
+	} // L: 256
 
-		this.field1708 = var1.readStringCp1252NullTerminatedOrNull(); // L: 204
-	} // L: 205
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Lfx;B)V",
+		garbageValue = "-72"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2959(this.field1707, this.field1708); // L: 208
-	} // L: 209
+	void vmethod3419(ClanSettings var1) {
+		var1.allowGuests = this.field1686; // L: 259
+		var1.field1712 = this.field1684; // L: 260
+		var1.field1706 = this.field1683; // L: 261
+		var1.field1713 = this.field1687; // L: 262
+		var1.field1714 = this.field1689; // L: 263
+	} // L: 264
 
-	@ObfuscatedName("iv")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-22445945"
+		descriptor = "(Ljava/lang/Object;ZB)[B",
+		garbageValue = "75"
 	)
-	static final void method3135(int var0, int var1) {
-		if (Client.menuOptionsCount >= 2 || Client.isItemSelected != 0 || Client.isSpellSelected) { // L: 8437
-			if (Client.showMouseOverText) { // L: 8438
-				int var2 = class240.method5005(); // L: 8439
-				String var3;
-				if (Client.isItemSelected == 1 && Client.menuOptionsCount < 2) { // L: 8441
-					var3 = "Use" + " " + Client.selectedItemName + " " + "->";
-				} else if (Client.isSpellSelected && Client.menuOptionsCount < 2) { // L: 8442
-					var3 = Client.selectedSpellActionName + " " + Client.selectedSpellName + " " + "->";
-				} else {
-					String var4;
-					if (var2 < 0) { // L: 8446
-						var4 = ""; // L: 8447
-					} else if (Client.menuTargets[var2].length() > 0) { // L: 8450
-						var4 = Client.menuActions[var2] + " " + Client.menuTargets[var2];
-					} else {
-						var4 = Client.menuActions[var2]; // L: 8451
-					}
-
-					var3 = var4; // L: 8453
-				}
-
-				if (Client.menuOptionsCount > 2) { // L: 8455
-					var3 = var3 + class122.colorStartTag(16777215) + " " + '/' + " " + (Client.menuOptionsCount - 2) + " more options";
-				}
-
-				TileItem.fontBold12.drawRandomAlphaAndSpacing(var3, var0 + 4, var1 + 15, 16777215, 0, Client.cycle / 1000); // L: 8456
-			}
-		}
-	} // L: 8457
-
-	@ObfuscatedName("jy")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;Lgs;IIZB)V",
-		garbageValue = "119"
-	)
-	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
-		String[] var5 = var1.inventoryActions; // L: 10868
-		byte var6 = -1; // L: 10869
-		String var7 = null; // L: 10870
-		if (var5 != null && var5[var3] != null) { // L: 10871
-			if (var3 == 0) { // L: 10872
-				var6 = 33;
-			} else if (var3 == 1) { // L: 10873
-				var6 = 34;
-			} else if (var3 == 2) {
-				var6 = 35; // L: 10874
-			} else if (var3 == 3) { // L: 10875
-				var6 = 36;
+	public static byte[] method3189(Object var0, boolean var1) {
+		if (var0 == null) { // L: 30
+			return null;
+		} else if (var0 instanceof byte[]) { // L: 31
+			byte[] var6 = (byte[])((byte[])var0); // L: 32
+			if (var1) { // L: 33
+				int var4 = var6.length; // L: 36
+				byte[] var5 = new byte[var4]; // L: 37
+				System.arraycopy(var6, 0, var5, 0, var4); // L: 38
+				return var5; // L: 41
 			} else {
-				var6 = 37; // L: 10876
+				return var6; // L: 43
+			}
+		} else if (var0 instanceof AbstractByteArrayCopier) { // L: 45
+			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0; // L: 46
+			return var2.get(); // L: 47
+		} else {
+			throw new IllegalArgumentException(); // L: 49
+		}
+	}
+
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(IIIZIZS)V",
+		garbageValue = "-25741"
+	)
+	@Export("doWorldSorting")
+	static void doWorldSorting(int var0, int var1, int var2, boolean var3, int var4, boolean var5) {
+		if (var0 < var1) { // L: 178
+			int var6 = (var0 + var1) / 2; // L: 179
+			int var7 = var0; // L: 180
+			World var8 = class387.World_worlds[var6]; // L: 181
+			class387.World_worlds[var6] = class387.World_worlds[var1]; // L: 182
+			class387.World_worlds[var1] = var8; // L: 183
+
+			for (int var9 = var0; var9 < var1; ++var9) { // L: 184
+				World var11 = class387.World_worlds[var9]; // L: 186
+				int var12 = ClanSettings.compareWorlds(var11, var8, var2, var3); // L: 188
+				int var10;
+				if (var12 != 0) { // L: 189
+					if (var3) { // L: 190
+						var10 = -var12; // L: 191
+					} else {
+						var10 = var12; // L: 195
+					}
+				} else if (var4 == -1) { // L: 199
+					var10 = 0; // L: 200
+				} else {
+					int var13 = ClanSettings.compareWorlds(var11, var8, var4, var5); // L: 203
+					if (var5) { // L: 204
+						var10 = -var13;
+					} else {
+						var10 = var13; // L: 205
+					}
+				}
+
+				if (var10 <= 0) { // L: 207
+					World var14 = class387.World_worlds[var9]; // L: 208
+					class387.World_worlds[var9] = class387.World_worlds[var7]; // L: 209
+					class387.World_worlds[var7++] = var14; // L: 210
+				}
 			}
 
-			var7 = var5[var3]; // L: 10877
-		} else if (var3 == 4) { // L: 10880
-			var6 = 37; // L: 10881
-			var7 = "Drop"; // L: 10882
+			class387.World_worlds[var1] = class387.World_worlds[var7]; // L: 214
+			class387.World_worlds[var7] = var8; // L: 215
+			doWorldSorting(var0, var7 - 1, var2, var3, var4, var5); // L: 216
+			doWorldSorting(var7 + 1, var1, var2, var3, var4, var5); // L: 217
 		}
 
-		if (var6 != -1 && var7 != null) { // L: 10885
-			class268.insertMenuItem(var7, class122.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4); // L: 10886
-		}
+	} // L: 219
 
-	} // L: 10888
+	@ObfuscatedName("nm")
+	@ObfuscatedSignature(
+		descriptor = "(IIZI)V",
+		garbageValue = "2003552288"
+	)
+	static final void method3196(int var0, int var1, boolean var2) {
+		if (Client.currentClanChannels[var0] != null) { // L: 12694
+			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method3383()) { // L: 12695
+				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1); // L: 12696
+				PacketBufferNode var4 = class503.getPacketBufferNode(ClientPacket.field3139, Client.packetWriter.isaacCipher); // L: 12697
+				var4.packetBuffer.writeByte(4 + class501.stringCp1252NullTerminatedByteSize(var3.username.getName())); // L: 12698
+				var4.packetBuffer.writeByte(var0); // L: 12699
+				var4.packetBuffer.writeShort(var1); // L: 12700
+				var4.packetBuffer.writeBoolean(var2); // L: 12701
+				var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName()); // L: 12702
+				Client.packetWriter.addNode(var4); // L: 12703
+			}
+		}
+	} // L: 12704
 }

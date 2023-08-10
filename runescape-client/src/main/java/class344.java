@@ -1,87 +1,77 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mk")
+@ObfuscatedName("na")
 public final class class344 {
-	@ObfuscatedName("c")
-	@Export("base37Table")
-	public static final char[] base37Table;
-	@ObfuscatedName("v")
-	static long[] field4153;
-	@ObfuscatedName("y")
-	static int[] field4152;
-	@ObfuscatedName("ih")
-	@ObfuscatedSignature(
-		descriptor = "Lqe;"
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = -627034483
 	)
-	@Export("redHintArrowSprite")
-	static SpritePixels redHintArrowSprite;
-
-	static {
-		base37Table = new char[]{'_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; // L: 4
-		field4153 = new long[12]; // L: 5
-
-		for (int var0 = 0; var0 < field4153.length; ++var0) { // L: 8
-			field4153[var0] = (long)Math.pow(37.0D, (double)var0);
-		}
-
-	} // L: 9
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "([BB)Lbi;",
-		garbageValue = "8"
+	static int field3852;
+	@ObfuscatedName("ab")
+	@ObfuscatedGetter(
+		intValue = -27007069
 	)
-	@Export("newScript")
-	static Script newScript(byte[] var0) {
-		Script var1 = new Script(); // L: 84
-		Buffer var2 = new Buffer(var0); // L: 85
-		var2.offset = var2.array.length - 2; // L: 86
-		int var3 = var2.readUnsignedShort(); // L: 87
-		int var4 = var2.array.length - 2 - var3 - 12; // L: 88
-		var2.offset = var4; // L: 89
-		int var5 = var2.readInt(); // L: 90
-		var1.localIntCount = var2.readUnsignedShort(); // L: 91
-		var1.localStringCount = var2.readUnsignedShort(); // L: 92
-		var1.intArgumentCount = var2.readUnsignedShort(); // L: 93
-		var1.stringArgumentCount = var2.readUnsignedShort(); // L: 94
-		int var6 = var2.readUnsignedByte(); // L: 95
-		int var7;
-		int var8;
-		if (var6 > 0) { // L: 96
-			var1.switches = var1.newIterableNodeHashTable(var6); // L: 97
+	static int field3842;
+	@ObfuscatedName("ru")
+	@ObfuscatedSignature(
+		descriptor = "Ltp;"
+	)
+	@Export("Ignored_cached")
+	static class498 Ignored_cached;
 
-			for (var7 = 0; var7 < var6; ++var7) { // L: 98
-				var8 = var2.readUnsignedShort(); // L: 99
-				IterableNodeHashTable var9 = new IterableNodeHashTable(var8 > 0 ? class135.method2910(var8) : 1); // L: 100
-				var1.switches[var7] = var9; // L: 101
+	@ObfuscatedName("kk")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "-512665068"
+	)
+	@Export("updateItemPile")
+	static final void updateItemPile(int var0, int var1) {
+		NodeDeque var2 = Client.groundItems[class36.Client_plane][var0][var1]; // L: 8695
+		if (var2 == null) { // L: 8696
+			UserComparator5.scene.removeGroundItemPile(class36.Client_plane, var0, var1); // L: 8697
+		} else {
+			long var3 = -99999999L; // L: 8700
+			TileItem var5 = null; // L: 8701
 
-				while (var8-- > 0) { // L: 102
-					int var10 = var2.readInt(); // L: 103
-					int var11 = var2.readInt(); // L: 104
-					var9.put(new IntegerNode(var11), (long)var10); // L: 105
+			TileItem var6;
+			for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) { // L: 8702 8703 8713
+				ItemComposition var7 = class125.ItemComposition_get(var6.id); // L: 8704
+				long var11 = (long)var7.price; // L: 8705
+				if (var7.isStackable == 1) { // L: 8706
+					var11 *= var6.quantity < Integer.MAX_VALUE ? (long)(var6.quantity + 1) : (long)var6.quantity; // L: 8707
+				}
+
+				if (var11 > var3) { // L: 8709
+					var3 = var11; // L: 8710
+					var5 = var6; // L: 8711
 				}
 			}
-		}
 
-		var2.offset = 0; // L: 109
-		var1.field967 = var2.readStringCp1252NullTerminatedOrNull(); // L: 110
-		var1.opcodes = new int[var5]; // L: 111
-		var1.intOperands = new int[var5]; // L: 112
-		var1.stringOperands = new String[var5]; // L: 113
-
-		for (var7 = 0; var2.offset < var4; var1.opcodes[var7++] = var8) { // L: 114 115 120
-			var8 = var2.readUnsignedShort(); // L: 116
-			if (var8 == 3) { // L: 117
-				var1.stringOperands[var7] = var2.readStringCp1252NullTerminated();
-			} else if (var8 < 100 && var8 != 21 && var8 != 38 && var8 != 39) { // L: 118
-				var1.intOperands[var7] = var2.readInt();
+			if (var5 == null) { // L: 8715
+				UserComparator5.scene.removeGroundItemPile(class36.Client_plane, var0, var1); // L: 8716
 			} else {
-				var1.intOperands[var7] = var2.readUnsignedByte(); // L: 119
+				var2.addLast(var5); // L: 8719
+				TileItem var13 = null; // L: 8720
+				TileItem var8 = null; // L: 8721
+
+				for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) { // L: 8722 8723 8728
+					if (var5.id != var6.id) { // L: 8724
+						if (var13 == null) { // L: 8725
+							var13 = var6;
+						}
+
+						if (var6.id != var13.id && var8 == null) { // L: 8726
+							var8 = var6;
+						}
+					}
+				}
+
+				long var9 = BufferedNetSocket.calculateTag(var0, var1, 3, false, 0); // L: 8730
+				UserComparator5.scene.newGroundItemPile(class36.Client_plane, var0, var1, class306.getTileHeight(var0 * 128 + 64, var1 * 128 + 64, class36.Client_plane), var5, var9, var13, var8); // L: 8731
 			}
 		}
-
-		return var1; // L: 122
-	}
+	} // L: 8698 8717 8732
 }
