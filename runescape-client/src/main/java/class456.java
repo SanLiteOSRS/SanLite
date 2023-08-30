@@ -1,22 +1,17 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qb")
-public class class456 {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1735704061
+@ObfuscatedName("rg")
+public class class456 extends class457 {
+	public class456(int var1) {
+		super(var1); // L: 7
+	} // L: 8
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(Ltm;II)V",
+		garbageValue = "362589282"
 	)
-	@Export("SpriteBuffer_spriteCount")
-	static int SpriteBuffer_spriteCount;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -1214569761
-	)
-	@Export("SpriteBuffer_spriteHeight")
-	static int SpriteBuffer_spriteHeight;
-	@ObfuscatedName("g")
-	@Export("SpriteBuffer_spriteHeights")
-	public static int[] SpriteBuffer_spriteHeights;
+	void vmethod8312(Buffer var1, int var2) {
+	} // L: 12
 }

@@ -3,46 +3,46 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gd")
+@ObfuscatedName("if")
 @Implements("Texture")
 public class Texture extends Node {
-	@ObfuscatedName("u")
+	@ObfuscatedName("ar")
 	@Export("Texture_animatedPixels")
 	static int[] Texture_animatedPixels;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ac")
 	@Export("averageRGB")
 	int averageRGB;
-	@ObfuscatedName("e")
-	boolean field2293;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ai")
+	boolean field2486;
+	@ObfuscatedName("az")
 	@Export("fileIds")
 	int[] fileIds;
-	@ObfuscatedName("w")
-	int[] field2301;
-	@ObfuscatedName("y")
-	int[] field2296;
-	@ObfuscatedName("i")
-	int[] field2295;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ap")
+	int[] field2488;
+	@ObfuscatedName("aa")
+	int[] field2489;
+	@ObfuscatedName("af")
+	int[] field2490;
+	@ObfuscatedName("ad")
 	@Export("animationDirection")
 	int animationDirection;
-	@ObfuscatedName("t")
+	@ObfuscatedName("aq")
 	@Export("animationSpeed")
 	int animationSpeed;
-	@ObfuscatedName("z")
+	@ObfuscatedName("al")
 	@Export("pixels")
 	int[] pixels;
-	@ObfuscatedName("r")
+	@ObfuscatedName("an")
 	@Export("isLoaded")
 	boolean isLoaded;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;)V"
+		descriptor = "(Ltm;)V"
 	)
 	Texture(Buffer var1) {
 		this.isLoaded = false; // L: 25
 		this.averageRGB = var1.readUnsignedShort(); // L: 29
-		this.field2293 = var1.readUnsignedByte() == 1; // L: 30
+		this.field2486 = var1.readUnsignedByte() == 1; // L: 30
 		int var2 = var1.readUnsignedByte(); // L: 31
 		if (var2 >= 1 && var2 <= 4) { // L: 32
 			this.fileIds = new int[var2]; // L: 35
@@ -53,25 +53,25 @@ public class Texture extends Node {
 			}
 
 			if (var2 > 1) { // L: 37
-				this.field2301 = new int[var2 - 1]; // L: 38
+				this.field2488 = new int[var2 - 1]; // L: 38
 
 				for (var3 = 0; var3 < var2 - 1; ++var3) { // L: 39
-					this.field2301[var3] = var1.readUnsignedByte();
+					this.field2488[var3] = var1.readUnsignedByte();
 				}
 			}
 
 			if (var2 > 1) { // L: 41
-				this.field2296 = new int[var2 - 1]; // L: 42
+				this.field2489 = new int[var2 - 1]; // L: 42
 
 				for (var3 = 0; var3 < var2 - 1; ++var3) { // L: 43
-					this.field2296[var3] = var1.readUnsignedByte();
+					this.field2489[var3] = var1.readUnsignedByte();
 				}
 			}
 
-			this.field2295 = new int[var2]; // L: 45
+			this.field2490 = new int[var2]; // L: 45
 
 			for (var3 = 0; var3 < var2; ++var3) { // L: 46
-				this.field2295[var3] = var1.readInt();
+				this.field2490[var3] = var1.readInt();
 			}
 
 			this.animationDirection = var1.readUnsignedByte(); // L: 47
@@ -82,9 +82,9 @@ public class Texture extends Node {
 		}
 	} // L: 50
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(DILlh;)Z"
+		descriptor = "(DILnu;)Z"
 	)
 	@Export("load")
 	boolean load(double var1, int var3, AbstractArchive var4) {
@@ -99,95 +99,102 @@ public class Texture extends Node {
 		this.pixels = new int[var5]; // L: 57
 
 		for (int var6 = 0; var6 < this.fileIds.length; ++var6) { // L: 58
-			IndexedSprite var7 = AbstractSocket.method6819(var4, this.fileIds[var6]); // L: 59
-			var7.normalize(); // L: 60
-			byte[] var8 = var7.pixels; // L: 61
-			int[] var9 = var7.palette; // L: 62
-			int var10 = this.field2295[var6]; // L: 63
-			if ((var10 & -16777216) == 16777216) { // L: 64
+			int var8 = this.fileIds[var6]; // L: 60
+			IndexedSprite var7;
+			if (!Decimator.method1129(var4, var8)) { // L: 62
+				var7 = null; // L: 63
+			} else {
+				var7 = class493.method8806(); // L: 66
 			}
 
-			if ((var10 & -16777216) == 33554432) { // L: 65
+			var7.normalize(); // L: 69
+			byte[] var10 = var7.pixels; // L: 70
+			int[] var11 = var7.palette; // L: 71
+			int var12 = this.field2490[var6]; // L: 72
+			if ((var12 & -16777216) == 16777216) { // L: 73
 			}
 
-			int var11;
-			int var12;
+			if ((var12 & -16777216) == 33554432) { // L: 74
+			}
+
 			int var13;
 			int var14;
-			if ((var10 & -16777216) == 50331648) { // L: 66
-				var11 = var10 & 16711935; // L: 67
-				var12 = var10 >> 8 & 255; // L: 68
+			int var15;
+			int var16;
+			if ((var12 & -16777216) == 50331648) { // L: 75
+				var13 = var12 & 16711935; // L: 76
+				var14 = var12 >> 8 & 255; // L: 77
 
-				for (var13 = 0; var13 < var9.length; ++var13) { // L: 69
-					var14 = var9[var13]; // L: 70
-					if (var14 >> 8 == (var14 & 65535)) { // L: 71
-						var14 &= 255; // L: 72
-						var9[var13] = var11 * var14 >> 8 & 16711935 | var12 * var14 & 65280; // L: 73
+				for (var15 = 0; var15 < var11.length; ++var15) { // L: 78
+					var16 = var11[var15]; // L: 79
+					if (var16 >> 8 == (var16 & 65535)) { // L: 80
+						var16 &= 255; // L: 81
+						var11[var15] = var13 * var16 >> 8 & 16711935 | var14 * var16 & 65280; // L: 82
 					}
 				}
 			}
 
-			for (var11 = 0; var11 < var9.length; ++var11) { // L: 77
-				var9[var11] = Rasterizer3D.Rasterizer3D_brighten(var9[var11], var1);
+			for (var13 = 0; var13 < var11.length; ++var13) { // L: 86
+				var11[var13] = Rasterizer3D.Rasterizer3D_brighten(var11[var13], var1);
 			}
 
-			if (var6 == 0) { // L: 79
-				var11 = 0;
+			if (var6 == 0) { // L: 88
+				var13 = 0;
 			} else {
-				var11 = this.field2301[var6 - 1]; // L: 80
+				var13 = this.field2488[var6 - 1]; // L: 89
 			}
 
-			if (var11 == 0) { // L: 81
-				if (var3 == var7.subWidth) { // L: 82
-					for (var12 = 0; var12 < var5; ++var12) { // L: 83
-						this.pixels[var12] = var9[var8[var12] & 255];
+			if (var13 == 0) { // L: 90
+				if (var3 == var7.subWidth) { // L: 91
+					for (var14 = 0; var14 < var5; ++var14) { // L: 92
+						this.pixels[var14] = var11[var10[var14] & 255];
 					}
-				} else if (var7.subWidth == 64 && var3 == 128) { // L: 85
-					var12 = 0; // L: 86
+				} else if (var7.subWidth == 64 && var3 == 128) { // L: 94
+					var14 = 0; // L: 95
 
-					for (var13 = 0; var13 < var3; ++var13) { // L: 87
-						for (var14 = 0; var14 < var3; ++var14) { // L: 88
-							this.pixels[var12++] = var9[var8[(var13 >> 1 << 6) + (var14 >> 1)] & 255];
+					for (var15 = 0; var15 < var3; ++var15) { // L: 96
+						for (var16 = 0; var16 < var3; ++var16) { // L: 97
+							this.pixels[var14++] = var11[var10[(var15 >> 1 << 6) + (var16 >> 1)] & 255];
 						}
 					}
 				} else {
-					if (var7.subWidth != 128 || var3 != 64) { // L: 91
-						throw new RuntimeException(); // L: 98
+					if (var7.subWidth != 128 || var3 != 64) { // L: 100
+						throw new RuntimeException(); // L: 107
 					}
 
-					var12 = 0; // L: 92
+					var14 = 0; // L: 101
 
-					for (var13 = 0; var13 < var3; ++var13) { // L: 93
-						for (var14 = 0; var14 < var3; ++var14) { // L: 94
-							this.pixels[var12++] = var9[var8[(var14 << 1) + (var13 << 1 << 7)] & 255];
+					for (var15 = 0; var15 < var3; ++var15) { // L: 102
+						for (var16 = 0; var16 < var3; ++var16) { // L: 103
+							this.pixels[var14++] = var11[var10[(var16 << 1) + (var15 << 1 << 7)] & 255];
 						}
 					}
 				}
 			}
 
-			if (var11 == 1) { // L: 101
+			if (var13 == 1) { // L: 110
 			}
 
-			if (var11 == 2) { // L: 102
+			if (var13 == 2) { // L: 111
 			}
 
-			if (var11 == 3) { // L: 103
+			if (var13 == 3) { // L: 112
 			}
 		}
 
-		return true; // L: 105
+		return true; // L: 114
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@Export("reset")
 	void reset() {
-		this.pixels = null; // L: 109
-	} // L: 110
+		this.pixels = null; // L: 118
+	} // L: 119
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@Export("animate")
 	void animate(int var1) {
-		if (this.pixels != null) { // L: 113
+		if (this.pixels != null) { // L: 122
 			short var2;
 			int var3;
 			int var4;
@@ -195,65 +202,65 @@ public class Texture extends Node {
 			int var6;
 			int var7;
 			int[] var10;
-			if (this.animationDirection == 1 || this.animationDirection == 3) { // L: 114
-				if (Texture_animatedPixels == null || Texture_animatedPixels.length < this.pixels.length) { // L: 115
+			if (this.animationDirection == 1 || this.animationDirection == 3) { // L: 123
+				if (Texture_animatedPixels == null || Texture_animatedPixels.length < this.pixels.length) { // L: 124
 					Texture_animatedPixels = new int[this.pixels.length];
 				}
 
-				if (this.pixels.length == 4096) { // L: 117
+				if (this.pixels.length == 4096) { // L: 126
 					var2 = 64;
 				} else {
-					var2 = 128; // L: 118
+					var2 = 128; // L: 127
 				}
 
-				var3 = this.pixels.length; // L: 119
-				var4 = var2 * this.animationSpeed * var1; // L: 120
-				var5 = var3 - 1; // L: 121
-				if (this.animationDirection == 1) { // L: 122
+				var3 = this.pixels.length; // L: 128
+				var4 = var2 * this.animationSpeed * var1; // L: 129
+				var5 = var3 - 1; // L: 130
+				if (this.animationDirection == 1) { // L: 131
 					var4 = -var4;
 				}
 
-				for (var6 = 0; var6 < var3; ++var6) { // L: 123
-					var7 = var6 + var4 & var5; // L: 124
-					Texture_animatedPixels[var6] = this.pixels[var7]; // L: 125
+				for (var6 = 0; var6 < var3; ++var6) { // L: 132
+					var7 = var6 + var4 & var5; // L: 133
+					Texture_animatedPixels[var6] = this.pixels[var7]; // L: 134
 				}
 
-				var10 = this.pixels; // L: 127
-				this.pixels = Texture_animatedPixels; // L: 128
-				Texture_animatedPixels = var10; // L: 129
+				var10 = this.pixels; // L: 136
+				this.pixels = Texture_animatedPixels; // L: 137
+				Texture_animatedPixels = var10; // L: 138
 			}
 
-			if (this.animationDirection == 2 || this.animationDirection == 4) { // L: 131
-				if (Texture_animatedPixels == null || Texture_animatedPixels.length < this.pixels.length) { // L: 132
+			if (this.animationDirection == 2 || this.animationDirection == 4) { // L: 140
+				if (Texture_animatedPixels == null || Texture_animatedPixels.length < this.pixels.length) { // L: 141
 					Texture_animatedPixels = new int[this.pixels.length];
 				}
 
-				if (this.pixels.length == 4096) { // L: 134
+				if (this.pixels.length == 4096) { // L: 143
 					var2 = 64;
 				} else {
-					var2 = 128; // L: 135
+					var2 = 128; // L: 144
 				}
 
-				var3 = this.pixels.length; // L: 136
-				var4 = this.animationSpeed * var1; // L: 137
-				var5 = var2 - 1; // L: 138
-				if (this.animationDirection == 2) { // L: 139
+				var3 = this.pixels.length; // L: 145
+				var4 = this.animationSpeed * var1; // L: 146
+				var5 = var2 - 1; // L: 147
+				if (this.animationDirection == 2) { // L: 148
 					var4 = -var4;
 				}
 
-				for (var6 = 0; var6 < var3; var6 += var2) { // L: 140
-					for (var7 = 0; var7 < var2; ++var7) { // L: 141
-						int var8 = var6 + var7; // L: 142
-						int var9 = var6 + (var7 + var4 & var5); // L: 143
-						Texture_animatedPixels[var8] = this.pixels[var9]; // L: 144
+				for (var6 = 0; var6 < var3; var6 += var2) { // L: 149
+					for (var7 = 0; var7 < var2; ++var7) { // L: 150
+						int var8 = var6 + var7; // L: 151
+						int var9 = var6 + (var7 + var4 & var5); // L: 152
+						Texture_animatedPixels[var8] = this.pixels[var9]; // L: 153
 					}
 				}
 
-				var10 = this.pixels; // L: 147
-				this.pixels = Texture_animatedPixels; // L: 148
-				Texture_animatedPixels = var10; // L: 149
+				var10 = this.pixels; // L: 156
+				this.pixels = Texture_animatedPixels; // L: 157
+				Texture_animatedPixels = var10; // L: 158
 			}
 
 		}
-	} // L: 151
+	} // L: 160
 }
