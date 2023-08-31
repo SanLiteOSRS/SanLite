@@ -1,69 +1,97 @@
 import java.io.IOException;
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nl")
+@ObfuscatedName("qi")
 @Implements("AbstractSocket")
 public abstract class AbstractSocket {
+	@ObfuscatedName("ii")
+	@ObfuscatedSignature(
+		descriptor = "Lqi;"
+	)
+	static AbstractSocket field4675;
+
 	AbstractSocket() {
 	} // L: 7
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(IB)Z",
-		garbageValue = "1"
+		garbageValue = "-67"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-439883726"
+		garbageValue = "1947351494"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1889844897"
+		garbageValue = "969166986"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "([BIII)I",
-		garbageValue = "695516749"
+		descriptor = "([BIIS)I",
+		garbageValue = "206"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "1416716039"
+		garbageValue = "1371855899"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-17278531"
+		garbageValue = "-1457160931"
 	)
 	@Export("close")
 	public abstract void close();
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("bc")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;IB)Lqu;",
-		garbageValue = "-106"
+		descriptor = "(Ljava/lang/String;I)I",
+		garbageValue = "-148355488"
 	)
-	public static IndexedSprite method6819(AbstractArchive var0, int var1) {
-		return !class431.method7559(var0, var1) ? null : class390.method7053(); // L: 131 132
+	@Export("stringCp1252NullTerminatedByteSize")
+	public static int stringCp1252NullTerminatedByteSize(String var0) {
+		return var0.length() + 1; // L: 112
 	}
+
+	@ObfuscatedName("nn")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-99692388"
+	)
+	@Export("FriendSystem_invalidateIgnoreds")
+	static final void FriendSystem_invalidateIgnoreds() {
+		Iterator var0 = Messages.Messages_hashTable.iterator(); // L: 12584
+
+		while (var0.hasNext()) {
+			Message var1 = (Message)var0.next(); // L: 12585
+			var1.clearIsFromIgnored(); // L: 12587
+		}
+
+		if (ReflectionCheck.friendsChatManager != null) { // L: 12591
+			ReflectionCheck.friendsChatManager.invalidateIgnoreds(); // L: 12592
+		}
+
+	} // L: 12594
 }
