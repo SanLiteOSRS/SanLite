@@ -3,38 +3,36 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jb")
+@ObfuscatedName("ma")
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
-	)
-	@Export("runesSprite")
-	static IndexedSprite[] runesSprite;
-	@ObfuscatedName("ep")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive13")
-	static Archive archive13;
-
 	AbstractByteArrayCopier() {
 	} // L: 4
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(B)[B",
-		garbageValue = "-87"
+		descriptor = "(I)[B",
+		garbageValue = "-962589916"
 	)
 	@Export("get")
 	abstract byte[] get();
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "([BI)V",
-		garbageValue = "2067022612"
+		garbageValue = "1426025249"
 	)
 	@Export("set")
-	abstract void set(byte[] var1);
+	public abstract void set(byte[] var1);
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)Lco;",
+		garbageValue = "64"
+	)
+	@Export("Messages_getByChannelAndID")
+	static Message Messages_getByChannelAndID(int var0, int var1) {
+		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 35
+		return var2.getMessage(var1); // L: 36
+	}
 }

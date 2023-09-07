@@ -1,34 +1,54 @@
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ok")
-public class class391 implements class396 {
-	@ObfuscatedName("c")
+@ObfuscatedName("pr")
+public class class391 implements Iterator {
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lpt;"
+		descriptor = "Lpa;"
 	)
-	public final class420 field4424;
+	class392 field4442;
+	@ObfuscatedName("ae")
+	@ObfuscatedGetter(
+		intValue = 150272453
+	)
+	int field4443;
+	@ObfuscatedName("ao")
+	@ObfuscatedGetter(
+		intValue = 1979527987
+	)
+	int field4444;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpl;)V"
+		descriptor = "(Lpa;)V"
 	)
-	class391(class421 var1) {
-		this.field4424 = var1; // L: 14
-	} // L: 15
+	class391(class392 var1) {
+		this.field4443 = 0; // L: 177
+		this.field4444 = this.field4442.field4446; // L: 178
+		this.field4442 = var1; // L: 181
+	} // L: 182
 
-	@ObfuscatedSignature(
-		descriptor = "(Loz;)V"
-	)
-	public class391(class392 var1) {
-		this(new class421(var1)); // L: 10
-	} // L: 11
+	public boolean hasNext() {
+		return this.field4443 < this.field4442.field4450; // L: 186
+	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-275089160"
-	)
-	public int method7055(int var1) {
-		return this.field4424.vmethod7440(var1); // L: 18
+	public Object next() {
+		if (this.field4442.field4446 != this.field4444) { // L: 192
+			throw new ConcurrentModificationException();
+		} else if (this.field4443 < this.field4442.field4450) { // L: 193
+			Object var1 = this.field4442.field4448[this.field4443].field4440; // L: 194
+			++this.field4443; // L: 195
+			return var1; // L: 196
+		} else {
+			throw new NoSuchElementException(); // L: 198
+		}
+	}
+
+	public void remove() {
+		throw new UnsupportedOperationException(); // L: 203
 	}
 }
