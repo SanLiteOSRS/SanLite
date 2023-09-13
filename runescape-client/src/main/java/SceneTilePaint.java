@@ -1,54 +1,63 @@
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InvalidClassException;
+import java.io.ObjectInputStream;
+import java.io.OptionalDataException;
+import java.io.StreamCorruptedException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.Reflection;
 
-@ObfuscatedName("hu")
+@ObfuscatedName("jg")
 @Implements("SceneTilePaint")
 public final class SceneTilePaint {
-	@ObfuscatedName("cj")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lqu;"
+		descriptor = "Lmi;"
 	)
-	@Export("worldSelectRightSprite")
-	static IndexedSprite worldSelectRightSprite;
-	@ObfuscatedName("c")
+	static Widget field2808;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = 1769216381
+		intValue = -2075388299
 	)
 	@Export("swColor")
 	int swColor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
-		intValue = -78289351
+		intValue = -694483885
 	)
 	@Export("seColor")
 	int seColor;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -184307337
+		intValue = 2061815829
 	)
 	@Export("neColor")
 	int neColor;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1175452837
+		intValue = 1181081207
 	)
 	@Export("nwColor")
 	int nwColor;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 516518743
+		intValue = 1843786241
 	)
 	@Export("texture")
 	int texture;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ai")
 	@Export("isFlat")
 	boolean isFlat;
-	@ObfuscatedName("g")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = 1480522927
+		intValue = -1448639709
 	)
 	@Export("rgb")
 	int rgb;
@@ -64,77 +73,130 @@ public final class SceneTilePaint {
 		this.isFlat = var7; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)Ljava/lang/String;",
-		garbageValue = "-117"
+		descriptor = "(ILru;Lnk;B)V",
+		garbageValue = "7"
 	)
-	@Export("decodeStringCp1252")
-	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
-		char[] var3 = new char[var2]; // L: 114
-		int var4 = 0; // L: 115
+	static void method4922(int var0, ArchiveDisk var1, Archive var2) {
+		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 21
+		var3.type = 1; // L: 22
+		var3.key = (long)var0; // L: 23
+		var3.archiveDisk = var1; // L: 24
+		var3.archive = var2; // L: 25
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 26
+			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 27
+		} // L: 28
 
-		for (int var5 = 0; var5 < var2; ++var5) { // L: 116
-			int var6 = var0[var5 + var1] & 255; // L: 117
-			if (var6 != 0) { // L: 118
-				if (var6 >= 128 && var6 < 160) { // L: 119
-					char var7 = class340.cp1252AsciiExtension[var6 - 128]; // L: 120
-					if (var7 == 0) { // L: 121
-						var7 = '?';
+		UserComparator8.method2866();
+	}
+
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(Lto;I)V",
+		garbageValue = "1309449245"
+	)
+	@Export("performReflectionCheck")
+	public static void performReflectionCheck(PacketBuffer var0) {
+		ReflectionCheck var1 = (ReflectionCheck)class36.reflectionChecks.last(); // L: 29
+		if (var1 != null) { // L: 30
+			int var2 = var0.offset; // L: 31
+			var0.writeInt(var1.id); // L: 32
+
+			for (int var3 = 0; var3 < var1.size; ++var3) { // L: 33
+				if (var1.creationErrors[var3] != 0) { // L: 34
+					var0.writeByte(var1.creationErrors[var3]); // L: 35
+				} else {
+					try {
+						int var4 = var1.operations[var3]; // L: 39
+						Field var5;
+						int var6;
+						if (var4 == 0) { // L: 40
+							var5 = var1.fields[var3]; // L: 41
+							var6 = Reflection.getInt(var5, (Object)null); // L: 42
+							var0.writeByte(0); // L: 43
+							var0.writeInt(var6); // L: 44
+						} else if (var4 == 1) {
+							var5 = var1.fields[var3]; // L: 47
+							Reflection.setInt(var5, (Object)null, var1.intReplaceValues[var3]); // L: 48
+							var0.writeByte(0); // L: 49
+						} else if (var4 == 2) { // L: 51
+							var5 = var1.fields[var3]; // L: 52
+							var6 = var5.getModifiers(); // L: 53
+							var0.writeByte(0); // L: 54
+							var0.writeInt(var6); // L: 55
+						}
+
+						Method var25;
+						if (var4 != 3) { // L: 57
+							if (var4 == 4) { // L: 77
+								var25 = var1.methods[var3]; // L: 78
+								var6 = var25.getModifiers(); // L: 79
+								var0.writeByte(0); // L: 80
+								var0.writeInt(var6); // L: 81
+							}
+						} else {
+							var25 = var1.methods[var3]; // L: 58
+							byte[][] var10 = var1.arguments[var3]; // L: 59
+							Object[] var7 = new Object[var10.length]; // L: 60
+
+							for (int var8 = 0; var8 < var10.length; ++var8) { // L: 61
+								ObjectInputStream var9 = new ObjectInputStream(new ByteArrayInputStream(var10[var8])); // L: 62
+								var7[var8] = var9.readObject(); // L: 63
+							}
+
+							Object var11 = Reflection.invoke(var25, (Object)null, var7); // L: 65
+							if (var11 == null) { // L: 66
+								var0.writeByte(0);
+							} else if (var11 instanceof Number) { // L: 67
+								var0.writeByte(1); // L: 68
+								var0.writeLong(((Number)var11).longValue()); // L: 69
+							} else if (var11 instanceof String) { // L: 71
+								var0.writeByte(2); // L: 72
+								var0.writeStringCp1252NullTerminated((String)var11); // L: 73
+							} else {
+								var0.writeByte(4); // L: 75
+							}
+						}
+					} catch (ClassNotFoundException var13) { // L: 84
+						var0.writeByte(-10); // L: 85
+					} catch (InvalidClassException var14) { // L: 87
+						var0.writeByte(-11); // L: 88
+					} catch (StreamCorruptedException var15) { // L: 90
+						var0.writeByte(-12); // L: 91
+					} catch (OptionalDataException var16) { // L: 93
+						var0.writeByte(-13); // L: 94
+					} catch (IllegalAccessException var17) { // L: 96
+						var0.writeByte(-14); // L: 97
+					} catch (IllegalArgumentException var18) { // L: 99
+						var0.writeByte(-15); // L: 100
+					} catch (InvocationTargetException var19) { // L: 102
+						var0.writeByte(-16); // L: 103
+					} catch (SecurityException var20) { // L: 105
+						var0.writeByte(-17); // L: 106
+					} catch (IOException var21) { // L: 108
+						var0.writeByte(-18); // L: 109
+					} catch (NullPointerException var22) { // L: 111
+						var0.writeByte(-19); // L: 112
+					} catch (Exception var23) { // L: 114
+						var0.writeByte(-20); // L: 115
+					} catch (Throwable var24) { // L: 117
+						var0.writeByte(-21); // L: 118
 					}
-
-					var6 = var7; // L: 122
 				}
-
-				var3[var4++] = (char)var6; // L: 124
 			}
+
+			var0.writeCrc(var2); // L: 121
+			var1.remove(); // L: 122
 		}
+	} // L: 123
 
-		return new String(var3, 0, var4); // L: 126
-	}
-
-	@ObfuscatedName("hr")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "744577981"
+		descriptor = "(CI)C",
+		garbageValue = "1859445774"
 	)
-	@Export("getTileHeight")
-	static final int getTileHeight(int var0, int var1, int var2) {
-		int var3 = var0 >> 7; // L: 5462
-		int var4 = var1 >> 7; // L: 5463
-		if (var3 >= 0 && var4 >= 0 && var3 <= 103 && var4 <= 103) { // L: 5464
-			int var5 = var2; // L: 5465
-			if (var2 < 3 && (Tiles.Tiles_renderFlags[1][var3][var4] & 2) == 2) { // L: 5466
-				var5 = var2 + 1;
-			}
-
-			int var6 = var0 & 127; // L: 5467
-			int var7 = var1 & 127; // L: 5468
-			int var8 = Tiles.Tiles_heights[var5][var3 + 1][var4] * var6 + (128 - var6) * Tiles.Tiles_heights[var5][var3][var4] >> 7; // L: 5469
-			int var9 = var6 * Tiles.Tiles_heights[var5][var3 + 1][var4 + 1] + Tiles.Tiles_heights[var5][var3][var4 + 1] * (128 - var6) >> 7; // L: 5470
-			return var8 * (128 - var7) + var9 * var7 >> 7; // L: 5471
-		} else {
-			return 0;
-		}
+	static char method4921(char var0) {
+		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0; // L: 45 46
 	}
-
-	@ObfuscatedName("lv")
-	@ObfuscatedSignature(
-		descriptor = "(IIZI)V",
-		garbageValue = "1779675406"
-	)
-	static final void method4530(int var0, int var1, boolean var2) {
-		if (Client.currentClanChannels[var0] != null) { // L: 12276
-			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method3113()) { // L: 12277
-				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1); // L: 12278
-				PacketBufferNode var4 = EnumComposition.getPacketBufferNode(ClientPacket.field2960, Client.packetWriter.isaacCipher); // L: 12279
-				var4.packetBuffer.writeByte(4 + ScriptEvent.stringCp1252NullTerminatedByteSize(var3.username.getName())); // L: 12280
-				var4.packetBuffer.writeByte(var0); // L: 12281
-				var4.packetBuffer.writeShort(var1); // L: 12282
-				var4.packetBuffer.writeBoolean(var2); // L: 12283
-				var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName()); // L: 12284
-				Client.packetWriter.addNode(var4); // L: 12285
-			}
-		}
-	} // L: 12286
 }

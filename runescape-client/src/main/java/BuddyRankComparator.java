@@ -3,19 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ds")
+@ObfuscatedName("ek")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("e")
-	@Export("PcmPlayer_stereo")
-	protected static boolean PcmPlayer_stereo;
-	@ObfuscatedName("in")
-	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
-	)
-	@Export("crossSprites")
-	static SpritePixels[] crossSprites;
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -23,10 +14,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1; // L: 10
 	} // L: 11
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;B)I",
-		garbageValue = "114"
+		descriptor = "(Lqb;Lqb;I)I",
+		garbageValue = "-1874488966"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -41,36 +32,24 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 21
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("oa")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lfj;",
-		garbageValue = "273043499"
+		descriptor = "(Lmi;I)Lmi;",
+		garbageValue = "915415331"
 	)
-	@Export("getNpcDefinition")
-	public static NPCComposition getNpcDefinition(int var0) {
-		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0); // L: 65
-		if (var1 != null) { // L: 66
-			return var1;
+	static Widget method2916(Widget var0) {
+		int var1 = SpriteMask.method6023(class194.getWidgetFlags(var0)); // L: 12684
+		if (var1 == 0) { // L: 12685
+			return null;
 		} else {
-			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0); // L: 67
-			var1 = new NPCComposition(); // L: 68
-			var1.id = var0; // L: 69
-			if (var2 != null) { // L: 70
-				var1.decode(new Buffer(var2));
+			for (int var2 = 0; var2 < var1; ++var2) { // L: 12686
+				var0 = class92.getWidget(var0.parentId); // L: 12687
+				if (var0 == null) { // L: 12688
+					return null;
+				}
 			}
 
-			var1.postDecode(); // L: 71
-			NPCComposition.NpcDefinition_cached.put(var1, (long)var0); // L: 72
-			return var1; // L: 73
+			return var0; // L: 12690
 		}
-	}
-
-	@ObfuscatedName("br")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)I",
-		garbageValue = "-107"
-	)
-	public static int method2620(String var0) {
-		return var0.length() + 2; // L: 128
 	}
 }

@@ -3,103 +3,116 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("m")
+@ObfuscatedName("aj")
 @Implements("DevicePcmPlayerProvider")
-public class DevicePcmPlayerProvider implements class47 {
-	@ObfuscatedName("w")
-	@Export("ItemComposition_inMembersWorld")
-	static boolean ItemComposition_inMembersWorld;
-	@ObfuscatedName("hx")
-	@ObfuscatedSignature(
-		descriptor = "Lmt;"
-	)
-	@Export("fontPlain12")
-	static Font fontPlain12;
-
+public class DevicePcmPlayerProvider implements class51 {
 	DevicePcmPlayerProvider() {
 	} // L: 7
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lar;",
-		garbageValue = "71"
+		descriptor = "(B)Lbb;",
+		garbageValue = "74"
 	)
 	@Export("player")
 	public PcmPlayer player() {
 		return new DevicePcmPlayer(); // L: 11
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "933240326"
+		descriptor = "(II)Lub;",
+		garbageValue = "13212181"
 	)
-	static int method305(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0); // L: 50
-		if (var1 == null) { // L: 51
-			return -1;
-		} else {
-			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count; // L: 52 53
-		}
-	}
+	public static PrivateChatMode method317(int var0) {
+		PrivateChatMode[] var1 = BufferedNetSocket.method8052(); // L: 20
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;II)V",
-		garbageValue = "-1946812407"
-	)
-	static final void method309(String var0, int var1) {
-		PacketBufferNode var2 = EnumComposition.getPacketBufferNode(ClientPacket.field2971, Client.packetWriter.isaacCipher); // L: 260
-		var2.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0) + 1); // L: 261
-		var2.packetBuffer.method7762(var1); // L: 262
-		var2.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 263
-		Client.packetWriter.addNode(var2); // L: 264
-	} // L: 265
-
-	@ObfuscatedName("ll")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)V",
-		garbageValue = "20"
-	)
-	@Export("findItemDefinitions")
-	static void findItemDefinitions(String var0, boolean var1) {
-		var0 = var0.toLowerCase(); // L: 12361
-		short[] var2 = new short[16]; // L: 12362
-		int var3 = 0; // L: 12363
-
-		for (int var4 = 0; var4 < PacketBufferNode.ItemComposition_fileCount; ++var4) { // L: 12364
-			ItemComposition var9 = EnumComposition.ItemComposition_get(var4); // L: 12365
-			if ((!var1 || var9.isTradable) && var9.noteTemplate == -1 && var9.name.toLowerCase().indexOf(var0) != -1) { // L: 12366 12367 12368
-				if (var3 >= 250) { // L: 12369
-					HealthBarUpdate.foundItemIdCount = -1; // L: 12370
-					class10.foundItemIds = null; // L: 12371
-					return; // L: 12372
-				}
-
-				if (var3 >= var2.length) { // L: 12374
-					short[] var6 = new short[var2.length * 2]; // L: 12375
-
-					for (int var7 = 0; var7 < var3; ++var7) { // L: 12376
-						var6[var7] = var2[var7];
-					}
-
-					var2 = var6; // L: 12377
-				}
-
-				var2[var3++] = (short)var4; // L: 12379
+		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 21
+			PrivateChatMode var3 = var1[var2]; // L: 22
+			if (var0 == var3.field5246) {
+				return var3; // L: 24
 			}
 		}
 
-		class10.foundItemIds = var2; // L: 12381
-		TriBool.foundItemIndex = 0; // L: 12382
-		HealthBarUpdate.foundItemIdCount = var3; // L: 12383
-		String[] var8 = new String[HealthBarUpdate.foundItemIdCount]; // L: 12384
+		return null; // L: 28
+	}
 
-		for (int var5 = 0; var5 < HealthBarUpdate.foundItemIdCount; ++var5) { // L: 12385
-			var8[var5] = EnumComposition.ItemComposition_get(var2[var5]).name;
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;IZB)I",
+		garbageValue = "-2"
+	)
+	public static int method316(CharSequence var0, int var1, boolean var2) {
+		if (var1 >= 2 && var1 <= 36) { // L: 77
+			boolean var3 = false; // L: 78
+			boolean var4 = false; // L: 79
+			int var5 = 0; // L: 80
+			int var6 = var0.length(); // L: 81
+
+			for (int var7 = 0; var7 < var6; ++var7) { // L: 82
+				char var8 = var0.charAt(var7); // L: 83
+				if (var7 == 0) { // L: 84
+					if (var8 == '-') { // L: 85
+						var3 = true; // L: 86
+						continue;
+					}
+
+					if (var8 == '+') { // L: 89
+						continue;
+					}
+				}
+
+				int var10;
+				if (var8 >= '0' && var8 <= '9') { // L: 91
+					var10 = var8 - '0';
+				} else if (var8 >= 'A' && var8 <= 'Z') { // L: 92
+					var10 = var8 - '7';
+				} else {
+					if (var8 < 'a' || var8 > 'z') { // L: 93
+						throw new NumberFormatException(); // L: 94
+					}
+
+					var10 = var8 - 'W';
+				}
+
+				if (var10 >= var1) { // L: 95
+					throw new NumberFormatException();
+				}
+
+				if (var3) { // L: 96
+					var10 = -var10;
+				}
+
+				int var9 = var10 + var5 * var1; // L: 97
+				if (var9 / var1 != var5) { // L: 98
+					throw new NumberFormatException();
+				}
+
+				var5 = var9; // L: 99
+				var4 = true; // L: 100
+			}
+
+			if (!var4) { // L: 102
+				throw new NumberFormatException();
+			} else {
+				return var5; // L: 103
+			}
+		} else {
+			throw new IllegalArgumentException("" + var1);
+		}
+	}
+
+	@ObfuscatedName("kg")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIB)V",
+		garbageValue = "41"
+	)
+	static final void method318(int var0, int var1, int var2, int var3) {
+		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) { // L: 9215
+			if (Client.rootWidgetWidths[var4] + Client.rootWidgetXs[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetHeights[var4] + Client.rootWidgetYs[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) { // L: 9216
+				Client.field749[var4] = true;
+			}
 		}
 
-		short[] var10 = class10.foundItemIds; // L: 12386
-		ObjectSound.sortItemsByName(var8, var10, 0, var8.length - 1); // L: 12388
-	} // L: 12390
+	} // L: 9218
 }

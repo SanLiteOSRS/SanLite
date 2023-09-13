@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gu")
+@ObfuscatedName("iw")
 @Implements("RouteStrategy")
 public abstract class RouteStrategy {
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -1648462545
+		intValue = -102970783
 	)
 	@Export("approxDestinationX")
 	public int approxDestinationX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
-		intValue = -235998971
+		intValue = 1216826241
 	)
 	@Export("approxDestinationY")
 	public int approxDestinationY;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -2103328385
+		intValue = 883188487
 	)
 	@Export("approxDestinationSizeX")
 	public int approxDestinationSizeX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 738835935
+		intValue = -610372655
 	)
 	@Export("approxDestinationSizeY")
 	public int approxDestinationSizeY;
@@ -35,11 +35,23 @@ public abstract class RouteStrategy {
 	protected RouteStrategy() {
 	} // L: 9
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(IIILgv;I)Z",
-		garbageValue = "1278947831"
+		descriptor = "(IIILis;B)Z",
+		garbageValue = "85"
 	)
 	@Export("hasArrived")
-	public abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
+	protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
+
+	@ObfuscatedName("ja")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1131670989"
+	)
+	static void method4187() {
+		if (Client.field764) { // L: 5049
+			class92.addPlayerToScene(VarbitComposition.localPlayer, false); // L: 5050
+		}
+
+	} // L: 5052
 }
