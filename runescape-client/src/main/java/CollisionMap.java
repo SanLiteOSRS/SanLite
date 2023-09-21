@@ -4,62 +4,61 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gv")
+@ObfuscatedName("ih")
 @Implements("CollisionMap")
 public class CollisionMap {
-	@ObfuscatedName("uq")
+	@ObfuscatedName("fm")
 	@ObfuscatedSignature(
-		descriptor = "Lnd;"
+		descriptor = "Lok;"
 	)
-	@Export("masterDisk")
-	static ArchiveDisk masterDisk;
-	@ObfuscatedName("ae")
+	static Archive field2392;
+	@ObfuscatedName("bz")
 	@ObfuscatedGetter(
-		intValue = 414195973
+		intValue = -2021200957
 	)
 	@Export("xInset")
-	public int xInset;
-	@ObfuscatedName("aj")
+	int xInset;
+	@ObfuscatedName("bb")
 	@ObfuscatedGetter(
-		intValue = 1573477015
+		intValue = -699061873
 	)
 	@Export("yInset")
-	public int yInset;
-	@ObfuscatedName("am")
+	int yInset;
+	@ObfuscatedName("bo")
 	@ObfuscatedGetter(
-		intValue = 288008669
+		intValue = 1430235387
 	)
 	@Export("xSize")
 	int xSize;
-	@ObfuscatedName("an")
+	@ObfuscatedName("bp")
 	@ObfuscatedGetter(
-		intValue = 1138846055
+		intValue = -182180591
 	)
 	@Export("ySize")
 	int ySize;
-	@ObfuscatedName("af")
+	@ObfuscatedName("bt")
 	@Export("flags")
 	public int[][] flags;
 
 	public CollisionMap(int var1, int var2) {
-		this.xInset = 0; // L: 44
-		this.yInset = 0; // L: 45
-		this.xSize = var1; // L: 46
-		this.ySize = var2; // L: 47
+		this.xInset = 0;
+		this.yInset = 0;
+		this.xSize = var1;
+		this.ySize = var2;
 		this.flags = new int[this.xSize][this.ySize]; // L: 48
-		this.clear(); // L: 49
-	} // L: 50
+		this.clear();
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "171"
+		descriptor = "(I)V",
+		garbageValue = "1112127553"
 	)
 	@Export("clear")
 	public void clear() {
-		for (int var1 = 0; var1 < this.xSize; ++var1) { // L: 53
-			for (int var2 = 0; var2 < this.ySize; ++var2) { // L: 54
-				if (var1 != 0 && var2 != 0 && var1 < this.xSize - 5 && var2 < this.ySize - 5) { // L: 55
+		for (int var1 = 0; var1 < this.xSize; ++var1) {
+			for (int var2 = 0; var2 < this.ySize; ++var2) {
+				if (var1 != 0 && var2 != 0 && var1 < this.xSize - 5 && var2 < this.ySize - 5) {
 					this.flags[var1][var2] = 16777216; // L: 56
 				} else {
 					this.flags[var1][var2] = 16777215;
@@ -67,18 +66,18 @@ public class CollisionMap {
 			}
 		}
 
-	} // L: 59
+	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZI)V",
-		garbageValue = "740345801"
+		descriptor = "(IIIIZB)V",
+		garbageValue = "22"
 	)
-	public void method3878(int var1, int var2, int var3, int var4, boolean var5) {
-		var1 -= this.xInset; // L: 62
-		var2 -= this.yInset; // L: 63
+	public void method4331(int var1, int var2, int var3, int var4, boolean var5) {
+		var1 -= this.xInset;
+		var2 -= this.yInset;
 		if (var3 == 0) { // L: 64
-			if (var4 == 0) { // L: 65
+			if (var4 == 0) {
 				this.setFlag(var1, var2, 128); // L: 66
 				this.setFlag(var1 - 1, var2, 8); // L: 67
 			}
@@ -208,37 +207,37 @@ public class CollisionMap {
 				if (var4 == 2) { // L: 170
 					this.setFlag(var1, var2, 20480); // L: 171
 					this.setFlag(var1 + 1, var2, 65536); // L: 172
-					this.setFlag(var1, var2 - 1, 1024); // L: 173
+					this.setFlag(var1, var2 - 1, 1024);
 				}
 
-				if (var4 == 3) { // L: 175
-					this.setFlag(var1, var2, 81920); // L: 176
-					this.setFlag(var1, var2 - 1, 1024); // L: 177
-					this.setFlag(var1 - 1, var2, 4096); // L: 178
+				if (var4 == 3) {
+					this.setFlag(var1, var2, 81920);
+					this.setFlag(var1, var2 - 1, 1024);
+					this.setFlag(var1 - 1, var2, 4096);
 				}
 			}
 		}
 
-	} // L: 182
+	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZI)V",
-		garbageValue = "129633396"
+		descriptor = "(IIIIZB)V",
+		garbageValue = "-29"
 	)
 	@Export("addGameObject")
 	public void addGameObject(int var1, int var2, int var3, int var4, boolean var5) {
 		int var6 = 256; // L: 185
-		if (var5) { // L: 186
+		if (var5) {
 			var6 += 131072;
 		}
 
-		var1 -= this.xInset; // L: 187
+		var1 -= this.xInset;
 		var2 -= this.yInset; // L: 188
 
-		for (int var7 = var1; var7 < var3 + var1; ++var7) { // L: 189
+		for (int var7 = var1; var7 < var3 + var1; ++var7) {
 			if (var7 >= 0 && var7 < this.xSize) { // L: 190
-				for (int var8 = var2; var8 < var2 + var4; ++var8) { // L: 191
+				for (int var8 = var2; var8 < var2 + var4; ++var8) {
 					if (var8 >= 0 && var8 < this.ySize) { // L: 192
 						this.setFlag(var7, var8, var6);
 					}
@@ -248,23 +247,23 @@ public class CollisionMap {
 
 	} // L: 196
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-1940880076"
+		garbageValue = "404851372"
 	)
 	@Export("setBlockedByFloor")
 	public void setBlockedByFloor(int var1, int var2) {
-		var1 -= this.xInset; // L: 199
+		var1 -= this.xInset;
 		var2 -= this.yInset; // L: 200
-		int[] var10000 = this.flags[var1]; // L: 201
+		int[] var10000 = this.flags[var1];
 		var10000[var2] |= 2097152;
 	} // L: 202
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-2021417424"
+		descriptor = "(IIB)V",
+		garbageValue = "43"
 	)
 	@Export("setBlockedByFloorDec")
 	public void setBlockedByFloorDec(int var1, int var2) {
@@ -274,10 +273,10 @@ public class CollisionMap {
 		var10000[var2] |= 262144;
 	} // L: 208
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(IIIB)V",
-		garbageValue = "-124"
+		descriptor = "(IIII)V",
+		garbageValue = "1437518268"
 	)
 	@Export("setFlag")
 	void setFlag(int var1, int var2, int var3) {
@@ -285,12 +284,12 @@ public class CollisionMap {
 		var10000[var2] |= var3;
 	} // L: 212
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZB)V",
-		garbageValue = "-83"
+		descriptor = "(IIIIZI)V",
+		garbageValue = "1303990924"
 	)
-	public void method3883(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method4334(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset; // L: 215
 		var2 -= this.yInset; // L: 216
 		if (var3 == 0) { // L: 217
@@ -437,10 +436,10 @@ public class CollisionMap {
 
 	} // L: 335
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIIZI)V",
-		garbageValue = "1140474967"
+		garbageValue = "-1836775904"
 	)
 	@Export("setFlagOffNonSquare")
 	public void setFlagOffNonSquare(int var1, int var2, int var3, int var4, int var5, boolean var6) {
@@ -470,10 +469,10 @@ public class CollisionMap {
 
 	} // L: 354
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)V",
-		garbageValue = "-2090051353"
+		garbageValue = "2063236329"
 	)
 	@Export("setFlagOff")
 	void setFlagOff(int var1, int var2, int var3) {
@@ -481,48 +480,178 @@ public class CollisionMap {
 		var10000[var2] &= ~var3;
 	} // L: 358
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-2033602418"
+		garbageValue = "-278708003"
 	)
-	public void method3886(int var1, int var2) {
+	public void method4315(int var1, int var2) {
 		var1 -= this.xInset; // L: 361
 		var2 -= this.yInset; // L: 362
 		int[] var10000 = this.flags[var1]; // L: 363
 		var10000[var2] &= -262145;
 	} // L: 364
 
-	@ObfuscatedName("hs")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "35579750"
+		descriptor = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Loa;B)I",
+		garbageValue = "-53"
 	)
-	static final void method3907() {
-		for (GraphicsObject var0 = (GraphicsObject)Client.graphicsObjects.last(); var0 != null; var0 = (GraphicsObject)Client.graphicsObjects.previous()) { // L: 4873 4874 4881
-			if (var0.plane == PacketWriter.Client_plane && !var0.isFinished) { // L: 4875
-				if (Client.cycle >= var0.cycleStart) { // L: 4876
-					var0.advance(Client.field555); // L: 4877
-					if (var0.isFinished) { // L: 4878
-						var0.remove();
-					} else {
-						class356.scene.drawEntity(var0.plane, var0.x, var0.y, var0.z, 60, var0, 0, -1L, false); // L: 4879
-					}
-				}
+	@Export("compareStrings")
+	public static int compareStrings(CharSequence var0, CharSequence var1, Language var2) {
+		int var3 = var0.length(); // L: 11
+		int var4 = var1.length(); // L: 12
+		int var5 = 0; // L: 13
+		int var6 = 0; // L: 14
+		char var7 = 0; // L: 15
+		char var8 = 0; // L: 16
+
+		while (var5 - var7 < var3 || var6 - var8 < var4) { // L: 18
+			if (var5 - var7 >= var3) { // L: 19
+				return -1;
+			}
+
+			if (var6 - var8 >= var4) { // L: 20
+				return 1;
+			}
+
+			char var9;
+			if (var7 != 0) { // L: 23
+				var9 = var7; // L: 24
+				boolean var14 = false; // L: 25
 			} else {
-				var0.remove();
+				var9 = var0.charAt(var5++); // L: 27
+			}
+
+			char var10;
+			if (var8 != 0) { // L: 28
+				var10 = var8; // L: 29
+				boolean var15 = false; // L: 30
+			} else {
+				var10 = var1.charAt(var6++); // L: 32
+			}
+
+			var7 = class216.method3940(var9); // L: 33
+			var8 = class216.method3940(var10); // L: 34
+			var9 = class319.standardizeChar(var9, var2); // L: 35
+			var10 = class319.standardizeChar(var10, var2); // L: 36
+			if (var9 != var10 && Character.toUpperCase(var9) != Character.toUpperCase(var10)) { // L: 37
+				var9 = Character.toLowerCase(var9); // L: 38
+				var10 = Character.toLowerCase(var10); // L: 39
+				if (var9 != var10) { // L: 40
+					return class11.lowercaseChar(var9, var2) - class11.lowercaseChar(var10, var2);
+				}
 			}
 		}
 
-	} // L: 4883
+		int var16 = Math.min(var3, var4); // L: 43
 
-	@ObfuscatedName("kd")
+		char var12;
+		int var17;
+		for (var17 = 0; var17 < var16; ++var17) { // L: 44
+			if (var2 == Language.Language_FR) { // L: 45
+				var5 = var3 - 1 - var17; // L: 46
+				var6 = var4 - 1 - var17; // L: 47
+			} else {
+				var6 = var17; // L: 49
+				var5 = var17;
+			}
+
+			char var11 = var0.charAt(var5); // L: 50
+			var12 = var1.charAt(var6); // L: 51
+			if (var12 != var11 && Character.toUpperCase(var11) != Character.toUpperCase(var12)) { // L: 52
+				var11 = Character.toLowerCase(var11); // L: 53
+				var12 = Character.toLowerCase(var12); // L: 54
+				if (var12 != var11) { // L: 55
+					return class11.lowercaseChar(var11, var2) - class11.lowercaseChar(var12, var2);
+				}
+			}
+		}
+
+		var17 = var3 - var4; // L: 58
+		if (var17 != 0) { // L: 59
+			return var17;
+		} else {
+			for (int var18 = 0; var18 < var16; ++var18) { // L: 60
+				var12 = var0.charAt(var18); // L: 61
+				char var13 = var1.charAt(var18); // L: 62
+				if (var13 != var12) { // L: 63
+					return class11.lowercaseChar(var12, var2) - class11.lowercaseChar(var13, var2);
+				}
+			}
+
+			return 0; // L: 65
+		}
+	}
+
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-122477483"
+		descriptor = "(B)Z",
+		garbageValue = "10"
 	)
-	static void method3906(int var0, int var1) {
-		class229.method4904(class20.tempMenuAction, var0, var1); // L: 11728
-		class20.tempMenuAction = null; // L: 11729
-	} // L: 11730
+	public static boolean method4325() {
+		boolean var0 = false; // L: 173
+		boolean var1 = false; // L: 174
+		if (!class319.field3435.isEmpty()) { // L: 175
+			class421 var2 = (class421)class319.field3435.get(0); // L: 176
+			if (var2 == null) { // L: 177
+				class319.field3435.remove(0); // L: 178
+			} else if (var2.vmethod7780()) { // L: 180
+				if (var2.method7760()) { // L: 181
+					System.out.println("Error in midimanager.service: " + var2.method7763()); // L: 182
+					var0 = true; // L: 183
+				} else {
+					if (var2.method7764() != null) { // L: 186
+						class319.field3435.add(1, var2.method7764()); // L: 187
+					}
+
+					var1 = var2.method7762(); // L: 189
+				}
+
+				class319.field3435.remove(0); // L: 191
+			} else {
+				var1 = var2.method7762(); // L: 194
+			}
+		}
+
+		if (var0) { // L: 197
+			class319.field3435.clear(); // L: 198
+			class74.method2113(); // L: 199
+		}
+
+		return var1; // L: 201
+	}
+
+	@ObfuscatedName("hv")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "856561238"
+	)
+	static final void method4301() {
+		Client.packetWriter.close(); // L: 2933
+		class214.method3909(); // L: 2934
+		class10.scene.clear(); // L: 2935
+
+		for (int var0 = 0; var0 < 4; ++var0) { // L: 2936
+			Client.collisionMaps[var0].clear();
+		}
+
+		Client.field756.method4232(); // L: 2937
+		System.gc(); // L: 2938
+		ItemComposition.method4136(0, 0); // L: 2939
+		class470.method8459(); // L: 2940
+		Client.playingJingle = false; // L: 2941
+		SoundCache.method866(); // L: 2942
+		DefaultsGroup.method8263(10); // L: 2943
+	} // L: 2944
+
+	@ObfuscatedName("oh")
+	@ObfuscatedSignature(
+		descriptor = "(Lnm;I)Z",
+		garbageValue = "1005514584"
+	)
+	@Export("isComponentHidden")
+	static boolean isComponentHidden(Widget var0) {
+		return var0.isHidden; // L: 12708
+	}
 }

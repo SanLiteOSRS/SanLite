@@ -4,66 +4,57 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nl")
+@ObfuscatedName("re")
 @Implements("AbstractSocket")
 public abstract class AbstractSocket {
 	AbstractSocket() {
 	} // L: 7
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "1"
+		descriptor = "(II)Z",
+		garbageValue = "2050917556"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-439883726"
+		garbageValue = "-111326055"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1889844897"
+		descriptor = "(B)I",
+		garbageValue = "-4"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)I",
-		garbageValue = "695516749"
+		garbageValue = "-2009008666"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "1416716039"
+		garbageValue = "40171702"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-17278531"
+		descriptor = "(S)V",
+		garbageValue = "2421"
 	)
 	@Export("close")
 	public abstract void close();
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;IB)Lqu;",
-		garbageValue = "-106"
-	)
-	public static IndexedSprite method6819(AbstractArchive var0, int var1) {
-		return !class431.method7559(var0, var1) ? null : class390.method7053(); // L: 131 132
-	}
 }

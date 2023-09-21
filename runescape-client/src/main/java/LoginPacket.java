@@ -4,68 +4,67 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jx")
+@ObfuscatedName("mi")
 @Implements("LoginPacket")
-public class LoginPacket implements class260 {
-	@ObfuscatedName("c")
+public class LoginPacket implements class307 {
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Ljx;"
+		descriptor = "Lmi;"
 	)
-	public static final LoginPacket field3152;
-	@ObfuscatedName("v")
+	public static final LoginPacket field3387;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Ljx;"
+		descriptor = "Lmi;"
 	)
-	static final LoginPacket field3149;
-	@ObfuscatedName("q")
+	static final LoginPacket field3385;
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Ljx;"
+		descriptor = "Lmi;"
 	)
-	public static final LoginPacket field3145;
-	@ObfuscatedName("f")
+	public static final LoginPacket field3386;
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Ljx;"
+		descriptor = "Lmi;"
 	)
-	public static final LoginPacket field3146;
-	@ObfuscatedName("j")
+	public static final LoginPacket field3391;
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Ljx;"
+		descriptor = "Lmi;"
 	)
-	public static final LoginPacket field3147;
-	@ObfuscatedName("e")
+	public static final LoginPacket field3388;
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Ljx;"
+		descriptor = "Lmi;"
 	)
-	static final LoginPacket field3148;
-	@ObfuscatedName("w")
+	static final LoginPacket field3389;
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "[Ljx;"
+		descriptor = "[Lmi;"
 	)
 	@Export("LoginPacket_indexedValues")
 	static final LoginPacket[] LoginPacket_indexedValues;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -92535415
+		intValue = 800355475
 	)
 	@Export("id")
 	public final int id;
 
 	static {
-		field3152 = new LoginPacket(14, 0); // L: 5
-		field3149 = new LoginPacket(15, 4); // L: 6
-		field3145 = new LoginPacket(16, -2); // L: 7
-		field3146 = new LoginPacket(18, -2); // L: 8
-		field3147 = new LoginPacket(19, -2); // L: 9
-		field3148 = new LoginPacket(27, 0); // L: 10
+		field3387 = new LoginPacket(14, 0); // L: 5
+		field3385 = new LoginPacket(15, 4); // L: 6
+		field3386 = new LoginPacket(16, -2); // L: 7
+		field3391 = new LoginPacket(18, -2); // L: 8
+		field3388 = new LoginPacket(19, -2); // L: 9
+		field3389 = new LoginPacket(27, 0); // L: 10
 		LoginPacket_indexedValues = new LoginPacket[32]; // L: 12
-		LoginPacket[] var0 = new LoginPacket[]{field3149, field3148, field3145, field3146, field3147, field3152}; // L: 17
-		LoginPacket[] var1 = var0; // L: 19
+		LoginPacket[] var0 = FloorOverlayDefinition.method4147(); // L: 15
 
-		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 20
-			LoginPacket_indexedValues[var1[var2].id] = var1[var2]; // L: 21
+		for (int var1 = 0; var1 < var0.length; ++var1) { // L: 16
+			LoginPacket_indexedValues[var0[var1].id] = var0[var1]; // L: 17
 		}
 
-	} // L: 23
+	} // L: 19
 
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
