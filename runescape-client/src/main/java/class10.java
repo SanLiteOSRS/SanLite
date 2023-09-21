@@ -2,252 +2,225 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.ProtocolException;
-import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import javax.net.ssl.HttpsURLConnection;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("s")
+@ObfuscatedName("ag")
 public class class10 {
-	@ObfuscatedName("uu")
-	@Export("foundItemIds")
-	static short[] foundItemIds;
-	@ObfuscatedName("z")
+	@ObfuscatedName("jz")
 	@ObfuscatedSignature(
-		descriptor = "Lfv;"
+		descriptor = "Ljt;"
 	)
-	@Export("clock")
-	static Clock clock;
-	@ObfuscatedName("ei")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive11")
-	static Archive archive11;
-	@ObfuscatedName("iv")
+	@Export("scene")
+	static Scene scene;
+	@ObfuscatedName("qq")
 	@ObfuscatedGetter(
-		intValue = 2013387747
+		intValue = 91869067
 	)
-	static int field53;
-	@ObfuscatedName("c")
-	HttpsURLConnection field55;
-	@ObfuscatedName("v")
-	final Map field43;
-	@ObfuscatedName("q")
+	static int field48;
+	@ObfuscatedName("ac")
+	final HttpsURLConnection field54;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Loi;"
+		descriptor = "Lqv;"
 	)
-	class398 field45;
-	@ObfuscatedName("f")
-	Map field44;
-	@ObfuscatedName("j")
+	final class434 field50;
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Li;"
+		descriptor = "Lav;"
 	)
-	final class9 field46;
-	@ObfuscatedName("e")
-	boolean field41;
-	@ObfuscatedName("g")
-	boolean field47;
-	@ObfuscatedName("w")
+	final class9 field47;
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Lsd;"
+	)
+	class476 field46;
+	@ObfuscatedName("ao")
+	boolean field49;
+	@ObfuscatedName("ah")
+	boolean field45;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1112676483
+		intValue = 188434511
 	)
-	int field48;
+	int field51;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/net/URL;Li;Z)V"
+		descriptor = "(Ljava/net/URL;Lav;Lqv;Z)V"
+	)
+	public class10(URL var1, class9 var2, class434 var3, boolean var4) throws IOException {
+		this.field49 = false; // L: 17
+		this.field45 = false; // L: 18
+		this.field51 = 300000; // L: 19
+		if (!var2.method69()) { // L: 26
+			throw new UnsupportedEncodingException("Unsupported request method used " + var2.method70()); // L: 27
+		} else {
+			this.field54 = (HttpsURLConnection)var1.openConnection(); // L: 29
+			if (!var4) { // L: 30
+				HttpsURLConnection var5 = this.field54; // L: 31
+				if (class15.field82 == null) { // L: 34
+					class15.field82 = new class15(); // L: 35
+				}
+
+				class15 var6 = class15.field82; // L: 37
+				var5.setSSLSocketFactory(var6); // L: 39
+			}
+
+			this.field47 = var2; // L: 41
+			this.field50 = var3 != null ? var3 : new class434(); // L: 42
+		}
+	} // L: 43
+
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/net/URL;Lav;Z)V"
 	)
 	public class10(URL var1, class9 var2, boolean var3) throws IOException {
-		this.field41 = false; // L: 20
-		this.field47 = false; // L: 21
-		this.field48 = 300000; // L: 22
-		if (!var2.method61()) { // L: 25
-			throw new UnsupportedEncodingException("Unsupported request method used " + var2.method64());
-		} else {
-			this.field55 = (HttpsURLConnection)var1.openConnection(); // L: 26
-			if (!var3) { // L: 27
-				HttpsURLConnection var4 = this.field55; // L: 28
-				if (class15.field85 == null) { // L: 31
-					class15.field85 = new class15(); // L: 32
-				}
+		this(var1, var2, new class434(), var3); // L: 22
+	} // L: 23
 
-				class15 var5 = class15.field85; // L: 34
-				var4.setSSLSocketFactory(var5); // L: 36
-			}
-
-			this.field46 = var2; // L: 38
-			this.field43 = new HashMap(); // L: 39
-			this.field44 = new HashMap(); // L: 40
-		}
-	} // L: 41
-
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;B)V",
-		garbageValue = "34"
+		descriptor = "(I)Lqv;",
+		garbageValue = "1852518909"
 	)
-	public void method79(String var1, String var2) {
-		if (!this.field41) { // L: 44
-			this.field43.put(var1, var2); // L: 45
-		}
-	} // L: 46
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "-66"
-	)
-	String method76() {
-		ArrayList var1 = new ArrayList(this.field44.entrySet()); // L: 49
-		Collections.sort(var1, new class18(this)); // L: 50
-		StringBuilder var2 = new StringBuilder(); // L: 63
-		Iterator var3 = var1.iterator(); // L: 64
-
-		while (var3.hasNext()) {
-			Entry var4 = (Entry)var3.next(); // L: 65
-			if (var2.length() > 0) { // L: 67
-				var2.append(",");
-			}
-
-			var2.append(((class397)var4.getKey()).method7086()); // L: 68
-			float var5 = (Float)var4.getValue(); // L: 69
-			if (var5 < 1.0F) { // L: 70
-				String var6 = Float.toString(var5).substring(0, 4); // L: 71
-				var2.append(";q=" + var6); // L: 72
-			}
-		}
-
-		return var2.toString(); // L: 76
+	public class434 method102() {
+		return this.field50; // L: 46
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(Lsd;I)V",
+		garbageValue = "-1455589333"
+	)
+	public void method86(class476 var1) {
+		if (!this.field49) { // L: 50
+			if (var1 == null) { // L: 51
+				this.field50.method7864("Content-Type"); // L: 52
+				this.field46 = null; // L: 53
+			} else {
+				this.field46 = var1; // L: 56
+				if (this.field46.vmethod8518() != null) { // L: 57
+					this.field50.method7868(this.field46.vmethod8518()); // L: 58
+				} else {
+					this.field50.method7869(); // L: 61
+				}
+
+			}
+		}
+	} // L: 54 63
+
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1821819060"
+		garbageValue = "937101739"
 	)
-	void method77() throws ProtocolException {
-		if (!this.field41) { // L: 80
-			this.field55.setRequestMethod(this.field46.method64()); // L: 81
-			if (!this.field44.isEmpty()) { // L: 82
-				this.field43.put("Accept", this.method76());
-			}
-
-			Iterator var1 = this.field43.entrySet().iterator(); // L: 83
-
-			while (var1.hasNext()) {
-				Entry var2 = (Entry)var1.next(); // L: 84
-				this.field55.setRequestProperty((String)var2.getKey(), (String)var2.getValue()); // L: 86
-			}
-
-			if (this.field46.method62() && this.field45 != null) { // L: 89
-				this.field55.setDoOutput(true); // L: 90
-				ByteArrayOutputStream var13 = new ByteArrayOutputStream(); // L: 91
+	void method87() throws ProtocolException {
+		if (!this.field49) { // L: 66
+			this.field54.setRequestMethod(this.field47.method70()); // L: 67
+			this.field50.method7861(this.field54); // L: 68
+			if (this.field47.method68() && this.field46 != null) { // L: 69
+				this.field54.setDoOutput(true); // L: 70
+				ByteArrayOutputStream var1 = new ByteArrayOutputStream(); // L: 71
 
 				try {
-					var13.write(this.field45.vmethod7114()); // L: 93
-					var13.writeTo(this.field55.getOutputStream()); // L: 94
-				} catch (IOException var11) { // L: 96
-					var11.printStackTrace(); // L: 97
+					var1.write(this.field46.vmethod8509()); // L: 73
+					var1.writeTo(this.field54.getOutputStream()); // L: 74
+				} catch (IOException var11) { // L: 76
+					var11.printStackTrace(); // L: 77
 				} finally {
-					if (var13 != null) { // L: 100
-						try {
-							var13.close(); // L: 102
-						} catch (IOException var10) { // L: 104
-							var10.printStackTrace(); // L: 105
-						}
+					try {
+						var1.close(); // L: 81
+					} catch (IOException var10) { // L: 83
+						var10.printStackTrace(); // L: 84
 					}
 
 				}
 			}
 
-			this.field55.setConnectTimeout(this.field48); // L: 110
-			this.field55.setInstanceFollowRedirects(this.field47); // L: 111
-			this.field41 = true; // L: 112
+			this.field54.setConnectTimeout(this.field51); // L: 88
+			this.field54.setInstanceFollowRedirects(this.field45); // L: 89
+			this.field49 = true; // L: 90
 		}
-	} // L: 113
+	} // L: 91
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1746167507"
+		garbageValue = "2097496739"
 	)
-	boolean method78() throws IOException, SocketTimeoutException {
-		if (!this.field41) { // L: 116
-			this.method77();
+	boolean method88() throws IOException {
+		if (!this.field49) { // L: 94
+			this.method87();
 		}
 
-		this.field55.connect(); // L: 117
-		return this.field55.getResponseCode() == -1; // L: 118
+		this.field54.connect(); // L: 95
+		return this.field54.getResponseCode() == -1; // L: 96
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lb;",
-		garbageValue = "2065804848"
+		descriptor = "(I)Law;",
+		garbageValue = "1182023619"
 	)
-	class21 method90() {
+	class20 method89() {
 		try {
-			if (!this.field41 || this.field55.getResponseCode() == -1) { // L: 124
-				return new class21("No REST response has been received yet.");
+			if (!this.field49 || this.field54.getResponseCode() == -1) { // L: 101
+				return new class20("No REST response has been received yet.");
 			}
-		} catch (IOException var10) { // L: 126
-			this.field55.disconnect(); // L: 127
-			return new class21("Error decoding REST response code: " + var10.getMessage()); // L: 128
+		} catch (IOException var10) { // L: 103
+			this.field54.disconnect(); // L: 104
+			return new class20("Error decoding REST response code: " + var10.getMessage()); // L: 105
 		}
 
-		class21 var1 = null; // L: 130
-
-		class21 var3;
+		class20 var3;
 		try {
-			var1 = new class21(this.field55); // L: 132
-			return var1; // L: 140
-		} catch (IOException var8) { // L: 134
-			var3 = new class21("Error decoding REST response: " + var8.getMessage()); // L: 135
+			class20 var1 = new class20(this.field54); // L: 109
+			return var1; // L: 117
+		} catch (IOException var8) { // L: 111
+			var3 = new class20("Error decoding REST response: " + var8.getMessage());
 		} finally {
-			this.field55.disconnect(); // L: 138
+			this.field54.disconnect(); // L: 115
 		}
 
-		return var3;
+		return var3; // L: 112
 	}
 
-	@ObfuscatedName("jn")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lkb;B)Ljava/lang/String;",
-		garbageValue = "34"
+		descriptor = "(IIIII)I",
+		garbageValue = "-1751398414"
 	)
-	static String method74(String var0, Widget var1) {
-		if (var0.indexOf("%") != -1) { // L: 10594
-			for (int var2 = 1; var2 <= 5; ++var2) { // L: 10595
-				while (true) {
-					int var3 = var0.indexOf("%" + var2); // L: 10597
-					if (var3 == -1) { // L: 10598
-						break;
-					}
+	static final int method83(int var0, int var1, int var2, int var3) {
+		return var0 * var2 + var3 * var1 >> 16; // L: 21
+	}
 
-					String var4 = var0.substring(0, var3); // L: 10599
-					int var6 = Canvas.method319(var1, var2 - 1); // L: 10601
-					String var5;
-					if (var6 < 999999999) { // L: 10603
-						var5 = Integer.toString(var6); // L: 10604
-					} else {
-						var5 = "*"; // L: 10607
-					}
-
-					var0 = var4 + var5 + var0.substring(var3 + 2); // L: 10609
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "([FI)V",
+		garbageValue = "-1762235426"
+	)
+	static void method104(float[] var0) {
+		if (class128.field1501 + var0[0] < 1.3333334F) { // L: 321
+			float var1 = var0[0] - 2.0F; // L: 322
+			float var2 = var0[0] - 1.0F; // L: 323
+			float var3 = (float)Math.sqrt((double)(var1 * var1 - var2 * var2 * 4.0F)); // L: 324
+			float var4 = (var3 + -var1) * 0.5F; // L: 325
+			if (var0[1] + class128.field1501 > var4) { // L: 326
+				var0[1] = var4 - class128.field1501; // L: 327
+			} else {
+				var4 = (-var1 - var3) * 0.5F; // L: 330
+				if (var0[1] < class128.field1501 + var4) { // L: 331
+					var0[1] = var4 + class128.field1501; // L: 332
 				}
 			}
+		} else {
+			var0[0] = 1.3333334F - class128.field1501; // L: 337
+			var0[1] = 0.33333334F - class128.field1501; // L: 338
 		}
 
-		return var0; // L: 10613
-	}
+	} // L: 340
 }

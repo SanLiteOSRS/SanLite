@@ -3,38 +3,46 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jb")
+@ObfuscatedName("nn")
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
-	@ObfuscatedName("f")
+	@ObfuscatedName("ft")
 	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
+		descriptor = "Lok;"
 	)
-	@Export("runesSprite")
-	static IndexedSprite[] runesSprite;
-	@ObfuscatedName("ep")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive13")
-	static Archive archive13;
+	static Archive field3839;
 
 	AbstractByteArrayCopier() {
 	} // L: 4
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(B)[B",
-		garbageValue = "-87"
+		descriptor = "(I)[B",
+		garbageValue = "1381422717"
 	)
 	@Export("get")
 	abstract byte[] get();
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "([BI)V",
-		garbageValue = "2067022612"
+		garbageValue = "-2137536013"
 	)
 	@Export("set")
-	abstract void set(byte[] var1);
+	public abstract void set(byte[] var1);
+
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lfy;",
+		garbageValue = "-1206517900"
+	)
+	static class140 method6759(int var0) {
+		class140[] var1 = new class140[]{class140.field1619, class140.field1615, class140.field1614, class140.field1611, class140.field1612, class140.field1616, class140.field1617, class140.field1618, class140.field1613}; // L: 124
+		class140 var2 = (class140)SequenceDefinition.findEnumerated(var1, var0); // L: 126
+		if (var2 == null) { // L: 127
+			var2 = class140.field1613;
+		}
+
+		return var2; // L: 128
+	}
 }

@@ -3,10 +3,24 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dm")
+@ObfuscatedName("et")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "[Ltl;"
+	)
+	@Export("JagexCache_idxFiles")
+	public static BufferedFile[] JagexCache_idxFiles;
+	@ObfuscatedName("ev")
+	@Export("mouseCam")
+	static boolean mouseCam;
+	@ObfuscatedName("kn")
+	@ObfuscatedSignature(
+		descriptor = "[Lud;"
+	)
+	static SpritePixels[] field1457;
+	@ObfuscatedName("ac")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +28,10 @@ public class UserComparator8 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "1682683031"
+		descriptor = "(Lri;Lri;B)I",
+		garbageValue = "0"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,55 +50,76 @@ public class UserComparator8 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 25
 	}
 
-	@ObfuscatedName("if")
+	@ObfuscatedName("kn")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "6"
+		descriptor = "(B)V",
+		garbageValue = "0"
 	)
-	static void method2571(int var0, int var1) {
-		int var2 = TileItem.fontBold12.stringWidth("Choose Option"); // L: 8663
+	static final void method2890() {
+		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 8687 8688 8731
+			if (var0.hitpoints > 0) { // L: 8689
+				--var0.hitpoints;
+			}
 
-		int var3;
-		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) { // L: 8664
-			Font var7 = TileItem.fontBold12; // L: 8665
-			String var8;
-			if (var3 < 0) { // L: 8668
-				var8 = ""; // L: 8669
-			} else if (Client.menuTargets[var3].length() > 0) { // L: 8672
-				var8 = Client.menuActions[var3] + " " + Client.menuTargets[var3];
+			boolean var1;
+			int var2;
+			int var3;
+			ObjectComposition var4;
+			if (var0.hitpoints == 0) { // L: 8690
+				if (var0.objectId >= 0) { // L: 8692
+					var2 = var0.objectId; // L: 8694
+					var3 = var0.field1176; // L: 8695
+					var4 = class91.getObjectDefinition(var2); // L: 8697
+					if (var3 == 11) { // L: 8698
+						var3 = 10;
+					}
+
+					if (var3 >= 5 && var3 <= 8) { // L: 8699
+						var3 = 4;
+					}
+
+					var1 = var4.method4007(var3); // L: 8700
+					if (!var1) { // L: 8702
+						continue;
+					}
+				}
+
+				class115.method2852(var0.plane, var0.type, var0.x, var0.y, var0.objectId, var0.field1178, var0.field1176, var0.field1180); // L: 8704
+				var0.remove(); // L: 8705
 			} else {
-				var8 = Client.menuActions[var3]; // L: 8673
+				if (var0.delay > 0) { // L: 8709
+					--var0.delay;
+				}
+
+				if (var0.delay == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102) { // L: 8710
+					if (var0.field1177 >= 0) { // L: 8712
+						var2 = var0.field1177; // L: 8714
+						var3 = var0.field1173; // L: 8715
+						var4 = class91.getObjectDefinition(var2); // L: 8717
+						if (var3 == 11) { // L: 8718
+							var3 = 10;
+						}
+
+						if (var3 >= 5 && var3 <= 8) { // L: 8719
+							var3 = 4;
+						}
+
+						var1 = var4.method4007(var3); // L: 8720
+						if (!var1) { // L: 8722
+							continue;
+						}
+					}
+
+					class115.method2852(var0.plane, var0.type, var0.x, var0.y, var0.field1177, var0.field1170, var0.field1173, var0.field1180); // L: 8724
+					var0.delay = -1; // L: 8725
+					if (var0.objectId == var0.field1177 && var0.objectId == -1) {
+						var0.remove(); // L: 8726
+					} else if (var0.objectId == var0.field1177 && var0.field1170 == var0.field1178 && var0.field1173 == var0.field1176) { // L: 8727
+						var0.remove();
+					}
+				}
 			}
-
-			int var6 = var7.stringWidth(var8); // L: 8675
-			if (var6 > var2) { // L: 8676
-				var2 = var6;
-			}
 		}
 
-		var2 += 8; // L: 8678
-		var3 = Client.menuOptionsCount * 15 + 22; // L: 8679
-		int var4 = var0 - var2 / 2; // L: 8680
-		if (var2 + var4 > Script.canvasWidth) { // L: 8681
-			var4 = Script.canvasWidth - var2;
-		}
-
-		if (var4 < 0) { // L: 8682
-			var4 = 0;
-		}
-
-		int var5 = var1; // L: 8683
-		if (var3 + var1 > class78.canvasHeight) { // L: 8684
-			var5 = class78.canvasHeight - var3;
-		}
-
-		if (var5 < 0) { // L: 8685
-			var5 = 0;
-		}
-
-		UserComparator3.menuX = var4; // L: 8686
-		ViewportMouse.menuY = var5; // L: 8687
-		Language.menuWidth = var2; // L: 8688
-		Player.menuHeight = Client.menuOptionsCount * 15 + 22; // L: 8689
-	} // L: 8690
+	} // L: 8733
 }

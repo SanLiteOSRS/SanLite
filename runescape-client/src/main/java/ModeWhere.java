@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import net.runelite.mapping.Export;
@@ -7,244 +6,168 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lz")
+@ObfuscatedName("or")
 @Implements("ModeWhere")
-public enum ModeWhere implements MouseWheel {
-	@ObfuscatedName("c")
+public enum ModeWhere implements class386 {
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4106("", 0, new class326[]{class326.field4080}),
-	@ObfuscatedName("v")
+	field4446("", 0, new class385[]{class385.field4422, class385.field4417}),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4103("", 1, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("q")
+	field4453("", 1, new class385[]{class385.field4419, class385.field4422, class385.field4417}),
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4104("", 2, new class326[]{class326.field4083, class326.field4079, class326.field4080}),
-	@ObfuscatedName("f")
+	field4440("", 2, new class385[]{class385.field4419, class385.field4418, class385.field4422}),
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4105("", 3, new class326[]{class326.field4083}),
-	@ObfuscatedName("j")
+	field4441("", 3, new class385[]{class385.field4419}),
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4115("", 4),
-	@ObfuscatedName("e")
+	field4444("", 4),
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4117("", 5, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("g")
+	field4442("", 5, new class385[]{class385.field4419, class385.field4422}),
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4108("", 6, new class326[]{class326.field4080}),
-	@ObfuscatedName("w")
+	field4448("", 6, new class385[]{class385.field4422}),
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4102("", 8, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("y")
+	field4445("", 8, new class385[]{class385.field4419, class385.field4422}),
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4107("", 9, new class326[]{class326.field4083, class326.field4079}),
-	@ObfuscatedName("i")
+	field4449("", 9, new class385[]{class385.field4419, class385.field4418}),
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4111("", 10, new class326[]{class326.field4083}),
-	@ObfuscatedName("s")
+	field4447("", 10, new class385[]{class385.field4419}),
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4112("", 11, new class326[]{class326.field4083}),
-	@ObfuscatedName("t")
+	field4443("", 11, new class385[]{class385.field4419}),
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4113("", 12, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("z")
+	field4438("", 12, new class385[]{class385.field4419, class385.field4422}),
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lor;"
 	)
-	field4110("", 13, new class326[]{class326.field4083});
+	field4450("", 13, new class385[]{class385.field4419});
 
-	@ObfuscatedName("ix")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -2136536725
-	)
-	@Export("selectedItemWidget")
-	static int selectedItemWidget;
-	@ObfuscatedName("pq")
-	@ObfuscatedSignature(
-		descriptor = "Lpr;"
-	)
-	@Export("Ignored_cached")
-	static class427 Ignored_cached;
-	@ObfuscatedName("r")
-	@ObfuscatedGetter(
-		intValue = 2136032221
+		intValue = 257777211
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("u")
-	final Set field4116;
+	@ObfuscatedName("as")
+	final Set field4452;
 
 	static {
-		method6075(); // L: 28
-	} // L: 29
+		method7172(); // L: 26
+	} // L: 27
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I[Llg;)V"
+		descriptor = "(Ljava/lang/String;I[Loi;)V"
 	)
-	ModeWhere(String var3, int var4, class326[] var5) {
-		this.field4116 = new HashSet();
-		this.id = var4; // L: 43
-		class326[] var6 = var5; // L: 45
+	ModeWhere(String var3, int var4, class385[] var5) {
+		this.field4452 = new HashSet();
+		this.id = var4; // L: 41
+		class385[] var6 = var5;
 
-		for (int var7 = 0; var7 < var6.length; ++var7) { // L: 46
-			class326 var8 = var6[var7]; // L: 47
-			this.field4116.add(var8); // L: 48
+		for (int var7 = 0; var7 < var6.length; ++var7) {
+			class385 var8 = var6[var7];
+			this.field4452.add(var8); // L: 46
 		}
 
-	} // L: 51
+	} // L: 49
 
 	ModeWhere(String var3, int var4) {
-		this.field4116 = new HashSet(); // L: 32
-		this.id = var4; // L: 39
-	} // L: 40
+		this.field4452 = new HashSet(); // L: 30
+		this.id = var4;
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "-1243971674"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 55
+		return this.id; // L: 53
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lfk;",
-		garbageValue = "1173982871"
+		descriptor = "(III)I",
+		garbageValue = "-1022385277"
 	)
-	static HorizontalAlignment[] method6076() {
-		return new HorizontalAlignment[]{HorizontalAlignment.field1905, HorizontalAlignment.field1910, HorizontalAlignment.HorizontalAlignment_centered}; // L: 14
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(B)[Llz;",
-		garbageValue = "110"
-	)
-	static ModeWhere[] method6075() {
-		return new ModeWhere[]{field4107, field4106, field4110, field4112, field4102, field4111, field4113, field4108, field4115, field4104, field4105, field4117, field4103}; // L: 35
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "941818161"
-	)
-	public static byte[] method6082() {
-		byte[] var0 = new byte[24]; // L: 277
-
-		try {
-			JagexCache.JagexCache_randomDat.seek(0L); // L: 279
-			JagexCache.JagexCache_randomDat.readFully(var0); // L: 280
-
-			int var1;
-			for (var1 = 0; var1 < 24 && var0[var1] == 0; ++var1) { // L: 281 282 283
-			}
-
-			if (var1 >= 24) {
-				throw new IOException(); // L: 285
-			}
-		} catch (Exception var4) {
-			for (int var2 = 0; var2 < 24; ++var2) { // L: 288
-				var0[var2] = -1;
-			}
+	public static int method7170(int var0, int var1) {
+		int var2;
+		if (var1 > var0) { // L: 37
+			var2 = var0; // L: 38
+			var0 = var1; // L: 39
+			var1 = var2; // L: 40
 		}
 
-		return var0; // L: 290
+		while (var1 != 0) { // L: 42
+			var2 = var0 % var1; // L: 43
+			var0 = var1; // L: 44
+			var1 = var2; // L: 45
+		}
+
+		return var0; // L: 47
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "16"
+		descriptor = "(B)[Lor;",
+		garbageValue = "28"
 	)
-	static final int method6079(int var0, int var1) {
-		if (var0 == -2) { // L: 927
-			return 12345678;
-		} else if (var0 == -1) { // L: 928
-			if (var1 < 2) { // L: 929
-				var1 = 2;
-			} else if (var1 > 126) { // L: 930
-				var1 = 126;
+	static ModeWhere[] method7172() {
+		return new ModeWhere[]{field4438, field4445, field4453, field4444, field4440, field4449, field4441, field4443, field4447, field4448, field4450, field4446, field4442}; // L: 33
+	}
+
+	@ObfuscatedName("ik")
+	@ObfuscatedSignature(
+		descriptor = "(Lif;IIIS)V",
+		garbageValue = "-16278"
+	)
+	static void method7181(SequenceDefinition var0, int var1, int var2, int var3) {
+		if (Client.soundEffectCount < 50 && class91.clientPreferences.method2589() != 0) { // L: 3831
+			if (var0.field2322 != null && var0.field2322.containsKey(var1)) { // L: 3832
+				class91.method2349((Integer)var0.field2322.get(var1), var2, var3); // L: 3833
 			}
-
-			return var1; // L: 931
-		} else {
-			var1 = (var0 & 127) * var1 / 128; // L: 933
-			if (var1 < 2) { // L: 934
-				var1 = 2;
-			} else if (var1 > 126) { // L: 935
-				var1 = 126;
-			}
-
-			return (var0 & 65408) + var1; // L: 936
 		}
-	}
+	} // L: 3834
 
-	@ObfuscatedName("ff")
+	@ObfuscatedName("jv")
 	@ObfuscatedSignature(
-		descriptor = "(IZZZZI)Llc;",
-		garbageValue = "-1168566075"
+		descriptor = "(I)Z",
+		garbageValue = "-2030592343"
 	)
-	@Export("newArchive")
-	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
-		ArchiveDisk var5 = null; // L: 2030
-		if (JagexCache.JagexCache_dat2File != null) { // L: 2031
-			var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, class359.JagexCache_idxFiles[var0], 1000000);
-		}
-
-		return new Archive(var5, CollisionMap.masterDisk, var0, var1, var2, var3, var4); // L: 2032
-	}
-
-	@ObfuscatedName("lu")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)Ljava/lang/String;",
-		garbageValue = "4"
-	)
-	static String method6080(String var0, boolean var1) {
-		String var2 = var1 ? "https://" : "http://"; // L: 12330
-		if (Client.gameBuild == 1) { // L: 12331
-			var0 = var0 + "-wtrc";
-		} else if (Client.gameBuild == 2) { // L: 12332
-			var0 = var0 + "-wtqa";
-		} else if (Client.gameBuild == 3) { // L: 12333
-			var0 = var0 + "-wtwip";
-		} else if (Client.gameBuild == 5) { // L: 12334
-			var0 = var0 + "-wti";
-		} else if (Client.gameBuild == 4) { // L: 12335
-			var0 = "local";
-		}
-
-		String var3 = ""; // L: 12336
-		if (GrandExchangeOfferTotalQuantityComparator.field4045 != null) { // L: 12337
-			var3 = "/p=" + GrandExchangeOfferTotalQuantityComparator.field4045;
-		}
-
-		String var4 = "runescape.com"; // L: 12338
-		return var2 + var0 + "." + var4 + "/l=" + class134.clientLanguage + "/a=" + class17.field99 + var3 + "/"; // L: 12339
+	static boolean method7182() {
+		return (Client.drawPlayerNames & 1) != 0; // L: 5371
 	}
 }

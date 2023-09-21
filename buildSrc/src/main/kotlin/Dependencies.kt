@@ -29,7 +29,7 @@ object ProjectVersions {
 
     const val sanliteVersion = "1.20.38"
 
-    const val rsVersion = 206
+    const val rsVersion = 217
     const val cacheVersion = 165
 
     const val lombokVersion = "1.18.20"
