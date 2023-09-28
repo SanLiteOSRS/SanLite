@@ -1,45 +1,35 @@
-import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mx")
-public final class class339 {
-	@ObfuscatedName("rx")
-	@ObfuscatedSignature(
-		descriptor = "Lqg;"
+@ObfuscatedName("nx")
+public class class339 {
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		intValue = -1501316877
 	)
-	@Export("privateChatMode")
-	static PrivateChatMode privateChatMode;
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)J",
-		garbageValue = "2080916438"
+	public int field3591;
+	@ObfuscatedName("al")
+	@ObfuscatedGetter(
+		intValue = 1917639115
 	)
-	static long method6244(CharSequence var0) {
-		long var1 = 0L; // L: 16
-		int var3 = var0.length(); // L: 17
+	public int field3592;
+	@ObfuscatedName("ak")
+	@ObfuscatedGetter(
+		intValue = 2044708723
+	)
+	public int field3593;
 
-		for (int var4 = 0; var4 < var3; ++var4) { // L: 18
-			var1 *= 37L; // L: 19
-			char var5 = var0.charAt(var4); // L: 20
-			if (var5 >= 'A' && var5 <= 'Z') { // L: 21
-				var1 += (long)(var5 + 1 - 65);
-			} else if (var5 >= 'a' && var5 <= 'z') { // L: 22
-				var1 += (long)(var5 + 1 - 97);
-			} else if (var5 >= '0' && var5 <= '9') {
-				var1 += (long)(var5 + 27 - 48); // L: 23
-			}
+	class339() {
+	} // L: 8
 
-			if (var1 >= 177917621779460413L) { // L: 24
-				break;
-			}
-		}
-
-		while (var1 % 37L == 0L && 0L != var1) { // L: 26
-			var1 /= 37L;
-		}
-
-		return var1; // L: 27
-	}
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-250555554"
+	)
+	static void method6258() {
+		GameEngine.method647(24); // L: 2012
+		AbstractWorldMapIcon.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", ""); // L: 2013
+	} // L: 2014
 }
