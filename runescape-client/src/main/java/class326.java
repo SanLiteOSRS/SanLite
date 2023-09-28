@@ -1,45 +1,45 @@
+import java.util.PriorityQueue;
+import java.util.concurrent.Callable;
+import java.util.concurrent.atomic.AtomicBoolean;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lg")
-public class class326 {
-	@ObfuscatedName("rz")
-	static boolean field4082;
-	@ObfuscatedName("c")
+@ObfuscatedName("ml")
+class class326 implements Callable {
+	@ObfuscatedName("ax")
+	@Export("SpriteBuffer_xOffsets")
+	public static int[] SpriteBuffer_xOffsets;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Llg;"
+		descriptor = "Lmt;"
 	)
-	static final class326 field4079;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Llg;"
-	)
-	static final class326 field4083;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Llg;"
-	)
-	static final class326 field4080;
-	@ObfuscatedName("j")
-	@Export("Interpreter_stringLocals")
-	static String[] Interpreter_stringLocals;
+	final MidiPcmStream this$0;
+	// $FF: synthetic field
+	final AtomicBoolean val$cancelled;
 
-	static {
-		field4079 = new class326(); // L: 4
-		field4083 = new class326(); // L: 5
-		field4080 = new class326(); // L: 6
+	@ObfuscatedSignature(
+		descriptor = "(Lmt;Ljava/util/concurrent/atomic/AtomicBoolean;)V"
+	)
+	class326(MidiPcmStream var1, AtomicBoolean var2) {
+		this.this$0 = var1; // L: 118
+		this.val$cancelled = var2;
 	}
 
-	class326() {
-	} // L: 8
+	public Object call() {
+		PriorityQueue var1 = this.this$0.field3472; // L: 121
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(CI)C",
-		garbageValue = "-408398263"
-	)
-	static char method6050(char var0) {
-		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0; // L: 61 62
+		while (true) {
+			class323 var2 = null; // L: 123
+			synchronized(var1) { // L: 124
+				if (var1.isEmpty() || this.val$cancelled.get()) { // L: 125
+					return null; // L: 126
+				}
+
+				var2 = (class323)var1.remove(); // L: 128
+			}
+
+			var2.field3493.method1081(); // L: 130
+		}
 	}
 }

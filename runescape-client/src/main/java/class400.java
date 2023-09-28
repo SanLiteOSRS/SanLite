@@ -1,51 +1,89 @@
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("op")
-public class class400 implements class398 {
-	@ObfuscatedName("v")
-	final Map field4437;
+@ObfuscatedName("po")
+public class class400 {
+	@ObfuscatedName("ac")
+	static char[] field4477;
+	@ObfuscatedName("al")
+	static char[] field4476;
+	@ObfuscatedName("ak")
+	static char[] field4478;
+	@ObfuscatedName("ax")
+	static int[] field4479;
 
-	public class400(Map var1) {
-		this.field4437 = var1; // L: 11
-	} // L: 12
+	static {
+		field4477 = new char[64]; // L: 7
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "793389020"
-	)
-	public byte[] vmethod7114() throws UnsupportedEncodingException {
-		return this.method7122().getBytes("UTF-8"); // L: 16
-	}
-
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "1192893333"
-	)
-	public String method7122() throws UnsupportedEncodingException {
-		StringBuilder var1 = new StringBuilder(); // L: 20
-		Iterator var2 = this.field4437.entrySet().iterator(); // L: 21
-
-		while (var2.hasNext()) {
-			Entry var3 = (Entry)var2.next(); // L: 22
-			String var4 = URLEncoder.encode((String)var3.getKey(), "UTF-8"); // L: 24
-			String var5 = URLEncoder.encode((String)var3.getValue(), "UTF-8"); // L: 25
-			var1.append(var4).append("=").append(var5).append("&"); // L: 26
+		int var0;
+		for (var0 = 0; var0 < 26; ++var0) { // L: 8
+			field4477[var0] = (char)(var0 + 65);
 		}
 
-		if (var1.length() == 0) { // L: 29
-			return "";
-		} else {
-			var1.deleteCharAt(var1.length() - 1); // L: 30
-			var1.insert(0, "?"); // L: 31
-			return var1.toString(); // L: 32
+		for (var0 = 26; var0 < 52; ++var0) { // L: 9
+			field4477[var0] = (char)(var0 + 97 - 26);
 		}
-	}
+
+		for (var0 = 52; var0 < 62; ++var0) { // L: 10
+			field4477[var0] = (char)(var0 + 48 - 52);
+		}
+
+		field4477[62] = '+'; // L: 11
+		field4477[63] = '/'; // L: 12
+		field4476 = new char[64]; // L: 18
+
+		for (var0 = 0; var0 < 26; ++var0) { // L: 19
+			field4476[var0] = (char)(var0 + 65);
+		}
+
+		for (var0 = 26; var0 < 52; ++var0) { // L: 20
+			field4476[var0] = (char)(var0 + 97 - 26);
+		}
+
+		for (var0 = 52; var0 < 62; ++var0) { // L: 21
+			field4476[var0] = (char)(var0 + 48 - 52);
+		}
+
+		field4476[62] = '*'; // L: 22
+		field4476[63] = '-'; // L: 23
+		field4478 = new char[64]; // L: 29
+
+		for (var0 = 0; var0 < 26; ++var0) { // L: 30
+			field4478[var0] = (char)(var0 + 65);
+		}
+
+		for (var0 = 26; var0 < 52; ++var0) { // L: 31
+			field4478[var0] = (char)(var0 + 97 - 26);
+		}
+
+		for (var0 = 52; var0 < 62; ++var0) { // L: 32
+			field4478[var0] = (char)(var0 + 48 - 52);
+		}
+
+		field4478[62] = '-'; // L: 33
+		field4478[63] = '_'; // L: 34
+		field4479 = new int[128]; // L: 40
+
+		for (var0 = 0; var0 < field4479.length; ++var0) { // L: 41
+			field4479[var0] = -1;
+		}
+
+		for (var0 = 65; var0 <= 90; ++var0) { // L: 42
+			field4479[var0] = var0 - 65;
+		}
+
+		for (var0 = 97; var0 <= 122; ++var0) { // L: 43
+			field4479[var0] = var0 - 97 + 26;
+		}
+
+		for (var0 = 48; var0 <= 57; ++var0) { // L: 44
+			field4479[var0] = var0 - 48 + 52;
+		}
+
+		int[] var2 = field4479; // L: 45
+		field4479[43] = 62; // L: 46
+		var2[42] = 62; // L: 47
+		int[] var1 = field4479; // L: 48
+		field4479[47] = 63; // L: 49
+		var1[45] = 63; // L: 50
+	} // L: 51
 }

@@ -7,28 +7,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fr")
+@ObfuscatedName("gw")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("v")
+	@ObfuscatedName("ac")
+	@Export("javaVendor")
+	public static String javaVendor;
+	@ObfuscatedName("al")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("q")
+	@ObfuscatedName("dk")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "[Lun;"
+	)
+	@Export("worldSelectStars")
+	static IndexedSprite[] worldSelectStars;
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "Lhi;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "Lhi;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ah")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -36,11 +45,11 @@ public class TaskHandler implements Runnable {
 		this.current = null; // L: 11
 		this.task = null; // L: 12
 		this.isClosed = false; // L: 14
-		class360.javaVendor = "Unknown"; // L: 20
+		javaVendor = "Unknown"; // L: 20
 		javaVersion = "1.6"; // L: 21
 
 		try {
-			class360.javaVendor = System.getProperty("java.vendor"); // L: 23
+			javaVendor = System.getProperty("java.vendor"); // L: 23
 			javaVersion = System.getProperty("java.version"); // L: 24
 		} catch (Exception var2) { // L: 26
 		}
@@ -52,10 +61,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start(); // L: 31
 	} // L: 32
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "64"
+		garbageValue = "0"
 	)
 	@Export("close")
 	public final void close() {
@@ -71,15 +80,15 @@ public class TaskHandler implements Runnable {
 
 	} // L: 43
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;B)Lfm;",
-		garbageValue = "0"
+		descriptor = "(IIILjava/lang/Object;B)Lhi;",
+		garbageValue = "99"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
-		Task var5 = new Task();
-		var5.type = var1;
+		Task var5 = new Task(); // L: 90
+		var5.type = var1; // L: 91
 		var5.intArgument = var2; // L: 92
 		var5.objectArgument = var4; // L: 93
 		synchronized(this) { // L: 94
@@ -95,20 +104,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;IB)Lfm;",
-		garbageValue = "-14"
+		descriptor = "(Ljava/lang/String;IS)Lhi;",
+		garbageValue = "-20310"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1); // L: 108
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;II)Lfm;",
-		garbageValue = "966743438"
+		descriptor = "(Ljava/lang/Runnable;II)Lhi;",
+		garbageValue = "-1310826122"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -134,7 +143,7 @@ public class TaskHandler implements Runnable {
 					}
 
 					try {
-						this.wait();
+						this.wait(); // L: 58
 					} catch (InterruptedException var8) { // L: 60
 					}
 				}
@@ -163,79 +172,34 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ml")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "-443449853"
+		descriptor = "(Lnm;III)V",
+		garbageValue = "-23690326"
 	)
-	public static String method3240(CharSequence var0) {
-		String var1 = class229.base37DecodeLong(class339.method6244(var0)); // L: 57
-		if (var1 == null) { // L: 58
-			var1 = "";
-		}
-
-		return var1; // L: 59
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(IIIZII)J",
-		garbageValue = "608136618"
-	)
-	@Export("calculateTag")
-	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
-		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17; // L: 89
-		if (var3) { // L: 90
-			var5 |= 65536L;
-		}
-
-		return var5; // L: 91
-	}
-
-	@ObfuscatedName("jr")
-	@ObfuscatedSignature(
-		descriptor = "([Lkb;IB)V",
-		garbageValue = "79"
-	)
-	@Export("runComponentCloseListeners")
-	static final void runComponentCloseListeners(Widget[] var0, int var1) {
-		for (int var2 = 0; var2 < var0.length; ++var2) { // L: 11586
-			Widget var3 = var0[var2]; // L: 11587
-			if (var3 != null) { // L: 11588
-				if (var3.type == 0) { // L: 11589
-					if (var3.children != null) { // L: 11590
-						runComponentCloseListeners(var3.children, var1);
-					}
-
-					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id); // L: 11591
-					if (var4 != null) { // L: 11592
-						class7.runIntfCloseListeners(var4.group, var1);
-					}
+	@Export("clickWidget")
+	static final void clickWidget(Widget var0, int var1, int var2) {
+		if (Client.clickedWidget == null && !Client.isMenuOpen) { // L: 12019
+			if (var0 != null && class275.method5566(var0) != null) { // L: 12020
+				Client.clickedWidget = var0; // L: 12021
+				Client.clickedWidgetParent = class275.method5566(var0); // L: 12022
+				Client.widgetClickX = var1; // L: 12023
+				Client.widgetClickY = var2; // L: 12024
+				FriendsChatManager.widgetDragDuration = 0; // L: 12025
+				Client.isDraggingWidget = false; // L: 12026
+				int var3 = AttackOption.method2714(); // L: 12027
+				if (var3 != -1) { // L: 12028
+					class133.tempMenuAction = new MenuAction(); // L: 12029
+					class133.tempMenuAction.param0 = Client.menuArguments1[var3]; // L: 12030
+					class133.tempMenuAction.param1 = Client.menuArguments2[var3]; // L: 12031
+					class133.tempMenuAction.opcode = Client.menuOpcodes[var3]; // L: 12032
+					class133.tempMenuAction.identifier = Client.menuIdentifiers[var3]; // L: 12033
+					class133.tempMenuAction.field920 = Client.field671[var3]; // L: 12034
+					class133.tempMenuAction.field913 = Client.menuActions[var3]; // L: 12035
+					class133.tempMenuAction.field914 = Client.menuTargets[var3]; // L: 12036
 				}
 
-				ScriptEvent var5;
-				if (var1 == 0 && var3.onDialogAbort != null) { // L: 11594
-					var5 = new ScriptEvent(); // L: 11595
-					var5.widget = var3; // L: 11596
-					var5.args = var3.onDialogAbort; // L: 11597
-					WallObject.runScriptEvent(var5); // L: 11598
-				}
-
-				if (var1 == 1 && var3.onSubChange != null) { // L: 11600
-					if (var3.childIndex >= 0) { // L: 11601
-						Widget var6 = class140.getWidget(var3.id); // L: 11602
-						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) { // L: 11603
-							continue;
-						}
-					}
-
-					var5 = new ScriptEvent(); // L: 11607
-					var5.widget = var3; // L: 11608
-					var5.args = var3.onSubChange; // L: 11609
-					WallObject.runScriptEvent(var5); // L: 11610
-				}
 			}
 		}
-
-	} // L: 11613
+	} // L: 12038
 }

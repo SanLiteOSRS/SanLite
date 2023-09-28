@@ -4,24 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gt")
+@ObfuscatedName("jv")
 @Implements("FaceNormal")
 public class FaceNormal {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 2045687167
+		intValue = 514745329
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 259443193
+		intValue = -350302109
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = 1323517785
+		intValue = -1715062155
 	)
 	@Export("z")
 	int z;
@@ -29,12 +29,13 @@ public class FaceNormal {
 	FaceNormal() {
 	} // L: 8
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("mo")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-1766790995"
+		descriptor = "(I)I",
+		garbageValue = "-2079902231"
 	)
-	public static int method4344(CharSequence var0) {
-		return HealthBar.method2356(var0, 10, true); // L: 77
+	static final int method4845() {
+		float var0 = 200.0F * ((float)class91.clientPreferences.method2513() - 0.5F); // L: 12232
+		return 100 - Math.round(var0); // L: 12233
 	}
 }
