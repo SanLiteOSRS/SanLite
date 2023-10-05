@@ -3,144 +3,155 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cg")
+@ObfuscatedName("dw")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("dz")
+	@ObfuscatedSignature(
+		descriptor = "[Lun;"
+	)
+	@Export("worldSelectFlagSprites")
+	static IndexedSprite[] worldSelectFlagSprites;
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -1077280707
+		intValue = 1383860513
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = -1648453221
+		intValue = -1109299775
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = -1684914079
+		intValue = 1415427477
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 841494057
+		intValue = -444130973
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 332033545
+		intValue = 700260725
 	)
 	@Export("objectId")
 	int objectId;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 1740672261
+		intValue = 761889211
 	)
-	int field1121;
-	@ObfuscatedName("g")
+	int field1178;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1499374413
+		intValue = 2125054333
 	)
-	int field1122;
-	@ObfuscatedName("w")
+	int field1176;
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 1955707387
+		intValue = -1497418465
 	)
-	@Export("id")
-	int id;
-	@ObfuscatedName("y")
+	int field1177;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -1729906445
+		intValue = 1698941181
 	)
-	@Export("orientation")
-	int orientation;
-	@ObfuscatedName("i")
+	int field1170;
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -1250065699
+		intValue = 607121519
 	)
-	int field1125;
-	@ObfuscatedName("s")
+	int field1173;
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = 1981751259
+		intValue = -1155527501
+	)
+	int field1180;
+	@ObfuscatedName("ap")
+	@ObfuscatedGetter(
+		intValue = 88075867
+	)
+	int field1181;
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = 269057879
 	)
 	@Export("delay")
 	int delay;
-	@ObfuscatedName("t")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 832910611
+		intValue = -2145088427
 	)
 	@Export("hitpoints")
 	int hitpoints;
 
 	PendingSpawn() {
-		this.delay = 0; // L: 16
-		this.hitpoints = -1; // L: 17
-	} // L: 19
+		this.field1181 = 31; // L: 18
+		this.delay = 0; // L: 19
+		this.hitpoints = -1; // L: 20
+	} // L: 22
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "630642952"
+		descriptor = "(II)V",
+		garbageValue = "1554580645"
 	)
-	static int method2180(int var0, Script var1, boolean var2) {
-		int var3 = -1; // L: 571
-		Widget var4;
-		if (var0 >= 2000) { // L: 573
-			var0 -= 1000; // L: 574
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 575
-			var4 = class140.getWidget(var3); // L: 576
+	void method2413(int var1) {
+		this.field1181 = var1; // L: 25
+	} // L: 26
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "585710320"
+	)
+	boolean method2415(int var1) {
+		if (var1 >= 0 && var1 <= 4) { // L: 29
+			return (this.field1181 & 1 << var1) != 0; // L: 30
 		} else {
-			var4 = var2 ? class124.scriptDotWidget : GrandExchangeOfferOwnWorldComparator.scriptActiveWidget; // L: 578
-		}
-
-		if (var0 == ScriptOpcodes.CC_SETPOSITION) { // L: 579
-			class446.Interpreter_intStackSize -= 4; // L: 580
-			var4.rawX = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize]; // L: 581
-			var4.rawY = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 1]; // L: 582
-			var4.xAlignment = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 2]; // L: 583
-			var4.yAlignment = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 3]; // L: 584
-			ChatChannel.invalidateWidget(var4); // L: 585
-			class353.client.alignWidget(var4); // L: 586
-			if (var3 != -1 && var4.type == 0) { // L: 587
-				BufferedNetSocket.revalidateWidgetScroll(SoundCache.Widget_interfaceComponents[var3 >> 16], var4, false);
-			}
-
-			return 1; // L: 588
-		} else if (var0 == ScriptOpcodes.CC_SETSIZE) { // L: 590
-			class446.Interpreter_intStackSize -= 4; // L: 591
-			var4.rawWidth = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize]; // L: 592
-			var4.rawHeight = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 1]; // L: 593
-			var4.widthAlignment = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 2]; // L: 594
-			var4.heightAlignment = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 3]; // L: 595
-			ChatChannel.invalidateWidget(var4); // L: 596
-			class353.client.alignWidget(var4); // L: 597
-			if (var3 != -1 && var4.type == 0) { // L: 598
-				BufferedNetSocket.revalidateWidgetScroll(SoundCache.Widget_interfaceComponents[var3 >> 16], var4, false);
-			}
-
-			return 1; // L: 599
-		} else if (var0 == ScriptOpcodes.CC_SETHIDE) { // L: 601
-			boolean var5 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 602
-			if (var5 != var4.isHidden) { // L: 603
-				var4.isHidden = var5; // L: 604
-				ChatChannel.invalidateWidget(var4); // L: 605
-			}
-
-			return 1; // L: 607
-		} else if (var0 == ScriptOpcodes.CC_SETNOCLICKTHROUGH) { // L: 609
-			var4.noClickThrough = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 610
-			return 1; // L: 611
-		} else if (var0 == ScriptOpcodes.CC_SETNOSCROLLTHROUGH) { // L: 613
-			var4.noScrollThrough = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 614
-			return 1; // L: 615
-		} else {
-			return 2; // L: 617
+			return true; // L: 32
 		}
 	}
+
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "-121"
+	)
+	static final void method2418(String var0) {
+		class436.method7914(var0 + " is already on your friend list"); // L: 114
+	} // L: 115
+
+	@ObfuscatedName("lq")
+	@ObfuscatedSignature(
+		descriptor = "([Lnm;Lnm;ZB)V",
+		garbageValue = "-37"
+	)
+	@Export("revalidateWidgetScroll")
+	static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
+		int var3 = var1.scrollWidth != 0 ? var1.scrollWidth : var1.width; // L: 11132
+		int var4 = var1.scrollHeight != 0 ? var1.scrollHeight : var1.height; // L: 11133
+		class360.resizeInterface(var0, var1.id, var3, var4, var2); // L: 11134
+		if (var1.children != null) {
+			class360.resizeInterface(var1.children, var1.id, var3, var4, var2); // L: 11135
+		}
+
+		InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id); // L: 11136
+		if (var5 != null) { // L: 11137
+			int var6 = var5.group; // L: 11138
+			if (class33.field184.method6242(var6)) { // L: 11140
+				class360.resizeInterface(class33.field184.field3587[var6], -1, var3, var4, var2); // L: 11141
+			}
+		}
+
+		if (var1.contentType == 1337) { // L: 11144
+		}
+
+	} // L: 11145
 }

@@ -4,74 +4,88 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ew")
+@ObfuscatedName("fv")
 @Implements("ClanChannelMember")
 public class ClanChannelMember {
-	@ObfuscatedName("c")
+	@ObfuscatedName("tt")
+	@ObfuscatedSignature(
+		descriptor = "Lgb;"
+	)
+	@Export("guestClanChannel")
+	static ClanChannel guestClanChannel;
+	@ObfuscatedName("ac")
 	@Export("rank")
 	public byte rank;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 44459875
+		intValue = 1939235813
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lvf;"
 	)
 	@Export("username")
 	public Username username;
 
 	ClanChannelMember() {
-	} // L: 10
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;III)[Lqu;",
-		garbageValue = "658098688"
+		descriptor = "(IIII)I",
+		garbageValue = "1441597193"
 	)
-	public static IndexedSprite[] method2867(AbstractArchive var0, int var1, int var2) {
-		if (!Ignored.method6774(var0, var1, var2)) { // L: 23
-			return null;
+	public static int method3165(int var0, int var1, int var2) {
+		var2 &= 3; // L: 9
+		if (var2 == 0) { // L: 10
+			return var1;
+		} else if (var2 == 1) { // L: 11
+			return 7 - var0;
 		} else {
-			IndexedSprite[] var4 = new IndexedSprite[class456.SpriteBuffer_spriteCount]; // L: 26
-
-			for (int var5 = 0; var5 < class456.SpriteBuffer_spriteCount; ++var5) { // L: 27
-				IndexedSprite var6 = var4[var5] = new IndexedSprite(); // L: 28
-				var6.width = ModelData0.SpriteBuffer_spriteWidth; // L: 29
-				var6.height = class456.SpriteBuffer_spriteHeight; // L: 30
-				var6.xOffset = class426.SpriteBuffer_xOffsets[var5]; // L: 31
-				var6.yOffset = class142.SpriteBuffer_yOffsets[var5]; // L: 32
-				var6.subWidth = class359.SpriteBuffer_spriteWidths[var5]; // L: 33
-				var6.subHeight = class456.SpriteBuffer_spriteHeights[var5]; // L: 34
-				var6.palette = class13.SpriteBuffer_spritePalette; // L: 35
-				var6.pixels = class421.SpriteBuffer_pixels[var5]; // L: 36
-			}
-
-			class426.SpriteBuffer_xOffsets = null; // L: 39
-			class142.SpriteBuffer_yOffsets = null; // L: 40
-			class359.SpriteBuffer_spriteWidths = null; // L: 41
-			class456.SpriteBuffer_spriteHeights = null; // L: 42
-			class13.SpriteBuffer_spritePalette = null; // L: 43
-			class421.SpriteBuffer_pixels = null;
-			return var4;
+			return var2 == 2 ? 7 - var1 : var0; // L: 12
 		}
 	}
 
-	@ObfuscatedName("v")
-	static boolean method2865(long var0) {
-		return class7.method51(var0) == 2; // L: 48
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(Lln;Lvd;I)Llx;",
+		garbageValue = "2045853930"
+	)
+	@Export("getPacketBufferNode")
+	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
+		PacketBufferNode var2 = class306.method5863(); // L: 27
+		var2.clientPacket = var0; // L: 28
+		var2.clientPacketLength = var0.length; // L: 29
+		if (var2.clientPacketLength == -1) { // L: 30
+			var2.packetBuffer = new PacketBuffer(260);
+		} else if (var2.clientPacketLength == -2) {
+			var2.packetBuffer = new PacketBuffer(10000); // L: 31
+		} else if (var2.clientPacketLength <= 18) { // L: 32
+			var2.packetBuffer = new PacketBuffer(20);
+		} else if (var2.clientPacketLength <= 98) { // L: 33
+			var2.packetBuffer = new PacketBuffer(100);
+		} else {
+			var2.packetBuffer = new PacketBuffer(260); // L: 34
+		}
+
+		var2.packetBuffer.setIsaacCipher(var1); // L: 35
+		var2.packetBuffer.writeByteIsaac(var2.clientPacket.id); // L: 36
+		var2.index = 0; // L: 37
+		return var2; // L: 38
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ms")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "88442168"
+		descriptor = "(Lnm;I)V",
+		garbageValue = "1124709425"
 	)
-	@Export("Messages_getHistorySize")
-	static int Messages_getHistorySize(int var0) {
-		ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 44
-		return var1 == null ? 0 : var1.size(); // L: 45 46
-	}
+	@Export("invalidateWidget")
+	public static void invalidateWidget(Widget var0) {
+		if (var0 != null && var0.cycle == Client.field738) { // L: 12119
+			Client.field739[var0.rootIndex] = true; // L: 12120
+		}
+
+	} // L: 12122
 }
