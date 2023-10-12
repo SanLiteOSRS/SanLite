@@ -1,83 +1,82 @@
+import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eq")
-public class class138 extends class128 {
-	@ObfuscatedName("he")
-	@ObfuscatedSignature(
-		descriptor = "Lcd;"
-	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1956537991
-	)
-	int field1623;
-	@ObfuscatedName("v")
-	String field1620;
+@ObfuscatedName("fi")
+class class138 implements Callable {
+	@ObfuscatedName("we")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfk;"
 	)
-	final class131 this$0;
+	final class139 this$0;
+	// $FF: synthetic field
+	final int val$workStart;
+	// $FF: synthetic field
+	final int val$workEnd;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "[Lfh;"
+	)
+	final class131[] val$curveLoadJobs;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfk;II[Lfh;)V"
 	)
-	class138(class131 var1) {
-		this.this$0 = var1; // L: 323
+	class138(class139 var1, int var2, int var3, class131[] var4) {
+		this.this$0 = var1; // L: 97
+		this.val$workStart = var2;
+		this.val$workEnd = var3;
+		this.val$curveLoadJobs = var4;
 	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
-	)
-	void vmethod3150(Buffer var1) {
-		this.field1623 = var1.readInt(); // L: 326
-		this.field1620 = var1.readStringCp1252NullTerminated(); // L: 327
-	} // L: 328
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2968(this.field1623, this.field1620); // L: 331
-	} // L: 332
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "4"
-	)
-	public static void method2948(AbstractArchive var0) {
-		class435.field4666 = var0; // L: 19
-	} // L: 20
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IZIZI)V",
-		garbageValue = "1195912675"
-	)
-	@Export("sortWorldList")
-	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-		if (class362.World_worlds != null) { // L: 171
-			class131.doWorldSorting(0, class362.World_worlds.length - 1, var0, var1, var2, var3); // L: 172
+	public Object call() {
+		for (int var1 = this.val$workStart; var1 < this.val$workEnd; ++var1) { // L: 100
+			this.val$curveLoadJobs[var1].call(); // L: 101
 		}
 
-	} // L: 174
+		return null; // L: 103
+	}
 
-	@ObfuscatedName("hj")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1549613437"
+		descriptor = "(Lom;Lom;Lom;I)V",
+		garbageValue = "1994646383"
 	)
-	static boolean method2944() {
-		return (Client.drawPlayerNames & 8) != 0; // L: 4953
+	public static void method3079(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
+		class295.SequenceDefinition_archive = var0;
+		SequenceDefinition.SequenceDefinition_animationsArchive = var1;
+		SequenceDefinition.SequenceDefinition_skeletonsArchive = var2; // L: 53
+	} // L: 54
+
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "1830136563"
+	)
+	public static void method3081(int var0) {
+		MouseHandler.MouseHandler_idleCycles = var0; // L: 51
+	} // L: 52
+
+	@ObfuscatedName("ha")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-1629606373"
+	)
+	static int method3083() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1444
+			int var0 = 0; // L: 1445
+
+			for (int var1 = 0; var1 <= Client.archiveLoadersDone; ++var1) { // L: 1446
+				var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount; // L: 1447
+			}
+
+			return var0 * 10000 / Client.field819; // L: 1449
+		} else {
+			return 10000;
+		}
 	}
 }

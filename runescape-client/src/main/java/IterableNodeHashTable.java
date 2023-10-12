@@ -4,31 +4,31 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pb")
+@ObfuscatedName("tp")
 @Implements("IterableNodeHashTable")
 public final class IterableNodeHashTable implements Iterable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@Export("size")
 	int size;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "[Loh;"
+		descriptor = "[Lsj;"
 	)
 	@Export("buckets")
 	Node[] buckets;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Loh;"
+		descriptor = "Lsj;"
 	)
 	@Export("currentGet")
 	Node currentGet;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Loh;"
+		descriptor = "Lsj;"
 	)
 	@Export("current")
 	Node current;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@Export("index")
 	int index;
 
@@ -45,9 +45,9 @@ public final class IterableNodeHashTable implements Iterable {
 
 	} // L: 21
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(J)Loh;"
+		descriptor = "(J)Lsj;"
 	)
 	@Export("get")
 	public Node get(long var1) {
@@ -65,9 +65,9 @@ public final class IterableNodeHashTable implements Iterable {
 		return null; // L: 36
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Loh;J)V"
+		descriptor = "(Lsj;J)V"
 	)
 	@Export("put")
 	public void put(Node var1, long var2) {
@@ -83,7 +83,7 @@ public final class IterableNodeHashTable implements Iterable {
 		var1.key = var2; // L: 46
 	} // L: 47
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@Export("clear")
 	public void clear() {
 		for (int var1 = 0; var1 < this.size; ++var1) { // L: 50
@@ -103,9 +103,9 @@ public final class IterableNodeHashTable implements Iterable {
 		this.current = null; // L: 59
 	} // L: 60
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "()Loh;"
+		descriptor = "()Lsj;"
 	)
 	@Export("first")
 	public Node first() {
@@ -113,9 +113,9 @@ public final class IterableNodeHashTable implements Iterable {
 		return this.next(); // L: 64
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "()Loh;"
+		descriptor = "()Lsj;"
 	)
 	@Export("next")
 	public Node next() {

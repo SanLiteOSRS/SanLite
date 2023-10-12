@@ -1,69 +1,60 @@
+import java.io.IOException;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("go")
-public class class193 {
-	@ObfuscatedName("q")
-	@Export("directions")
-	public static int[][] directions;
-	@ObfuscatedName("f")
-	@Export("distances")
-	public static int[][] distances;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = -1258310083
+@ObfuscatedName("hh")
+public class class193 extends DualNode {
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "Llr;"
 	)
-	public static int field2219;
-	@ObfuscatedName("w")
-	@Export("bufferX")
-	public static int[] bufferX;
-	@ObfuscatedName("y")
-	@Export("bufferY")
-	public static int[] bufferY;
+	@Export("archive5")
+	public static EvictingDualNodeHashTable archive5;
 
 	static {
-		directions = new int[128][128]; // L: 6
-		distances = new int[128][128]; // L: 7
-		bufferX = new int[4096]; // L: 11
-		bufferY = new int[4096]; // L: 12
+		archive5 = new EvictingDualNodeHashTable(64); // L: 7
 	}
 
-	@ObfuscatedName("ju")
+	@ObfuscatedName("be")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIII)V",
-		garbageValue = "628542116"
+		descriptor = "(Lbi;B)V",
+		garbageValue = "-42"
 	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (WorldMapSection2.loadInterface(var0)) { // L: 10078
-			class12.field62 = null; // L: 10085
-			class14.drawInterface(SoundCache.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7); // L: 10086
-			if (class12.field62 != null) { // L: 10087
-				class14.drawInterface(class12.field62, -1412584499, var1, var2, var3, var4, UserComparator5.field1389, SecureRandomFuture.field960, var7); // L: 10088
-				class12.field62 = null; // L: 10089
-			}
+	@Export("PcmStream_disable")
+	static final void PcmStream_disable(PcmStream var0) {
+		var0.active = false; // L: 241
+		if (var0.sound != null) { // L: 242
+			var0.sound.position = 0;
+		}
 
-		} else {
-			if (var7 != -1) { // L: 10079
-				Client.field703[var7] = true;
-			} else {
-				for (int var8 = 0; var8 < 100; ++var8) { // L: 10081
-					Client.field703[var8] = true;
+		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
+			PcmStream_disable(var1); // L: 243
+		}
+
+	} // L: 244
+
+	@ObfuscatedName("jm")
+	@ObfuscatedSignature(
+		descriptor = "(ZI)V",
+		garbageValue = "-1522751942"
+	)
+	static final void method3644(boolean var0) {
+		class313.method5891(); // L: 6084
+		++Client.packetWriter.pendingWrites; // L: 6085
+		if (Client.packetWriter.pendingWrites >= 50 || var0) { // L: 6086
+			Client.packetWriter.pendingWrites = 0; // L: 6087
+			if (!Client.hadNetworkError && Client.packetWriter.getSocket() != null) { // L: 6088
+				PacketBufferNode var1 = ClanChannelMember.getPacketBufferNode(ClientPacket.field3180, Client.packetWriter.isaacCipher); // L: 6090
+				Client.packetWriter.addNode(var1); // L: 6091
+
+				try {
+					Client.packetWriter.flush(); // L: 6093
+				} catch (IOException var3) { // L: 6095
+					Client.hadNetworkError = true; // L: 6096
 				}
 			}
 
 		}
-	} // L: 10083 10091
-
-	@ObfuscatedName("ke")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "98"
-	)
-	static final int method3919() {
-		float var0 = 200.0F * ((float)class19.clientPreferences.method2254() - 0.5F); // L: 11835
-		return 100 - Math.round(var0); // L: 11836
-	}
+	} // L: 6099
 }
