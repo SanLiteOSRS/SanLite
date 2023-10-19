@@ -1,33 +1,38 @@
+import java.awt.Desktop;
+import java.awt.Desktop.Action;
+import java.net.URI;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hj")
+@ObfuscatedName("jp")
 @Implements("VertexNormal")
 public class VertexNormal {
-	@ObfuscatedName("v")
+	@ObfuscatedName("ao")
+	static short[][][] field2820;
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 852204679
+		intValue = -1814285237
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = -2028083131
+		intValue = 677675313
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = 1173750943
+		intValue = 1463557097
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = -860468825
+		intValue = 169341921
 	)
 	@Export("magnitude")
 	int magnitude;
@@ -36,7 +41,7 @@ public class VertexNormal {
 	} // L: 9
 
 	@ObfuscatedSignature(
-		descriptor = "(Lhj;)V"
+		descriptor = "(Ljp;)V"
 	)
 	VertexNormal(VertexNormal var1) {
 		this.x = var1.x; // L: 12
@@ -45,62 +50,32 @@ public class VertexNormal {
 		this.magnitude = var1.magnitude; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "886166360"
+		descriptor = "(Ljava/lang/String;ZZI)V",
+		garbageValue = "-2141219999"
 	)
-	public static boolean method4528(int var0) {
-		return var0 >= 0 && var0 < 112 ? KeyHandler.field136[var0] : false;
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "([BIILgg;[Lgv;I)V",
-		garbageValue = "-1413330538"
-	)
-	static final void method4527(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
-		Buffer var5 = new Buffer(var0); // L: 228
-		int var6 = -1; // L: 229
-
-		while (true) {
-			int var7 = var5.method7770(); // L: 231
-			if (var7 == 0) { // L: 232
-				return; // L: 256
-			}
-
-			var6 += var7; // L: 233
-			int var8 = 0; // L: 234
-
-			while (true) {
-				int var9 = var5.readUShortSmart(); // L: 236
-				if (var9 == 0) { // L: 237
-					break;
-				}
-
-				var8 += var9 - 1; // L: 238
-				int var10 = var8 & 63; // L: 239
-				int var11 = var8 >> 6 & 63; // L: 240
-				int var12 = var8 >> 12; // L: 241
-				int var13 = var5.readUnsignedByte(); // L: 242
-				int var14 = var13 >> 2; // L: 243
-				int var15 = var13 & 3; // L: 244
-				int var16 = var11 + var1; // L: 245
-				int var17 = var10 + var2; // L: 246
-				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) { // L: 247
-					int var18 = var12; // L: 248
-					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) { // L: 249
-						var18 = var12 - 1;
-					}
-
-					CollisionMap var19 = null; // L: 250
-					if (var18 >= 0) { // L: 251
-						var19 = var4[var18];
-					}
-
-					class268.addObjects(var12, var16, var17, var6, var15, var14, var3, var19); // L: 252
+	@Export("openURL")
+	public static void openURL(String var0, boolean var1, boolean var2) {
+		if (var1) { // L: 28
+			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) { // L: 29
+				try {
+					Desktop.getDesktop().browse(new URI(var0)); // L: 31
+					return; // L: 58
+				} catch (Exception var4) { // L: 34
 				}
 			}
+
+			if (class31.field170.startsWith("win")) { // L: 36
+				Friend.method8021(var0, 0, "openjs"); // L: 39
+			} else if (class31.field170.startsWith("mac")) { // L: 44
+				Friend.method8021(var0, 1, "openjs"); // L: 45
+			} else {
+				Friend.method8021(var0, 2, "openjs"); // L: 49
+			}
+		} else {
+			Friend.method8021(var0, 3, "openjs"); // L: 54
 		}
+
 	}
 }

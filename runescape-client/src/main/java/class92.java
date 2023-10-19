@@ -1,34 +1,122 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cz")
-public class class92 {
-	@ObfuscatedName("e")
+@ObfuscatedName("dh")
+public enum class92 implements class386 {
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-35"
+		descriptor = "Ldh;"
 	)
-	public static void method2389() {
-		HealthBarDefinition.HealthBarDefinition_cached.clear(); // L: 89
-		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear(); // L: 90
-	} // L: 91
-
-	@ObfuscatedName("lr")
+	field1111(0, -1),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "38"
+		descriptor = "Ldh;"
 	)
-	static String method2388(String var0) {
-		PlayerType[] var1 = SoundSystem.PlayerType_values(); // L: 12443
+	field1109(1, 2),
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field1108(2, 3),
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field1110(3, 4),
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field1112(4, 5),
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field1113(5, 6);
 
-		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12444
-			PlayerType var3 = var1[var2]; // L: 12445
-			if (var3.modIcon != -1 && var0.startsWith(SecureRandomCallable.method2066(var3.modIcon))) { // L: 12447 12448
-				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length()); // L: 12449
-				break;
+	@ObfuscatedName("fy")
+	@ObfuscatedSignature(
+		descriptor = "Lok;"
+	)
+	static Archive field1117;
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = 818469175
+	)
+	final int field1114;
+	@ObfuscatedName("ab")
+	@ObfuscatedGetter(
+		intValue = 497701773
+	)
+	final int field1115;
+
+	class92(int var3, int var4) {
+		this.field1114 = var3; // L: 21
+		this.field1115 = var4; // L: 22
+	} // L: 23
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-1243971674"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1115; // L: 27
+	}
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "([BIIB)Ljava/lang/String;",
+		garbageValue = "-128"
+	)
+	@Export("decodeStringCp1252")
+	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
+		char[] var3 = new char[var2]; // L: 98
+		int var4 = 0; // L: 99
+
+		for (int var5 = 0; var5 < var2; ++var5) { // L: 100
+			int var6 = var0[var5 + var1] & 255; // L: 101
+			if (var6 != 0) { // L: 102
+				if (var6 >= 128 && var6 < 160) { // L: 103
+					char var7 = class399.cp1252AsciiExtension[var6 - 128]; // L: 104
+					if (var7 == 0) { // L: 105
+						var7 = '?';
+					}
+
+					var6 = var7; // L: 106
+				}
+
+				var3[var4++] = (char)var6; // L: 108
 			}
 		}
 
-		return var0; // L: 12456
+		return new String(var3, 0, var4); // L: 110
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(CII)Ljava/lang/String;",
+		garbageValue = "1422226008"
+	)
+	public static String method2360(char var0, int var1) {
+		char[] var2 = new char[var1]; // L: 178
+
+		for (int var3 = 0; var3 < var1; ++var3) { // L: 179
+			var2[var3] = var0;
+		}
+
+		return new String(var2); // L: 180
+	}
+
+	@ObfuscatedName("om")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "-82"
+	)
+	public static boolean method2358() {
+		return Client.staffModLevel >= 2; // L: 12823
 	}
 }

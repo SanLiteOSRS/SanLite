@@ -1,183 +1,78 @@
 import java.io.File;
-import java.lang.management.GarbageCollectorMXBean;
-import java.lang.management.ManagementFactory;
 import java.util.Hashtable;
-import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fw")
+@ObfuscatedName("ga")
 @Implements("FileSystem")
 public class FileSystem {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@Export("FileSystem_hasPermissions")
 	static boolean FileSystem_hasPermissions;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@Export("FileSystem_cacheDir")
 	static File FileSystem_cacheDir;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@Export("FileSystem_cacheFiles")
 	static Hashtable FileSystem_cacheFiles;
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = 396849549
+	)
+	@Export("cacheGamebuild")
+	static int cacheGamebuild;
 
 	static {
 		FileSystem_hasPermissions = false; // L: 7
 		FileSystem_cacheFiles = new Hashtable(16);
 	} // L: 9
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("oe")
 	@ObfuscatedSignature(
-		descriptor = "([FIFB)F",
-		garbageValue = "-127"
+		descriptor = "(Ljava/lang/String;ZI)V",
+		garbageValue = "1782754354"
 	)
-	static float method3281(float[] var0, int var1, float var2) {
-		float var3 = var0[var1]; // L: 108
+	@Export("findItemDefinitions")
+	static void findItemDefinitions(String var0, boolean var1) {
+		var0 = var0.toLowerCase(); // L: 12780
+		short[] var2 = new short[16]; // L: 12781
+		int var3 = 0; // L: 12782
 
-		for (int var4 = var1 - 1; var4 >= 0; --var4) { // L: 109
-			var3 = var2 * var3 + var0[var4]; // L: 110
-		}
+		for (int var4 = 0; var4 < class284.ItemComposition_fileCount; ++var4) { // L: 12783
+			ItemComposition var9 = class214.ItemComposition_get(var4); // L: 12784
+			if ((!var1 || var9.isTradable) && var9.noteTemplate == -1 && var9.name.toLowerCase().indexOf(var0) != -1) { // L: 12785 12786 12787
+				if (var3 >= 250) { // L: 12788
+					SoundSystem.foundItemIdCount = -1; // L: 12789
+					class138.foundItemIds = null; // L: 12790
+					return; // L: 12791
+				}
 
-		return var3; // L: 112
-	}
+				if (var3 >= var2.length) { // L: 12793
+					short[] var6 = new short[var2.length * 2]; // L: 12794
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(CLlb;I)C",
-		garbageValue = "2136665955"
-	)
-	@Export("standardizeChar")
-	static char standardizeChar(char var0, Language var1) {
-		if (var0 >= 192 && var0 <= 255) { // L: 69
-			if (var0 >= 192 && var0 <= 198) { // L: 70
-				return 'A';
-			}
-
-			if (var0 == 199) { // L: 71
-				return 'C';
-			}
-
-			if (var0 >= 200 && var0 <= 203) { // L: 72
-				return 'E';
-			}
-
-			if (var0 >= 204 && var0 <= 207) { // L: 73
-				return 'I';
-			}
-
-			if (var0 == 209 && var1 != Language.Language_ES) { // L: 74
-				return 'N';
-			}
-
-			if (var0 >= 210 && var0 <= 214) { // L: 75
-				return 'O';
-			}
-
-			if (var0 >= 217 && var0 <= 220) { // L: 76
-				return 'U';
-			}
-
-			if (var0 == 221) { // L: 77
-				return 'Y';
-			}
-
-			if (var0 == 223) { // L: 78
-				return 's';
-			}
-
-			if (var0 >= 224 && var0 <= 230) { // L: 79
-				return 'a';
-			}
-
-			if (var0 == 231) { // L: 80
-				return 'c';
-			}
-
-			if (var0 >= 232 && var0 <= 235) { // L: 81
-				return 'e';
-			}
-
-			if (var0 >= 236 && var0 <= 239) { // L: 82
-				return 'i';
-			}
-
-			if (var0 == 241 && var1 != Language.Language_ES) { // L: 83
-				return 'n';
-			}
-
-			if (var0 >= 242 && var0 <= 246) { // L: 84
-				return 'o';
-			}
-
-			if (var0 >= 249 && var0 <= 252) { // L: 85
-				return 'u';
-			}
-
-			if (var0 == 253 || var0 == 255) { // L: 86
-				return 'y';
-			}
-		}
-
-		if (var0 == 338) { // L: 88
-			return 'O';
-		} else if (var0 == 339) { // L: 89
-			return 'o';
-		} else if (var0 == 376) { // L: 90
-			return 'Y';
-		} else {
-			return var0; // L: 91
-		}
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1243687493"
-	)
-	public static void method3282() {
-		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear(); // L: 117
-		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear(); // L: 118
-	} // L: 119
-
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1055608683"
-	)
-	@Export("getGcDuration")
-	protected static int getGcDuration() {
-		int var0 = 0; // L: 572
-		if (class162.garbageCollector == null || !class162.garbageCollector.isValid()) { // L: 573
-			try {
-				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator(); // L: 575
-
-				while (var1.hasNext()) {
-					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next(); // L: 576
-					if (var2.isValid()) { // L: 578
-						class162.garbageCollector = var2; // L: 579
-						GameEngine.garbageCollectorLastCheckTimeMs = -1L; // L: 580
-						GameEngine.garbageCollectorLastCollectionTime = -1L; // L: 581
+					for (int var7 = 0; var7 < var3; ++var7) { // L: 12795
+						var6[var7] = var2[var7];
 					}
+
+					var2 = var6; // L: 12796
 				}
-			} catch (Throwable var11) { // L: 586
+
+				var2[var3++] = (short)var4; // L: 12798
 			}
 		}
 
-		if (class162.garbageCollector != null) { // L: 588
-			long var9 = class115.method2692(); // L: 589
-			long var3 = class162.garbageCollector.getCollectionTime(); // L: 590
-			if (GameEngine.garbageCollectorLastCollectionTime != -1L) { // L: 591
-				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime; // L: 592
-				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs; // L: 593
-				if (0L != var7) { // L: 594
-					var0 = (int)(var5 * 100L / var7);
-				}
-			}
+		class138.foundItemIds = var2; // L: 12800
+		class317.foundItemIndex = 0; // L: 12801
+		SoundSystem.foundItemIdCount = var3; // L: 12802
+		String[] var8 = new String[SoundSystem.foundItemIdCount]; // L: 12803
 
-			GameEngine.garbageCollectorLastCollectionTime = var3; // L: 596
-			GameEngine.garbageCollectorLastCheckTimeMs = var9; // L: 597
+		for (int var5 = 0; var5 < SoundSystem.foundItemIdCount; ++var5) { // L: 12804
+			var8[var5] = class214.ItemComposition_get(var2[var5]).name;
 		}
 
-		return var0; // L: 599
-	}
+		GameObject.method5196(var8, class138.foundItemIds); // L: 12805
+	} // L: 12806
 }
