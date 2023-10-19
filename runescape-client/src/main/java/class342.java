@@ -1,27 +1,35 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mr")
-public final class class342 {
-	@ObfuscatedName("fw")
+@ObfuscatedName("no")
+public class class342 {
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(S)Z",
-		garbageValue = "208"
+		descriptor = "Lnz;"
 	)
-	static boolean method6312() {
-		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1634
-			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1635
-				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone); // L: 1636
-				if (!var0.isLoaded()) { // L: 1637
-					return false;
-				}
+	public class344 field3606;
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "Lnx;"
+	)
+	class339 field3604;
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "Lbk;"
+	)
+	class27 field3605;
+	@ObfuscatedName("ax")
+	public Object[] field3607;
+	@ObfuscatedName("ao")
+	public Object[] field3608;
+	@ObfuscatedName("ah")
+	public Object[] field3609;
+	@ObfuscatedName("ar")
+	public Object[] field3610;
 
-				++Client.archiveLoadersDone; // L: 1638
-			}
-
-			return true; // L: 1640
-		} else {
-			return true; // L: 1639
-		}
-	}
+	class342() {
+		this.field3606 = new class344(); // L: 6
+		this.field3604 = new class339(); // L: 7
+		this.field3605 = new class27(); // L: 8
+	} // L: 14
 }

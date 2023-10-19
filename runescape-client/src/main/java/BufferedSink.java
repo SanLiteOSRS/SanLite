@@ -6,40 +6,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nc")
+@ObfuscatedName("rs")
 @Implements("BufferedSink")
 public class BufferedSink implements Runnable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = -908139425
+		intValue = -1793136843
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -1613116679
+		intValue = 1374706769
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -2132108273
+		intValue = -510892913
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ar")
 	@Export("exception")
 	IOException exception;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ab")
 	@Export("closed")
 	boolean closed;
 
@@ -54,10 +54,10 @@ public class BufferedSink implements Runnable {
 		this.thread.start(); // L: 204
 	} // L: 205
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1872756001"
+		garbageValue = "-2138016913"
 	)
 	@Export("isClosed")
 	boolean isClosed() {
@@ -68,8 +68,8 @@ public class BufferedSink implements Runnable {
 					this.exception = new IOException(""); // L: 211
 				}
 			} catch (IOException var2) { // L: 213
-				if (this.exception == null) { // L: 214
-					this.exception = new IOException(var2);
+				if (this.exception == null) {
+					this.exception = new IOException(var2); // L: 214
 				}
 			}
 
@@ -79,10 +79,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "-1640336200"
+		garbageValue = "-939344469"
 	)
 	@Export("write")
 	void write(byte[] var1, int var2, int var3) throws IOException {
@@ -98,8 +98,8 @@ public class BufferedSink implements Runnable {
 						var5 = this.position - this.limit - 1; // L: 273
 					}
 
-					if (var5 < var3) {
-						throw new IOException(""); // L: 274
+					if (var5 < var3) { // L: 274
+						throw new IOException("");
 					} else {
 						if (var3 + this.limit <= this.capacity) { // L: 275
 							System.arraycopy(var1, var2, this.buffer, this.limit, var3); // L: 276
@@ -119,10 +119,10 @@ public class BufferedSink implements Runnable {
 		}
 	} // L: 286
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "135"
+		descriptor = "(I)V",
+		garbageValue = "792661080"
 	)
 	@Export("close")
 	void close() {
@@ -197,4 +197,18 @@ public class BufferedSink implements Runnable {
 		} while(!this.isClosed()); // L: 263
 
 	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-100"
+	)
+	public static void method8239() {
+		if (MouseHandler.MouseHandler_instance != null) { // L: 43
+			synchronized(MouseHandler.MouseHandler_instance) { // L: 44
+				MouseHandler.MouseHandler_instance = null; // L: 45
+			} // L: 46
+		}
+
+	} // L: 48
 }

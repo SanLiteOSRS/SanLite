@@ -4,77 +4,94 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("em")
 @Implements("AttackOption")
-public enum AttackOption implements MouseWheel {
-	@ObfuscatedName("c")
+public enum AttackOption implements class386 {
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lem;"
 	)
 	@Export("AttackOption_dependsOnCombatLevels")
 	AttackOption_dependsOnCombatLevels(0),
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lem;"
 	)
 	@Export("AttackOption_alwaysRightClick")
 	AttackOption_alwaysRightClick(1),
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lem;"
 	)
-	field1288(2),
-	@ObfuscatedName("f")
+	field1346(2),
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lem;"
 	)
 	@Export("AttackOption_hidden")
 	AttackOption_hidden(3),
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lem;"
 	)
-	field1294(4);
+	field1348(4);
 
-	@ObfuscatedName("sx")
-	@ObfuscatedSignature(
-		descriptor = "Lar;"
-	)
-	@Export("pcmPlayer0")
-	static PcmPlayer pcmPlayer0;
-	@ObfuscatedName("e")
+	@ObfuscatedName("il")
 	@ObfuscatedGetter(
-		intValue = 1078797137
+		longValue = 5179348451515936053L
+	)
+	static long field1354;
+	@ObfuscatedName("ah")
+	@ObfuscatedGetter(
+		intValue = 1184337345
 	)
 	@Export("id")
 	final int id;
 
 	AttackOption(int var3) {
-		this.id = var3; // L: 12508
-	} // L: 12509
+		this.id = var3; // L: 13003
+	} // L: 13004
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "-1243971674"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 12513
+		return this.id; // L: 13008
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;IIIZI)V",
-		garbageValue = "-2127504965"
+		descriptor = "(Ltp;III)I",
+		garbageValue = "1550710334"
 	)
-	public static void method2410(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class272.musicPlayerStatus = 1; // L: 26
-		class272.musicTrackArchive = var0; // L: 27
-		class272.musicTrackGroupId = var1; // L: 28
-		class151.musicTrackFileId = var2; // L: 29
-		class272.musicTrackVolume = var3; // L: 30
-		class11.musicTrackBoolean = var4; // L: 31
-		class272.pcmSampleLength = 10000; // L: 32
-	} // L: 33
+	static int method2721(IterableNodeHashTable var0, int var1, int var2) {
+		if (var0 == null) { // L: 33
+			return var2;
+		} else {
+			IntegerNode var3 = (IntegerNode)var0.get((long)var1); // L: 34
+			return var3 == null ? var2 : var3.integer; // L: 35 36
+		}
+	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;I)Z",
+		garbageValue = "1281251233"
+	)
+	@Export("isNumber")
+	public static boolean isNumber(CharSequence var0) {
+		return class135.method3074(var0, 10, true); // L: 40
+	}
+
+	@ObfuscatedName("lv")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-860429671"
+	)
+	static final int method2714() {
+		return Client.menuOptionsCount - 1; // L: 10311
+	}
 }
