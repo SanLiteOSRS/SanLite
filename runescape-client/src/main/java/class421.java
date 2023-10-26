@@ -1,93 +1,96 @@
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pl")
-public class class421 implements class420 {
-	@ObfuscatedName("y")
-	@Export("SpriteBuffer_pixels")
-	public static byte[][] SpriteBuffer_pixels;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = -390104157
-	)
-	static int field4607;
-	@ObfuscatedName("c")
-	Map field4606;
-	@ObfuscatedName("v")
+@ObfuscatedName("qm")
+public abstract class class421 {
+	@ObfuscatedName("fq")
 	@ObfuscatedSignature(
-		descriptor = "Lqw;"
+		descriptor = "Lok;"
 	)
-	final class449 field4605;
+	@Export("archive12")
+	static Archive archive12;
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "Lqm;"
+	)
+	class421 field4575;
+	@ObfuscatedName("ax")
+	String field4574;
+	@ObfuscatedName("ao")
+	String field4572;
+	@ObfuscatedName("ah")
+	boolean field4576;
+	@ObfuscatedName("ar")
+	boolean field4573;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqw;)V"
+		descriptor = "(Lqm;)V"
 	)
-	public class421(class449 var1) {
-		this.field4605 = var1; // L: 15
-	} // L: 16
+	class421(class421 var1) {
+		this.field4575 = var1; // L: 11
+	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-2111872296"
+		descriptor = "(B)Z",
+		garbageValue = "-90"
 	)
-	public int vmethod7440(int var1) {
-		if (this.field4606 != null) { // L: 20
-			class450 var2 = (class450)this.field4606.get(var1); // L: 21
-			if (var2 != null) {
-				return (Integer)var2.field4766; // L: 22
-			}
-		}
+	public abstract boolean vmethod7780();
 
-		return (Integer)this.field4605.vmethod8027(var1); // L: 24
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1050307233"
+	)
+	public boolean method7760() {
+		return this.field4576; // L: 17
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/Object;S)V",
-		garbageValue = "31470"
+		descriptor = "(B)Z",
+		garbageValue = "45"
 	)
-	public void vmethod7441(int var1, Object var2) {
-		if (this.field4606 == null) { // L: 29
-			this.field4606 = new HashMap(); // L: 30
-			this.field4606.put(var1, new class450(var1, var2)); // L: 31
-		} else {
-			class450 var3 = (class450)this.field4606.get(var1); // L: 34
-			if (var3 == null) {
-				this.field4606.put(var1, new class450(var1, var2)); // L: 35
-			} else {
-				var3.field4766 = var2; // L: 36
-			}
-		}
-
-	} // L: 38
-
-	public Iterator iterator() {
-		return this.field4606 == null ? Collections.emptyList().iterator() : this.field4606.values().iterator(); // L: 42 43
+	public boolean method7762() {
+		return this.field4573; // L: 21
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Ljava/lang/String;Ljava/lang/String;B)Lqu;",
-		garbageValue = "73"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "-1522187493"
 	)
-	@Export("SpriteBuffer_getIndexedSpriteByName")
-	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
-		int var3 = var0.getGroupId(var1); // L: 85
-		int var4 = var0.getFileId(var3, var2); // L: 86
-		IndexedSprite var5;
-		if (!Ignored.method6774(var0, var3, var4)) { // L: 89
-			var5 = null; // L: 90
-		} else {
-			var5 = class390.method7053(); // L: 93
-		}
+	public String method7763() {
+		return "Error in task: " + this.field4572 + ", Error message: " + this.field4574; // L: 25
+	}
 
-		return var5; // L: 95
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lqm;",
+		garbageValue = "-1213560262"
+	)
+	public class421 method7764() {
+		return this.field4575; // L: 29
+	}
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "225620137"
+	)
+	void method7773(String var1) {
+		this.field4576 = true; // L: 33
+		this.field4574 = var1; // L: 34
+	} // L: 35
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "1674491330"
+	)
+	@Export("isWorldMapEvent")
+	public static boolean isWorldMapEvent(int var0) {
+		return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17; // L: 19
 	}
 }
