@@ -4,86 +4,79 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cq")
+@ObfuscatedName("de")
 @Implements("InterfaceParent")
 public class InterfaceParent extends Node {
-	@ObfuscatedName("sm")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -1985635931
-	)
-	static int field1043;
-	@ObfuscatedName("jy")
-	@ObfuscatedGetter(
-		intValue = -1949636447
-	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 315980607
+		intValue = 1919932593
 	)
 	@Export("group")
 	int group;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 1762148949
+		intValue = 1828374187
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("q")
-	boolean field1040;
+	@ObfuscatedName("ak")
+	boolean field1074;
 
 	InterfaceParent() {
-		this.field1040 = false; // L: 8
+		this.field1074 = false; // L: 8
 	} // L: 10
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "896944894"
+		descriptor = "(Lnm;I[B[BI)V",
+		garbageValue = "101462872"
 	)
-	public static int method2095(int var0) {
-		long var2 = ViewportMouse.ViewportMouse_entityTags[var0]; // L: 65
-		int var1 = (int)(var2 >>> 7 & 127L); // L: 67
-		return var1; // L: 69
-	}
+	@Export("Widget_setKey")
+	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+		if (var0.field3752 == null) { // L: 1216
+			if (var2 == null) { // L: 1217
+				return; // L: 1223
+			}
 
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "1938605488"
-	)
-	static int method2097(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == 3500) { // L: 2332
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2333
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method764(var3) ? 1 : 0; // L: 2334
-			return 1; // L: 2335
-		} else if (var0 == 3501) { // L: 2337
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2338
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = VertexNormal.method4528(var3) ? 1 : 0; // L: 2339
-			return 1; // L: 2340
-		} else if (var0 == 3502) { // L: 2342
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method753(var3) ? 1 : 0; // L: 2344
-			return 1; // L: 2345
-		} else {
-			return 2; // L: 2347
+			var0.field3752 = new byte[11][]; // L: 1218
+			var0.field3779 = new byte[11][]; // L: 1219
+			var0.field3770 = new int[11]; // L: 1220
+			var0.field3800 = new int[11]; // L: 1221
 		}
-	}
 
-	@ObfuscatedName("il")
+		var0.field3752[var1] = var2; // L: 1225
+		if (var2 != null) {
+			var0.field3751 = true; // L: 1226
+		} else {
+			var0.field3751 = false; // L: 1228
+
+			for (int var4 = 0; var4 < var0.field3752.length; ++var4) { // L: 1229
+				if (var0.field3752[var4] != null) { // L: 1230
+					var0.field3751 = true; // L: 1231
+					break;
+				}
+			}
+		}
+
+		var0.field3779[var1] = var3; // L: 1236
+	} // L: 1237
+
+	@ObfuscatedName("oz")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-62"
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "554905289"
 	)
-	@Export("addCancelMenuEntry")
-	static void addCancelMenuEntry() {
-		class125.method2824(); // L: 8428
-		Client.menuActions[0] = "Cancel"; // L: 8429
-		Client.menuTargets[0] = ""; // L: 8430
-		Client.menuOpcodes[0] = 1006; // L: 8431
-		Client.menuShiftClick[0] = false; // L: 8432
-		Client.menuOptionsCount = 1; // L: 8433
-	} // L: 8434
+	static String method2312(String var0) {
+		PlayerType[] var1 = class183.PlayerType_values(); // L: 12843
+
+		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12844
+			PlayerType var3 = var1[var2]; // L: 12845
+			if (var3.modIcon != -1 && var0.startsWith(class436.method7916(var3.modIcon))) { // L: 12847 12848
+				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length()); // L: 12849
+				break;
+			}
+		}
+
+		return var0; // L: 12856
+	}
 }

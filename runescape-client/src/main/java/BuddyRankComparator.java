@@ -3,19 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ds")
+@ObfuscatedName("eu")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("e")
-	@Export("PcmPlayer_stereo")
-	protected static boolean PcmPlayer_stereo;
-	@ObfuscatedName("in")
-	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
-	)
-	@Export("crossSprites")
-	static SpritePixels[] crossSprites;
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -23,10 +14,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1; // L: 10
 	} // L: 11
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;B)I",
-		garbageValue = "114"
+		descriptor = "(Lri;Lri;I)I",
+		garbageValue = "383953435"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -41,36 +32,32 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 21
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lfj;",
-		garbageValue = "273043499"
+		descriptor = "(I)V",
+		garbageValue = "1321294301"
 	)
-	@Export("getNpcDefinition")
-	public static NPCComposition getNpcDefinition(int var0) {
-		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0); // L: 65
-		if (var1 != null) { // L: 66
-			return var1;
-		} else {
-			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0); // L: 67
-			var1 = new NPCComposition(); // L: 68
-			var1.id = var0; // L: 69
-			if (var2 != null) { // L: 70
-				var1.decode(new Buffer(var2));
-			}
+	static void method2933() {
+		World.field841 = null; // L: 61
+		VertexNormal.field2820 = null; // L: 62
+		SecureRandomFuture.field997 = null; // L: 63
+		class199.field2004 = null; // L: 64
+		UserComparator6.field1486 = null; // L: 65
+		Tiles.field1045 = null; // L: 66
+		class158.field1739 = null; // L: 67
+		SecureRandomFuture.Tiles_hue = null; // L: 68
+		class135.Tiles_saturation = null; // L: 69
+		Tiles.Tiles_lightness = null; // L: 70
+		WorldMapSection2.Tiles_hueMultiplier = null; // L: 71
+		Script.field1008 = null; // L: 72
+	} // L: 73
 
-			var1.postDecode(); // L: 71
-			NPCComposition.NpcDefinition_cached.put(var1, (long)var0); // L: 72
-			return var1; // L: 73
-		}
-	}
-
-	@ObfuscatedName("br")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)I",
-		garbageValue = "-107"
+		descriptor = "(B)I",
+		garbageValue = "0"
 	)
-	public static int method2620(String var0) {
-		return var0.length() + 2; // L: 128
+	protected static final int method2936() {
+		return GameEngine.field221.method345(); // L: 138
 	}
 }

@@ -4,103 +4,156 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bk")
+@ObfuscatedName("cf")
 @Implements("MenuAction")
 public class MenuAction {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -513159761
+		intValue = 1599411707
 	)
 	@Export("param0")
 	int param0;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 312244153
+		intValue = -878731657
 	)
 	@Export("param1")
 	int param1;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = 1134197845
+		intValue = -338710693
 	)
 	@Export("opcode")
 	int opcode;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 59405457
+		intValue = -43155063
 	)
 	@Export("identifier")
 	int identifier;
-	@ObfuscatedName("j")
-	@Export("action")
-	String action;
+	@ObfuscatedName("ao")
+	@ObfuscatedGetter(
+		intValue = 534377657
+	)
+	int field920;
+	@ObfuscatedName("ah")
+	String field913;
+	@ObfuscatedName("ar")
+	String field914;
 
 	MenuAction() {
-	} // L: 12524
+	} // L: 13042
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lny;",
-		garbageValue = "24881"
+		descriptor = "([BB)V",
+		garbageValue = "-3"
 	)
-	public static class387 method1884() {
-		synchronized(class387.field4393) { // L: 25
-			if (class387.field4395 == 0) { // L: 26
-				return new class387();
-			} else {
-				class387.field4393[--class387.field4395].method6956(); // L: 28
-				return class387.field4393[class387.field4395]; // L: 29
+	@Export("ByteArrayPool_release")
+	public static synchronized void ByteArrayPool_release(byte[] var0) {
+		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field4606) { // L: 96
+			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0; // L: 97
+		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field4599) { // L: 100
+			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0;
+		} else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field4600) { // L: 104
+			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0;
+		} else if (var0.length == 30000 && ByteArrayPool.field4595 < ByteArrayPool.field4603) { // L: 108
+			ByteArrayPool.field4605[++ByteArrayPool.field4595 - 1] = var0;
+		} else {
+			if (KeyHandler.ByteArrayPool_arrays != null) { // L: 112
+				for (int var1 = 0; var1 < ByteArrayPool.ByteArrayPool_alternativeSizes.length; ++var1) {
+					if (var0.length == ByteArrayPool.ByteArrayPool_alternativeSizes[var1] && class425.ByteArrayPool_altSizeArrayCounts[var1] < KeyHandler.ByteArrayPool_arrays[var1].length) { // L: 114
+						KeyHandler.ByteArrayPool_arrays[var1][class425.ByteArrayPool_altSizeArrayCounts[var1]++] = var0; // L: 115
+						return; // L: 116
+					}
+				}
 			}
+
+		}
+	} // L: 106 110 120
+
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)D",
+		garbageValue = "-2018326069"
+	)
+	static double method2122(int var0, int var1, int var2) {
+		double var3 = var1 > 0 ? (double)Math.max(0.0F, Math.min(1.0F, (float)var0 / (float)var1)) : 1.0D; // L: 29
+		if (var3 > 0.0D && var3 < 1.0D) { // L: 30
+			double var5;
+			double var7;
+			switch(var2) { // L: 33
+			case 0:
+				return var3; // L: 47
+			case 1:
+				return 1.0D - Math.cos(3.141592653589793D * var3 / 2.0D); // L: 81
+			case 2:
+				return Math.sin(3.141592653589793D * var3 / 2.0D); // L: 90
+			case 3:
+				return -(Math.cos(3.141592653589793D * var3) - 1.0D) / 2.0D; // L: 59
+			case 4:
+				return var3 * var3; // L: 67
+			case 5:
+				return 1.0D - (1.0D - var3) * (1.0D - var3); // L: 65
+			case 6:
+				return var3 < 0.5D ? var3 * 2.0D * var3 : 1.0D - Math.pow(2.0D + var3 * -2.0D, 2.0D) / 2.0D; // L: 61
+			case 7:
+				return var3 * var3 * var3; // L: 35
+			case 8:
+				return 1.0D - Math.pow(1.0D - var3, 3.0D); // L: 37
+			case 9:
+				return var3 < 0.5D ? var3 * 4.0D * var3 * var3 : 1.0D - Math.pow(var3 * -2.0D + 2.0D, 3.0D) / 2.0D; // L: 109
+			case 10:
+				return var3 * var3 * var3 * var3; // L: 63
+			case 11:
+				return 1.0D - Math.pow(1.0D - var3, 4.0D); // L: 51
+			case 12:
+				return var3 < 0.5D ? var3 * var3 * var3 * 8.0D * var3 : 1.0D - Math.pow(var3 * -2.0D + 2.0D, 4.0D) / 2.0D; // L: 105
+			case 13:
+				return var3 * var3 * var3 * var3 * var3; // L: 107
+			case 14:
+				return 1.0D - Math.pow(1.0D - var3, 5.0D); // L: 83
+			case 15:
+				return var3 < 0.5D ? var3 * 8.0D * var3 * var3 * var3 * var3 : 1.0D - Math.pow(-2.0D * var3 + 2.0D, 5.0D) / 2.0D; // L: 111
+			case 16:
+				return Math.pow(2.0D, var3 * 10.0D - 10.0D); // L: 49
+			case 17:
+				return 1.0D - Math.pow(2.0D, var3 * -10.0D); // L: 73
+			case 18:
+				return var3 < 0.5D ? Math.pow(2.0D, 10.0D + var3 * 20.0D) / 2.0D : (2.0D - Math.pow(2.0D, 10.0D + var3 * -20.0D)) / 2.0D; // L: 98
+			case 19:
+				return 1.0D - Math.sqrt(1.0D - Math.pow(var3, 2.0D)); // L: 71
+			case 20:
+				return Math.sqrt(1.0D - Math.pow(var3 - 1.0D, 2.0D)); // L: 39
+			case 21:
+				return var3 < 0.5D ? (1.0D - Math.sqrt(1.0D - Math.pow(2.0D * var3, 2.0D))) / 2.0D : (Math.sqrt(1.0D - Math.pow(-2.0D * var3 + 2.0D, 2.0D)) + 1.0D) / 2.0D; // L: 69
+			case 22:
+				var5 = 1.70158D; // L: 54
+				var7 = 2.70158D; // L: 55
+				return var3 * var3 * 2.70158D * var3 - 1.70158D * var3 * var3; // L: 56
+			case 23:
+				var5 = 1.70158D; // L: 76
+				var7 = 2.70158D; // L: 77
+				return 1.0D + 2.70158D * Math.pow(var3 - 1.0D, 3.0D) + 1.70158D * Math.pow(var3 - 1.0D, 2.0D); // L: 78
+			case 24:
+				var5 = 1.70158D; // L: 93
+				var7 = 2.5949095D; // L: 94
+				return var3 < 0.5D ? Math.pow(var3 * 2.0D, 2.0D) * (var3 * 7.189819D - 2.5949095D) / 2.0D : (Math.pow(var3 * 2.0D - 2.0D, 2.0D) * (3.5949095D * (2.0D * var3 - 2.0D) + 2.5949095D) + 2.0D) / 2.0D; // L: 95
+			case 25:
+				var5 = 2.0943951023931953D; // L: 86
+				return -Math.pow(2.0D, 10.0D * var3 - 10.0D) * Math.sin((var3 * 10.0D - 10.75D) * 2.0943951023931953D); // L: 87
+			case 26:
+				var5 = 2.0943951023931953D; // L: 101
+				return Math.pow(2.0D, var3 * -10.0D) * Math.sin(2.0943951023931953D * (10.0D * var3 - 0.75D)) + 1.0D; // L: 102
+			case 27:
+				var5 = 1.3962634015954636D; // L: 42
+				var7 = Math.sin(1.3962634015954636D * (var3 * 20.0D - 11.125D)); // L: 43
+				return var3 < 0.5D ? -(Math.pow(2.0D, 20.0D * var3 - 10.0D) * var7) / 2.0D : Math.pow(2.0D, 10.0D + var3 * -20.0D) * var7 / 2.0D + 1.0D; // L: 44
+			default:
+				return var3; // L: 113
+			}
+		} else {
+			return var3 <= 0.0D ? 0.0D : 1.0D; // L: 31
 		}
 	}
-
-	@ObfuscatedName("gi")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;IIS)V",
-		garbageValue = "4254"
-	)
-	@Export("checkIfMinimapClicked")
-	static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
-		if (Client.minimapState == 0 || Client.minimapState == 3) { // L: 3856
-			if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !class122.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) { // L: 3857
-				SpriteMask var3 = var0.getSpriteMask(true); // L: 3858
-				if (var3 == null) { // L: 3859
-					return;
-				}
-
-				int var4 = MouseHandler.MouseHandler_lastPressedX - var1; // L: 3860
-				int var5 = MouseHandler.MouseHandler_lastPressedY - var2; // L: 3861
-				if (var3.contains(var4, var5)) { // L: 3862
-					var4 -= var3.width / 2; // L: 3863
-					var5 -= var3.height / 2; // L: 3864
-					int var6 = Client.camAngleY & 2047; // L: 3865
-					int var7 = Rasterizer3D.Rasterizer3D_sine[var6]; // L: 3866
-					int var8 = Rasterizer3D.Rasterizer3D_cosine[var6]; // L: 3867
-					int var9 = var8 * var4 + var5 * var7 >> 11; // L: 3868
-					int var10 = var5 * var8 - var4 * var7 >> 11; // L: 3869
-					int var11 = var9 + class101.localPlayer.x >> 7; // L: 3870
-					int var12 = class101.localPlayer.y - var10 >> 7; // L: 3871
-					PacketBufferNode var13 = EnumComposition.getPacketBufferNode(ClientPacket.field2913, Client.packetWriter.isaacCipher); // L: 3873
-					var13.packetBuffer.writeByte(18); // L: 3874
-					var13.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0); // L: 3875
-					var13.packetBuffer.writeShort(class28.baseX * 64 + var11); // L: 3876
-					var13.packetBuffer.writeIntME(WorldMapLabelSize.baseY * 64 + var12); // L: 3877
-					var13.packetBuffer.writeByte(var4); // L: 3878
-					var13.packetBuffer.writeByte(var5); // L: 3879
-					var13.packetBuffer.writeShort(Client.camAngleY); // L: 3880
-					var13.packetBuffer.writeByte(57); // L: 3881
-					var13.packetBuffer.writeByte(0); // L: 3882
-					var13.packetBuffer.writeByte(0); // L: 3883
-					var13.packetBuffer.writeByte(89); // L: 3884
-					var13.packetBuffer.writeShort(class101.localPlayer.x); // L: 3885
-					var13.packetBuffer.writeShort(class101.localPlayer.y); // L: 3886
-					var13.packetBuffer.writeByte(63); // L: 3887
-					Client.packetWriter.addNode(var13); // L: 3888
-					Client.destinationX = var11; // L: 3889
-					Client.destinationY = var12; // L: 3890
-				}
-			}
-
-		}
-	} // L: 3893
 }
