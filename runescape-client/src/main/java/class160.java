@@ -1,179 +1,196 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fb")
-public class class160 {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lct;"
+@ObfuscatedName("gq")
+public class class160 extends class145 {
+	@ObfuscatedName("ao")
+	@Export("Interpreter_stringLocals")
+	static String[] Interpreter_stringLocals;
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = 401504703
 	)
-	public UrlRequest field1772;
-	@ObfuscatedName("v")
-	public float[] field1770;
+	@Export("gameCyclesToDo")
+	static int gameCyclesToDo;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		longValue = 5609490768388996985L
+	)
+	long field1751;
+	@ObfuscatedName("al")
+	String field1748;
+	@ObfuscatedName("ak")
+	@ObfuscatedGetter(
+		intValue = -475909911
+	)
+	int field1749;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Les;"
+		descriptor = "Lff;"
 	)
-	final class155 this$0;
+	final class148 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Les;)V"
+		descriptor = "(Lff;)V"
 	)
-	class160(class155 var1) {
+	class160(class148 var1) {
 		this.this$0 = var1;
-		this.field1770 = new float[4]; // L: 326
-	} // L: 328
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(I)[I",
-		garbageValue = "112467614"
-	)
-	public static int[] method3285() {
-		int[] var0 = new int[KeyHandler.field146]; // L: 265
-
-		for (int var1 = 0; var1 < KeyHandler.field146; ++var1) { // L: 266
-			var0[var1] = KeyHandler.field142[var1]; // L: 267
-		}
-
-		return var0; // L: 269
+		this.field1751 = -1L;
+		this.field1748 = null; // L: 94
+		this.field1749 = 0;
 	}
 
-	@ObfuscatedName("id")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Lco;IIIB)V",
-		garbageValue = "9"
+		descriptor = "(Lul;I)V",
+		garbageValue = "-11659242"
 	)
-	@Export("addNpcToMenu")
-	static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
-		NPCComposition var4 = var0.definition; // L: 9879
-		if (Client.menuOptionsCount < 400) { // L: 9880
-			if (var4.transforms != null) { // L: 9881
-				var4 = var4.transform();
-			}
+	void vmethod3414(Buffer var1) {
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			this.field1751 = var1.readLong(); // L: 102
+		}
 
-			if (var4 != null) { // L: 9882
-				if (var4.isInteractable) { // L: 9883
-					if (!var4.isFollower || Client.followerIndex == var1) { // L: 9884
-						String var5 = var0.method2360(); // L: 9885
-						int var6;
-						int var9;
-						if (var4.combatLevel != 0 && var0.field1204 != 0) { // L: 9886
-							var6 = var0.field1204 != -1 ? var0.field1204 : var4.combatLevel; // L: 9887
-							var9 = class101.localPlayer.combatLevel; // L: 9890
-							int var10 = var9 - var6; // L: 9892
-							String var8;
-							if (var10 < -9) { // L: 9893
-								var8 = class122.colorStartTag(16711680); // L: 9894
-							} else if (var10 < -6) { // L: 9897
-								var8 = class122.colorStartTag(16723968); // L: 9898
-							} else if (var10 < -3) { // L: 9901
-								var8 = class122.colorStartTag(16740352); // L: 9902
-							} else if (var10 < 0) { // L: 9905
-								var8 = class122.colorStartTag(16756736); // L: 9906
-							} else if (var10 > 9) { // L: 9909
-								var8 = class122.colorStartTag(65280); // L: 9910
-							} else if (var10 > 6) { // L: 9913
-								var8 = class122.colorStartTag(4259584); // L: 9914
-							} else if (var10 > 3) { // L: 9917
-								var8 = class122.colorStartTag(8453888); // L: 9918
-							} else if (var10 > 0) { // L: 9921
-								var8 = class122.colorStartTag(12648192); // L: 9922
-							} else {
-								var8 = class122.colorStartTag(16776960); // L: 9925
-							}
+		this.field1748 = var1.readStringCp1252NullTerminatedOrNull();
+		this.field1749 = var1.readUnsignedShort();
+	} // L: 106
 
-							var5 = var5 + var8 + " " + " (" + "level-" + var6 + ")"; // L: 9927
-						}
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(Lgi;I)V",
+		garbageValue = "21847466"
+	)
+	void vmethod3415(ClanSettings var1) {
+		var1.method3242(this.field1751, this.field1748, this.field1749);
+	}
 
-						if (var4.isFollower && Client.followerOpsLowPriority) { // L: 9929
-							class4.insertMenuItemNoShift("Examine", class122.colorStartTag(16776960) + var5, 1003, var1, var2, var3); // L: 9930
-						}
+	@ObfuscatedName("ac")
+	public static String method3339(long var0) {
+		if (var0 > 0L && var0 < 6582952005840035281L) { // L: 16
+			if (var0 % 37L == 0L) { // L: 17
+				return null;
+			} else {
+				int var2 = 0; // L: 18
 
-						if (Client.isItemSelected == 1) { // L: 9933
-							class4.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + class122.colorStartTag(16776960) + var5, 7, var1, var2, var3); // L: 9934
-						} else if (Client.isSpellSelected) { // L: 9937
-							if ((HealthBar.selectedSpellFlags & 2) == 2) { // L: 9938
-								class4.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + class122.colorStartTag(16776960) + var5, 8, var1, var2, var3); // L: 9939
-							}
-						} else {
-							var6 = var4.isFollower && Client.followerOpsLowPriority ? 2000 : 0; // L: 9944
-							String[] var7 = var4.actions; // L: 9945
-							int var11;
-							if (var7 != null) { // L: 9946
-								for (var11 = 4; var11 >= 0; --var11) { // L: 9947
-									if (var7[var11] != null && !var7[var11].equalsIgnoreCase("Attack")) { // L: 9948
-										var9 = 0; // L: 9949
-										if (var11 == 0) { // L: 9950
-											var9 = var6 + 9;
-										}
-
-										if (var11 == 1) { // L: 9951
-											var9 = var6 + 10;
-										}
-
-										if (var11 == 2) { // L: 9952
-											var9 = var6 + 11;
-										}
-
-										if (var11 == 3) { // L: 9953
-											var9 = var6 + 12;
-										}
-
-										if (var11 == 4) { // L: 9954
-											var9 = var6 + 13;
-										}
-
-										class4.insertMenuItemNoShift(var7[var11], class122.colorStartTag(16776960) + var5, var9, var1, var2, var3); // L: 9955
-									}
-								}
-							}
-
-							if (var7 != null) { // L: 9960
-								for (var11 = 4; var11 >= 0; --var11) { // L: 9961
-									if (var7[var11] != null && var7[var11].equalsIgnoreCase("Attack")) { // L: 9962
-										short var12 = 0; // L: 9963
-										if (AttackOption.AttackOption_hidden != Client.npcAttackOption) { // L: 9964
-											if (AttackOption.AttackOption_alwaysRightClick == Client.npcAttackOption || Client.npcAttackOption == AttackOption.AttackOption_dependsOnCombatLevels && var4.combatLevel > class101.localPlayer.combatLevel) { // L: 9965
-												var12 = 2000; // L: 9966
-											}
-
-											var9 = 0; // L: 9968
-											if (var11 == 0) { // L: 9969
-												var9 = var12 + 9;
-											}
-
-											if (var11 == 1) { // L: 9970
-												var9 = var12 + 10;
-											}
-
-											if (var11 == 2) { // L: 9971
-												var9 = var12 + 11;
-											}
-
-											if (var11 == 3) { // L: 9972
-												var9 = var12 + 12;
-											}
-
-											if (var11 == 4) { // L: 9973
-												var9 = var12 + 13;
-											}
-
-											class4.insertMenuItemNoShift(var7[var11], class122.colorStartTag(16776960) + var5, var9, var1, var2, var3); // L: 9974
-										}
-									}
-								}
-							}
-
-							if (!var4.isFollower || !Client.followerOpsLowPriority) { // L: 9979
-								class4.insertMenuItemNoShift("Examine", class122.colorStartTag(16776960) + var5, 1003, var1, var2, var3); // L: 9980
-							}
-						}
-
-					}
+				for (long var3 = var0; 0L != var3; var3 /= 37L) { // L: 19 20 22
+					++var2; // L: 21
 				}
+
+				StringBuilder var5 = new StringBuilder(var2);
+
+				while (var0 != 0L) {
+					long var6 = var0;
+					var0 /= 37L;
+					var5.append(class403.base37Table[(int)(var6 - var0 * 37L)]);
+				}
+
+				return var5.reverse().toString();
+			}
+		} else {
+			return null;
+		}
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(ILjava/lang/String;Loa;II)Llx;",
+		garbageValue = "1083227717"
+	)
+	public static PacketBufferNode method3340(int var0, String var1, Language var2, int var3) {
+		PacketBufferNode var4 = ClanChannelMember.getPacketBufferNode(ClientPacket.field3224, Client.packetWriter.isaacCipher); // L: 23
+		var4.packetBuffer.writeByte(0); // L: 24
+		int var5 = var4.packetBuffer.offset; // L: 25
+		var4.packetBuffer.writeByte(var0); // L: 26
+		String var6 = var1.toLowerCase(); // L: 27
+		int var7 = 0; // L: 28
+		byte[] var8 = null; // L: 29
+		if (var6.startsWith("yellow:")) { // L: 30
+			var7 = 0; // L: 31
+			var1 = var1.substring("yellow:".length()); // L: 32
+		} else if (var6.startsWith("red:")) { // L: 34
+			var7 = 1; // L: 35
+			var1 = var1.substring("red:".length()); // L: 36
+		} else if (var6.startsWith("green:")) { // L: 38
+			var7 = 2; // L: 39
+			var1 = var1.substring("green:".length()); // L: 40
+		} else if (var6.startsWith("cyan:")) { // L: 42
+			var7 = 3; // L: 43
+			var1 = var1.substring("cyan:".length()); // L: 44
+		} else if (var6.startsWith("purple:")) { // L: 46
+			var7 = 4; // L: 47
+			var1 = var1.substring("purple:".length()); // L: 48
+		} else if (var6.startsWith("white:")) { // L: 50
+			var7 = 5; // L: 51
+			var1 = var1.substring("white:".length()); // L: 52
+		} else if (var6.startsWith("flash1:")) { // L: 54
+			var7 = 6; // L: 55
+			var1 = var1.substring("flash1:".length()); // L: 56
+		} else if (var6.startsWith("flash2:")) { // L: 58
+			var7 = 7; // L: 59
+			var1 = var1.substring("flash2:".length()); // L: 60
+		} else if (var6.startsWith("flash3:")) { // L: 62
+			var7 = 8; // L: 63
+			var1 = var1.substring("flash3:".length()); // L: 64
+		} else if (var6.startsWith("glow1:")) { // L: 66
+			var7 = 9; // L: 67
+			var1 = var1.substring("glow1:".length()); // L: 68
+		} else if (var6.startsWith("glow2:")) { // L: 70
+			var7 = 10; // L: 71
+			var1 = var1.substring("glow2:".length()); // L: 72
+		} else if (var6.startsWith("glow3:")) { // L: 74
+			var7 = 11; // L: 75
+			var1 = var1.substring("glow3:".length()); // L: 76
+		} else if (var6.startsWith("rainbow:")) { // L: 78
+			var7 = 12; // L: 79
+			var1 = var1.substring("rainbow:".length()); // L: 80
+		} else if (var6.startsWith("pattern")) { // L: 82
+			var8 = class161.method3347(var6); // L: 83
+			if (var8 != null) { // L: 84
+				var7 = var8.length + 12; // L: 85
+				var1 = var1.substring("pattern".length() + var8.length + 1); // L: 86
 			}
 		}
-	} // L: 9984
+
+		var6 = var1.toLowerCase(); // L: 89
+		byte var9 = 0; // L: 90
+		if (var6.startsWith("wave:")) { // L: 91
+			var9 = 1; // L: 92
+			var1 = var1.substring("wave:".length()); // L: 93
+		} else if (var6.startsWith("wave2:")) { // L: 95
+			var9 = 2; // L: 96
+			var1 = var1.substring("wave2:".length()); // L: 97
+		} else if (var6.startsWith("shake:")) { // L: 99
+			var9 = 3; // L: 100
+			var1 = var1.substring("shake:".length()); // L: 101
+		} else if (var6.startsWith("scroll:")) { // L: 103
+			var9 = 4; // L: 104
+			var1 = var1.substring("scroll:".length()); // L: 105
+		} else if (var6.startsWith("slide:")) { // L: 107
+			var9 = 5; // L: 108
+			var1 = var1.substring("slide:".length());
+		}
+
+		var4.packetBuffer.writeByte(var7); // L: 111
+		var4.packetBuffer.writeByte(var9); // L: 112
+		if (var8 != null && Client.field527 >= 214) { // L: 113
+			for (int var10 = 0; var10 < var8.length; ++var10) { // L: 114
+				var4.packetBuffer.writeByte(var8[var10]); // L: 115
+			}
+		}
+
+		class150.method3192(var4.packetBuffer, var1); // L: 118
+		if (var0 == class354.field3851.rsOrdinal()) { // L: 119
+			var4.packetBuffer.writeByte(var3); // L: 120
+		}
+
+		var4.packetBuffer.method9200(var4.packetBuffer.offset - var5); // L: 122
+		return var4; // L: 123
+	}
+
+	@ObfuscatedName("av")
+	static final void method3338(long var0) {
+		ViewportMouse.ViewportMouse_entityTags[++ViewportMouse.ViewportMouse_entityCount - 1] = var0; // L: 109
+	} // L: 110
 }

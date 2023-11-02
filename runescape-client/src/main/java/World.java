@@ -1,69 +1,72 @@
+import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import netscape.javascript.JSObject;
 
-@ObfuscatedName("bc")
+@ObfuscatedName("cv")
 @Implements("World")
 public class World {
-	@ObfuscatedName("e")
+	@ObfuscatedName("ax")
+	static short[][][] field841;
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 1243814163
+		intValue = 1768946701
 	)
 	@Export("World_count")
 	static int World_count;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1265990767
+		intValue = 1703079229
 	)
 	@Export("World_listCount")
 	static int World_listCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ab")
 	@Export("World_sortOption2")
 	static int[] World_sortOption2;
-	@ObfuscatedName("y")
+	@ObfuscatedName("am")
 	@Export("World_sortOption1")
 	static int[] World_sortOption1;
-	@ObfuscatedName("bx")
-	@Export("otp")
-	static String otp;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -1195695549
+		intValue = -149424631
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("t")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = 1566282553
+		intValue = 899342913
 	)
 	@Export("properties")
 	int properties;
-	@ObfuscatedName("z")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 856262613
+		intValue = 685089359
 	)
 	@Export("population")
 	int population;
-	@ObfuscatedName("r")
+	@ObfuscatedName("ay")
 	@Export("host")
 	String host;
-	@ObfuscatedName("u")
+	@ObfuscatedName("as")
 	@Export("activity")
 	String activity;
-	@ObfuscatedName("k")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -951869585
+		intValue = 41412855
 	)
 	@Export("location")
 	int location;
-	@ObfuscatedName("h")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1645334635
+		intValue = 1563790547
 	)
 	@Export("index")
 	int index;
+	@ObfuscatedName("au")
+	String field833;
 
 	static {
 		World_count = 0; // L: 14
@@ -73,125 +76,137 @@ public class World {
 	}
 
 	World() {
-	} // L: 27
+	} // L: 28
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-1"
+		descriptor = "(I)Z",
+		garbageValue = "844978616"
 	)
 	@Export("isMembersOnly")
 	boolean isMembersOnly() {
-		return (1 & this.properties) != 0; // L: 247
+		return (class525.field5115.rsOrdinal() & this.properties) != 0; // L: 248
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "2111399818"
-	)
-	boolean method1628() {
-		return (2 & this.properties) != 0; // L: 251
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-1146943017"
-	)
-	@Export("isPvp")
-	boolean isPvp() {
-		return (4 & this.properties) != 0; // L: 255
-	}
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "2013300690"
-	)
-	boolean method1594() {
-		return (8 & this.properties) != 0; // L: 259
-	}
-
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-2131603316"
+		garbageValue = "-249260285"
 	)
 	@Export("isDeadman")
 	boolean isDeadman() {
-		return (536870912 & this.properties) != 0; // L: 263
+		return (class525.field5112.rsOrdinal() & this.properties) != 0; // L: 252
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1130172337"
+		garbageValue = "1975874921"
+	)
+	boolean method1832() {
+		return (class525.field5111.rsOrdinal() & this.properties) != 0; // L: 256
+	}
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "32"
+	)
+	@Export("isPvp")
+	boolean isPvp() {
+		return (class525.field5096.rsOrdinal() & this.properties) != 0; // L: 260
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "0"
+	)
+	boolean method1834() {
+		return (class525.field5118.rsOrdinal() & this.properties) != 0; // L: 264
+	}
+
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(B)Z",
+		garbageValue = "42"
+	)
+	boolean method1835() {
+		return (class525.field5124.rsOrdinal() & this.properties) != 0; // L: 268
+	}
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-1488383834"
 	)
 	@Export("isBeta")
 	boolean isBeta() {
-		return (33554432 & this.properties) != 0; // L: 267
+		return (class525.field5120.rsOrdinal() & this.properties) != 0; // L: 272
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-1132976200"
+	)
+	boolean method1837() {
+		return (class525.field5125.rsOrdinal() & this.properties) != 0; // L: 276
+	}
+
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "119"
+		garbageValue = "-43"
 	)
-	boolean method1597() {
-		return (1073741824 & this.properties) != 0; // L: 271
+	boolean method1838() {
+		return (class525.field5103.rsOrdinal() & this.properties) != 0; // L: 280
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lfv;",
-		garbageValue = "-7"
+		descriptor = "(I)Z",
+		garbageValue = "165086370"
 	)
-	public static Clock method1601() {
+	boolean method1839() {
+		return (class525.field5101.rsOrdinal() & this.properties) != 0; // L: 284
+	}
+
+	@ObfuscatedName("ol")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;S)V",
+		garbageValue = "-14910"
+	)
+	static void method1852(String var0) {
+		HealthBarDefinition.field1995 = var0; // L: 12746
+
 		try {
-			return new NanoClock(); // L: 8
-		} catch (Throwable var1) { // L: 10
-			return new MilliClock(); // L: 11
-		}
-	}
-
-	@ObfuscatedName("hk")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1666471855"
-	)
-	static final void method1627() {
-		for (Projectile var0 = (Projectile)Client.projectiles.last(); var0 != null; var0 = (Projectile)Client.projectiles.previous()) { // L: 4850 4851 4868
-			if (var0.plane == PacketWriter.Client_plane && Client.cycle <= var0.cycleEnd) { // L: 4852
-				if (Client.cycle >= var0.cycleStart) { // L: 4853
-					if (var0.targetIndex > 0) { // L: 4854
-						NPC var1 = Client.npcs[var0.targetIndex - 1]; // L: 4855
-						if (var1 != null && var1.x >= 0 && var1.x < 13312 && var1.y >= 0 && var1.y < 13312) { // L: 4856
-							var0.setDestination(var1.x, var1.y, SceneTilePaint.getTileHeight(var1.x, var1.y, var0.plane) - var0.endHeight, Client.cycle);
-						}
-					}
-
-					if (var0.targetIndex < 0) { // L: 4858
-						int var2 = -var0.targetIndex - 1; // L: 4860
-						Player var3;
-						if (var2 == Client.localPlayerIndex) { // L: 4861
-							var3 = class101.localPlayer;
-						} else {
-							var3 = Client.players[var2]; // L: 4862
-						}
-
-						if (var3 != null && var3.x >= 0 && var3.x < 13312 && var3.y >= 0 && var3.y < 13312) {
-							var0.setDestination(var3.x, var3.y, SceneTilePaint.getTileHeight(var3.x, var3.y, var0.plane) - var0.endHeight, Client.cycle); // L: 4863
-						}
-					}
-
-					var0.advance(Client.field555); // L: 4865
-					class356.scene.drawEntity(PacketWriter.Client_plane, (int)var0.x, (int)var0.y, (int)var0.z, 60, var0, var0.yaw, -1L, false); // L: 4866
-				}
+			String var1 = class159.client.getParameter(Integer.toString(18)); // L: 12748
+			String var2 = class159.client.getParameter(Integer.toString(13)); // L: 12749
+			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2; // L: 12750
+			String var5;
+			if (var0.length() == 0) { // L: 12751
+				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
 			} else {
-				var0.remove();
+				String var4 = var3 + "; Expires="; // L: 12753
+				long var6 = GrandExchangeOfferTotalQuantityComparator.method7049() + 94608000000L; // L: 12755
+				Calendar.Calendar_calendar.setTime(new Date(var6)); // L: 12757
+				int var8 = Calendar.Calendar_calendar.get(7); // L: 12758
+				int var9 = Calendar.Calendar_calendar.get(5); // L: 12759
+				int var10 = Calendar.Calendar_calendar.get(2); // L: 12760
+				int var11 = Calendar.Calendar_calendar.get(1); // L: 12761
+				int var12 = Calendar.Calendar_calendar.get(11); // L: 12762
+				int var13 = Calendar.Calendar_calendar.get(12); // L: 12763
+				int var14 = Calendar.Calendar_calendar.get(13); // L: 12764
+				var5 = Calendar.DAYS_OF_THE_WEEK[var8 - 1] + ", " + var9 / 10 + var9 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var10] + "-" + var11 + " " + var12 / 10 + var12 % 10 + ":" + var13 / 10 + var13 % 10 + ":" + var14 / 10 + var14 % 10 + " GMT"; // L: 12765
+				var3 = var4 + var5 + "; Max-Age=" + 94608000L; // L: 12767
 			}
+
+			Client var16 = class159.client; // L: 12769
+			var5 = "document.cookie=\"" + var3 + "\""; // L: 12770
+			JSObject.getWindow(var16).eval(var5); // L: 12773
+		} catch (Throwable var15) { // L: 12776
 		}
 
-	} // L: 4870
+	} // L: 12777
 }
