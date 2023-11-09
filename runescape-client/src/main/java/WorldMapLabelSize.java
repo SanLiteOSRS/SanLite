@@ -1,51 +1,52 @@
+import java.io.File;
+import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hq")
+@ObfuscatedName("iq")
 @Implements("WorldMapLabelSize")
 public class WorldMapLabelSize {
-	@ObfuscatedName("c")
+	@ObfuscatedName("vf")
+	@ObfuscatedGetter(
+		longValue = -4916200356723856723L
+	)
+	static long field2824;
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lhq;"
+		descriptor = "Liq;"
 	)
 	@Export("WorldMapLabelSize_small")
 	public static final WorldMapLabelSize WorldMapLabelSize_small;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lhq;"
+		descriptor = "Liq;"
 	)
 	@Export("WorldMapLabelSize_medium")
 	public static final WorldMapLabelSize WorldMapLabelSize_medium;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lhq;"
+		descriptor = "Liq;"
 	)
 	@Export("WorldMapLabelSize_large")
 	public static final WorldMapLabelSize WorldMapLabelSize_large;
-	@ObfuscatedName("ha")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -794445137
+		intValue = -1619983487
 	)
-	@Export("baseY")
-	static int baseY;
-	@ObfuscatedName("f")
+	final int field2829;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1344743675
+		intValue = 547050313
 	)
-	final int field2671;
-	@ObfuscatedName("j")
+	final int field2828;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1890052329
+		intValue = 1330231937
 	)
-	final int field2672;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -241742535
-	)
-	final int field2676;
+	final int field2830;
 
 	static {
 		WorldMapLabelSize_small = new WorldMapLabelSize(2, 0, 4); // L: 7
@@ -54,100 +55,84 @@ public class WorldMapLabelSize {
 	}
 
 	WorldMapLabelSize(int var1, int var2, int var3) {
-		this.field2671 = var1; // L: 19
-		this.field2672 = var2; // L: 20
-		this.field2676 = var3; // L: 21
+		this.field2829 = var1; // L: 19
+		this.field2828 = var2; // L: 20
+		this.field2830 = var3; // L: 21
 	} // L: 22
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(FI)Z",
+		garbageValue = "-1921654209"
+	)
+	boolean method4859(float var1) {
+		return var1 >= (float)this.field2830; // L: 25
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Liq;",
+		garbageValue = "-1709132598"
+	)
+	static WorldMapLabelSize[] method4851() {
+		return new WorldMapLabelSize[]{WorldMapLabelSize_medium, WorldMapLabelSize_large, WorldMapLabelSize_small}; // L: 15
+	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(FI)Z",
-		garbageValue = "2012056978"
+		descriptor = "(Ljava/io/File;ZI)Z",
+		garbageValue = "-823658761"
 	)
-	boolean method4567(float var1) {
-		return var1 >= (float)this.field2676; // L: 25
-	}
+	public static boolean method4858(File var0, boolean var1) {
+		try {
+			RandomAccessFile var2 = new RandomAccessFile(var0, "rw"); // L: 149
+			int var3 = var2.read(); // L: 150
+			var2.seek(0L); // L: 151
+			var2.write(var3); // L: 152
+			var2.seek(0L); // L: 153
+			var2.close(); // L: 154
+			if (var1) { // L: 155
+				var0.delete();
+			}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Lhq;",
-		garbageValue = "2063977691"
-	)
-	static WorldMapLabelSize[] method4568() {
-		return new WorldMapLabelSize[]{WorldMapLabelSize_small, WorldMapLabelSize_large, WorldMapLabelSize_medium}; // L: 15
+			return true; // L: 156
+		} catch (Exception var4) { // L: 158
+			return false; // L: 159
+		}
 	}
 
 	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-480347083"
+		descriptor = "(CI)Z",
+		garbageValue = "1850317115"
 	)
-	public static boolean method4575(int var0) {
-		return var0 == WorldMapDecorationType.field3544.id; // L: 47
+	@Export("isDigit")
+	public static boolean isDigit(char var0) {
+		return var0 >= '0' && var0 <= '9'; // L: 143
 	}
 
-	@ObfuscatedName("bp")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
+		descriptor = "(ILbm;ZB)I",
 		garbageValue = "1"
 	)
-	@Export("runWidgetOnLoadListener")
-	static void runWidgetOnLoadListener(int var0) {
-		if (var0 != -1) { // L: 4972
-			if (WorldMapSection2.loadInterface(var0)) { // L: 4973
-				Widget[] var1 = SoundCache.Widget_interfaceComponents[var0]; // L: 4974
-
-				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 4975
-					Widget var3 = var1[var2]; // L: 4976
-					if (var3.onLoad != null) { // L: 4977
-						ScriptEvent var4 = new ScriptEvent(); // L: 4978
-						var4.widget = var3; // L: 4979
-						var4.args = var3.onLoad; // L: 4980
-						class135.runScript(var4, 5000000, 0); // L: 4981
-					}
-				}
-
-			}
-		}
-	} // L: 4984
-
-	@ObfuscatedName("gd")
-	@ObfuscatedSignature(
-		descriptor = "(IS)V",
-		garbageValue = "-23388"
-	)
-	@Export("setWindowedMode")
-	static void setWindowedMode(int var0) {
-		Client.field711 = 0L; // L: 4371
-		if (var0 >= 2) { // L: 4372
-			Client.isResizable = true;
+	static int method4852(int var0, Script var1, boolean var2) {
+		if (var0 == 7463) { // L: 4918
+			boolean var3 = Interpreter.Interpreter_intStack[--class87.Interpreter_intStackSize] == 1; // L: 4919
+			ItemLayer.method4198(var3); // L: 4920
+			return 1; // L: 4921
 		} else {
-			Client.isResizable = false; // L: 4373
+			return 2; // L: 4923
 		}
+	}
 
-		if (class9.getWindowedMode() == 1) { // L: 4374
-			class353.client.setMaxCanvasSize(765, 503); // L: 4375
-		} else {
-			class353.client.setMaxCanvasSize(7680, 2160); // L: 4378
-		}
-
-		if (Client.gameState >= 25) { // L: 4380
-			SpriteMask.method5522();
-		}
-
-	} // L: 4381
-
-	@ObfuscatedName("kr")
+	@ObfuscatedName("lw")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-1407297152"
+		descriptor = "(III)V",
+		garbageValue = "228437568"
 	)
-	static void method4566(int var0) {
-		class20.tempMenuAction = new MenuAction(); // L: 11719
-		class20.tempMenuAction.param0 = Client.menuArguments1[var0]; // L: 11720
-		class20.tempMenuAction.param1 = Client.menuArguments2[var0]; // L: 11721
-		class20.tempMenuAction.opcode = Client.menuOpcodes[var0]; // L: 11722
-		class20.tempMenuAction.identifier = Client.menuIdentifiers[var0]; // L: 11723
-		class20.tempMenuAction.action = Client.menuActions[var0]; // L: 11724
-	} // L: 11725
+	static void method4861(int var0, int var1) {
+		class276.method5485(PendingSpawn.tempMenuAction, var0, var1); // L: 12020
+		PendingSpawn.tempMenuAction = null; // L: 12021
+	} // L: 12022
 }
