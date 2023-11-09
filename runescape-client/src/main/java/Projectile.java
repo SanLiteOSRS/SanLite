@@ -4,132 +4,134 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bu")
+@ObfuscatedName("by")
 @Implements("Projectile")
 public final class Projectile extends Renderable {
-	@ObfuscatedName("rp")
-	@Export("FriendsChatManager_inFriendsChat")
-	static boolean FriendsChatManager_inFriendsChat;
-	@ObfuscatedName("c")
+	@ObfuscatedName("bf")
 	@ObfuscatedGetter(
-		intValue = -630035333
+		intValue = 153118227
+	)
+	static int field950;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = 1810979149
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -753482197
+		intValue = 1665661611
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1909485103
+		intValue = 105962367
 	)
 	@Export("sourceX")
 	int sourceX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -867044193
+		intValue = -1970661863
 	)
 	@Export("sourceY")
 	int sourceY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1371453553
+		intValue = -306056339
 	)
 	@Export("sourceZ")
 	int sourceZ;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 1478366795
+		intValue = -200216133
 	)
 	@Export("endHeight")
 	int endHeight;
-	@ObfuscatedName("g")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1542338147
+		intValue = -841508573
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 981154783
+		intValue = 1627558581
 	)
 	@Export("cycleEnd")
 	int cycleEnd;
-	@ObfuscatedName("y")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1247849497
+		intValue = -1009125805
 	)
 	@Export("slope")
 	int slope;
-	@ObfuscatedName("i")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1919042303
+		intValue = -1309967939
 	)
 	@Export("startHeight")
 	int startHeight;
-	@ObfuscatedName("s")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1467854933
+		intValue = 1040117169
 	)
 	@Export("targetIndex")
 	int targetIndex;
-	@ObfuscatedName("t")
+	@ObfuscatedName("n")
 	@Export("isMoving")
 	boolean isMoving;
-	@ObfuscatedName("z")
+	@ObfuscatedName("x")
 	@Export("x")
 	double x;
-	@ObfuscatedName("r")
+	@ObfuscatedName("g")
 	@Export("y")
 	double y;
-	@ObfuscatedName("u")
+	@ObfuscatedName("p")
 	@Export("z")
 	double z;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@Export("speedX")
 	double speedX;
-	@ObfuscatedName("h")
+	@ObfuscatedName("l")
 	@Export("speedY")
 	double speedY;
-	@ObfuscatedName("x")
+	@ObfuscatedName("y")
 	@Export("speed")
 	double speed;
-	@ObfuscatedName("l")
+	@ObfuscatedName("k")
 	@Export("speedZ")
 	double speedZ;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@Export("accelerationZ")
 	double accelerationZ;
-	@ObfuscatedName("p")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 262224371
+		intValue = -2064407807
 	)
 	@Export("yaw")
 	int yaw;
-	@ObfuscatedName("b")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -703855763
+		intValue = 1115887141
 	)
 	@Export("pitch")
 	int pitch;
-	@ObfuscatedName("n")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "Lgc;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("o")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -100465905
+		intValue = -1746247029
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("m")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 784173733
+		intValue = 1355003211
 	)
 	@Export("frameCycle")
 	int frameCycle;
@@ -150,19 +152,19 @@ public final class Projectile extends Renderable {
 		this.targetIndex = var10; // L: 45
 		this.endHeight = var11; // L: 46
 		this.isMoving = false; // L: 47
-		int var12 = ObjectSound.SpotAnimationDefinition_get(this.id).sequence; // L: 48
+		int var12 = class13.SpotAnimationDefinition_get(this.id).sequence; // L: 48
 		if (var12 != -1) { // L: 49
-			this.sequenceDefinition = ScriptFrame.SequenceDefinition_get(var12);
+			this.sequenceDefinition = class14.SequenceDefinition_get(var12);
 		} else {
 			this.sequenceDefinition = null; // L: 50
 		}
 
 	} // L: 51
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "-1811806599"
+		descriptor = "(IIIIB)V",
+		garbageValue = "24"
 	)
 	@Export("setDestination")
 	final void setDestination(int var1, int var2, int var3, int var4) {
@@ -172,7 +174,7 @@ public final class Projectile extends Renderable {
 			double var7 = (double)(var2 - this.sourceY); // L: 56
 			double var9 = Math.sqrt(var5 * var5 + var7 * var7); // L: 57
 			this.x = (double)this.startHeight * var5 / var9 + (double)this.sourceX; // L: 58
-			this.y = var7 * (double)this.startHeight / var9 + (double)this.sourceY; // L: 59
+			this.y = (double)this.sourceY + (double)this.startHeight * var7 / var9; // L: 59
 			this.z = (double)this.sourceZ; // L: 60
 		}
 
@@ -184,17 +186,17 @@ public final class Projectile extends Renderable {
 			this.speedZ = -this.speed * Math.tan((double)this.slope * 0.02454369D);
 		}
 
-		this.accelerationZ = 2.0D * ((double)var3 - this.z - var5 * this.speedZ) / (var5 * var5); // L: 67
+		this.accelerationZ = ((double)var3 - this.z - this.speedZ * var5) * 2.0D / (var5 * var5); // L: 67
 	} // L: 68
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhy;",
-		garbageValue = "1081110576"
+		descriptor = "(I)Lhd;",
+		garbageValue = "-842208187"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = ObjectSound.SpotAnimationDefinition_get(this.id); // L: 101
+		SpotAnimationDefinition var1 = class13.SpotAnimationDefinition_get(this.id); // L: 101
 		Model var2 = var1.getModel(this.frame); // L: 102
 		if (var2 == null) { // L: 103
 			return null;
@@ -204,18 +206,18 @@ public final class Projectile extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "-99"
+		descriptor = "(II)V",
+		garbageValue = "-1090995262"
 	)
 	@Export("advance")
 	final void advance(int var1) {
 		this.isMoving = true; // L: 71
 		this.x += this.speedX * (double)var1; // L: 72
-		this.y += (double)var1 * this.speedY; // L: 73
-		this.z += (double)var1 * this.speedZ + (double)var1 * this.accelerationZ * 0.5D * (double)var1; // L: 74
-		this.speedZ += this.accelerationZ * (double)var1; // L: 75
+		this.y += this.speedY * (double)var1; // L: 73
+		this.z += this.speedZ * (double)var1 + 0.5D * this.accelerationZ * (double)var1 * (double)var1; // L: 74
+		this.speedZ += (double)var1 * this.accelerationZ; // L: 75
 		this.yaw = (int)(Math.atan2(this.speedX, this.speedY) * 325.949D) + 1024 & 2047; // L: 76
 		this.pitch = (int)(Math.atan2(this.speedZ, this.speed) * 325.949D) & 2047; // L: 77
 		if (this.sequenceDefinition != null) { // L: 78
@@ -240,7 +242,7 @@ public final class Projectile extends Renderable {
 				}
 			} else {
 				this.frame += var1; // L: 91
-				int var2 = this.sequenceDefinition.method3835(); // L: 92
+				int var2 = this.sequenceDefinition.method3812(); // L: 92
 				if (this.frame >= var2) { // L: 93
 					this.frame = var2 - this.sequenceDefinition.frameCount; // L: 94
 				}
@@ -249,81 +251,51 @@ public final class Projectile extends Renderable {
 
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ia")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-1805196162"
+		descriptor = "(ILjava/lang/String;I)V",
+		garbageValue = "-52657202"
 	)
-	public static int method1950(CharSequence var0) {
-		int var1 = var0.length(); // L: 148
-		int var2 = 0; // L: 149
+	static void method2008(int var0, String var1) {
+		int var2 = Players.Players_count; // L: 9383
+		int[] var3 = Players.Players_indices; // L: 9384
+		boolean var4 = false; // L: 9385
+		Username var5 = new Username(var1, class162.loginType); // L: 9386
 
-		for (int var3 = 0; var3 < var1; ++var3) { // L: 150
-			var2 = (var2 << 5) - var2 + var0.charAt(var3);
+		for (int var6 = 0; var6 < var2; ++var6) { // L: 9387
+			Player var7 = Client.players[var3[var6]]; // L: 9388
+			if (var7 != null && var7 != class28.localPlayer && var7.username != null && var7.username.equals(var5)) { // L: 9389
+				PacketBufferNode var8;
+				if (var0 == 1) { // L: 9390
+					var8 = class433.getPacketBufferNode(ClientPacket.field2947, Client.packetWriter.isaacCipher); // L: 9392
+					var8.packetBuffer.method7764(0); // L: 9393
+					var8.packetBuffer.method7969(var3[var6]); // L: 9394
+					Client.packetWriter.addNode(var8); // L: 9395
+				} else if (var0 == 4) { // L: 9397
+					var8 = class433.getPacketBufferNode(ClientPacket.field2961, Client.packetWriter.isaacCipher); // L: 9399
+					var8.packetBuffer.method7969(var3[var6]); // L: 9400
+					var8.packetBuffer.method7764(0); // L: 9401
+					Client.packetWriter.addNode(var8); // L: 9402
+				} else if (var0 == 6) { // L: 9404
+					var8 = class433.getPacketBufferNode(ClientPacket.field2946, Client.packetWriter.isaacCipher); // L: 9406
+					var8.packetBuffer.method7762(0); // L: 9407
+					var8.packetBuffer.method7969(var3[var6]); // L: 9408
+					Client.packetWriter.addNode(var8); // L: 9409
+				} else if (var0 == 7) { // L: 9411
+					var8 = class433.getPacketBufferNode(ClientPacket.field3002, Client.packetWriter.isaacCipher); // L: 9413
+					var8.packetBuffer.writeByte(0); // L: 9414
+					var8.packetBuffer.writeIntME(var3[var6]); // L: 9415
+					Client.packetWriter.addNode(var8); // L: 9416
+				}
+
+				var4 = true; // L: 9418
+				break;
+			}
 		}
 
-		return var2; // L: 151
-	}
+		if (!var4) { // L: 9422
+			FileSystem.addGameMessage(4, "", "Unable to find " + var1);
+		}
 
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "72"
-	)
-	public static void method1959() {
-		ItemComposition.ItemComposition_cachedSprites.clear(); // L: 569
-	} // L: 570
-
-	@ObfuscatedName("fa")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1050216582"
-	)
-	static final void method1961() {
-		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear(); // L: 2950
-		NPC.method2379(); // L: 2952
-		Widget.method5711(); // L: 2953
-		class141.method3047(); // L: 2954
-		PacketBufferNode.method5194(); // L: 2955
-		ObjectSound.method1702(); // L: 2956
-		SequenceDefinition.SequenceDefinition_cached.clear(); // L: 2958
-		SequenceDefinition.SequenceDefinition_cachedFrames.clear(); // L: 2959
-		SequenceDefinition.SequenceDefinition_cachedModel.clear(); // L: 2960
-		FileSystem.method3282(); // L: 2962
-		VarbitComposition.VarbitDefinition_cached.clear(); // L: 2964
-		VarpDefinition.VarpDefinition_cached.clear(); // L: 2967
-		AbstractWorldMapData.HitSplatDefinition_cachedSprites.method7525(); // L: 2969
-		ModeWhere.Ignored_cached.method7525(); // L: 2970
-		HitSplatDefinition.HitSplatDefinition_cached.clear(); // L: 2972
-		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear(); // L: 2973
-		HitSplatDefinition.HitSplatDefinition_cachedFonts.clear(); // L: 2974
-		class92.method2389(); // L: 2976
-		Interpreter.method1868(); // L: 2977
-		class67.method1886(); // L: 2978
-		SoundCache.method763(); // L: 2979
-		MilliClock.method3301(); // L: 2980
-		class67.method1887(); // L: 2981
-		Client.Widget_cachedModels.clear(); // L: 2982
-		Client.Widget_cachedFonts.clear(); // L: 2983
-		class14.method148(); // L: 2984
-		Widget.Widget_cachedSprites.clear(); // L: 2986
-		Widget.Widget_cachedModels.clear(); // L: 2987
-		Widget.Widget_cachedFonts.clear(); // L: 2988
-		Widget.Widget_cachedSpriteMasks.clear(); // L: 2989
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear(); // L: 2991
-		Script.Script_cached.clear(); // L: 2992
-		Varcs.archive5.clearFiles(); // L: 2993
-		WorldMapEvent.field2882.clearFiles(); // L: 2994
-		class341.archive7.clearFiles(); // L: 2995
-		Client.archive4.clearFiles(); // L: 2996
-		WorldMapSectionType.archive9.clearFiles(); // L: 2997
-		class121.archive6.clearFiles(); // L: 2998
-		class10.archive11.clearFiles(); // L: 2999
-		class304.archive8.clearFiles(); // L: 3000
-		Language.field4098.clearFiles(); // L: 3001
-		ApproximateRouteStrategy.archive10.clearFiles(); // L: 3002
-		UserComparator7.field1383.clearFiles(); // L: 3003
-		class267.archive12.clearFiles(); // L: 3004
-		class132.field1588.clearFiles(); // L: 3005
-	} // L: 3006
+	} // L: 9423
 }
