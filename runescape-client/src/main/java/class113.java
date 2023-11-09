@@ -1,65 +1,65 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dx")
+@ObfuscatedName("dr")
 public class class113 {
-	@ObfuscatedName("r")
+	@ObfuscatedName("nt")
 	@ObfuscatedSignature(
-		descriptor = "Lqu;"
+		descriptor = "Lkn;"
 	)
-	static IndexedSprite field1427;
-	@ObfuscatedName("c")
+	@Export("mousedOverWidgetIf1")
+	static Widget mousedOverWidgetIf1;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 244154869
+		intValue = 615485545
 	)
-	int field1420;
+	int field1400;
+	@ObfuscatedName("h")
+	float field1399;
+	@ObfuscatedName("w")
+	float field1403;
 	@ObfuscatedName("v")
-	float field1423;
+	float field1401;
+	@ObfuscatedName("c")
+	float field1402;
 	@ObfuscatedName("q")
-	float field1421;
-	@ObfuscatedName("f")
-	float field1422;
-	@ObfuscatedName("j")
-	float field1419;
-	@ObfuscatedName("e")
-	float field1425;
-	@ObfuscatedName("g")
+	float field1398;
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Ldx;"
+		descriptor = "Ldr;"
 	)
-	class113 field1426;
+	class113 field1404;
 
 	class113() {
-		this.field1421 = Float.MAX_VALUE; // L: 8
-		this.field1422 = Float.MAX_VALUE; // L: 9
-		this.field1419 = Float.MAX_VALUE; // L: 10
-		this.field1425 = Float.MAX_VALUE; // L: 11
+		this.field1403 = Float.MAX_VALUE; // L: 8
+		this.field1401 = Float.MAX_VALUE; // L: 9
+		this.field1402 = Float.MAX_VALUE; // L: 10
+		this.field1398 = Float.MAX_VALUE; // L: 11
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;IB)V",
-		garbageValue = "-65"
+		descriptor = "(Lqr;II)V",
+		garbageValue = "439402435"
 	)
-	void method2630(Buffer var1, int var2) {
-		this.field1420 = var1.readShort(); // L: 17
-		this.field1423 = var1.method7740(); // L: 18
-		this.field1421 = var1.method7740(); // L: 19
-		this.field1422 = var1.method7740(); // L: 20
-		this.field1419 = var1.method7740(); // L: 21
-		this.field1425 = var1.method7740(); // L: 22
+	void method2621(Buffer var1, int var2) {
+		this.field1400 = var1.readShort(); // L: 17
+		this.field1399 = var1.method7824(); // L: 18
+		this.field1403 = var1.method7824(); // L: 19
+		this.field1401 = var1.method7824(); // L: 20
+		this.field1402 = var1.method7824(); // L: 21
+		this.field1398 = var1.method7824(); // L: 22
 	} // L: 23
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "1059822722"
+		descriptor = "(CI)Z",
+		garbageValue = "-1599367221"
 	)
-	static final void method2632(String var0) {
-		PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2944, Client.packetWriter.isaacCipher); // L: 195
-		var1.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0)); // L: 196
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 197
-		Client.packetWriter.addNode(var1); // L: 198
-	} // L: 199
+	@Export("isAlphaNumeric")
+	public static boolean isAlphaNumeric(char var0) {
+		return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z'; // L: 160
+	}
 }

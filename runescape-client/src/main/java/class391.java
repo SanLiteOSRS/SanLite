@@ -1,34 +1,57 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ok")
-public class class391 implements class396 {
+@ObfuscatedName("op")
+public enum class391 implements MouseWheel {
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lop;"
+	)
+	field4428(0, 1),
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "Lop;"
+	)
+	field4422(2, 2),
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "Lop;"
+	)
+	field4423(3, 3),
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Lop;"
+	)
+	field4421(1, 10);
+
+	@ObfuscatedName("ah")
+	@Export("hasFocus")
+	protected static boolean hasFocus;
 	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lpt;"
+	@ObfuscatedGetter(
+		intValue = 638529671
 	)
-	public final class420 field4424;
+	final int field4424;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = -127163675
+	)
+	final int field4426;
 
-	@ObfuscatedSignature(
-		descriptor = "(Lpl;)V"
-	)
-	class391(class421 var1) {
-		this.field4424 = var1; // L: 14
-	} // L: 15
+	class391(int var3, int var4) {
+		this.field4424 = var3; // L: 20
+		this.field4426 = var4; // L: 21
+	} // L: 22
 
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Loz;)V"
+		descriptor = "(B)I",
+		garbageValue = "104"
 	)
-	public class391(class392 var1) {
-		this(new class421(var1)); // L: 10
-	} // L: 11
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-275089160"
-	)
-	public int method7055(int var1) {
-		return this.field4424.vmethod7440(var1); // L: 18
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field4426; // L: 26
 	}
 }

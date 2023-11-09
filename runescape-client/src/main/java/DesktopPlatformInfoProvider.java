@@ -7,35 +7,35 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("og")
 @Implements("DesktopPlatformInfoProvider")
 public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -199170423
+		intValue = 1073109487
 	)
-	int field4467;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 1842203815
-	)
-	int field4468;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -1586858741
-	)
-	int field4469;
-
+	int field4472;
 	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = -1650217075
+	)
+	int field4473;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = 109602713
+	)
+	int field4470;
+
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)Los;",
-		garbageValue = "51821248"
+		descriptor = "(I)Loo;",
+		garbageValue = "-223070483"
 	)
 	@Export("get")
 	public PlatformInfo get() {
 		byte var1;
-		if (NetFileRequest.formattedOperatingSystemName.startsWith("win")) { // L: 16
+		if (InvDefinition.formattedOperatingSystemName.startsWith("win")) { // L: 16
 			var1 = 1;
-		} else if (NetFileRequest.formattedOperatingSystemName.startsWith("mac")) { // L: 17
+		} else if (InvDefinition.formattedOperatingSystemName.startsWith("mac")) { // L: 17
 			var1 = 2;
-		} else if (NetFileRequest.formattedOperatingSystemName.startsWith("linux")) { // L: 18
+		} else if (InvDefinition.formattedOperatingSystemName.startsWith("linux")) { // L: 18
 			var1 = 3;
 		} else {
 			var1 = 4; // L: 19
@@ -43,9 +43,9 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 
 		String var2;
 		try {
-			var2 = System.getProperty("os.arch").toLowerCase(); // L: 23
-		} catch (Exception var30) { // L: 25
-			var2 = ""; // L: 26
+			var2 = System.getProperty("os.arch").toLowerCase();
+		} catch (Exception var30) {
+			var2 = "";
 		}
 
 		String var3;
@@ -133,11 +133,11 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 			var8 = 4; // L: 75
 		}
 
-		this.method7151(var5); // L: 76
+		this.method7086(var5); // L: 76
 		boolean var9 = false; // L: 77
 		int var10 = (int)(Runtime.getRuntime().maxMemory() / 1048576L) + 1; // L: 78
 		int var11;
-		if (this.field4467 > 3) { // L: 81
+		if (this.field4472 > 3) { // L: 81
 			var11 = Runtime.getRuntime().availableProcessors();
 		} else {
 			var11 = 0; // L: 82
@@ -158,55 +158,78 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 		boolean var24 = false; // L: 95
 		String var25 = ""; // L: 96
 		boolean var26 = false; // L: 97
-		return new PlatformInfo(var1, var27, var7, var8, this.field4467, this.field4468, this.field4469, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, ""); // L: 98
+		return new PlatformInfo(var1, var27, var7, var8, this.field4472, this.field4473, this.field4470, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, ""); // L: 98
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-1038587213"
+		garbageValue = "1592341007"
 	)
-	void method7151(String var1) {
+	void method7086(String var1) {
 		if (var1.startsWith("1.")) { // L: 102
-			this.method7152(var1); // L: 103
+			this.method7091(var1); // L: 103
 		} else {
-			this.method7153(var1); // L: 106
+			this.method7087(var1); // L: 106
 		}
 
 	} // L: 108
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-1489289662"
+		garbageValue = "1758532411"
 	)
-	void method7152(String var1) {
+	void method7091(String var1) {
 		String[] var2 = var1.split("\\."); // L: 111
 
 		try {
-			this.field4467 = Integer.parseInt(var2[1]); // L: 113
+			this.field4472 = Integer.parseInt(var2[1]); // L: 113
 			var2 = var2[2].split("_"); // L: 114
-			this.field4468 = Integer.parseInt(var2[0]); // L: 115
-			this.field4469 = Integer.parseInt(var2[1]); // L: 116
+			this.field4473 = Integer.parseInt(var2[0]); // L: 115
+			this.field4470 = Integer.parseInt(var2[1]); // L: 116
 		} catch (Exception var4) { // L: 118
 		}
 
 	} // L: 119
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "530635410"
+		garbageValue = "-1817503643"
 	)
-	void method7153(String var1) {
+	void method7087(String var1) {
 		String[] var2 = var1.split("\\."); // L: 122
 
 		try {
-			this.field4467 = Integer.parseInt(var2[0]); // L: 124
-			this.field4468 = Integer.parseInt(var2[1]); // L: 125
-			this.field4469 = Integer.parseInt(var2[2]); // L: 126
+			this.field4472 = Integer.parseInt(var2[0]); // L: 124
+			this.field4473 = Integer.parseInt(var2[1]); // L: 125
+			this.field4470 = Integer.parseInt(var2[2]); // L: 126
 		} catch (Exception var4) { // L: 128
 		}
 
 	} // L: 129
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lgw;",
+		garbageValue = "-2052928889"
+	)
+	@Export("getParamDefinition")
+	public static ParamComposition getParamDefinition(int var0) {
+		ParamComposition var1 = (ParamComposition)ParamComposition.ParamComposition_cached.get((long)var0); // L: 21
+		if (var1 != null) { // L: 22
+			return var1;
+		} else {
+			byte[] var2 = ParamComposition.ParamDefinition_archive.takeFile(11, var0); // L: 23
+			var1 = new ParamComposition(); // L: 24
+			if (var2 != null) { // L: 25
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode(); // L: 26
+			ParamComposition.ParamComposition_cached.put(var1, (long)var0); // L: 27
+			return var1; // L: 28
+		}
+	}
 }

@@ -1,43 +1,41 @@
-import java.security.SecureRandom;
+import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("le")
+@ObfuscatedName("la")
 @Implements("NetFileRequest")
 public class NetFileRequest extends DualNode {
-	@ObfuscatedName("p")
-	@Export("formattedOperatingSystemName")
-	public static String formattedOperatingSystemName;
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
+	@Export("JagexCache_locationFile")
+	static File JagexCache_locationFile;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lls;"
+	)
+	@Export("musicTrackArchive")
+	public static AbstractArchive musicTrackArchive;
+	@ObfuscatedName("hy")
+	@Export("regionLandArchiveIds")
+	static int[] regionLandArchiveIds;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
 	)
 	@Export("archive")
-	public Archive archive;
-	@ObfuscatedName("v")
+	Archive archive;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -196698659
+		intValue = -1580363083
 	)
 	@Export("crc")
-	public int crc;
-	@ObfuscatedName("q")
+	int crc;
+	@ObfuscatedName("w")
 	@Export("padding")
-	public byte padding;
+	byte padding;
 
 	NetFileRequest() {
 	} // L: 10
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/security/SecureRandom;",
-		garbageValue = "-1298247103"
-	)
-	static SecureRandom method5843() {
-		SecureRandom var0 = new SecureRandom(); // L: 39
-		var0.nextInt(); // L: 40
-		return var0; // L: 41
-	}
 }

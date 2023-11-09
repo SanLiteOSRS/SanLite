@@ -3,25 +3,31 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("go")
+@ObfuscatedName("gs")
 public class class193 {
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@Export("directions")
 	public static int[][] directions;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("distances")
 	public static int[][] distances;
-	@ObfuscatedName("j")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1258310083
+		intValue = -1089933965
 	)
-	public static int field2219;
-	@ObfuscatedName("w")
+	public static int field2212;
+	@ObfuscatedName("k")
 	@Export("bufferX")
 	public static int[] bufferX;
-	@ObfuscatedName("y")
+	@ObfuscatedName("o")
 	@Export("bufferY")
 	public static int[] bufferY;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("Widget_modelsArchive")
+	public static AbstractArchive Widget_modelsArchive;
 
 	static {
 		directions = new int[128][128]; // L: 6
@@ -30,40 +36,39 @@ public class class193 {
 		bufferY = new int[4096]; // L: 12
 	}
 
-	@ObfuscatedName("ju")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIII)V",
-		garbageValue = "628542116"
+		descriptor = "(I)V",
+		garbageValue = "-1821500032"
 	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (WorldMapSection2.loadInterface(var0)) { // L: 10078
-			class12.field62 = null; // L: 10085
-			class14.drawInterface(SoundCache.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7); // L: 10086
-			if (class12.field62 != null) { // L: 10087
-				class14.drawInterface(class12.field62, -1412584499, var1, var2, var3, var4, UserComparator5.field1389, SecureRandomFuture.field960, var7); // L: 10088
-				class12.field62 = null; // L: 10089
-			}
-
-		} else {
-			if (var7 != -1) { // L: 10079
-				Client.field703[var7] = true;
-			} else {
-				for (int var8 = 0; var8 < 100; ++var8) { // L: 10081
-					Client.field703[var8] = true;
-				}
-			}
-
+	public static void method3820() {
+		if (MouseHandler.MouseHandler_instance != null) { // L: 43
+			synchronized(MouseHandler.MouseHandler_instance) { // L: 44
+				MouseHandler.MouseHandler_instance = null; // L: 45
+			} // L: 46
 		}
-	} // L: 10083 10091
 
-	@ObfuscatedName("ke")
+	} // L: 48
+
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "98"
+		descriptor = "(Lls;Ljava/lang/String;Ljava/lang/String;S)[Lqn;",
+		garbageValue = "546"
 	)
-	static final int method3919() {
-		float var0 = 200.0F * ((float)class19.clientPreferences.method2254() - 0.5F); // L: 11835
-		return 100 - Math.round(var0); // L: 11836
+	public static SpritePixels[] method3818(AbstractArchive var0, String var1, String var2) {
+		int var3 = var0.getGroupId(var1); // L: 149
+		int var4 = var0.getFileId(var3, var2); // L: 150
+		return Tiles.method2024(var0, var3, var4); // L: 151
+	}
+
+	@ObfuscatedName("kz")
+	@ObfuscatedSignature(
+		descriptor = "(Lkn;B)I",
+		garbageValue = "-20"
+	)
+	@Export("getWidgetFlags")
+	static int getWidgetFlags(Widget var0) {
+		IntegerNode var1 = (IntegerNode)Client.widgetFlags.get(((long)var0.id << 32) + (long)var0.childIndex); // L: 12074
+		return var1 != null ? var1.integer : var0.flags; // L: 12075 12076
 	}
 }

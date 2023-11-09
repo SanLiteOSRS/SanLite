@@ -2,46 +2,43 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gn")
+@ObfuscatedName("gi")
 public enum class192 implements MouseWheel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lgi;"
 	)
-	field2208((byte)-1),
-	@ObfuscatedName("v")
+	field2205((byte)-1),
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lgi;"
 	)
 	field2209((byte)0),
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lgi;"
 	)
-	field2212((byte)1),
-	@ObfuscatedName("f")
+	field2206((byte)1),
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lgi;"
 	)
-	field2211((byte)2);
-
-	@ObfuscatedName("ao")
-	@Export("fontHelvetica13")
-	static java.awt.Font fontHelvetica13;
-	@ObfuscatedName("j")
-	public byte field2210;
-
-	class192(byte var3) {
-		this.field2210 = var3; // L: 14
-	} // L: 15
+	field2207((byte)2);
 
 	@ObfuscatedName("c")
+	public byte field2208;
+
+	class192(byte var3) {
+		this.field2208 = var3; // L: 14
+	} // L: 15
+
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "104"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field2210; // L: 19
+		return this.field2208; // L: 19
 	}
 }
