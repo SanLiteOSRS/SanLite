@@ -1,80 +1,88 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eo")
+@ObfuscatedName("ef")
 public class class137 extends class128 {
-	@ObfuscatedName("c")
-	String field1616;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "Lmg;"
+	)
+	@Export("ItemComposition_fontPlain11")
+	static Font ItemComposition_fontPlain11;
+	@ObfuscatedName("ig")
+	@ObfuscatedGetter(
+		intValue = -146328941
+	)
+	static int field1593;
+	@ObfuscatedName("s")
+	String field1591;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lei;"
 	)
 	final class131 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lei;)V"
 	)
 	class137(class131 var1) {
 		this.this$0 = var1; // L: 229
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "-885940784"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1616 = var1.readStringCp1252NullTerminated(); // L: 232
+	void vmethod3087(Buffer var1) {
+		this.field1591 = var1.readStringCp1252NullTerminated(); // L: 232
 		var1.readInt(); // L: 233
 	} // L: 234
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Leh;B)V",
+		garbageValue = "0"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.name = this.field1616; // L: 237
+	void vmethod3084(ClanSettings var1) {
+		var1.name = this.field1591; // L: 237
 	} // L: 238
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-1955259353"
+		descriptor = "(IIIIB)V",
+		garbageValue = "-96"
 	)
-	public static int method2931(int var0, int var1, int var2) {
-		int var3 = VarpDefinition.method3374(var2 - var1 + 1); // L: 37
-		var3 <<= var1; // L: 38
-		return var0 & ~var3; // L: 39
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(CLlb;I)I",
-		garbageValue = "991712888"
-	)
-	@Export("lowercaseChar")
-	static int lowercaseChar(char var0, Language var1) {
-		int var2 = var0 << 4; // L: 104
-		if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) { // L: 105
-			var0 = Character.toLowerCase(var0); // L: 106
-			var2 = (var0 << 4) + 1; // L: 107
+	@Export("itemContainerSetItem")
+	static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
+		ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 39
+		if (var4 == null) { // L: 40
+			var4 = new ItemContainer(); // L: 41
+			ItemContainer.itemContainers.put(var4, (long)var0); // L: 42
 		}
 
-		if (var0 == 241 && var1 == Language.Language_ES) { // L: 109
-			var2 = 1762;
+		if (var4.ids.length <= var1) { // L: 44
+			int[] var5 = new int[var1 + 1]; // L: 45
+			int[] var6 = new int[var1 + 1]; // L: 46
+
+			int var7;
+			for (var7 = 0; var7 < var4.ids.length; ++var7) { // L: 47
+				var5[var7] = var4.ids[var7]; // L: 48
+				var6[var7] = var4.quantities[var7]; // L: 49
+			}
+
+			for (var7 = var4.ids.length; var7 < var1; ++var7) { // L: 51
+				var5[var7] = -1; // L: 52
+				var6[var7] = 0; // L: 53
+			}
+
+			var4.ids = var5; // L: 55
+			var4.quantities = var6; // L: 56
 		}
 
-		return var2; // L: 110
-	}
-
-	@ObfuscatedName("br")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ljava/lang/Object;",
-		garbageValue = "1239702190"
-	)
-	static Object method2937(int var0) {
-		return InvDefinition.method3360((class432)Actor.findEnumerated(class432.method7566(), var0)); // L: 5010
-	}
+		var4.ids[var1] = var2; // L: 58
+		var4.quantities[var1] = var3; // L: 59
+	} // L: 60
 }

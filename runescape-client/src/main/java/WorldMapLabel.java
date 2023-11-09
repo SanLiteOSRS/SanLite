@@ -4,33 +4,39 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iz")
+@ObfuscatedName("iw")
 @Implements("WorldMapLabel")
 public class WorldMapLabel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("jg")
+	@ObfuscatedGetter(
+		intValue = 436575851
+	)
+	@Export("cameraY")
+	static int cameraY;
+	@ObfuscatedName("s")
 	@Export("text")
 	String text;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1772526111
+		intValue = -633493345
 	)
 	@Export("width")
 	int width;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1037270607
+		intValue = 908481261
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lhq;"
+		descriptor = "Lhm;"
 	)
 	@Export("size")
 	WorldMapLabelSize size;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;IILhq;)V"
+		descriptor = "(Ljava/lang/String;IILhm;)V"
 	)
 	WorldMapLabel(String var1, int var2, int var3, WorldMapLabelSize var4) {
 		this.text = var1; // L: 10
@@ -39,32 +45,15 @@ public class WorldMapLabel {
 		this.size = var4; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ji")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "-115"
+		descriptor = "(IB)V",
+		garbageValue = "-121"
 	)
-	public static void method5000(AbstractArchive var0) {
-		VarcInt.VarcInt_archive = var0; // L: 15
-	} // L: 16
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1560877857"
-	)
-	public static void method4999() {
-		try {
-			JagexCache.JagexCache_dat2File.close(); // L: 295
-
-			for (int var0 = 0; var0 < class142.idxCount; ++var0) { // L: 296
-				class359.JagexCache_idxFiles[var0].close();
-			}
-
-			JagexCache.JagexCache_idx255File.close(); // L: 297
-			JagexCache.JagexCache_randomDat.close(); // L: 298
-		} catch (Exception var2) { // L: 300
-		}
-
-	} // L: 301
+	static final void method4918(int var0) {
+		var0 = Math.max(Math.min(var0, 100), 0); // L: 11598
+		var0 = 100 - var0; // L: 11599
+		float var1 = 0.5F + (float)var0 / 200.0F; // L: 11600
+		RouteStrategy.method3811((double)var1); // L: 11601
+	} // L: 11602
 }

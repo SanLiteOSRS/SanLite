@@ -4,86 +4,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cq")
+@ObfuscatedName("cb")
 @Implements("InterfaceParent")
 public class InterfaceParent extends Node {
-	@ObfuscatedName("sm")
-	@ObfuscatedGetter(
-		intValue = -1985635931
-	)
-	static int field1043;
-	@ObfuscatedName("jy")
-	@ObfuscatedGetter(
-		intValue = -1949636447
-	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
 	@ObfuscatedName("c")
+	@Export("SpriteBuffer_yOffsets")
+	public static int[] SpriteBuffer_yOffsets;
+	@ObfuscatedName("k")
+	@Export("ItemComposition_inMembersWorld")
+	public static boolean ItemComposition_inMembersWorld;
+	@ObfuscatedName("ic")
+	@ObfuscatedSignature(
+		descriptor = "[Lqe;"
+	)
+	@Export("scrollBarSprites")
+	static IndexedSprite[] scrollBarSprites;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 315980607
+		intValue = 1124857953
 	)
 	@Export("group")
 	int group;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1762148949
+		intValue = 67717225
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("q")
-	boolean field1040;
+	@ObfuscatedName("w")
+	boolean field1022;
 
 	InterfaceParent() {
-		this.field1040 = false; // L: 8
-	} // L: 10
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "896944894"
-	)
-	public static int method2095(int var0) {
-		long var2 = ViewportMouse.ViewportMouse_entityTags[var0]; // L: 65
-		int var1 = (int)(var2 >>> 7 & 127L); // L: 67
-		return var1; // L: 69
+		this.field1022 = false;
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "1938605488"
+		descriptor = "(I)[Lkc;",
+		garbageValue = "1265149283"
 	)
-	static int method2097(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == 3500) { // L: 2332
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2333
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method764(var3) ? 1 : 0; // L: 2334
-			return 1; // L: 2335
-		} else if (var0 == 3501) { // L: 2337
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2338
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = VertexNormal.method4528(var3) ? 1 : 0; // L: 2339
-			return 1; // L: 2340
-		} else if (var0 == 3502) { // L: 2342
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method753(var3) ? 1 : 0; // L: 2344
-			return 1; // L: 2345
-		} else {
-			return 2; // L: 2347
+	static class302[] method2058() {
+		return new class302[]{class302.field3577, class302.field3578}; // L: 35
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(IZIZB)V",
+		garbageValue = "1"
+	)
+	@Export("sortWorldList")
+	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+		if (World.World_worlds != null) { // L: 171
+			class296.doWorldSorting(0, World.World_worlds.length - 1, var0, var1, var2, var3); // L: 172
+		}
+
+	} // L: 174
+
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		descriptor = "(B)Lfa;",
+		garbageValue = "59"
+	)
+	public static Clock method2057() {
+		try {
+			return new NanoClock(); // L: 8
+		} catch (Throwable var1) { // L: 10
+			return new MilliClock(); // L: 11
 		}
 	}
-
-	@ObfuscatedName("il")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-62"
-	)
-	@Export("addCancelMenuEntry")
-	static void addCancelMenuEntry() {
-		class125.method2824(); // L: 8428
-		Client.menuActions[0] = "Cancel"; // L: 8429
-		Client.menuTargets[0] = ""; // L: 8430
-		Client.menuOpcodes[0] = 1006; // L: 8431
-		Client.menuShiftClick[0] = false; // L: 8432
-		Client.menuOptionsCount = 1; // L: 8433
-	} // L: 8434
 }

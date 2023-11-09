@@ -4,53 +4,48 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bj")
+@ObfuscatedName("bk")
 @Implements("ArchiveLoader")
 public class ArchiveLoader {
-	@ObfuscatedName("au")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lns;"
-	)
-	static Bounds field1022;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lln;"
 	)
 	@Export("archive")
 	final Archive archive;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -955851169
+		intValue = 149147227
 	)
 	@Export("groupCount")
 	final int groupCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 982415587
+		intValue = 907880421
 	)
 	@Export("loadedCount")
 	int loadedCount;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llc;Ljava/lang/String;)V"
+		descriptor = "(Lln;Ljava/lang/String;)V"
 	)
 	ArchiveLoader(Archive var1, String var2) {
 		this.loadedCount = 0; // L: 9
-		this.archive = var1;
-		this.groupCount = var1.getGroupCount();
+		this.archive = var1; // L: 12
+		this.groupCount = var1.getGroupCount(); // L: 13
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "102"
+		descriptor = "(I)Z",
+		garbageValue = "-1364636276"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
 		this.loadedCount = 0; // L: 17
 
 		for (int var1 = 0; var1 < this.groupCount; ++var1) { // L: 18
-			if (!this.archive.method5806(var1) || this.archive.method5805(var1)) {
+			if (!this.archive.method5722(var1) || this.archive.method5719(var1)) {
 				++this.loadedCount; // L: 19
 			}
 		}
@@ -58,47 +53,69 @@ public class ArchiveLoader {
 		return this.loadedCount >= this.groupCount; // L: 21
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1248295079"
+		descriptor = "(CLlv;B)I",
+		garbageValue = "37"
 	)
-	public static int method2075(int var0) {
-		return var0 != 0 && var0 != 1 ? -1 : 0; // L: 12 13 15
+	@Export("lowercaseChar")
+	static int lowercaseChar(char var0, Language var1) {
+		int var2 = var0 << 4; // L: 143
+		if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) { // L: 144
+			var0 = Character.toLowerCase(var0); // L: 145
+			var2 = (var0 << 4) + 1; // L: 146
+		}
+
+		if (var0 == 241 && var1 == Language.Language_ES) { // L: 148
+			var2 = 1762;
+		}
+
+		return var2; // L: 149
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("iu")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "280590426"
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "973373705"
 	)
-	static int method2073(int var0, Script var1, boolean var2) {
-		if (var0 != 3700 && var0 != 3701) { // L: 2707
-			if (var0 == 3702) { // L: 2712
-				++class446.Interpreter_intStackSize; // L: 2713
-				return 1; // L: 2714
-			} else {
-				return 2; // L: 2716
-			}
+	@Export("formatItemStacks")
+	static final String formatItemStacks(int var0) {
+		String var1 = Integer.toString(var0); // L: 10319
+
+		for (int var2 = var1.length() - 3; var2 > 0; var2 -= 3) { // L: 10320
+			var1 = var1.substring(0, var2) + "," + var1.substring(var2); // L: 10321
+		}
+
+		if (var1.length() > 9) { // L: 10323
+			return " " + Clock.colorStartTag(65408) + var1.substring(0, var1.length() - 8) + "M" + " " + " (" + var1 + ")" + "</col>";
 		} else {
-			--class446.Interpreter_intStackSize; // L: 2708
-			--Interpreter.Interpreter_stringStackSize; // L: 2709
-			return 1; // L: 2710
+			return var1.length() > 6 ? " " + Clock.colorStartTag(16777215) + var1.substring(0, var1.length() - 4) + "K" + " " + " (" + var1 + ")" + "</col>" : " " + Clock.colorStartTag(16776960) + var1 + "</col>"; // L: 10324 10325
 		}
 	}
 
-	@ObfuscatedName("lc")
+	@ObfuscatedName("js")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-818413481"
+		descriptor = "(IIIILqn;Lkl;B)V",
+		garbageValue = "62"
 	)
-	@Export("clanKickUser")
-	static final void clanKickUser(String var0) {
-		if (Huffman.friendsChatManager != null) { // L: 12225
-			PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2923, Client.packetWriter.isaacCipher); // L: 12226
-			var1.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0)); // L: 12227
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12228
-			Client.packetWriter.addNode(var1); // L: 12229
+	@Export("worldToMinimap")
+	static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
+		int var6 = var3 * var3 + var2 * var2; // L: 11925
+		if (var6 > 4225 && var6 < 90000) { // L: 11926
+			int var7 = Client.camAngleY & 2047; // L: 11927
+			int var8 = Rasterizer3D.Rasterizer3D_sine[var7]; // L: 11928
+			int var9 = Rasterizer3D.Rasterizer3D_cosine[var7]; // L: 11929
+			int var10 = var9 * var2 + var3 * var8 >> 16; // L: 11930
+			int var11 = var3 * var9 - var8 * var2 >> 16; // L: 11931
+			double var12 = Math.atan2((double)var10, (double)var11); // L: 11932
+			int var14 = var5.width / 2 - 25; // L: 11933
+			int var15 = (int)(Math.sin(var12) * (double)var14); // L: 11934
+			int var16 = (int)(Math.cos(var12) * (double)var14); // L: 11935
+			byte var17 = 20; // L: 11936
+			MouseRecorder.redHintArrowSprite.method8093(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256); // L: 11937
+		} else {
+			SecureRandomCallable.drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5); // L: 11939
 		}
-	} // L: 12230
+
+	} // L: 11940
 }

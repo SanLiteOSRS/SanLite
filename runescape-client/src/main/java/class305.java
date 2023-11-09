@@ -1,42 +1,39 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kz")
+@ObfuscatedName("kb")
 public class class305 {
-	static {
-		int var0 = 0; // L: 9
-		int var1 = 0; // L: 10
-		class301[] var2 = new class301[]{class301.field3575, class301.field3576}; // L: 14
-		class301[] var3 = var2; // L: 16
+	@ObfuscatedName("bm")
+	@ObfuscatedSignature(
+		descriptor = "([BI)[B",
+		garbageValue = "-1495812528"
+	)
+	@Export("decompressBytes")
+	static final byte[] decompressBytes(byte[] var0) {
+		Buffer var1 = new Buffer(var0); // L: 442
+		int var2 = var1.readUnsignedByte(); // L: 443
+		int var3 = var1.readInt(); // L: 444
+		if (var3 < 0 || AbstractArchive.field4014 != 0 && var3 > AbstractArchive.field4014) { // L: 445
+			throw new RuntimeException(); // L: 446
+		} else if (var2 == 0) { // L: 448
+			byte[] var6 = new byte[var3]; // L: 449
+			var1.readBytes(var6, 0, var3); // L: 450
+			return var6; // L: 451
+		} else {
+			int var4 = var1.readInt(); // L: 454
+			if (var4 >= 0 && (AbstractArchive.field4014 == 0 || var4 <= AbstractArchive.field4014)) { // L: 455
+				byte[] var5 = new byte[var4]; // L: 458
+				if (var2 == 1) { // L: 459
+					BZip2Decompressor.BZip2Decompressor_decompress(var5, var4, var0, var3, 9);
+				} else {
+					AbstractArchive.gzipDecompressor.decompress(var1, var5); // L: 460
+				}
 
-		for (int var4 = 0; var4 < var3.length; ++var4) { // L: 17
-			class301 var5 = var3[var4]; // L: 18
-			if (var5.field3580 > var0) { // L: 20
-				var0 = var5.field3580;
-			}
-
-			if (var5.field3578 > var1) { // L: 21
-				var1 = var5.field3578;
+				return var5; // L: 461
+			} else {
+				throw new RuntimeException(); // L: 456
 			}
 		}
-
-	} // L: 25
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(ILnd;Llc;B)V",
-		garbageValue = "82"
-	)
-	static void method5764(int var0, ArchiveDisk var1, Archive var2) {
-		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 30
-		var3.type = 1; // L: 31
-		var3.key = (long)var0; // L: 32
-		var3.archiveDisk = var1; // L: 33
-		var3.archive = var2; // L: 34
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 35
-			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 36
-		} // L: 37
-
-		Tiles.method2065(); // L: 38
-	} // L: 39
+	}
 }

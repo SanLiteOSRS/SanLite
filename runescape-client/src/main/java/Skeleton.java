@@ -4,32 +4,32 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gm")
+@ObfuscatedName("ge")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1780002005
+		intValue = -577196497
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -64074659
+		intValue = -61318255
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("w")
+	@ObfuscatedName("k")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("y")
+	@ObfuscatedName("o")
 	@Export("labels")
 	int[][] labels;
-	@ObfuscatedName("i")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lgq;"
+		descriptor = "Lgd;"
 	)
-	class201 field2376;
+	class201 field2370;
 
 	public Skeleton(int var1, byte[] var2) {
 		this.id = var1; // L: 19
@@ -56,27 +56,27 @@ public class Skeleton extends Node {
 		if (var3.offset < var3.array.length) { // L: 29
 			var4 = var3.readUnsignedShort(); // L: 30
 			if (var4 > 0) { // L: 31
-				this.field2376 = new class201(var3, var4); // L: 32
+				this.field2370 = new class201(var3, var4); // L: 32
 			}
 		}
 
 	} // L: 35
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-58631089"
+		descriptor = "(B)I",
+		garbageValue = "16"
 	)
-	public int method4148() {
+	public int method4042() {
 		return this.count; // L: 38
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lgq;",
-		garbageValue = "1269137329"
+		descriptor = "(B)Lgd;",
+		garbageValue = "-93"
 	)
-	public class201 method4150() {
-		return this.field2376; // L: 42
+	public class201 method4044() {
+		return this.field2370; // L: 42
 	}
 }
