@@ -4,55 +4,49 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fs")
+@ObfuscatedName("hh")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lnq;"
 	)
 	@Export("EnumDefinition_archive")
 	static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Llf;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("nc")
-	@ObfuscatedGetter(
-		intValue = -2102626567
-	)
-	@Export("selectedItemSlot")
-	static int selectedItemSlot;
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ax")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -735765161
+		intValue = -1875143555
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 367199611
+		intValue = -1161331513
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ak")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ae")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("i")
+	@ObfuscatedName("af")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -65,16 +59,16 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0; // L: 17
 	} // L: 22
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "110"
+		descriptor = "(Ltz;I)V",
+		garbageValue = "202008849"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
+			int var2 = var1.readUnsignedByte(); // L: 40
+			if (var2 == 0) { // L: 41
 				return; // L: 44
 			}
 
@@ -82,16 +76,16 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1048481170"
+		descriptor = "(Ltz;II)V",
+		garbageValue = "-725675570"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 1) { // L: 47
+		if (var2 == 1) {
 			this.inputType = (char)var1.readUnsignedByte();
-		} else if (var2 == 2) { // L: 48
+		} else if (var2 == 2) {
 			this.outputType = (char)var1.readUnsignedByte();
 		} else if (var2 == 3) { // L: 49
 			this.defaultStr = var1.readStringCp1252NullTerminated();
@@ -99,14 +93,14 @@ public class EnumComposition extends DualNode {
 			this.defaultInt = var1.readInt();
 		} else {
 			int var3;
-			if (var2 == 5) { // L: 51
+			if (var2 == 5) {
 				this.outputCount = var1.readUnsignedShort(); // L: 52
 				this.keys = new int[this.outputCount]; // L: 53
-				this.strVals = new String[this.outputCount]; // L: 54
+				this.strVals = new String[this.outputCount];
 
-				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 55
-					this.keys[var3] = var1.readInt(); // L: 56
-					this.strVals[var3] = var1.readStringCp1252NullTerminated(); // L: 57
+				for (var3 = 0; var3 < this.outputCount; ++var3) {
+					this.keys[var3] = var1.readInt();
+					this.strVals[var3] = var1.readStringCp1252NullTerminated();
 				}
 			} else if (var2 == 6) { // L: 60
 				this.outputCount = var1.readUnsignedShort(); // L: 61
@@ -122,118 +116,32 @@ public class EnumComposition extends DualNode {
 
 	} // L: 70
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "75421574"
+		garbageValue = "-1826864459"
 	)
 	@Export("size")
 	public int size() {
 		return this.outputCount; // L: 73
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Lju;Lqv;I)Ljt;",
-		garbageValue = "870680813"
+		descriptor = "(I)Llm;",
+		garbageValue = "-2069090041"
 	)
-	@Export("getPacketBufferNode")
-	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-		PacketBufferNode var2;
-		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) { // L: 24
-			var2 = new PacketBufferNode(); // L: 25
+	public static PacketBufferNode method3666() {
+		PacketBufferNode var0;
+		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) { // L: 47
+			var0 = new PacketBufferNode(); // L: 48
 		} else {
-			var2 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 28
+			var0 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 51
 		}
 
-		var2.clientPacket = var0; // L: 31
-		var2.clientPacketLength = var0.length; // L: 32
-		if (var2.clientPacketLength == -1) {
-			var2.packetBuffer = new PacketBuffer(260); // L: 33
-		} else if (var2.clientPacketLength == -2) { // L: 34
-			var2.packetBuffer = new PacketBuffer(10000);
-		} else if (var2.clientPacketLength <= 18) { // L: 35
-			var2.packetBuffer = new PacketBuffer(20);
-		} else if (var2.clientPacketLength <= 98) { // L: 36
-			var2.packetBuffer = new PacketBuffer(100);
-		} else {
-			var2.packetBuffer = new PacketBuffer(260); // L: 37
-		}
-
-		var2.packetBuffer.setIsaacCipher(var1); // L: 38
-		var2.packetBuffer.writeByteIsaac(var2.clientPacket.id); // L: 39
-		var2.index = 0; // L: 40
-		return var2; // L: 41
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Lgs;",
-		garbageValue = "-21"
-	)
-	@Export("ItemComposition_get")
-	public static ItemComposition ItemComposition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemComposition_cached.get((long)var0); // L: 92
-		if (var1 != null) { // L: 93
-			return var1;
-		} else {
-			byte[] var2 = UserComparator4.ItemComposition_archive.takeFile(10, var0); // L: 94
-			var1 = new ItemComposition(); // L: 95
-			var1.id = var0; // L: 96
-			if (var2 != null) { // L: 97
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.post(); // L: 98
-			if (var1.noteTemplate != -1) { // L: 99
-				var1.genCert(ItemComposition_get(var1.noteTemplate), ItemComposition_get(var1.note));
-			}
-
-			if (var1.notedId != -1) { // L: 100
-				var1.genBought(ItemComposition_get(var1.notedId), ItemComposition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) { // L: 101
-				var1.genPlaceholder(ItemComposition_get(var1.placeholderTemplate), ItemComposition_get(var1.placeholder));
-			}
-
-			if (!DevicePcmPlayerProvider.ItemComposition_inMembersWorld && var1.isMembersOnly) { // L: 102
-				var1.name = "Members object"; // L: 103
-				var1.isTradable = false; // L: 104
-
-				int var3;
-				for (var3 = 0; var3 < var1.groundActions.length; ++var3) { // L: 105
-					var1.groundActions[var3] = null; // L: 106
-				}
-
-				for (var3 = 0; var3 < var1.inventoryActions.length; ++var3) { // L: 108
-					if (var3 != 4) { // L: 109
-						var1.inventoryActions[var3] = null; // L: 110
-					}
-				}
-
-				var1.shiftClickIndex = -2; // L: 113
-				var1.team = 0; // L: 114
-				if (var1.params != null) { // L: 115
-					boolean var6 = false; // L: 116
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) { // L: 117
-						ParamComposition var5 = class174.getParamDefinition((int)var4.key); // L: 118
-						if (var5.autoDisable) { // L: 119
-							var4.remove();
-						} else {
-							var6 = true; // L: 120
-						}
-					}
-
-					if (!var6) {
-						var1.params = null; // L: 122
-					}
-				}
-			}
-
-			ItemComposition.ItemComposition_cached.put(var1, (long)var0); // L: 125
-			return var1; // L: 126
-		}
+		var0.clientPacket = null; // L: 54
+		var0.clientPacketLength = 0; // L: 55
+		var0.packetBuffer = new PacketBuffer(5000); // L: 56
+		return var0; // L: 57
 	}
 }

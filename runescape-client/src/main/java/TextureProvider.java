@@ -4,51 +4,51 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hk")
+@ObfuscatedName("jp")
 @Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "[Lgd;"
+		descriptor = "[Liq;"
 	)
 	@Export("textures")
 	Texture[] textures;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Llo;"
+		descriptor = "Loy;"
 	)
 	@Export("deque")
 	NodeDeque deque;
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -1240613953
+		intValue = -300508505
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 131497903
+		intValue = -578773067
 	)
 	@Export("remaining")
 	int remaining;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ax")
 	@Export("brightness")
 	double brightness;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 2025819025
+		intValue = -2070337693
 	)
 	@Export("textureSize")
 	int textureSize;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lnq;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;IDI)V"
+		descriptor = "(Lnq;Lnq;IDI)V"
 	)
 	public TextureProvider(AbstractArchive var1, AbstractArchive var2, int var3, double var4, int var6) {
 		this.deque = new NodeDeque(); // L: 9
@@ -61,263 +61,193 @@ public class TextureProvider implements TextureLoader {
 		this.brightness = var4; // L: 20
 		this.textureSize = var6; // L: 21
 		int[] var7 = var1.getGroupFileIds(0); // L: 22
-		int var8 = var7.length; // L: 23
-		this.textures = new Texture[var1.getGroupFileCount(0)]; // L: 24
+		if (var7 != null) { // L: 23
+			int var8 = var7.length; // L: 24
+			this.textures = new Texture[var1.getGroupFileCount(0)]; // L: 25
 
-		for (int var9 = 0; var9 < var8; ++var9) { // L: 25
-			Buffer var10 = new Buffer(var1.takeFile(0, var7[var9])); // L: 26
-			this.textures[var7[var9]] = new Texture(var10); // L: 27
+			for (int var9 = 0; var9 < var8; ++var9) { // L: 26
+				Buffer var10 = new Buffer(var1.takeFile(0, var7[var9])); // L: 27
+				this.textures[var7[var9]] = new Texture(var10); // L: 28
+			}
+		} else {
+			this.textures = new Texture[0]; // L: 32
 		}
 
-	} // L: 29
+	} // L: 34
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-29"
+		descriptor = "(I)I",
+		garbageValue = "-2129653920"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
-		int var1 = 0; // L: 32
-		int var2 = 0; // L: 33
-		Texture[] var3 = this.textures; // L: 35
+		if (this.textures.length == 0) { // L: 37
+			return 100;
+		} else {
+			int var1 = 0; // L: 38
+			int var2 = 0; // L: 39
+			Texture[] var3 = this.textures; // L: 41
 
-		for (int var4 = 0; var4 < var3.length; ++var4) { // L: 36
-			Texture var5 = var3[var4]; // L: 37
-			if (var5 != null && var5.fileIds != null) { // L: 39
-				var1 += var5.fileIds.length; // L: 40
-				int[] var6 = var5.fileIds; // L: 42
+			for (int var4 = 0; var4 < var3.length; ++var4) { // L: 42
+				Texture var5 = var3[var4]; // L: 43
+				if (var5 != null && var5.fileIds != null) { // L: 45
+					var1 += var5.fileIds.length; // L: 46
+					int[] var6 = var5.fileIds; // L: 48
 
-				for (int var7 = 0; var7 < var6.length; ++var7) { // L: 43
-					int var8 = var6[var7]; // L: 44
-					if (this.archive.method5849(var8)) { // L: 46
-						++var2; // L: 47
+					for (int var7 = 0; var7 < var6.length; ++var7) { // L: 49
+						int var8 = var6[var7]; // L: 50
+						if (this.archive.method6694(var8)) { // L: 52
+							++var2; // L: 53
+						}
 					}
 				}
 			}
-		}
 
-		if (var1 == 0) { // L: 55
-			return 0;
-		} else {
-			return var2 * 100 / var1; // L: 56
+			if (var1 == 0) { // L: 61
+				return 0;
+			} else {
+				return var2 * 100 / var1; // L: 62
+			}
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@Export("setBrightness")
 	public void setBrightness(double var1) {
-		this.brightness = var1; // L: 60
-		this.clear(); // L: 61
-	} // L: 62
+		this.brightness = var1; // L: 66
+		this.clear(); // L: 67
+	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(IB)[I",
-		garbageValue = "24"
+		descriptor = "(II)[I",
+		garbageValue = "1457358156"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
-		Texture var2 = this.textures[var1]; // L: 65
-		if (var2 != null) { // L: 66
-			if (var2.pixels != null) { // L: 67
-				this.deque.addLast(var2); // L: 68
-				var2.isLoaded = true; // L: 69
-				return var2.pixels; // L: 70
+		Texture var2 = this.textures[var1]; // L: 71
+		if (var2 != null) { // L: 72
+			if (var2.pixels != null) { // L: 73
+				this.deque.addLast(var2); // L: 74
+				var2.isLoaded = true; // L: 75
+				return var2.pixels; // L: 76
 			}
 
-			boolean var3 = var2.load(this.brightness, this.textureSize, this.archive); // L: 72
-			if (var3) { // L: 73
-				if (this.remaining == 0) { // L: 74
-					Texture var4 = (Texture)this.deque.removeFirst(); // L: 75
-					var4.reset(); // L: 76
+			boolean var3 = var2.load(this.brightness, this.textureSize, this.archive); // L: 78
+			if (var3) { // L: 79
+				if (this.remaining == 0) { // L: 80
+					Texture var4 = (Texture)this.deque.removeFirst(); // L: 81
+					var4.reset(); // L: 82
 				} else {
-					--this.remaining; // L: 78
+					--this.remaining; // L: 84
 				}
 
-				this.deque.addLast(var2); // L: 79
-				var2.isLoaded = true; // L: 80
-				return var2.pixels; // L: 81
+				this.deque.addLast(var2); // L: 85
+				var2.isLoaded = true; // L: 86
+				return var2.pixels; // L: 87
 			}
 		}
 
-		return null; // L: 84
+		return null; // L: 90
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(IS)I",
-		garbageValue = "-3917"
+		descriptor = "(IB)I",
+		garbageValue = "0"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
-		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0; // L: 88 89
+		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0; // L: 94 95
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		descriptor = "(IB)Z",
-		garbageValue = "-52"
+		garbageValue = "1"
 	)
-	public boolean vmethod4538(int var1) {
-		return this.textures[var1].field2293; // L: 93
+	public boolean vmethod5030(int var1) {
+		return this.textures[var1].field2469; // L: 99
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-1596996574"
+		descriptor = "(IB)Z",
+		garbageValue = "28"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
-		return this.textureSize == 64; // L: 97
+		return this.textureSize == 64; // L: 103
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "586737024"
+		descriptor = "(B)V",
+		garbageValue = "108"
 	)
 	@Export("clear")
 	public void clear() {
-		for (int var1 = 0; var1 < this.textures.length; ++var1) { // L: 101
-			if (this.textures[var1] != null) { // L: 102
+		for (int var1 = 0; var1 < this.textures.length; ++var1) { // L: 107
+			if (this.textures[var1] != null) { // L: 108
 				this.textures[var1].reset();
 			}
 		}
 
-		this.deque = new NodeDeque(); // L: 104
-		this.remaining = this.capacity; // L: 105
-	} // L: 106
+		this.deque = new NodeDeque(); // L: 110
+		this.remaining = this.capacity; // L: 111
+	} // L: 112
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "-924908553"
+		garbageValue = "858578069"
 	)
 	@Export("animate")
 	public void animate(int var1) {
-		for (int var2 = 0; var2 < this.textures.length; ++var2) { // L: 109
-			Texture var3 = this.textures[var2]; // L: 110
-			if (var3 != null && var3.animationDirection != 0 && var3.isLoaded) { // L: 111
-				var3.animate(var1); // L: 112
-				var3.isLoaded = false; // L: 113
+		for (int var2 = 0; var2 < this.textures.length; ++var2) { // L: 115
+			Texture var3 = this.textures[var2]; // L: 116
+			if (var3 != null && var3.animationDirection != 0 && var3.isLoaded) { // L: 117
+				var3.animate(var1); // L: 118
+				var3.isLoaded = false; // L: 119
 			}
 		}
 
-	} // L: 116
+	} // L: 122
 
-	@ObfuscatedName("ia")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(IIIILjava/lang/String;I)V",
-		garbageValue = "-18765802"
+		descriptor = "(Ljava/lang/CharSequence;B)I",
+		garbageValue = "-54"
 	)
-	@Export("widgetDefaultMenuAction")
-	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
-		Widget var5 = ScriptFrame.getWidgetChild(var1, var2); // L: 9595
-		if (var5 != null) { // L: 9596
-			if (var5.onOp != null) { // L: 9597
-				ScriptEvent var6 = new ScriptEvent(); // L: 9598
-				var6.widget = var5; // L: 9599
-				var6.opIndex = var0; // L: 9600
-				var6.targetName = var4; // L: 9601
-				var6.args = var5.onOp; // L: 9602
-				WallObject.runScriptEvent(var6); // L: 9603
-			}
+	public static int method4744(CharSequence var0) {
+		return class211.method4167(var0, 10, true); // L: 68
+	}
 
-			boolean var11 = true; // L: 9605
-			if (var5.contentType > 0) { // L: 9606
-				var11 = Message.method1065(var5);
-			}
-
-			if (var11) { // L: 9607
-				int var8 = class124.getWidgetFlags(var5); // L: 9609
-				int var9 = var0 - 1; // L: 9610
-				boolean var7 = (var8 >> var9 + 1 & 1) != 0; // L: 9612
-				if (var7) { // L: 9614
-					PacketBufferNode var10;
-					if (var0 == 1) { // L: 9617
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2934, Client.packetWriter.isaacCipher); // L: 9619
-						var10.packetBuffer.writeInt(var1); // L: 9620
-						var10.packetBuffer.writeShort(var2); // L: 9621
-						var10.packetBuffer.writeShort(var3); // L: 9622
-						Client.packetWriter.addNode(var10); // L: 9623
-					}
-
-					if (var0 == 2) { // L: 9625
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2983, Client.packetWriter.isaacCipher); // L: 9627
-						var10.packetBuffer.writeInt(var1); // L: 9628
-						var10.packetBuffer.writeShort(var2); // L: 9629
-						var10.packetBuffer.writeShort(var3); // L: 9630
-						Client.packetWriter.addNode(var10); // L: 9631
-					}
-
-					if (var0 == 3) { // L: 9633
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2930, Client.packetWriter.isaacCipher); // L: 9635
-						var10.packetBuffer.writeInt(var1); // L: 9636
-						var10.packetBuffer.writeShort(var2); // L: 9637
-						var10.packetBuffer.writeShort(var3); // L: 9638
-						Client.packetWriter.addNode(var10); // L: 9639
-					}
-
-					if (var0 == 4) { // L: 9641
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2915, Client.packetWriter.isaacCipher); // L: 9643
-						var10.packetBuffer.writeInt(var1); // L: 9644
-						var10.packetBuffer.writeShort(var2); // L: 9645
-						var10.packetBuffer.writeShort(var3); // L: 9646
-						Client.packetWriter.addNode(var10); // L: 9647
-					}
-
-					if (var0 == 5) { // L: 9649
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2905, Client.packetWriter.isaacCipher); // L: 9651
-						var10.packetBuffer.writeInt(var1); // L: 9652
-						var10.packetBuffer.writeShort(var2); // L: 9653
-						var10.packetBuffer.writeShort(var3); // L: 9654
-						Client.packetWriter.addNode(var10); // L: 9655
-					}
-
-					if (var0 == 6) { // L: 9657
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2954, Client.packetWriter.isaacCipher); // L: 9659
-						var10.packetBuffer.writeInt(var1); // L: 9660
-						var10.packetBuffer.writeShort(var2); // L: 9661
-						var10.packetBuffer.writeShort(var3); // L: 9662
-						Client.packetWriter.addNode(var10); // L: 9663
-					}
-
-					if (var0 == 7) { // L: 9665
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2963, Client.packetWriter.isaacCipher); // L: 9667
-						var10.packetBuffer.writeInt(var1); // L: 9668
-						var10.packetBuffer.writeShort(var2); // L: 9669
-						var10.packetBuffer.writeShort(var3); // L: 9670
-						Client.packetWriter.addNode(var10); // L: 9671
-					}
-
-					if (var0 == 8) { // L: 9673
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2996, Client.packetWriter.isaacCipher); // L: 9675
-						var10.packetBuffer.writeInt(var1); // L: 9676
-						var10.packetBuffer.writeShort(var2); // L: 9677
-						var10.packetBuffer.writeShort(var3); // L: 9678
-						Client.packetWriter.addNode(var10); // L: 9679
-					}
-
-					if (var0 == 9) { // L: 9681
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2974, Client.packetWriter.isaacCipher); // L: 9683
-						var10.packetBuffer.writeInt(var1); // L: 9684
-						var10.packetBuffer.writeShort(var2); // L: 9685
-						var10.packetBuffer.writeShort(var3); // L: 9686
-						Client.packetWriter.addNode(var10); // L: 9687
-					}
-
-					if (var0 == 10) { // L: 9689
-						var10 = EnumComposition.getPacketBufferNode(ClientPacket.field2952, Client.packetWriter.isaacCipher); // L: 9691
-						var10.packetBuffer.writeInt(var1); // L: 9692
-						var10.packetBuffer.writeShort(var2); // L: 9693
-						var10.packetBuffer.writeShort(var3); // L: 9694
-						Client.packetWriter.addNode(var10); // L: 9695
-					}
-
-				}
-			}
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)V",
+		garbageValue = "-81"
+	)
+	static void method4755(int var0, int var1) {
+		long var2 = (long)((var0 << 16) + var1); // L: 184
+		NetFileRequest var4 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var2); // L: 185
+		if (var4 != null) { // L: 186
+			NetCache.NetCache_pendingWritesQueue.addLast(var4); // L: 187
 		}
-	} // L: 9615 9697
+	} // L: 188
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1705195685"
+	)
+	public static void method4758() {
+		class515.SpriteBuffer_xOffsets = null; // L: 289
+		class402.SpriteBuffer_yOffsets = null; // L: 290
+		class515.SpriteBuffer_spriteWidths = null; // L: 291
+		class515.SpriteBuffer_spriteHeights = null; // L: 292
+		class515.SpriteBuffer_spritePalette = null; // L: 293
+		class515.SpriteBuffer_pixels = null; // L: 294
+	} // L: 295
 }
