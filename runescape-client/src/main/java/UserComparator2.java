@@ -4,7 +4,7 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qq")
+@ObfuscatedName("qc")
 @Implements("UserComparator2")
 public class UserComparator2 implements Comparator {
 	@ObfuscatedName("c")
@@ -17,8 +17,8 @@ public class UserComparator2 implements Comparator {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lne;Lne;B)I",
-		garbageValue = "42"
+		descriptor = "(Lnc;Lnc;B)I",
+		garbageValue = "10"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Nameable var1, Nameable var2) {

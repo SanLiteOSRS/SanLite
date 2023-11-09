@@ -1,27 +1,17 @@
+import java.util.concurrent.ScheduledExecutorService;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mr")
-public final class class342 {
-	@ObfuscatedName("fw")
-	@ObfuscatedSignature(
-		descriptor = "(S)Z",
-		garbageValue = "208"
-	)
-	static boolean method6312() {
-		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1634
-			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1635
-				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone); // L: 1636
-				if (!var0.isLoaded()) { // L: 1637
-					return false;
-				}
+@ObfuscatedName("mz")
+public class class342 {
+	@ObfuscatedName("c")
+	@Export("cp1252AsciiExtension")
+	public static final char[] cp1252AsciiExtension;
+	@ObfuscatedName("q")
+	@Export("soundSystemExecutor")
+	static ScheduledExecutorService soundSystemExecutor;
 
-				++Client.archiveLoadersDone; // L: 1638
-			}
-
-			return true; // L: 1640
-		} else {
-			return true; // L: 1639
-		}
+	static {
+		cp1252AsciiExtension = new char[]{'€', '\u0000', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u0000', 'Ž', '\u0000', '\u0000', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u0000', 'ž', 'Ÿ'}; // L: 4
 	}
 }
