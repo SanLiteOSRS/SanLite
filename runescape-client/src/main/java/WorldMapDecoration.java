@@ -3,26 +3,36 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ix")
+@ObfuscatedName("ik")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-	@ObfuscatedName("c")
+	@ObfuscatedName("uy")
 	@ObfuscatedGetter(
-		intValue = 1217125903
+		intValue = -1318536169
+	)
+	static int field2970;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "Lld;"
+	)
+	@Export("NetCache_currentResponse")
+	public static NetFileRequest NetCache_currentResponse;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = 981301237
 	)
 	@Export("objectDefinitionId")
 	final int objectDefinitionId;
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1822794685
+		intValue = 992100525
 	)
 	@Export("decoration")
 	final int decoration;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1636858953
+		intValue = -565157325
 	)
 	@Export("rotation")
 	final int rotation;
@@ -33,64 +43,91 @@ public class WorldMapDecoration {
 		this.rotation = var3; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-2049294776"
+		descriptor = "(CLmn;B)C",
+		garbageValue = "75"
 	)
-	static int method4992(int var0, Script var1, boolean var2) {
-		Widget var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1322
-		if (var0 == ScriptOpcodes.IF_GETX) { // L: 1323
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.x; // L: 1324
-			return 1; // L: 1325
-		} else if (var0 == ScriptOpcodes.IF_GETY) { // L: 1327
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.y; // L: 1328
-			return 1; // L: 1329
-		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) { // L: 1331
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.width; // L: 1332
-			return 1; // L: 1333
-		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) { // L: 1335
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.height; // L: 1336
-			return 1; // L: 1337
-		} else if (var0 == ScriptOpcodes.IF_GETHIDE) { // L: 1339
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1340
-			return 1; // L: 1341
-		} else if (var0 == ScriptOpcodes.IF_GETLAYER) { // L: 1343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.parentId; // L: 1344
-			return 1; // L: 1345
-		} else {
-			return 2; // L: 1347
-		}
-	}
-
-	@ObfuscatedName("ig")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-80"
-	)
-	@Export("Widget_runOnTargetLeave")
-	static void Widget_runOnTargetLeave() {
-		if (Client.isSpellSelected) { // L: 9573
-			Widget var0 = ScriptFrame.getWidgetChild(NetCache.selectedSpellWidget, Client.selectedSpellChildIndex); // L: 9574
-			if (var0 != null && var0.onTargetLeave != null) { // L: 9575
-				ScriptEvent var1 = new ScriptEvent(); // L: 9576
-				var1.widget = var0; // L: 9577
-				var1.args = var0.onTargetLeave; // L: 9578
-				WallObject.runScriptEvent(var1); // L: 9579
+	@Export("standardizeChar")
+	static char standardizeChar(char var0, Language var1) {
+		if (var0 >= 192 && var0 <= 255) { // L: 69
+			if (var0 >= 192 && var0 <= 198) { // L: 70
+				return 'A';
 			}
 
-			Client.selectedSpellItemId = -1; // L: 9581
-			Client.isSpellSelected = false; // L: 9582
-			ChatChannel.invalidateWidget(var0); // L: 9583
-		}
-	} // L: 9584
+			if (var0 == 199) { // L: 71
+				return 'C';
+			}
 
-	@ObfuscatedName("lp")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1243783436"
-	)
-	static void method4991(int var0) {
-		Client.oculusOrbState = var0; // L: 12414
-	} // L: 12415
+			if (var0 >= 200 && var0 <= 203) { // L: 72
+				return 'E';
+			}
+
+			if (var0 >= 204 && var0 <= 207) { // L: 73
+				return 'I';
+			}
+
+			if (var0 == 209 && var1 != Language.Language_ES) { // L: 74
+				return 'N';
+			}
+
+			if (var0 >= 210 && var0 <= 214) { // L: 75
+				return 'O';
+			}
+
+			if (var0 >= 217 && var0 <= 220) { // L: 76
+				return 'U';
+			}
+
+			if (var0 == 221) { // L: 77
+				return 'Y';
+			}
+
+			if (var0 == 223) { // L: 78
+				return 's';
+			}
+
+			if (var0 >= 224 && var0 <= 230) { // L: 79
+				return 'a';
+			}
+
+			if (var0 == 231) { // L: 80
+				return 'c';
+			}
+
+			if (var0 >= 232 && var0 <= 235) { // L: 81
+				return 'e';
+			}
+
+			if (var0 >= 236 && var0 <= 239) {
+				return 'i'; // L: 82
+			}
+
+			if (var0 == 241 && var1 != Language.Language_ES) { // L: 83
+				return 'n';
+			}
+
+			if (var0 >= 242 && var0 <= 246) { // L: 84
+				return 'o';
+			}
+
+			if (var0 >= 249 && var0 <= 252) { // L: 85
+				return 'u';
+			}
+
+			if (var0 == 253 || var0 == 255) { // L: 86
+				return 'y';
+			}
+		}
+
+		if (var0 == 338) { // L: 88
+			return 'O';
+		} else if (var0 == 339) { // L: 89
+			return 'o';
+		} else if (var0 == 376) { // L: 90
+			return 'Y';
+		} else {
+			return var0; // L: 91
+		}
+	}
 }
