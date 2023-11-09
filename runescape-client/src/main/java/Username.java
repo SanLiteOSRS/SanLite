@@ -3,62 +3,62 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qa")
+@ObfuscatedName("un")
 @Implements("Username")
 public class Username implements Comparable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@Export("name")
 	String name;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@Export("cleanName")
 	String cleanName;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lpe;)V"
+		descriptor = "(Ljava/lang/String;Lsj;)V"
 	)
 	public Username(String var1, LoginType var2) {
 		this.name = var1; // L: 16
-		this.cleanName = UserComparator5.method2580(var1, var2); // L: 17
+		this.cleanName = class406.method7636(var1, var2); // L: 17
 	} // L: 18
 
 	public Username(String var1) {
 		this.name = var1; // L: 11
-		this.cleanName = UserComparator5.method2580(var1, LoginType.oldscape); // L: 12
+		this.cleanName = class406.method7636(var1, LoginType.oldscape); // L: 12
 	} // L: 13
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "1398829508"
+		garbageValue = "-955227925"
 	)
 	@Export("getName")
 	public String getName() {
 		return this.name; // L: 21
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "1713644314"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "11"
 	)
-	public String method8320() {
+	public String method9559() {
 		return this.cleanName; // L: 25
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-54"
+		descriptor = "(I)Z",
+		garbageValue = "1092491986"
 	)
 	@Export("hasCleanName")
 	public boolean hasCleanName() {
 		return this.cleanName != null; // L: 29
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(Lqa;I)I",
-		garbageValue = "113609215"
+		descriptor = "(Lun;B)I",
+		garbageValue = "81"
 	)
 	@Export("compareToTyped")
 	public int compareToTyped(Username var1) {

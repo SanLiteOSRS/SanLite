@@ -1,179 +1,116 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fb")
-public class class160 {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lct;"
+@ObfuscatedName("ge")
+public class class160 extends class142 {
+	@ObfuscatedName("av")
+	@ObfuscatedGetter(
+		intValue = -249747583
 	)
-	public UrlRequest field1772;
-	@ObfuscatedName("v")
-	public float[] field1770;
+	@Export("RunException_revision")
+	public static int RunException_revision;
+	@ObfuscatedName("at")
+	@ObfuscatedGetter(
+		intValue = -1877537383
+	)
+	int field1753;
+	@ObfuscatedName("an")
+	@ObfuscatedGetter(
+		intValue = 1700119723
+	)
+	int field1751;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Les;"
+		descriptor = "Lfh;"
 	)
-	final class155 this$0;
+	final class145 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Les;)V"
+		descriptor = "(Lfh;)V"
 	)
-	class160(class155 var1) {
-		this.this$0 = var1;
-		this.field1770 = new float[4]; // L: 326
-	} // L: 328
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(I)[I",
-		garbageValue = "112467614"
-	)
-	public static int[] method3285() {
-		int[] var0 = new int[KeyHandler.field146]; // L: 265
-
-		for (int var1 = 0; var1 < KeyHandler.field146; ++var1) { // L: 266
-			var0[var1] = KeyHandler.field142[var1]; // L: 267
-		}
-
-		return var0; // L: 269
+	class160(class145 var1) {
+		this.this$0 = var1; // L: 271
 	}
 
-	@ObfuscatedName("id")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lco;IIIB)V",
-		garbageValue = "9"
+		descriptor = "(Ltz;B)V",
+		garbageValue = "59"
 	)
-	@Export("addNpcToMenu")
-	static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
-		NPCComposition var4 = var0.definition; // L: 9879
-		if (Client.menuOptionsCount < 400) { // L: 9880
-			if (var4.transforms != null) { // L: 9881
-				var4 = var4.transform();
-			}
+	void vmethod3381(Buffer var1) {
+		this.field1753 = var1.readInt(); // L: 274
+		this.field1751 = var1.readInt(); // L: 275
+	} // L: 276
 
-			if (var4 != null) { // L: 9882
-				if (var4.isInteractable) { // L: 9883
-					if (!var4.isFollower || Client.followerIndex == var1) { // L: 9884
-						String var5 = var0.method2360(); // L: 9885
-						int var6;
-						int var9;
-						if (var4.combatLevel != 0 && var0.field1204 != 0) { // L: 9886
-							var6 = var0.field1204 != -1 ? var0.field1204 : var4.combatLevel; // L: 9887
-							var9 = class101.localPlayer.combatLevel; // L: 9890
-							int var10 = var9 - var6; // L: 9892
-							String var8;
-							if (var10 < -9) { // L: 9893
-								var8 = class122.colorStartTag(16711680); // L: 9894
-							} else if (var10 < -6) { // L: 9897
-								var8 = class122.colorStartTag(16723968); // L: 9898
-							} else if (var10 < -3) { // L: 9901
-								var8 = class122.colorStartTag(16740352); // L: 9902
-							} else if (var10 < 0) { // L: 9905
-								var8 = class122.colorStartTag(16756736); // L: 9906
-							} else if (var10 > 9) { // L: 9909
-								var8 = class122.colorStartTag(65280); // L: 9910
-							} else if (var10 > 6) { // L: 9913
-								var8 = class122.colorStartTag(4259584); // L: 9914
-							} else if (var10 > 3) { // L: 9917
-								var8 = class122.colorStartTag(8453888); // L: 9918
-							} else if (var10 > 0) { // L: 9921
-								var8 = class122.colorStartTag(12648192); // L: 9922
-							} else {
-								var8 = class122.colorStartTag(16776960); // L: 9925
-							}
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(Lfs;B)V",
+		garbageValue = "-72"
+	)
+	void vmethod3382(ClanSettings var1) {
+		var1.method3203(this.field1753, this.field1751); // L: 279
+	} // L: 280
 
-							var5 = var5 + var8 + " " + " (" + "level-" + var6 + ")"; // L: 9927
-						}
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;IZB)Z",
+		garbageValue = "125"
+	)
+	static boolean method3324(CharSequence var0, int var1, boolean var2) {
+		if (var1 >= 2 && var1 <= 36) { // L: 39
+			boolean var3 = false; // L: 40
+			boolean var4 = false; // L: 41
+			int var5 = 0; // L: 42
+			int var6 = var0.length(); // L: 43
 
-						if (var4.isFollower && Client.followerOpsLowPriority) { // L: 9929
-							class4.insertMenuItemNoShift("Examine", class122.colorStartTag(16776960) + var5, 1003, var1, var2, var3); // L: 9930
-						}
+			for (int var7 = 0; var7 < var6; ++var7) { // L: 44
+				char var8 = var0.charAt(var7); // L: 45
+				if (var7 == 0) { // L: 46
+					if (var8 == '-') { // L: 47
+						var3 = true; // L: 48
+						continue;
+					}
 
-						if (Client.isItemSelected == 1) { // L: 9933
-							class4.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + class122.colorStartTag(16776960) + var5, 7, var1, var2, var3); // L: 9934
-						} else if (Client.isSpellSelected) { // L: 9937
-							if ((HealthBar.selectedSpellFlags & 2) == 2) { // L: 9938
-								class4.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + class122.colorStartTag(16776960) + var5, 8, var1, var2, var3); // L: 9939
-							}
-						} else {
-							var6 = var4.isFollower && Client.followerOpsLowPriority ? 2000 : 0; // L: 9944
-							String[] var7 = var4.actions; // L: 9945
-							int var11;
-							if (var7 != null) { // L: 9946
-								for (var11 = 4; var11 >= 0; --var11) { // L: 9947
-									if (var7[var11] != null && !var7[var11].equalsIgnoreCase("Attack")) { // L: 9948
-										var9 = 0; // L: 9949
-										if (var11 == 0) { // L: 9950
-											var9 = var6 + 9;
-										}
-
-										if (var11 == 1) { // L: 9951
-											var9 = var6 + 10;
-										}
-
-										if (var11 == 2) { // L: 9952
-											var9 = var6 + 11;
-										}
-
-										if (var11 == 3) { // L: 9953
-											var9 = var6 + 12;
-										}
-
-										if (var11 == 4) { // L: 9954
-											var9 = var6 + 13;
-										}
-
-										class4.insertMenuItemNoShift(var7[var11], class122.colorStartTag(16776960) + var5, var9, var1, var2, var3); // L: 9955
-									}
-								}
-							}
-
-							if (var7 != null) { // L: 9960
-								for (var11 = 4; var11 >= 0; --var11) { // L: 9961
-									if (var7[var11] != null && var7[var11].equalsIgnoreCase("Attack")) { // L: 9962
-										short var12 = 0; // L: 9963
-										if (AttackOption.AttackOption_hidden != Client.npcAttackOption) { // L: 9964
-											if (AttackOption.AttackOption_alwaysRightClick == Client.npcAttackOption || Client.npcAttackOption == AttackOption.AttackOption_dependsOnCombatLevels && var4.combatLevel > class101.localPlayer.combatLevel) { // L: 9965
-												var12 = 2000; // L: 9966
-											}
-
-											var9 = 0; // L: 9968
-											if (var11 == 0) { // L: 9969
-												var9 = var12 + 9;
-											}
-
-											if (var11 == 1) { // L: 9970
-												var9 = var12 + 10;
-											}
-
-											if (var11 == 2) { // L: 9971
-												var9 = var12 + 11;
-											}
-
-											if (var11 == 3) { // L: 9972
-												var9 = var12 + 12;
-											}
-
-											if (var11 == 4) { // L: 9973
-												var9 = var12 + 13;
-											}
-
-											class4.insertMenuItemNoShift(var7[var11], class122.colorStartTag(16776960) + var5, var9, var1, var2, var3); // L: 9974
-										}
-									}
-								}
-							}
-
-							if (!var4.isFollower || !Client.followerOpsLowPriority) { // L: 9979
-								class4.insertMenuItemNoShift("Examine", class122.colorStartTag(16776960) + var5, 1003, var1, var2, var3); // L: 9980
-							}
-						}
-
+					if (var8 == '+') { // L: 51
+						continue;
 					}
 				}
+
+				int var10;
+				if (var8 >= '0' && var8 <= '9') { // L: 53
+					var10 = var8 - '0';
+				} else if (var8 >= 'A' && var8 <= 'Z') { // L: 54
+					var10 = var8 - '7';
+				} else {
+					if (var8 < 'a' || var8 > 'z') { // L: 55
+						return false; // L: 56
+					}
+
+					var10 = var8 - 'W';
+				}
+
+				if (var10 >= var1) { // L: 57
+					return false;
+				}
+
+				if (var3) { // L: 58
+					var10 = -var10;
+				}
+
+				int var9 = var10 + var5 * var1; // L: 59
+				if (var9 / var1 != var5) { // L: 60
+					return false;
+				}
+
+				var5 = var9; // L: 61
+				var4 = true; // L: 62
 			}
+
+			return var4; // L: 64
+		} else {
+			throw new IllegalArgumentException("" + var1);
 		}
-	} // L: 9984
+	}
 }
