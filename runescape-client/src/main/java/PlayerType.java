@@ -4,129 +4,172 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ky")
+@ObfuscatedName("nn")
 @Implements("PlayerType")
-public enum PlayerType implements MouseWheel {
-	@ObfuscatedName("c")
+public enum PlayerType implements class371 {
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
 	@Export("PlayerType_normal")
 	PlayerType_normal(0, -1, true, false, true),
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
 	@Export("PlayerType_playerModerator")
 	PlayerType_playerModerator(1, 0, true, true, true),
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
 	@Export("PlayerType_jagexModerator")
 	PlayerType_jagexModerator(2, 1, true, true, false),
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
 	@Export("PlayerType_ironman")
 	PlayerType_ironman(3, 2, false, false, true),
-	@ObfuscatedName("j")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
 	@Export("PlayerType_ultimateIronman")
 	PlayerType_ultimateIronman(4, 3, false, false, true),
-	@ObfuscatedName("e")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
 	@Export("PlayerType_hardcoreIronman")
 	PlayerType_hardcoreIronman(5, 10, false, false, true),
-	@ObfuscatedName("g")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3951(6, 22, false, false, true),
-	@ObfuscatedName("w")
+	field4239(6, 22, false, false, true),
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3952(7, 41, false, false, true),
-	@ObfuscatedName("y")
+	field4242(7, 41, false, false, true),
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3956(8, 42, false, false, true),
-	@ObfuscatedName("i")
+	field4237(8, 42, false, false, true),
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3954(9, 43, false, false, true),
-	@ObfuscatedName("s")
+	field4238(9, 43, false, false, true),
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3949(10, 44, false, false, true),
-	@ObfuscatedName("t")
+	field4235(10, 44, false, false, true),
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3945(11, 45, false, false, true),
-	@ObfuscatedName("z")
+	field4240(11, 45, false, false, true),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3957(12, 46, false, false, true),
-	@ObfuscatedName("r")
+	field4241(12, 46, false, false, true),
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3958(13, 47, false, false, true),
-	@ObfuscatedName("u")
+	field4229(13, 47, false, false, true),
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3959(14, 48, false, false, true),
-	@ObfuscatedName("k")
+	field4243(14, 48, false, false, true),
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lnn;"
 	)
-	field3960(15, 49, false, false, true);
+	field4244(15, 49, false, false, true),
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "Lnn;"
+	)
+	field4245(16, 52, false, false, true);
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -1157893365
+		intValue = -2032414523
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("x")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = -982051127
+		intValue = 1111504301
 	)
 	@Export("modIcon")
 	public final int modIcon;
-	@ObfuscatedName("l")
+	@ObfuscatedName("ah")
 	@Export("isPrivileged")
 	public final boolean isPrivileged;
-	@ObfuscatedName("a")
+	@ObfuscatedName("as")
 	@Export("isUser")
 	public final boolean isUser;
 
 	PlayerType(int var3, int var4, boolean var5, boolean var6, boolean var7) {
-		this.id = var3; // L: 33
-		this.modIcon = var4; // L: 34
-		this.isPrivileged = var6; // L: 35
-		this.isUser = var7; // L: 36
-	} // L: 37
+		this.id = var3; // L: 34
+		this.modIcon = var4; // L: 35
+		this.isPrivileged = var6; // L: 36
+		this.isUser = var7; // L: 37
+	} // L: 38
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "41"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 41
+		return this.id; // L: 42
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "([BI)V",
+		garbageValue = "414749289"
+	)
+	@Export("ByteArrayPool_release")
+	public static synchronized void ByteArrayPool_release(byte[] var0) {
+		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field4542) { // L: 116
+			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0; // L: 117
+		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field4549) { // L: 120
+			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0; // L: 121
+		} else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field4543) { // L: 124
+			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0; // L: 125
+		} else if (var0.length == 30000 && ByteArrayPool.field4547 < ByteArrayPool.field4551) { // L: 128
+			ByteArrayPool.field4555[++ByteArrayPool.field4547 - 1] = var0; // L: 129
+		} else {
+			if (class410.ByteArrayPool_arrays != null) { // L: 132
+				for (int var1 = 0; var1 < class416.ByteArrayPool_alternativeSizes.length; ++var1) { // L: 133
+					if (var0.length == class416.ByteArrayPool_alternativeSizes[var1] && StructComposition.ByteArrayPool_altSizeArrayCounts[var1] < class410.ByteArrayPool_arrays[var1].length) { // L: 134
+						class410.ByteArrayPool_arrays[var1][StructComposition.ByteArrayPool_altSizeArrayCounts[var1]++] = var0; // L: 135
+						return; // L: 136
+					}
+				}
+			}
+
+		}
+	} // L: 118 122 126 130 140
+
+	@ObfuscatedName("nq")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-72"
+	)
+	static final int method6627() {
+		float var0 = 200.0F * ((float)class449.clientPreferences.method2505() - 0.5F); // L: 12218
+		return 100 - Math.round(var0); // L: 12219
 	}
 }
