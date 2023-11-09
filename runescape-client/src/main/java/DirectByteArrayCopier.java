@@ -1,29 +1,23 @@
 import java.nio.ByteBuffer;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jr")
+@ObfuscatedName("mo")
 @Implements("DirectByteArrayCopier")
 public class DirectByteArrayCopier extends AbstractByteArrayCopier {
-	@ObfuscatedName("fy")
-	@ObfuscatedGetter(
-		intValue = -1703500315
-	)
-	static int field3306;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@Export("directBuffer")
 	ByteBuffer directBuffer;
 
 	DirectByteArrayCopier() {
 	} // L: 10
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(B)[B",
-		garbageValue = "-87"
+		garbageValue = "118"
 	)
 	@Export("get")
 	byte[] get() {
@@ -33,10 +27,10 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		return var1; // L: 16
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "2067022612"
+		descriptor = "([BB)V",
+		garbageValue = "-25"
 	)
 	@Export("set")
 	void set(byte[] var1) {
@@ -45,38 +39,49 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		this.directBuffer.put(var1); // L: 22
 	} // L: 23
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Llc;IB)V",
-		garbageValue = "20"
+		descriptor = "(Lsq;I)V",
+		garbageValue = "1115242547"
 	)
-	public static void method5512(Archive var0, int var1) {
-		KitDefinition.field1862.offset = var1 * 8 + 5; // L: 87
-		if (KitDefinition.field1862.offset >= KitDefinition.field1862.array.length) { // L: 88
-			if (var0.field3990) { // L: 89
-				var0.method5822(); // L: 90
-			} else {
-				throw new RuntimeException(""); // L: 93
-			}
-		} else {
-			int var2 = KitDefinition.field1862.readInt(); // L: 95
-			int var3 = KitDefinition.field1862.readInt(); // L: 96
-			var0.loadIndex(var2, var3); // L: 97
+	@Export("updatePlayer")
+	static final void updatePlayer(PacketBuffer var0) {
+		var0.importIndex(); // L: 37
+		int var1 = Client.localPlayerIndex; // L: 38
+		Player var2 = BuddyRankComparator.localPlayer = Client.players[var1] = new Player(); // L: 39
+		var2.index = var1; // L: 40
+		int var3 = var0.readBits(30); // L: 41
+		byte var4 = (byte)(var3 >> 28); // L: 42
+		int var5 = var3 >> 14 & 16383; // L: 43
+		int var6 = var3 & 16383; // L: 44
+		var2.pathX[0] = var5 - GameEngine.baseX * 64; // L: 45
+		var2.x = (var2.pathX[0] << 7) + (var2.transformedSize() << 6); // L: 46
+		var2.pathY[0] = var6 - class178.baseY * 64; // L: 47
+		var2.y = (var2.pathY[0] << 7) + (var2.transformedSize() << 6); // L: 48
+		TaskHandler.Client_plane = var2.plane = var4; // L: 49
+		if (Players.field1335[var1] != null) { // L: 50
+			var2.read(Players.field1335[var1]);
 		}
-	} // L: 91 98
 
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1018448231"
-	)
-	@Export("Messages_getLastChatID")
-	static int Messages_getLastChatID(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0); // L: 57
-		if (var1 == null) { // L: 58
-			return -1;
-		} else {
-			return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count; // L: 59 60
+		Players.Players_count = 0; // L: 51
+		Players.Players_indices[++Players.Players_count - 1] = var1; // L: 52
+		Players.field1336[var1] = 0; // L: 53
+		Players.Players_emptyIdxCount = 0; // L: 54
+
+		for (int var7 = 1; var7 < 2048; ++var7) { // L: 55
+			if (var7 != var1) { // L: 56
+				int var8 = var0.readBits(18); // L: 57
+				int var9 = var8 >> 16; // L: 58
+				int var10 = var8 >> 8 & 597; // L: 59
+				int var11 = var8 & 597; // L: 60
+				Players.Players_regions[var7] = (var10 << 14) + var11 + (var9 << 28); // L: 61
+				Players.Players_orientations[var7] = 0; // L: 62
+				Players.Players_targetIndices[var7] = -1; // L: 63
+				Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var7; // L: 64
+				Players.field1336[var7] = 0; // L: 65
+			}
 		}
-	}
+
+		var0.exportIndex(); // L: 67
+	} // L: 68
 }

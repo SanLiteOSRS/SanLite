@@ -1,24 +1,51 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import java.util.Comparator;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("or")
-public class class393 extends class394 {
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		longValue = -2173351521365145711L
-	)
-	static long field4425;
-
-	public class393(int var1) {
-		super(var1); // L: 7
-	} // L: 8
-
-	@ObfuscatedName("c")
+@ObfuscatedName("ps")
+class class393 implements Comparator {
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "803287054"
+		descriptor = "Lpe;"
 	)
-	void vmethod7080(Buffer var1, int var2) {
-	} // L: 12
+	final class394 this$0;
+
+	@ObfuscatedSignature(
+		descriptor = "(Lpe;)V"
+	)
+	class393(class394 var1) {
+		this.this$0 = var1; // L: 7
+	}
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(Lpn;Lpn;I)I",
+		garbageValue = "1590106623"
+	)
+	int method7408(class395 var1, class395 var2) {
+		if (var1.field4488 > var2.field4488) {
+			return 1; // L: 9
+		} else {
+			return var1.field4488 < var2.field4488 ? -1 : 0; // L: 10 11
+		}
+	}
+
+	public boolean equals(Object var1) {
+		return super.equals(var1); // L: 19
+	}
+
+	public int compare(Object var1, Object var2) {
+		return this.method7408((class395)var1, (class395)var2); // L: 15
+	}
+
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(IZB)Ljava/lang/String;",
+		garbageValue = "49"
+	)
+	@Export("intToString")
+	public static String intToString(int var0, boolean var1) {
+		return var1 && var0 >= 0 ? RouteStrategy.method4142(var0, 10, var1) : Integer.toString(var0); // L: 106 107
+	}
 }
