@@ -3,53 +3,48 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mi")
+@ObfuscatedName("nd")
 @Implements("IgnoreList")
 public class IgnoreList extends NameableContainer {
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	static IndexedSprite field4284;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Lpe;"
+		descriptor = "Lpl;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpe;)V"
+		descriptor = "(Lpl;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400); // L: 13
 		this.loginType = var1; // L: 14
 	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lne;",
-		garbageValue = "-7122"
+		descriptor = "(I)Lnb;",
+		garbageValue = "1043377845"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Ignored(); // L: 19
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lne;",
-		garbageValue = "77510907"
+		descriptor = "(II)[Lnb;",
+		garbageValue = "46467081"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Ignored[var1]; // L: 24
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "1241534529"
+		descriptor = "(Lqr;IB)V",
+		garbageValue = "1"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {

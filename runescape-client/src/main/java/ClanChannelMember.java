@@ -3,22 +3,31 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ew")
+@ObfuscatedName("ev")
 @Implements("ClanChannelMember")
 public class ClanChannelMember {
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
+	static boolean field1546;
+	@ObfuscatedName("el")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("archive5")
+	static Archive archive5;
+	@ObfuscatedName("s")
 	@Export("rank")
 	public byte rank;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 44459875
+		intValue = 1801050493
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lqy;"
 	)
 	@Export("username")
 	public Username username;
@@ -26,52 +35,33 @@ public class ClanChannelMember {
 	ClanChannelMember() {
 	} // L: 10
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;III)[Lqu;",
-		garbageValue = "658098688"
+		descriptor = "(ILbz;ZI)I",
+		garbageValue = "-2098117121"
 	)
-	public static IndexedSprite[] method2867(AbstractArchive var0, int var1, int var2) {
-		if (!Ignored.method6774(var0, var1, var2)) { // L: 23
-			return null;
+	static int method2819(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? SoundSystem.scriptDotWidget : Ignored.scriptActiveWidget; // L: 1112
+		if (var0 == ScriptOpcodes.CC_GETX) { // L: 1113
+			Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = var3.x; // L: 1114
+			return 1; // L: 1115
+		} else if (var0 == ScriptOpcodes.CC_GETY) { // L: 1117
+			Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = var3.y; // L: 1118
+			return 1; // L: 1119
+		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) { // L: 1121
+			Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = var3.width; // L: 1122
+			return 1; // L: 1123
+		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) { // L: 1125
+			Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = var3.height; // L: 1126
+			return 1; // L: 1127
+		} else if (var0 == ScriptOpcodes.CC_GETHIDE) { // L: 1129
+			Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1130
+			return 1; // L: 1131
+		} else if (var0 == ScriptOpcodes.CC_GETLAYER) { // L: 1133
+			Interpreter.Interpreter_intStack[++Nameable.Interpreter_intStackSize - 1] = var3.parentId; // L: 1134
+			return 1; // L: 1135
 		} else {
-			IndexedSprite[] var4 = new IndexedSprite[class456.SpriteBuffer_spriteCount]; // L: 26
-
-			for (int var5 = 0; var5 < class456.SpriteBuffer_spriteCount; ++var5) { // L: 27
-				IndexedSprite var6 = var4[var5] = new IndexedSprite(); // L: 28
-				var6.width = ModelData0.SpriteBuffer_spriteWidth; // L: 29
-				var6.height = class456.SpriteBuffer_spriteHeight; // L: 30
-				var6.xOffset = class426.SpriteBuffer_xOffsets[var5]; // L: 31
-				var6.yOffset = class142.SpriteBuffer_yOffsets[var5]; // L: 32
-				var6.subWidth = class359.SpriteBuffer_spriteWidths[var5]; // L: 33
-				var6.subHeight = class456.SpriteBuffer_spriteHeights[var5]; // L: 34
-				var6.palette = class13.SpriteBuffer_spritePalette; // L: 35
-				var6.pixels = class421.SpriteBuffer_pixels[var5]; // L: 36
-			}
-
-			class426.SpriteBuffer_xOffsets = null; // L: 39
-			class142.SpriteBuffer_yOffsets = null; // L: 40
-			class359.SpriteBuffer_spriteWidths = null; // L: 41
-			class456.SpriteBuffer_spriteHeights = null; // L: 42
-			class13.SpriteBuffer_spritePalette = null; // L: 43
-			class421.SpriteBuffer_pixels = null;
-			return var4;
+			return 2; // L: 1137
 		}
-	}
-
-	@ObfuscatedName("v")
-	static boolean method2865(long var0) {
-		return class7.method51(var0) == 2; // L: 48
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "88442168"
-	)
-	@Export("Messages_getHistorySize")
-	static int Messages_getHistorySize(int var0) {
-		ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 44
-		return var1 == null ? 0 : var1.size(); // L: 45 46
 	}
 }

@@ -1,110 +1,80 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("px")
+@ObfuscatedName("pz")
 public class class437 extends DualNode {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	static AbstractArchive field4675;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "[Lpk;"
 	)
-	@Export("DBRowType_cache")
-	static EvictingDualNodeHashTable DBRowType_cache;
-	@ObfuscatedName("q")
-	Object[][] field4676;
-	@ObfuscatedName("f")
-	int[][] field4677;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 1231945791
-	)
-	public int field4678;
+	class433[] field4672;
+	@ObfuscatedName("c")
+	List field4676;
 
-	static {
-		DBRowType_cache = new EvictingDualNodeHashTable(64); // L: 11
-	}
-
-	class437() {
-	} // L: 17
-
-	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "1"
+		descriptor = "(Lls;I)V"
 	)
-	void method7635(Buffer var1) {
-		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 36
-			if (var2 == 0) { // L: 37
-				return; // L: 40
-			}
+	public class437(AbstractArchive var1, int var2) {
+		byte[] var3 = var1.takeFile(var2, 0); // L: 26
+		this.method7536(new Buffer(var3)); // L: 27
+	} // L: 28
 
-			this.method7627(var1, var2); // L: 38
-		}
-	}
-
-	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IB)[Ljava/lang/Object;",
-		garbageValue = "-23"
+		descriptor = "(Lls;II)V"
 	)
-	public Object[] method7625(int var1) {
-		return this.field4676 == null ? null : this.field4676[var1]; // L: 43 44
-	}
+	public class437(AbstractArchive var1, int var2, int var3) {
+		byte[] var4 = var1.takeFile(var2, var3 + 1); // L: 21
+		this.method7536(new Buffer(var4)); // L: 22
+	} // L: 23
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1966368366"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "-2038212127"
 	)
-	void method7627(Buffer var1, int var2) {
-		if (var2 == 3) { // L: 48
-			int var3 = var1.readUnsignedByte(); // L: 49
-			if (this.field4676 == null) { // L: 50
-				this.field4676 = new Object[var3][]; // L: 51
-				this.field4677 = new int[var3][]; // L: 52
-			}
+	void method7536(Buffer var1) {
+		int var2 = var1.method7678(); // L: 31
+		this.field4672 = new class433[var2]; // L: 32
+		this.field4676 = new ArrayList(var2); // L: 33
 
-			for (int var4 = var1.readUnsignedByte(); var4 != 255; var4 = var1.readUnsignedByte()) { // L: 54 55 78
-				int var5 = var1.readUnsignedByte(); // L: 56
-				int[] var6 = new int[var5]; // L: 57
+		for (int var3 = 0; var3 < var2; ++var3) { // L: 34
+			this.field4672[var3] = (class433)GameEngine.findEnumerated(class433.method7494(), var1.readUnsignedByte()); // L: 35
+			int var4 = var1.method7678(); // L: 36
+			HashMap var5 = new HashMap(var4); // L: 37
 
-				for (int var7 = 0; var7 < var5; ++var7) { // L: 58
-					var6[var7] = var1.readUShortSmart(); // L: 59
+			while (var4-- > 0) { // L: 38
+				Object var6 = this.field4672[var3].method7493(var1); // L: 39
+				int var7 = var1.method7678(); // L: 40
+				ArrayList var8 = new ArrayList(); // L: 41
+
+				while (var7-- > 0) { // L: 42
+					int var9 = var1.method7678(); // L: 43
+					var8.add(var9); // L: 44
 				}
 
-				Object[][] var16 = this.field4676; // L: 61
-				int var10 = var1.readUShortSmart(); // L: 65
-				Object[] var11 = new Object[var6.length * var10]; // L: 66
-
-				for (int var12 = 0; var12 < var10; ++var12) { // L: 67
-					for (int var13 = 0; var13 < var6.length; ++var13) { // L: 68
-						int var14 = var13 + var6.length * var12; // L: 69
-						class432 var15 = MusicPatchNode.method5472(var6[var13]); // L: 70
-						var11[var14] = var15.method7565(var1); // L: 71
-					}
-				}
-
-				var16[var4] = var11; // L: 76
-				this.field4677[var4] = var6; // L: 77
+				var5.put(var6, var8); // L: 46
 			}
-		} else if (var2 == 4) { // L: 81
-			this.field4678 = var1.method7754(); // L: 82
+
+			this.field4676.add(var3, var5); // L: 48
 		}
 
-	} // L: 85
+	} // L: 50
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-110987764"
+		descriptor = "(Ljava/lang/Object;IB)Ljava/util/List;",
+		garbageValue = "66"
 	)
-	void method7636() {
-	} // L: 87
+	public List method7537(Object var1, int var2) {
+		if (var2 < 0) { // L: 53
+			var2 = 0;
+		}
+
+		Map var3 = (Map)this.field4676.get(var2); // L: 54
+		return (List)var3.get(var1); // L: 55
+	}
 }
