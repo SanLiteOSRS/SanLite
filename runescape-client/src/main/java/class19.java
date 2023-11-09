@@ -1,107 +1,58 @@
-import java.util.concurrent.Future;
+import java.io.IOException;
+import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("a")
-public class class19 {
-	@ObfuscatedName("up")
+@ObfuscatedName("ai")
+public class class19 implements Callable {
+	@ObfuscatedName("eu")
+	@Export("mouseCam")
+	static boolean mouseCam;
+	@ObfuscatedName("fv")
 	@ObfuscatedSignature(
-		descriptor = "Lcv;"
+		descriptor = "Loh;"
 	)
-	@Export("clientPreferences")
-	static ClientPreferences clientPreferences;
-	@ObfuscatedName("c")
-	Future field107;
-	@ObfuscatedName("v")
-	String field106;
-
-	class19(Future var1) {
-		this.field107 = var1; // L: 10
-	} // L: 11
-
-	class19(String var1) {
-		this.method243(var1); // L: 14
-	} // L: 15
-
-	@ObfuscatedName("c")
+	static Archive field92;
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "1161369831"
+		descriptor = "Lap;"
 	)
-	void method243(String var1) {
-		if (var1 == null) { // L: 18
-			var1 = "";
-		}
-
-		this.field106 = var1; // L: 19
-		if (this.field107 != null) { // L: 20
-			this.field107.cancel(true); // L: 21
-			this.field107 = null; // L: 22
-		}
-
-	} // L: 24
-
-	@ObfuscatedName("v")
+	final class10 field94;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-688611992"
+		descriptor = "Lay;"
 	)
-	public final String method244() {
-		return this.field106; // L: 27
-	}
+	final class14 this$0;
 
-	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "731102059"
+		descriptor = "(Lay;Lap;)V"
 	)
-	public boolean method251() {
-		return this.field106 != null || this.field107 == null; // L: 31
-	}
+	class19(class14 var1, class10 var2) {
+		this.this$0 = var1; // L: 46
+		this.field94 = var2; // L: 47
+	} // L: 48
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1151479385"
-	)
-	public final boolean method246() {
-		return this.method251() ? true : this.field107.isDone(); // L: 35 36
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(S)Lb;",
-		garbageValue = "-5003"
-	)
-	public final class21 method249() {
-		if (this.method251()) { // L: 40
-			return new class21(this.field106);
-		} else if (!this.method246()) { // L: 41
-			return null;
-		} else {
-			try {
-				return (class21)this.field107.get(); // L: 43
-			} catch (Exception var3) { // L: 45
-				String var2 = "Error retrieving REST request reply"; // L: 46
-				System.err.println(var2 + "\r\n" + var3); // L: 47
-				this.method243(var2); // L: 48
-				return new class21(var2); // L: 49
+	public Object call() throws Exception {
+		try {
+			while (this.field94.method94()) { // L: 53
+				class219.method4260(10L); // L: 54
 			}
+		} catch (IOException var2) { // L: 57
+			return new class20("Error servicing REST query: " + var2.getMessage()); // L: 58
 		}
+
+		return this.field94.method91(); // L: 60
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("oq")
 	@ObfuscatedSignature(
-		descriptor = "(II)Ldt;",
-		garbageValue = "234177073"
+		descriptor = "(II)V",
+		garbageValue = "-2072070052"
 	)
-	static class119 method254(int var0) {
-		class119 var1 = (class119)Actor.findEnumerated(UserComparator9.method2599(), var0); // L: 92
-		if (var1 == null) {
-			var1 = class119.field1497; // L: 93
+	static void method295(int var0) {
+		if (var0 != Client.loginState) { // L: 12940
+			Client.loginState = var0; // L: 12941
 		}
-
-		return var1; // L: 94
-	}
+	} // L: 12942
 }

@@ -5,132 +5,91 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("w")
+@ObfuscatedName("ac")
 public class class7 {
-	@ObfuscatedName("c")
-	ExecutorService field25;
-	@ObfuscatedName("v")
-	Future field22;
-	@ObfuscatedName("q")
+	@ObfuscatedName("bq")
 	@ObfuscatedSignature(
-		descriptor = "Lqt;"
+		descriptor = "Lrv;"
 	)
-	final Buffer field21;
-	@ObfuscatedName("f")
+	static Bounds field21;
+	@ObfuscatedName("fc")
 	@ObfuscatedSignature(
-		descriptor = "Lf;"
+		descriptor = "Loh;"
 	)
-	final class3 field24;
+	static Archive field25;
+	@ObfuscatedName("at")
+	ExecutorService field24;
+	@ObfuscatedName("ah")
+	Future field18;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Luj;"
+	)
+	final Buffer field19;
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Lao;"
+	)
+	final class3 field20;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;Lf;)V"
+		descriptor = "(Luj;Lao;)V"
 	)
 	public class7(Buffer var1, class3 var2) {
-		this.field25 = Executors.newSingleThreadExecutor(); // L: 10
-		this.field21 = var1; // L: 16
-		this.field24 = var2; // L: 17
-		this.method43(); // L: 18
-	} // L: 19
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1259823289"
-	)
-	public boolean method46() {
-		return this.field22.isDone(); // L: 22
+		this.field24 = Executors.newSingleThreadExecutor(); // L: 10
+		this.field19 = var1; // L: 16
+		this.field20 = var2; // L: 17
+		this.method56(); // L: 18
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-750933605"
+		descriptor = "(I)Z",
+		garbageValue = "-1139388423"
 	)
-	public void method41() {
-		this.field25.shutdown(); // L: 26
-		this.field25 = null; // L: 27
+	public boolean method51() {
+		return this.field18.isDone(); // L: 22
+	}
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-85"
+	)
+	public void method62() {
+		this.field24.shutdown(); // L: 26
+		this.field24 = null; // L: 27
 	} // L: 28
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lqt;",
-		garbageValue = "1646387788"
+		descriptor = "(I)Luj;",
+		garbageValue = "1719469539"
 	)
-	public Buffer method42() {
+	public Buffer method52() {
 		try {
-			return (Buffer)this.field22.get(); // L: 32
+			return (Buffer)this.field18.get(); // L: 32
 		} catch (Exception var2) { // L: 34
 			return null; // L: 35
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "422290407"
+		garbageValue = "670467057"
 	)
-	void method43() {
-		this.field22 = this.field25.submit(new class1(this, this.field21, this.field24)); // L: 40
+	void method56() {
+		this.field18 = this.field24.submit(new class1(this, this.field19, this.field20)); // L: 40
 	} // L: 41
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;III)Lqe;",
-		garbageValue = "488582948"
+		descriptor = "(IB)Z",
+		garbageValue = "1"
 	)
-	@Export("SpriteBuffer_getSprite")
-	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
-		if (!Ignored.method6774(var0, var1, var2)) { // L: 57
-			return null;
-		} else {
-			SpritePixels var4 = new SpritePixels(); // L: 60
-			var4.width = ModelData0.SpriteBuffer_spriteWidth; // L: 61
-			var4.height = class456.SpriteBuffer_spriteHeight; // L: 62
-			var4.xOffset = class426.SpriteBuffer_xOffsets[0]; // L: 63
-			var4.yOffset = class142.SpriteBuffer_yOffsets[0]; // L: 64
-			var4.subWidth = class359.SpriteBuffer_spriteWidths[0]; // L: 65
-			var4.subHeight = class456.SpriteBuffer_spriteHeights[0]; // L: 66
-			int var5 = var4.subWidth * var4.subHeight; // L: 67
-			byte[] var6 = class421.SpriteBuffer_pixels[0]; // L: 68
-			var4.pixels = new int[var5]; // L: 69
-
-			for (int var7 = 0; var7 < var5; ++var7) { // L: 70
-				var4.pixels[var7] = class13.SpriteBuffer_spritePalette[var6[var7] & 255];
-			}
-
-			class426.SpriteBuffer_xOffsets = null; // L: 72
-			class142.SpriteBuffer_yOffsets = null; // L: 73
-			class359.SpriteBuffer_spriteWidths = null; // L: 74
-			class456.SpriteBuffer_spriteHeights = null; // L: 75
-			class13.SpriteBuffer_spritePalette = null; // L: 76
-			class421.SpriteBuffer_pixels = null;
-			return var4; // L: 81
-		}
+	@Export("isWorldMapEvent")
+	public static boolean isWorldMapEvent(int var0) {
+		return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17; // L: 19
 	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Lce;",
-		garbageValue = "-916941960"
-	)
-	static AttackOption[] method52() {
-		return new AttackOption[]{AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.field1294, AttackOption.AttackOption_hidden, AttackOption.field1288}; // L: 12504
-	}
-
-	@ObfuscatedName("e")
-	static int method51(long var0) {
-		return (int)(var0 >>> 14 & 3L); // L: 77
-	}
-
-	@ObfuscatedName("jf")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "2121106568"
-	)
-	@Export("runIntfCloseListeners")
-	static final void runIntfCloseListeners(int var0, int var1) {
-		if (WorldMapSection2.loadInterface(var0)) { // L: 11581
-			TaskHandler.runComponentCloseListeners(SoundCache.Widget_interfaceComponents[var0], var1); // L: 11582
-		}
-	} // L: 11583
 }
