@@ -1,66 +1,81 @@
 import java.net.URL;
-import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("et")
 @Implements("UrlRequest")
 public class UrlRequest {
-	@ObfuscatedName("us")
-	static List field1373;
-	@ObfuscatedName("c")
-	@Export("url")
-	final URL url;
-	@ObfuscatedName("v")
-	@Export("isDone0")
-	volatile boolean isDone0;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ae")
+	@ObfuscatedGetter(
+		intValue = 513778063
+	)
+	static int field1454;
+	@ObfuscatedName("ao")
+	@ObfuscatedGetter(
+		intValue = -2063335977
+	)
+	static int field1455;
+	@ObfuscatedName("ad")
+	public static short[] field1458;
+	@ObfuscatedName("au")
+	final URL field1453;
+	@ObfuscatedName("at")
+	@ObfuscatedGetter(
+		intValue = 2063603547
+	)
+	volatile int field1456;
+	@ObfuscatedName("ac")
 	@Export("response0")
 	volatile byte[] response0;
 
-	UrlRequest(URL var1) {
-		this.url = var1; // L: 118
-	} // L: 119
+	static {
+		field1454 = -1; // L: 133
+		field1455 = -2; // L: 134
+	}
 
-	@ObfuscatedName("c")
+	UrlRequest(URL var1) {
+		this.field1456 = field1454; // L: 135
+		this.field1453 = var1; // L: 139
+	} // L: 140
+
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-60"
+		descriptor = "(I)Z",
+		garbageValue = "1941771443"
 	)
 	@Export("isDone")
 	public boolean isDone() {
-		return this.isDone0; // L: 122
+		return this.field1456 != field1454; // L: 143
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
 		descriptor = "(I)[B",
-		garbageValue = "-1112773966"
+		garbageValue = "-90219734"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
-		return this.response0; // L: 126
+		return this.response0; // L: 147
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-2136536725"
+		garbageValue = "79865594"
 	)
-	public String method2553() {
-		return this.url.toString(); // L: 130
+	public String method2848() {
+		return this.field1453.toString(); // L: 151
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(ZZI)I",
-		garbageValue = "-1626715483"
+		descriptor = "(I)[Lnb;",
+		garbageValue = "2139207855"
 	)
-	public static int method2557(boolean var0, boolean var1) {
-		byte var2 = 0; // L: 143
-		int var3 = var2 + NetCache.NetCache_pendingPriorityWritesCount + NetCache.NetCache_pendingPriorityResponsesCount; // L: 144
-		return var3; // L: 145
+	public static GameBuild[] method2855() {
+		return new GameBuild[]{GameBuild.LIVE, GameBuild.RC, GameBuild.WIP, GameBuild.BUILDLIVE}; // L: 13
 	}
 }

@@ -1,42 +1,70 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kz")
+@ObfuscatedName("lz")
 public class class305 {
-	static {
-		int var0 = 0; // L: 9
-		int var1 = 0; // L: 10
-		class301[] var2 = new class301[]{class301.field3575, class301.field3576}; // L: 14
-		class301[] var3 = var2; // L: 16
-
-		for (int var4 = 0; var4 < var3.length; ++var4) { // L: 17
-			class301 var5 = var3[var4]; // L: 18
-			if (var5.field3580 > var0) { // L: 20
-				var0 = var5.field3580;
-			}
-
-			if (var5.field3578 > var1) { // L: 21
-				var1 = var5.field3578;
-			}
-		}
-
-	} // L: 25
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(ILnd;Llc;B)V",
-		garbageValue = "82"
+		descriptor = "Lnu;"
 	)
-	static void method5764(int var0, ArchiveDisk var1, Archive var2) {
-		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 30
-		var3.type = 1; // L: 31
-		var3.key = (long)var0; // L: 32
-		var3.archiveDisk = var1; // L: 33
-		var3.archive = var2; // L: 34
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 35
-			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 36
-		} // L: 37
+	public static AbstractArchive field3399;
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "Lnu;"
+	)
+	public static AbstractArchive field3400;
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Lnu;"
+	)
+	public static AbstractArchive field3403;
+	@ObfuscatedName("at")
+	public static ArrayList field3402;
+	@ObfuscatedName("ac")
+	public static LinkedList field3411;
+	@ObfuscatedName("ai")
+	public static ArrayList field3404;
+	@ObfuscatedName("az")
+	public static ArrayList field3405;
+	@ObfuscatedName("ap")
+	public static ArrayList field3406;
+	@ObfuscatedName("aa")
+	public static final List field3407;
+	@ObfuscatedName("af")
+	@ObfuscatedGetter(
+		intValue = 1224914915
+	)
+	public static int field3408;
+	@ObfuscatedName("ad")
+	@ObfuscatedGetter(
+		intValue = -1284543169
+	)
+	public static int field3409;
+	@ObfuscatedName("aq")
+	@ObfuscatedGetter(
+		intValue = 35504833
+	)
+	public static int field3410;
+	@ObfuscatedName("al")
+	@ObfuscatedGetter(
+		intValue = -2000585249
+	)
+	public static int field3401;
 
-		Tiles.method2065(); // L: 38
-	} // L: 39
+	static {
+		field3402 = null; // L: 13
+		field3411 = new LinkedList(); // L: 14
+		field3404 = new ArrayList(3); // L: 15
+		field3405 = new ArrayList(3); // L: 16
+		field3406 = new ArrayList(); // L: 17
+		field3407 = new ArrayList(); // L: 18
+		field3408 = 0; // L: 19
+		field3409 = 0; // L: 20
+		field3410 = 0; // L: 21
+		field3401 = 0; // L: 22
+	}
 }
