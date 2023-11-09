@@ -1,30 +1,46 @@
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kw")
+@ObfuscatedName("kx")
 public class class298 {
-	@ObfuscatedName("ir")
-	@ObfuscatedGetter(
-		intValue = -672435189
-	)
-	static int field3558;
-
-	@ObfuscatedName("b")
+	@ObfuscatedName("fq")
+	static String field3418;
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "1392015477"
+		descriptor = "Lkk;"
 	)
-	static final boolean method5753(int var0, int var1) {
-		ObjectComposition var2 = class162.getObjectDefinition(var0); // L: 949
-		if (var1 == 11) { // L: 950
-			var1 = 10;
-		}
+	public class300 field3419;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Lkp;"
+	)
+	class295 field3410;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Lah;"
+	)
+	class28 field3411;
+	@ObfuscatedName("x")
+	public Object[] field3415;
+	@ObfuscatedName("h")
+	public Object[] field3413;
+	@ObfuscatedName("j")
+	public Object[] field3414;
+	@ObfuscatedName("y")
+	public Object[] field3416;
 
-		if (var1 >= 5 && var1 <= 8) {
-			var1 = 4; // L: 951
-		}
+	class298() {
+		this.field3419 = new class300(); // L: 6
+		this.field3410 = new class295(); // L: 7
+		this.field3411 = new class28(); // L: 8
+	} // L: 14
 
-		return var2.method3658(var1); // L: 952
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(IB)I",
+		garbageValue = "-39"
+	)
+	static int method5728(int var0) {
+		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F)); // L: 4227
 	}
 }

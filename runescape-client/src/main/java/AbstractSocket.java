@@ -4,66 +4,84 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nl")
+@ObfuscatedName("ok")
 @Implements("AbstractSocket")
 public abstract class AbstractSocket {
 	AbstractSocket() {
 	} // L: 7
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "1"
+		descriptor = "(II)Z",
+		garbageValue = "-1620434704"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-439883726"
+		garbageValue = "1875273278"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1889844897"
+		descriptor = "(S)I",
+		garbageValue = "7042"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)I",
-		garbageValue = "695516749"
+		garbageValue = "-1864209340"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "1416716039"
+		garbageValue = "1825322520"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-17278531"
+		descriptor = "(B)V",
+		garbageValue = "78"
 	)
 	@Export("close")
 	public abstract void close();
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("gt")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;IB)Lqu;",
-		garbageValue = "-106"
+		descriptor = "(Lgg;IIII)V",
+		garbageValue = "377152430"
 	)
-	public static IndexedSprite method6819(AbstractArchive var0, int var1) {
-		return !class431.method7559(var0, var1) ? null : class390.method7053(); // L: 131 132
-	}
+	static void method7484(SequenceDefinition var0, int var1, int var2, int var3) {
+		if (Client.soundEffectCount < 50 && BufferedSink.clientPreferences.method2411() != 0) { // L: 3822
+			if (var0.field2214 != null && var0.field2214.containsKey(var1)) { // L: 3823
+				int var4 = (Integer)var0.field2214.get(var1); // L: 3824
+				if (var4 != 0) { // L: 3828
+					int var7 = var4 >> 8; // L: 3829
+					int var8 = var4 >> 4 & 7; // L: 3830
+					int var9 = var4 & 15; // L: 3831
+					Client.soundEffectIds[Client.soundEffectCount] = var7; // L: 3832
+					Client.queuedSoundEffectLoops[Client.soundEffectCount] = var8; // L: 3833
+					Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0; // L: 3834
+					Client.soundEffects[Client.soundEffectCount] = null; // L: 3835
+					int var10 = (var2 - 64) / 128; // L: 3836
+					int var11 = (var3 - 64) / 128; // L: 3837
+					Client.soundLocations[Client.soundEffectCount] = var9 + (var11 << 8) + (var10 << 16); // L: 3838
+					++Client.soundEffectCount; // L: 3839
+				}
+
+			}
+		}
+	} // L: 3841
 }

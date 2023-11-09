@@ -1,8 +1,3 @@
-import java.awt.image.BufferedImage;
-import java.awt.image.PixelGrabber;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
@@ -12,57 +7,51 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("gz")
 @Implements("ItemLayer")
 public final class ItemLayer {
-	@ObfuscatedName("dz")
-	@ObfuscatedSignature(
-		descriptor = "Lcx;"
-	)
-	@Export("mouseRecorder")
-	static MouseRecorder mouseRecorder;
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 1594676669
+		intValue = 678178861
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -2089256137
+		intValue = -164626432
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1339906741
+		intValue = -1157533321
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lhd;"
 	)
 	@Export("first")
 	Renderable first;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lhd;"
 	)
 	@Export("second")
 	Renderable second;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lhd;"
 	)
 	@Export("third")
 	Renderable third;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		longValue = 8752765505702022363L
+		longValue = -3757426312921201891L
 	)
 	@Export("tag")
 	long tag;
-	@ObfuscatedName("w")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -228147233
+		intValue = 307553393
 	)
 	@Export("height")
 	int height;
@@ -70,30 +59,32 @@ public final class ItemLayer {
 	ItemLayer() {
 	} // L: 13
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "([BI)Lqe;",
-		garbageValue = "-730527050"
+		descriptor = "(III)I",
+		garbageValue = "110475346"
 	)
-	public static final SpritePixels method3920(byte[] var0) {
-		BufferedImage var1 = null; // L: 20
+	static int method4054(int var0, int var1) {
+		long var2 = (long)((var0 << 16) + var1); // L: 141
+		return UserComparator6.NetCache_currentResponse != null && var2 == UserComparator6.NetCache_currentResponse.key ? class420.NetCache_responseArchiveBuffer.offset * 99 / (class420.NetCache_responseArchiveBuffer.array.length - UserComparator6.NetCache_currentResponse.padding) + 1 : 0; // L: 142 143
+	}
 
-		try {
-			Class var2 = ImageIO.class; // L: 22
-			synchronized(ImageIO.class) {
-				var1 = ImageIO.read(new ByteArrayInputStream(var0)); // L: 23
-			} // L: 24
+	@ObfuscatedName("mf")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "1447216161"
+	)
+	static String method4055(String var0) {
+		PlayerType[] var1 = class303.PlayerType_values(); // L: 12776
 
-			int var6 = var1.getWidth(); // L: 25
-			int var7 = var1.getHeight(); // L: 26
-			int[] var4 = new int[var6 * var7]; // L: 27
-			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var6, var7, var4, 0, var6); // L: 28
-			var5.grabPixels(); // L: 29
-			return new SpritePixels(var4, var6, var7); // L: 30
-		} catch (IOException var9) { // L: 32
-		} catch (InterruptedException var10) { // L: 33
+		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12777
+			PlayerType var3 = var1[var2]; // L: 12778
+			if (var3.modIcon != -1 && var0.startsWith(class268.method5367(var3.modIcon))) { // L: 12780 12781
+				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length()); // L: 12782
+				break;
+			}
 		}
 
-		return new SpritePixels(0, 0); // L: 34
+		return var0; // L: 12789
 	}
 }
