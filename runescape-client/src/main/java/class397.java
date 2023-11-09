@@ -1,36 +1,23 @@
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ot")
+@ObfuscatedName("pz")
 public class class397 {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lot;"
+	@ObfuscatedName("aw")
+	public char field4480;
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = -318792887
 	)
-	public static final class397 field4431;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lot;"
+	public int field4479;
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = 2114762827
 	)
-	static final class397 field4430;
-	@ObfuscatedName("q")
-	String field4432;
+	public int field4481;
 
-	static {
-		field4431 = new class397("application/json"); // L: 4
-		field4430 = new class397("text/plain"); // L: 5
-	}
-
-	class397(String var1) {
-		this.field4432 = var1; // L: 9
-	} // L: 10
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-851015132"
-	)
-	public String method7086() {
-		return this.field4432; // L: 13
-	}
+	class397() {
+		this.field4479 = 0; // L: 5
+		this.field4481 = 0; // L: 6
+	} // L: 8
 }

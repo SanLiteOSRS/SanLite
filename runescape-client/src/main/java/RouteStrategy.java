@@ -1,33 +1,35 @@
+import java.util.ArrayList;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("gu")
+@ObfuscatedName("in")
 @Implements("RouteStrategy")
 public abstract class RouteStrategy {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -1648462545
+		intValue = -1929046779
 	)
 	@Export("approxDestinationX")
 	public int approxDestinationX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -235998971
+		intValue = 564458277
 	)
 	@Export("approxDestinationY")
 	public int approxDestinationY;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -2103328385
+		intValue = 2019727173
 	)
 	@Export("approxDestinationSizeX")
 	public int approxDestinationSizeX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 738835935
+		intValue = -1270533897
 	)
 	@Export("approxDestinationSizeY")
 	public int approxDestinationSizeY;
@@ -35,11 +37,68 @@ public abstract class RouteStrategy {
 	protected RouteStrategy() {
 	} // L: 9
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(IIILgv;I)Z",
-		garbageValue = "1278947831"
+		descriptor = "(IIILij;I)Z",
+		garbageValue = "2142084611"
 	)
 	@Export("hasArrived")
-	public abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
+	protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(IIS)V",
+		garbageValue = "-1978"
+	)
+	public static void method4227(int var0, int var1) {
+		ArchiveLoader.method2259(var0, var1, 0, 0); // L: 100
+		class306.field3398.clear(); // L: 101
+		if (!class306.field3394.isEmpty() && (var0 != 0 || var1 != 0)) { // L: 102
+			class306.field3399.add(new class403((class407)null, class306.field3392)); // L: 103
+			class306.field3399.add(new class405((class407)null, 0, false, class306.field3402)); // L: 104
+		}
+
+		ArrayList var2 = class162.method3356(); // L: 106
+		class306.field3399.add(new class402((class407)null, var2)); // L: 107
+	} // L: 108
+
+	@ObfuscatedName("bc")
+	@ObfuscatedSignature(
+		descriptor = "(ILdc;ZS)I",
+		garbageValue = "-21358"
+	)
+	static int method4230(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.LOGOUT) { // L: 4404
+			Client.logoutTimer = 250; // L: 4405
+			return 1; // L: 4406
+		} else {
+			return 2; // L: 4408
+		}
+	}
+
+	@ObfuscatedName("il")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-774340966"
+	)
+	@Export("setWindowedMode")
+	static void setWindowedMode(int var0) {
+		Client.field742 = 0L; // L: 4564
+		if (var0 >= 2) { // L: 4565
+			Client.isResizable = true;
+		} else {
+			Client.isResizable = false; // L: 4566
+		}
+
+		if (Huffman.getWindowedMode() == 1) { // L: 4567
+			TileItem.client.setMaxCanvasSize(765, 503); // L: 4568
+		} else {
+			TileItem.client.setMaxCanvasSize(7680, 2160); // L: 4571
+		}
+
+		if (Client.gameState >= 25) { // L: 4573
+			class409.method7680();
+		}
+
+	} // L: 4574
 }

@@ -4,90 +4,87 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nz")
+@ObfuscatedName("ru")
 @Implements("GraphicsDefaults")
 public class GraphicsDefaults {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -2113066493
+		intValue = 1457757201
 	)
-	@Export("compass")
-	public int compass;
-	@ObfuscatedName("v")
+	public int field4715;
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = 468395929
+		intValue = -1554565485
 	)
-	public int field4367;
-	@ObfuscatedName("q")
+	public int field4708;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -2011214473
+		intValue = -335893661
 	)
-	@Export("mapScenes")
-	public int mapScenes;
-	@ObfuscatedName("f")
+	public int field4709;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 1296513059
+		intValue = -1547272309
 	)
-	@Export("headIconsPk")
-	public int headIconsPk;
-	@ObfuscatedName("j")
+	public int field4710;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = -420476393
+		intValue = -1799258585
 	)
-	public int field4374;
-	@ObfuscatedName("e")
+	public int field4712;
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 727709081
+		intValue = 173361429
 	)
-	public int field4373;
-	@ObfuscatedName("g")
+	public int field4707;
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -279446943
+		intValue = 898862615
 	)
-	public int field4372;
-	@ObfuscatedName("w")
+	public int field4713;
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = 1485733839
+		intValue = 1005510493
 	)
-	public int field4368;
-	@ObfuscatedName("y")
+	public int field4714;
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = 1703298747
+		intValue = -1560055347
 	)
-	public int field4371;
-	@ObfuscatedName("i")
+	public int field4711;
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -1305431603
+		intValue = 1184444635
 	)
-	public int field4375;
-	@ObfuscatedName("s")
+	public int field4716;
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1099516571
+		intValue = 1334760175
 	)
-	public int field4376;
+	public int field4717;
 
 	public GraphicsDefaults() {
-		this.compass = -1; // L: 7
-		this.field4367 = -1; // L: 8
-		this.mapScenes = -1; // L: 9
-		this.headIconsPk = -1; // L: 10
-		this.field4374 = -1; // L: 11
-		this.field4373 = -1; // L: 12
-		this.field4372 = -1; // L: 13
-		this.field4368 = -1; // L: 14
-		this.field4371 = -1; // L: 15
-		this.field4375 = -1; // L: 16
-		this.field4376 = -1; // L: 17
+		this.field4715 = -1; // L: 7
+		this.field4708 = -1; // L: 8
+		this.field4709 = -1; // L: 9
+		this.field4710 = -1; // L: 10
+		this.field4712 = -1; // L: 11
+		this.field4707 = -1; // L: 12
+		this.field4713 = -1; // L: 13
+		this.field4714 = -1; // L: 14
+		this.field4711 = -1; // L: 15
+		this.field4716 = -1; // L: 16
+		this.field4717 = -1; // L: 17
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;I)V",
-		garbageValue = "-1672776628"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "-1842345605"
 	)
 	@Export("decode")
 	public void decode(AbstractArchive var1) {
-		byte[] var2 = var1.takeFileFlat(DefaultsGroup.field4363.group); // L: 20
+		byte[] var2 = var1.takeFileFlat(DefaultsGroup.field4706.group); // L: 20
 		Buffer var3 = new Buffer(var2); // L: 21
 
 		while (true) {
@@ -98,20 +95,20 @@ public class GraphicsDefaults {
 
 			switch(var4) { // L: 25
 			case 1:
-				var3.readMedium(); // L: 46
-				break;
+				var3.readMedium(); // L: 31
+				break; // L: 32
 			case 2:
-				this.compass = var3.method7752(); // L: 31
-				this.field4367 = var3.method7752(); // L: 32
-				this.mapScenes = var3.method7752(); // L: 33
-				this.headIconsPk = var3.method7752(); // L: 34
-				this.field4374 = var3.method7752(); // L: 35
-				this.field4373 = var3.method7752(); // L: 36
-				this.field4372 = var3.method7752(); // L: 37
-				this.field4368 = var3.method7752(); // L: 38
-				this.field4371 = var3.method7752(); // L: 39
-				this.field4375 = var3.method7752(); // L: 40
-				this.field4376 = var3.method7752(); // L: 41
+				this.field4715 = var3.method9152(); // L: 36
+				this.field4708 = var3.method9152(); // L: 37
+				this.field4709 = var3.method9152(); // L: 38
+				this.field4710 = var3.method9152(); // L: 39
+				this.field4712 = var3.method9152(); // L: 40
+				this.field4707 = var3.method9152(); // L: 41
+				this.field4713 = var3.method9152(); // L: 42
+				this.field4714 = var3.method9152(); // L: 43
+				this.field4711 = var3.method9152(); // L: 44
+				this.field4716 = var3.method9152(); // L: 45
+				this.field4717 = var3.method9152(); // L: 46
 			}
 		}
 	}
