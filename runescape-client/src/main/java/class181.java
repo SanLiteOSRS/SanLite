@@ -1,50 +1,68 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-@ObfuscatedName("fq")
-public class class181 extends DualNode {
-	@ObfuscatedName("z")
+@ObfuscatedName("gn")
+public abstract class class181 {
+	@ObfuscatedName("at")
+	String field1910;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Laq;"
+		descriptor = "Lgf;"
 	)
-	@Export("soundCache")
-	public static SoundCache soundCache;
-	@ObfuscatedName("jj")
-	@ObfuscatedGetter(
-		intValue = 261629217
-	)
-	static int field1992;
+	final class170 this$0;
 
-	static {
-		new EvictingDualNodeHashTable(64); // L: 9
-	} // L: 10
-
-	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(Lorg/json/JSONObject;Ljava/lang/String;I)[F",
-		garbageValue = "-1297574808"
+		descriptor = "(Lgf;Ljava/lang/String;)V"
 	)
-	static float[] method3566(JSONObject var0, String var1) throws JSONException {
-		float[] var2 = new float[4]; // L: 307
+	class181(class170 var1, String var2) {
+		this.this$0 = var1; // L: 371
+		this.field1910 = var2; // L: 372
+	} // L: 373
 
-		try {
-			JSONArray var3 = var0.getJSONArray(var1); // L: 309
-			var2[0] = (float)var3.optDouble(0, 0.0D); // L: 310
-			var2[1] = (float)var3.optDouble(1, 0.0D); // L: 311
-			var2[2] = (float)var3.optDouble(2, 1.0D); // L: 312
-			var2[3] = (float)var3.optDouble(3, 1.0D); // L: 313
-		} catch (JSONException var4) { // L: 315
-			var2[0] = 0.0F; // L: 316
-			var2[1] = 0.0F; // L: 317
-			var2[2] = 1.0F; // L: 318
-			var2[3] = 1.0F; // L: 319
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "38"
+	)
+	public abstract int vmethod3528();
+
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "1557827941"
+	)
+	public String vmethod3518() {
+		return null; // L: 382
+	}
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1630105394"
+	)
+	public int vmethod3527() {
+		return -1; // L: 386
+	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "1802215739"
+	)
+	public String method3516() {
+		return this.field1910; // L: 376
+	}
+
+	@ObfuscatedName("ln")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Ljava/lang/String;",
+		garbageValue = "0"
+	)
+	static String method3532(int var0) {
+		if (var0 < 0) { // L: 10242
+			return "";
+		} else {
+			return Client.menuTargets[var0].length() > 0 ? Client.menuActions[var0] + " " + Client.menuTargets[var0] : Client.menuActions[var0]; // L: 10243 10244
 		}
-
-		return var2; // L: 321
 	}
 }
