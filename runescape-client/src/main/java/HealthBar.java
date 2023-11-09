@@ -1,59 +1,49 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cn")
+@ObfuscatedName("ce")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("ri")
+	@ObfuscatedName("ex")
 	@ObfuscatedSignature(
-		descriptor = "Len;"
+		descriptor = "Lln;"
 	)
-	@Export("guestClanSettings")
-	static ClanSettings guestClanSettings;
-	@ObfuscatedName("cn")
-	public static char field1258;
-	@ObfuscatedName("nf")
-	@ObfuscatedGetter(
-		intValue = 1249602607
-	)
-	@Export("selectedSpellFlags")
-	static int selectedSpellFlags;
-	@ObfuscatedName("q")
+	static Archive field1306;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lfe;"
+		descriptor = "Lfw;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Llk;"
+		descriptor = "Lmv;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfe;)V"
+		descriptor = "(Lfw;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque(); // L: 12
 		this.definition = var1; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "1392818075"
+		descriptor = "(IIIIS)V",
+		garbageValue = "-24757"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
 		HealthBarUpdate var5 = null; // L: 19
 		int var6 = 0; // L: 20
 
-		for (HealthBarUpdate var7 = (HealthBarUpdate)this.updates.last(); var7 != null; var7 = (HealthBarUpdate)this.updates.previous()) { // L: 21
-			++var6; // L: 22
+		for (HealthBarUpdate var7 = (HealthBarUpdate)this.updates.last(); var7 != null; var7 = (HealthBarUpdate)this.updates.previous()) {
+			++var6;
 			if (var7.cycle == var1) { // L: 23
 				var7.set(var1, var2, var3, var4); // L: 24
 				return; // L: 25
@@ -78,10 +68,10 @@ public class HealthBar extends Node {
 		}
 	} // L: 31 35
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lcp;",
-		garbageValue = "14"
+		descriptor = "(II)Lcu;",
+		garbageValue = "-1494424352"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -92,7 +82,7 @@ public class HealthBar extends Node {
 				var2 = var3; // L: 43
 			}
 
-			if (this.definition.int5 + var2.cycleOffset + var2.cycle > var1) { // L: 47
+			if (this.definition.int5 + var2.cycleOffset + var2.cycle > var1) {
 				return var2;
 			} else {
 				var2.remove(); // L: 49
@@ -103,119 +93,78 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-1385237709"
+		garbageValue = "-1047690816"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method6147(); // L: 55
+		return this.updates.method6774(); // L: 55
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Ldo;[F[FI)V",
-		garbageValue = "-1662385101"
+		descriptor = "(Lly;I)V",
+		garbageValue = "784434833"
 	)
-	static void method2355(class117 var0, float[] var1, float[] var2) {
-		if (var0 != null) { // L: 273
-			var0.field1464 = var1[0]; // L: 276
-			float var3 = var1[3] - var1[0]; // L: 277
-			float var4 = var2[3] - var2[0]; // L: 278
-			float var5 = var1[1] - var1[0]; // L: 279
-			float var6 = 0.0F; // L: 280
-			float var7 = 0.0F; // L: 281
-			if (0.0D != (double)var5) { // L: 282
-				var6 = (var2[1] - var2[0]) / var5; // L: 283
-			}
+	public static void method2528(AbstractArchive var0) {
+		ParamComposition.ParamDefinition_archive = var0; // L: 21
+	} // L: 22
 
-			var5 = var1[3] - var1[2]; // L: 285
-			if ((double)var5 != 0.0D) { // L: 286
-				var7 = (var2[3] - var2[2]) / var5; // L: 287
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-8692175"
+	)
+	static void method2526() {
+		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) { // L: 44
+			if (var0.obj != null) { // L: 45
+				var0.set();
 			}
-
-			float var8 = 1.0F / (var3 * var3); // L: 289
-			float var9 = var3 * var6; // L: 290
-			float var10 = var3 * var7; // L: 291
-			var0.field1465[0] = (var10 + var9 - var4 - var4) * var8 / var3; // L: 292
-			var0.field1465[1] = (var4 + var4 + var4 - var9 - var9 - var10) * var8; // L: 293
-			var0.field1465[2] = var6; // L: 294
-			var0.field1465[3] = var2[0]; // L: 295
 		}
-	} // L: 274 296
 
-	@ObfuscatedName("j")
+	} // L: 47
+
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;IZB)I",
-		garbageValue = "9"
+		descriptor = "(CII)Ljava/lang/String;",
+		garbageValue = "1267412510"
 	)
-	static int method2356(CharSequence var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) { // L: 85
-			boolean var3 = false; // L: 86
-			boolean var4 = false; // L: 87
-			int var5 = 0; // L: 88
-			int var6 = var0.length(); // L: 89
+	static String method2525(char var0, int var1) {
+		char[] var2 = new char[var1]; // L: 212
 
-			for (int var7 = 0; var7 < var6; ++var7) { // L: 90
-				char var8 = var0.charAt(var7); // L: 91
-				if (var7 == 0) { // L: 92
-					if (var8 == '-') { // L: 93
-						var3 = true; // L: 94
-						continue;
-					}
+		for (int var3 = 0; var3 < var1; ++var3) { // L: 213
+			var2[var3] = var0;
+		}
 
-					if (var8 == '+') { // L: 97
-						continue;
-					}
-				}
+		return new String(var2); // L: 214
+	}
 
-				int var10;
-				if (var8 >= '0' && var8 <= '9') {
-					var10 = var8 - '0'; // L: 99
-				} else if (var8 >= 'A' && var8 <= 'Z') { // L: 100
-					var10 = var8 - '7';
-				} else {
-					if (var8 < 'a' || var8 > 'z') { // L: 101
-						throw new NumberFormatException(); // L: 102
-					}
-
-					var10 = var8 - 'W';
-				}
-
-				if (var10 >= var1) { // L: 103
-					throw new NumberFormatException();
-				}
-
-				if (var3) { // L: 104
-					var10 = -var10;
-				}
-
-				int var9 = var10 + var5 * var1; // L: 105
-				if (var9 / var1 != var5) { // L: 106
-					throw new NumberFormatException();
-				}
-
-				var5 = var9; // L: 107
-				var4 = true; // L: 108
+	@ObfuscatedName("ke")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIIIII)V",
+		garbageValue = "824026775"
+	)
+	@Export("drawWidgets")
+	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+		if (Players.loadInterface(var0)) { // L: 10302
+			MouseHandler.field268 = null; // L: 10309
+			class34.drawInterface(class71.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7); // L: 10310
+			if (MouseHandler.field268 != null) { // L: 10311
+				class34.drawInterface(MouseHandler.field268, -1412584499, var1, var2, var3, var4, class142.field1691, HealthBarDefinition.field1989, var7); // L: 10312
+				MouseHandler.field268 = null; // L: 10313
 			}
 
-			if (!var4) { // L: 110
-				throw new NumberFormatException();
-			} else {
-				return var5; // L: 111
-			}
 		} else {
-			throw new IllegalArgumentException("" + var1);
-		}
-	}
+			if (var7 != -1) { // L: 10303
+				Client.field731[var7] = true;
+			} else {
+				for (int var8 = 0; var8 < 100; ++var8) { // L: 10305
+					Client.field731[var8] = true;
+				}
+			}
 
-	@ObfuscatedName("hi")
-	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "1947801286"
-	)
-	static final void method2349(int var0, int var1, int var2, int var3) {
-		WorldMap.method7376(); // L: 5428
-	} // L: 5429
+		}
+	} // L: 10307 10315
 }
