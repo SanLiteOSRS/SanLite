@@ -1,159 +1,151 @@
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URLConnection;
-import javax.net.ssl.HttpsURLConnection;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cl")
-public class class101 extends UrlRequester {
-	@ObfuscatedName("df")
-	static boolean field1366;
-	@ObfuscatedName("lb")
-	@ObfuscatedSignature(
-		descriptor = "Lci;"
+@ObfuscatedName("cv")
+final class class101 implements class294 {
+	@ObfuscatedName("vw")
+	@ObfuscatedGetter(
+		longValue = 5641096588668851147L
 	)
-	@Export("localPlayer")
-	static Player localPlayer;
-	@ObfuscatedName("j")
-	final boolean field1364;
+	static long field1307;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lkn;"
+	)
+	final Widget val$cc;
 
-	public class101(boolean var1, int var2) {
-		super(var2); // L: 13
-		this.field1364 = var1; // L: 14
-	} // L: 15
+	@ObfuscatedSignature(
+		descriptor = "(Lkn;)V"
+	)
+	class101(Widget var1) {
+		this.val$cc = var1; // L: 526
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-462679777"
+	)
+	public void vmethod5708() {
+		if (this.val$cc != null && this.val$cc.method6079().field3415 != null) { // L: 528
+			ScriptEvent var1 = new ScriptEvent(); // L: 529
+			var1.method2233(this.val$cc); // L: 530
+			var1.setArgs(this.val$cc.method6079().field3415); // L: 531
+			class420.method7802().addFirst(var1); // L: 532
+		}
+
+	} // L: 534
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lct;I)V",
-		garbageValue = "1538294108"
+		descriptor = "(I)[Lgl;",
+		garbageValue = "1170073041"
 	)
-	void vmethod2537(UrlRequest var1) throws IOException {
-		URLConnection var2 = null; // L: 19
-
-		try {
-			try {
-				String var3 = var1.url.getProtocol(); // L: 21
-				if (var3.equals("http")) { // L: 22
-					var2 = this.method2548(var1); // L: 23
-				} else {
-					if (!var3.equals("https")) { // L: 25
-						var1.isDone0 = true; // L: 29
-						return; // L: 30
-					}
-
-					var2 = this.method2540(var1); // L: 26
-				}
-
-				this.method2522(var2, var1); // L: 32
-			} catch (IOException var7) {
-			}
-
-		} finally {
-			var1.isDone0 = true; // L: 36
-			if (var2 != null) { // L: 37
-				if (var2 instanceof HttpURLConnection) { // L: 38
-					((HttpURLConnection)var2).disconnect(); // L: 39
-				} else if (var2 instanceof HttpsURLConnection) { // L: 41
-					((HttpsURLConnection)var2).disconnect(); // L: 42
-				}
-			}
-
-		}
-	} // L: 46
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(Lct;S)Ljava/net/URLConnection;",
-		garbageValue = "6416"
-	)
-	URLConnection method2548(UrlRequest var1) throws IOException {
-		URLConnection var2 = var1.url.openConnection(); // L: 49
-		this.method2520(var2); // L: 50
-		return var2; // L: 51
+	static HorizontalAlignment[] method2565() {
+		return new HorizontalAlignment[]{HorizontalAlignment.HorizontalAlignment_centered, HorizontalAlignment.field1951, HorizontalAlignment.field1950}; // L: 14
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lct;I)Ljava/net/URLConnection;",
-		garbageValue = "2028242666"
+		descriptor = "(ILbz;ZI)I",
+		garbageValue = "-968767024"
 	)
-	URLConnection method2540(UrlRequest var1) throws IOException {
-		HttpsURLConnection var2 = (HttpsURLConnection)var1.url.openConnection(); // L: 55
-		if (!this.field1364) { // L: 56
-			if (class15.field85 == null) { // L: 60
-				class15.field85 = new class15(); // L: 61
-			}
-
-			class15 var4 = class15.field85; // L: 63
-			var2.setSSLSocketFactory(var4); // L: 65
-		}
-
-		this.method2520(var2); // L: 67
-		return var2; // L: 68
-	}
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIIII)Z",
-		garbageValue = "-585632517"
-	)
-	static final boolean method2549(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var7 = ViewportMouse.ViewportMouse_y + var6; // L: 107
-		if (var7 < var0 && var7 < var1 && var7 < var2) { // L: 108
-			return false;
+	static int method2560(int var0, Script var1, boolean var2) {
+		Widget var3;
+		if (var0 >= 2000) { // L: 1010
+			var0 -= 1000; // L: 1011
+			var3 = class281.getWidget(Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize]); // L: 1012
 		} else {
-			var7 = ViewportMouse.ViewportMouse_y - var6; // L: 109
-			if (var7 > var0 && var7 > var1 && var7 > var2) {
-				return false; // L: 110
+			var3 = var2 ? class140.scriptDotWidget : class136.field1589; // L: 1014
+		}
+
+		class143.invalidateWidget(var3); // L: 1015
+		if (var0 != ScriptOpcodes.CC_SETOBJECT && var0 != ScriptOpcodes.CC_SETOBJECT_NONUM && var0 != ScriptOpcodes.CC_SETOBJECT_ALWAYS_NUM) { // L: 1016
+			if (var0 == ScriptOpcodes.CC_SETNPCHEAD) { // L: 1036
+				var3.modelType = 2; // L: 1037
+				var3.modelId = Interpreter.Interpreter_intStack[--class379.Interpreter_intStackSize]; // L: 1038
+				return 1; // L: 1039
+			} else if (var0 == ScriptOpcodes.CC_SETPLAYERHEAD_SELF) { // L: 1041
+				var3.modelType = 3; // L: 1042
+				var3.modelId = class296.localPlayer.appearance.getChatHeadId(); // L: 1043
+				return 1; // L: 1044
 			} else {
-				var7 = ViewportMouse.ViewportMouse_x + var6; // L: 111
-				if (var7 < var3 && var7 < var4 && var7 < var5) { // L: 112
-					return false;
-				} else {
-					var7 = ViewportMouse.ViewportMouse_x - var6; // L: 113
-					return var7 <= var3 || var7 <= var4 || var7 <= var5; // L: 114
-				}
+				return 2; // L: 1046
 			}
+		} else {
+			class379.Interpreter_intStackSize -= 2; // L: 1017
+			int var4 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize]; // L: 1018
+			int var5 = Interpreter.Interpreter_intStack[class379.Interpreter_intStackSize + 1]; // L: 1019
+			var3.itemId = var4; // L: 1020
+			var3.itemQuantity = var5; // L: 1021
+			ItemComposition var6 = MidiPcmStream.ItemComposition_get(var4); // L: 1022
+			var3.modelAngleX = var6.xan2d; // L: 1023
+			var3.modelAngleY = var6.yan2d; // L: 1024
+			var3.modelAngleZ = var6.zan2d; // L: 1025
+			var3.modelOffsetX = var6.offsetX2d; // L: 1026
+			var3.modelOffsetY = var6.offsetY2d; // L: 1027
+			var3.modelZoom = var6.zoom2d; // L: 1028
+			if (var0 == ScriptOpcodes.CC_SETOBJECT_NONUM) {
+				var3.itemQuantityMode = 0; // L: 1029
+			} else if (var0 == ScriptOpcodes.CC_SETOBJECT_ALWAYS_NUM | var6.isStackable == 1) { // L: 1030
+				var3.itemQuantityMode = 1;
+			} else {
+				var3.itemQuantityMode = 2; // L: 1031
+			}
+
+			if (var3.field3537 > 0) { // L: 1032
+				var3.modelZoom = var3.modelZoom * 32 / var3.field3537;
+			} else if (var3.rawWidth > 0) { // L: 1033
+				var3.modelZoom = var3.modelZoom * 32 / var3.rawWidth;
+			}
+
+			return 1; // L: 1034
 		}
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("gb")
 	@ObfuscatedSignature(
-		descriptor = "(ZB)V",
-		garbageValue = "1"
+		descriptor = "(IIII)V",
+		garbageValue = "-445674716"
 	)
-	static void method2547(boolean var0) {
-		byte var1 = 0; // L: 1178
-		boolean var2 = class19.clientPreferences.method2266() >= Client.field482; // L: 1181
-		if (!var2) { // L: 1183
-			var1 = 12; // L: 1184
-		} else if (class353.client.method1102() || class353.client.isOtlTokenRequesterInitialized()) { // L: 1186
-			var1 = 10; // L: 1187
+	static void method2567(int var0, int var1, int var2) {
+		if (var0 != 0) { // L: 3844
+			int var3 = var0 >> 8; // L: 3845
+			int var4 = var0 >> 4 & 7; // L: 3846
+			int var5 = var0 & 15; // L: 3847
+			Client.soundEffectIds[Client.soundEffectCount] = var3; // L: 3848
+			Client.queuedSoundEffectLoops[Client.soundEffectCount] = var4; // L: 3849
+			Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0; // L: 3850
+			Client.soundEffects[Client.soundEffectCount] = null; // L: 3851
+			int var6 = (var1 - 64) / 128; // L: 3852
+			int var7 = (var2 - 64) / 128; // L: 3853
+			Client.soundLocations[Client.soundEffectCount] = var5 + (var7 << 8) + (var6 << 16); // L: 3854
+			++Client.soundEffectCount; // L: 3855
 		}
+	} // L: 3856
 
-		WorldMapData_1.method4872(var1); // L: 1189
-		if (var0) { // L: 1190
-			Login.Login_username = ""; // L: 1191
-			Login.Login_password = ""; // L: 1192
-			class240.field2846 = 0; // L: 1193
-			World.otp = ""; // L: 1194
-		}
-
-		KeyHandler.method286(); // L: 1196
-		class29.method357(); // L: 1197
-	} // L: 1198
-
-	@ObfuscatedName("k")
+	@ObfuscatedName("ju")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;B)V",
-		garbageValue = "0"
+		descriptor = "(I)V",
+		garbageValue = "911510291"
 	)
-	@Export("setLoginResponseString")
-	static void setLoginResponseString(String var0, String var1, String var2) {
-		Login.Login_response1 = var0; // L: 1829
-		Login.Login_response2 = var1; // L: 1830
-		Login.Login_response3 = var2; // L: 1831
-	} // L: 1832
+	@Export("Widget_runOnTargetLeave")
+	static void Widget_runOnTargetLeave() {
+		if (Client.isSpellSelected) { // L: 9761
+			Widget var0 = WorldMapDecoration.getWidgetChild(class124.selectedSpellWidget, Client.selectedSpellChildIndex); // L: 9762
+			if (var0 != null && var0.onTargetLeave != null) { // L: 9763
+				ScriptEvent var1 = new ScriptEvent(); // L: 9764
+				var1.widget = var0; // L: 9765
+				var1.args = var0.onTargetLeave; // L: 9766
+				ServerPacket.runScriptEvent(var1); // L: 9767
+			}
+
+			Client.selectedSpellItemId = -1; // L: 9769
+			Client.isSpellSelected = false; // L: 9770
+			class143.invalidateWidget(var0); // L: 9771
+		}
+	} // L: 9772
 }

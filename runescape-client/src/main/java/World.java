@@ -4,63 +4,60 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bc")
+@ObfuscatedName("bt")
 @Implements("World")
 public class World {
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1243814163
+		intValue = -8455751
 	)
 	@Export("World_count")
 	static int World_count;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1265990767
+		intValue = 631669307
 	)
 	@Export("World_listCount")
 	static int World_listCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("d")
 	@Export("World_sortOption2")
 	static int[] World_sortOption2;
-	@ObfuscatedName("y")
+	@ObfuscatedName("n")
 	@Export("World_sortOption1")
 	static int[] World_sortOption1;
-	@ObfuscatedName("bx")
-	@Export("otp")
-	static String otp;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1195695549
+		intValue = 1427237969
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("t")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1566282553
+		intValue = 389267987
 	)
 	@Export("properties")
 	int properties;
-	@ObfuscatedName("z")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 856262613
+		intValue = 1852026131
 	)
 	@Export("population")
 	int population;
-	@ObfuscatedName("r")
+	@ObfuscatedName("b")
 	@Export("host")
 	String host;
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@Export("activity")
 	String activity;
-	@ObfuscatedName("k")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -951869585
+		intValue = -1379842523
 	)
 	@Export("location")
 	int location;
-	@ObfuscatedName("h")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1645334635
+		intValue = 782405637
 	)
 	@Export("index")
 	int index;
@@ -75,123 +72,102 @@ public class World {
 	World() {
 	} // L: 27
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-1"
+		descriptor = "(I)Z",
+		garbageValue = "-429823684"
 	)
 	@Export("isMembersOnly")
 	boolean isMembersOnly() {
 		return (1 & this.properties) != 0; // L: 247
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "2111399818"
+		garbageValue = "1333964541"
 	)
-	boolean method1628() {
+	boolean method1729() {
 		return (2 & this.properties) != 0; // L: 251
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-1146943017"
+		descriptor = "(B)Z",
+		garbageValue = "-126"
 	)
 	@Export("isPvp")
 	boolean isPvp() {
 		return (4 & this.properties) != 0; // L: 255
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "2013300690"
+		descriptor = "(B)Z",
+		garbageValue = "32"
 	)
-	boolean method1594() {
+	boolean method1727() {
 		return (8 & this.properties) != 0; // L: 259
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-2131603316"
+		garbageValue = "-1965547126"
 	)
 	@Export("isDeadman")
 	boolean isDeadman() {
 		return (536870912 & this.properties) != 0; // L: 263
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1130172337"
+		garbageValue = "15322951"
 	)
 	@Export("isBeta")
 	boolean isBeta() {
 		return (33554432 & this.properties) != 0; // L: 267
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "119"
+		garbageValue = "7"
 	)
-	boolean method1597() {
+	boolean method1770() {
 		return (1073741824 & this.properties) != 0; // L: 271
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lfv;",
-		garbageValue = "-7"
+		descriptor = "(B)Z",
+		garbageValue = "35"
 	)
-	public static Clock method1601() {
-		try {
-			return new NanoClock(); // L: 8
-		} catch (Throwable var1) { // L: 10
-			return new MilliClock(); // L: 11
-		}
+	boolean method1735() {
+		return (256 & this.properties) != 0; // L: 275
 	}
 
-	@ObfuscatedName("hk")
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-1160797874"
+	)
+	boolean method1759() {
+		return (134217728 & this.properties) != 0; // L: 279
+	}
+
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "1666471855"
+		garbageValue = "-1750378326"
 	)
-	static final void method1627() {
-		for (Projectile var0 = (Projectile)Client.projectiles.last(); var0 != null; var0 = (Projectile)Client.projectiles.previous()) { // L: 4850 4851 4868
-			if (var0.plane == PacketWriter.Client_plane && Client.cycle <= var0.cycleEnd) { // L: 4852
-				if (Client.cycle >= var0.cycleStart) { // L: 4853
-					if (var0.targetIndex > 0) { // L: 4854
-						NPC var1 = Client.npcs[var0.targetIndex - 1]; // L: 4855
-						if (var1 != null && var1.x >= 0 && var1.x < 13312 && var1.y >= 0 && var1.y < 13312) { // L: 4856
-							var0.setDestination(var1.x, var1.y, SceneTilePaint.getTileHeight(var1.x, var1.y, var0.plane) - var0.endHeight, Client.cycle);
-						}
-					}
-
-					if (var0.targetIndex < 0) { // L: 4858
-						int var2 = -var0.targetIndex - 1; // L: 4860
-						Player var3;
-						if (var2 == Client.localPlayerIndex) { // L: 4861
-							var3 = class101.localPlayer;
-						} else {
-							var3 = Client.players[var2]; // L: 4862
-						}
-
-						if (var3 != null && var3.x >= 0 && var3.x < 13312 && var3.y >= 0 && var3.y < 13312) {
-							var0.setDestination(var3.x, var3.y, SceneTilePaint.getTileHeight(var3.x, var3.y, var0.plane) - var0.endHeight, Client.cycle); // L: 4863
-						}
-					}
-
-					var0.advance(Client.field555); // L: 4865
-					class356.scene.drawEntity(PacketWriter.Client_plane, (int)var0.x, (int)var0.y, (int)var0.z, 60, var0, var0.yaw, -1L, false); // L: 4866
-				}
-			} else {
-				var0.remove();
+	static void method1765() {
+		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) { // L: 44
+			if (var0.obj != null) { // L: 45
+				var0.set();
 			}
 		}
 
-	} // L: 4870
+	} // L: 47
 }
