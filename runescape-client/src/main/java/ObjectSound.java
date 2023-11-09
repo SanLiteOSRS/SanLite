@@ -4,104 +4,95 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bv")
+@ObfuscatedName("br")
 @Implements("ObjectSound")
 public final class ObjectSound extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Llo;"
+		descriptor = "Lmq;"
 	)
 	@Export("objectSounds")
 	static NodeDeque objectSounds;
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "Lqt;"
-	)
-	@Export("NetCache_responseArchiveBuffer")
-	public static Buffer NetCache_responseArchiveBuffer;
-	@ObfuscatedName("hz")
-	@Export("regionLandArchiveIds")
-	static int[] regionLandArchiveIds;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 383647409
+		intValue = 1401561861
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -452601419
+		intValue = 1101791616
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1502495581
+		intValue = -1317524287
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("j")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -440386389
+		intValue = -661899648
 	)
 	@Export("maxX")
 	int maxX;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1252508363
+		intValue = 1301434539
 	)
 	@Export("maxY")
 	int maxY;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1534240837
+		intValue = 1369887985
 	)
-	int field812;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -1052748779
-	)
-	@Export("soundEffectId")
-	int soundEffectId;
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "Lai;"
-	)
-	@Export("stream1")
-	RawPcmStream stream1;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -780332289
-	)
-	int field819;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = -26226485
-	)
-	int field811;
-	@ObfuscatedName("t")
-	@Export("soundEffectIds")
-	int[] soundEffectIds;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = 2025868067
-	)
-	int field809;
+	int field847;
 	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Lgk;"
+		descriptor = "Lgn;"
 	)
 	@Export("obj")
 	ObjectComposition obj;
 	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = -1499670769
+	)
+	@Export("soundEffectId")
+	int soundEffectId;
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Lai;"
+		descriptor = "Lap;"
+	)
+	@Export("stream1")
+	RawPcmStream stream1;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = -384288947
+	)
+	int field842;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		intValue = 1911815479
+	)
+	int field839;
+	@ObfuscatedName("i")
+	@Export("soundEffectIds")
+	int[] soundEffectIds;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = -1274533343
+	)
+	int field850;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Lap;"
 	)
 	@Export("stream2")
 	RawPcmStream stream2;
 
 	static {
-		objectSounds = new NodeDeque();
+		objectSounds = new NodeDeque(); // L: 11
 	}
 
 	ObjectSound() {
@@ -110,136 +101,64 @@ public final class ObjectSound extends Node {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1121489071"
+		garbageValue = "-1596084359"
 	)
 	@Export("set")
 	void set() {
-		int var1 = this.soundEffectId; // L: 44
-		ObjectComposition var2 = this.obj.transform(); // L: 45
-		if (var2 != null) { // L: 46
-			this.soundEffectId = var2.ambientSoundId; // L: 47
-			this.field812 = var2.int7 * 128; // L: 48
-			this.field819 = var2.int5; // L: 49
-			this.field811 = var2.int6; // L: 50
-			this.soundEffectIds = var2.soundEffectIds; // L: 51
+		int var1 = this.soundEffectId;
+		ObjectComposition var2 = this.obj.transform(); // L: 51
+		if (var2 != null) {
+			this.soundEffectId = var2.ambientSoundId;
+			this.field847 = var2.int7 * 128; // L: 54
+			this.field842 = var2.int5; // L: 55
+			this.field839 = var2.int6; // L: 56
+			this.soundEffectIds = var2.soundEffectIds; // L: 57
 		} else {
-			this.soundEffectId = -1; // L: 54
-			this.field812 = 0; // L: 55
-			this.field819 = 0; // L: 56
-			this.field811 = 0; // L: 57
-			this.soundEffectIds = null; // L: 58
+			this.soundEffectId = -1; // L: 60
+			this.field847 = 0; // L: 61
+			this.field842 = 0; // L: 62
+			this.field839 = 0; // L: 63
+			this.soundEffectIds = null; // L: 64
 		}
 
-		if (var1 != this.soundEffectId && this.stream1 != null) { // L: 60
-			class21.pcmStreamMixer.removeSubStream(this.stream1); // L: 61
-			this.stream1 = null; // L: 62
+		if (var1 != this.soundEffectId && this.stream1 != null) { // L: 66
+			ApproximateRouteStrategy.pcmStreamMixer.removeSubStream(this.stream1); // L: 67
+			this.stream1 = null; // L: 68
 		}
 
-	} // L: 64
+	} // L: 70
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfx;",
-		garbageValue = "84"
+		descriptor = "(CI)Z",
+		garbageValue = "1783942898"
 	)
-	@Export("SpotAnimationDefinition_get")
-	public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
-		SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	public static boolean method1871(char var0) {
+		if (var0 >= ' ' && var0 < 127 || var0 > 127 && var0 < 160 || var0 > 160 && var0 <= 255) { // L: 45
+			return true;
 		} else {
-			byte[] var2 = SpotAnimationDefinition.SpotAnimationDefinition_archive.takeFile(13, var0);
-			var1 = new SpotAnimationDefinition(); // L: 35
-			var1.id = var0;
-			if (var2 != null) { // L: 37
-				var1.decode(new Buffer(var2));
-			}
+			if (var0 != 0) { // L: 46
+				char[] var1 = class358.cp1252AsciiExtension; // L: 48
 
-			SpotAnimationDefinition.SpotAnimationDefinition_cached.put(var1, (long)var0); // L: 38
-			return var1; // L: 39
-		}
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/String;[SIII)V",
-		garbageValue = "-1948932811"
-	)
-	@Export("sortItemsByName")
-	public static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
-		if (var2 < var3) { // L: 9
-			int var4 = (var3 + var2) / 2; // L: 10
-			int var5 = var2; // L: 11
-			String var6 = var0[var4]; // L: 12
-			var0[var4] = var0[var3]; // L: 13
-			var0[var3] = var6; // L: 14
-			short var7 = var1[var4]; // L: 15
-			var1[var4] = var1[var3]; // L: 16
-			var1[var3] = var7; // L: 17
-
-			for (int var8 = var2; var8 < var3; ++var8) { // L: 18
-				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) { // L: 19
-					String var9 = var0[var8]; // L: 20
-					var0[var8] = var0[var5]; // L: 21
-					var0[var5] = var9; // L: 22
-					short var10 = var1[var8]; // L: 23
-					var1[var8] = var1[var5]; // L: 24
-					var1[var5++] = var10; // L: 25
+				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 49
+					char var3 = var1[var2]; // L: 50
+					if (var0 == var3) { // L: 52
+						return true; // L: 53
+					}
 				}
 			}
 
-			var0[var3] = var0[var5]; // L: 29
-			var0[var5] = var6; // L: 30
-			var1[var3] = var1[var5]; // L: 31
-			var1[var5] = var7; // L: 32
-			sortItemsByName(var0, var1, var2, var5 - 1); // L: 33
-			sortItemsByName(var0, var1, var5 + 1, var3); // L: 34
-		}
-
-	} // L: 36
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1730846792"
-	)
-	public static void method1702() {
-		ItemComposition.ItemComposition_cached.clear(); // L: 563
-		ItemComposition.ItemComposition_cachedModels.clear(); // L: 564
-		ItemComposition.ItemComposition_cachedSprites.clear(); // L: 565
-	} // L: 566
-
-	@ObfuscatedName("je")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;B)Z",
-		garbageValue = "103"
-	)
-	@Export("runCs1")
-	static final boolean runCs1(Widget var0) {
-		if (var0.cs1Comparisons == null) { // L: 10769
-			return false;
-		} else {
-			for (int var1 = 0; var1 < var0.cs1Comparisons.length; ++var1) { // L: 10770
-				int var2 = Canvas.method319(var0, var1); // L: 10771
-				int var3 = var0.cs1ComparisonValues[var1]; // L: 10772
-				if (var0.cs1Comparisons[var1] == 2) { // L: 10773
-					if (var2 >= var3) { // L: 10774
-						return false;
-					}
-				} else if (var0.cs1Comparisons[var1] == 3) { // L: 10776
-					if (var2 <= var3) { // L: 10777
-						return false;
-					}
-				} else if (var0.cs1Comparisons[var1] == 4) { // L: 10779
-					if (var2 == var3) { // L: 10780
-						return false;
-					}
-				} else if (var2 != var3) { // L: 10782
-					return false;
-				}
-			}
-
-			return true; // L: 10784
+			return false; // L: 59
 		}
 	}
+
+	@ObfuscatedName("jy")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
+		garbageValue = "11"
+	)
+	@Export("insertMenuItemNoShift")
+	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
+		class37.method706(var0, var1, var2, var3, var4, var5, -1, false); // L: 9972
+	} // L: 9973
 }
