@@ -1,6 +1,4 @@
-import java.awt.Desktop;
-import java.awt.Desktop.Action;
-import java.net.URI;
+import java.util.Iterator;
 import java.util.LinkedList;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
@@ -8,301 +6,281 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hd")
+@ObfuscatedName("in")
 @Implements("AbstractWorldMapData")
 public abstract class AbstractWorldMapData {
-	@ObfuscatedName("pk")
+	@ObfuscatedName("s")
+	public static boolean field2953;
+	@ObfuscatedName("hy")
 	@ObfuscatedSignature(
-		descriptor = "Lpr;"
+		descriptor = "Lnv;"
 	)
-	@Export("HitSplatDefinition_cachedSprites")
-	static class427 HitSplatDefinition_cachedSprites;
-	@ObfuscatedName("j")
+	@Export("fontPlain12")
+	static Font fontPlain12;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1310599883
+		intValue = -130581440
 	)
 	@Export("regionXLow")
 	int regionXLow;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1550502339
+		intValue = 2142212096
 	)
 	@Export("regionYLow")
 	int regionYLow;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1231055167
+		intValue = 183398775
 	)
 	@Export("regionX")
 	int regionX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1712917707
+		intValue = -232473513
 	)
 	@Export("regionY")
 	int regionY;
-	@ObfuscatedName("y")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -445502067
+		intValue = 89984523
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("i")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1847125717
+		intValue = -2028062533
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("s")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1231676597
+		intValue = -1564355211
 	)
 	@Export("groupId")
 	int groupId;
-	@ObfuscatedName("t")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -187644203
+		intValue = -728019783
 	)
 	@Export("fileId")
 	int fileId;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@Export("floorUnderlayIds")
 	short[][][] floorUnderlayIds;
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@Export("floorOverlayIds")
 	short[][][] floorOverlayIds;
-	@ObfuscatedName("u")
-	byte[][][] field2796;
+	@ObfuscatedName("n")
+	byte[][][] field2950;
 	@ObfuscatedName("k")
-	byte[][][] field2795;
-	@ObfuscatedName("h")
+	byte[][][] field2951;
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "[[[[Lix;"
+		descriptor = "[[[[Liz;"
 	)
 	@Export("decorations")
 	WorldMapDecoration[][][][] decorations;
-	@ObfuscatedName("x")
-	boolean field2810;
 	@ObfuscatedName("l")
-	boolean field2808;
+	boolean field2954;
+	@ObfuscatedName("t")
+	boolean field2955;
+
+	static {
+		field2953 = true; // L: 21
+	}
 
 	AbstractWorldMapData() {
 		this.groupId = -1; // L: 14
 		this.fileId = -1; // L: 15
 		new LinkedList();
-		this.field2810 = false;
-		this.field2808 = false;
+		this.field2954 = false;
+		this.field2955 = false; // L: 28
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "-2593161"
+		descriptor = "(Lqy;I)V",
+		garbageValue = "1703912011"
 	)
 	@Export("readGeography")
 	abstract void readGeography(Buffer var1);
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(S)Z",
-		garbageValue = "2000"
+		descriptor = "(I)Z",
+		garbageValue = "2145704000"
 	)
 	@Export("isFullyLoaded")
 	boolean isFullyLoaded() {
-		return this.field2810 && this.field2808;
+		return this.field2954 && this.field2955;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "-6"
+		descriptor = "(Lly;I)V",
+		garbageValue = "1014997119"
 	)
 	@Export("loadGeography")
 	void loadGeography(AbstractArchive var1) {
-		if (!this.isFullyLoaded()) { // L: 36
-			byte[] var2 = var1.takeFile(this.groupId, this.fileId);
-			if (var2 != null) { // L: 38
-				this.readGeography(new Buffer(var2));
-				this.field2810 = true; // L: 40
-				this.field2808 = true; // L: 41
+		if (!this.isFullyLoaded()) { // L: 37
+			byte[] var2 = var1.takeFile(this.groupId, this.fileId); // L: 38
+			if (var2 != null) { // L: 39
+				this.readGeography(new Buffer(var2)); // L: 40
+				this.field2954 = true; // L: 41
+				this.field2955 = true; // L: 42
 			}
 
 		}
-	}
+	} // L: 44
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-81"
+		descriptor = "(I)V",
+		garbageValue = "-1690828901"
 	)
 	@Export("reset")
 	void reset() {
-		this.floorUnderlayIds = null; // L: 46
-		this.floorOverlayIds = null;
-		this.field2796 = null; // L: 48
-		this.field2795 = null; // L: 49
-		this.decorations = null; // L: 50
-		this.field2810 = false; // L: 51
-		this.field2808 = false;
-	} // L: 53
+		this.floorUnderlayIds = null; // L: 47
+		this.floorOverlayIds = null; // L: 48
+		this.field2950 = null; // L: 49
+		this.field2951 = null; // L: 50
+		this.decorations = null; // L: 51
+		this.field2954 = false; // L: 52
+		this.field2955 = false; // L: 53
+	} // L: 54
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(IILqt;I)V",
-		garbageValue = "1403402457"
+		descriptor = "(IILqy;I)V",
+		garbageValue = "-2009986284"
 	)
 	@Export("readTile")
 	void readTile(int var1, int var2, Buffer var3) {
-		int var4 = var3.readUnsignedByte(); // L: 56
-		if (var4 != 0) { // L: 57
-			if ((var4 & 1) != 0) { // L: 60
-				this.method4980(var1, var2, var3, var4); // L: 61
+		int var4 = var3.readUnsignedByte(); // L: 57
+		if (var4 != 0) { // L: 58
+			if ((var4 & 1) != 0) { // L: 61
+				this.method5243(var1, var2, var3, var4); // L: 62
 			} else {
-				this.method4960(var1, var2, var3, var4); // L: 64
+				this.method5244(var1, var2, var3, var4); // L: 65
 			}
 
 		}
-	} // L: 58 66
+	} // L: 59 67
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(IILqt;IS)V",
-		garbageValue = "-25034"
+		descriptor = "(IILqy;II)V",
+		garbageValue = "463825576"
 	)
-	void method4980(int var1, int var2, Buffer var3, int var4) {
-		boolean var5 = (var4 & 2) != 0; // L: 69
-		if (var5) { // L: 70
-			this.floorOverlayIds[0][var1][var2] = (short)var3.readUnsignedByte(); // L: 71
+	void method5243(int var1, int var2, Buffer var3, int var4) {
+		boolean var5 = (var4 & 2) != 0; // L: 70
+		if (var5) { // L: 71
+			this.floorOverlayIds[0][var1][var2] = field2953 ? (short)var3.readUnsignedShort() : (short)var3.readUnsignedByte(); // L: 72
 		}
 
-		this.floorUnderlayIds[0][var1][var2] = (short)var3.readUnsignedByte(); // L: 73
-	} // L: 74
+		this.floorUnderlayIds[0][var1][var2] = field2953 ? (short)var3.readUnsignedShort() : (short)var3.readUnsignedByte(); // L: 74
+	} // L: 75
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(IILqt;IB)V",
-		garbageValue = "117"
+		descriptor = "(IILqy;IB)V",
+		garbageValue = "103"
 	)
-	void method4960(int var1, int var2, Buffer var3, int var4) {
-		int var5 = ((var4 & 24) >> 3) + 1; // L: 77
-		boolean var6 = (var4 & 2) != 0; // L: 78
-		boolean var7 = (var4 & 4) != 0; // L: 79
-		this.floorUnderlayIds[0][var1][var2] = (short)var3.readUnsignedByte(); // L: 80
+	void method5244(int var1, int var2, Buffer var3, int var4) {
+		int var5 = ((var4 & 24) >> 3) + 1; // L: 78
+		boolean var6 = (var4 & 2) != 0; // L: 79
+		boolean var7 = (var4 & 4) != 0; // L: 80
+		this.floorUnderlayIds[0][var1][var2] = field2953 ? (short)var3.readUnsignedShort() : (short)var3.readUnsignedByte(); // L: 81
 		int var8;
 		int var9;
 		int var11;
-		if (var6) { // L: 81
-			var8 = var3.readUnsignedByte(); // L: 82
+		if (var6) { // L: 82
+			var8 = var3.readUnsignedByte(); // L: 83
 
-			for (var9 = 0; var9 < var8; ++var9) { // L: 83
-				int var14 = var3.readUnsignedByte(); // L: 84
-				if (var14 != 0) { // L: 85
-					this.floorOverlayIds[var9][var1][var2] = (short)var14; // L: 86
-					var11 = var3.readUnsignedByte(); // L: 87
-					this.field2796[var9][var1][var2] = (byte)(var11 >> 2); // L: 88
-					this.field2795[var9][var1][var2] = (byte)(var11 & 3); // L: 89
+			for (var9 = 0; var9 < var8; ++var9) { // L: 84
+				int var14 = field2953 ? var3.readUnsignedShort() : var3.readUnsignedByte(); // L: 85
+				if (var14 != 0) { // L: 86
+					this.floorOverlayIds[var9][var1][var2] = (short)var14; // L: 87
+					var11 = var3.readUnsignedByte(); // L: 88
+					this.field2950[var9][var1][var2] = (byte)(var11 >> 2); // L: 89
+					this.field2951[var9][var1][var2] = (byte)(var11 & 3); // L: 90
 				}
 			}
 		}
 
-		if (var7) { // L: 93
-			for (var8 = 0; var8 < var5; ++var8) { // L: 94
-				var9 = var3.readUnsignedByte(); // L: 95
-				if (var9 != 0) { // L: 96
-					WorldMapDecoration[] var10 = this.decorations[var8][var1][var2] = new WorldMapDecoration[var9]; // L: 99
+		if (var7) { // L: 94
+			for (var8 = 0; var8 < var5; ++var8) { // L: 95
+				var9 = var3.readUnsignedByte(); // L: 96
+				if (var9 != 0) { // L: 97
+					WorldMapDecoration[] var10 = this.decorations[var8][var1][var2] = new WorldMapDecoration[var9]; // L: 100
 
-					for (var11 = 0; var11 < var9; ++var11) { // L: 100
-						int var12 = var3.method7752(); // L: 101
-						int var13 = var3.readUnsignedByte(); // L: 102
-						var10[var11] = new WorldMapDecoration(var12, var13 >> 2, var13 & 3); // L: 103
+					for (var11 = 0; var11 < var9; ++var11) { // L: 101
+						int var12 = var3.method8568(); // L: 102
+						int var13 = var3.readUnsignedByte(); // L: 103
+						var10[var11] = new WorldMapDecoration(var12, var13 >> 2, var13 & 3); // L: 104
 					}
 				}
 			}
 		}
 
-	} // L: 107
+	} // L: 108
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "2061969242"
+		garbageValue = "-2028878275"
 	)
 	@Export("getRegionX")
 	int getRegionX() {
-		return this.regionX; // L: 112
+		return this.regionX; // L: 113
 	}
 
-	@ObfuscatedName("ad")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-604359036"
+		garbageValue = "-574491107"
 	)
 	@Export("getRegionY")
 	int getRegionY() {
-		return this.regionY; // L: 116
+		return this.regionY; // L: 117
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZLjava/lang/String;ZI)V",
-		garbageValue = "383517165"
+		descriptor = "(Lly;IIB)[Lra;",
+		garbageValue = "21"
 	)
-	static void method4987(String var0, boolean var1, String var2, boolean var3) {
-		if (var1) { // L: 26
-			if (!var3 && Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) { // L: 27
-				try {
-					Desktop.getDesktop().browse(new URI(var0)); // L: 29
-					return; // L: 30
-				} catch (Exception var5) { // L: 32
-				}
-			}
-
-			if (class29.field169.startsWith("win") && !var3) { // L: 34 35
-				class294.method5736(var0, 0, "openjs"); // L: 37
-				return; // L: 39
-			}
-
-			if (class29.field169.startsWith("mac")) { // L: 42
-				class294.method5736(var0, 1, var2); // L: 43
-				return; // L: 44
-			}
-
-			class294.method5736(var0, 2, "openjs"); // L: 47
+	public static IndexedSprite[] method5238(AbstractArchive var0, int var1, int var2) {
+		byte[] var4 = var0.takeFile(var1, var2); // L: 25
+		boolean var3;
+		if (var4 == null) { // L: 26
+			var3 = false; // L: 27
 		} else {
-			class294.method5736(var0, 3, "openjs"); // L: 52
+			VarpDefinition.SpriteBuffer_decode(var4); // L: 30
+			var3 = true; // L: 31
 		}
 
-	} // L: 55
+		return !var3 ? null : class282.method5509(); // L: 33 34
+	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("mk")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1305112358"
+		descriptor = "(S)V",
+		garbageValue = "2188"
 	)
-	static void method4958() {
-		Players.Players_count = 0; // L: 664
+	@Export("FriendSystem_invalidateIgnoreds")
+	static final void FriendSystem_invalidateIgnoreds() {
+		Iterator var0 = Messages.Messages_hashTable.iterator(); // L: 12505
 
-		for (int var0 = 0; var0 < 2048; ++var0) { // L: 665
-			Players.field1307[var0] = null; // L: 666
-			Players.field1304[var0] = class192.field2212; // L: 667
+		while (var0.hasNext()) {
+			Message var1 = (Message)var0.next(); // L: 12506
+			var1.clearIsFromIgnored(); // L: 12508
 		}
 
-	} // L: 669
-
-	@ObfuscatedName("gx")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-2134407784"
-	)
-	static final void method4985() {
-		if (class326.field4082) { // L: 3795
-			for (int var0 = 0; var0 < Players.Players_count; ++var0) { // L: 3797
-				Player var1 = Client.players[Players.Players_indices[var0]]; // L: 3798
-				var1.method2135(); // L: 3799
-			}
-
-			class326.field4082 = false; // L: 3802
+		if (class281.friendsChatManager != null) { // L: 12512
+			class281.friendsChatManager.invalidateIgnoreds(); // L: 12513
 		}
 
-	} // L: 3804
+	} // L: 12515
 }
