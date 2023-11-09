@@ -1,73 +1,39 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
-public class class132 extends class128 {
-	@ObfuscatedName("er")
+@ObfuscatedName("fs")
+public class class132 {
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "(IB)Lhg;",
+		garbageValue = "-90"
 	)
-	static Archive field1588;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1669105563
-	)
-	int field1590;
-	@ObfuscatedName("v")
-	byte field1589;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lej;"
-	)
-	final class131 this$0;
+	@Export("getEnum")
+	public static EnumComposition getEnum(int var0) {
+		EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0); // L: 29
+		if (var1 != null) { // L: 30
+			return var1;
+		} else {
+			byte[] var2 = EnumComposition.EnumDefinition_archive.takeFile(8, var0); // L: 31
+			var1 = new EnumComposition(); // L: 32
+			if (var2 != null) { // L: 33
+				var1.decode(new Buffer(var2));
+			}
 
-	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
-	)
-	class132(class131 var1) {
-		this.this$0 = var1;
-		this.field1590 = -1; // L: 128
-	} // L: 131
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
-	)
-	void vmethod3150(Buffer var1) {
-		this.field1590 = var1.readUnsignedShort(); // L: 134
-		this.field1589 = var1.readByte(); // L: 135
-	} // L: 136
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2961(this.field1590, this.field1589); // L: 139
-	} // L: 140
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "(Law;I)V",
-		garbageValue = "-1204833299"
-	)
-	public static final void method2885(class47 var0) {
-		ModelData0.pcmPlayerProvider = var0; // L: 45
-	} // L: 46
-
-	@ObfuscatedName("gz")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "854083418"
-	)
-	static void method2887() {
-		if (class121.worldMap != null) { // L: 4337
-			class121.worldMap.method7192(PacketWriter.Client_plane, class28.baseX * 64 + (class101.localPlayer.x >> 7), WorldMapLabelSize.baseY * 64 + (class101.localPlayer.y >> 7), false); // L: 4338
-			class121.worldMap.loadCache(); // L: 4339
+			EnumComposition.EnumDefinition_cached.put(var1, (long)var0); // L: 34
+			return var1; // L: 35
 		}
+	}
 
-	} // L: 4341
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(IB)I",
+		garbageValue = "-97"
+	)
+	public static int method3036(int var0) {
+		long var2 = ViewportMouse.ViewportMouse_entityTags[var0]; // L: 57
+		int var1 = (int)(var2 >>> 0 & 127L); // L: 59
+		return var1; // L: 61
+	}
 }
