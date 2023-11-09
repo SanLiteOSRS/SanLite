@@ -1,24 +1,105 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ey")
-public class class149 {
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(IIIB)Lbi;",
-		garbageValue = "-90"
+@ObfuscatedName("eg")
+public class class149 extends class152 {
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = 2108480025
 	)
-	@Export("getWorldMapScript")
-	static Script getWorldMapScript(int var0, int var1, int var2) {
-		int var3 = (var1 << 8) + var0; // L: 40
-		Script var5 = Huffman.method5480(var3, var0); // L: 43
-		if (var5 != null) { // L: 44
-			return var5; // L: 45
+	int field1752;
+	@ObfuscatedName("e")
+	byte field1751;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 1188392547
+	)
+	int field1753;
+	@ObfuscatedName("x")
+	String field1754;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Led;"
+	)
+	final class153 this$0;
+
+	@ObfuscatedSignature(
+		descriptor = "(Led;)V"
+	)
+	class149(class153 var1) {
+		this.this$0 = var1;
+		this.field1752 = -1; // L: 125
+	} // L: 130
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(Lqy;I)V",
+		garbageValue = "468341515"
+	)
+	void vmethod3336(Buffer var1) {
+		var1.readUnsignedByte(); // L: 133
+		this.field1752 = var1.readUnsignedShort(); // L: 134
+		this.field1751 = var1.readByte(); // L: 135
+		this.field1753 = var1.readUnsignedShort(); // L: 136
+		var1.readLong(); // L: 137
+		this.field1754 = var1.readStringCp1252NullTerminated(); // L: 138
+		var1.readUnsignedByte(); // L: 139
+	} // L: 140
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(Lfn;I)V",
+		garbageValue = "1227548281"
+	)
+	void vmethod3337(ClanChannel var1) {
+		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1752); // L: 143
+		var2.rank = this.field1751; // L: 144
+		var2.world = this.field1753; // L: 145
+		var2.username = new Username(this.field1754); // L: 146
+	} // L: 147
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Llq;",
+		garbageValue = "-1628551002"
+	)
+	@Export("PlayerType_values")
+	public static PlayerType[] PlayerType_values() {
+		return new PlayerType[]{PlayerType.PlayerType_hardcoreIronman, PlayerType.field4155, PlayerType.PlayerType_ironman, PlayerType.field4149, PlayerType.field4161, PlayerType.PlayerType_jagexModerator, PlayerType.field4157, PlayerType.field4156, PlayerType.PlayerType_normal, PlayerType.field4153, PlayerType.field4145, PlayerType.field4154, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_ultimateIronman, PlayerType.field4158, PlayerType.field4159, PlayerType.field4160};
+	}
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lgv;",
+		garbageValue = "-640568434"
+	)
+	@Export("getParamDefinition")
+	public static ParamComposition getParamDefinition(int var0) {
+		ParamComposition var1 = (ParamComposition)ParamComposition.ParamComposition_cached.get((long)var0); // L: 25
+		if (var1 != null) { // L: 26
+			return var1;
 		} else {
-			int var6 = (-3 - var2 << 8) + var0; // L: 49
-			var5 = Huffman.method5480(var6, var0); // L: 52
-			return var5 != null ? var5 : null; // L: 53 56
+			byte[] var2 = ParamComposition.ParamDefinition_archive.takeFile(11, var0); // L: 27
+			var1 = new ParamComposition(); // L: 28
+			if (var2 != null) { // L: 29
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode(); // L: 30
+			ParamComposition.ParamComposition_cached.put(var1, (long)var0); // L: 31
+			return var1; // L: 32
 		}
 	}
+
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "2"
+	)
+	public static void method3257() {
+		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear(); // L: 122
+		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear(); // L: 123
+	} // L: 124
 }
