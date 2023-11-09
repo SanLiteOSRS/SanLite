@@ -2,12 +2,13 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mu")
-public class class356 {
-	@ObfuscatedName("ij")
+@ObfuscatedName("nj")
+public interface class356 {
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lgg;"
+		descriptor = "(I)I",
+		garbageValue = "741942848"
 	)
-	@Export("scene")
-	static Scene scene;
+	@Export("rsOrdinal")
+	int rsOrdinal();
 }

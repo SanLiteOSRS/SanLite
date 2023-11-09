@@ -1,60 +1,75 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pd")
+@ObfuscatedName("ri")
 @Implements("FontName")
 public class FontName {
-	@ObfuscatedName("c")
+	@ObfuscatedName("um")
+	@ObfuscatedGetter(
+		intValue = -378880000
+	)
+	static int field4884;
+	@ObfuscatedName("wj")
+	@ObfuscatedGetter(
+		intValue = -859067495
+	)
+	@Export("foundItemIndex")
+	static int foundItemIndex;
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lri;"
 	)
 	@Export("FontName_plain11")
 	public static final FontName FontName_plain11;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lri;"
 	)
 	@Export("FontName_plain12")
 	public static final FontName FontName_plain12;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lri;"
 	)
 	@Export("FontName_bold12")
 	public static final FontName FontName_bold12;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lri;"
 	)
 	@Export("FontName_verdana11")
 	public static final FontName FontName_verdana11;
-	@ObfuscatedName("j")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lri;"
 	)
 	@Export("FontName_verdana13")
 	public static final FontName FontName_verdana13;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lri;"
 	)
 	@Export("FontName_verdana15")
 	public static final FontName FontName_verdana15;
-	@ObfuscatedName("qt")
-	@ObfuscatedSignature(
-		descriptor = "Lok;"
+	@ObfuscatedName("jm")
+	@Export("regionMapArchiveIds")
+	static int[] regionMapArchiveIds;
+	@ObfuscatedName("jt")
+	@ObfuscatedGetter(
+		intValue = -191732975
 	)
-	static class391 field4584;
-	@ObfuscatedName("g")
+	static int field4882;
+	@ObfuscatedName("aq")
 	@Export("name")
 	String name;
 
 	static {
 		FontName_plain11 = new FontName("p11_full"); // L: 7
 		FontName_plain12 = new FontName("p12_full"); // L: 8
-		FontName_bold12 = new FontName("b12_full");
+		FontName_bold12 = new FontName("b12_full"); // L: 9
 		FontName_verdana11 = new FontName("verdana_11pt_regular"); // L: 10
 		FontName_verdana13 = new FontName("verdana_13pt_regular"); // L: 11
 		FontName_verdana15 = new FontName("verdana_15pt_regular"); // L: 12
@@ -64,30 +79,12 @@ public class FontName {
 		this.name = var1; // L: 20
 	} // L: 21
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lpd;",
-		garbageValue = "0"
+		descriptor = "(B)[Lri;",
+		garbageValue = "75"
 	)
-	public static FontName[] method7382() {
-		return new FontName[]{FontName_verdana15, FontName_plain12, FontName_bold12, FontName_verdana11, FontName_plain11, FontName_verdana13}; // L: 16
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-1771875487"
-	)
-	public static boolean method7385(int var0) {
-		return (var0 & 1) != 0; // L: 9
-	}
-
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1224707658"
-	)
-	public static boolean method7386(int var0) {
-		return (var0 >> 31 & 1) != 0; // L: 37
+	public static FontName[] method8671() {
+		return new FontName[]{FontName_verdana11, FontName_plain12, FontName_verdana15, FontName_plain11, FontName_verdana13, FontName_bold12}; // L: 16
 	}
 }

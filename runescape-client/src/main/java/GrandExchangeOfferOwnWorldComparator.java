@@ -4,114 +4,91 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bq")
+@ObfuscatedName("cf")
 @Implements("GrandExchangeOfferOwnWorldComparator")
 public class GrandExchangeOfferOwnWorldComparator implements Comparator {
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "Lkb;"
-	)
-	@Export("scriptActiveWidget")
-	static Widget scriptActiveWidget;
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@Export("filterWorlds")
 	boolean filterWorlds;
 
 	GrandExchangeOfferOwnWorldComparator() {
-	} // L: 12530
+	} // L: 12318
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Llj;Llj;B)I",
-		garbageValue = "-46"
+		descriptor = "(Lnu;Lnu;B)I",
+		garbageValue = "24"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
-		if (var2.world == var1.world) { // L: 12533
+		if (var2.world == var1.world) { // L: 12321
 			return 0;
 		} else {
-			if (this.filterWorlds) { // L: 12534
-				if (Client.worldId == var1.world) { // L: 12535
+			if (this.filterWorlds) { // L: 12322
+				if (Client.worldId == var1.world) { // L: 12323
 					return -1;
 				}
 
-				if (var2.world == Client.worldId) { // L: 12536
+				if (var2.world == Client.worldId) { // L: 12324
 					return 1;
 				}
 			}
 
-			return var1.world < var2.world ? -1 : 1; // L: 12538
+			return var1.world < var2.world ? -1 : 1; // L: 12326
 		}
 	}
 
 	public boolean equals(Object var1) {
-		return super.equals(var1); // L: 12546
+		return super.equals(var1); // L: 12334
 	}
 
 	public int compare(Object var1, Object var2) {
-		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2); // L: 12542
+		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2); // L: 12330
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "-1404651697"
+		descriptor = "(Lnm;I)I",
+		garbageValue = "-1584507403"
 	)
-	public static String method1097(CharSequence var0) {
-		int var1 = var0.length(); // L: 11
-		StringBuilder var2 = new StringBuilder(var1); // L: 12
+	static int method1229(AbstractArchive var0) {
+		int var1 = Login.field925.length + Login.field924.length; // L: 167
+		String[] var2 = Login.field926; // L: 169
 
-		for (int var3 = 0; var3 < var1; ++var3) { // L: 13
-			char var4 = var0.charAt(var3); // L: 14
-			if ((var4 < 'a' || var4 > 'z') && (var4 < 'A' || var4 > 'Z') && (var4 < '0' || var4 > '9') && var4 != '.' && var4 != '-' && var4 != '*' && var4 != '_') { // L: 15
-				if (var4 == ' ') { // L: 16
-					var2.append('+');
-				} else {
-					byte var5 = class295.charToByteCp1252(var4); // L: 18
-					var2.append('%'); // L: 19
-					int var6 = var5 >> 4 & 15; // L: 20
-					if (var6 >= 10) { // L: 21
-						var2.append((char)(var6 + 55));
-					} else {
-						var2.append((char)(var6 + 48)); // L: 22
-					}
-
-					var6 = var5 & 15; // L: 23
-					if (var6 >= 10) { // L: 24
-						var2.append((char)(var6 + 55));
-					} else {
-						var2.append((char)(var6 + 48));
-					}
-				}
-			} else {
-				var2.append(var4); // L: 25
+		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 170
+			String var4 = var2[var3];
+			if (var0.getGroupId(var4) != -1) { // L: 173
+				++var1; // L: 174
 			}
 		}
 
-		return var2.toString(); // L: 28
+		return var1; // L: 179
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "112"
+		descriptor = "(Ljava/lang/String;II)Z",
+		garbageValue = "-1881594254"
 	)
-	static final void method1095() {
-		Object var10000 = null; // L: 187
-		String var0 = "Your ignore list is full. Max of 100 for free users, and 400 for members";
-		class290.addGameMessage(30, "", var0); // L: 189
-	} // L: 191
+	static boolean method1228(String var0, int var1) {
+		return RouteStrategy.method4288(var0, var1, "openjs"); // L: 54
+	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(ZB)V",
-		garbageValue = "7"
+		descriptor = "(I)V",
+		garbageValue = "1294656591"
 	)
-	public static void method1096(boolean var0) {
-		if (var0 != DevicePcmPlayerProvider.ItemComposition_inMembersWorld) { // L: 573
-			ObjectSound.method1702(); // L: 574
-			DevicePcmPlayerProvider.ItemComposition_inMembersWorld = var0; // L: 575
-		}
+	static final void method1224() {
+		VerticalAlignment.method3825("You can't add yourself to your own ignore list"); // L: 171
+	} // L: 172
 
-	} // L: 577
+	@ObfuscatedName("ox")
+	@ObfuscatedSignature(
+		descriptor = "(ZI)V",
+		garbageValue = "-2009858192"
+	)
+	static void method1227(boolean var0) {
+		Client.field630 = var0; // L: 12245
+	} // L: 12246
 }

@@ -1,122 +1,98 @@
+import java.util.Iterator;
+import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dj")
-public enum class124 implements MouseWheel {
-	@ObfuscatedName("c")
+@ObfuscatedName("eh")
+public class class124 implements Callable {
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Lon;"
 	)
-	field1546(0, 0),
-	@ObfuscatedName("v")
+	@Export("ItemComposition_fontPlain11")
+	public static Font ItemComposition_fontPlain11;
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Lek;"
 	)
-	field1544(4, 1),
-	@ObfuscatedName("q")
+	final class125 field1503;
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Ley;"
 	)
-	field1543(1, 2),
-	@ObfuscatedName("f")
+	final class126 field1500;
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Lec;"
 	)
-	field1550(2, 3),
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Ldj;"
-	)
-	field1547(3, 4);
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "Lkb;"
-	)
-	@Export("scriptDotWidget")
-	static Widget scriptDotWidget;
-	@ObfuscatedName("e")
+	final class127 field1505;
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -1017548215
+		intValue = 2042451507
 	)
-	public final int field1548;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = 972373499
-	)
-	@Export("id")
-	final int id;
-
-	class124(int var3, int var4) {
-		this.field1548 = var3; // L: 17
-		this.id = var4; // L: 18
-	} // L: 19
-
-	@ObfuscatedName("c")
+	final int field1502;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "Lfh;"
 	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.id; // L: 23
-	}
+	final class133 this$0;
 
-	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lpb;III)I",
-		garbageValue = "-1005056854"
+		descriptor = "(Lfh;Lek;Ley;Lec;I)V"
 	)
-	static int method2818(IterableNodeHashTable var0, int var1, int var2) {
-		if (var0 == null) {
-			return var2;
+	class124(class133 var1, class125 var2, class126 var3, class127 var4, int var5) {
+		this.this$0 = var1; // L: 296
+		this.field1503 = var2; // L: 297
+		this.field1500 = var3; // L: 298
+		this.field1505 = var4; // L: 299
+		this.field1502 = var5; // L: 300
+	} // L: 301
+
+	public Object call() {
+		this.field1503.method3083(); // L: 305
+		class125[][] var1;
+		if (this.field1500 == class126.field1532) { // L: 307
+			var1 = this.this$0.field1589; // L: 308
 		} else {
-			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
-			return var3 == null ? var2 : var3.integer;
+			var1 = this.this$0.field1592; // L: 311
 		}
+
+		var1[this.field1502][this.field1505.method3105()] = this.field1503; // L: 313
+		return null; // L: 314
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgp;",
-		garbageValue = "15"
+		descriptor = "(I)V",
+		garbageValue = "1442694367"
 	)
-	public static FloorOverlayDefinition method2814(int var0) {
-		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0); // L: 30
-		if (var1 != null) { // L: 31
-			return var1;
-		} else {
-			byte[] var2 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0); // L: 32
-			var1 = new FloorOverlayDefinition(); // L: 33
-			if (var2 != null) { // L: 34
-				var1.decode(new Buffer(var2), var0);
+	static void method3057() {
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) { // L: 42
+			if (ArchiveDiskActionHandler.field4196 == 0) { // L: 43
+				GrandExchangeOfferNameComparator.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler()); // L: 44
+				GrandExchangeOfferNameComparator.ArchiveDiskActionHandler_thread.setDaemon(true); // L: 45
+				GrandExchangeOfferNameComparator.ArchiveDiskActionHandler_thread.start(); // L: 46
+				GrandExchangeOfferNameComparator.ArchiveDiskActionHandler_thread.setPriority(5); // L: 47
 			}
 
-			var1.postDecode(); // L: 35
-			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var1, (long)var0); // L: 36
-			return var1; // L: 37
+			ArchiveDiskActionHandler.field4196 = 600; // L: 49
 		}
-	}
+	} // L: 51
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lft;",
-		garbageValue = "127"
+		descriptor = "(B)V",
+		garbageValue = "49"
 	)
-	static VerticalAlignment[] method2820() {
-		return new VerticalAlignment[]{VerticalAlignment.field1963, VerticalAlignment.field1961, VerticalAlignment.VerticalAlignment_centered}; // L: 14
-	}
+	static void method3058() {
+		Iterator var0 = Messages.Messages_hashTable.iterator(); // L: 70
 
-	@ObfuscatedName("lw")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)I",
-		garbageValue = "1998673549"
-	)
-	@Export("getWidgetFlags")
-	static int getWidgetFlags(Widget var0) {
-		IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32)); // L: 12289
-		return var1 != null ? var1.integer : var0.flags; // L: 12290 12291
-	}
+		while (var0.hasNext()) {
+			Message var1 = (Message)var0.next(); // L: 71
+			var1.clearIsFromIgnored(); // L: 73
+		}
+
+	} // L: 76
 }
