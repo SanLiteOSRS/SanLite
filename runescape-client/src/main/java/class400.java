@@ -1,51 +1,36 @@
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("op")
-public class class400 implements class398 {
-	@ObfuscatedName("v")
-	final Map field4437;
-
-	public class400(Map var1) {
-		this.field4437 = var1; // L: 11
-	} // L: 12
-
-	@ObfuscatedName("c")
+@ObfuscatedName("po")
+public class class400 extends class406 {
+	@ObfuscatedName("rd")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "793389020"
+		descriptor = "Lth;"
 	)
-	public byte[] vmethod7114() throws UnsupportedEncodingException {
-		return this.method7122().getBytes("UTF-8"); // L: 16
-	}
+	@Export("Ignored_cached")
+	static class497 Ignored_cached;
 
-	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "1192893333"
+		descriptor = "(Lpm;)V"
 	)
-	public String method7122() throws UnsupportedEncodingException {
-		StringBuilder var1 = new StringBuilder(); // L: 20
-		Iterator var2 = this.field4437.entrySet().iterator(); // L: 21
+	public class400(class406 var1) {
+		super(var1); // L: 8
+		super.field4523 = "SwapSongTask"; // L: 9
+	} // L: 10
 
-		while (var2.hasNext()) {
-			Entry var3 = (Entry)var2.next(); // L: 22
-			String var4 = URLEncoder.encode((String)var3.getKey(), "UTF-8"); // L: 24
-			String var5 = URLEncoder.encode((String)var3.getValue(), "UTF-8"); // L: 25
-			var1.append(var4).append("=").append(var5).append("&"); // L: 26
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1604030758"
+	)
+	public boolean vmethod7621() {
+		if (class305.field3404.size() > 1 && class305.field3404.get(0) != null && ((class317)class305.field3404.get(0)).field3517.isReady() && class305.field3404.get(1) != null && ((class317)class305.field3404.get(1)).field3517.isReady()) { // L: 14
+			class317 var1 = (class317)class305.field3404.get(0); // L: 15
+			class305.field3404.set(0, class305.field3404.get(1)); // L: 16
+			class305.field3404.set(1, var1); // L: 17
 		}
 
-		if (var1.length() == 0) { // L: 29
-			return "";
-		} else {
-			var1.deleteCharAt(var1.length() - 1); // L: 30
-			var1.insert(0, "?"); // L: 31
-			return var1.toString(); // L: 32
-		}
+		return true; // L: 19
 	}
 }

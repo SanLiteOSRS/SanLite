@@ -1,65 +1,175 @@
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URLConnection;
+import javax.net.ssl.HttpsURLConnection;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dx")
-public class class113 {
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	static IndexedSprite field1427;
-	@ObfuscatedName("c")
+@ObfuscatedName("ez")
+public class class113 extends UrlRequester {
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 244154869
+		intValue = 2047133239
 	)
-	int field1420;
-	@ObfuscatedName("v")
-	float field1423;
-	@ObfuscatedName("q")
-	float field1421;
-	@ObfuscatedName("f")
-	float field1422;
-	@ObfuscatedName("j")
-	float field1419;
-	@ObfuscatedName("e")
-	float field1425;
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "Ldx;"
+	static int field1452;
+	@ObfuscatedName("as")
+	@ObfuscatedGetter(
+		intValue = -674991707
 	)
-	class113 field1426;
+	@Export("canvasWidth")
+	public static int canvasWidth;
+	@ObfuscatedName("ac")
+	final boolean field1451;
 
-	class113() {
-		this.field1421 = Float.MAX_VALUE; // L: 8
-		this.field1422 = Float.MAX_VALUE; // L: 9
-		this.field1419 = Float.MAX_VALUE; // L: 10
-		this.field1425 = Float.MAX_VALUE; // L: 11
-	} // L: 14
+	public class113(boolean var1, int var2) {
+		super(var2); // L: 13
+		this.field1451 = var1;
+	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;IB)V",
-		garbageValue = "-65"
+		descriptor = "(Let;B)V",
+		garbageValue = "-114"
 	)
-	void method2630(Buffer var1, int var2) {
-		this.field1420 = var1.readShort(); // L: 17
-		this.field1423 = var1.method7740(); // L: 18
-		this.field1421 = var1.method7740(); // L: 19
-		this.field1422 = var1.method7740(); // L: 20
-		this.field1419 = var1.method7740(); // L: 21
-		this.field1425 = var1.method7740(); // L: 22
-	} // L: 23
+	void vmethod2839(UrlRequest var1) throws IOException {
+		URLConnection var2 = null; // L: 19
+		boolean var9 = false;
 
-	@ObfuscatedName("z")
+		HttpURLConnection var12;
+		label135: {
+			label127: {
+				try {
+					label130: {
+						var9 = true; // L: 21
+						String var3 = var1.field1453.getProtocol(); // L: 22
+						if (var3.equals("http")) {
+							var2 = this.method2835(var1); // L: 23
+						} else {
+							if (!var3.equals("https")) { // L: 25
+								var1.field1456 = UrlRequest.field1455; // L: 29
+								var9 = false;
+								break label130;
+							}
+
+							var2 = this.method2836(var1); // L: 26
+						}
+
+						this.method2812(var2, var1); // L: 32
+						var9 = false;
+						break label135;
+					}
+				} catch (IOException var10) { // L: 34
+					var1.field1456 = UrlRequest.field1455; // L: 35
+					var9 = false;
+					break label127;
+				} finally {
+					if (var9) {
+						if (var2 != null && var2 instanceof HttpURLConnection) {
+							HttpURLConnection var6 = (HttpURLConnection)var2;
+							var6.disconnect();
+						}
+
+					}
+				}
+
+				if (var2 != null && var2 instanceof HttpURLConnection) {
+					HttpURLConnection var4 = (HttpURLConnection)var2;
+					var4.disconnect();
+				}
+
+				return; // L: 30
+			}
+
+			if (var2 != null && var2 instanceof HttpURLConnection) { // L: 38 39
+				var12 = (HttpURLConnection)var2; // L: 40
+				var12.disconnect(); // L: 41
+			}
+
+			return; // L: 45
+		}
+
+		if (var2 != null && var2 instanceof HttpURLConnection) {
+			var12 = (HttpURLConnection)var2;
+			var12.disconnect();
+		}
+
+	}
+
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "1059822722"
+		descriptor = "(Let;B)Ljava/net/URLConnection;",
+		garbageValue = "46"
 	)
-	static final void method2632(String var0) {
-		PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2944, Client.packetWriter.isaacCipher); // L: 195
-		var1.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0)); // L: 196
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 197
-		Client.packetWriter.addNode(var1); // L: 198
-	} // L: 199
+	URLConnection method2835(UrlRequest var1) throws IOException {
+		URLConnection var2 = var1.field1453.openConnection(); // L: 48
+		this.method2823(var2); // L: 49
+		return var2; // L: 50
+	}
+
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(Let;B)Ljava/net/URLConnection;",
+		garbageValue = "-94"
+	)
+	URLConnection method2836(UrlRequest var1) throws IOException {
+		HttpsURLConnection var2 = (HttpsURLConnection)var1.field1453.openConnection(); // L: 54
+		if (!this.field1451) { // L: 55
+			var2.setSSLSocketFactory(class15.method179()); // L: 56
+		}
+
+		this.method2823(var2); // L: 58
+		return var2; // L: 59
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Lhe;",
+		garbageValue = "-242071193"
+	)
+	static HorizontalAlignment[] method2844() {
+		return new HorizontalAlignment[]{HorizontalAlignment.field2018, HorizontalAlignment.field2016, HorizontalAlignment.HorizontalAlignment_centered}; // L: 14
+	}
+
+	@ObfuscatedName("mn")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1761588634"
+	)
+	static void method2843() {
+		for (InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) { // L: 12105
+			int var1 = var0.group; // L: 12106
+			if (ModeWhere.loadInterface(var1)) { // L: 12107
+				boolean var2 = true; // L: 12108
+				Widget[] var3 = PacketBufferNode.Widget_interfaceComponents[var1]; // L: 12109
+
+				int var4;
+				for (var4 = 0; var4 < var3.length; ++var4) { // L: 12110
+					if (var3[var4] != null) { // L: 12111
+						var2 = var3[var4].isIf3; // L: 12112
+						break;
+					}
+				}
+
+				if (!var2) { // L: 12116
+					var4 = (int)var0.key; // L: 12117
+					Widget var5 = class92.getWidget(var4); // L: 12118
+					if (var5 != null) { // L: 12119
+						class218.invalidateWidget(var5);
+					}
+				}
+			}
+		}
+
+	} // L: 12123
+
+	@ObfuscatedName("nw")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1946244652"
+	)
+	static final void method2845() {
+		Client.field732 = Client.cycleCntr; // L: 12597
+	} // L: 12598
 }

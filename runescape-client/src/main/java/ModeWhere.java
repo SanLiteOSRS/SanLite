@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import net.runelite.mapping.Export;
@@ -7,244 +6,257 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lz")
+@ObfuscatedName("oe")
 @Implements("ModeWhere")
-public enum ModeWhere implements MouseWheel {
-	@ObfuscatedName("c")
+public enum ModeWhere implements class371 {
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4106("", 0, new class326[]{class326.field4080}),
-	@ObfuscatedName("v")
+	field4393("", 0, new class370[]{class370.field4372, class370.field4370}),
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4103("", 1, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("q")
+	field4389("", 1, new class370[]{class370.field4369, class370.field4372, class370.field4370}),
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4104("", 2, new class326[]{class326.field4083, class326.field4079, class326.field4080}),
-	@ObfuscatedName("f")
+	field4390("", 2, new class370[]{class370.field4369, class370.field4373, class370.field4372}),
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4105("", 3, new class326[]{class326.field4083}),
-	@ObfuscatedName("j")
+	field4406("", 3, new class370[]{class370.field4369}),
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4115("", 4),
-	@ObfuscatedName("e")
+	field4392("", 4),
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4117("", 5, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("g")
+	field4394("", 5, new class370[]{class370.field4369, class370.field4372}),
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4108("", 6, new class326[]{class326.field4080}),
-	@ObfuscatedName("w")
+	field4395("", 6, new class370[]{class370.field4372}),
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4102("", 8, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("y")
+	field4399("", 8, new class370[]{class370.field4369, class370.field4372}),
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4107("", 9, new class326[]{class326.field4083, class326.field4079}),
-	@ObfuscatedName("i")
+	field4397("", 9, new class370[]{class370.field4369, class370.field4373}),
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4111("", 10, new class326[]{class326.field4083}),
-	@ObfuscatedName("s")
+	field4398("", 10, new class370[]{class370.field4369}),
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4112("", 11, new class326[]{class326.field4083}),
-	@ObfuscatedName("t")
+	field4391("", 11, new class370[]{class370.field4369}),
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4113("", 12, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("z")
+	field4400("", 12, new class370[]{class370.field4369, class370.field4372}),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Loe;"
 	)
-	field4110("", 13, new class326[]{class326.field4083});
+	field4401("", 13, new class370[]{class370.field4369});
 
-	@ObfuscatedName("ix")
+	@ObfuscatedName("dc")
+	static boolean field4404;
+	@ObfuscatedName("oo")
 	@ObfuscatedGetter(
-		intValue = -2136536725
+		intValue = 380292501
 	)
-	@Export("selectedItemWidget")
-	static int selectedItemWidget;
-	@ObfuscatedName("pq")
-	@ObfuscatedSignature(
-		descriptor = "Lpr;"
-	)
-	@Export("Ignored_cached")
-	static class427 Ignored_cached;
-	@ObfuscatedName("r")
+	@Export("selectedSpellWidget")
+	static int selectedSpellWidget;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 2136032221
+		intValue = -539297047
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("u")
-	final Set field4116;
+	@ObfuscatedName("ar")
+	final Set field4403;
 
 	static {
-		method6075(); // L: 28
-	} // L: 29
+		method6962(); // L: 26
+	} // L: 27
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I[Llg;)V"
+		descriptor = "(Ljava/lang/String;I[Log;)V"
 	)
-	ModeWhere(String var3, int var4, class326[] var5) {
-		this.field4116 = new HashSet();
-		this.id = var4; // L: 43
-		class326[] var6 = var5; // L: 45
+	ModeWhere(String var3, int var4, class370[] var5) {
+		this.field4403 = new HashSet();
+		this.id = var4; // L: 41
+		class370[] var6 = var5; // L: 43
 
-		for (int var7 = 0; var7 < var6.length; ++var7) { // L: 46
-			class326 var8 = var6[var7]; // L: 47
-			this.field4116.add(var8); // L: 48
+		for (int var7 = 0; var7 < var6.length; ++var7) { // L: 44
+			class370 var8 = var6[var7]; // L: 45
+			this.field4403.add(var8); // L: 46
 		}
 
-	} // L: 51
+	} // L: 49
 
 	ModeWhere(String var3, int var4) {
-		this.field4116 = new HashSet(); // L: 32
-		this.id = var4; // L: 39
-	} // L: 40
+		this.field4403 = new HashSet(); // L: 30
+		this.id = var4; // L: 37
+	} // L: 38
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "41"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 55
+		return this.id; // L: 53
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lfk;",
-		garbageValue = "1173982871"
+		descriptor = "(I)[Loe;",
+		garbageValue = "-1302821718"
 	)
-	static HorizontalAlignment[] method6076() {
-		return new HorizontalAlignment[]{HorizontalAlignment.field1905, HorizontalAlignment.field1910, HorizontalAlignment.HorizontalAlignment_centered}; // L: 14
+	static ModeWhere[] method6962() {
+		return new ModeWhere[]{field4391, field4401, field4392, field4397, field4399, field4406, field4398, field4400, field4394, field4389, field4395, field4390, field4393}; // L: 33
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Llz;",
-		garbageValue = "110"
+		descriptor = "(Lnu;I)V",
+		garbageValue = "-1598349673"
 	)
-	static ModeWhere[] method6075() {
-		return new ModeWhere[]{field4107, field4106, field4110, field4112, field4102, field4111, field4113, field4108, field4115, field4104, field4105, field4117, field4103}; // L: 35
-	}
+	public static void method6955(AbstractArchive var0) {
+		class13.InvDefinition_archive = var0; // L: 17
+	} // L: 18
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "941818161"
+		descriptor = "(IB)Z",
+		garbageValue = "1"
 	)
-	public static byte[] method6082() {
-		byte[] var0 = new byte[24]; // L: 277
-
-		try {
-			JagexCache.JagexCache_randomDat.seek(0L); // L: 279
-			JagexCache.JagexCache_randomDat.readFully(var0); // L: 280
-
-			int var1;
-			for (var1 = 0; var1 < 24 && var0[var1] == 0; ++var1) { // L: 281 282 283
-			}
-
-			if (var1 >= 24) {
-				throw new IOException(); // L: 285
-			}
-		} catch (Exception var4) {
-			for (int var2 = 0; var2 < 24; ++var2) { // L: 288
-				var0[var2] = -1;
-			}
-		}
-
-		return var0; // L: 290
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "16"
-	)
-	static final int method6079(int var0, int var1) {
-		if (var0 == -2) { // L: 927
-			return 12345678;
-		} else if (var0 == -1) { // L: 928
-			if (var1 < 2) { // L: 929
-				var1 = 2;
-			} else if (var1 > 126) { // L: 930
-				var1 = 126;
-			}
-
-			return var1; // L: 931
+	@Export("loadInterface")
+	public static boolean loadInterface(int var0) {
+		if (class316.Widget_loadedInterfaces[var0]) { // L: 242
+			return true;
+		} else if (!Decimator.Widget_archive.tryLoadGroup(var0)) { // L: 243
+			return false;
 		} else {
-			var1 = (var0 & 127) * var1 / 128; // L: 933
-			if (var1 < 2) { // L: 934
-				var1 = 2;
-			} else if (var1 > 126) { // L: 935
-				var1 = 126;
+			int var1 = Decimator.Widget_archive.getGroupFileCount(var0); // L: 244
+			if (var1 == 0) { // L: 245
+				class316.Widget_loadedInterfaces[var0] = true; // L: 246
+				return true; // L: 247
+			} else {
+				if (PacketBufferNode.Widget_interfaceComponents[var0] == null) { // L: 249
+					PacketBufferNode.Widget_interfaceComponents[var0] = new Widget[var1];
+				}
+
+				for (int var2 = 0; var2 < var1; ++var2) { // L: 250
+					if (PacketBufferNode.Widget_interfaceComponents[var0][var2] == null) { // L: 251
+						byte[] var3 = Decimator.Widget_archive.takeFile(var0, var2); // L: 252
+						if (var3 != null) { // L: 253
+							PacketBufferNode.Widget_interfaceComponents[var0][var2] = new Widget(); // L: 254
+							PacketBufferNode.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16); // L: 255
+							if (var3[0] == -1) { // L: 256
+								PacketBufferNode.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
+							} else {
+								PacketBufferNode.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3)); // L: 257
+							}
+						}
+					}
+				}
+
+				class316.Widget_loadedInterfaces[var0] = true; // L: 261
+				return true; // L: 262
 			}
-
-			return (var0 & 65408) + var1; // L: 936
 		}
 	}
 
-	@ObfuscatedName("ff")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(IZZZZI)Llc;",
-		garbageValue = "-1168566075"
+		descriptor = "(III)Ldh;",
+		garbageValue = "-305798584"
 	)
-	@Export("newArchive")
-	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
-		ArchiveDisk var5 = null; // L: 2030
-		if (JagexCache.JagexCache_dat2File != null) { // L: 2031
-			var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, class359.JagexCache_idxFiles[var0], 1000000);
-		}
+	static Script method6961(int var0, int var1) {
+		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16)); // L: 69
+		if (var2 != null) { // L: 70
+			return var2; // L: 71
+		} else {
+			String var3 = String.valueOf(var0); // L: 73
+			int var4 = GrandExchangeOffer.archive12.getGroupId(var3); // L: 74
+			if (var4 == -1) { // L: 75
+				return null; // L: 76
+			} else {
+				byte[] var5 = GrandExchangeOffer.archive12.takeFileFlat(var4); // L: 78
+				if (var5 != null) { // L: 79
+					if (var5.length <= 1) { // L: 80
+						return null; // L: 81
+					}
 
-		return new Archive(var5, CollisionMap.masterDisk, var0, var1, var2, var3, var4); // L: 2032
+					var2 = HitSplatDefinition.newScript(var5); // L: 83
+					if (var2 != null) { // L: 84
+						Script.Script_cached.put(var2, (long)(var0 << 16)); // L: 85
+						return var2; // L: 86
+					}
+				}
+
+				return null; // L: 89
+			}
+		}
 	}
 
-	@ObfuscatedName("lu")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)Ljava/lang/String;",
-		garbageValue = "4"
+		descriptor = "(Lch;I)V",
+		garbageValue = "516890386"
 	)
-	static String method6080(String var0, boolean var1) {
-		String var2 = var1 ? "https://" : "http://"; // L: 12330
-		if (Client.gameBuild == 1) { // L: 12331
-			var0 = var0 + "-wtrc";
-		} else if (Client.gameBuild == 2) { // L: 12332
-			var0 = var0 + "-wtqa";
-		} else if (Client.gameBuild == 3) { // L: 12333
-			var0 = var0 + "-wtwip";
-		} else if (Client.gameBuild == 5) { // L: 12334
-			var0 = var0 + "-wti";
-		} else if (Client.gameBuild == 4) { // L: 12335
-			var0 = "local";
+	@Export("changeWorld")
+	static void changeWorld(World var0) {
+		if (var0.isMembersOnly() != Client.isMembersWorld) { // L: 1872
+			Client.isMembersWorld = var0.isMembersOnly(); // L: 1873
+			boolean var1 = var0.isMembersOnly(); // L: 1874
+			if (var1 != ItemComposition.ItemComposition_inMembersWorld) { // L: 1876
+				ItemComposition.ItemComposition_cached.clear(); // L: 1878
+				ItemComposition.ItemComposition_cachedModels.clear(); // L: 1879
+				ItemComposition.ItemComposition_cachedSprites.clear(); // L: 1880
+				ItemComposition.ItemComposition_inMembersWorld = var1; // L: 1882
+			}
 		}
 
-		String var3 = ""; // L: 12336
-		if (GrandExchangeOfferTotalQuantityComparator.field4045 != null) { // L: 12337
-			var3 = "/p=" + GrandExchangeOfferTotalQuantityComparator.field4045;
+		if (var0.properties != Client.worldProperties) { // L: 1886
+			Archive var3 = PcmPlayer.field304; // L: 1887
+			int var2 = var0.properties; // L: 1888
+			if ((var2 & class510.field5090.rsOrdinal()) != 0) { // L: 1890
+				SoundSystem.logoSprite = class172.SpriteBuffer_getIndexedSpriteByName(var3, "logo_deadman_mode", ""); // L: 1891
+			} else if ((var2 & class510.field5091.rsOrdinal()) != 0) { // L: 1893
+				SoundSystem.logoSprite = class172.SpriteBuffer_getIndexedSpriteByName(var3, "logo_seasonal_mode", ""); // L: 1894
+			} else if ((var2 & class510.field5069.rsOrdinal()) != 0) { // L: 1896
+				SoundSystem.logoSprite = class172.SpriteBuffer_getIndexedSpriteByName(var3, "logo_speedrunning", ""); // L: 1897
+			} else {
+				SoundSystem.logoSprite = class172.SpriteBuffer_getIndexedSpriteByName(var3, "logo", ""); // L: 1900
+			}
 		}
 
-		String var4 = "runescape.com"; // L: 12338
-		return var2 + var0 + "." + var4 + "/l=" + class134.clientLanguage + "/a=" + class17.field99 + var3 + "/"; // L: 12339
-	}
+		class292.worldHost = var0.host; // L: 1904
+		Client.worldId = var0.id; // L: 1905
+		Client.worldProperties = var0.properties; // L: 1906
+		class30.field166 = var0.field847; // L: 1907
+		class480.worldPort = Client.gameBuild == 0 ? 43594 : var0.id + 40000; // L: 1908
+		class129.js5Port = Client.gameBuild == 0 ? 443 : var0.id + 50000; // L: 1909
+		class4.currentPort = class480.worldPort; // L: 1910
+	} // L: 1911
 }
