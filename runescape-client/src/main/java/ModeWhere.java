@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import net.runelite.mapping.Export;
@@ -7,244 +6,166 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lz")
+@ObfuscatedName("ne")
 @Implements("ModeWhere")
-public enum ModeWhere implements MouseWheel {
-	@ObfuscatedName("c")
+public enum ModeWhere implements class356 {
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4106("", 0, new class326[]{class326.field4080}),
-	@ObfuscatedName("v")
+	field4351("", 0, new class355[]{class355.field4307}),
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4103("", 1, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("q")
+	field4333("", 1, new class355[]{class355.field4308, class355.field4307}),
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4104("", 2, new class326[]{class326.field4083, class326.field4079, class326.field4080}),
-	@ObfuscatedName("f")
+	field4334("", 2, new class355[]{class355.field4308, class355.field4309, class355.field4307}),
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4105("", 3, new class326[]{class326.field4083}),
-	@ObfuscatedName("j")
+	field4343("", 3, new class355[]{class355.field4308}),
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4115("", 4),
-	@ObfuscatedName("e")
+	field4336("", 4),
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4117("", 5, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("g")
+	field4339("", 5, new class355[]{class355.field4308, class355.field4307}),
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4108("", 6, new class326[]{class326.field4080}),
-	@ObfuscatedName("w")
+	field4332("", 6, new class355[]{class355.field4307}),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4102("", 8, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("y")
+	field4335("", 8, new class355[]{class355.field4308, class355.field4307}),
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4107("", 9, new class326[]{class326.field4083, class326.field4079}),
-	@ObfuscatedName("i")
+	field4340("", 9, new class355[]{class355.field4308, class355.field4309}),
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4111("", 10, new class326[]{class326.field4083}),
-	@ObfuscatedName("s")
+	field4341("", 10, new class355[]{class355.field4308}),
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4112("", 11, new class326[]{class326.field4083}),
-	@ObfuscatedName("t")
+	field4342("", 11, new class355[]{class355.field4308}),
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4113("", 12, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("z")
+	field4349("", 12, new class355[]{class355.field4308, class355.field4307}),
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lne;"
 	)
-	field4110("", 13, new class326[]{class326.field4083});
+	field4337("", 13, new class355[]{class355.field4308});
 
-	@ObfuscatedName("ix")
+	@ObfuscatedName("ak")
+	@Export("operatingSystemName")
+	public static String operatingSystemName;
+	@ObfuscatedName("gb")
+	static String field4347;
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = -2136536725
-	)
-	@Export("selectedItemWidget")
-	static int selectedItemWidget;
-	@ObfuscatedName("pq")
-	@ObfuscatedSignature(
-		descriptor = "Lpr;"
-	)
-	@Export("Ignored_cached")
-	static class427 Ignored_cached;
-	@ObfuscatedName("r")
-	@ObfuscatedGetter(
-		intValue = 2136032221
+		intValue = -336951645
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("u")
-	final Set field4116;
+	@ObfuscatedName("ag")
+	final Set field4346;
 
 	static {
-		method6075(); // L: 28
+		method6945(); // L: 28
 	} // L: 29
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I[Llg;)V"
+		descriptor = "(Ljava/lang/String;I[Lnc;)V"
 	)
-	ModeWhere(String var3, int var4, class326[] var5) {
-		this.field4116 = new HashSet();
+	ModeWhere(String var3, int var4, class355[] var5) {
+		this.field4346 = new HashSet();
 		this.id = var4; // L: 43
-		class326[] var6 = var5; // L: 45
+		class355[] var6 = var5; // L: 45
 
 		for (int var7 = 0; var7 < var6.length; ++var7) { // L: 46
-			class326 var8 = var6[var7]; // L: 47
-			this.field4116.add(var8); // L: 48
+			class355 var8 = var6[var7]; // L: 47
+			this.field4346.add(var8); // L: 48
 		}
 
 	} // L: 51
 
 	ModeWhere(String var3, int var4) {
-		this.field4116 = new HashSet(); // L: 32
+		this.field4346 = new HashSet(); // L: 32
 		this.id = var4; // L: 39
 	} // L: 40
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "741942848"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 55
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lfk;",
-		garbageValue = "1173982871"
+		descriptor = "(B)[Lne;",
+		garbageValue = "-88"
 	)
-	static HorizontalAlignment[] method6076() {
-		return new HorizontalAlignment[]{HorizontalAlignment.field1905, HorizontalAlignment.field1910, HorizontalAlignment.HorizontalAlignment_centered}; // L: 14
+	static ModeWhere[] method6945() {
+		return new ModeWhere[]{field4332, field4340, field4339, field4351, field4343, field4342, field4333, field4349, field4335, field4334, field4336, field4337, field4341}; // L: 35
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Llz;",
-		garbageValue = "110"
+		descriptor = "(Lmq;IB)V",
+		garbageValue = "17"
 	)
-	static ModeWhere[] method6075() {
-		return new ModeWhere[]{field4107, field4106, field4110, field4112, field4102, field4111, field4113, field4108, field4115, field4104, field4105, field4117, field4103}; // L: 35
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "941818161"
-	)
-	public static byte[] method6082() {
-		byte[] var0 = new byte[24]; // L: 277
-
-		try {
-			JagexCache.JagexCache_randomDat.seek(0L); // L: 279
-			JagexCache.JagexCache_randomDat.readFully(var0); // L: 280
-
-			int var1;
-			for (var1 = 0; var1 < 24 && var0[var1] == 0; ++var1) { // L: 281 282 283
-			}
-
-			if (var1 >= 24) {
-				throw new IOException(); // L: 285
-			}
-		} catch (Exception var4) {
-			for (int var2 = 0; var2 < 24; ++var2) { // L: 288
-				var0[var2] = -1;
-			}
-		}
-
-		return var0; // L: 290
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "16"
-	)
-	static final int method6079(int var0, int var1) {
-		if (var0 == -2) { // L: 927
-			return 12345678;
-		} else if (var0 == -1) { // L: 928
-			if (var1 < 2) { // L: 929
-				var1 = 2;
-			} else if (var1 > 126) { // L: 930
-				var1 = 126;
-			}
-
-			return var1; // L: 931
+	@Export("Widget_setKeyIgnoreHeld")
+	static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
+		if (var0.field3645 == null) { // L: 1229
+			throw new RuntimeException(); // L: 1230
 		} else {
-			var1 = (var0 & 127) * var1 / 128; // L: 933
-			if (var1 < 2) { // L: 934
-				var1 = 2;
-			} else if (var1 > 126) { // L: 935
-				var1 = 126;
+			if (var0.field3643 == null) { // L: 1232
+				var0.field3643 = new int[var0.field3645.length]; // L: 1233
 			}
 
-			return (var0 & 65408) + var1; // L: 936
+			var0.field3643[var1] = Integer.MAX_VALUE; // L: 1235
 		}
-	}
+	} // L: 1236
 
-	@ObfuscatedName("ff")
+	@ObfuscatedName("nh")
 	@ObfuscatedSignature(
-		descriptor = "(IZZZZI)Llc;",
-		garbageValue = "-1168566075"
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "1227239523"
 	)
-	@Export("newArchive")
-	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
-		ArchiveDisk var5 = null; // L: 2030
-		if (JagexCache.JagexCache_dat2File != null) { // L: 2031
-			var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, class359.JagexCache_idxFiles[var0], 1000000);
+	static String method6952(String var0) {
+		PlayerType[] var1 = StudioGame.PlayerType_values(); // L: 12203
+
+		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12204
+			PlayerType var3 = var1[var2]; // L: 12205
+			if (var3.modIcon != -1 && var0.startsWith(ArchiveDiskActionHandler.method6619(var3.modIcon))) { // L: 12207 12208
+				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length()); // L: 12209
+				break;
+			}
 		}
 
-		return new Archive(var5, CollisionMap.masterDisk, var0, var1, var2, var3, var4); // L: 2032
-	}
-
-	@ObfuscatedName("lu")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)Ljava/lang/String;",
-		garbageValue = "4"
-	)
-	static String method6080(String var0, boolean var1) {
-		String var2 = var1 ? "https://" : "http://"; // L: 12330
-		if (Client.gameBuild == 1) { // L: 12331
-			var0 = var0 + "-wtrc";
-		} else if (Client.gameBuild == 2) { // L: 12332
-			var0 = var0 + "-wtqa";
-		} else if (Client.gameBuild == 3) { // L: 12333
-			var0 = var0 + "-wtwip";
-		} else if (Client.gameBuild == 5) { // L: 12334
-			var0 = var0 + "-wti";
-		} else if (Client.gameBuild == 4) { // L: 12335
-			var0 = "local";
-		}
-
-		String var3 = ""; // L: 12336
-		if (GrandExchangeOfferTotalQuantityComparator.field4045 != null) { // L: 12337
-			var3 = "/p=" + GrandExchangeOfferTotalQuantityComparator.field4045;
-		}
-
-		String var4 = "runescape.com"; // L: 12338
-		return var2 + var0 + "." + var4 + "/l=" + class134.clientLanguage + "/a=" + class17.field99 + var3 + "/"; // L: 12339
+		return var0; // L: 12216
 	}
 }
