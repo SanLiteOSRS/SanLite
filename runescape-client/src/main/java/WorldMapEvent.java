@@ -4,35 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iy")
+@ObfuscatedName("ik")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-	@ObfuscatedName("eg")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	static Archive field2882;
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 285885713
+		intValue = 2110092031
 	)
 	@Export("mapElement")
 	public int mapElement;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lki;"
 	)
 	@Export("coord1")
 	public Coord coord1;
-	@ObfuscatedName("q")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lki;"
 	)
 	@Export("coord2")
 	public Coord coord2;
 
 	@ObfuscatedSignature(
-		descriptor = "(ILkd;Lkd;)V"
+		descriptor = "(ILki;Lki;)V"
 	)
 	public WorldMapEvent(int var1, Coord var2, Coord var3) {
 		this.mapElement = var1; // L: 11
@@ -40,46 +35,64 @@ public class WorldMapEvent {
 		this.coord2 = var3; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(DDIB)[D",
-		garbageValue = "-87"
-	)
-	public static double[] method5119(double var0, double var2, int var4) {
-		int var5 = var4 * 2 + 1; // L: 18
-		double[] var6 = new double[var5]; // L: 19
-		int var7 = -var4;
+	@ObfuscatedName("a")
+	@Export("base37DecodeLong")
+	public static String base37DecodeLong(long var0) {
+		if (var0 > 0L && var0 < 6582952005840035281L) { // L: 16
+			if (0L == var0 % 37L) { // L: 17
+				return null;
+			} else {
+				int var2 = 0; // L: 18
 
-		for (int var8 = 0; var7 <= var4; ++var8) {
-			var6[var8] = class357.method6530((double)var7, var0, var2); // L: 21
-			++var7; // L: 20
+				for (long var3 = var0; 0L != var3; var3 /= 37L) { // L: 19 20 22
+					++var2; // L: 21
+				}
+
+				StringBuilder var5;
+				char var8;
+				for (var5 = new StringBuilder(var2); var0 != 0L; var5.append(var8)) { // L: 24 25 34
+					long var6 = var0; // L: 26
+					var0 /= 37L; // L: 27
+					var8 = class359.base37Table[(int)(var6 - var0 * 37L)]; // L: 28
+					if (var8 == '_') { // L: 29
+						int var9 = var5.length() - 1; // L: 30
+						var5.setCharAt(var9, Character.toUpperCase(var5.charAt(var9))); // L: 31
+						var8 = 160; // L: 32
+					}
+				}
+
+				var5.reverse(); // L: 36
+				var5.setCharAt(0, Character.toUpperCase(var5.charAt(0))); // L: 37
+				return var5.toString(); // L: 38
+			}
+		} else {
+			return null;
 		}
-
-		return var6; // L: 23
 	}
 
-	@ObfuscatedName("kb")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-2116126418"
+		descriptor = "(Ljava/lang/Float;Ljava/lang/Float;I)V",
+		garbageValue = "-753033350"
 	)
-	static final void method5120(int var0) {
-		var0 = Math.max(Math.min(var0, 100), 0); // L: 11823
-		var0 = 100 - var0; // L: 11824
-		float var1 = (float)var0 / 200.0F + 0.5F; // L: 11825
-		Rasterizer3D.Rasterizer3D_setBrightness((double)var1); // L: 11827
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness((double)var1); // L: 11828
-		Projectile.method1959(); // L: 11829
-		class19.clientPreferences.method2255((double)var1); // L: 11830
-	} // L: 11832
+	static void method5310(Float var0, Float var1) {
+		if (var0 + class121.field1454 < 1.3333334F) { // L: 323
+			float var2 = var0 - 2.0F; // L: 324
+			float var3 = var0 - 1.0F; // L: 325
+			float var4 = (float)Math.sqrt((double)(var2 * var2 - var3 * 4.0F * var3)); // L: 326
+			float var5 = 0.5F * (var4 + -var2); // L: 327
+			if (var1 + class121.field1454 > var5) { // L: 328
+				var1 = var5 - class121.field1454; // L: 329
+			} else {
+				var5 = 0.5F * (-var2 - var4); // L: 332
+				if (var1 < var5 + class121.field1454) { // L: 333
+					var1 = class121.field1454 + var5; // L: 334
+				}
+			}
+		} else {
+			var0 = 1.3333334F - class121.field1454; // L: 339
+			var1 = 0.33333334F - class121.field1454; // L: 340
+		}
 
-	@ObfuscatedName("kn")
-	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "124"
-	)
-	static final void method5121(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 127); // L: 11861
-		class19.clientPreferences.method2341(var0); // L: 11862
-	} // L: 11863
+	} // L: 342
 }

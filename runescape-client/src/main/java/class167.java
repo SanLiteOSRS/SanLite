@@ -1,23 +1,63 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fy")
+@ObfuscatedName("fh")
 public class class167 {
-	@ObfuscatedName("q")
-	public short[] field1814;
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "Lde;"
+	)
+	public UrlRequest field1815;
 	@ObfuscatedName("f")
-	public short[] field1815;
+	public float[] field1814;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lft;"
+	)
+	final class162 this$0;
 
-	class167(int var1) {
-		ItemComposition var2 = EnumComposition.ItemComposition_get(var1); // L: 12
-		if (var2.method3737()) { // L: 13
-			this.field1814 = new short[var2.recolorTo.length]; // L: 14
-			System.arraycopy(var2.recolorTo, 0, this.field1814, 0, this.field1814.length); // L: 15
+	@ObfuscatedSignature(
+		descriptor = "(Lft;)V"
+	)
+	class167(class162 var1) {
+		this.this$0 = var1;
+		this.field1814 = new float[4]; // L: 322
+	} // L: 324
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "1753837162"
+	)
+	@Export("Widget_unpackTargetMask")
+	public static int Widget_unpackTargetMask(int var0) {
+		return var0 >> 11 & 63; // L: 9
+	}
+
+	@ObfuscatedName("gs")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-111989353"
+	)
+	@Export("setWindowedMode")
+	static void setWindowedMode(int var0) {
+		Client.field587 = 0L; // L: 4441
+		if (var0 >= 2) { // L: 4442
+			Client.isResizable = true;
+		} else {
+			Client.isResizable = false; // L: 4443
 		}
 
-		if (var2.method3728()) { // L: 17
-			this.field1815 = new short[var2.retextureTo.length]; // L: 18
-			System.arraycopy(var2.retextureTo, 0, this.field1815, 0, this.field1815.length); // L: 19
+		if (class13.getWindowedMode() == 1) { // L: 4444
+			ClanChannelMember.client.setMaxCanvasSize(765, 503); // L: 4445
+		} else {
+			ClanChannelMember.client.setMaxCanvasSize(7680, 2160); // L: 4448
 		}
 
-	} // L: 21
+		if (Client.gameState >= 25) { // L: 4450
+			class9.method61();
+		}
+
+	} // L: 4451
 }
