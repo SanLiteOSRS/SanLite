@@ -4,55 +4,45 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fs")
+@ObfuscatedName("go")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	@Export("EnumDefinition_archive")
-	static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Ljv;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("nc")
-	@ObfuscatedGetter(
-		intValue = -2102626567
-	)
-	@Export("selectedItemSlot")
-	static int selectedItemSlot;
-	@ObfuscatedName("q")
+	@ObfuscatedName("fe")
+	static String field2006;
+	@ObfuscatedName("v")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("j")
+	@ObfuscatedName("m")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -735765161
+		intValue = 1478484323
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 367199611
+		intValue = -1015031679
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("r")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("y")
+	@ObfuscatedName("u")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("i")
+	@ObfuscatedName("b")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -65,16 +55,16 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0; // L: 17
 	} // L: 22
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "110"
+		descriptor = "(Lqy;I)V",
+		garbageValue = "-2074495591"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
+			int var2 = var1.readUnsignedByte(); // L: 40
+			if (var2 == 0) { // L: 41
 				return; // L: 44
 			}
 
@@ -82,10 +72,10 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1048481170"
+		descriptor = "(Lqy;IS)V",
+		garbageValue = "8918"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -109,131 +99,83 @@ public class EnumComposition extends DualNode {
 					this.strVals[var3] = var1.readStringCp1252NullTerminated(); // L: 57
 				}
 			} else if (var2 == 6) { // L: 60
-				this.outputCount = var1.readUnsignedShort(); // L: 61
-				this.keys = new int[this.outputCount]; // L: 62
-				this.intVals = new int[this.outputCount]; // L: 63
+				this.outputCount = var1.readUnsignedShort();
+				this.keys = new int[this.outputCount];
+				this.intVals = new int[this.outputCount];
 
-				for (var3 = 0; var3 < this.outputCount; ++var3) { // L: 64
-					this.keys[var3] = var1.readInt(); // L: 65
-					this.intVals[var3] = var1.readInt(); // L: 66
+				for (var3 = 0; var3 < this.outputCount; ++var3) {
+					this.keys[var3] = var1.readInt();
+					this.intVals[var3] = var1.readInt();
 				}
 			}
 		}
 
-	} // L: 70
+	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "75421574"
+		garbageValue = "-585138184"
 	)
 	@Export("size")
 	public int size() {
 		return this.outputCount; // L: 73
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Lju;Lqv;I)Ljt;",
-		garbageValue = "870680813"
+		descriptor = "(I)[Ljf;",
+		garbageValue = "-1969198767"
 	)
-	@Export("getPacketBufferNode")
-	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-		PacketBufferNode var2;
-		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) { // L: 24
-			var2 = new PacketBufferNode(); // L: 25
-		} else {
-			var2 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 28
-		}
-
-		var2.clientPacket = var0; // L: 31
-		var2.clientPacketLength = var0.length; // L: 32
-		if (var2.clientPacketLength == -1) {
-			var2.packetBuffer = new PacketBuffer(260); // L: 33
-		} else if (var2.clientPacketLength == -2) { // L: 34
-			var2.packetBuffer = new PacketBuffer(10000);
-		} else if (var2.clientPacketLength <= 18) { // L: 35
-			var2.packetBuffer = new PacketBuffer(20);
-		} else if (var2.clientPacketLength <= 98) { // L: 36
-			var2.packetBuffer = new PacketBuffer(100);
-		} else {
-			var2.packetBuffer = new PacketBuffer(260); // L: 37
-		}
-
-		var2.packetBuffer.setIsaacCipher(var1); // L: 38
-		var2.packetBuffer.writeByteIsaac(var2.clientPacket.id); // L: 39
-		var2.index = 0; // L: 40
-		return var2; // L: 41
+	@Export("ServerPacket_values")
+	public static ServerPacket[] ServerPacket_values() {
+		return new ServerPacket[]{ServerPacket.field3218, ServerPacket.field3217, ServerPacket.field3294, ServerPacket.field3186, ServerPacket.field3197, ServerPacket.field3188, ServerPacket.field3185, ServerPacket.field3190, ServerPacket.field3191, ServerPacket.field3208, ServerPacket.field3193, ServerPacket.field3194, ServerPacket.field3195, ServerPacket.field3262, ServerPacket.field3271, ServerPacket.field3198, ServerPacket.field3199, ServerPacket.field3200, ServerPacket.field3201, ServerPacket.field3230, ServerPacket.field3196, ServerPacket.field3204, ServerPacket.field3274, ServerPacket.field3206, ServerPacket.field3272, ServerPacket.field3183, ServerPacket.field3209, ServerPacket.field3210, ServerPacket.field3211, ServerPacket.field3212, ServerPacket.field3205, ServerPacket.field3214, ServerPacket.field3202, ServerPacket.field3270, ServerPacket.field3187, ServerPacket.field3280, ServerPacket.field3219, ServerPacket.field3213, ServerPacket.field3221, ServerPacket.field3222, ServerPacket.field3223, ServerPacket.field3224, ServerPacket.field3251, ServerPacket.field3226, ServerPacket.field3227, ServerPacket.field3184, ServerPacket.field3229, ServerPacket.field3242, ServerPacket.field3231, ServerPacket.field3232, ServerPacket.field3192, ServerPacket.field3257, ServerPacket.field3235, ServerPacket.field3236, ServerPacket.field3237, ServerPacket.field3256, ServerPacket.field3216, ServerPacket.field3240, ServerPacket.field3241, ServerPacket.field3239, ServerPacket.field3243, ServerPacket.field3244, ServerPacket.field3245, ServerPacket.field3246, ServerPacket.field3247, ServerPacket.field3266, ServerPacket.field3285, ServerPacket.field3234, ServerPacket.field3249, ServerPacket.field3225, ServerPacket.field3253, ServerPacket.field3254, ServerPacket.field3255, ServerPacket.field3207, ServerPacket.field3248, ServerPacket.field3258, ServerPacket.field3264, ServerPacket.field3260, ServerPacket.field3261, ServerPacket.field3299, ServerPacket.field3263, ServerPacket.field3238, ServerPacket.field3265, ServerPacket.field3259, ServerPacket.field3267, ServerPacket.field3268, ServerPacket.field3269, ServerPacket.field3286, ServerPacket.field3203, ServerPacket.field3215, ServerPacket.field3287, ServerPacket.field3228, ServerPacket.field3275, ServerPacket.field3276, ServerPacket.field3277, ServerPacket.field3278, ServerPacket.field3279, ServerPacket.field3273, ServerPacket.field3281, ServerPacket.field3282, ServerPacket.field3283, ServerPacket.field3284, ServerPacket.field3252, ServerPacket.field3233, ServerPacket.field3250, ServerPacket.field3288, ServerPacket.field3289, ServerPacket.field3290, ServerPacket.field3291, ServerPacket.field3292, ServerPacket.field3293, ServerPacket.field3189, ServerPacket.field3295, ServerPacket.field3296, ServerPacket.field3297}; // L: 124
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgs;",
-		garbageValue = "-21"
+		descriptor = "([BI)Ljava/lang/String;",
+		garbageValue = "-850113409"
 	)
-	@Export("ItemComposition_get")
-	public static ItemComposition ItemComposition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemComposition_cached.get((long)var0); // L: 92
-		if (var1 != null) { // L: 93
-			return var1;
-		} else {
-			byte[] var2 = UserComparator4.ItemComposition_archive.takeFile(10, var0); // L: 94
-			var1 = new ItemComposition(); // L: 95
-			var1.id = var0; // L: 96
-			if (var2 != null) { // L: 97
-				var1.decode(new Buffer(var2));
-			}
+	public static String method3650(byte[] var0) {
+		int var2 = var0.length; // L: 59
+		StringBuilder var3 = new StringBuilder(); // L: 61
 
-			var1.post(); // L: 98
-			if (var1.noteTemplate != -1) { // L: 99
-				var1.genCert(ItemComposition_get(var1.noteTemplate), ItemComposition_get(var1.note));
-			}
-
-			if (var1.notedId != -1) { // L: 100
-				var1.genBought(ItemComposition_get(var1.notedId), ItemComposition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) { // L: 101
-				var1.genPlaceholder(ItemComposition_get(var1.placeholderTemplate), ItemComposition_get(var1.placeholder));
-			}
-
-			if (!DevicePcmPlayerProvider.ItemComposition_inMembersWorld && var1.isMembersOnly) { // L: 102
-				var1.name = "Members object"; // L: 103
-				var1.isTradable = false; // L: 104
-
-				int var3;
-				for (var3 = 0; var3 < var1.groundActions.length; ++var3) { // L: 105
-					var1.groundActions[var3] = null; // L: 106
+		for (int var4 = 0; var4 < var2 + 0; var4 += 3) { // L: 62
+			int var5 = var0[var4] & 255; // L: 63
+			var3.append(class359.field4350[var5 >>> 2]); // L: 64
+			if (var4 < var2 - 1) { // L: 65
+				int var6 = var0[var4 + 1] & 255; // L: 66
+				var3.append(class359.field4350[(var5 & 3) << 4 | var6 >>> 4]); // L: 67
+				if (var4 < var2 - 2) { // L: 68
+					int var7 = var0[var4 + 2] & 255; // L: 69
+					var3.append(class359.field4350[(var6 & 15) << 2 | var7 >>> 6]).append(class359.field4350[var7 & 63]); // L: 70
+				} else {
+					var3.append(class359.field4350[(var6 & 15) << 2]).append("="); // L: 72
 				}
-
-				for (var3 = 0; var3 < var1.inventoryActions.length; ++var3) { // L: 108
-					if (var3 != 4) { // L: 109
-						var1.inventoryActions[var3] = null; // L: 110
-					}
-				}
-
-				var1.shiftClickIndex = -2; // L: 113
-				var1.team = 0; // L: 114
-				if (var1.params != null) { // L: 115
-					boolean var6 = false; // L: 116
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) { // L: 117
-						ParamComposition var5 = class174.getParamDefinition((int)var4.key); // L: 118
-						if (var5.autoDisable) { // L: 119
-							var4.remove();
-						} else {
-							var6 = true; // L: 120
-						}
-					}
-
-					if (!var6) {
-						var1.params = null; // L: 122
-					}
-				}
+			} else {
+				var3.append(class359.field4350[(var5 & 3) << 4]).append("=="); // L: 74
 			}
-
-			ItemComposition.ItemComposition_cached.put(var1, (long)var0); // L: 125
-			return var1; // L: 126
 		}
+
+		String var1 = var3.toString(); // L: 76
+		return var1; // L: 78
+	}
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Throwable;Ljava/lang/String;)Lrw;"
+	)
+	@Export("newRunException")
+	public static RunException newRunException(Throwable var0, String var1) {
+		RunException var2;
+		if (var0 instanceof RunException) { // L: 100
+			var2 = (RunException)var0; // L: 101
+			var2.message = var2.message + ' ' + var1; // L: 102
+		} else {
+			var2 = new RunException(var0, var1); // L: 104
+		}
+
+		return var2; // L: 105
 	}
 }
