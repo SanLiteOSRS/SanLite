@@ -4,28 +4,18 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cy")
+@ObfuscatedName("cn")
 @Implements("TileItem")
 public final class TileItem extends Renderable {
-	@ObfuscatedName("ar")
-	protected static String field1301;
-	@ObfuscatedName("aw")
-	static String field1299;
-	@ObfuscatedName("hi")
-	@ObfuscatedSignature(
-		descriptor = "Lmt;"
-	)
-	@Export("fontBold12")
-	static Font fontBold12;
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1688540919
+		intValue = -1605084495
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -895126303
+		intValue = -49892943
 	)
 	@Export("quantity")
 	int quantity;
@@ -33,22 +23,23 @@ public final class TileItem extends Renderable {
 	TileItem() {
 	} // L: 11
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhy;",
-		garbageValue = "1081110576"
+		descriptor = "(I)Lhd;",
+		garbageValue = "-842208187"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return EnumComposition.ItemComposition_get(this.id).getModel(this.quantity); // L: 14
+		return class258.ItemComposition_get(this.id).getModel(this.quantity); // L: 14
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1179876648"
+		descriptor = "(IB)Lfe;",
+		garbageValue = "13"
 	)
-	public static int method2414(int var0) {
-		return class7.method51(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 73
+	@Export("WorldMapElement_get")
+	public static WorldMapElement WorldMapElement_get(int var0) {
+		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0); // L: 62 63
 	}
 }
