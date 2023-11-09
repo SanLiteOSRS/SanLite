@@ -1,51 +1,55 @@
+import java.security.SecureRandom;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fu")
-public class class174 {
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "Lct;"
-	)
-	@Export("World_request")
-	static UrlRequest World_request;
-	@ObfuscatedName("br")
+@ObfuscatedName("gk")
+public class class174 extends class177 {
+	@ObfuscatedName("hz")
+	@Export("secureRandom")
+	static SecureRandom secureRandom;
+	@ObfuscatedName("kv")
 	@ObfuscatedGetter(
-		intValue = 1359206661
+		intValue = 1772923873
 	)
-	static int field1891;
-
-	@ObfuscatedName("c")
+	@Export("cameraY")
+	static int cameraY;
+	@ObfuscatedName("af")
+	@ObfuscatedGetter(
+		intValue = -1898005083
+	)
+	int field1864;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgf;",
-		garbageValue = "-64"
+		descriptor = "Lgy;"
 	)
-	@Export("getParamDefinition")
-	public static ParamComposition getParamDefinition(int var0) {
-		ParamComposition var1 = (ParamComposition)ParamComposition.ParamComposition_cached.get((long)var0); // L: 21
-		if (var1 != null) { // L: 22
-			return var1;
-		} else {
-			byte[] var2 = ParamComposition.ParamDefinition_archive.takeFile(11, var0); // L: 23
-			var1 = new ParamComposition(); // L: 24
-			if (var2 != null) { // L: 25
-				var1.decode(new Buffer(var2));
-			}
+	final class166 this$0;
 
-			var1.postDecode(); // L: 26
-			ParamComposition.ParamComposition_cached.put(var1, (long)var0); // L: 27
-			return var1; // L: 28
-		}
+	@ObfuscatedSignature(
+		descriptor = "(Lgy;Ljava/lang/String;I)V"
+	)
+	class174(class166 var1, String var2, int var3) {
+		super(var1, var2); // L: 394
+		this.this$0 = var1; // L: 393
+		this.field1864 = var3; // L: 395
+	} // L: 396
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(B)I",
+		garbageValue = "-41"
+	)
+	public int vmethod3607() {
+		return 0; // L: 399
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "16"
+		descriptor = "(I)I",
+		garbageValue = "421671702"
 	)
-	static final boolean method3458() {
-		return ViewportMouse.ViewportMouse_isInViewport; // L: 99
+	public int vmethod3608() {
+		return this.field1864; // L: 404
 	}
 }

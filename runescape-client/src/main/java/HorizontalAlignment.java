@@ -4,35 +4,44 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fk")
+@ObfuscatedName("hd")
 @Implements("HorizontalAlignment")
-public enum HorizontalAlignment implements MouseWheel {
-	@ObfuscatedName("c")
+public enum HorizontalAlignment implements class356 {
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lhd;"
 	)
-	field1910(1, 0),
-	@ObfuscatedName("v")
+	field1990(0, 0),
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lhd;"
 	)
 	@Export("HorizontalAlignment_centered")
 	HorizontalAlignment_centered(2, 1),
-	@ObfuscatedName("q")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lhd;"
 	)
-	field1905(0, 2);
+	field1992(1, 2);
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("az")
+	@Export("userHomeDirectory")
+	public static String userHomeDirectory;
+	@ObfuscatedName("tt")
+	@ObfuscatedSignature(
+		descriptor = "Lbu;"
+	)
+	@Export("pcmPlayer1")
+	static PcmPlayer pcmPlayer1;
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -571312605
+		intValue = 1932346871
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("j")
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -279458597
+		intValue = 455418089
 	)
 	@Export("id")
 	final int id;
@@ -42,23 +51,24 @@ public enum HorizontalAlignment implements MouseWheel {
 		this.id = var4; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "741942848"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 24
 	}
 
-	@ObfuscatedName("jk")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "20"
+		descriptor = "(ZZB)I",
+		garbageValue = "-35"
 	)
-	@Export("getTapToDrop")
-	static boolean getTapToDrop() {
-		return Client.tapToDrop; // L: 11040
+	public static int method3762(boolean var0, boolean var1) {
+		byte var2 = 0; // L: 263
+		int var3 = var2 + NetCache.NetCache_pendingPriorityWritesCount + NetCache.NetCache_pendingPriorityResponsesCount; // L: 264
+		return var3; // L: 265
 	}
 }

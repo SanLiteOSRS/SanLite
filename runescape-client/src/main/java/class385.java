@@ -1,39 +1,37 @@
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nx")
+@ObfuscatedName("oo")
 public class class385 {
-	@ObfuscatedName("c")
-	float field4383;
-	@ObfuscatedName("v")
-	float field4382;
-	@ObfuscatedName("q")
-	float field4384;
-
-	static {
-		new class385(0.0F, 0.0F, 0.0F); // L: 5
-		new class385(1.0F, 1.0F, 1.0F); // L: 9
-		new class385(1.0F, 0.0F, 0.0F); // L: 13
-		new class385(0.0F, 1.0F, 0.0F); // L: 17
-		new class385(0.0F, 0.0F, 1.0F); // L: 21
-	} // L: 26
-
-	class385(float var1, float var2, float var3) {
-		this.field4383 = var1; // L: 33
-		this.field4382 = var2; // L: 34
-		this.field4384 = var3; // L: 35
-	} // L: 36
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(B)F",
-		garbageValue = "84"
+	@ObfuscatedName("af")
+	@ObfuscatedGetter(
+		intValue = -637669769
 	)
-	final float method6929() {
-		return (float)Math.sqrt((double)(this.field4384 * this.field4384 + this.field4383 * this.field4383 + this.field4382 * this.field4382)); // L: 39
-	}
+	int field4459;
+	@ObfuscatedName("an")
+	@ObfuscatedGetter(
+		intValue = -124524353
+	)
+	int field4461;
+	@ObfuscatedName("aw")
+	@ObfuscatedGetter(
+		intValue = 1468527107
+	)
+	int field4460;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		intValue = 1354689229
+	)
+	int field4458;
 
 	public String toString() {
-		return this.field4383 + ", " + this.field4382 + ", " + this.field4384; // L: 44
+		boolean var1 = true; // L: 15
+		int var2 = 10 - Integer.toString(this.field4459).length(); // L: 16
+		int var3 = 10 - Integer.toString(this.field4460).length(); // L: 17
+		int var4 = 10 - Integer.toString(this.field4461).length(); // L: 18
+		String var5 = "          ".substring(10 - var2); // L: 19
+		String var6 = "          ".substring(10 - var3); // L: 20
+		String var7 = "          ".substring(10 - var4); // L: 21
+		return "    Size: " + this.field4459 + var5 + "Created: " + this.field4461 + var7 + "Total used: " + this.field4460 + var6 + "Max-In-Use: " + this.field4458; // L: 22
 	}
 }

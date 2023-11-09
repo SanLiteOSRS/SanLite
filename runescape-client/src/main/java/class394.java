@@ -1,91 +1,197 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import java.awt.Component;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import javax.net.ssl.HttpsURLConnection;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("oj")
-public abstract class class394 implements class248 {
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -1016903311
-	)
-	public static int field4429;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lpv;"
-	)
-	class432 field4428;
+@ObfuscatedName("pc")
+public class class394 {
+	@ObfuscatedName("al")
+	@Export("SpriteBuffer_spritePalette")
+	public static int[] SpriteBuffer_spritePalette;
+	@ObfuscatedName("ac")
+	final Map field4521;
+	@ObfuscatedName("au")
+	final Map field4525;
+	@ObfuscatedName("ab")
+	final DecimalFormat field4526;
 
-	class394(int var1) {
-	} // L: 13
+	public class394() {
+		this.field4521 = new HashMap(); // L: 12
+		this.field4525 = new HashMap(); // L: 13
+		this.field4526 = new DecimalFormat(); // L: 14
+		this.field4526.setMaximumFractionDigits(2); // L: 17
+	} // L: 18
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "803287054"
+		descriptor = "(Ljavax/net/ssl/HttpsURLConnection;I)V",
+		garbageValue = "1759614769"
 	)
-	abstract void vmethod7080(Buffer var1, int var2);
+	public void method7625(HttpsURLConnection var1) {
+		Iterator var2 = this.field4521.entrySet().iterator(); // L: 21
 
-	@ObfuscatedName("f")
+		while (var2.hasNext()) {
+			Entry var3 = (Entry)var2.next(); // L: 22
+			var1.setRequestProperty((String)var3.getKey(), (String)var3.getValue()); // L: 24
+		}
+
+	} // L: 27
+
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "-1106157654"
+		descriptor = "(I)Ljava/util/Map;",
+		garbageValue = "1411572394"
 	)
-	public void method7073(Buffer var1) {
-		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 17
-			if (var2 == 0) { // L: 18
-				return; // L: 47
+	public Map method7626() {
+		return this.field4521; // L: 30
+	}
+
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "-687653151"
+	)
+	public void method7627(String var1, String var2) {
+		if (var1 != null && !var1.isEmpty()) { // L: 34
+			this.field4521.put(var1, var2 != null ? var2 : ""); // L: 35
+		}
+
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;S)V",
+		garbageValue = "-14811"
+	)
+	public void method7657(String var1) {
+		if (var1 != null && !var1.isEmpty()) {
+			this.field4521.remove(var1); // L: 41
+		}
+
+	} // L: 43
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(Lpm;Ljava/lang/String;B)V",
+		garbageValue = "84"
+	)
+	void method7629(class393 var1, String var2) {
+		String var3 = String.format("%s %s", var1.method7621(), var2); // L: 46
+		this.method7627("Authorization", var3); // L: 47
+	} // L: 48
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "95"
+	)
+	public void method7645(String var1) {
+		this.method7629(class393.field4519, var1); // L: 51
+	} // L: 52
+
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-596088088"
+	)
+	public void method7631(String var1) {
+		this.method7629(class393.field4518, var1); // L: 55
+	} // L: 56
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(Lqz;I)V",
+		garbageValue = "1037521942"
+	)
+	public void method7632(class435 var1) {
+		this.field4521.put("Content-Type", var1.method8319()); // L: 59
+	} // L: 60
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1055361805"
+	)
+	public void method7633() {
+		this.field4521.remove("Content-Type"); // L: 63
+	} // L: 64
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(Lqz;B)V",
+		garbageValue = "49"
+	)
+	public void method7634(class435 var1) {
+		this.method7635(var1, 1.0F); // L: 67
+	} // L: 68
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Lqz;FI)V",
+		garbageValue = "-868305920"
+	)
+	void method7635(class435 var1, float var2) {
+		this.field4525.put(var1, Math.max(0.0F, Math.min(1.0F, var2))); // L: 71
+		this.method7636(); // L: 72
+	} // L: 73
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "720033407"
+	)
+	void method7636() {
+		this.field4521.remove("Accept"); // L: 76
+		if (!this.field4525.isEmpty()) { // L: 77
+			this.field4521.put("Accept", this.method7665()); // L: 78
+		}
+
+	} // L: 80
+
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "269746303"
+	)
+	String method7665() {
+		ArrayList var1 = new ArrayList(this.field4525.entrySet()); // L: 83
+		Collections.sort(var1, new class395(this)); // L: 84
+		StringBuilder var2 = new StringBuilder(); // L: 97
+		Iterator var3 = var1.iterator(); // L: 98
+
+		while (var3.hasNext()) { // L: 109
+			Entry var4 = (Entry)var3.next(); // L: 99
+			if (var2.length() > 0) { // L: 101
+				var2.append(",");
 			}
 
-			class390[] var3 = new class390[]{class390.field4418, class390.field4419, class390.field4420, class390.field4422}; // L: 21
-			class390 var4 = (class390)Actor.findEnumerated(var3, var2); // L: 23
-			if (var4 != null) { // L: 24
-				switch(var4.field4417) { // L: 25
-				case 0:
-					int var6 = var1.readUnsignedByte(); // L: 39
-					this.field4428 = MusicPatchNode.method5472(var6); // L: 40
-					if (this.field4428 != null) {
-						break;
-					}
-
-					throw new IllegalStateException("Unknown ScriptVarType ID in VarType.decode: " + var6); // L: 41
-				case 1:
-					class308[] var5 = new class308[]{class308.field3939, class308.field3938, class308.field3941, class308.field3940}; // L: 32
-					Actor.findEnumerated(var5, var1.readUnsignedByte()); // L: 34
-					break; // L: 35
-				case 2:
-					var1.readStringCp1252NullCircumfixed(); // L: 27
-					break;
-				default:
-					throw new IllegalStateException("Unrecognised VarTypeEncodingKey - " + var4); // L: 37
-				}
-			} else {
-				this.vmethod7080(var1, var2); // L: 45
+			var2.append(((class435)var4.getKey()).method8319()); // L: 102
+			float var5 = (Float)var4.getValue(); // L: 103
+			if (var5 < 1.0F) { // L: 104
+				String var6 = this.field4526.format((double)var5); // L: 105
+				var2.append(";q=").append(var6); // L: 106
 			}
 		}
+
+		return var2.toString(); // L: 110
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1341290829"
+		descriptor = "(Ljava/awt/Component;I)V",
+		garbageValue = "1714263236"
 	)
-	boolean method7074() {
-		return this.field4428 != null; // L: 52
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/Object;",
-		garbageValue = "-72788464"
-	)
-	Object method7082() {
-		if (this.field4428 == class432.field4658) { // L: 56
-			return 0; // L: 57
-		} else if (this.field4428 == class432.field4656) { // L: 59
-			return -1L; // L: 60
-		} else {
-			return this.field4428 == class432.field4657 ? "" : null; // L: 62 63 65
-		}
-	}
+	static void method7672(Component var0) {
+		var0.addMouseListener(MouseHandler.KeyHandler_instance); // L: 37
+		var0.addMouseMotionListener(MouseHandler.KeyHandler_instance); // L: 38
+		var0.addFocusListener(MouseHandler.KeyHandler_instance); // L: 39
+	} // L: 40
 }
