@@ -1,18 +1,31 @@
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nk")
+@ObfuscatedName("nr")
 public class class389 {
-	@ObfuscatedName("c")
-	float[] field4415;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Lnr;"
+	)
+	public static final class389 field4516;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "Lnr;"
+	)
+	static final class389 field4515;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -2004377365
+		intValue = -1237713179
 	)
-	int field4414;
+	final int field4514;
 
-	class389(float[] var1, int var2) {
-		this.field4415 = var1; // L: 10
-		this.field4414 = var2; // L: 11
-	} // L: 12
+	static {
+		field4516 = new class389(0); // L: 5
+		field4515 = new class389(1); // L: 6
+	}
+
+	class389(int var1) {
+		this.field4514 = var1; // L: 10
+	} // L: 11
 }
