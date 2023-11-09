@@ -1,13 +1,12 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ko")
-public class class304 {
-	@ObfuscatedName("ec")
+@ObfuscatedName("ll")
+public interface class304 {
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "(I)V",
+		garbageValue = "177803302"
 	)
-	@Export("archive8")
-	static Archive archive8;
+	void vmethod5776();
 }

@@ -1,79 +1,70 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import netscape.javascript.JSObject;
 
-@ObfuscatedName("j")
+@ObfuscatedName("an")
 public final class class4 {
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
+	@ObfuscatedName("th")
+	@ObfuscatedGetter(
+		intValue = -669055616
 	)
-	@Export("HitSplatDefinition_fontsArchive")
-	public static AbstractArchive HitSplatDefinition_fontsArchive;
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	@Export("titleboxSprite")
-	static IndexedSprite titleboxSprite;
-	@ObfuscatedName("ee")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive20")
-	static Archive archive20;
+	static int field7;
 
-	@ObfuscatedName("hw")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1151585250"
+		descriptor = "([BB)Lcv;",
+		garbageValue = "-53"
 	)
-	static final void method11() {
-		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 7783 7784 7790
-			if (var0.hitpoints == -1) { // L: 7785
-				var0.delay = 0; // L: 7786
-				class151.method3146(var0); // L: 7787
-			} else {
-				var0.remove(); // L: 7789
+	@Export("newScript")
+	static Script newScript(byte[] var0) {
+		Script var1 = new Script(); // L: 80
+		Buffer var2 = new Buffer(var0); // L: 81
+		var2.offset = var2.array.length - 2; // L: 82
+		int var3 = var2.readUnsignedShort(); // L: 83
+		int var4 = var2.array.length - 2 - var3 - 12; // L: 84
+		var2.offset = var4; // L: 85
+		int var5 = var2.readInt(); // L: 86
+		var1.localIntCount = var2.readUnsignedShort(); // L: 87
+		var1.localStringCount = var2.readUnsignedShort(); // L: 88
+		var1.intArgumentCount = var2.readUnsignedShort(); // L: 89
+		var1.stringArgumentCount = var2.readUnsignedShort(); // L: 90
+		int var6 = var2.readUnsignedByte(); // L: 91
+		int var7;
+		int var8;
+		if (var6 > 0) { // L: 92
+			var1.switches = var1.newIterableNodeHashTable(var6); // L: 93
+
+			for (var7 = 0; var7 < var6; ++var7) { // L: 94
+				var8 = var2.readUnsignedShort(); // L: 95
+				IterableNodeHashTable var9 = new IterableNodeHashTable(var8 > 0 ? WorldMapLabelSize.method4793(var8) : 1); // L: 96
+				var1.switches[var7] = var9; // L: 97
+
+				while (var8-- > 0) { // L: 98
+					int var10 = var2.readInt(); // L: 99
+					int var11 = var2.readInt(); // L: 100
+					var9.put(new IntegerNode(var11), (long)var10); // L: 101
+				}
 			}
 		}
 
-	} // L: 7792
+		var2.offset = 0; // L: 105
+		var1.field965 = var2.readStringCp1252NullTerminatedOrNull(); // L: 106
+		var1.opcodes = new int[var5]; // L: 107
+		var1.intOperands = new int[var5]; // L: 108
+		var1.stringOperands = new String[var5]; // L: 109
 
-	@ObfuscatedName("ii")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIII)V",
-		garbageValue = "-1285432829"
-	)
-	@Export("insertMenuItemNoShift")
-	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
-		class268.insertMenuItem(var0, var1, var2, var3, var4, var5, false); // L: 9700
-	} // L: 9701
-
-	@ObfuscatedName("ly")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-2033528269"
-	)
-	static void method12(String var0) {
-		GrandExchangeOfferTotalQuantityComparator.field4045 = var0; // L: 12343
-
-		try {
-			String var1 = class353.client.getParameter(Integer.toString(18)); // L: 12345
-			String var2 = class353.client.getParameter(Integer.toString(13)); // L: 12346
-			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2; // L: 12347
-			if (var0.length() == 0) { // L: 12348
-				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
+		for (var7 = 0; var2.offset < var4; var1.opcodes[var7++] = var8) { // L: 110 111 116
+			var8 = var2.readUnsignedShort(); // L: 112
+			if (var8 == 3) { // L: 113
+				var1.stringOperands[var7] = var2.readStringCp1252NullTerminated();
+			} else if (var8 < 100 && var8 != 21 && var8 != 38 && var8 != 39) {
+				var1.intOperands[var7] = var2.readInt(); // L: 114
 			} else {
-				var3 = var3 + "; Expires=" + NPC.method2382(class115.method2692() + 94608000000L) + "; Max-Age=" + 94608000L; // L: 12349
+				var1.intOperands[var7] = var2.readUnsignedByte(); // L: 115
 			}
-
-			Client var4 = class353.client; // L: 12350
-			String var5 = "document.cookie=\"" + var3 + "\""; // L: 12351
-			JSObject.getWindow(var4).eval(var5); // L: 12354
-		} catch (Throwable var6) { // L: 12357
 		}
 
-	} // L: 12358
+		return var1; // L: 118
+	}
 }
