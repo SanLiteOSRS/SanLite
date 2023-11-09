@@ -1,12 +1,29 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dm")
+@ObfuscatedName("ec")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ua")
+	@ObfuscatedGetter(
+		intValue = 1237393549
+	)
+	static int field1415;
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "Ltj;"
+	)
+	static IndexedSprite field1416;
+	@ObfuscatedName("gr")
+	@ObfuscatedGetter(
+		intValue = -777492217
+	)
+	@Export("currentPort")
+	static int currentPort;
+	@ObfuscatedName("at")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +31,10 @@ public class UserComparator8 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "1682683031"
+		descriptor = "(Lqg;Lqg;I)I",
+		garbageValue = "180048199"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,55 +53,105 @@ public class UserComparator8 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 25
 	}
 
-	@ObfuscatedName("if")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "6"
+		descriptor = "(III)Z",
+		garbageValue = "-415594604"
 	)
-	static void method2571(int var0, int var1) {
-		int var2 = TileItem.fontBold12.stringWidth("Choose Option"); // L: 8663
+	static boolean method2852(int var0, int var1) {
+		return var0 != 4 || var1 < 8; // L: 26
+	}
 
-		int var3;
-		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) { // L: 8664
-			Font var7 = TileItem.fontBold12; // L: 8665
-			String var8;
-			if (var3 < 0) { // L: 8668
-				var8 = ""; // L: 8669
-			} else if (Client.menuTargets[var3].length() > 0) { // L: 8672
-				var8 = Client.menuActions[var3] + " " + Client.menuTargets[var3];
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(III)Ldd;",
+		garbageValue = "-1140342011"
+	)
+	static Script method2854(int var0, int var1) {
+		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16)); // L: 61
+		if (var2 != null) { // L: 62
+			return var2; // L: 63
+		} else {
+			String var3 = String.valueOf(var0); // L: 65
+			int var4 = class33.archive12.getGroupId(var3); // L: 66
+			if (var4 == -1) { // L: 67
+				return null; // L: 68
 			} else {
-				var8 = Client.menuActions[var3]; // L: 8673
+				byte[] var5 = class33.archive12.takeFileFlat(var4); // L: 70
+				if (var5 != null) { // L: 71
+					if (var5.length <= 1) { // L: 72
+						return null; // L: 73
+					}
+
+					var2 = class165.newScript(var5); // L: 75
+					if (var2 != null) { // L: 76
+						Script.Script_cached.put(var2, (long)(var0 << 16)); // L: 77
+						return var2; // L: 78
+					}
+				}
+
+				return null; // L: 81
+			}
+		}
+	}
+
+	@ObfuscatedName("gg")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "1243357118"
+	)
+	static void method2855(int var0) {
+		if (var0 != Client.gameState) { // L: 1222
+			if (Client.gameState == 30) { // L: 1223
+				Client.field740.method4102(); // L: 1224
 			}
 
-			int var6 = var7.stringWidth(var8); // L: 8675
-			if (var6 > var2) { // L: 8676
-				var2 = var6;
+			if (Client.gameState == 0) { // L: 1226
+				class347.client.method500();
 			}
-		}
 
-		var2 += 8; // L: 8678
-		var3 = Client.menuOptionsCount * 15 + 22; // L: 8679
-		int var4 = var0 - var2 / 2; // L: 8680
-		if (var2 + var4 > Script.canvasWidth) { // L: 8681
-			var4 = Script.canvasWidth - var2;
-		}
+			if (var0 == 20 || var0 == 40 || var0 == 45 || var0 == 50) { // L: 1227
+				class347.method6613(0); // L: 1228
+				Client.field558 = 0; // L: 1229
+				Client.field782 = 0; // L: 1230
+				Client.timer.method7609(var0); // L: 1231
+				if (var0 != 20) { // L: 1232
+					class152.method3194(false);
+				}
+			}
 
-		if (var4 < 0) { // L: 8682
-			var4 = 0;
-		}
+			if (var0 != 20 && var0 != 40 && ArchiveLoader.field1037 != null) { // L: 1234 1235
+				ArchiveLoader.field1037.close(); // L: 1236
+				ArchiveLoader.field1037 = null; // L: 1237
+			}
 
-		int var5 = var1; // L: 8683
-		if (var3 + var1 > class78.canvasHeight) { // L: 8684
-			var5 = class78.canvasHeight - var3;
-		}
+			if (Client.gameState == 25) { // L: 1240
+				Client.field576 = 0; // L: 1241
+				Client.field572 = 0; // L: 1242
+				Client.field573 = 1; // L: 1243
+				Client.field574 = 0; // L: 1244
+				Client.field580 = 1; // L: 1245
+			}
 
-		if (var5 < 0) { // L: 8685
-			var5 = 0;
-		}
+			if (var0 != 5 && var0 != 10) { // L: 1247
+				if (var0 == 20) { // L: 1255
+					int var3 = Client.gameState == 11 ? 4 : 0; // L: 1256
+					HorizontalAlignment.method3679(class53.archive10, class180.archive8, false, var3); // L: 1257
+				} else if (var0 == 11) { // L: 1259
+					HorizontalAlignment.method3679(class53.archive10, class180.archive8, false, 4); // L: 1260
+				} else if (var0 == 50) { // L: 1262
+					class478.setLoginResponseString("", "Updating date of birth...", ""); // L: 1263
+					HorizontalAlignment.method3679(class53.archive10, class180.archive8, false, 7); // L: 1264
+				} else {
+					ReflectionCheck.method669(); // L: 1266
+				}
+			} else {
+				boolean var1 = class10.clientPreferences.method2454() >= Client.field508; // L: 1250
+				int var2 = var1 ? 0 : 12; // L: 1252
+				HorizontalAlignment.method3679(class53.archive10, class180.archive8, true, var2); // L: 1253
+			}
 
-		UserComparator3.menuX = var4; // L: 8686
-		ViewportMouse.menuY = var5; // L: 8687
-		Language.menuWidth = var2; // L: 8688
-		Player.menuHeight = Client.menuOptionsCount * 15 + 22; // L: 8689
-	} // L: 8690
+			Client.gameState = var0; // L: 1267
+		}
+	} // L: 1268
 }
