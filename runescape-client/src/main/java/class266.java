@@ -1,42 +1,58 @@
+import java.awt.image.BufferedImage;
+import java.awt.image.PixelGrabber;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jc")
-public class class266 {
-	@ObfuscatedName("cg")
+@ObfuscatedName("jz")
+public abstract class class266 implements class268 {
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "Lqu;"
+		descriptor = "Lae;"
 	)
-	@Export("worldSelectLeftSprite")
-	static IndexedSprite worldSelectLeftSprite;
+	@Export("soundSystem")
+	static SoundSystem soundSystem;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -1800360111
+	)
+	protected int field3035;
 
-	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lqe;",
-		garbageValue = "22"
+		descriptor = "(Lle;Lmn;I)V"
 	)
-	static SpritePixels[] method5212() {
-		SpritePixels[] var0 = new SpritePixels[class456.SpriteBuffer_spriteCount]; // L: 157
+	protected class266(StudioGame var1, Language var2, int var3) {
+		this.field3035 = var3; // L: 10
+	} // L: 11
 
-		for (int var1 = 0; var1 < class456.SpriteBuffer_spriteCount; ++var1) { // L: 158
-			SpritePixels var2 = var0[var1] = new SpritePixels(); // L: 159
-			var2.width = ModelData0.SpriteBuffer_spriteWidth; // L: 160
-			var2.height = class456.SpriteBuffer_spriteHeight; // L: 161
-			var2.xOffset = class426.SpriteBuffer_xOffsets[var1]; // L: 162
-			var2.yOffset = class142.SpriteBuffer_yOffsets[var1]; // L: 163
-			var2.subWidth = class359.SpriteBuffer_spriteWidths[var1]; // L: 164
-			var2.subHeight = class456.SpriteBuffer_spriteHeights[var1]; // L: 165
-			int var3 = var2.subHeight * var2.subWidth; // L: 166
-			byte[] var4 = class421.SpriteBuffer_pixels[var1]; // L: 167
-			var2.pixels = new int[var3]; // L: 168
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "([BB)Lrs;",
+		garbageValue = "121"
+	)
+	public static final SpritePixels method5471(byte[] var0) {
+		BufferedImage var1 = null; // L: 20
 
-			for (int var5 = 0; var5 < var3; ++var5) { // L: 169
-				var2.pixels[var5] = class13.SpriteBuffer_spritePalette[var4[var5] & 255];
-			}
+		try {
+			Class var2 = ImageIO.class; // L: 22
+			synchronized(ImageIO.class) {
+				var1 = ImageIO.read(new ByteArrayInputStream(var0)); // L: 23
+			} // L: 24
+
+			int var6 = var1.getWidth(); // L: 25
+			int var7 = var1.getHeight(); // L: 26
+			int[] var4 = new int[var6 * var7]; // L: 27
+			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var6, var7, var4, 0, var6); // L: 28
+			var5.grabPixels(); // L: 29
+			return new SpritePixels(var4, var6, var7); // L: 30
+		} catch (IOException var9) { // L: 32
+		} catch (InterruptedException var10) { // L: 33
 		}
 
-		SoundCache.method766(); // L: 171
-		return var0; // L: 172
+		return new SpritePixels(0, 0); // L: 34
 	}
 }
