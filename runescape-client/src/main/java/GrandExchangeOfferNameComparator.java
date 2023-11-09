@@ -4,13 +4,17 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lw")
+@ObfuscatedName("na")
 @Implements("GrandExchangeOfferNameComparator")
 final class GrandExchangeOfferNameComparator implements Comparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
+	@Export("ArchiveDiskActionHandler_thread")
+	static Thread ArchiveDiskActionHandler_thread;
+
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Llj;Llj;I)I",
-		garbageValue = "-2002809758"
+		descriptor = "(Lnu;Lnu;I)I",
+		garbageValue = "-1449096527"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -25,12 +29,13 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 		return super.equals(var1); // L: 64
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("iv")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;I)V",
-		garbageValue = "-1233510501"
+		descriptor = "(I)I",
+		garbageValue = "1926093694"
 	)
-	public static void method5979(AbstractArchive var0) {
-		StructComposition.StructDefinition_archive = var0; // L: 19
-	} // L: 20
+	@Export("getWindowedMode")
+	static int getWindowedMode() {
+		return Client.isResizable ? 2 : 1; // L: 4254
+	}
 }

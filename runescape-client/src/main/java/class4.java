@@ -1,79 +1,78 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import netscape.javascript.JSObject;
 
-@ObfuscatedName("j")
+@ObfuscatedName("au")
 public final class class4 {
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
+	@ObfuscatedName("gq")
+	@ObfuscatedGetter(
+		intValue = -1182573109
 	)
-	@Export("HitSplatDefinition_fontsArchive")
-	public static AbstractArchive HitSplatDefinition_fontsArchive;
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	@Export("titleboxSprite")
-	static IndexedSprite titleboxSprite;
-	@ObfuscatedName("ee")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive20")
-	static Archive archive20;
+	static int field12;
+	@ObfuscatedName("jf")
+	@Export("regionLandArchives")
+	static byte[][] regionLandArchives;
 
-	@ObfuscatedName("hw")
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Lmi;",
+		garbageValue = "-574756815"
+	)
+	static class330[] method17() {
+		return new class330[]{class330.field3794, class330.field3795}; // L: 35
+	}
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(Lnm;Lnm;Lnm;Lnm;I)V",
+		garbageValue = "220568265"
+	)
+	public static void method21(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, AbstractArchive var3) {
+		int var4 = 0; // L: 225
+		if (var0 != null) { // L: 226
+			UserComparator3.Widget_archive = var0; // L: 227
+			DynamicObject.field985 = var1; // L: 228
+			ScriptEvent.Widget_spritesArchive = var2; // L: 229
+			class146.Widget_fontsArchive = var3; // L: 230
+			var4 = UserComparator3.Widget_archive.getGroupCount(); // L: 231
+		}
+
+		VerticalAlignment.Widget_interfaceComponents = new Widget[var4][]; // L: 233
+		class264.Widget_loadedInterfaces = new boolean[var4]; // L: 234
+	} // L: 235
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-1773808953"
+	)
+	public static boolean method18() {
+		return class297.musicPlayerStatus != 0 ? true : class475.midiPcmStream.isReady(); // L: 81 82
+	}
+
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1151585250"
+		garbageValue = "-518646489"
 	)
-	static final void method11() {
-		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 7783 7784 7790
-			if (var0.hitpoints == -1) { // L: 7785
-				var0.delay = 0; // L: 7786
-				class151.method3146(var0); // L: 7787
-			} else {
-				var0.remove(); // L: 7789
-			}
-		}
+	public static void method19() {
+		KitDefinition.KitDefinition_cached.clear(); // L: 138
+	} // L: 139
 
-	} // L: 7792
-
-	@ObfuscatedName("ii")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIII)V",
-		garbageValue = "-1285432829"
+		descriptor = "(Lmq;I)I",
+		garbageValue = "-935305362"
 	)
-	@Export("insertMenuItemNoShift")
-	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
-		class268.insertMenuItem(var0, var1, var2, var3, var4, var5, false); // L: 9700
-	} // L: 9701
-
-	@ObfuscatedName("ly")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-2033528269"
-	)
-	static void method12(String var0) {
-		GrandExchangeOfferTotalQuantityComparator.field4045 = var0; // L: 12343
-
-		try {
-			String var1 = class353.client.getParameter(Integer.toString(18)); // L: 12345
-			String var2 = class353.client.getParameter(Integer.toString(13)); // L: 12346
-			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2; // L: 12347
-			if (var0.length() == 0) { // L: 12348
-				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
-			} else {
-				var3 = var3 + "; Expires=" + NPC.method2382(class115.method2692() + 94608000000L) + "; Max-Age=" + 94608000L; // L: 12349
-			}
-
-			Client var4 = class353.client; // L: 12350
-			String var5 = "document.cookie=\"" + var3 + "\""; // L: 12351
-			JSObject.getWindow(var4).eval(var5); // L: 12354
-		} catch (Throwable var6) { // L: 12357
+	static int method22(Widget var0) {
+		if (var0.type != 11) { // L: 1554
+			Interpreter.Interpreter_stringStack[SecureRandomCallable.Interpreter_stringStackSize - 1] = ""; // L: 1555
+			return 1; // L: 1556
+		} else {
+			String var1 = Interpreter.Interpreter_stringStack[--SecureRandomCallable.Interpreter_stringStackSize]; // L: 1558
+			Interpreter.Interpreter_stringStack[++SecureRandomCallable.Interpreter_stringStackSize - 1] = var0.method6384(var1); // L: 1559
+			return 1; // L: 1560
 		}
-
-	} // L: 12358
+	}
 }
