@@ -4,42 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ir")
+@ObfuscatedName("ka")
 @Implements("WorldMapSection1")
 public class WorldMapSection1 implements WorldMapSection {
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -2036174811
+		intValue = -1743834479
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1537995989
+		intValue = 1589949637
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -300775863
+		intValue = 304223505
 	)
 	@Export("regionStartX")
 	int regionStartX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 1381396249
+		intValue = 1241809143
 	)
 	@Export("regionStartY")
 	int regionStartY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -1589676553
+		intValue = 1109784749
 	)
 	@Export("regionEndX")
 	int regionEndX;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 1377237821
+		intValue = 1408900281
 	)
 	@Export("regionEndY")
 	int regionEndY;
@@ -47,10 +47,10 @@ public class WorldMapSection1 implements WorldMapSection {
 	WorldMapSection1() {
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Lhg;I)V",
-		garbageValue = "1585435431"
+		descriptor = "(Ljs;I)V",
+		garbageValue = "1131699138"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -66,40 +66,40 @@ public class WorldMapSection1 implements WorldMapSection {
 			var1.regionLowY = this.regionEndY;
 		}
 
-		if (var1.regionHighY < this.regionEndY) { // L: 21
+		if (var1.regionHighY < this.regionEndY) {
 			var1.regionHighY = this.regionEndY;
 		}
 
-	} // L: 22
+	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)Z",
-		garbageValue = "-929111713"
+		descriptor = "(IIIB)Z",
+		garbageValue = "3"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
-		if (var1 >= this.minPlane && var1 < this.planes + this.minPlane) { // L: 26
+		if (var1 >= this.minPlane && var1 < this.minPlane + this.planes) { // L: 26
 			return var2 >> 6 == this.regionStartX && var3 >> 6 == this.regionStartY; // L: 29
 		} else {
 			return false; // L: 27
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "(III)Z",
-		garbageValue = "-47549823"
+		garbageValue = "-1795894381"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
 		return var1 >> 6 == this.regionEndX && var2 >> 6 == this.regionEndY; // L: 34
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)[I",
-		garbageValue = "-561571792"
+		descriptor = "(IIIB)[I",
+		garbageValue = "21"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -111,10 +111,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lkd;",
-		garbageValue = "531454030"
+		descriptor = "(IIB)Llb;",
+		garbageValue = "-4"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -127,10 +127,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "-27"
+		descriptor = "(Lsg;B)V",
+		garbageValue = "0"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -143,12 +143,23 @@ public class WorldMapSection1 implements WorldMapSection {
 		this.postRead(); // L: 66
 	} // L: 67
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1018712398"
+		descriptor = "(B)V",
+		garbageValue = "44"
 	)
 	@Export("postRead")
 	void postRead() {
 	} // L: 69
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-14812643"
+	)
+	static void method5509(int var0) {
+		class425.field4669 = var0; // L: 21
+		class425.field4665 = new class425[var0]; // L: 22
+		class425.field4667 = 0; // L: 23
+	} // L: 24
 }
