@@ -1,73 +1,156 @@
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.net.URL;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
-public class class132 extends class128 {
-	@ObfuscatedName("er")
+@ObfuscatedName("et")
+public enum class132 implements class345 {
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Let;"
 	)
-	static Archive field1588;
-	@ObfuscatedName("c")
+	field1624(2, 0),
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "Let;"
+	)
+	field1629(4, 1),
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Let;"
+	)
+	field1625(0, 2),
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "Let;"
+	)
+	field1626(3, 3),
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "Let;"
+	)
+	field1628(1, 4);
+
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1669105563
+		intValue = 2018184127
 	)
-	int field1590;
-	@ObfuscatedName("v")
-	byte field1589;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lej;"
+	public final int field1627;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = 1796142361
 	)
-	final class131 this$0;
+	@Export("id")
+	final int id;
 
-	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
-	)
-	class132(class131 var1) {
-		this.this$0 = var1;
-		this.field1590 = -1; // L: 128
-	} // L: 131
+	class132(int var3, int var4) {
+		this.field1627 = var3; // L: 17
+		this.id = var4; // L: 18
+	} // L: 19
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(B)I",
+		garbageValue = "96"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1590 = var1.readUnsignedShort(); // L: 134
-		this.field1589 = var1.readByte(); // L: 135
-	} // L: 136
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.id; // L: 23
+	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;I)V",
+		garbageValue = "1018084003"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2961(this.field1590, this.field1589); // L: 139
-	} // L: 140
+	@Export("RunException_sendStackTrace")
+	public static void RunException_sendStackTrace(String var0, Throwable var1) {
+		if (var1 != null) {
+			var1.printStackTrace();
+		} else {
+			try {
+				String var2 = ""; // L: 34
+				if (var1 != null) { // L: 35
+					Throwable var4 = var1; // L: 37
+					String var5;
+					if (var1 instanceof RunException) { // L: 40
+						RunException var6 = (RunException)var1; // L: 41
+						var5 = var6.message + " | "; // L: 42
+						var4 = var6.throwable; // L: 43
+					} else {
+						var5 = ""; // L: 45
+					}
 
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "(Law;I)V",
-		garbageValue = "-1204833299"
-	)
-	public static final void method2885(class47 var0) {
-		ModelData0.pcmPlayerProvider = var0; // L: 45
-	} // L: 46
+					StringWriter var18 = new StringWriter(); // L: 46
+					PrintWriter var7 = new PrintWriter(var18); // L: 47
+					var4.printStackTrace(var7); // L: 48
+					var7.close(); // L: 49
+					String var8 = var18.toString(); // L: 50
+					BufferedReader var9 = new BufferedReader(new StringReader(var8)); // L: 51
+					String var10 = var9.readLine(); // L: 52
 
-	@ObfuscatedName("gz")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "854083418"
-	)
-	static void method2887() {
-		if (class121.worldMap != null) { // L: 4337
-			class121.worldMap.method7192(PacketWriter.Client_plane, class28.baseX * 64 + (class101.localPlayer.x >> 7), WorldMapLabelSize.baseY * 64 + (class101.localPlayer.y >> 7), false); // L: 4338
-			class121.worldMap.loadCache(); // L: 4339
+					label61:
+					while (true) {
+						while (true) {
+							String var11 = var9.readLine(); // L: 54
+							if (var11 == null) { // L: 55
+								var5 = var5 + "| " + var10; // L: 73
+								var2 = var5; // L: 76
+								break label61;
+							}
+
+							int var12 = var11.indexOf(40); // L: 56
+							int var13 = var11.indexOf(41, var12 + 1); // L: 57
+							if (var12 >= 0 && var13 >= 0) { // L: 58
+								String var14 = var11.substring(var12 + 1, var13); // L: 59
+								int var15 = var14.indexOf(".java:"); // L: 60
+								if (var15 >= 0) { // L: 61
+									var14 = var14.substring(0, var15) + var14.substring(var15 + 5); // L: 62
+									var5 = var5 + var14 + ' '; // L: 63
+									continue; // L: 64
+								}
+
+								var11 = var11.substring(0, var12); // L: 66
+							}
+
+							var11 = var11.trim(); // L: 68
+							var11 = var11.substring(var11.lastIndexOf(32) + 1); // L: 69
+							var11 = var11.substring(var11.lastIndexOf(9) + 1); // L: 70
+							var5 = var5 + var11 + ' '; // L: 71
+						}
+					}
+				}
+
+				if (var0 != null) { // L: 78
+					if (var1 != null) { // L: 79
+						var2 = var2 + " | ";
+					}
+
+					var2 = var2 + var0; // L: 80
+				}
+
+				System.out.println("Error: " + var2); // L: 82
+				var2 = var2.replace(':', '.'); // L: 83
+				var2 = var2.replace('@', '_'); // L: 84
+				var2 = var2.replace('&', '_'); // L: 85
+				var2 = var2.replace('#', '_'); // L: 86
+				if (class422.RunException_applet == null) { // L: 87
+					return;
+				}
+
+				URL var3 = new URL(class422.RunException_applet.getCodeBase(), "clienterror.ws?cv=" + RunException.RunException_revision + "&cs=" + RunException.field5065 + "&u=" + RunException.localPlayerName + "&v1=" + TaskHandler.javaVendor + "&v2=" + TaskHandler.javaVersion + "&ct=" + RunException.clientType + "&e=" + var2); // L: 88
+				DataInputStream var17 = new DataInputStream(var3.openStream()); // L: 89
+				var17.read(); // L: 90
+				var17.close(); // L: 91
+			} catch (Exception var16) { // L: 93
+			}
+
 		}
-
-	} // L: 4341
+	} // L: 94
 }
