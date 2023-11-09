@@ -4,31 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bg")
+@ObfuscatedName("cm")
 @Implements("ScriptFrame")
 public class ScriptFrame {
-	@ObfuscatedName("cw")
+	@ObfuscatedName("wn")
 	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
+		descriptor = "Lse;"
 	)
-	@Export("worldSelectBackSprites")
-	static SpritePixels[] worldSelectBackSprites;
-	@ObfuscatedName("c")
+	@Export("worldMap")
+	static WorldMap worldMap;
+	@ObfuscatedName("ix")
+	@ObfuscatedGetter(
+		intValue = 564473995
+	)
+	static int field474;
+	@ObfuscatedName("oq")
+	@ObfuscatedGetter(
+		intValue = 1244134597
+	)
+	@Export("selectedSpellWidget")
+	static int selectedSpellWidget;
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lbi;"
+		descriptor = "Ldd;"
 	)
 	@Export("script")
 	Script script;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1512825097
+		intValue = 501950891
 	)
 	@Export("pc")
 	int pc;
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@Export("intLocals")
 	int[] intLocals;
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@Export("stringLocals")
 	String[] stringLocals;
 
@@ -36,55 +47,40 @@ public class ScriptFrame {
 		this.pc = -1; // L: 5
 	} // L: 9
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgc;",
-		garbageValue = "12"
+		descriptor = "(Lnq;Lnq;ZI)V",
+		garbageValue = "-1693429746"
 	)
-	@Export("SequenceDefinition_get")
-	public static SequenceDefinition SequenceDefinition_get(int var0) {
-		SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0); // L: 52
-		if (var1 != null) { // L: 53
-			return var1;
-		} else {
-			byte[] var2 = SequenceDefinition.SequenceDefinition_archive.takeFile(12, var0); // L: 54
-			var1 = new SequenceDefinition(); // L: 55
-			if (var2 != null) { // L: 56
-				var1.decode(new Buffer(var2));
+	public static void method1148(AbstractArchive var0, AbstractArchive var1, boolean var2) {
+		ObjectComposition.ObjectDefinition_archive = var0; // L: 73
+		ObjectComposition.ObjectDefinition_modelsArchive = var1; // L: 74
+		ObjectComposition.ObjectDefinition_isLowDetail = var2;
+	}
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "-722096780"
+	)
+	@Export("changeWorldSelectSorting")
+	static void changeWorldSelectSorting(int var0, int var1) {
+		int[] var2 = new int[4]; // L: 63
+		int[] var3 = new int[4]; // L: 64
+		var2[0] = var0; // L: 65
+		var3[0] = var1; // L: 66
+		int var4 = 1; // L: 67
+
+		for (int var5 = 0; var5 < 4; ++var5) { // L: 68
+			if (World.World_sortOption1[var5] != var0) { // L: 69
+				var2[var4] = World.World_sortOption1[var5]; // L: 70
+				var3[var4] = World.World_sortOption2[var5]; // L: 71
+				++var4; // L: 72
 			}
-
-			var1.postDecode(); // L: 57
-			SequenceDefinition.SequenceDefinition_cached.put(var1, (long)var0); // L: 58
-			return var1; // L: 59
-		}
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(III)Lkb;",
-		garbageValue = "114682209"
-	)
-	@Export("getWidgetChild")
-	public static Widget getWidgetChild(int var0, int var1) {
-		Widget var2 = class140.getWidget(var0); // L: 230
-		if (var1 == -1) { // L: 231
-			return var2;
-		} else {
-			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null; // L: 232 233
-		}
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ldf;",
-		garbageValue = "-246877585"
-	)
-	static class123 method1052(int var0) {
-		class123 var1 = (class123)Actor.findEnumerated(Interpreter.method1866(), var0); // L: 126
-		if (var1 == null) {
-			var1 = class123.field1528; // L: 127
 		}
 
-		return var1; // L: 128
-	}
+		World.World_sortOption1 = var2; // L: 75
+		World.World_sortOption2 = var3; // L: 76
+		ClanChannel.sortWorlds(World.World_worlds, 0, World.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 77
+	} // L: 78
 }

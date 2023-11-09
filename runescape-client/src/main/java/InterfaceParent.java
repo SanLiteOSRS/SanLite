@@ -4,86 +4,77 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cq")
+@ObfuscatedName("dx")
 @Implements("InterfaceParent")
 public class InterfaceParent extends Node {
-	@ObfuscatedName("sm")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1985635931
-	)
-	static int field1043;
-	@ObfuscatedName("jy")
-	@ObfuscatedGetter(
-		intValue = -1949636447
-	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 315980607
+		intValue = 1141372521
 	)
 	@Export("group")
 	int group;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1762148949
+		intValue = 861483533
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("q")
-	boolean field1040;
+	@ObfuscatedName("av")
+	boolean field1057;
 
 	InterfaceParent() {
-		this.field1040 = false; // L: 8
+		this.field1057 = false; // L: 8
 	} // L: 10
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "896944894"
+		descriptor = "(Ltl;I)I",
+		garbageValue = "1730686990"
 	)
-	public static int method2095(int var0) {
-		long var2 = ViewportMouse.ViewportMouse_entityTags[var0]; // L: 65
-		int var1 = (int)(var2 >>> 7 & 127L); // L: 67
-		return var1; // L: 69
+	static int method2244(PacketBuffer var0) {
+		int var1 = var0.readBits(2); // L: 191
+		int var2;
+		if (var1 == 0) { // L: 193
+			var2 = 0;
+		} else if (var1 == 1) { // L: 194
+			var2 = var0.readBits(5);
+		} else if (var1 == 2) { // L: 195
+			var2 = var0.readBits(8);
+		} else {
+			var2 = var0.readBits(11); // L: 196
+		}
+
+		return var2; // L: 197
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("bc")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "1938605488"
+		descriptor = "(Lby;B)V",
+		garbageValue = "1"
 	)
-	static int method2097(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == 3500) { // L: 2332
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2333
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method764(var3) ? 1 : 0; // L: 2334
-			return 1; // L: 2335
-		} else if (var0 == 3501) { // L: 2337
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2338
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = VertexNormal.method4528(var3) ? 1 : 0; // L: 2339
-			return 1; // L: 2340
-		} else if (var0 == 3502) { // L: 2342
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method753(var3) ? 1 : 0; // L: 2344
-			return 1; // L: 2345
-		} else {
-			return 2; // L: 2347
+	@Export("PcmStream_disable")
+	static final void PcmStream_disable(PcmStream var0) {
+		var0.active = false; // L: 270
+		if (var0.sound != null) { // L: 271
+			var0.sound.position = 0;
 		}
-	}
+
+		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
+			PcmStream_disable(var1); // L: 272
+		}
+
+	} // L: 273
 
 	@ObfuscatedName("il")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-62"
+		garbageValue = "-72"
 	)
-	@Export("addCancelMenuEntry")
-	static void addCancelMenuEntry() {
-		class125.method2824(); // L: 8428
-		Client.menuActions[0] = "Cancel"; // L: 8429
-		Client.menuTargets[0] = ""; // L: 8430
-		Client.menuOpcodes[0] = 1006; // L: 8431
-		Client.menuShiftClick[0] = false; // L: 8432
-		Client.menuOptionsCount = 1; // L: 8433
-	} // L: 8434
+	static void method2243() {
+		if (ScriptFrame.worldMap != null) { // L: 4550
+			ScriptFrame.worldMap.method8401(Clock.Client_plane, class213.baseX * 64 + (Projectile.localPlayer.x >> 7), class101.baseY * 64 + (Projectile.localPlayer.y >> 7), false); // L: 4551
+			ScriptFrame.worldMap.loadCache(); // L: 4552
+		}
+
+	} // L: 4554
 }

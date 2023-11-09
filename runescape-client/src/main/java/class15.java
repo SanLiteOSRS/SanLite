@@ -12,15 +12,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-@ObfuscatedName("k")
+@ObfuscatedName("ag")
 public class class15 extends SSLSocketFactory {
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lk;"
+		descriptor = "Lag;"
 	)
-	public static class15 field85;
-	@ObfuscatedName("c")
-	SecureRandom field86;
+	static class15 field78;
+	@ObfuscatedName("at")
+	SecureRandom field77;
 
 	static {
 		if (Security.getProvider("BC") == null) { // L: 40
@@ -29,53 +29,66 @@ public class class15 extends SSLSocketFactory {
 
 	} // L: 41
 
-	public class15() {
-		this.field86 = new SecureRandom(); // L: 43
-	} // L: 46
+	class15() {
+		this.field77 = new SecureRandom(); // L: 43
+	} // L: 53
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;B)Ljavax/net/ssl/SSLSocket;",
-		garbageValue = "-63"
+		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;I)Ljavax/net/ssl/SSLSocket;",
+		garbageValue = "1348412469"
 	)
-	SSLSocket method164(String var1, TlsClientProtocol var2) {
-		return new class12(this, var2, var1); // L: 91
-	}
-
-	public String[] getDefaultCipherSuites() {
-		return null; // L: 62
-	}
-
-	public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException {
-		if (var1 == null) { // L: 50
-			var1 = new Socket(); // L: 51
-		}
-
-		if (!var1.isConnected()) { // L: 53
-			var1.connect(new InetSocketAddress(var2, var3)); // L: 54
-		}
-
-		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field86); // L: 56
-		return this.method164(var2, var5); // L: 57
-	}
-
-	public String[] getSupportedCipherSuites() {
-		return null; // L: 67
-	}
-
-	public Socket createSocket(String var1, int var2) throws IOException, UnknownHostException {
-		return null; // L: 72
-	}
-
-	public Socket createSocket(String var1, int var2, InetAddress var3, int var4) throws IOException, UnknownHostException {
-		return null; // L: 82
-	}
-
-	public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException {
-		return null; // L: 87
+	SSLSocket method191(String var1, TlsClientProtocol var2) {
+		return new class12(this, var2, var1); // L: 98
 	}
 
 	public Socket createSocket(InetAddress var1, int var2) throws IOException {
-		return null; // L: 77
+		return null; // L: 84
+	}
+
+	public String[] getSupportedCipherSuites() {
+		return null; // L: 74
+	}
+
+	public Socket createSocket(String var1, int var2, InetAddress var3, int var4) throws IOException, UnknownHostException {
+		return null; // L: 89
+	}
+
+	public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException {
+		return null; // L: 94
+	}
+
+	public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException {
+		if (var1 == null) { // L: 57
+			var1 = new Socket(); // L: 58
+		}
+
+		if (!var1.isConnected()) { // L: 60
+			var1.connect(new InetSocketAddress(var2, var3)); // L: 61
+		}
+
+		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field77); // L: 63
+		return this.method191(var2, var5); // L: 64
+	}
+
+	public String[] getDefaultCipherSuites() {
+		return null; // L: 69
+	}
+
+	public Socket createSocket(String var1, int var2) throws IOException, UnknownHostException {
+		return null; // L: 79
+	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lag;",
+		garbageValue = "-124922762"
+	)
+	public static class15 method206() {
+		if (field78 == null) { // L: 47
+			field78 = new class15(); // L: 48
+		}
+
+		return field78; // L: 50
 	}
 }
