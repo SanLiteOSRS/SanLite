@@ -6,181 +6,144 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mm")
+@ObfuscatedName("nf")
 @Implements("ByteArrayPool")
 public class ByteArrayPool {
-	@ObfuscatedName("j")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -2132533809
+		intValue = 165480711
 	)
 	@Export("ByteArrayPool_smallCount")
 	static int ByteArrayPool_smallCount;
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1551258163
+		intValue = -458850417
 	)
 	@Export("ByteArrayPool_mediumCount")
 	static int ByteArrayPool_mediumCount;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 28601155
+		intValue = 408344857
 	)
 	@Export("ByteArrayPool_largeCount")
 	static int ByteArrayPool_largeCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -562517075
+		intValue = -1119030477
 	)
-	static int field4216;
-	@ObfuscatedName("y")
+	static int field4437;
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -30790003
+		intValue = -559970069
 	)
-	static int field4207;
+	static int field4438;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 700428281
+	)
+	static int field4431;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 1503025801
+	)
+	static int field4440;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		intValue = 822016073
+	)
+	static int field4439;
 	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = 677494483
-	)
-	static int field4208;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = -479475671
-	)
-	static int field4209;
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = 714035553
-	)
-	static int field4210;
-	@ObfuscatedName("z")
 	@Export("ByteArrayPool_small")
 	static byte[][] ByteArrayPool_small;
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@Export("ByteArrayPool_medium")
 	static byte[][] ByteArrayPool_medium;
-	@ObfuscatedName("u")
+	@ObfuscatedName("n")
 	@Export("ByteArrayPool_large")
 	static byte[][] ByteArrayPool_large;
 	@ObfuscatedName("k")
-	static byte[][] field4214;
-	@ObfuscatedName("a")
-	public static ArrayList field4202;
+	static byte[][] field4445;
+	@ObfuscatedName("t")
+	public static ArrayList field4446;
 
 	static {
 		ByteArrayPool_smallCount = 0; // L: 13
 		ByteArrayPool_mediumCount = 0; // L: 14
 		ByteArrayPool_largeCount = 0; // L: 15
-		field4216 = 0; // L: 16
-		field4207 = 1000; // L: 17
-		field4208 = 250; // L: 18
-		field4209 = 100; // L: 19
-		field4210 = 50; // L: 20
+		field4437 = 0; // L: 16
+		field4438 = 1000; // L: 17
+		field4431 = 250; // L: 18
+		field4440 = 100; // L: 19
+		field4439 = 50; // L: 20
 		ByteArrayPool_small = new byte[1000][]; // L: 21
 		ByteArrayPool_medium = new byte[250][]; // L: 22
 		ByteArrayPool_large = new byte[100][]; // L: 23
-		field4214 = new byte[50][]; // L: 24
-		field4202 = new ArrayList(); // L: 28
-		class228.method4899(); // L: 31
+		field4445 = new byte[50][]; // L: 24
+		field4446 = new ArrayList(); // L: 28
+		field4446.clear(); // L: 32
+		field4446.add(100); // L: 33
+		field4446.add(5000); // L: 34
+		field4446.add(10000); // L: 35
+		field4446.add(30000); // L: 36
 		new HashMap();
-	} // L: 36
+	} // L: 42
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(IZB)[B",
-		garbageValue = "-1"
+		garbageValue = "80"
 	)
 	@Export("ByteArrayPool_getArrayBool")
-	static synchronized byte[] ByteArrayPool_getArrayBool(int var0, boolean var1) {
+	public static synchronized byte[] ByteArrayPool_getArrayBool(int var0, boolean var1) {
 		byte[] var4;
-		if (var0 != 100) { // L: 52
-			if (var0 < 100) {
-			}
-		} else if (ByteArrayPool_smallCount > 0) {
-			var4 = ByteArrayPool_small[--ByteArrayPool_smallCount]; // L: 53
-			ByteArrayPool_small[ByteArrayPool_smallCount] = null; // L: 54
-			return var4; // L: 55
-		}
-
-		if (var0 != 5000) { // L: 57
-			if (var0 < 5000) {
-			}
-		} else if (ByteArrayPool_mediumCount > 0) {
-			var4 = ByteArrayPool_medium[--ByteArrayPool_mediumCount]; // L: 58
-			ByteArrayPool_medium[ByteArrayPool_mediumCount] = null; // L: 59
-			return var4; // L: 60
-		}
-
-		if (var0 != 10000) { // L: 62
-			if (var0 < 10000) {
-			}
-		} else if (ByteArrayPool_largeCount > 0) {
-			var4 = ByteArrayPool_large[--ByteArrayPool_largeCount]; // L: 63
-			ByteArrayPool_large[ByteArrayPool_largeCount] = null; // L: 64
-			return var4; // L: 65
-		}
-
-		if (var0 != 30000) { // L: 67
-			if (var0 < 30000) {
-			}
-		} else if (field4216 > 0) {
-			var4 = field4214[--field4216]; // L: 68
-			field4214[field4216] = null; // L: 69
-			return var4; // L: 70
-		}
-
-		if (class464.ByteArrayPool_arrays != null) { // L: 72
-			for (int var2 = 0; var2 < Canvas.ByteArrayPool_alternativeSizes.length; ++var2) { // L: 73
-				if (Canvas.ByteArrayPool_alternativeSizes[var2] != var0) { // L: 74
-					if (var0 < Canvas.ByteArrayPool_alternativeSizes[var2]) {
+		if ((var0 == 100 || var0 < 100 && var1) && ByteArrayPool_smallCount > 0) { // L: 50
+			var4 = ByteArrayPool_small[--ByteArrayPool_smallCount]; // L: 51
+			ByteArrayPool_small[ByteArrayPool_smallCount] = null; // L: 52
+			return var4; // L: 53
+		} else if ((var0 == 5000 || var0 < 5000 && var1) && ByteArrayPool_mediumCount > 0) { // L: 55
+			var4 = ByteArrayPool_medium[--ByteArrayPool_mediumCount]; // L: 56
+			ByteArrayPool_medium[ByteArrayPool_mediumCount] = null; // L: 57
+			return var4; // L: 58
+		} else if ((var0 == 10000 || var0 < 10000 && var1) && ByteArrayPool_largeCount > 0) { // L: 60
+			var4 = ByteArrayPool_large[--ByteArrayPool_largeCount]; // L: 61
+			ByteArrayPool_large[ByteArrayPool_largeCount] = null; // L: 62
+			return var4; // L: 63
+		} else if ((var0 == 30000 || var0 < 30000 && var1) && field4437 > 0) { // L: 65
+			var4 = field4445[--field4437]; // L: 66
+			field4445[field4437] = null; // L: 67
+			return var4; // L: 68
+		} else {
+			int var2;
+			if (SceneTilePaint.ByteArrayPool_arrays != null) { // L: 70
+				for (var2 = 0; var2 < Frames.ByteArrayPool_alternativeSizes.length; ++var2) { // L: 71
+					if ((Frames.ByteArrayPool_alternativeSizes[var2] == var0 || var0 < Frames.ByteArrayPool_alternativeSizes[var2] && var1) && ModelData0.ByteArrayPool_altSizeArrayCounts[var2] > 0) { // L: 72
+						byte[] var3 = SceneTilePaint.ByteArrayPool_arrays[var2][--ModelData0.ByteArrayPool_altSizeArrayCounts[var2]]; // L: 73
+						SceneTilePaint.ByteArrayPool_arrays[var2][ModelData0.ByteArrayPool_altSizeArrayCounts[var2]] = null; // L: 74
+						return var3; // L: 75
 					}
-				} else if (class17.ByteArrayPool_altSizeArrayCounts[var2] > 0) {
-					byte[] var3 = class464.ByteArrayPool_arrays[var2][--class17.ByteArrayPool_altSizeArrayCounts[var2]]; // L: 75
-					class464.ByteArrayPool_arrays[var2][class17.ByteArrayPool_altSizeArrayCounts[var2]] = null; // L: 76
-					return var3; // L: 77
 				}
 			}
-		}
 
-		return new byte[var0]; // L: 90
+			if (var1 && Frames.ByteArrayPool_alternativeSizes != null) { // L: 79 80
+				for (var2 = 0; var2 < Frames.ByteArrayPool_alternativeSizes.length; ++var2) { // L: 81
+					if (var0 <= Frames.ByteArrayPool_alternativeSizes[var2] && ModelData0.ByteArrayPool_altSizeArrayCounts[var2] < SceneTilePaint.ByteArrayPool_arrays[var2].length) { // L: 82
+						return new byte[Frames.ByteArrayPool_alternativeSizes[var2]]; // L: 83
+					}
+				}
+			}
+
+			return new byte[var0]; // L: 88
+		}
 	}
 
-	@ObfuscatedName("gh")
+	@ObfuscatedName("kt")
 	@ObfuscatedSignature(
-		descriptor = "(Lci;ZI)V",
-		garbageValue = "1209232624"
+		descriptor = "(IIIZB)V",
+		garbageValue = "101"
 	)
-	@Export("addPlayerToScene")
-	static void addPlayerToScene(Player var0, boolean var1) {
-		if (var0 != null && var0.isVisible() && !var0.isHidden) { // L: 4802
-			var0.isUnanimated = false; // L: 4803
-			if ((Client.isLowDetail && Players.Players_count > 50 || Players.Players_count > 200) && var1 && var0.idleSequence == var0.movementSequence) { // L: 4804 4805
-				var0.isUnanimated = true;
-			}
-
-			int var2 = var0.x >> 7; // L: 4807
-			int var3 = var0.y >> 7; // L: 4808
-			if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) { // L: 4809
-				long var4 = TaskHandler.calculateTag(0, 0, 0, false, var0.index); // L: 4810
-				if (var0.model0 != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) { // L: 4811
-					var0.isUnanimated = false; // L: 4812
-					var0.tileHeight = SceneTilePaint.getTileHeight(var0.x, var0.y, PacketWriter.Client_plane); // L: 4813
-					var0.playerCycle = Client.cycle; // L: 4814
-					class356.scene.addNullableObject(PacketWriter.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.minX, var0.minY, var0.maxX, var0.maxY); // L: 4815
-				} else {
-					if ((var0.x & 127) == 64 && (var0.y & 127) == 64) { // L: 4818
-						if (Client.tileLastDrawnActor[var2][var3] == Client.viewportDrawCount) { // L: 4819
-							return;
-						}
-
-						Client.tileLastDrawnActor[var2][var3] = Client.viewportDrawCount; // L: 4820
-					}
-
-					var0.tileHeight = SceneTilePaint.getTileHeight(var0.x, var0.y, PacketWriter.Client_plane); // L: 4822
-					var0.playerCycle = Client.cycle; // L: 4823
-					class356.scene.drawEntity(PacketWriter.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.isWalking); // L: 4824
-				}
-			}
+	static final void method7319(int var0, int var1, int var2, boolean var3) {
+		if (Players.loadInterface(var0)) { // L: 10914
+			ItemContainer.resizeInterface(class71.Widget_interfaceComponents[var0], -1, var1, var2, var3); // L: 10915
 		}
-
-	} // L: 4828
+	} // L: 10916
 }
