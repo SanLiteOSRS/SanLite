@@ -4,30 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hj")
+@ObfuscatedName("hw")
 @Implements("VertexNormal")
 public class VertexNormal {
-	@ObfuscatedName("v")
+	@ObfuscatedName("hf")
+	@ObfuscatedSignature(
+		descriptor = "Lfy;"
+	)
+	@Export("socketTask")
+	static Task socketTask;
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 852204679
+		intValue = 1046360711
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -2028083131
+		intValue = 1848636231
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1173750943
+		intValue = -209584019
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -860468825
+		intValue = -867877795
 	)
 	@Export("magnitude")
 	int magnitude;
@@ -36,7 +42,7 @@ public class VertexNormal {
 	} // L: 9
 
 	@ObfuscatedSignature(
-		descriptor = "(Lhj;)V"
+		descriptor = "(Lhw;)V"
 	)
 	VertexNormal(VertexNormal var1) {
 		this.x = var1.x; // L: 12
@@ -45,61 +51,35 @@ public class VertexNormal {
 		this.magnitude = var1.magnitude; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("bu")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "886166360"
+		descriptor = "([BI)[B",
+		garbageValue = "-546159612"
 	)
-	public static boolean method4528(int var0) {
-		return var0 >= 0 && var0 < 112 ? KeyHandler.field136[var0] : false;
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "([BIILgg;[Lgv;I)V",
-		garbageValue = "-1413330538"
-	)
-	static final void method4527(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
-		Buffer var5 = new Buffer(var0); // L: 228
-		int var6 = -1; // L: 229
-
-		while (true) {
-			int var7 = var5.method7770(); // L: 231
-			if (var7 == 0) { // L: 232
-				return; // L: 256
-			}
-
-			var6 += var7; // L: 233
-			int var8 = 0; // L: 234
-
-			while (true) {
-				int var9 = var5.readUShortSmart(); // L: 236
-				if (var9 == 0) { // L: 237
-					break;
+	@Export("decompressBytes")
+	static final byte[] decompressBytes(byte[] var0) {
+		Buffer var1 = new Buffer(var0); // L: 375
+		int var2 = var1.readUnsignedByte(); // L: 376
+		int var3 = var1.readInt(); // L: 377
+		if (var3 < 0 || AbstractArchive.field4157 != 0 && var3 > AbstractArchive.field4157) { // L: 378
+			throw new RuntimeException(); // L: 379
+		} else if (var2 == 0) { // L: 381
+			byte[] var6 = new byte[var3]; // L: 382
+			var1.readBytes(var6, 0, var3); // L: 383
+			return var6; // L: 384
+		} else {
+			int var4 = var1.readInt(); // L: 387
+			if (var4 >= 0 && (AbstractArchive.field4157 == 0 || var4 <= AbstractArchive.field4157)) { // L: 388
+				byte[] var5 = new byte[var4]; // L: 391
+				if (var2 == 1) { // L: 392
+					BZip2Decompressor.BZip2Decompressor_decompress(var5, var4, var0, var3, 9);
+				} else {
+					AbstractArchive.gzipDecompressor.decompress(var1, var5); // L: 393
 				}
 
-				var8 += var9 - 1; // L: 238
-				int var10 = var8 & 63; // L: 239
-				int var11 = var8 >> 6 & 63; // L: 240
-				int var12 = var8 >> 12; // L: 241
-				int var13 = var5.readUnsignedByte(); // L: 242
-				int var14 = var13 >> 2; // L: 243
-				int var15 = var13 & 3; // L: 244
-				int var16 = var11 + var1; // L: 245
-				int var17 = var10 + var2; // L: 246
-				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) { // L: 247
-					int var18 = var12; // L: 248
-					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) { // L: 249
-						var18 = var12 - 1;
-					}
-
-					CollisionMap var19 = null; // L: 250
-					if (var18 >= 0) { // L: 251
-						var19 = var4[var18];
-					}
-
-					class268.addObjects(var12, var16, var17, var6, var15, var14, var3, var19); // L: 252
-				}
+				return var5; // L: 394
+			} else {
+				throw new RuntimeException(); // L: 389
 			}
 		}
 	}
