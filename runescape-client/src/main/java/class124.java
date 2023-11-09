@@ -3,120 +3,143 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dj")
+@ObfuscatedName("dc")
 public enum class124 implements MouseWheel {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Ldc;"
 	)
-	field1546(0, 0),
-	@ObfuscatedName("v")
+	field1531(0, 0),
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Ldc;"
 	)
-	field1544(4, 1),
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Ldj;"
-	)
-	field1543(1, 2),
+	field1528(1, 1),
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Ldc;"
 	)
-	field1550(2, 3),
-	@ObfuscatedName("j")
+	field1525(2, 2),
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Ldc;"
 	)
-	field1547(3, 4);
+	field1523(3, 3),
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "Ldc;"
+	)
+	field1527(4, 4),
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "Ldc;"
+	)
+	field1526(5, 5),
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Ldc;"
+	)
+	field1529(6, 6),
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "Ldc;"
+	)
+	field1530(7, 7),
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "Ldc;"
+	)
+	field1524(8, 8);
 
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "Lkb;"
-	)
-	@Export("scriptDotWidget")
-	static Widget scriptDotWidget;
-	@ObfuscatedName("e")
+	@ObfuscatedName("y")
+	@Export("operatingSystemName")
+	static String operatingSystemName;
+	@ObfuscatedName("hh")
+	@Export("regionMapArchiveIds")
+	static int[] regionMapArchiveIds;
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1017548215
+		intValue = -2497053
 	)
-	public final int field1548;
-	@ObfuscatedName("g")
+	final int field1532;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 972373499
+		intValue = -357833305
 	)
-	@Export("id")
-	final int id;
+	final int field1533;
 
 	class124(int var3, int var4) {
-		this.field1548 = var3; // L: 17
-		this.id = var4; // L: 18
-	} // L: 19
+		this.field1532 = var3; // L: 117
+		this.field1533 = var4; // L: 118
+	} // L: 119
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-100"
+		garbageValue = "1"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 23
+		return this.field1533; // L: 122
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lpb;III)I",
-		garbageValue = "-1005056854"
+		descriptor = "(Llv;I)V",
+		garbageValue = "259178183"
 	)
-	static int method2818(IterableNodeHashTable var0, int var1, int var2) {
-		if (var0 == null) {
-			return var2;
-		} else {
-			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
-			return var3 == null ? var2 : var3.integer;
-		}
-	}
+	public static void method2964(AbstractArchive var0) {
+		StructComposition.StructDefinition_archive = var0; // L: 19
+	} // L: 20
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgp;",
-		garbageValue = "15"
+		descriptor = "(S)[Lqi;",
+		garbageValue = "255"
 	)
-	public static FloorOverlayDefinition method2814(int var0) {
-		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0); // L: 30
-		if (var1 != null) { // L: 31
-			return var1;
-		} else {
-			byte[] var2 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0); // L: 32
-			var1 = new FloorOverlayDefinition(); // L: 33
-			if (var2 != null) { // L: 34
-				var1.decode(new Buffer(var2), var0);
+	static SpritePixels[] method2967() {
+		SpritePixels[] var0 = new SpritePixels[class458.SpriteBuffer_spriteCount]; // L: 152
+
+		for (int var1 = 0; var1 < class458.SpriteBuffer_spriteCount; ++var1) { // L: 153
+			SpritePixels var2 = var0[var1] = new SpritePixels(); // L: 154
+			var2.width = SecureRandomCallable.SpriteBuffer_spriteWidth; // L: 155
+			var2.height = class402.SpriteBuffer_spriteHeight; // L: 156
+			var2.xOffset = class458.SpriteBuffer_xOffsets[var1]; // L: 157
+			var2.yOffset = class458.SpriteBuffer_yOffsets[var1]; // L: 158
+			var2.subWidth = ApproximateRouteStrategy.SpriteBuffer_spriteWidths[var1]; // L: 159
+			var2.subHeight = UserComparator9.SpriteBuffer_spriteHeights[var1]; // L: 160
+			int var3 = var2.subWidth * var2.subHeight; // L: 161
+			byte[] var4 = FileSystem.SpriteBuffer_pixels[var1]; // L: 162
+			var2.pixels = new int[var3]; // L: 163
+
+			for (int var5 = 0; var5 < var3; ++var5) { // L: 164
+				var2.pixels[var5] = class458.SpriteBuffer_spritePalette[var4[var5] & 255];
 			}
-
-			var1.postDecode(); // L: 35
-			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var1, (long)var0); // L: 36
-			return var1; // L: 37
 		}
+
+		class458.SpriteBuffer_xOffsets = null; // L: 167
+		class458.SpriteBuffer_yOffsets = null; // L: 168
+		ApproximateRouteStrategy.SpriteBuffer_spriteWidths = null; // L: 169
+		UserComparator9.SpriteBuffer_spriteHeights = null; // L: 170
+		class458.SpriteBuffer_spritePalette = null; // L: 171
+		FileSystem.SpriteBuffer_pixels = null; // L: 172
+		return var0; // L: 174
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("hk")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lft;",
-		garbageValue = "127"
+		descriptor = "(Lce;II)V",
+		garbageValue = "-2011953728"
 	)
-	static VerticalAlignment[] method2820() {
-		return new VerticalAlignment[]{VerticalAlignment.field1963, VerticalAlignment.field1961, VerticalAlignment.VerticalAlignment_centered}; // L: 14
-	}
+	static final void method2956(Actor var0, int var1) {
+		class82.worldToScreen(var0.x, var0.y, var1); // L: 5230
+	} // L: 5231
 
-	@ObfuscatedName("lw")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)I",
-		garbageValue = "1998673549"
-	)
-	@Export("getWidgetFlags")
-	static int getWidgetFlags(Widget var0) {
-		IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32)); // L: 12289
-		return var1 != null ? var1.integer : var0.flags; // L: 12290 12291
-	}
+	@ObfuscatedName("kn")
+	static final void method2965(double var0) {
+		Rasterizer3D.Rasterizer3D_setBrightness(var0); // L: 11586
+		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(var0); // L: 11587
+		MouseRecorder.method2247(); // L: 11588
+		Player.clientPreferences.method2399(var0); // L: 11589
+	} // L: 11590
 }

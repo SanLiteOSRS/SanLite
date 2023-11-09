@@ -1,72 +1,67 @@
-import java.io.UnsupportedEncodingException;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-@ObfuscatedName("om")
-public class class399 implements class398 {
-	@ObfuscatedName("q")
-	JSONObject field4436;
+@ObfuscatedName("ou")
+public class class399 {
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Lou;"
+	)
+	public static final class399 field4470;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "Lou;"
+	)
+	static final class399 field4467;
+	@ObfuscatedName("f")
+	String field4468;
 
-	public class399(byte[] var1) throws UnsupportedEncodingException {
-		this.method7098(var1); // L: 17
-	} // L: 18
+	static {
+		field4470 = new class399("application/json"); // L: 4
+		field4467 = new class399("text/plain"); // L: 5
+	}
 
-	public class399(String var1) throws UnsupportedEncodingException {
-		this.method7099(var1); // L: 13
-	} // L: 14
+	class399(String var1) {
+		this.field4468 = var1; // L: 9
+	} // L: 10
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "793389020"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "3"
 	)
-	public byte[] vmethod7114() throws UnsupportedEncodingException {
-		return this.field4436 == null ? new byte[0] : this.field4436.toString().getBytes("UTF-8"); // L: 50 51 53
+	public String method7299() {
+		return this.field4468; // L: 13
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "-448448712"
+		descriptor = "(Llv;B)V",
+		garbageValue = "16"
 	)
-	void method7098(byte[] var1) throws UnsupportedEncodingException {
-		String var2 = new String(var1, "UTF-8"); // L: 21
-		this.method7099(var2); // L: 22
-	} // L: 23
+	public static void method7302(AbstractArchive var0) {
+		class437.field4708 = var0; // L: 19
+	} // L: 20
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("jm")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "2042516666"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZI)V",
+		garbageValue = "2129607347"
 	)
-	void method7099(String var1) throws UnsupportedEncodingException {
-		try {
-			if (var1.charAt(0) == '{') { // L: 27
-				this.field4436 = new JSONObject(var1); // L: 28
-			} else {
-				if (var1.charAt(0) != '[') { // L: 30
-					throw new UnsupportedEncodingException("Invalid JSON passed to the JSON content builder."); // L: 36
-				}
-
-				JSONArray var2 = new JSONArray(var1); // L: 31
-				this.field4436 = new JSONObject(); // L: 32
-				this.field4436.put("arrayValues", var2); // L: 33
+	static final void method7298(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
+		if (!Client.isMenuOpen) { // L: 9382
+			if (Client.menuOptionsCount < 500) { // L: 9383
+				Client.menuActions[Client.menuOptionsCount] = var0; // L: 9384
+				Client.menuTargets[Client.menuOptionsCount] = var1; // L: 9385
+				Client.menuOpcodes[Client.menuOptionsCount] = var2; // L: 9386
+				Client.menuIdentifiers[Client.menuOptionsCount] = var3; // L: 9387
+				Client.menuArguments1[Client.menuOptionsCount] = var4; // L: 9388
+				Client.menuArguments2[Client.menuOptionsCount] = var5; // L: 9389
+				Client.field615[Client.menuOptionsCount] = var6; // L: 9390
+				Client.menuShiftClick[Client.menuOptionsCount] = var7; // L: 9391
+				++Client.menuOptionsCount; // L: 9392
 			}
 
-		} catch (JSONException var3) { // L: 39
-			throw new UnsupportedEncodingException(var3.getMessage()); // L: 40
 		}
-	} // L: 42
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lorg/json/JSONObject;",
-		garbageValue = "1036463091"
-	)
-	public JSONObject method7100() {
-		return this.field4436; // L: 45
-	}
+	} // L: 9394
 }
