@@ -1,122 +1,68 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
+import java.util.Date;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ei")
-public class class140 extends class144 {
-	@ObfuscatedName("ea")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive2")
-	static Archive archive2;
-	@ObfuscatedName("c")
-	String field1655;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 718016379
-	)
-	int field1651;
-	@ObfuscatedName("q")
-	byte field1652;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Leu;"
-	)
-	final class145 this$0;
+@ObfuscatedName("fj")
+public abstract class class140 extends Node {
+	class140() {
+	} // L: 68
 
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Leu;)V"
+		descriptor = "(Lsy;I)V",
+		garbageValue = "-1979280996"
 	)
-	class140(class145 var1) {
-		this.this$0 = var1;
-		this.field1655 = null; // L: 55
-	} // L: 59
+	abstract void vmethod3361(Buffer var1);
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "(Lfi;B)V",
+		garbageValue = "29"
 	)
-	void vmethod3137(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 62
-			--var1.offset; // L: 63
-			var1.readLong(); // L: 64
-		}
+	abstract void vmethod3362(ClanSettings var1);
 
-		this.field1655 = var1.readStringCp1252NullTerminatedOrNull(); // L: 66
-		this.field1651 = var1.readUnsignedShort(); // L: 67
-		this.field1652 = var1.readByte(); // L: 68
-		var1.readLong(); // L: 69
-	} // L: 70
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
-	)
-	void vmethod3138(ClanChannel var1) {
-		ClanChannelMember var2 = new ClanChannelMember(); // L: 73
-		var2.username = new Username(this.field1655); // L: 74
-		var2.world = this.field1651; // L: 75
-		var2.rank = this.field1652; // L: 76
-		var1.addMember(var2); // L: 77
-	} // L: 78
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lkb;",
-		garbageValue = "1295683453"
-	)
-	@Export("getWidget")
-	public static Widget getWidget(int var0) {
-		int var1 = var0 >> 16; // L: 220
-		int var2 = var0 & 65535; // L: 221
-		if (SoundCache.Widget_interfaceComponents[var1] == null || SoundCache.Widget_interfaceComponents[var1][var2] == null) { // L: 222
-			boolean var3 = WorldMapSection2.loadInterface(var1); // L: 223
-			if (!var3) { // L: 224
-				return null;
-			}
-		}
-
-		return SoundCache.Widget_interfaceComponents[var1][var2]; // L: 226
+	@ObfuscatedName("aj")
+	public static String method3114(long var0) {
+		Calendar.Calendar_calendar.setTime(new Date(var0)); // L: 31
+		int var2 = Calendar.Calendar_calendar.get(7); // L: 32
+		int var3 = Calendar.Calendar_calendar.get(5); // L: 33
+		int var4 = Calendar.Calendar_calendar.get(2); // L: 34
+		int var5 = Calendar.Calendar_calendar.get(1); // L: 35
+		int var6 = Calendar.Calendar_calendar.get(11); // L: 36
+		int var7 = Calendar.Calendar_calendar.get(12); // L: 37
+		int var8 = Calendar.Calendar_calendar.get(13); // L: 38
+		return Calendar.DAYS_OF_THE_WEEK[var2 - 1] + ", " + var3 / 10 + var3 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var4] + "-" + var5 + " " + var6 / 10 + var6 % 10 + ":" + var7 / 10 + var7 % 10 + ":" + var8 / 10 + var8 % 10 + " GMT"; // L: 39
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("jm")
 	@ObfuscatedSignature(
-		descriptor = "(IIZI)Ljava/lang/String;",
-		garbageValue = "1221665034"
+		descriptor = "(IIIIII)Z",
+		garbageValue = "-1531736711"
 	)
-	static String method3038(int var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) { // L: 120
-			if (var2 && var0 >= 0) { // L: 121
-				int var3 = 2; // L: 122
+	static final boolean method3113(int var0, int var1, int var2, int var3, int var4) {
+		PendingSpawn var5 = null; // L: 7878
 
-				for (int var4 = var0 / var1; var4 != 0; ++var3) { // L: 123 124 126
-					var4 /= var1; // L: 125
-				}
-
-				char[] var5 = new char[var3]; // L: 128
-				var5[0] = '+'; // L: 129
-
-				for (int var6 = var3 - 1; var6 > 0; --var6) { // L: 130
-					int var7 = var0; // L: 131
-					var0 /= var1; // L: 132
-					int var8 = var7 - var0 * var1; // L: 133
-					if (var8 >= 10) { // L: 134
-						var5[var6] = (char)(var8 + 87);
-					} else {
-						var5[var6] = (char)(var8 + 48); // L: 135
-					}
-				}
-
-				return new String(var5); // L: 137
-			} else {
-				return Integer.toString(var0, var1);
+		for (PendingSpawn var6 = (PendingSpawn)Client.pendingSpawns.last(); var6 != null; var6 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 7879 7880 7885
+			if (var0 == var6.plane && var6.x == var1 && var2 == var6.y && var3 == var6.type) { // L: 7881
+				var5 = var6; // L: 7882
+				break;
 			}
+		}
+
+		if (var5 != null) { // L: 7887
+			var5.field1133 = var4; // L: 7888
+			return true; // L: 7889
 		} else {
-			throw new IllegalArgumentException("" + var1);
+			return false; // L: 7891
 		}
 	}
+
+	@ObfuscatedName("np")
+	@ObfuscatedSignature(
+		descriptor = "(ZB)V",
+		garbageValue = "71"
+	)
+	static void method3106(boolean var0) {
+		Client.field621 = var0; // L: 12250
+	} // L: 12251
 }
