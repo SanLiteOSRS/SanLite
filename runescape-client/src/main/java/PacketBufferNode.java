@@ -4,206 +4,162 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jt")
+@ObfuscatedName("jm")
 @Implements("PacketBufferNode")
 public class PacketBufferNode extends Node {
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "[Ljt;"
+		descriptor = "[Ljm;"
 	)
 	@Export("PacketBufferNode_packetBufferNodes")
-	public static PacketBufferNode[] PacketBufferNode_packetBufferNodes;
-	@ObfuscatedName("e")
+	static PacketBufferNode[] PacketBufferNode_packetBufferNodes;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 24720885
+		intValue = 738590169
 	)
 	@Export("PacketBufferNode_packetBufferNodeCount")
-	public static int PacketBufferNode_packetBufferNodeCount;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = -1221486625
-	)
-	@Export("ItemComposition_fileCount")
-	public static int ItemComposition_fileCount;
+	static int PacketBufferNode_packetBufferNodeCount;
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lju;"
+		descriptor = "Ljf;"
 	)
 	@Export("clientPacket")
 	public ClientPacket clientPacket;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -668428043
-	)
-	@Export("clientPacketLength")
-	public int clientPacketLength;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Lpq;"
-	)
-	@Export("packetBuffer")
-	public PacketBuffer packetBuffer;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = -515140623
+		intValue = -2131352745
 	)
 	@Export("index")
 	public int index;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -1953769541
+	)
+	@Export("clientPacketLength")
+	public int clientPacketLength;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Lqf;"
+	)
+	@Export("packetBuffer")
+	public PacketBuffer packetBuffer;
 
 	static {
 		PacketBufferNode_packetBufferNodes = new PacketBufferNode[300]; // L: 13
 		PacketBufferNode_packetBufferNodeCount = 0; // L: 14
 	}
 
-	@ObfuscatedName("q")
+	PacketBufferNode() {
+	} // L: 19
+
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-10"
+		descriptor = "(I)V",
+		garbageValue = "-624724039"
 	)
 	@Export("release")
 	public void release() {
-		if (PacketBufferNode_packetBufferNodeCount < PacketBufferNode_packetBufferNodes.length) { // L: 61
-			PacketBufferNode_packetBufferNodes[++PacketBufferNode_packetBufferNodeCount - 1] = this; // L: 62
+		if (PacketBufferNode_packetBufferNodeCount < PacketBufferNode_packetBufferNodes.length) { // L: 42
+			PacketBufferNode_packetBufferNodes[++PacketBufferNode_packetBufferNodeCount - 1] = this; // L: 43
 		}
-	} // L: 63
+	} // L: 44
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1959147234"
+		descriptor = "(Lqq;IB)Ljava/lang/String;",
+		garbageValue = "103"
 	)
-	public static void method5202() {
-		class33.reflectionChecks = new IterableNodeDeque(); // L: 24
-	} // L: 25
+	static String method5356(Buffer var0, int var1) {
+		try {
+			int var2 = var0.readUShortSmart(); // L: 65
+			if (var2 > var1) { // L: 66
+				var2 = var1;
+			}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-1179746293"
-	)
-	public static void method5200(int var0, int var1) {
-		VarbitComposition var2 = WorldMapCacheName.method5054(var0); // L: 33
-		int var3 = var2.baseVar; // L: 34
-		int var4 = var2.startBit; // L: 35
-		int var5 = var2.endBit; // L: 36
-		int var6 = Varps.Varps_masks[var5 - var4]; // L: 37
-		if (var1 < 0 || var1 > var6) { // L: 38
-			var1 = 0;
-		}
-
-		var6 <<= var4; // L: 39
-		Varps.Varps_main[var3] = Varps.Varps_main[var3] & ~var6 | var1 << var4 & var6; // L: 40
-	} // L: 41
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(CI)C",
-		garbageValue = "-936573581"
-	)
-	static char method5203(char var0) {
-		switch(var0) { // L: 93
-		case ' ':
-		case '-':
-		case '_':
-		case ' ':
-			return '_'; // L: 145
-		case '#':
-		case '[':
-		case ']':
-			return var0; // L: 157
-		case 'À':
-		case 'Á':
-		case 'Â':
-		case 'Ã':
-		case 'Ä':
-		case 'à':
-		case 'á':
-		case 'â':
-		case 'ã':
-		case 'ä':
-			return 'a'; // L: 104
-		case 'Ç':
-		case 'ç':
-			return 'c'; // L: 153
-		case 'È':
-		case 'É':
-		case 'Ê':
-		case 'Ë':
-		case 'è':
-		case 'é':
-		case 'ê':
-		case 'ë':
-			return 'e'; // L: 129
-		case 'Í':
-		case 'Î':
-		case 'Ï':
-		case 'í':
-		case 'î':
-		case 'ï':
-			return 'i'; // L: 120
-		case 'Ñ':
-		case 'ñ':
-			return 'n'; // L: 160
-		case 'Ò':
-		case 'Ó':
-		case 'Ô':
-		case 'Õ':
-		case 'Ö':
-		case 'ò':
-		case 'ó':
-		case 'ô':
-		case 'õ':
-		case 'ö':
-			return 'o'; // L: 140
-		case 'Ù':
-		case 'Ú':
-		case 'Û':
-		case 'Ü':
-		case 'ù':
-		case 'ú':
-		case 'û':
-		case 'ü':
-			return 'u'; // L: 113
-		case 'ß':
-			return 'b'; // L: 147
-		case 'ÿ':
-		case 'Ÿ':
-			return 'y'; // L: 150
-		default:
-			return Character.toLowerCase(var0); // L: 162
+			byte[] var3 = new byte[var2]; // L: 67
+			var0.offset += class283.huffman.decompress(var0.array, var0.offset, var3, 0, var2); // L: 68
+			String var4 = ScriptFrame.decodeStringCp1252(var3, 0, var2); // L: 69
+			return var4; // L: 70
+		} catch (Exception var6) { // L: 72
+			return "Cabbage"; // L: 73
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-21851942"
+		descriptor = "([BIIII[Lgj;B)V",
+		garbageValue = "29"
 	)
-	public static void method5194() {
-		NPCComposition.NpcDefinition_cached.clear(); // L: 291
-		NPCComposition.NpcDefinition_cachedModels.clear(); // L: 292
-	} // L: 293
-
-	@ObfuscatedName("kh")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-1529183895"
-	)
-	static final void method5196(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 255); // L: 11840
-		if (var0 != class19.clientPreferences.method2258()) { // L: 11841
-			if (class19.clientPreferences.method2258() == 0 && Client.currentTrackGroupId != -1) { // L: 11842
-				AttackOption.method2410(class121.archive6, Client.currentTrackGroupId, 0, var0, false); // L: 11843
-				Client.playingJingle = false; // L: 11844
-			} else if (var0 == 0) { // L: 11846
-				ReflectionCheck.method579(); // L: 11847
-				Client.playingJingle = false; // L: 11848
-			} else {
-				Decimator.method1005(var0); // L: 11850
+	static final void method5355(byte[] var0, int var1, int var2, int var3, int var4, CollisionMap[] var5) {
+		int var7;
+		int var8;
+		for (int var6 = 0; var6 < 4; ++var6) { // L: 93
+			for (var7 = 0; var7 < 64; ++var7) { // L: 94
+				for (var8 = 0; var8 < 64; ++var8) { // L: 95
+					if (var7 + var1 > 0 && var7 + var1 < 103 && var8 + var2 > 0 && var8 + var2 < 103) { // L: 96
+						int[] var10000 = var5[var6].flags[var7 + var1];
+						var10000[var8 + var2] &= -16777217;
+					}
+				}
 			}
-
-			class19.clientPreferences.method2297(var0); // L: 11851
 		}
 
-	} // L: 11853
+		Buffer var10 = new Buffer(var0); // L: 100
+
+		for (var7 = 0; var7 < 4; ++var7) { // L: 101
+			for (var8 = 0; var8 < 64; ++var8) { // L: 102
+				for (int var9 = 0; var9 < 64; ++var9) { // L: 103
+					VarbitComposition.loadTerrain(var10, var7, var8 + var1, var9 + var2, var3, var4, 0); // L: 104
+				}
+			}
+		}
+
+	} // L: 108
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "(Llb;IIIBZB)V",
+		garbageValue = "96"
+	)
+	@Export("requestNetFile")
+	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
+		long var6 = (long)((var1 << 16) + var2); // L: 151
+		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6); // L: 152
+		if (var8 == null) { // L: 153
+			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6); // L: 154
+			if (var8 == null) { // L: 155
+				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6); // L: 156
+				if (var8 != null) { // L: 157
+					if (var5) { // L: 158
+						var8.removeDual(); // L: 159
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 160
+						--NetCache.NetCache_pendingWritesCount; // L: 161
+						++NetCache.NetCache_pendingPriorityWritesCount; // L: 162
+					}
+
+				} else {
+					if (!var5) { // L: 166
+						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6); // L: 167
+						if (var8 != null) { // L: 168
+							return;
+						}
+					}
+
+					var8 = new NetFileRequest(); // L: 170
+					var8.archive = var0; // L: 171
+					var8.crc = var3; // L: 172
+					var8.padding = var4; // L: 173
+					if (var5) { // L: 174
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 175
+						++NetCache.NetCache_pendingPriorityWritesCount; // L: 176
+					} else {
+						NetCache.NetCache_pendingWritesQueue.addFirst(var8); // L: 179
+						NetCache.NetCache_pendingWrites.put(var8, var6); // L: 180
+						++NetCache.NetCache_pendingWritesCount; // L: 181
+					}
+
+				}
+			}
+		}
+	} // L: 164 183
 }

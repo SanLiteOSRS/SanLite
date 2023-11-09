@@ -3,45 +3,96 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bs")
+@ObfuscatedName("bk")
 public class class65 {
-	@ObfuscatedName("j")
-	static final BigInteger field865;
-	@ObfuscatedName("e")
-	static final BigInteger field868;
+	@ObfuscatedName("k")
+	static final BigInteger field870;
+	@ObfuscatedName("w")
+	static final BigInteger field862;
+	@ObfuscatedName("ih")
+	@ObfuscatedSignature(
+		descriptor = "[Lqu;"
+	)
+	@Export("modIconSprites")
+	static IndexedSprite[] modIconSprites;
 
 	static {
-		field865 = new BigInteger("80782894952180643741752986186714059433953886149239752893425047584684715842049"); // L: 20
-		field868 = new BigInteger("7237300117305667488707183861728052766358166655052137727439795191253340127955075499635575104901523446809299097934591732635674173519120047404024393881551683"); // L: 21
+		field870 = new BigInteger("80782894952180643741752986186714059433953886149239752893425047584684715842049");
+		field862 = new BigInteger("7237300117305667488707183861728052766358166655052137727439795191253340127955075499635575104901523446809299097934591732635674173519120047404024393881551683"); // L: 21
 	}
 
-	@ObfuscatedName("gw")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lci;III)V",
-		garbageValue = "-1780893346"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "-431817012"
 	)
-	@Export("performPlayerAnimation")
-	static void performPlayerAnimation(Player var0, int var1, int var2) {
-		if (var0.sequence == var1 && var1 != -1) { // L: 4344
-			int var3 = ScriptFrame.SequenceDefinition_get(var1).field2174; // L: 4345
-			if (var3 == 1) { // L: 4346
-				var0.sequenceFrame = 0; // L: 4347
-				var0.sequenceFrameCycle = 0; // L: 4348
-				var0.sequenceDelay = var2; // L: 4349
-				var0.field1190 = 0; // L: 4350
-			}
+	@Export("addGameMessage")
+	static void addGameMessage(int var0, String var1, String var2) {
+		class120.addChatMessage(var0, var1, var2, (String)null); // L: 19
+	} // L: 20
 
-			if (var3 == 2) { // L: 4352
-				var0.field1190 = 0; // L: 4353
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-436013202"
+	)
+	public static boolean method2027() {
+		try {
+			if (class274.musicPlayerStatus == 2) { // L: 53
+				if (class274.musicTrack == null) { // L: 54
+					class274.musicTrack = MusicTrack.readTrack(class274.musicTrackArchive, class274.musicTrackGroupId, StructComposition.musicTrackFileId); // L: 55
+					if (class274.musicTrack == null) { // L: 56
+						return false;
+					}
+				}
+
+				if (class29.soundCache == null) { // L: 58
+					class29.soundCache = new SoundCache(class274.soundEffectsArchive, class274.musicSamplesArchive);
+				}
+
+				if (class139.midiPcmStream.loadMusicTrack(class274.musicTrack, class274.musicPatchesArchive, class29.soundCache, 22050)) { // L: 59
+					class139.midiPcmStream.clearAll(); // L: 60
+					class139.midiPcmStream.setPcmStreamVolume(class269.musicTrackVolume); // L: 61
+					class139.midiPcmStream.setMusicTrack(class274.musicTrack, TriBool.musicTrackBoolean); // L: 62
+					class274.musicPlayerStatus = 0; // L: 63
+					class274.musicTrack = null; // L: 64
+					class29.soundCache = null; // L: 65
+					class274.musicTrackArchive = null; // L: 66
+					return true; // L: 67
+				}
 			}
-		} else if (var1 == -1 || var0.sequence == -1 || ScriptFrame.SequenceDefinition_get(var1).field2183 >= ScriptFrame.SequenceDefinition_get(var0.sequence).field2183) { // L: 4356
-			var0.sequence = var1; // L: 4357
-			var0.sequenceFrame = 0; // L: 4358
-			var0.sequenceFrameCycle = 0; // L: 4359
-			var0.sequenceDelay = var2; // L: 4360
-			var0.field1190 = 0; // L: 4361
-			var0.field1203 = var0.pathLength; // L: 4362
+		} catch (Exception var1) { // L: 71
+			var1.printStackTrace(); // L: 72
+			class139.midiPcmStream.clear(); // L: 73
+			class274.musicPlayerStatus = 0; // L: 74
+			class274.musicTrack = null; // L: 75
+			class29.soundCache = null; // L: 76
+			class274.musicTrackArchive = null; // L: 77
 		}
 
-	} // L: 4364
+		return false; // L: 79
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "-1670893838"
+	)
+	public static boolean method2028(int var0) {
+		return var0 == WorldMapDecorationType.field3581.id; // L: 51
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "106"
+	)
+	static void method2029() {
+		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) { // L: 295
+			Login.currentLoginField = 1; // L: 296
+		} else {
+			Login.currentLoginField = 0; // L: 299
+		}
+
+	} // L: 301
 }

@@ -1,120 +1,79 @@
+import java.awt.FontMetrics;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dk")
-public class class125 extends class128 {
+@ObfuscatedName("dh")
+public enum class125 implements MouseWheel {
 	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -901358283
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
 	)
-	int field1557;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 963189529
+	field1542(1, 0),
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
 	)
-	int field1553;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -1782830973
-	)
-	int field1554;
+	field1541(3, 1),
 	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field1536(4, 2),
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field1539(0, 3),
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "Ldh;"
+	)
+	field1540(2, 4);
+
+	@ObfuscatedName("aq")
+	@Export("loginScreenFontMetrics")
+	static FontMetrics loginScreenFontMetrics;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1564673701
+		intValue = -148064907
 	)
-	int field1555;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lej;"
+	public final int field1544;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = 715952817
 	)
-	final class131 this$0;
+	@Export("id")
+	final int id;
 
-	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
-	)
-	class125(class131 var1) {
-		this.this$0 = var1;
-		this.field1557 = -1; // L: 158
-	} // L: 163
+	class125(int var3, int var4) {
+		this.field1544 = var3; // L: 17
+		this.id = var4; // L: 18
+	} // L: 19
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(B)I",
+		garbageValue = "1"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1557 = var1.readUnsignedShort(); // L: 166
-		this.field1553 = var1.readInt(); // L: 167
-		this.field1554 = var1.readUnsignedByte(); // L: 168
-		this.field1555 = var1.readUnsignedByte(); // L: 169
-	} // L: 170
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2964(this.field1557, this.field1553, this.field1554, this.field1555); // L: 173
-	} // L: 174
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "2000471685"
-	)
-	static String method2829() {
-		return class19.clientPreferences.method2247() ? NetCache.method5952(Login.Login_username) : Login.Login_username; // L: 272
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.id; // L: 23
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("gs")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "718423512"
+		descriptor = "(Lce;B)V",
+		garbageValue = "-82"
 	)
-	static void method2830() {
-		ItemContainer.itemContainers = new NodeHashTable(32); // L: 78
-	} // L: 79
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZB)I",
-		garbageValue = "-61"
-	)
-	static int method2821(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class124.scriptDotWidget : GrandExchangeOfferOwnWorldComparator.scriptActiveWidget; // L: 1111
-		if (var0 == ScriptOpcodes.CC_GETX) { // L: 1112
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.x; // L: 1113
-			return 1; // L: 1114
-		} else if (var0 == ScriptOpcodes.CC_GETY) { // L: 1116
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.y; // L: 1117
-			return 1; // L: 1118
-		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) { // L: 1120
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.width; // L: 1121
-			return 1; // L: 1122
-		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) { // L: 1124
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.height; // L: 1125
-			return 1; // L: 1126
-		} else if (var0 == ScriptOpcodes.CC_GETHIDE) { // L: 1128
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1129
-			return 1; // L: 1130
-		} else if (var0 == ScriptOpcodes.CC_GETLAYER) { // L: 1132
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.parentId; // L: 1133
-			return 1; // L: 1134
-		} else {
-			return 2; // L: 1136
-		}
-	}
-
-	@ObfuscatedName("ie")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-111"
-	)
-	static void method2824() {
-		Client.menuOptionsCount = 0; // L: 8423
-		Client.isMenuOpen = false; // L: 8424
-	} // L: 8425
+	static final void method2968(Actor var0) {
+		int var1 = Math.max(1, var0.field1183 - Client.cycle); // L: 4191
+		int var2 = var0.field1192 * 128 + var0.field1131 * -360448000; // L: 4192
+		int var3 = var0.field1181 * 128 + var0.field1131 * -360448000; // L: 4193
+		var0.x += (var2 - var0.x) / var1; // L: 4194
+		var0.y += (var3 - var0.y) / var1; // L: 4195
+		var0.field1201 = 0; // L: 4196
+		var0.orientation = var0.field1185; // L: 4197
+	} // L: 4198
 }
