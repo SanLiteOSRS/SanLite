@@ -4,48 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hz")
+@ObfuscatedName("kp")
 @Implements("WorldMapIcon_0")
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
-	@ObfuscatedName("iz")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = 2063269649
-	)
-	@Export("selectedItemId")
-	static int selectedItemId;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -717867737
+		intValue = 631725283
 	)
 	@Export("element")
 	final int element;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Liz;"
+		descriptor = "Lko;"
 	)
 	@Export("label")
 	final WorldMapLabel label;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -466218723
+		intValue = -807912579
 	)
 	@Export("subWidth")
 	final int subWidth;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 1083440853
+		intValue = -1274741947
 	)
 	@Export("subHeight")
 	final int subHeight;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkd;Lkd;ILiz;)V"
+		descriptor = "(Lms;Lms;ILko;)V"
 	)
 	WorldMapIcon_0(Coord var1, Coord var2, int var3, WorldMapLabel var4) {
 		super(var1, var2); // L: 14
 		this.element = var3; // L: 15
 		this.label = var4; // L: 16
-		WorldMapElement var5 = class432.WorldMapElement_get(this.getElement()); // L: 17
+		WorldMapElement var5 = class147.WorldMapElement_get(this.getElement()); // L: 17
 		SpritePixels var6 = var5.getSpriteBool(false); // L: 18
 		if (var6 != null) { // L: 19
 			this.subWidth = var6.subWidth; // L: 20
@@ -57,57 +51,65 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	} // L: 27
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "781292504"
+		descriptor = "(B)I",
+		garbageValue = "52"
 	)
 	@Export("getElement")
 	public int getElement() {
 		return this.element; // L: 31
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I)Liz;",
-		garbageValue = "1473728"
+		descriptor = "(I)Lko;",
+		garbageValue = "530307957"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
 		return this.label; // L: 36
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1263012412"
+		garbageValue = "1960611596"
 	)
 	@Export("getSubWidth")
 	int getSubWidth() {
 		return this.subWidth; // L: 41
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-34"
+		descriptor = "(I)I",
+		garbageValue = "-1025662810"
 	)
 	@Export("getSubHeight")
 	int getSubHeight() {
 		return this.subHeight; // L: 46
 	}
 
-	@ObfuscatedName("lj")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)Ljava/lang/String;",
-		garbageValue = "-1970746569"
+		descriptor = "([Ljava/lang/String;[SI)V",
+		garbageValue = "1185527073"
 	)
-	@Export("Widget_getSpellActionName")
-	static String Widget_getSpellActionName(Widget var0) {
-		if (WorldMapID.Widget_unpackTargetMask(class124.getWidgetFlags(var0)) == 0) { // L: 12322
-			return null;
+	public static void method5412(String[] var0, short[] var1) {
+		HealthBarUpdate.sortItemsByName(var0, var1, 0, var0.length - 1); // L: 9
+	} // L: 10
+
+	@ObfuscatedName("lq")
+	@ObfuscatedSignature(
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "1802929410"
+	)
+	static String method5398(int var0) {
+		if (var0 < 0) { // L: 9934
+			return "";
 		} else {
-			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null; // L: 12323 12324 12326
+			return Client.menuTargets[var0].length() > 0 ? Client.menuActions[var0] + " " + Client.menuTargets[var0] : Client.menuActions[var0]; // L: 9935 9936
 		}
 	}
 }

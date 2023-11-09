@@ -6,40 +6,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nc")
+@ObfuscatedName("qw")
 @Implements("BufferedSink")
 public class BufferedSink implements Runnable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -908139425
+		intValue = 93816907
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1613116679
+		intValue = 1781832831
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = -2132108273
+		intValue = 1843129651
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("g")
+	@ObfuscatedName("al")
 	@Export("exception")
 	IOException exception;
-	@ObfuscatedName("w")
+	@ObfuscatedName("aj")
 	@Export("closed")
 	boolean closed;
 
@@ -54,10 +54,10 @@ public class BufferedSink implements Runnable {
 		this.thread.start(); // L: 204
 	} // L: 205
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1872756001"
+		garbageValue = "1462161428"
 	)
 	@Export("isClosed")
 	boolean isClosed() {
@@ -79,10 +79,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "-1640336200"
+		garbageValue = "-51903921"
 	)
 	@Export("write")
 	void write(byte[] var1, int var2, int var3) throws IOException {
@@ -98,8 +98,8 @@ public class BufferedSink implements Runnable {
 						var5 = this.position - this.limit - 1; // L: 273
 					}
 
-					if (var5 < var3) {
-						throw new IOException(""); // L: 274
+					if (var5 < var3) { // L: 274
+						throw new IOException("");
 					} else {
 						if (var3 + this.limit <= this.capacity) { // L: 275
 							System.arraycopy(var1, var2, this.buffer, this.limit, var3); // L: 276
@@ -119,10 +119,10 @@ public class BufferedSink implements Runnable {
 		}
 	} // L: 286
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(S)V",
-		garbageValue = "135"
+		garbageValue = "9094"
 	)
 	@Export("close")
 	void close() {
@@ -197,4 +197,13 @@ public class BufferedSink implements Runnable {
 		} while(!this.isClosed()); // L: 263
 
 	}
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-1120430444"
+	)
+	static final void method8036(String var0) {
+		class147.method3138("Please remove " + var0 + " from your friend list first"); // L: 173
+	} // L: 174
 }

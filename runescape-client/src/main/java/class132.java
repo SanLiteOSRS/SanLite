@@ -1,73 +1,94 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import java.util.concurrent.Callable;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
-public class class132 extends class128 {
-	@ObfuscatedName("er")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	static Archive field1588;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1669105563
-	)
-	int field1590;
-	@ObfuscatedName("v")
-	byte field1589;
+@ObfuscatedName("fr")
+class class132 implements Callable {
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfx;"
 	)
-	final class131 this$0;
+	final class137 this$0;
+	// $FF: synthetic field
+	final int val$workStart;
+	// $FF: synthetic field
+	final int val$workEnd;
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "[Lez;"
+	)
+	final class128[] val$curveLoadJobs;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfx;II[Lez;)V"
 	)
-	class132(class131 var1) {
-		this.this$0 = var1;
-		this.field1590 = -1; // L: 128
-	} // L: 131
+	class132(class137 var1, int var2, int var3, class128[] var4) {
+		this.this$0 = var1; // L: 141
+		this.val$workStart = var2;
+		this.val$workEnd = var3;
+		this.val$curveLoadJobs = var4;
+	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
-	)
-	void vmethod3150(Buffer var1) {
-		this.field1590 = var1.readUnsignedShort(); // L: 134
-		this.field1589 = var1.readByte(); // L: 135
-	} // L: 136
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2961(this.field1590, this.field1589); // L: 139
-	} // L: 140
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "(Law;I)V",
-		garbageValue = "-1204833299"
-	)
-	public static final void method2885(class47 var0) {
-		ModelData0.pcmPlayerProvider = var0; // L: 45
-	} // L: 46
-
-	@ObfuscatedName("gz")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "854083418"
-	)
-	static void method2887() {
-		if (class121.worldMap != null) { // L: 4337
-			class121.worldMap.method7192(PacketWriter.Client_plane, class28.baseX * 64 + (class101.localPlayer.x >> 7), WorldMapLabelSize.baseY * 64 + (class101.localPlayer.y >> 7), false); // L: 4338
-			class121.worldMap.loadCache(); // L: 4339
+	public Object call() {
+		for (int var1 = this.val$workStart; var1 < this.val$workEnd; ++var1) { // L: 144
+			this.val$curveLoadJobs[var1].call(); // L: 145
 		}
 
-	} // L: 4341
+		return null; // L: 147
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lqa;",
+		garbageValue = "1741154650"
+	)
+	public static class437 method3023() {
+		synchronized(class437.field4689) { // L: 26
+			if (class437.field4683 == 0) { // L: 27
+				return new class437();
+			} else {
+				class437.field4689[--class437.field4683].method8115(); // L: 29
+				return class437.field4689[class437.field4683]; // L: 30
+			}
+		}
+	}
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(IS)Lhu;",
+		garbageValue = "9355"
+	)
+	@Export("VarpDefinition_get")
+	public static VarpDefinition VarpDefinition_get(int var0) {
+		VarpDefinition var1 = (VarpDefinition)VarpDefinition.VarpDefinition_cached.get((long)var0); // L: 18
+		if (var1 != null) { // L: 19
+			return var1;
+		} else {
+			byte[] var2 = VarpDefinition.VarpDefinition_archive.takeFile(16, var0); // L: 20
+			var1 = new VarpDefinition(); // L: 21
+			if (var2 != null) { // L: 22
+				var1.decode(new Buffer(var2));
+			}
+
+			VarpDefinition.VarpDefinition_cached.put(var1, (long)var0); // L: 23
+			return var1; // L: 24
+		}
+	}
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(CB)Z",
+		garbageValue = "118"
+	)
+	@Export("isCharPrintable")
+	public static boolean isCharPrintable(char var0) {
+		if (var0 >= ' ' && var0 <= '~') { // L: 231
+			return true;
+		} else if (var0 >= 160 && var0 <= 255) {
+			return true; // L: 232
+		} else {
+			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376; // L: 233
+		}
+	}
 }

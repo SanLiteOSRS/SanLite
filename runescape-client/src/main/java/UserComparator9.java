@@ -3,10 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dv")
+@ObfuscatedName("eo")
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class UserComparator9 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "-582515893"
+		descriptor = "(Lqc;Lqc;B)I",
+		garbageValue = "0"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -32,12 +32,36 @@ public class UserComparator9 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 22
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Ldt;",
-		garbageValue = "6"
+		descriptor = "(II)Lhe;",
+		garbageValue = "-1694649193"
 	)
-	static class119[] method2599() {
-		return new class119[]{class119.field1497, class119.field1504, class119.field1505, class119.field1501, class119.field1492, class119.field1493, class119.field1494, class119.field1495, class119.field1496, class119.field1489, class119.field1498, class119.field1499, class119.field1500, class119.field1502, class119.field1488, class119.field1503, class119.field1491}; // L: 74
+	@Export("getParamDefinition")
+	public static ParamComposition getParamDefinition(int var0) {
+		ParamComposition var1 = (ParamComposition)ParamComposition.ParamComposition_cached.get((long)var0); // L: 25
+		if (var1 != null) { // L: 26
+			return var1;
+		} else {
+			byte[] var2 = ParamComposition.ParamDefinition_archive.takeFile(11, var0); // L: 27
+			var1 = new ParamComposition(); // L: 28
+			if (var2 != null) { // L: 29
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode(); // L: 30
+			ParamComposition.ParamComposition_cached.put(var1, (long)var0); // L: 31
+			return var1; // L: 32
+		}
+	}
+
+	@ObfuscatedName("nm")
+	@ObfuscatedSignature(
+		descriptor = "(Lmo;I)Z",
+		garbageValue = "-2131482642"
+	)
+	@Export("isComponentHidden")
+	static boolean isComponentHidden(Widget var0) {
+		return var0.isHidden; // L: 12463
 	}
 }

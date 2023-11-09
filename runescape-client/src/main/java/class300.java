@@ -1,8 +1,11 @@
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kc")
-public class class300 {
-	static {
-		Math.sqrt(8192.0D); // L: 9
-	} // L: 10
+@ObfuscatedName("ly")
+public final class class300 {
+	@ObfuscatedName("rv")
+	@ObfuscatedSignature(
+		descriptor = "Lru;"
+	)
+	static class442 field3364;
 }

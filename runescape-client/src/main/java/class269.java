@@ -1,64 +1,88 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jz")
+@ObfuscatedName("ku")
 public class class269 {
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-2064845934"
+		descriptor = "Lku;"
 	)
-	public static int method5223(int var0) {
-		var0 = (var0 & 1431655765) + (var0 >>> 1 & 1431655765); // L: 28
-		var0 = (var0 >>> 2 & 858993459) + (var0 & 858993459); // L: 29
-		var0 = var0 + (var0 >>> 4) & 252645135; // L: 30
-		var0 += var0 >>> 8; // L: 31
-		var0 += var0 >>> 16; // L: 32
-		return var0 & 255; // L: 33
+	static final class269 field3023;
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "Lku;"
+	)
+	static final class269 field3022;
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = 1389900853
+	)
+	@Export("value")
+	final int value;
+
+	static {
+		field3023 = new class269(0); // L: 4
+		field3022 = new class269(1); // L: 5
 	}
 
-	@ObfuscatedName("jd")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;IIIIIII)V",
-		garbageValue = "-54726370"
-	)
-	static final void method5224(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		if (Client.field560) { // L: 10719
-			Client.alternativeScrollbarWidth = 32;
-		} else {
-			Client.alternativeScrollbarWidth = 0; // L: 10720
-		}
+	class269(int var1) {
+		this.value = var1; // L: 9
+	} // L: 10
 
-		Client.field560 = false; // L: 10721
-		int var7;
-		if (MouseHandler.MouseHandler_currentButton == 1 || !class122.mouseCam && MouseHandler.MouseHandler_currentButton == 4) { // L: 10722
-			if (var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) { // L: 10723
-				var0.scrollY -= 4; // L: 10724
-				ChatChannel.invalidateWidget(var0); // L: 10725
-			} else if (var5 >= var1 && var5 < var1 + 16 && var6 >= var3 + var2 - 16 && var6 < var3 + var2) { // L: 10727
-				var0.scrollY += 4; // L: 10728
-				ChatChannel.invalidateWidget(var0); // L: 10729
-			} else if (var5 >= var1 - Client.alternativeScrollbarWidth && var5 < Client.alternativeScrollbarWidth + var1 + 16 && var6 >= var2 + 16 && var6 < var3 + var2 - 16) { // L: 10731
-				var7 = var3 * (var3 - 32) / var4; // L: 10732
-				if (var7 < 8) { // L: 10733
-					var7 = 8;
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Lso;",
+		garbageValue = "1"
+	)
+	public static class493 method5496(int var0) {
+		class493 var1 = (class493)class493.DBTableType_cache.get((long)var0); // L: 23
+		if (var1 != null) { // L: 24
+			return var1;
+		} else {
+			byte[] var2 = class493.field4985.takeFile(39, var0); // L: 25
+			var1 = new class493(); // L: 26
+			if (var2 != null) { // L: 27
+				var1.method8855(new Buffer(var2));
+			}
+
+			var1.method8857(); // L: 28
+			class493.DBTableType_cache.put(var1, (long)var0); // L: 29
+			return var1; // L: 30
+		}
+	}
+
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)Ldk;",
+		garbageValue = "66"
+	)
+	static Script method5495(int var0, int var1) {
+		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16)); // L: 69
+		if (var2 != null) { // L: 70
+			return var2; // L: 71
+		} else {
+			String var3 = String.valueOf(var0); // L: 73
+			int var4 = FriendsList.archive12.getGroupId(var3); // L: 74
+			if (var4 == -1) { // L: 75
+				return null; // L: 76
+			} else {
+				byte[] var5 = FriendsList.archive12.takeFileFlat(var4); // L: 78
+				if (var5 != null) { // L: 79
+					if (var5.length <= 1) { // L: 80
+						return null; // L: 81
+					}
+
+					var2 = ObjectSound.newScript(var5); // L: 83
+					if (var2 != null) { // L: 84
+						Script.Script_cached.put(var2, (long)(var0 << 16)); // L: 85
+						return var2; // L: 86
+					}
 				}
 
-				int var8 = var6 - var2 - 16 - var7 / 2; // L: 10734
-				int var9 = var3 - 32 - var7; // L: 10735
-				var0.scrollY = var8 * (var4 - var3) / var9; // L: 10736
-				ChatChannel.invalidateWidget(var0); // L: 10737
-				Client.field560 = true; // L: 10738
+				return null; // L: 89
 			}
 		}
-
-		if (Client.mouseWheelRotation != 0) { // L: 10741
-			var7 = var0.width; // L: 10742
-			if (var5 >= var1 - var7 && var6 >= var2 && var5 < var1 + 16 && var6 <= var3 + var2) { // L: 10743
-				var0.scrollY += Client.mouseWheelRotation * 45; // L: 10744
-				ChatChannel.invalidateWidget(var0); // L: 10745
-			}
-		}
-
-	} // L: 10748
+	}
 }

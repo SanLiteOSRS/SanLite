@@ -2,39 +2,29 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gt")
+@ObfuscatedName("iy")
 @Implements("FaceNormal")
 public class FaceNormal {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = 2045687167
+		intValue = -452186919
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 259443193
+		intValue = 150582953
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1323517785
+		intValue = 2077300873
 	)
 	@Export("z")
 	int z;
 
 	FaceNormal() {
 	} // L: 8
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-1766790995"
-	)
-	public static int method4344(CharSequence var0) {
-		return HealthBar.method2356(var0, 10, true); // L: 77
-	}
 }

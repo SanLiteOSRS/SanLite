@@ -2,23 +2,28 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("or")
-public class class393 extends class394 {
-	@ObfuscatedName("v")
+@ObfuscatedName("pu")
+public class class393 {
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		longValue = -2173351521365145711L
+		intValue = -1498559755
 	)
-	static long field4425;
+	int field4447;
 
-	public class393(int var1) {
-		super(var1); // L: 7
+	@ObfuscatedSignature(
+		descriptor = "(IZ)V",
+		garbageValue = "1"
+	)
+	class393(int var1, boolean var2) {
+		this.field4447 = var1; // L: 7
 	} // L: 8
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "803287054"
+		descriptor = "(I)I",
+		garbageValue = "1867956020"
 	)
-	void vmethod7080(Buffer var1, int var2) {
-	} // L: 12
+	public int method7394() {
+		return this.field4447; // L: 11
+	}
 }

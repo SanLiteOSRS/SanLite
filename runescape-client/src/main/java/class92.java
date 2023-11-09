@@ -1,34 +1,37 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cz")
+@ObfuscatedName("dv")
 public class class92 {
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-35"
+	@ObfuscatedName("gu")
+	@ObfuscatedGetter(
+		intValue = 384857183
 	)
-	public static void method2389() {
-		HealthBarDefinition.HealthBarDefinition_cached.clear(); // L: 89
-		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear(); // L: 90
-	} // L: 91
+	@Export("currentPort")
+	static int currentPort;
 
-	@ObfuscatedName("lr")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "38"
-	)
-	static String method2388(String var0) {
-		PlayerType[] var1 = SoundSystem.PlayerType_values(); // L: 12443
-
-		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12444
-			PlayerType var3 = var1[var2]; // L: 12445
-			if (var3.modIcon != -1 && var0.startsWith(SecureRandomCallable.method2066(var3.modIcon))) { // L: 12447 12448
-				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length()); // L: 12449
-				break;
-			}
+	@ObfuscatedName("an")
+	static final void method2337(long var0) {
+		try {
+			Thread.sleep(var0); // L: 20
+		} catch (InterruptedException var3) { // L: 22
 		}
 
-		return var0; // L: 12456
+	} // L: 23
+
+	@ObfuscatedName("ng")
+	@ObfuscatedSignature(
+		descriptor = "(Lmo;I)Ljava/lang/String;",
+		garbageValue = "-1312762326"
+	)
+	@Export("Widget_getSpellActionName")
+	static String Widget_getSpellActionName(Widget var0) {
+		if (class316.Widget_unpackTargetMask(class209.getWidgetFlags(var0)) == 0) { // L: 12467
+			return null;
+		} else {
+			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null; // L: 12468 12469 12471
+		}
 	}
 }

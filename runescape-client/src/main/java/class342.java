@@ -1,27 +1,15 @@
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mr")
-public final class class342 {
-	@ObfuscatedName("fw")
-	@ObfuscatedSignature(
-		descriptor = "(S)Z",
-		garbageValue = "208"
+@ObfuscatedName("ne")
+public class class342 {
+	@ObfuscatedName("cp")
+	@ObfuscatedGetter(
+		intValue = 1343477831
 	)
-	static boolean method6312() {
-		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1634
-			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1635
-				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone); // L: 1636
-				if (!var0.isLoaded()) { // L: 1637
-					return false;
-				}
+	static int field3848;
 
-				++Client.archiveLoadersDone; // L: 1638
-			}
-
-			return true; // L: 1640
-		} else {
-			return true; // L: 1639
-		}
-	}
+	static {
+		Math.sqrt(8192.0D); // L: 9
+	} // L: 10
 }

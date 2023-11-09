@@ -4,128 +4,128 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ku")
+@ObfuscatedName("nl")
 @Implements("WorldMapDecorationType")
-public enum WorldMapDecorationType implements MouseWheel {
-	@ObfuscatedName("c")
+public enum WorldMapDecorationType implements class369 {
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3549(0, 0),
-	@ObfuscatedName("v")
+	field3801(0, 0),
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3543(1, 0),
-	@ObfuscatedName("q")
+	field3799(1, 0),
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3533(2, 0),
-	@ObfuscatedName("f")
+	field3807(2, 0),
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3534(3, 0),
-	@ObfuscatedName("j")
+	field3810(3, 0),
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3535(9, 2),
-	@ObfuscatedName("e")
+	field3802(9, 2),
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3536(4, 1),
-	@ObfuscatedName("g")
+	field3803(4, 1),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3537(5, 1),
-	@ObfuscatedName("w")
+	field3804(5, 1),
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3538(6, 1),
-	@ObfuscatedName("y")
+	field3809(6, 1),
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3539(7, 1),
-	@ObfuscatedName("i")
+	field3806(7, 1),
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3532(8, 1),
-	@ObfuscatedName("s")
+	field3800(8, 1),
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3541(12, 2),
-	@ObfuscatedName("t")
+	field3808(12, 2),
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3542(13, 2),
-	@ObfuscatedName("z")
+	field3816(13, 2),
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3551(14, 2),
-	@ObfuscatedName("r")
+	field3805(14, 2),
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3531(15, 2),
-	@ObfuscatedName("u")
+	field3811(15, 2),
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3545(16, 2),
-	@ObfuscatedName("k")
+	field3812(16, 2),
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3546(17, 2),
-	@ObfuscatedName("h")
+	field3813(17, 2),
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3547(18, 2),
-	@ObfuscatedName("x")
+	field3814(18, 2),
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3548(19, 2),
-	@ObfuscatedName("l")
+	field3815(19, 2),
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3540(20, 2),
-	@ObfuscatedName("a")
+	field3798(20, 2),
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3550(21, 2),
-	@ObfuscatedName("p")
+	field3817(21, 2),
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3553(10, 2),
-	@ObfuscatedName("b")
+	field3818(10, 2),
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3552(11, 2),
-	@ObfuscatedName("n")
+	field3819(11, 2),
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lnl;"
 	)
-	field3544(22, 3);
+	field3820(22, 3);
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = -1096065009
+		intValue = 1321108147
 	)
 	@Export("id")
 	public final int id;
@@ -138,23 +138,87 @@ public enum WorldMapDecorationType implements MouseWheel {
 		this.id = var3; // L: 34
 	} // L: 35
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "1108588956"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 39
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("io")
 	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-1746098292"
+		descriptor = "(IIIIZS)V",
+		garbageValue = "23104"
 	)
-	@Export("isCharAlphabetic")
-	public static boolean isCharAlphabetic(char var0) {
-		return var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z'; // L: 155
-	}
+	@Export("setViewportShape")
+	static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
+		if (var2 < 1) { // L: 4801
+			var2 = 1;
+		}
+
+		if (var3 < 1) { // L: 4802
+			var3 = 1;
+		}
+
+		int var5 = var3 - 334; // L: 4803
+		int var6;
+		if (var5 < 0) { // L: 4805
+			var6 = Client.field753;
+		} else if (var5 >= 100) { // L: 4806
+			var6 = Client.field754;
+		} else {
+			var6 = (Client.field754 - Client.field753) * var5 / 100 + Client.field753; // L: 4807
+		}
+
+		int var7 = var3 * var6 * 512 / (var2 * 334); // L: 4808
+		int var8;
+		int var9;
+		short var10;
+		if (var7 < Client.field676) { // L: 4809
+			var10 = Client.field676; // L: 4810
+			var6 = var10 * var2 * 334 / (var3 * 512); // L: 4811
+			if (var6 > Client.field758) { // L: 4812
+				var6 = Client.field758; // L: 4813
+				var8 = var3 * var6 * 512 / (var10 * 334); // L: 4814
+				var9 = (var2 - var8) / 2; // L: 4815
+				if (var4) { // L: 4816
+					Rasterizer2D.Rasterizer2D_resetClip(); // L: 4817
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var9, var3, -16777216); // L: 4818
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0 + var2 - var9, var1, var9, var3, -16777216); // L: 4819
+				}
+
+				var0 += var9; // L: 4821
+				var2 -= var9 * 2; // L: 4822
+			}
+		} else if (var7 > Client.field760) { // L: 4825
+			var10 = Client.field760; // L: 4826
+			var6 = var10 * var2 * 334 / (var3 * 512); // L: 4827
+			if (var6 < Client.field757) { // L: 4828
+				var6 = Client.field757; // L: 4829
+				var8 = var10 * var2 * 334 / (var6 * 512); // L: 4830
+				var9 = (var3 - var8) / 2; // L: 4831
+				if (var4) { // L: 4832
+					Rasterizer2D.Rasterizer2D_resetClip(); // L: 4833
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var9, -16777216); // L: 4834
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var3 + var1 - var9, var2, var9, -16777216); // L: 4835
+				}
+
+				var1 += var9; // L: 4837
+				var3 -= var9 * 2; // L: 4838
+			}
+		}
+
+		Client.viewportZoom = var3 * var6 / 334; // L: 4841
+		if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) { // L: 4842
+			ArchiveDiskAction.method6660(var2, var3); // L: 4843
+		}
+
+		Client.viewportOffsetX = var0; // L: 4845
+		Client.viewportOffsetY = var1; // L: 4846
+		Client.viewportWidth = var2; // L: 4847
+		Client.viewportHeight = var3; // L: 4848
+	} // L: 4849
 }

@@ -4,30 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kd")
+@ObfuscatedName("ms")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("c")
+	@ObfuscatedName("km")
 	@ObfuscatedGetter(
-		intValue = 1382052049
+		intValue = -2062596961
+	)
+	@Export("cameraYaw")
+	static int cameraYaw;
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = 399870751
 	)
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 798305999
+		intValue = -449650399
 	)
 	@Export("x")
 	public int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -1552762679
+		intValue = 53686167
 	)
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkd;)V"
+		descriptor = "(Lms;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane; // L: 15
@@ -42,117 +48,90 @@ public class Coord {
 	} // L: 12
 
 	public Coord(int var1) {
-		if (var1 == -1) { // L: 21
+		if (var1 == -1) {
 			this.plane = -1;
 		} else {
-			this.plane = var1 >> 28 & 3; // L: 23
-			this.x = var1 >> 14 & 16383; // L: 24
-			this.y = var1 & 16383; // L: 25
+			this.plane = var1 >> 28 & 3;
+			this.x = var1 >> 14 & 16383;
+			this.y = var1 & 16383;
 		}
 
-	} // L: 27
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "34"
+		garbageValue = "-110"
 	)
 	@Export("packed")
 	public int packed() {
-		int var2 = this.plane; // L: 31
-		int var3 = this.x; // L: 32
-		int var4 = this.y; // L: 33
-		int var1 = var2 << 28 | var3 << 14 | var4; // L: 35
-		return var1; // L: 37
+		return WorldMapSection1.method5518(this.plane, this.x, this.y); // L: 30
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Lkd;I)Z",
-		garbageValue = "-326273528"
+		descriptor = "(Lms;B)Z",
+		garbageValue = "41"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
-		if (this.plane != var1.plane) { // L: 48
+		if (this.plane != var1.plane) { // L: 45
 			return false;
-		} else if (this.x != var1.x) { // L: 49
+		} else if (this.x != var1.x) { // L: 46
 			return false;
 		} else {
-			return this.y == var1.y; // L: 50
+			return this.y == var1.y; // L: 47
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "65710498"
+		garbageValue = "-1861962783"
 	)
 	@Export("toString")
 	String toString(String var1) {
-		return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63); // L: 64
+		return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63); // L: 61
 	}
 
 	public boolean equals(Object var1) {
-		if (this == var1) { // L: 42
+		if (this == var1) { // L: 39
 			return true;
 		} else {
-			return !(var1 instanceof Coord) ? false : this.equalsCoord((Coord)var1); // L: 43 44
+			return !(var1 instanceof Coord) ? false : this.equalsCoord((Coord)var1); // L: 40 41
 		}
-	}
-
-	public int hashCode() {
-		return this.packed(); // L: 56
 	}
 
 	public String toString() {
-		return this.toString(","); // L: 60
+		return this.toString(","); // L: 57
 	}
 
-	@ObfuscatedName("in")
+	public int hashCode() {
+		return this.packed(); // L: 53
+	}
+
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;I)V",
-		garbageValue = "1586830806"
+		descriptor = "(I)[Lfj;",
+		garbageValue = "987109083"
 	)
-	static void method5549(int var0, String var1) {
-		int var2 = Players.Players_count; // L: 9514
-		int[] var3 = Players.Players_indices; // L: 9515
-		boolean var4 = false; // L: 9516
-		Username var5 = new Username(var1, HealthBarDefinition.loginType); // L: 9517
+	static class130[] method6086() {
+		return new class130[]{class130.field1538, class130.field1529, class130.field1537, class130.field1528, class130.field1530, class130.field1533}; // L: 25
+	}
 
-		for (int var6 = 0; var6 < var2; ++var6) { // L: 9518
-			Player var7 = Client.players[var3[var6]]; // L: 9519
-			if (var7 != null && var7 != class101.localPlayer && var7.username != null && var7.username.equals(var5)) { // L: 9520
-				PacketBufferNode var8;
-				if (var0 == 1) { // L: 9521
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2970, Client.packetWriter.isaacCipher); // L: 9523
-					var8.packetBuffer.writeShort(var3[var6]); // L: 9524
-					var8.packetBuffer.writeByte(0); // L: 9525
-					Client.packetWriter.addNode(var8); // L: 9526
-				} else if (var0 == 4) { // L: 9528
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2991, Client.packetWriter.isaacCipher); // L: 9530
-					var8.packetBuffer.method7762(0); // L: 9531
-					var8.packetBuffer.method7863(var3[var6]); // L: 9532
-					Client.packetWriter.addNode(var8); // L: 9533
-				} else if (var0 == 6) { // L: 9535
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2965, Client.packetWriter.isaacCipher); // L: 9537
-					var8.packetBuffer.writeIntME(var3[var6]); // L: 9538
-					var8.packetBuffer.method7762(0); // L: 9539
-					Client.packetWriter.addNode(var8); // L: 9540
-				} else if (var0 == 7) { // L: 9542
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2947, Client.packetWriter.isaacCipher); // L: 9544
-					var8.packetBuffer.writeShort(var3[var6]); // L: 9545
-					var8.packetBuffer.writeByte(0); // L: 9546
-					Client.packetWriter.addNode(var8); // L: 9547
-				}
-
-				var4 = true; // L: 9549
-				break;
-			}
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lsx;",
+		garbageValue = "-98160579"
+	)
+	public static class490 method6069(int var0) {
+		int var1 = class488.field4966[var0]; // L: 19
+		if (var1 == 1) { // L: 20
+			return class490.field4981; // L: 21
+		} else if (var1 == 2) { // L: 23
+			return class490.field4975; // L: 24
+		} else {
+			return var1 == 3 ? class490.field4974 : null; // L: 26 27 29
 		}
-
-		if (!var4) { // L: 9553
-			class290.addGameMessage(4, "", "Unable to find " + var1);
-		}
-
-	} // L: 9554
+	}
 }

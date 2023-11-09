@@ -1,14 +1,15 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kn")
+@ObfuscatedName("nz")
 @Implements("Skills")
 public class Skills {
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@Export("Skills_enabled")
 	public static final boolean[] Skills_enabled;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@Export("Skills_experienceTable")
 	public static int[] Skills_experienceTable;
 
@@ -25,4 +26,38 @@ public class Skills {
 		}
 
 	} // L: 16
+
+	@ObfuscatedName("bi")
+	@ObfuscatedSignature(
+		descriptor = "(Lba;I)V",
+		garbageValue = "-2004457338"
+	)
+	@Export("PcmStream_disable")
+	static final void PcmStream_disable(PcmStream var0) {
+		var0.active = false; // L: 270
+		if (var0.sound != null) { // L: 271
+			var0.sound.position = 0;
+		}
+
+		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
+			PcmStream_disable(var1); // L: 272
+		}
+
+	} // L: 273
+
+	@ObfuscatedName("by")
+	@ObfuscatedSignature(
+		descriptor = "(ILdk;ZI)I",
+		garbageValue = "640554843"
+	)
+	static int method6637(int var0, Script var1, boolean var2) {
+		if (var0 == 6809) { // L: 5043
+			int var3 = Interpreter.Interpreter_intStack[--class336.Interpreter_intStackSize]; // L: 5044
+			ObjectComposition var4 = class59.getObjectDefinition(var3); // L: 5045
+			Interpreter.Interpreter_stringStack[++class156.Interpreter_stringStackSize - 1] = var4 != null ? var4.name : ""; // L: 5046
+			return 1; // L: 5047
+		} else {
+			return 2; // L: 5049
+		}
+	}
 }

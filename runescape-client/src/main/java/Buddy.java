@@ -4,30 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nm")
+@ObfuscatedName("qc")
 @Implements("Buddy")
 public class Buddy extends Nameable {
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "Lle;"
-	)
-	@Export("NetCache_currentResponse")
-	public static NetFileRequest NetCache_currentResponse;
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 821675641
+		intValue = 2079877291
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 1716524007
+		intValue = -990976707
 	)
 	@Export("int2")
 	public int int2;
-	@ObfuscatedName("g")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 1730087151
+		intValue = -1032310717
 	)
 	@Export("rank")
 	public int rank;
@@ -36,10 +30,10 @@ public class Buddy extends Nameable {
 		this.world = -1; // L: 4
 	} // L: 8
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("bd")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-1738253192"
+		garbageValue = "1065975564"
 	)
 	@Export("set")
 	void set(int var1, int var2) {
@@ -47,23 +41,39 @@ public class Buddy extends Nameable {
 		this.int2 = var2; // L: 12
 	} // L: 13
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("bn")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-983995080"
+		descriptor = "(B)I",
+		garbageValue = "41"
 	)
 	@Export("getWorld")
 	public int getWorld() {
 		return this.world; // L: 16
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("ba")
 	@ObfuscatedSignature(
-		descriptor = "(S)Z",
-		garbageValue = "20819"
+		descriptor = "(I)Z",
+		garbageValue = "2067963771"
 	)
 	@Export("hasWorld")
 	public boolean hasWorld() {
 		return this.world > 0; // L: 20
+	}
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(S)Lqn;",
+		garbageValue = "-8191"
+	)
+	public static class438 method7950() {
+		synchronized(class438.field4693) { // L: 27
+			if (class438.field4697 == 0) { // L: 28
+				return new class438();
+			} else {
+				class438.field4693[--class438.field4697].method8207(); // L: 30
+				return class438.field4693[class438.field4697]; // L: 31
+			}
+		}
 	}
 }
