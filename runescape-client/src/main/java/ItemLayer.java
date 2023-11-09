@@ -1,68 +1,57 @@
-import java.awt.image.BufferedImage;
-import java.awt.image.PixelGrabber;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gz")
+@ObfuscatedName("ix")
 @Implements("ItemLayer")
 public final class ItemLayer {
-	@ObfuscatedName("dz")
-	@ObfuscatedSignature(
-		descriptor = "Lcx;"
-	)
-	@Export("mouseRecorder")
-	static MouseRecorder mouseRecorder;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 1594676669
+		intValue = -228605615
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -2089256137
+		intValue = 1908534059
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1339906741
+		intValue = -1502481589
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lit;"
 	)
 	@Export("first")
 	Renderable first;
-	@ObfuscatedName("j")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lit;"
 	)
 	@Export("second")
 	Renderable second;
-	@ObfuscatedName("e")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lit;"
 	)
 	@Export("third")
 	Renderable third;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		longValue = 8752765505702022363L
+		longValue = 8507773082671382891L
 	)
 	@Export("tag")
 	long tag;
-	@ObfuscatedName("w")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -228147233
+		intValue = -1910314939
 	)
 	@Export("height")
 	int height;
@@ -70,30 +59,38 @@ public final class ItemLayer {
 	ItemLayer() {
 	} // L: 13
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "([BI)Lqe;",
-		garbageValue = "-730527050"
+		descriptor = "(I)[Ldw;",
+		garbageValue = "-986587125"
 	)
-	public static final SpritePixels method3920(byte[] var0) {
-		BufferedImage var1 = null; // L: 20
+	static AttackOption[] method4293() {
+		return new AttackOption[]{AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_hidden, AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.field1336, AttackOption.field1340}; // L: 12958
+	}
 
-		try {
-			Class var2 = ImageIO.class; // L: 22
-			synchronized(ImageIO.class) {
-				var1 = ImageIO.read(new ByteArrayInputStream(var0)); // L: 23
-			} // L: 24
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Luc;",
+		garbageValue = "643907738"
+	)
+	@Export("FillMode_values")
+	public static class525[] FillMode_values() {
+		return new class525[]{class525.SOLID, class525.field5151, class525.field5149}; // L: 15
+	}
 
-			int var6 = var1.getWidth(); // L: 25
-			int var7 = var1.getHeight(); // L: 26
-			int[] var4 = new int[var6 * var7]; // L: 27
-			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var6, var7, var4, 0, var6); // L: 28
-			var5.grabPixels(); // L: 29
-			return new SpritePixels(var4, var6, var7); // L: 30
-		} catch (IOException var9) { // L: 32
-		} catch (InterruptedException var10) { // L: 33
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;I)I",
+		garbageValue = "2136056509"
+	)
+	public static int method4292(CharSequence var0) {
+		int var1 = var0.length(); // L: 135
+		int var2 = 0; // L: 136
+
+		for (int var3 = 0; var3 < var1; ++var3) { // L: 137
+			var2 = (var2 << 5) - var2 + var0.charAt(var3);
 		}
 
-		return new SpritePixels(0, 0); // L: 34
+		return var2; // L: 138
 	}
 }

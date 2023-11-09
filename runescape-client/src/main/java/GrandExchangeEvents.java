@@ -7,22 +7,22 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ls")
+@ObfuscatedName("ng")
 @Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@Export("GrandExchangeEvents_ageComparator")
 	public static Comparator GrandExchangeEvents_ageComparator;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@Export("GrandExchangeEvents_priceComparator")
 	public static Comparator GrandExchangeEvents_priceComparator;
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@Export("GrandExchangeEvents_nameComparator")
 	public static Comparator GrandExchangeEvents_nameComparator;
-	@ObfuscatedName("j")
+	@ObfuscatedName("as")
 	@Export("GrandExchangeEvents_quantityComparator")
 	public static Comparator GrandExchangeEvents_quantityComparator;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@Export("events")
 	public final List events;
 
@@ -35,7 +35,7 @@ public class GrandExchangeEvents {
 	} // L: 67
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;Z)V",
+		descriptor = "(Lty;Z)V",
 		garbageValue = "1"
 	)
 	public GrandExchangeEvents(Buffer var1, boolean var2) {
@@ -57,10 +57,10 @@ public class GrandExchangeEvents {
 
 	} // L: 92
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Comparator;ZS)V",
-		garbageValue = "-32109"
+		descriptor = "(Ljava/util/Comparator;ZI)V",
+		garbageValue = "97179778"
 	)
 	@Export("sort")
 	public void sort(Comparator var1, boolean var2) {
@@ -71,4 +71,49 @@ public class GrandExchangeEvents {
 		}
 
 	} // L: 101
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-93"
+	)
+	@Export("savePreferences")
+	static void savePreferences() {
+		AccessFile var0 = null; // L: 141
+
+		try {
+			var0 = Decimator.getPreferencesFile("", class25.field138.name, true); // L: 143
+			Buffer var1 = class150.clientPreferences.toBuffer(); // L: 144
+			var0.write(var1.array, 0, var1.offset); // L: 145
+		} catch (Exception var3) { // L: 147
+		}
+
+		try {
+			if (var0 != null) { // L: 149
+				var0.closeSync(true); // L: 150
+			}
+		} catch (Exception var2) { // L: 153
+		}
+
+	} // L: 154
+
+	@ObfuscatedName("hw")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "40"
+	)
+	@Export("forceDisconnect")
+	static final void forceDisconnect(int var0) {
+		WorldMapScaleHandler.logOut(); // L: 3002
+		switch(var0) { // L: 3003
+		case 1:
+			class328.method6115(24); // L: 3007
+			Actor.setLoginResponseString("", "You were disconnected from the server.", ""); // L: 3008
+			break;
+		case 2:
+			class328.method6115(24); // L: 3015
+			Actor.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", ""); // L: 3016
+		}
+
+	} // L: 3021
 }

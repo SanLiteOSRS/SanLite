@@ -14,42 +14,45 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.Reflection;
 
-@ObfuscatedName("kv")
+@ObfuscatedName("nn")
 @Implements("ArchiveDiskAction")
 public class ArchiveDiskAction extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("av")
+	@Export("SpriteBuffer_pixels")
+	public static byte[][] SpriteBuffer_pixels;
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -1477037843
+		intValue = 924045263
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@Export("data")
-	public byte[] data;
-	@ObfuscatedName("q")
+	byte[] data;
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lnd;"
+		descriptor = "Lrg;"
 	)
 	@Export("archiveDisk")
-	public ArchiveDisk archiveDisk;
-	@ObfuscatedName("f")
+	ArchiveDisk archiveDisk;
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lny;"
 	)
 	@Export("archive")
-	public Archive archive;
+	Archive archive;
 
 	ArchiveDiskAction() {
 	} // L: 12
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Lpq;I)V",
-		garbageValue = "206933702"
+		descriptor = "(Ltc;B)V",
+		garbageValue = "67"
 	)
 	@Export("performReflectionCheck")
 	public static void performReflectionCheck(PacketBuffer var0) {
-		ReflectionCheck var1 = (ReflectionCheck)class33.reflectionChecks.last(); // L: 35
+		ReflectionCheck var1 = (ReflectionCheck)class36.reflectionChecks.last(); // L: 35
 		if (var1 != null) { // L: 36
 			int var2 = var0.offset; // L: 37
 			var0.writeInt(var1.id); // L: 38
@@ -119,13 +122,13 @@ public class ArchiveDiskAction extends Node {
 						var0.writeByte(-13); // L: 100
 					} catch (IllegalAccessException var17) { // L: 102
 						var0.writeByte(-14); // L: 103
-					} catch (IllegalArgumentException var18) { // L: 105
-						var0.writeByte(-15); // L: 106
+					} catch (IllegalArgumentException var18) {
+						var0.writeByte(-15);
 					} catch (InvocationTargetException var19) { // L: 108
-						var0.writeByte(-16); // L: 109
-					} catch (SecurityException var20) { // L: 111
+						var0.writeByte(-16);
+					} catch (SecurityException var20) {
 						var0.writeByte(-17); // L: 112
-					} catch (IOException var21) { // L: 114
+					} catch (IOException var21) {
 						var0.writeByte(-18); // L: 115
 					} catch (NullPointerException var22) { // L: 117
 						var0.writeByte(-19); // L: 118
@@ -142,41 +145,46 @@ public class ArchiveDiskAction extends Node {
 		}
 	} // L: 129
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "1685326414"
+		descriptor = "(I)V",
+		garbageValue = "-71491800"
 	)
-	public static String method5777(String var0) {
-		int var1 = var0.length(); // L: 167
-		char[] var2 = new char[var1]; // L: 168
-		byte var3 = 2; // L: 169
+	public static void method6681() {
+		synchronized(ArchiveDiskActionHandler.field4248) { // L: 104
+			if (ArchiveDiskActionHandler.field4246 != 0) { // L: 105
+				ArchiveDiskActionHandler.field4246 = 1; // L: 106
+				ArchiveDiskActionHandler.field4247 = true; // L: 107
 
-		for (int var4 = 0; var4 < var1; ++var4) { // L: 170
-			char var5 = var0.charAt(var4); // L: 171
-			if (var3 == 0) { // L: 172
-				var5 = Character.toLowerCase(var5);
-			} else if (var3 == 2 || Character.isUpperCase(var5)) { // L: 173
-				var5 = class326.method6050(var5);
-			}
-
-			if (Character.isLetter(var5)) { // L: 174
-				var3 = 0;
-			} else if (var5 != '.' && var5 != '?' && var5 != '!') { // L: 175
-				if (Character.isSpaceChar(var5)) { // L: 176
-					if (var3 != 2) { // L: 177
-						var3 = 1;
-					}
-				} else {
-					var3 = 1; // L: 179
+				try {
+					ArchiveDiskActionHandler.field4248.wait(); // L: 109
+				} catch (InterruptedException var3) { // L: 111
 				}
-			} else {
-				var3 = 2;
 			}
 
-			var2[var4] = var5; // L: 180
+		}
+	} // L: 114
+
+	@ObfuscatedName("kh")
+	@ObfuscatedSignature(
+		descriptor = "(IIIII)V",
+		garbageValue = "-836117707"
+	)
+	@Export("selectSpell")
+	static void selectSpell(int var0, int var1, int var2, int var3) {
+		Widget var4 = MouseRecorder.getWidgetChild(var0, var1); // L: 10050
+		if (var4 != null && var4.onTargetEnter != null) { // L: 10051
+			ScriptEvent var5 = new ScriptEvent(); // L: 10052
+			var5.widget = var4; // L: 10053
+			var5.args = var4.onTargetEnter; // L: 10054
+			GrandExchangeOfferOwnWorldComparator.runScriptEvent(var5); // L: 10055
 		}
 
-		return new String(var2); // L: 182
-	}
+		Client.selectedSpellItemId = var3; // L: 10057
+		Client.isSpellSelected = true; // L: 10058
+		class33.selectedSpellWidget = var0; // L: 10059
+		Client.selectedSpellChildIndex = var1; // L: 10060
+		PcmPlayer.selectedSpellFlags = var2; // L: 10061
+		class200.invalidateWidget(var4); // L: 10062
+	} // L: 10063
 }
