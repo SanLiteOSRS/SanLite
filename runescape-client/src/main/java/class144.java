@@ -1,22 +1,53 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("el")
-public abstract class class144 extends Node {
-	class144() {
-	} // L: 49
-
-	@ObfuscatedName("c")
+@ObfuscatedName("ev")
+public class class144 extends class135 {
+	@ObfuscatedName("a")
+	String field1653;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "Lel;"
 	)
-	abstract void vmethod3137(Buffer var1);
+	final class138 this$0;
 
-	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
+		descriptor = "(Lel;)V"
 	)
-	abstract void vmethod3138(ClanChannel var1);
+	class144(class138 var1) {
+		this.this$0 = var1; // L: 229
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(Lqr;I)V",
+		garbageValue = "-1428026624"
+	)
+	void vmethod3254(Buffer var1) {
+		this.field1653 = var1.readStringCp1252NullTerminated(); // L: 232
+		var1.readInt(); // L: 233
+	} // L: 234
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(Ler;B)V",
+		garbageValue = "-110"
+	)
+	void vmethod3248(ClanSettings var1) {
+		var1.name = this.field1653; // L: 237
+	} // L: 238
+
+	@ObfuscatedName("lb")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "1551414846"
+	)
+	static void method3062(int var0) {
+		for (IntegerNode var1 = (IntegerNode)Client.widgetFlags.first(); var1 != null; var1 = (IntegerNode)Client.widgetFlags.next()) { // L: 12580
+			if ((var1.key >> 48 & 65535L) == (long)var0) { // L: 12581
+				var1.remove(); // L: 12582
+			}
+		}
+
+	} // L: 12585
 }
