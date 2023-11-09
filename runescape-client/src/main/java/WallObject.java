@@ -4,65 +4,62 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hi")
+@ObfuscatedName("hg")
 @Implements("WallObject")
 public final class WallObject {
-	@ObfuscatedName("tr")
+	@ObfuscatedName("an")
+	static String field2768;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 274182681
-	)
-	static int field2622;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 1257114009
+		intValue = 1225941573
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -655721437
+		intValue = -962187195
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1527654875
+		intValue = -834568319
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 364149679
+		intValue = -453008145
 	)
 	@Export("orientationA")
 	int orientationA;
-	@ObfuscatedName("j")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1337588957
+		intValue = -1304759669
 	)
 	@Export("orientationB")
 	int orientationB;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lhd;"
 	)
 	@Export("renderable1")
 	public Renderable renderable1;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lhd;"
 	)
 	@Export("renderable2")
 	public Renderable renderable2;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		longValue = 5334859034127772709L
+		longValue = -7566933810645434605L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("y")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -256459155
+		intValue = -596388311
 	)
 	@Export("flags")
 	int flags;
@@ -72,100 +69,28 @@ public final class WallObject {
 		this.flags = 0; // L: 12
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("gs")
 	@ObfuscatedSignature(
-		descriptor = "(Lcw;B)V",
-		garbageValue = "-14"
+		descriptor = "(I)V",
+		garbageValue = "-1120121316"
 	)
-	@Export("runScriptEvent")
-	public static void runScriptEvent(ScriptEvent var0) {
-		class135.runScript(var0, 500000, 475000);
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "94"
-	)
-	static void method4534(int var0, int var1, int var2, int var3) {
-		for (ObjectSound var4 = (ObjectSound)ObjectSound.objectSounds.last(); var4 != null; var4 = (ObjectSound)ObjectSound.objectSounds.previous()) { // L: 93
-			if (var4.soundEffectId != -1 || var4.soundEffectIds != null) { // L: 94
-				int var5 = 0; // L: 95
-				if (var1 > var4.maxX * 128) { // L: 96
-					var5 += var1 - var4.maxX * 128;
-				} else if (var1 < var4.x * 128) { // L: 97
-					var5 += var4.x * 128 - var1;
-				}
-
-				if (var2 > var4.maxY * 16384) { // L: 98
-					var5 += var2 - var4.maxY * 16384;
-				} else if (var2 < var4.y * 16384) { // L: 99
-					var5 += var4.y * 16384 - var2;
-				}
-
-				if (var5 - 64 <= var4.field812 && class19.clientPreferences.method2262() != 0 && var0 == var4.plane) { // L: 100
-					var5 -= 64; // L: 111
-					if (var5 < 0) { // L: 112
-						var5 = 0;
-					}
-
-					int var6 = (var4.field812 - var5) * class19.clientPreferences.method2262() / var4.field812; // L: 113
-					if (var4.stream1 == null) { // L: 114
-						if (var4.soundEffectId >= 0) { // L: 115
-							SoundEffect var7 = SoundEffect.readSoundEffect(Client.archive4, var4.soundEffectId, 0); // L: 116
-							if (var7 != null) { // L: 117
-								RawSound var8 = var7.toRawSound().resample(WorldMapRegion.decimator); // L: 118
-								RawPcmStream var9 = RawPcmStream.createRawPcmStream(var8, 100, var6); // L: 119
-								var9.setNumLoops(-1); // L: 120
-								class21.pcmStreamMixer.addSubStream(var9); // L: 121
-								var4.stream1 = var9; // L: 122
-							}
-						}
-					} else {
-						var4.stream1.method790(var6); // L: 126
-					}
-
-					if (var4.stream2 == null) { // L: 127
-						if (var4.soundEffectIds != null && (var4.field809 -= var3) <= 0) { // L: 128
-							int var11 = (int)(Math.random() * (double)var4.soundEffectIds.length); // L: 129
-							SoundEffect var12 = SoundEffect.readSoundEffect(Client.archive4, var4.soundEffectIds[var11], 0); // L: 130
-							if (var12 != null) { // L: 131
-								RawSound var13 = var12.toRawSound().resample(WorldMapRegion.decimator); // L: 132
-								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var13, 100, var6); // L: 133
-								var10.setNumLoops(0); // L: 134
-								class21.pcmStreamMixer.addSubStream(var10); // L: 135
-								var4.stream2 = var10; // L: 136
-								var4.field809 = var4.field819 + (int)(Math.random() * (double)(var4.field811 - var4.field819)); // L: 137
-							}
-						}
-					} else {
-						var4.stream2.method790(var6); // L: 142
-						if (!var4.stream2.hasNext()) { // L: 143
-							var4.stream2 = null; // L: 144
-						}
-					}
-				} else {
-					if (var4.stream1 != null) { // L: 101
-						class21.pcmStreamMixer.removeSubStream(var4.stream1); // L: 102
-						var4.stream1 = null; // L: 103
-					}
-
-					if (var4.stream2 != null) { // L: 105
-						class21.pcmStreamMixer.removeSubStream(var4.stream2); // L: 106
-						var4.stream2 = null; // L: 107
-					}
-				}
-			}
+	static final void method4846() {
+		class275.method5532(WorldMapRegion.field2874, PacketWriter.field1404, WorldMapDecoration.field2970); // L: 4145
+		FloorOverlayDefinition.method4027(class135.field1629, class16.field88); // L: 4146
+		if (ClanSettings.cameraX == WorldMapRegion.field2874 && UserComparator10.cameraY == PacketWriter.field1404 && WorldMapDecoration.field2970 == class366.cameraZ && class135.field1629 == class103.cameraPitch && class16.field88 == class285.cameraYaw) { // L: 4147
+			Client.field767 = false; // L: 4148
+			Client.isCameraLocked = false; // L: 4149
+			WorldMapData_0.field2806 = 0; // L: 4150
+			Players.field1352 = 0; // L: 4151
+			FloorOverlayDefinition.field2266 = 0; // L: 4152
+			Message.field485 = 0; // L: 4153
+			AttackOption.field1320 = 0; // L: 4154
+			UserComparator7.field1444 = 0; // L: 4155
+			ModeWhere.field4340 = 0; // L: 4156
+			Occluder.field2636 = 0; // L: 4157
+			class108.field1416 = 0; // L: 4158
+			class10.field55 = 0; // L: 4159
 		}
 
-	} // L: 148
-
-	@ObfuscatedName("fp")
-	@ObfuscatedSignature(
-		descriptor = "(I)J",
-		garbageValue = "-2059501837"
-	)
-	static long method4536() {
-		return Client.field612; // L: 2945
-	}
+	} // L: 4162
 }
