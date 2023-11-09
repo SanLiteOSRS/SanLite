@@ -4,64 +4,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nh")
+@ObfuscatedName("rm")
 @Implements("FriendLoginUpdate")
 public class FriendLoginUpdate extends Link {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 105823237
+		intValue = 910859569
 	)
-	public int field4300;
-	@ObfuscatedName("v")
+	public int field4683;
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lvj;"
 	)
 	@Export("username")
 	public Username username;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@Export("world")
 	public short world;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqa;I)V"
+		descriptor = "(Lvj;I)V"
 	)
 	FriendLoginUpdate(Username var1, int var2) {
-		this.field4300 = (int)(class115.method2692() / 1000L); // L: 109
+		this.field4683 = (int)(SpotAnimationDefinition.method3775() / 1000L); // L: 109
 		this.username = var1; // L: 110
 		this.world = (short)var2; // L: 111
 	} // L: 112
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ic")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lpx;",
-		garbageValue = "-1096065009"
+		descriptor = "(Lhx;IIILdf;B)V",
+		garbageValue = "-64"
 	)
-	public static class437 method6631(int var0) {
-		class437 var1 = (class437)class437.DBRowType_cache.get((long)var0); // L: 24
-		if (var1 != null) { // L: 25
-			return var1;
-		} else {
-			byte[] var2 = class437.field4675.takeFile(38, var0); // L: 26
-			var1 = new class437(); // L: 27
-			if (var2 != null) { // L: 28
-				var1.method7635(new Buffer(var2));
-			}
+	static void method8127(SequenceDefinition var0, int var1, int var2, int var3, Actor var4) {
+		if (Client.soundEffectCount < 50) { // L: 3668
+			if (var0.field2212 != null && var0.field2212.containsKey(var1)) { // L: 3669
+				int var5 = (Integer)var0.field2212.get(var1) & 15; // L: 3670
+				if ((var5 <= 0 || WorldMapIcon_1.clientPreferences.method2605() != 0) && (var5 != 0 || WorldMapIcon_1.clientPreferences.method2556() != 0)) { // L: 3671
+					int var6 = (Integer)var0.field2212.get(var1); // L: 3672
+					boolean var9 = var4 == class229.localPlayer; // L: 3675
+					if (var6 != 0) { // L: 3677
+						int var10 = var6 & 15; // L: 3678
+						int var11;
+						int var12;
+						if (var10 == 0) { // L: 3679
+							if (!var9) { // L: 3680
+								return; // L: 3698
+							}
 
-			var1.method7636(); // L: 29
-			class437.DBRowType_cache.put(var1, (long)var0); // L: 30
-			return var1; // L: 31
+							Client.soundLocations[Client.soundEffectCount] = 0; // L: 3683
+						} else {
+							var11 = (var2 - 64) / 128; // L: 3686
+							var12 = (var3 - 64) / 128; // L: 3687
+							Client.soundLocations[Client.soundEffectCount] = var10 + (var12 << 8) + (var11 << 16); // L: 3688
+						}
+
+						var11 = var6 >> 8; // L: 3690
+						var12 = var6 >> 4 & 7; // L: 3691
+						Client.soundEffectIds[Client.soundEffectCount] = var11; // L: 3692
+						Client.queuedSoundEffectLoops[Client.soundEffectCount] = var12; // L: 3693
+						Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0; // L: 3694
+						Client.soundEffects[Client.soundEffectCount] = null; // L: 3695
+						++Client.soundEffectCount; // L: 3696
+					}
+
+				}
+			}
 		}
 	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "-1"
-	)
-	static final void method6632(String var0) {
-		StringBuilder var10000 = (new StringBuilder()).append(var0);
-		Object var10001 = null;
-		String var1 = var10000.append(" is already on your friend list").toString(); // L: 135
-		class290.addGameMessage(30, "", var1); // L: 137
-	} // L: 139
 }
