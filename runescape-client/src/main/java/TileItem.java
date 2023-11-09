@@ -4,51 +4,84 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cy")
+@ObfuscatedName("dr")
 @Implements("TileItem")
 public final class TileItem extends Renderable {
-	@ObfuscatedName("ar")
-	protected static String field1301;
-	@ObfuscatedName("aw")
-	static String field1299;
-	@ObfuscatedName("hi")
-	@ObfuscatedSignature(
-		descriptor = "Lmt;"
-	)
-	@Export("fontBold12")
-	static Font fontBold12;
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1688540919
+		intValue = 1431528945
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -895126303
+		intValue = -1218362609
 	)
 	@Export("quantity")
 	int quantity;
+	@ObfuscatedName("as")
+	@ObfuscatedGetter(
+		intValue = 788664885
+	)
+	int field1314;
 
 	TileItem() {
-	} // L: 11
+		this.field1314 = 31; // L: 11
+	} // L: 13
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhy;",
-		garbageValue = "1081110576"
+		descriptor = "(II)V",
+		garbageValue = "1751557649"
+	)
+	void method2651(int var1) {
+		this.field1314 = var1; // L: 16
+	} // L: 17
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljd;",
+		garbageValue = "-1953039490"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return EnumComposition.ItemComposition_get(this.id).getModel(this.quantity); // L: 14
+		return class300.ItemComposition_get(this.id).getModel(this.quantity); // L: 27
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1179876648"
+		descriptor = "(IB)Z",
+		garbageValue = "-52"
 	)
-	public static int method2414(int var0) {
-		return class7.method51(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 73
+	boolean method2661(int var1) {
+		if (var1 >= 0 && var1 <= 4) { // L: 20
+			return (this.field1314 & 1 << var1) != 0; // L: 21
+		} else {
+			return true; // L: 23
+		}
 	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Z",
+		garbageValue = "1"
+	)
+	@Export("isWorldMapEvent")
+	public static boolean isWorldMapEvent(int var0) {
+		return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17; // L: 19
+	}
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "8"
+	)
+	static void method2662() {
+		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) { // L: 44
+			if (var0.obj != null) { // L: 45
+				var0.set();
+			}
+		}
+
+	} // L: 47
 }
