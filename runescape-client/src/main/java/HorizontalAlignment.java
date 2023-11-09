@@ -4,35 +4,35 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fk")
+@ObfuscatedName("ho")
 @Implements("HorizontalAlignment")
-public enum HorizontalAlignment implements MouseWheel {
-	@ObfuscatedName("c")
+public enum HorizontalAlignment implements class352 {
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lho;"
 	)
-	field1910(1, 0),
-	@ObfuscatedName("v")
+	field1977(0, 0),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lho;"
 	)
 	@Export("HorizontalAlignment_centered")
 	HorizontalAlignment_centered(2, 1),
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lho;"
 	)
-	field1905(0, 2);
+	field1975(1, 2);
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = -571312605
+		intValue = 375185625
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -279458597
+		intValue = -1513901581
 	)
 	@Export("id")
 	final int id;
@@ -42,23 +42,46 @@ public enum HorizontalAlignment implements MouseWheel {
 		this.id = var4; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "-1409646049"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 24
 	}
 
-	@ObfuscatedName("jk")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "20"
+		descriptor = "(III)Lcv;",
+		garbageValue = "2046155289"
 	)
-	@Export("getTapToDrop")
-	static boolean getTapToDrop() {
-		return Client.tapToDrop; // L: 11040
+	static Script method3663(int var0, int var1) {
+		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16)); // L: 56
+		if (var2 != null) { // L: 57
+			return var2; // L: 58
+		} else {
+			String var3 = String.valueOf(var0); // L: 60
+			int var4 = class167.archive12.getGroupId(var3); // L: 61
+			if (var4 == -1) { // L: 62
+				return null; // L: 63
+			} else {
+				byte[] var5 = class167.archive12.takeFileFlat(var4); // L: 65
+				if (var5 != null) { // L: 66
+					if (var5.length <= 1) { // L: 67
+						return null; // L: 68
+					}
+
+					var2 = class4.newScript(var5); // L: 70
+					if (var2 != null) { // L: 71
+						Script.Script_cached.put(var2, (long)(var0 << 16)); // L: 72
+						return var2; // L: 73
+					}
+				}
+
+				return null; // L: 76
+			}
+		}
 	}
 }
