@@ -6,40 +6,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nc")
+@ObfuscatedName("pg")
 @Implements("BufferedSink")
 public class BufferedSink implements Runnable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -908139425
+		intValue = -215647093
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -1613116679
+		intValue = -1767803785
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -2132108273
+		intValue = 1407565077
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("g")
+	@ObfuscatedName("av")
 	@Export("exception")
 	IOException exception;
-	@ObfuscatedName("w")
+	@ObfuscatedName("aq")
 	@Export("closed")
 	boolean closed;
 
@@ -54,10 +54,10 @@ public class BufferedSink implements Runnable {
 		this.thread.start(); // L: 204
 	} // L: 205
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1872756001"
+		garbageValue = "27683152"
 	)
 	@Export("isClosed")
 	boolean isClosed() {
@@ -68,8 +68,8 @@ public class BufferedSink implements Runnable {
 					this.exception = new IOException(""); // L: 211
 				}
 			} catch (IOException var2) { // L: 213
-				if (this.exception == null) { // L: 214
-					this.exception = new IOException(var2);
+				if (this.exception == null) {
+					this.exception = new IOException(var2); // L: 214
 				}
 			}
 
@@ -79,10 +79,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "-1640336200"
+		garbageValue = "-1927805716"
 	)
 	@Export("write")
 	void write(byte[] var1, int var2, int var3) throws IOException {
@@ -119,10 +119,10 @@ public class BufferedSink implements Runnable {
 		}
 	} // L: 286
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "135"
+		descriptor = "(I)V",
+		garbageValue = "-1959704308"
 	)
 	@Export("close")
 	void close() {
@@ -197,4 +197,58 @@ public class BufferedSink implements Runnable {
 		} while(!this.isClosed()); // L: 263
 
 	}
+
+	@ObfuscatedName("io")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIIII)V",
+		garbageValue = "-1819755426"
+	)
+	static final void method7747(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		var5 = Occluder.method4563(var5, var6); // L: 5521
+		int var7 = 2048 - var3 & 2047; // L: 5522
+		int var8 = 2048 - var4 & 2047; // L: 5523
+		int var9 = 0; // L: 5524
+		int var10 = 0; // L: 5525
+		int var11 = var5; // L: 5526
+		int var12;
+		int var13;
+		int var14;
+		if (var7 != 0) { // L: 5527
+			var12 = Rasterizer3D.Rasterizer3D_sine[var7]; // L: 5528
+			var13 = Rasterizer3D.Rasterizer3D_cosine[var7]; // L: 5529
+			var14 = var10 * var13 - var12 * var5 >> 16; // L: 5530
+			var11 = var12 * var10 + var13 * var5 >> 16; // L: 5531
+			var10 = var14; // L: 5532
+		}
+
+		if (var8 != 0) { // L: 5534
+			var12 = Rasterizer3D.Rasterizer3D_sine[var8]; // L: 5535
+			var13 = Rasterizer3D.Rasterizer3D_cosine[var8]; // L: 5536
+			var14 = var12 * var11 + var9 * var13 >> 16; // L: 5537
+			var11 = var13 * var11 - var12 * var9 >> 16; // L: 5538
+			var9 = var14; // L: 5539
+		}
+
+		if (Client.isCameraLocked) { // L: 5541
+			class364.field4333 = var0 - var9; // L: 5542
+			Coord.field3432 = var1 - var10; // L: 5543
+			class307.field3449 = var2 - var11; // L: 5544
+			WorldMapRectangle.field2963 = var3; // L: 5545
+			KeyHandler.field154 = var4; // L: 5546
+		} else {
+			class381.cameraX = var0 - var9; // L: 5549
+			class351.cameraY = var1 - var10; // L: 5550
+			class471.cameraZ = var2 - var11; // L: 5551
+			class311.cameraPitch = var3; // L: 5552
+			class110.cameraYaw = var4; // L: 5553
+		}
+
+		if (Client.oculusOrbState == 1 && Client.staffModLevel >= 2 && Client.cycle % 50 == 0 && (GrandExchangeOfferOwnWorldComparator.oculusOrbFocalPointX >> 7 != BuddyRankComparator.localPlayer.x >> 7 || ReflectionCheck.oculusOrbFocalPointY >> 7 != BuddyRankComparator.localPlayer.y >> 7)) { // L: 5555 5556
+			var12 = BuddyRankComparator.localPlayer.plane; // L: 5557
+			var13 = GameEngine.baseX * 64 + (GrandExchangeOfferOwnWorldComparator.oculusOrbFocalPointX >> 7); // L: 5558
+			var14 = class178.baseY * 64 + (ReflectionCheck.oculusOrbFocalPointY >> 7); // L: 5559
+			class163.method3359(var13, var14, var12, true); // L: 5560
+		}
+
+	} // L: 5563
 }

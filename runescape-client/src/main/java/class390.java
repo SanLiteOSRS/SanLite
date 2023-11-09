@@ -1,83 +1,181 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import javax.net.ssl.HttpsURLConnection;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("of")
-public enum class390 implements MouseWheel {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lof;"
-	)
-	field4422(0, 1),
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lof;"
-	)
-	field4418(1, 2),
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Lof;"
-	)
-	field4419(3, 3),
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Lof;"
-	)
-	field4420(2, 10);
+@ObfuscatedName("pu")
+public class class390 {
+	@ObfuscatedName("ab")
+	final Map field4465;
+	@ObfuscatedName("an")
+	final Map field4468;
+	@ObfuscatedName("ao")
+	final DecimalFormat field4469;
 
-	@ObfuscatedName("tm")
-	@ObfuscatedGetter(
-		intValue = 1311264541
-	)
-	static int field4423;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = -1525922993
-	)
-	final int field4417;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = 1014236719
-	)
-	final int field4421;
-
-	class390(int var3, int var4) {
-		this.field4417 = var3; // L: 16
-		this.field4421 = var4; // L: 17
+	public class390() {
+		this.field4465 = new HashMap(); // L: 12
+		this.field4468 = new HashMap(); // L: 13
+		this.field4469 = new DecimalFormat(); // L: 14
+		this.field4469.setMaximumFractionDigits(2); // L: 17
 	} // L: 18
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(Ljavax/net/ssl/HttpsURLConnection;I)V",
+		garbageValue = "-1545289120"
 	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field4421; // L: 22
+	public void method7355(HttpsURLConnection var1) {
+		Iterator var2 = this.field4465.entrySet().iterator(); // L: 21
+
+		while (var2.hasNext()) { // L: 26
+			Entry var3 = (Entry)var2.next(); // L: 22
+			var1.setRequestProperty((String)var3.getKey(), (String)var3.getValue()); // L: 24
+		}
+
+	} // L: 27
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(B)Ljava/util/Map;",
+		garbageValue = "1"
+	)
+	public Map method7356() {
+		return this.field4465; // L: 30
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lqu;",
-		garbageValue = "14"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "-625731660"
 	)
-	static IndexedSprite method7053() {
-		IndexedSprite var0 = new IndexedSprite(); // L: 136
-		var0.width = ModelData0.SpriteBuffer_spriteWidth; // L: 137
-		var0.height = class456.SpriteBuffer_spriteHeight; // L: 138
-		var0.xOffset = class426.SpriteBuffer_xOffsets[0]; // L: 139
-		var0.yOffset = class142.SpriteBuffer_yOffsets[0]; // L: 140
-		var0.subWidth = class359.SpriteBuffer_spriteWidths[0]; // L: 141
-		var0.subHeight = class456.SpriteBuffer_spriteHeights[0]; // L: 142
-		var0.palette = class13.SpriteBuffer_spritePalette; // L: 143
-		var0.pixels = class421.SpriteBuffer_pixels[0]; // L: 144
-		class426.SpriteBuffer_xOffsets = null; // L: 146
-		class142.SpriteBuffer_yOffsets = null; // L: 147
-		class359.SpriteBuffer_spriteWidths = null; // L: 148
-		class456.SpriteBuffer_spriteHeights = null; // L: 149
-		class13.SpriteBuffer_spritePalette = null; // L: 150
-		class421.SpriteBuffer_pixels = null; // L: 151
-		return var0; // L: 153
+	public void method7359(String var1, String var2) {
+		if (var1 != null && !var1.isEmpty()) { // L: 34
+			this.field4465.put(var1, var2 != null ? var2 : ""); // L: 35
+		}
+
+	} // L: 37
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "1613794431"
+	)
+	public void method7358(String var1) {
+		if (var1 != null && !var1.isEmpty()) { // L: 40
+			this.field4465.remove(var1); // L: 41
+		}
+
+	} // L: 43
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(Loy;Ljava/lang/String;B)V",
+		garbageValue = "-64"
+	)
+	void method7393(class389 var1, String var2) {
+		String var3 = String.format("%s %s", var1.method7351(), var2); // L: 46
+		this.method7359("Authorization", var3); // L: 47
+	} // L: 48
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-512273013"
+	)
+	public void method7360(String var1) {
+		this.method7393(class389.field4463, var1); // L: 51
+	} // L: 52
+
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "1064028789"
+	)
+	public void method7357(String var1) {
+		this.method7393(class389.field4461, var1); // L: 55
+	} // L: 56
+
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(Lqn;B)V",
+		garbageValue = "4"
+	)
+	public void method7362(class431 var1) {
+		this.field4465.put("Content-Type", var1.method7965()); // L: 59
+	} // L: 60
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-72"
+	)
+	public void method7363() {
+		this.field4465.remove("Content-Type"); // L: 63
+	} // L: 64
+
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(Lqn;I)V",
+		garbageValue = "1731496941"
+	)
+	public void method7364(class431 var1) {
+		this.method7367(var1, 1.0F); // L: 67
+	} // L: 68
+
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "(Lqn;FB)V",
+		garbageValue = "36"
+	)
+	void method7367(class431 var1, float var2) {
+		this.field4468.put(var1, Math.max(0.0F, Math.min(1.0F, var2))); // L: 71
+		this.method7366(); // L: 72
+	} // L: 73
+
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-5"
+	)
+	void method7366() {
+		this.field4465.remove("Accept"); // L: 76
+		if (!this.field4468.isEmpty()) { // L: 77
+			this.field4465.put("Accept", this.method7361()); // L: 78
+		}
+
+	} // L: 80
+
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "-88"
+	)
+	String method7361() {
+		ArrayList var1 = new ArrayList(this.field4468.entrySet()); // L: 83
+		Collections.sort(var1, new class391(this)); // L: 84
+		StringBuilder var2 = new StringBuilder(); // L: 97
+		Iterator var3 = var1.iterator(); // L: 98
+
+		while (var3.hasNext()) {
+			Entry var4 = (Entry)var3.next(); // L: 99
+			if (var2.length() > 0) { // L: 101
+				var2.append(",");
+			}
+
+			var2.append(((class431)var4.getKey()).method7965()); // L: 102
+			float var5 = (Float)var4.getValue(); // L: 103
+			if (var5 < 1.0F) { // L: 104
+				String var6 = this.field4469.format((double)var5); // L: 105
+				var2.append(";q=").append(var6); // L: 106
+			}
+		}
+
+		return var2.toString(); // L: 110
 	}
 }
