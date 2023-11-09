@@ -4,48 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jt")
+@ObfuscatedName("lg")
 @Implements("PacketBufferNode")
 public class PacketBufferNode extends Node {
-	@ObfuscatedName("j")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "[Ljt;"
+		descriptor = "[Llg;"
 	)
 	@Export("PacketBufferNode_packetBufferNodes")
-	public static PacketBufferNode[] PacketBufferNode_packetBufferNodes;
-	@ObfuscatedName("e")
+	static PacketBufferNode[] PacketBufferNode_packetBufferNodes;
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 24720885
+		intValue = 380401923
 	)
 	@Export("PacketBufferNode_packetBufferNodeCount")
-	public static int PacketBufferNode_packetBufferNodeCount;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = -1221486625
-	)
-	@Export("ItemComposition_fileCount")
-	public static int ItemComposition_fileCount;
-	@ObfuscatedName("c")
+	static int PacketBufferNode_packetBufferNodeCount;
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lju;"
+		descriptor = "Llv;"
 	)
 	@Export("clientPacket")
-	public ClientPacket clientPacket;
-	@ObfuscatedName("v")
+	ClientPacket clientPacket;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -668428043
+		intValue = -1245059367
 	)
 	@Export("clientPacketLength")
-	public int clientPacketLength;
-	@ObfuscatedName("q")
+	int clientPacketLength;
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lpq;"
+		descriptor = "Lsq;"
 	)
 	@Export("packetBuffer")
 	public PacketBuffer packetBuffer;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -515140623
+		intValue = 1816684323
 	)
 	@Export("index")
 	public int index;
@@ -55,155 +49,37 @@ public class PacketBufferNode extends Node {
 		PacketBufferNode_packetBufferNodeCount = 0; // L: 14
 	}
 
-	@ObfuscatedName("q")
+	PacketBufferNode() {
+	} // L: 19
+
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-10"
+		descriptor = "(I)V",
+		garbageValue = "-2073453785"
 	)
 	@Export("release")
 	public void release() {
-		if (PacketBufferNode_packetBufferNodeCount < PacketBufferNode_packetBufferNodes.length) { // L: 61
-			PacketBufferNode_packetBufferNodes[++PacketBufferNode_packetBufferNodeCount - 1] = this; // L: 62
+		if (PacketBufferNode_packetBufferNodeCount < PacketBufferNode_packetBufferNodes.length) { // L: 50
+			PacketBufferNode_packetBufferNodes[++PacketBufferNode_packetBufferNodeCount - 1] = this; // L: 51
 		}
-	} // L: 63
+	} // L: 52
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1959147234"
+		descriptor = "(I)[Lls;",
+		garbageValue = "-1731859764"
 	)
-	public static void method5202() {
-		class33.reflectionChecks = new IterableNodeDeque(); // L: 24
-	} // L: 25
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-1179746293"
-	)
-	public static void method5200(int var0, int var1) {
-		VarbitComposition var2 = WorldMapCacheName.method5054(var0); // L: 33
-		int var3 = var2.baseVar; // L: 34
-		int var4 = var2.startBit; // L: 35
-		int var5 = var2.endBit; // L: 36
-		int var6 = Varps.Varps_masks[var5 - var4]; // L: 37
-		if (var1 < 0 || var1 > var6) { // L: 38
-			var1 = 0;
-		}
-
-		var6 <<= var4; // L: 39
-		Varps.Varps_main[var3] = Varps.Varps_main[var3] & ~var6 | var1 << var4 & var6; // L: 40
-	} // L: 41
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(CI)C",
-		garbageValue = "-936573581"
-	)
-	static char method5203(char var0) {
-		switch(var0) { // L: 93
-		case ' ':
-		case '-':
-		case '_':
-		case ' ':
-			return '_'; // L: 145
-		case '#':
-		case '[':
-		case ']':
-			return var0; // L: 157
-		case 'À':
-		case 'Á':
-		case 'Â':
-		case 'Ã':
-		case 'Ä':
-		case 'à':
-		case 'á':
-		case 'â':
-		case 'ã':
-		case 'ä':
-			return 'a'; // L: 104
-		case 'Ç':
-		case 'ç':
-			return 'c'; // L: 153
-		case 'È':
-		case 'É':
-		case 'Ê':
-		case 'Ë':
-		case 'è':
-		case 'é':
-		case 'ê':
-		case 'ë':
-			return 'e'; // L: 129
-		case 'Í':
-		case 'Î':
-		case 'Ï':
-		case 'í':
-		case 'î':
-		case 'ï':
-			return 'i'; // L: 120
-		case 'Ñ':
-		case 'ñ':
-			return 'n'; // L: 160
-		case 'Ò':
-		case 'Ó':
-		case 'Ô':
-		case 'Õ':
-		case 'Ö':
-		case 'ò':
-		case 'ó':
-		case 'ô':
-		case 'õ':
-		case 'ö':
-			return 'o'; // L: 140
-		case 'Ù':
-		case 'Ú':
-		case 'Û':
-		case 'Ü':
-		case 'ù':
-		case 'ú':
-		case 'û':
-		case 'ü':
-			return 'u'; // L: 113
-		case 'ß':
-			return 'b'; // L: 147
-		case 'ÿ':
-		case 'Ÿ':
-			return 'y'; // L: 150
-		default:
-			return Character.toLowerCase(var0); // L: 162
-		}
+	@Export("ServerPacket_values")
+	public static ServerPacket[] ServerPacket_values() {
+		return new ServerPacket[]{ServerPacket.field3260, ServerPacket.field3218, ServerPacket.field3219, ServerPacket.field3220, ServerPacket.field3225, ServerPacket.field3222, ServerPacket.field3223, ServerPacket.field3246, ServerPacket.field3267, ServerPacket.field3226, ServerPacket.field3227, ServerPacket.field3253, ServerPacket.field3229, ServerPacket.field3230, ServerPacket.field3231, ServerPacket.field3232, ServerPacket.field3305, ServerPacket.field3234, ServerPacket.field3221, ServerPacket.field3236, ServerPacket.field3237, ServerPacket.field3228, ServerPacket.field3239, ServerPacket.field3240, ServerPacket.field3304, ServerPacket.field3242, ServerPacket.field3243, ServerPacket.field3244, ServerPacket.field3245, ServerPacket.field3241, ServerPacket.field3247, ServerPacket.field3248, ServerPacket.field3321, ServerPacket.field3250, ServerPacket.field3282, ServerPacket.field3249, ServerPacket.field3300, ServerPacket.field3254, ServerPacket.field3255, ServerPacket.field3256, ServerPacket.field3257, ServerPacket.field3251, ServerPacket.field3259, ServerPacket.field3224, ServerPacket.field3309, ServerPacket.field3262, ServerPacket.field3263, ServerPacket.field3264, ServerPacket.field3261, ServerPacket.field3287, ServerPacket.field3317, ServerPacket.field3265, ServerPacket.field3325, ServerPacket.field3270, ServerPacket.field3271, ServerPacket.field3272, ServerPacket.field3233, ServerPacket.field3274, ServerPacket.field3275, ServerPacket.field3276, ServerPacket.field3277, ServerPacket.field3278, ServerPacket.field3279, ServerPacket.field3280, ServerPacket.field3281, ServerPacket.field3315, ServerPacket.field3283, ServerPacket.field3285, ServerPacket.field3235, ServerPacket.field3286, ServerPacket.field3333, ServerPacket.field3288, ServerPacket.field3289, ServerPacket.field3290, ServerPacket.field3291, ServerPacket.field3301, ServerPacket.field3258, ServerPacket.field3294, ServerPacket.field3324, ServerPacket.field3296, ServerPacket.field3314, ServerPacket.field3298, ServerPacket.field3332, ServerPacket.field3217, ServerPacket.field3329, ServerPacket.field3302, ServerPacket.field3303, ServerPacket.field3268, ServerPacket.field3292, ServerPacket.field3306, ServerPacket.field3307, ServerPacket.field3297, ServerPacket.field3336, ServerPacket.field3295, ServerPacket.field3311, ServerPacket.field3312, ServerPacket.field3313, ServerPacket.field3273, ServerPacket.field3252, ServerPacket.field3310, ServerPacket.field3266, ServerPacket.field3318, ServerPacket.field3319, ServerPacket.field3320, ServerPacket.field3238, ServerPacket.field3322, ServerPacket.field3323, ServerPacket.field3284, ServerPacket.field3326, ServerPacket.field3293, ServerPacket.field3327, ServerPacket.field3328, ServerPacket.field3269, ServerPacket.field3330, ServerPacket.field3331, ServerPacket.field3308, ServerPacket.field3316, ServerPacket.field3334, ServerPacket.field3335}; // L: 128
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-21851942"
+		descriptor = "(Ljava/lang/CharSequence;B)I",
+		garbageValue = "27"
 	)
-	public static void method5194() {
-		NPCComposition.NpcDefinition_cached.clear(); // L: 291
-		NPCComposition.NpcDefinition_cachedModels.clear(); // L: 292
-	} // L: 293
-
-	@ObfuscatedName("kh")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-1529183895"
-	)
-	static final void method5196(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 255); // L: 11840
-		if (var0 != class19.clientPreferences.method2258()) { // L: 11841
-			if (class19.clientPreferences.method2258() == 0 && Client.currentTrackGroupId != -1) { // L: 11842
-				AttackOption.method2410(class121.archive6, Client.currentTrackGroupId, 0, var0, false); // L: 11843
-				Client.playingJingle = false; // L: 11844
-			} else if (var0 == 0) { // L: 11846
-				ReflectionCheck.method579(); // L: 11847
-				Client.playingJingle = false; // L: 11848
-			} else {
-				Decimator.method1005(var0); // L: 11850
-			}
-
-			class19.clientPreferences.method2297(var0); // L: 11851
-		}
-
-	} // L: 11853
+	public static int method5709(CharSequence var0) {
+		return SecureRandomFuture.method2122(var0, 10, true); // L: 68
+	}
 }
