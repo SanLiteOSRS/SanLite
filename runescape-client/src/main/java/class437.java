@@ -1,110 +1,126 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("px")
-public class class437 extends DualNode {
-	@ObfuscatedName("c")
+@ObfuscatedName("qj")
+public final class class437 {
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "[Lqj;"
 	)
-	static AbstractArchive field4675;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lii;"
-	)
-	@Export("DBRowType_cache")
-	static EvictingDualNodeHashTable DBRowType_cache;
-	@ObfuscatedName("q")
-	Object[][] field4676;
-	@ObfuscatedName("f")
-	int[][] field4677;
-	@ObfuscatedName("j")
+	public static class437[] field4677;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1231945791
+		intValue = -971051793
 	)
-	public int field4678;
+	static int field4680;
+	@ObfuscatedName("av")
+	@ObfuscatedGetter(
+		intValue = 1349749605
+	)
+	public static int field4676;
+	@ObfuscatedName("as")
+	float field4678;
+	@ObfuscatedName("ax")
+	float field4675;
+	@ObfuscatedName("ap")
+	float field4679;
+	@ObfuscatedName("ab")
+	float field4674;
 
 	static {
-		DBRowType_cache = new EvictingDualNodeHashTable(64); // L: 11
-	}
+		field4677 = new class437[0]; // L: 4
+		field4680 = 100; // L: 10
+		field4677 = new class437[100]; // L: 11
+		field4676 = 0; // L: 12
+		new class437();
+	} // L: 18
 
-	class437() {
-	} // L: 17
+	public class437() {
+		this.method8070(); // L: 32
+	} // L: 33
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "1"
+		descriptor = "(B)V",
+		garbageValue = "50"
 	)
-	void method7635(Buffer var1) {
-		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 36
-			if (var2 == 0) { // L: 37
-				return; // L: 40
+	public void method8076() {
+		synchronized(field4677) { // L: 26
+			if (field4676 < field4680 - 1) { // L: 27
+				field4677[++field4676 - 1] = this;
 			}
 
-			this.method7627(var1, var2); // L: 38
 		}
-	}
+	} // L: 29
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(IB)[Ljava/lang/Object;",
-		garbageValue = "-23"
+		descriptor = "(FFFFI)V",
+		garbageValue = "1858320120"
 	)
-	public Object[] method7625(int var1) {
-		return this.field4676 == null ? null : this.field4676[var1]; // L: 43 44
-	}
+	void method8068(float var1, float var2, float var3, float var4) {
+		this.field4678 = var1; // L: 36
+		this.field4675 = var2; // L: 37
+		this.field4679 = var3; // L: 38
+		this.field4674 = var4; // L: 39
+	} // L: 40
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1966368366"
+		descriptor = "(FFFFS)V",
+		garbageValue = "19512"
 	)
-	void method7627(Buffer var1, int var2) {
-		if (var2 == 3) { // L: 48
-			int var3 = var1.readUnsignedByte(); // L: 49
-			if (this.field4676 == null) { // L: 50
-				this.field4676 = new Object[var3][]; // L: 51
-				this.field4677 = new int[var3][]; // L: 52
-			}
+	public void method8069(float var1, float var2, float var3, float var4) {
+		float var5 = (float)Math.sin((double)(var4 * 0.5F)); // L: 43
+		float var6 = (float)Math.cos((double)(var4 * 0.5F)); // L: 44
+		this.field4678 = var1 * var5; // L: 45
+		this.field4675 = var2 * var5; // L: 46
+		this.field4679 = var5 * var3; // L: 47
+		this.field4674 = var6; // L: 48
+	} // L: 49
 
-			for (int var4 = var1.readUnsignedByte(); var4 != 255; var4 = var1.readUnsignedByte()) { // L: 54 55 78
-				int var5 = var1.readUnsignedByte(); // L: 56
-				int[] var6 = new int[var5]; // L: 57
-
-				for (int var7 = 0; var7 < var5; ++var7) { // L: 58
-					var6[var7] = var1.readUShortSmart(); // L: 59
-				}
-
-				Object[][] var16 = this.field4676; // L: 61
-				int var10 = var1.readUShortSmart(); // L: 65
-				Object[] var11 = new Object[var6.length * var10]; // L: 66
-
-				for (int var12 = 0; var12 < var10; ++var12) { // L: 67
-					for (int var13 = 0; var13 < var6.length; ++var13) { // L: 68
-						int var14 = var13 + var6.length * var12; // L: 69
-						class432 var15 = MusicPatchNode.method5472(var6[var13]); // L: 70
-						var11[var14] = var15.method7565(var1); // L: 71
-					}
-				}
-
-				var16[var4] = var11; // L: 76
-				this.field4677[var4] = var6; // L: 77
-			}
-		} else if (var2 == 4) { // L: 81
-			this.field4678 = var1.method7754(); // L: 82
-		}
-
-	} // L: 85
-
-	@ObfuscatedName("e")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-110987764"
+		garbageValue = "978687872"
 	)
-	void method7636() {
-	} // L: 87
+	public final void method8070() {
+		this.field4679 = 0.0F; // L: 52
+		this.field4675 = 0.0F; // L: 53
+		this.field4678 = 0.0F; // L: 54
+		this.field4674 = 1.0F; // L: 55
+	} // L: 56
+
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "(Lqj;I)V",
+		garbageValue = "-682588791"
+	)
+	public final void method8071(class437 var1) {
+		this.method8068(var1.field4674 * this.field4678 + var1.field4678 * this.field4674 + this.field4679 * var1.field4675 - var1.field4679 * this.field4675, var1.field4675 * this.field4674 + (var1.field4674 * this.field4675 - var1.field4678 * this.field4679) + var1.field4679 * this.field4678, this.field4674 * var1.field4679 + (this.field4679 * var1.field4674 + this.field4675 * var1.field4678 - this.field4678 * var1.field4675), this.field4674 * var1.field4674 - var1.field4678 * this.field4678 - var1.field4675 * this.field4675 - var1.field4679 * this.field4679); // L: 59
+	} // L: 60
+
+	public String toString() {
+		return this.field4678 + "," + this.field4675 + "," + this.field4679 + "," + this.field4674; // L: 84
+	}
+
+	public boolean equals(Object var1) {
+		if (!(var1 instanceof class437)) { // L: 64
+			return false; // L: 68
+		} else {
+			class437 var2 = (class437)var1; // L: 65
+			return var2.field4678 == this.field4678 && var2.field4675 == this.field4675 && var2.field4679 == this.field4679 && this.field4674 == var2.field4674; // L: 66
+		}
+	}
+
+	public int hashCode() {
+		boolean var1 = true; // L: 73
+		float var2 = 1.0F; // L: 74
+		var2 = this.field4678 + var2 * 31.0F; // L: 75
+		var2 = 31.0F * var2 + this.field4675; // L: 76
+		var2 = this.field4679 + var2 * 31.0F; // L: 77
+		var2 = var2 * 31.0F + this.field4674; // L: 78
+		return (int)var2; // L: 79
+	}
 }
