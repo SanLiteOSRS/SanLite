@@ -1,23 +1,22 @@
 import java.io.File;
-import java.lang.management.GarbageCollectorMXBean;
-import java.lang.management.ManagementFactory;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.Hashtable;
-import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fw")
+@ObfuscatedName("ga")
 @Implements("FileSystem")
 public class FileSystem {
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@Export("FileSystem_hasPermissions")
 	static boolean FileSystem_hasPermissions;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@Export("FileSystem_cacheDir")
 	static File FileSystem_cacheDir;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@Export("FileSystem_cacheFiles")
 	static Hashtable FileSystem_cacheFiles;
 
@@ -26,158 +25,88 @@ public class FileSystem {
 		FileSystem_cacheFiles = new Hashtable(16);
 	} // L: 9
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "([FIFB)F",
-		garbageValue = "-127"
+		descriptor = "(B)[Lew;",
+		garbageValue = "-66"
 	)
-	static float method3281(float[] var0, int var1, float var2) {
-		float var3 = var0[var1]; // L: 108
-
-		for (int var4 = var1 - 1; var4 >= 0; --var4) { // L: 109
-			var3 = var2 * var3 + var0[var4]; // L: 110
-		}
-
-		return var3; // L: 112
+	static class128[] method3487() {
+		return new class128[]{class128.field1530, class128.field1534, class128.field1531, class128.field1532, class128.field1538}; // L: 117
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(CLlb;I)C",
-		garbageValue = "2136665955"
+		descriptor = "(Lnu;I)V",
+		garbageValue = "1743339101"
 	)
-	@Export("standardizeChar")
-	static char standardizeChar(char var0, Language var1) {
-		if (var0 >= 192 && var0 <= 255) { // L: 69
-			if (var0 >= 192 && var0 <= 198) { // L: 70
-				return 'A';
-			}
+	public static void method3488(AbstractArchive var0) {
+		VarpDefinition.VarpDefinition_archive = var0; // L: 18
+		VarpDefinition.field1933 = VarpDefinition.VarpDefinition_archive.getGroupFileCount(16); // L: 19
+	} // L: 20
 
-			if (var0 == 199) { // L: 71
-				return 'C';
-			}
-
-			if (var0 >= 200 && var0 <= 203) { // L: 72
-				return 'E';
-			}
-
-			if (var0 >= 204 && var0 <= 207) { // L: 73
-				return 'I';
-			}
-
-			if (var0 == 209 && var1 != Language.Language_ES) { // L: 74
-				return 'N';
-			}
-
-			if (var0 >= 210 && var0 <= 214) { // L: 75
-				return 'O';
-			}
-
-			if (var0 >= 217 && var0 <= 220) { // L: 76
-				return 'U';
-			}
-
-			if (var0 == 221) { // L: 77
-				return 'Y';
-			}
-
-			if (var0 == 223) { // L: 78
-				return 's';
-			}
-
-			if (var0 >= 224 && var0 <= 230) { // L: 79
-				return 'a';
-			}
-
-			if (var0 == 231) { // L: 80
-				return 'c';
-			}
-
-			if (var0 >= 232 && var0 <= 235) { // L: 81
-				return 'e';
-			}
-
-			if (var0 >= 236 && var0 <= 239) { // L: 82
-				return 'i';
-			}
-
-			if (var0 == 241 && var1 != Language.Language_ES) { // L: 83
-				return 'n';
-			}
-
-			if (var0 >= 242 && var0 <= 246) { // L: 84
-				return 'o';
-			}
-
-			if (var0 >= 249 && var0 <= 252) { // L: 85
-				return 'u';
-			}
-
-			if (var0 == 253 || var0 == 255) { // L: 86
-				return 'y';
-			}
-		}
-
-		if (var0 == 338) { // L: 88
-			return 'O';
-		} else if (var0 == 339) { // L: 89
-			return 'o';
-		} else if (var0 == 376) { // L: 90
-			return 'Y';
-		} else {
-			return var0; // L: 91
-		}
-	}
-
-	@ObfuscatedName("j")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1243687493"
+		descriptor = "(B)V",
+		garbageValue = "-1"
 	)
-	public static void method3282() {
-		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear(); // L: 117
-		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear(); // L: 118
-	} // L: 119
-
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1055608683"
-	)
-	@Export("getGcDuration")
-	protected static int getGcDuration() {
-		int var0 = 0; // L: 572
-		if (class162.garbageCollector == null || !class162.garbageCollector.isValid()) { // L: 573
-			try {
-				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator(); // L: 575
-
-				while (var1.hasNext()) {
-					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next(); // L: 576
-					if (var2.isValid()) { // L: 578
-						class162.garbageCollector = var2; // L: 579
-						GameEngine.garbageCollectorLastCheckTimeMs = -1L; // L: 580
-						GameEngine.garbageCollectorLastCollectionTime = -1L; // L: 581
+	static void method3489() {
+		try {
+			File var0 = new File(class36.userHomeDirectory, "random.dat"); // L: 277
+			int var2;
+			if (var0.exists()) { // L: 278
+				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0); // L: 279
+			} else {
+				label37:
+				for (int var1 = 0; var1 < JagexCache.field1867.length; ++var1) { // L: 282
+					for (var2 = 0; var2 < class402.field4514.length; ++var2) { // L: 283
+						File var3 = new File(class402.field4514[var2] + JagexCache.field1867[var1] + File.separatorChar + "random.dat"); // L: 284
+						if (var3.exists()) { // L: 285
+							JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var3, "rw", 25L), 24, 0); // L: 286
+							break label37; // L: 287
+						}
 					}
 				}
-			} catch (Throwable var11) { // L: 586
+			}
+
+			if (JagexCache.JagexCache_randomDat == null) { // L: 292
+				RandomAccessFile var4 = new RandomAccessFile(var0, "rw"); // L: 293
+				var2 = var4.read(); // L: 294
+				var4.seek(0L); // L: 295
+				var4.write(var2); // L: 296
+				var4.seek(0L); // L: 297
+				var4.close(); // L: 298
+				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0); // L: 299
+			}
+		} catch (IOException var5) { // L: 302
+		}
+
+	} // L: 303
+
+	@ObfuscatedName("ib")
+	@ObfuscatedSignature(
+		descriptor = "(Lib;IIII)V",
+		garbageValue = "-1577193721"
+	)
+	static void method3490(SequenceDefinition var0, int var1, int var2, int var3) {
+		if (Client.soundEffectCount < 50 && class449.clientPreferences.method2554() != 0) { // L: 3554
+			if (var0.soundEffects != null && var1 < var0.soundEffects.length) { // L: 3555
+				MouseHandler.method665(var0.soundEffects[var1], var2, var3); // L: 3556
+			}
+		}
+	} // L: 3557
+
+	@ObfuscatedName("or")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1893759044"
+	)
+	static void method3491() {
+		for (int var0 = 0; var0 < Client.field695.size(); ++var0) { // L: 12936
+			if (ClientPreferences.method2552((Integer)Client.field695.get(var0)) != 2) { // L: 12937
+				Client.field695.remove(var0); // L: 12938
+				--var0; // L: 12939
 			}
 		}
 
-		if (class162.garbageCollector != null) { // L: 588
-			long var9 = class115.method2692(); // L: 589
-			long var3 = class162.garbageCollector.getCollectionTime(); // L: 590
-			if (GameEngine.garbageCollectorLastCollectionTime != -1L) { // L: 591
-				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime; // L: 592
-				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs; // L: 593
-				if (0L != var7) { // L: 594
-					var0 = (int)(var5 * 100L / var7);
-				}
-			}
-
-			GameEngine.garbageCollectorLastCollectionTime = var3; // L: 596
-			GameEngine.garbageCollectorLastCheckTimeMs = var9; // L: 597
-		}
-
-		return var0; // L: 599
-	}
+	} // L: 12942
 }
