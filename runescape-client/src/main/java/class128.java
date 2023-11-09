@@ -1,31 +1,69 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dh")
-public abstract class class128 extends Node {
-	class128() {
-	} // L: 68
-
-	@ObfuscatedName("c")
+@ObfuscatedName("eu")
+public enum class128 implements class372 {
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "Leu;"
 	)
-	abstract void vmethod3150(Buffer var1);
-
-	@ObfuscatedName("v")
+	field1524(0, 0),
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "Leu;"
 	)
-	abstract void vmethod3149(ClanSettings var1);
-
-	@ObfuscatedName("c")
+	field1516(1, 1),
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Ljw;",
-		garbageValue = "182200833"
+		descriptor = "Leu;"
 	)
-	public static class262[] method2856() {
-		return new class262[]{class262.field3020, class262.field3017, class262.field3019, class262.field3018, class262.field3015, class262.field3016, class262.field3021, class262.field3022, class262.field3023, class262.field3024}; // L: 17
+	field1517(2, 2),
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Leu;"
+	)
+	field1518(3, 3),
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Leu;"
+	)
+	field1521(4, 4);
+
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = 903907795
+	)
+	final int field1520;
+	@ObfuscatedName("ag")
+	@ObfuscatedGetter(
+		intValue = -190361949
+	)
+	final int field1523;
+
+	class128(int var3, int var4) {
+		this.field1520 = var3; // L: 127
+		this.field1523 = var4; // L: 128
+	} // L: 129
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1644350448"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1523; // L: 132
+	}
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIB)I",
+		garbageValue = "-25"
+	)
+	static final int method2982(int var0, int var1, int var2, int var3) {
+		int var4 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var2 * 1024 / var3] >> 1; // L: 964
+		return ((65536 - var4) * var0 >> 16) + (var4 * var1 >> 16); // L: 965
 	}
 }
