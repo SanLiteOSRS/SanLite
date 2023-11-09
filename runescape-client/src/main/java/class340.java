@@ -3,53 +3,51 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mb")
-public class class340 {
-	@ObfuscatedName("c")
-	@Export("cp1252AsciiExtension")
-	public static final char[] cp1252AsciiExtension;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = 1921739385
-	)
-	static int field4138;
-
-	static {
-		cp1252AsciiExtension = new char[]{'€', '\u0000', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u0000', 'Ž', '\u0000', '\u0000', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u0000', 'ž', 'Ÿ'}; // L: 4
-	}
-
-	@ObfuscatedName("y")
+@ObfuscatedName("nb")
+public enum class340 implements class372 {
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;I[B[BB)V",
-		garbageValue = "13"
+		descriptor = "Lnb;"
 	)
-	@Export("Widget_setKey")
-	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
-		if (var0.field3448 == null) { // L: 998
-			if (var2 == null) { // L: 999
-				return; // L: 1005
-			}
+	field3800(0),
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lnb;"
+	)
+	field3799(1),
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lnb;"
+	)
+	field3804(2),
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "Lnb;"
+	)
+	field3801(3),
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Lnb;"
+	)
+	field3802(4);
 
-			var0.field3448 = new byte[11][]; // L: 1000
-			var0.field3406 = new byte[11][]; // L: 1001
-			var0.field3450 = new int[11]; // L: 1002
-			var0.field3451 = new int[11]; // L: 1003
-		}
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = -1101402369
+	)
+	final int field3803;
 
-		var0.field3448[var1] = var2; // L: 1007
-		if (var2 != null) {
-			var0.field3498 = true; // L: 1008
-		} else {
-			var0.field3498 = false; // L: 1010
+	class340(int var3) {
+		this.field3803 = var3; // L: 14
+	} // L: 15
 
-			for (int var4 = 0; var4 < var0.field3448.length; ++var4) { // L: 1011
-				if (var0.field3448[var4] != null) { // L: 1012
-					var0.field3498 = true; // L: 1013
-					break;
-				}
-			}
-		}
-
-		var0.field3406[var1] = var3; // L: 1018
-	} // L: 1019
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1644350448"
+	)
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field3803; // L: 19
+	}
 }

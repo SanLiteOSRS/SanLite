@@ -1,63 +1,64 @@
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bi")
+@ObfuscatedName("dc")
 @Implements("Script")
 public class Script extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Lld;"
 	)
 	@Export("Script_cached")
 	static EvictingDualNodeHashTable Script_cached;
-	@ObfuscatedName("o")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1079051883
+		intValue = 843151793
 	)
-	@Export("canvasWidth")
-	public static int canvasWidth;
-	@ObfuscatedName("v")
-	String field967;
-	@ObfuscatedName("q")
+	@Export("loginBoxCenter")
+	static int loginBoxCenter;
+	@ObfuscatedName("gi")
+	static String field1003;
+	@ObfuscatedName("ay")
+	String field993;
+	@ObfuscatedName("ar")
 	@Export("opcodes")
 	int[] opcodes;
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@Export("intOperands")
 	int[] intOperands;
-	@ObfuscatedName("j")
+	@ObfuscatedName("as")
 	@Export("stringOperands")
 	String[] stringOperands;
-	@ObfuscatedName("e")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 762574265
+		intValue = 1850120873
 	)
 	@Export("localIntCount")
 	int localIntCount;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -1282940193
+		intValue = -1710224679
 	)
 	@Export("localStringCount")
 	int localStringCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -1341494055
+		intValue = -1207485643
 	)
 	@Export("intArgumentCount")
 	int intArgumentCount;
-	@ObfuscatedName("y")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = 2092128287
+		intValue = -1546918135
 	)
 	@Export("stringArgumentCount")
 	int stringArgumentCount;
-	@ObfuscatedName("i")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "[Lpb;"
+		descriptor = "[Lsa;"
 	)
 	@Export("switches")
 	IterableNodeHashTable[] switches;
@@ -69,119 +70,56 @@ public class Script extends DualNode {
 	Script() {
 	} // L: 23
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lpb;",
-		garbageValue = "-1127899828"
+		descriptor = "(II)[Lsa;",
+		garbageValue = "1100527320"
 	)
 	@Export("newIterableNodeHashTable")
 	IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
-		return new IterableNodeHashTable[var1]; // L: 127
+		return new IterableNodeHashTable[var1]; // L: 128
 	}
 
-	@ObfuscatedName("go")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lcj;B)V",
-		garbageValue = "3"
+		descriptor = "(CI)Z",
+		garbageValue = "-1835095730"
 	)
-	static final void method1977(Actor var0) {
-		if (var0.field1129 != 0) { // L: 4279
-			if (var0.targetIndex != -1) { // L: 4280
-				Object var1 = null; // L: 4281
-				if (var0.targetIndex < 32768) { // L: 4282
-					var1 = Client.npcs[var0.targetIndex];
-				} else if (var0.targetIndex >= 32768) { // L: 4283
-					var1 = Client.players[var0.targetIndex - 32768];
-				}
+	public static boolean method2169(char var0) {
+		if (var0 >= ' ' && var0 < 127 || var0 > 127 && var0 < 160 || var0 > 160 && var0 <= 255) { // L: 45
+			return true;
+		} else {
+			if (var0 != 0) { // L: 46
+				char[] var1 = class385.cp1252AsciiExtension; // L: 48
 
-				if (var1 != null) { // L: 4284
-					int var2 = var0.x - ((Actor)var1).x; // L: 4285
-					int var3 = var0.y - ((Actor)var1).y; // L: 4286
-					if (var2 != 0 || var3 != 0) { // L: 4287
-						var0.orientation = (int)(Math.atan2((double)var2, (double)var3) * 325.949D) & 2047;
-					}
-				} else if (var0.false0) { // L: 4289
-					var0.targetIndex = -1; // L: 4290
-					var0.false0 = false; // L: 4291
-				}
-			}
-
-			if (var0.field1165 != -1 && (var0.pathLength == 0 || var0.field1202 > 0)) { // L: 4294
-				var0.orientation = var0.field1165; // L: 4295
-				var0.field1165 = -1; // L: 4296
-			}
-
-			int var4 = var0.orientation - var0.rotation & 2047; // L: 4298
-			if (var4 == 0 && var0.false0) { // L: 4299
-				var0.targetIndex = -1; // L: 4300
-				var0.false0 = false; // L: 4301
-			}
-
-			if (var4 != 0) { // L: 4303
-				++var0.field1196; // L: 4304
-				boolean var6;
-				if (var4 > 1024) { // L: 4305
-					var0.rotation -= var0.field1161 ? var4 : var0.field1129; // L: 4306
-					var6 = true; // L: 4307
-					if (var4 < var0.field1129 || var4 > 2048 - var0.field1129) { // L: 4308
-						var0.rotation = var0.orientation; // L: 4309
-						var6 = false; // L: 4310
-					}
-
-					if (!var0.field1161 && var0.idleSequence == var0.movementSequence && (var0.field1196 > 25 || var6)) { // L: 4312
-						if (var0.turnLeftSequence != -1) { // L: 4313
-							var0.movementSequence = var0.turnLeftSequence;
-						} else {
-							var0.movementSequence = var0.walkSequence; // L: 4314
-						}
-					}
-				} else {
-					var0.rotation += var0.field1161 ? var4 : var0.field1129; // L: 4318
-					var6 = true; // L: 4319
-					if (var4 < var0.field1129 || var4 > 2048 - var0.field1129) { // L: 4320
-						var0.rotation = var0.orientation; // L: 4321
-						var6 = false; // L: 4322
-					}
-
-					if (!var0.field1161 && var0.movementSequence == var0.idleSequence && (var0.field1196 > 25 || var6)) { // L: 4324
-						if (var0.turnRightSequence != -1) { // L: 4325
-							var0.movementSequence = var0.turnRightSequence;
-						} else {
-							var0.movementSequence = var0.walkSequence; // L: 4326
-						}
+				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 49
+					char var3 = var1[var2]; // L: 50
+					if (var0 == var3) { // L: 52
+						return true; // L: 53
 					}
 				}
-
-				var0.rotation &= 2047; // L: 4330
-				var0.field1161 = false; // L: 4331
-			} else {
-				var0.field1196 = 0; // L: 4333
 			}
 
+			return false; // L: 59
 		}
-	} // L: 4334
+	}
 
-	@ObfuscatedName("hq")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "302270289"
+		descriptor = "(I)Luu;",
+		garbageValue = "-2099566519"
 	)
-	static final void method1978(boolean var0) {
-		Renderable.playPcmPlayers(); // L: 5708
-		++Client.packetWriter.pendingWrites; // L: 5709
-		if (Client.packetWriter.pendingWrites >= 50 || var0) { // L: 5710
-			Client.packetWriter.pendingWrites = 0; // L: 5711
-			if (!Client.hadNetworkError && Client.packetWriter.getSocket() != null) { // L: 5712
-				PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2969, Client.packetWriter.isaacCipher); // L: 5714
-				Client.packetWriter.addNode(var1); // L: 5715
-
-				try {
-					Client.packetWriter.flush(); // L: 5717
-				} catch (IOException var3) { // L: 5719
-					Client.hadNetworkError = true; // L: 5720
-				}
-			}
-
-		}
-	} // L: 5723
+	static IndexedSprite method2172() {
+		IndexedSprite var0 = new IndexedSprite(); // L: 177
+		var0.width = class528.SpriteBuffer_spriteWidth; // L: 178
+		var0.height = class528.SpriteBuffer_spriteHeight; // L: 179
+		var0.xOffset = class492.SpriteBuffer_xOffsets[0]; // L: 180
+		var0.yOffset = class134.SpriteBuffer_yOffsets[0]; // L: 181
+		var0.subWidth = class172.SpriteBuffer_spriteWidths[0]; // L: 182
+		var0.subHeight = class528.SpriteBuffer_spriteHeights[0]; // L: 183
+		var0.palette = class528.SpriteBuffer_spritePalette; // L: 184
+		var0.pixels = ArchiveDiskAction.SpriteBuffer_pixels[0]; // L: 185
+		class506.method8985(); // L: 186
+		return var0; // L: 187
+	}
 }

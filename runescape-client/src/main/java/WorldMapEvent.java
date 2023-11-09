@@ -4,35 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iy")
+@ObfuscatedName("kl")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-	@ObfuscatedName("eg")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	static Archive field2882;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 285885713
+		intValue = 1659239405
 	)
 	@Export("mapElement")
 	public int mapElement;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lmr;"
 	)
 	@Export("coord1")
 	public Coord coord1;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lmr;"
 	)
 	@Export("coord2")
 	public Coord coord2;
 
 	@ObfuscatedSignature(
-		descriptor = "(ILkd;Lkd;)V"
+		descriptor = "(ILmr;Lmr;)V"
 	)
 	public WorldMapEvent(int var1, Coord var2, Coord var3) {
 		this.mapElement = var1; // L: 11
@@ -40,46 +35,39 @@ public class WorldMapEvent {
 		this.coord2 = var3; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(DDIB)[D",
-		garbageValue = "-87"
+		descriptor = "(III)I",
+		garbageValue = "-1720811535"
 	)
-	public static double[] method5119(double var0, double var2, int var4) {
-		int var5 = var4 * 2 + 1; // L: 18
-		double[] var6 = new double[var5]; // L: 19
-		int var7 = -var4;
-
-		for (int var8 = 0; var7 <= var4; ++var8) {
-			var6[var8] = class357.method6530((double)var7, var0, var2); // L: 21
-			++var7; // L: 20
+	public static int method5646(int var0, int var1) {
+		int var2;
+		for (var2 = 0; var1 > 0; --var1) { // L: 98 99 102
+			var2 = var2 << 1 | var0 & 1; // L: 100
+			var0 >>>= 1; // L: 101
 		}
 
-		return var6; // L: 23
+		return var2; // L: 104
 	}
 
-	@ObfuscatedName("kb")
+	@ObfuscatedName("nz")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-2116126418"
+		descriptor = "(Lmt;B)Lmt;",
+		garbageValue = "84"
 	)
-	static final void method5120(int var0) {
-		var0 = Math.max(Math.min(var0, 100), 0); // L: 11823
-		var0 = 100 - var0; // L: 11824
-		float var1 = (float)var0 / 200.0F + 0.5F; // L: 11825
-		Rasterizer3D.Rasterizer3D_setBrightness((double)var1); // L: 11827
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness((double)var1); // L: 11828
-		Projectile.method1959(); // L: 11829
-		class19.clientPreferences.method2255((double)var1); // L: 11830
-	} // L: 11832
+	static Widget method5647(Widget var0) {
+		int var1 = ClientPacket.method5723(UserComparator8.getWidgetFlags(var0)); // L: 12713
+		if (var1 == 0) { // L: 12714
+			return null;
+		} else {
+			for (int var2 = 0; var2 < var1; ++var2) { // L: 12715
+				var0 = VarbitComposition.getWidget(var0.parentId); // L: 12716
+				if (var0 == null) { // L: 12717
+					return null;
+				}
+			}
 
-	@ObfuscatedName("kn")
-	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "124"
-	)
-	static final void method5121(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 127); // L: 11861
-		class19.clientPreferences.method2341(var0); // L: 11862
-	} // L: 11863
+			return var0; // L: 12719
+		}
+	}
 }

@@ -1,66 +1,113 @@
 import java.net.URL;
-import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("ei")
 @Implements("UrlRequest")
 public class UrlRequest {
-	@ObfuscatedName("us")
-	static List field1373;
-	@ObfuscatedName("c")
-	@Export("url")
-	final URL url;
-	@ObfuscatedName("v")
-	@Export("isDone0")
-	volatile boolean isDone0;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = -912482897
+	)
+	static int field1435;
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = -1301970509
+	)
+	static int field1441;
+	@ObfuscatedName("aw")
+	final URL field1436;
+	@ObfuscatedName("am")
+	@ObfuscatedGetter(
+		intValue = 872753895
+	)
+	volatile int field1437;
+	@ObfuscatedName("as")
 	@Export("response0")
 	volatile byte[] response0;
 
-	UrlRequest(URL var1) {
-		this.url = var1; // L: 118
-	} // L: 119
+	static {
+		field1435 = -1; // L: 133
+		field1441 = -2; // L: 134
+	}
 
-	@ObfuscatedName("c")
+	UrlRequest(URL var1) {
+		this.field1437 = field1435; // L: 135
+		this.field1436 = var1; // L: 139
+	} // L: 140
+
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-60"
+		descriptor = "(I)Z",
+		garbageValue = "-1097483800"
 	)
 	@Export("isDone")
 	public boolean isDone() {
-		return this.isDone0; // L: 122
+		return this.field1437 != field1435; // L: 143
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
 		descriptor = "(I)[B",
-		garbageValue = "-1112773966"
+		garbageValue = "114961803"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
-		return this.response0; // L: 126
+		return this.response0; // L: 147
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-2136536725"
+		garbageValue = "-1911821505"
 	)
-	public String method2553() {
-		return this.url.toString(); // L: 130
+	public String method2839() {
+		return this.field1436.toString(); // L: 151
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(ZZI)I",
-		garbageValue = "-1626715483"
+		descriptor = "(IB)I",
+		garbageValue = "12"
 	)
-	public static int method2557(boolean var0, boolean var1) {
-		byte var2 = 0; // L: 143
-		int var3 = var2 + NetCache.NetCache_pendingPriorityWritesCount + NetCache.NetCache_pendingPriorityResponsesCount; // L: 144
-		return var3; // L: 145
+	public static int method2837(int var0) {
+		--var0; // L: 63
+		var0 |= var0 >>> 1; // L: 64
+		var0 |= var0 >>> 2; // L: 65
+		var0 |= var0 >>> 4; // L: 66
+		var0 |= var0 >>> 8; // L: 67
+		var0 |= var0 >>> 16; // L: 68
+		return var0 + 1; // L: 69
+	}
+
+	@ObfuscatedName("nl")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;ZB)Ljava/lang/String;",
+		garbageValue = "80"
+	)
+	static String method2850(String var0, boolean var1) {
+		String var2 = var1 ? "https://" : "http://"; // L: 12748
+		if (Client.gameBuild == 1) { // L: 12749
+			var0 = var0 + "-wtrc";
+		} else if (Client.gameBuild == 2) { // L: 12750
+			var0 = var0 + "-wtqa";
+		} else if (Client.gameBuild == 3) { // L: 12751
+			var0 = var0 + "-wtwip";
+		} else if (Client.gameBuild == 5) { // L: 12752
+			var0 = var0 + "-wti";
+		} else if (Client.gameBuild == 4) { // L: 12753
+			var0 = "local";
+		}
+
+		String var3 = ""; // L: 12754
+		if (class36.field263 != null) { // L: 12755
+			var3 = "/p=" + class36.field263;
+		}
+
+		String var4 = "runescape.com"; // L: 12756
+		return var2 + var0 + "." + var4 + "/l=" + Interpreter.clientLanguage + "/a=" + PcmPlayer.field299 + var3 + "/"; // L: 12757
 	}
 }

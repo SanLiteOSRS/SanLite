@@ -4,61 +4,69 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fk")
+@ObfuscatedName("hz")
 @Implements("HorizontalAlignment")
-public enum HorizontalAlignment implements MouseWheel {
-	@ObfuscatedName("c")
+public enum HorizontalAlignment implements class372 {
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lhz;"
 	)
-	field1910(1, 0),
-	@ObfuscatedName("v")
+	field1989(1, 0),
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lhz;"
 	)
 	@Export("HorizontalAlignment_centered")
-	HorizontalAlignment_centered(2, 1),
-	@ObfuscatedName("q")
+	HorizontalAlignment_centered(0, 1),
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lhz;"
 	)
-	field1905(0, 2);
+	field1985(2, 2);
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -571312605
+		intValue = -1696553751
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("j")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = -279458597
+		intValue = 29547921
 	)
 	@Export("id")
 	final int id;
 
 	HorizontalAlignment(int var3, int var4) {
-		this.value = var3; // L: 18
-		this.id = var4; // L: 19
-	} // L: 20
+		this.value = var3; // L: 14
+		this.id = var4; // L: 15
+	} // L: 16
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "1644350448"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 24
+		return this.id; // L: 20
 	}
 
-	@ObfuscatedName("jk")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "20"
+		descriptor = "(I)Z",
+		garbageValue = "-858932897"
 	)
-	@Export("getTapToDrop")
-	static boolean getTapToDrop() {
-		return Client.tapToDrop; // L: 11040
+	public static boolean method3701() {
+		return !class306.field3398.isEmpty(); // L: 137
 	}
+
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		descriptor = "(Lbj;I)V",
+		garbageValue = "-539334926"
+	)
+	public static final void method3697(class51 var0) {
+		class309.pcmPlayerProvider = var0; // L: 43
+	} // L: 44
 }

@@ -3,18 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nj")
+@ObfuscatedName("qg")
 @Implements("FriendsChatMember")
 public class FriendsChatMember extends Buddy {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lqj;"
 	)
 	@Export("friend")
 	TriBool friend;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lqj;"
 	)
 	@Export("ignored")
 	TriBool ignored;
@@ -24,20 +24,20 @@ public class FriendsChatMember extends Buddy {
 		this.ignored = TriBool.TriBool_unknown; // L: 7
 	} // L: 9
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-2088884239"
+		descriptor = "(B)V",
+		garbageValue = "67"
 	)
 	@Export("clearIsFriend")
 	void clearIsFriend() {
 		this.friend = TriBool.TriBool_unknown; // L: 12
 	} // L: 13
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-138013262"
+		garbageValue = "-2011263729"
 	)
 	@Export("isFriend")
 	public final boolean isFriend() {
@@ -48,30 +48,30 @@ public class FriendsChatMember extends Buddy {
 		return this.friend == TriBool.TriBool_true; // L: 19
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-43"
+		descriptor = "(I)V",
+		garbageValue = "-1028184707"
 	)
 	@Export("fillIsFriend")
 	void fillIsFriend() {
-		this.friend = Player.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 23
+		this.friend = class177.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 23
 	} // L: 24
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1504039009"
+		descriptor = "(B)V",
+		garbageValue = "-24"
 	)
 	@Export("clearIsIgnored")
 	void clearIsIgnored() {
 		this.ignored = TriBool.TriBool_unknown; // L: 27
-	}
+	} // L: 28
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-61"
+		descriptor = "(I)Z",
+		garbageValue = "1660942663"
 	)
 	@Export("isIgnored")
 	public final boolean isIgnored() {
@@ -82,22 +82,51 @@ public class FriendsChatMember extends Buddy {
 		return this.ignored == TriBool.TriBool_true; // L: 34
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "2033430026"
+		garbageValue = "1198262183"
 	)
 	@Export("fillIsIgnored")
 	void fillIsIgnored() {
-		this.ignored = Player.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 38
+		this.ignored = class177.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 38
 	} // L: 39
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("hr")
 	@ObfuscatedSignature(
 		descriptor = "(IB)I",
-		garbageValue = "34"
+		garbageValue = "3"
 	)
-	public static int method6650(int var0) {
-		return class401.field4442[var0 & 16383]; // L: 28
+	static int method7946(int var0) {
+		return var0 * 3 + 600; // L: 1472
+	}
+
+	@ObfuscatedName("mg")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "784115253"
+	)
+	static final void method7938(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 127); // L: 12292
+		class150.clientPreferences.updateSoundEffectVolume(var0); // L: 12293
+	} // L: 12294
+
+	@ObfuscatedName("ol")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "779330688"
+	)
+	static String method7947(String var0) {
+		PlayerType[] var1 = PendingSpawn.PlayerType_values(); // L: 12870
+
+		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12871
+			PlayerType var3 = var1[var2]; // L: 12872
+			if (var3.modIcon != -1 && var0.startsWith(SecureRandomCallable.method2253(var3.modIcon))) { // L: 12874 12875
+				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length()); // L: 12876
+				break;
+			}
+		}
+
+		return var0; // L: 12883
 	}
 }
