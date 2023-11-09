@@ -4,72 +4,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ca")
+@ObfuscatedName("cn")
 @Implements("Players")
 public class Players {
-	@ObfuscatedName("q")
-	static byte[] field1311;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "[Lgn;"
-	)
-	static class192[] field1304;
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "[Lqt;"
-	)
-	static Buffer[] field1307;
-	@ObfuscatedName("e")
+	@ObfuscatedName("tt")
 	@ObfuscatedGetter(
-		intValue = 698385475
+		intValue = 994098816
+	)
+	static int field1352;
+	@ObfuscatedName("v")
+	static byte[] field1353;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "[Lhz;"
+	)
+	static class208[] field1340;
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		descriptor = "[Lrd;"
+	)
+	static Buffer[] field1341;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = -1794629455
 	)
 	@Export("Players_count")
 	static int Players_count;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@Export("Players_indices")
 	static int[] Players_indices;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 581177589
+		intValue = 417558415
 	)
 	@Export("Players_emptyIdxCount")
 	static int Players_emptyIdxCount;
-	@ObfuscatedName("y")
+	@ObfuscatedName("l")
 	@Export("Players_emptyIndices")
 	static int[] Players_emptyIndices;
-	@ObfuscatedName("i")
+	@ObfuscatedName("k")
 	@Export("Players_regions")
 	static int[] Players_regions;
-	@ObfuscatedName("s")
+	@ObfuscatedName("c")
 	@Export("Players_orientations")
 	static int[] Players_orientations;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@Export("Players_targetIndices")
 	static int[] Players_targetIndices;
-	@ObfuscatedName("z")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1123966373
+		intValue = -542142145
 	)
 	@Export("Players_pendingUpdateCount")
 	static int Players_pendingUpdateCount;
-	@ObfuscatedName("r")
+	@ObfuscatedName("m")
 	@Export("Players_pendingUpdateIndices")
 	static int[] Players_pendingUpdateIndices;
-	@ObfuscatedName("u")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "Lqt;"
+		descriptor = "Lrd;"
 	)
-	static Buffer field1317;
-	@ObfuscatedName("bp")
-	@ObfuscatedSignature(
-		descriptor = "Lka;"
-	)
-	static GameBuild field1305;
+	static Buffer field1351;
 
 	static {
-		field1311 = new byte[2048]; // L: 18
-		field1304 = new class192[2048]; // L: 19
-		field1307 = new Buffer[2048]; // L: 20
+		field1353 = new byte[2048]; // L: 18
+		field1340 = new class208[2048]; // L: 19
+		field1341 = new Buffer[2048]; // L: 20
 		Players_count = 0; // L: 21
 		Players_indices = new int[2048]; // L: 22
 		Players_emptyIdxCount = 0; // L: 23
@@ -79,87 +79,101 @@ public class Players {
 		Players_targetIndices = new int[2048]; // L: 27
 		Players_pendingUpdateCount = 0; // L: 28
 		Players_pendingUpdateIndices = new int[2048]; // L: 29
-		field1317 = new Buffer(new byte[5000]); // L: 30
+		field1351 = new Buffer(new byte[5000]);
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;IIIIIII)V",
-		garbageValue = "1254271887"
+		descriptor = "(ILoi;Llm;I)V",
+		garbageValue = "-1261818676"
 	)
-	@Export("loadTerrain")
-	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var7;
-		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) { // L: 145
-			Tiles.Tiles_renderFlags[var1][var2][var3] = 0; // L: 146
+	static void method2749(int var0, ArchiveDisk var1, Archive var2) {
+		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 30
+		var3.type = 1; // L: 31
+		var3.key = (long)var0; // L: 32
+		var3.archiveDisk = var1; // L: 33
+		var3.archive = var2; // L: 34
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 35
+			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 36
+		} // L: 37
 
-			while (true) {
-				var7 = var0.readUnsignedByte(); // L: 148
-				if (var7 == 0) { // L: 149
-					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -class14.method156(var2 + 932731 + var4, 556238 + var3 + var5) * 8; // L: 150
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240; // L: 151
-					}
-					break;
+		class288.method5590(); // L: 38
+	} // L: 39
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(IB)I",
+		garbageValue = "4"
+	)
+	public static int method2734(int var0) {
+		return DecorativeObject.method4863(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 52
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(Lbw;Lbw;IZI)I",
+		garbageValue = "1916884447"
+	)
+	@Export("compareWorlds")
+	static int compareWorlds(World var0, World var1, int var2, boolean var3) {
+		if (var2 == 1) { // L: 221
+			int var4 = var0.population; // L: 222
+			int var5 = var1.population; // L: 223
+			if (!var3) { // L: 224
+				if (var4 == -1) { // L: 225
+					var4 = 2001;
 				}
 
-				if (var7 == 1) { // L: 154
-					int var8 = var0.readUnsignedByte(); // L: 155
-					if (var8 == 1) { // L: 156
-						var8 = 0;
-					}
-
-					if (var1 == 0) { // L: 157
-						Tiles.Tiles_heights[0][var2][var3] = -var8 * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var8 * 8; // L: 158
-					}
-					break;
+				if (var5 == -1) { // L: 226
+					var5 = 2001;
 				}
+			}
 
-				if (var7 <= 49) { // L: 161
-					Tiles.Tiles_overlays[var1][var2][var3] = var0.readByte(); // L: 162
-					Tiles.Tiles_shapes[var1][var2][var3] = (byte)((var7 - 2) / 4); // L: 163
-					Tiles.field996[var1][var2][var3] = (byte)(var7 - 2 + var6 & 3); // L: 164
-				} else if (var7 <= 81) { // L: 167
-					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var7 - 49); // L: 168
+			return var4 - var5; // L: 228
+		} else if (var2 == 2) { // L: 230
+			return var0.location - var1.location;
+		} else if (var2 == 3) { // L: 231
+			if (var0.activity.equals("-")) { // L: 232
+				if (var1.activity.equals("-")) { // L: 233
+					return 0;
 				} else {
-					Tiles.Tiles_underlays[var1][var2][var3] = (byte)(var7 - 81); // L: 171
+					return var3 ? -1 : 1; // L: 234
 				}
+			} else if (var1.activity.equals("-")) { // L: 236
+				return var3 ? 1 : -1;
+			} else {
+				return var0.activity.compareTo(var1.activity); // L: 237
 			}
+		} else if (var2 == 4) { // L: 239
+			return var0.method1789() ? (var1.method1789() ? 0 : 1) : (var1.method1789() ? -1 : 0);
+		} else if (var2 == 5) { // L: 240
+			return var0.method1823() ? (var1.method1823() ? 0 : 1) : (var1.method1823() ? -1 : 0);
+		} else if (var2 == 6) { // L: 241
+			return var0.isPvp() ? (var1.isPvp() ? 0 : 1) : (var1.isPvp() ? -1 : 0);
+		} else if (var2 == 7) { // L: 242
+			return var0.isMembersOnly() ? (var1.isMembersOnly() ? 0 : 1) : (var1.isMembersOnly() ? -1 : 0);
 		} else {
-			while (true) {
-				var7 = var0.readUnsignedByte(); // L: 176
-				if (var7 == 0) { // L: 177
-					break;
-				}
-
-				if (var7 == 1) { // L: 178
-					var0.readUnsignedByte(); // L: 179
-					break;
-				}
-
-				if (var7 <= 49) { // L: 182
-					var0.readUnsignedByte();
-				}
-			}
+			return var0.id - var1.id; // L: 243
 		}
+	}
 
-	} // L: 185
-
-	@ObfuscatedName("le")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "94"
+		descriptor = "(III)I",
+		garbageValue = "-1515481571"
 	)
-	@Export("Clan_joinChat")
-	static final void Clan_joinChat(String var0) {
-		if (!var0.equals("")) { // L: 12233
-			PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2942, Client.packetWriter.isaacCipher); // L: 12235
-			var1.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0)); // L: 12236
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12237
-			Client.packetWriter.addNode(var1); // L: 12238
+	static final int method2742(int var0, int var1) {
+		if (var0 == -1) { // L: 1001
+			return 12345678;
+		} else {
+			var1 = (var0 & 127) * var1 / 128; // L: 1002
+			if (var1 < 2) { // L: 1003
+				var1 = 2;
+			} else if (var1 > 126) { // L: 1004
+				var1 = 126;
+			}
+
+			return (var0 & 65408) + var1; // L: 1005
 		}
-	} // L: 12239
+	}
 }
