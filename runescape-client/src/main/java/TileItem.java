@@ -4,51 +4,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cy")
+@ObfuscatedName("et")
 @Implements("TileItem")
 public final class TileItem extends Renderable {
-	@ObfuscatedName("ar")
-	protected static String field1301;
-	@ObfuscatedName("aw")
-	static String field1299;
-	@ObfuscatedName("hi")
+	@ObfuscatedName("by")
+	@Export("client")
 	@ObfuscatedSignature(
-		descriptor = "Lmt;"
+		descriptor = "Lclient;"
 	)
-	@Export("fontBold12")
-	static Font fontBold12;
-	@ObfuscatedName("c")
+	static Client client;
+	@ObfuscatedName("fl")
+	@ObfuscatedSignature(
+		descriptor = "Lny;"
+	)
+	@Export("archive7")
+	static Archive archive7;
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -1688540919
+		intValue = 1172052861
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -895126303
+		intValue = -159750307
 	)
 	@Export("quantity")
 	int quantity;
+	@ObfuscatedName("am")
+	@ObfuscatedGetter(
+		intValue = 2074398649
+	)
+	int field1347;
 
 	TileItem() {
-	} // L: 11
+		this.field1347 = 31; // L: 11
+	} // L: 13
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhy;",
-		garbageValue = "1081110576"
+		descriptor = "(II)V",
+		garbageValue = "2123957786"
+	)
+	void method2671(int var1) {
+		this.field1347 = var1; // L: 16
+	} // L: 17
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljo;",
+		garbageValue = "-983173466"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return EnumComposition.ItemComposition_get(this.id).getModel(this.quantity); // L: 14
+		return class125.ItemComposition_get(this.id).getModel(this.quantity); // L: 27
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1179876648"
+		descriptor = "(IB)Z",
+		garbageValue = "-83"
 	)
-	public static int method2414(int var0) {
-		return class7.method51(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 73
+	boolean method2672(int var1) {
+		if (var1 >= 0 && var1 <= 4) { // L: 20
+			return (this.field1347 & 1 << var1) != 0; // L: 21
+		} else {
+			return true; // L: 23
+		}
 	}
 }
