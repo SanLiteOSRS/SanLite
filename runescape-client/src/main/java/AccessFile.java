@@ -9,21 +9,21 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pn")
+@ObfuscatedName("qq")
 @Implements("AccessFile")
 public final class AccessFile {
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@Export("file")
 	RandomAccessFile file;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		longValue = 58684071301683743L
+		longValue = 7743048531476061067L
 	)
 	@Export("maxSize")
 	final long maxSize;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		longValue = -1091173039723932757L
+		longValue = 6501473835846586069L
 	)
 	@Export("offset")
 	long offset;
@@ -49,21 +49,21 @@ public final class AccessFile {
 		this.file.seek(0L); // L: 23
 	} // L: 24
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@Export("seek")
 	final void seek(long var1) throws IOException {
 		this.file.seek(var1); // L: 27
 		this.offset = var1; // L: 28
 	} // L: 29
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "-1610643924"
+		garbageValue = "-1805233665"
 	)
 	@Export("write")
 	public final void write(byte[] var1, int var2, int var3) throws IOException {
-		if (this.offset + (long)var3 > this.maxSize) { // L: 32
+		if ((long)var3 + this.offset > this.maxSize) { // L: 32
 			this.file.seek(this.maxSize); // L: 33
 			this.file.write(1); // L: 34
 			throw new EOFException(); // L: 35
@@ -73,20 +73,20 @@ public final class AccessFile {
 		}
 	} // L: 39
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1702393398"
+		garbageValue = "1956576895"
 	)
 	@Export("close")
 	public final void close() throws IOException {
 		this.closeSync(false); // L: 42
 	} // L: 43
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "-338477110"
+		descriptor = "(ZB)V",
+		garbageValue = "-81"
 	)
 	@Export("closeSync")
 	public final void closeSync(boolean var1) throws IOException {
@@ -98,26 +98,26 @@ public final class AccessFile {
 				}
 			}
 
-			this.file.close(); // L: 53
-			this.file = null; // L: 54
+			this.file.close();
+			this.file = null;
 		}
 
-	} // L: 56
+	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		descriptor = "(I)J",
-		garbageValue = "-1159049318"
+		garbageValue = "-2132615122"
 	)
 	@Export("length")
 	public final long length() throws IOException {
 		return this.file.length(); // L: 59
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)I",
-		garbageValue = "-1419901670"
+		garbageValue = "1181782400"
 	)
 	@Export("read")
 	public final int read(byte[] var1, int var2, int var3) throws IOException {
@@ -136,4 +136,19 @@ public final class AccessFile {
 		}
 
 	} // L: 73
+
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "309145420"
+	)
+	public static int method8302(int var0) {
+		--var0; // L: 52
+		var0 |= var0 >>> 1; // L: 53
+		var0 |= var0 >>> 2; // L: 54
+		var0 |= var0 >>> 4; // L: 55
+		var0 |= var0 >>> 8; // L: 56
+		var0 |= var0 >>> 16; // L: 57
+		return var0 + 1; // L: 58
+	}
 }
