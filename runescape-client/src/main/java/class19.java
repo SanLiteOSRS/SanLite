@@ -1,107 +1,217 @@
-import java.util.concurrent.Future;
+import java.io.IOException;
+import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("a")
-public class class19 {
-	@ObfuscatedName("up")
-	@ObfuscatedSignature(
-		descriptor = "Lcv;"
+@ObfuscatedName("at")
+public class class19 implements Callable {
+	@ObfuscatedName("uh")
+	@ObfuscatedGetter(
+		intValue = 419723581
 	)
-	@Export("clientPreferences")
-	static ClientPreferences clientPreferences;
-	@ObfuscatedName("c")
-	Future field107;
-	@ObfuscatedName("v")
-	String field106;
-
-	class19(Future var1) {
-		this.field107 = var1; // L: 10
-	} // L: 11
-
-	class19(String var1) {
-		this.method243(var1); // L: 14
-	} // L: 15
-
-	@ObfuscatedName("c")
+	static int field104;
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "1161369831"
+		descriptor = "Lgn;"
 	)
-	void method243(String var1) {
-		if (var1 == null) { // L: 18
-			var1 = "";
-		}
-
-		this.field106 = var1; // L: 19
-		if (this.field107 != null) { // L: 20
-			this.field107.cancel(true); // L: 21
-			this.field107 = null; // L: 22
-		}
-
-	} // L: 24
-
-	@ObfuscatedName("v")
+	static ClanChannel field107;
+	@ObfuscatedName("sf")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-688611992"
+		descriptor = "Lgn;"
 	)
-	public final String method244() {
-		return this.field106; // L: 27
-	}
-
-	@ObfuscatedName("q")
+	@Export("guestClanChannel")
+	static ClanChannel guestClanChannel;
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "731102059"
+		descriptor = "Lak;"
 	)
-	public boolean method251() {
-		return this.field106 != null || this.field107 == null; // L: 31
-	}
-
-	@ObfuscatedName("f")
+	final class10 field102;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1151479385"
+		descriptor = "Lam;"
 	)
-	public final boolean method246() {
-		return this.method251() ? true : this.field107.isDone(); // L: 35 36
-	}
+	final class14 this$0;
 
-	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lb;",
-		garbageValue = "-5003"
+		descriptor = "(Lam;Lak;)V"
 	)
-	public final class21 method249() {
-		if (this.method251()) { // L: 40
-			return new class21(this.field106);
-		} else if (!this.method246()) { // L: 41
-			return null;
-		} else {
-			try {
-				return (class21)this.field107.get(); // L: 43
-			} catch (Exception var3) { // L: 45
-				String var2 = "Error retrieving REST request reply"; // L: 46
-				System.err.println(var2 + "\r\n" + var3); // L: 47
-				this.method243(var2); // L: 48
-				return new class21(var2); // L: 49
+	class19(class14 var1, class10 var2) {
+		this.this$0 = var1; // L: 46
+		this.field102 = var2; // L: 47
+	} // L: 48
+
+	public Object call() throws Exception {
+		try {
+			while (this.field102.method81()) { // L: 53
+				Login.method2088(10L); // L: 54
 			}
+		} catch (IOException var2) { // L: 57
+			return new class20("Error servicing REST query: " + var2.getMessage()); // L: 58
 		}
+
+		return this.field102.method89(); // L: 60
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("bj")
 	@ObfuscatedSignature(
-		descriptor = "(II)Ldt;",
-		garbageValue = "234177073"
+		descriptor = "(Ljava/lang/String;I)I",
+		garbageValue = "-608378874"
 	)
-	static class119 method254(int var0) {
-		class119 var1 = (class119)Actor.findEnumerated(UserComparator9.method2599(), var0); // L: 92
-		if (var1 == null) {
-			var1 = class119.field1497; // L: 93
+	public static int method282(String var0) {
+		return var0.length() + 2; // L: 123
+	}
+
+	@ObfuscatedName("ga")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "190436510"
+	)
+	static void method280(int var0) {
+		if (var0 != Client.gameState) { // L: 1191
+			if (Client.gameState == 30) { // L: 1192
+				Client.field713.method4070(); // L: 1193
+			}
+
+			if (Client.gameState == 0) { // L: 1195
+				class392.client.method507();
+			}
+
+			if (var0 == 20 || var0 == 40 || var0 == 45 || var0 == 50) { // L: 1196
+				class60.method1155(0); // L: 1197
+				Client.field549 = 0; // L: 1198
+				Client.field516 = 0; // L: 1199
+				Client.timer.method7333(var0); // L: 1200
+				if (var0 != 20) { // L: 1201
+					class130.method3030(false);
+				}
+			}
+
+			if (var0 != 20 && var0 != 40 && GroundObject.field2411 != null) { // L: 1203 1204
+				GroundObject.field2411.close(); // L: 1205
+				GroundObject.field2411 = null; // L: 1206
+			}
+
+			if (Client.gameState == 25) { // L: 1209
+				Client.field501 = 0; // L: 1210
+				Client.field627 = 0; // L: 1211
+				Client.field479 = 1; // L: 1212
+				Client.field548 = 0; // L: 1213
+				Client.field775 = 1; // L: 1214
+			}
+
+			if (var0 != 5 && var0 != 10) { // L: 1216
+				if (var0 == 20) { // L: 1224
+					int var3 = Client.gameState == 11 ? 4 : 0; // L: 1225
+					PlayerComposition.method5782(class223.field2581, class143.archive8, false, var3); // L: 1226
+				} else if (var0 == 11) { // L: 1228
+					PlayerComposition.method5782(class223.field2581, class143.archive8, false, 4); // L: 1229
+				} else if (var0 == 50) { // L: 1231
+					Tile.setLoginResponseString("", "Updating date of birth...", ""); // L: 1232
+					PlayerComposition.method5782(class223.field2581, class143.archive8, false, 7); // L: 1233
+				} else {
+					ModeWhere.method6667(); // L: 1235
+				}
+			} else {
+				boolean var1 = WorldMapSectionType.clientPreferences.method2448() >= Client.field486; // L: 1219
+				int var2 = var1 ? 0 : 12; // L: 1221
+				PlayerComposition.method5782(class223.field2581, class143.archive8, true, var2); // L: 1222
+			}
+
+			Client.gameState = var0; // L: 1236
+		}
+	} // L: 1237
+
+	@ObfuscatedName("hs")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "-194934658"
+	)
+	static void method278(int var0, int var1) {
+		if (WorldMapSectionType.clientPreferences.method2440() != 0 && var0 != -1) { // L: 3702
+			class163.method3352(class36.field239, var0, 0, WorldMapSectionType.clientPreferences.method2440(), false); // L: 3703
+			Client.playingJingle = true; // L: 3704
 		}
 
-		return var1; // L: 94
+	} // L: 3706
+
+	@ObfuscatedName("ja")
+	@ObfuscatedSignature(
+		descriptor = "(ZLsq;B)V",
+		garbageValue = "-16"
+	)
+	static final void method281(boolean var0, PacketBuffer var1) {
+		while (true) {
+			byte var2 = 16; // L: 8303
+			int var3 = 1 << var2; // L: 8304
+			if (var1.bitsRemaining(Client.packetWriter.serverPacketLength) >= var2 + 12) { // L: 8305
+				int var4 = var1.readBits(var2); // L: 8306
+				if (var4 != var3 - 1) { // L: 8307
+					boolean var5 = false; // L: 8308
+					if (Client.npcs[var4] == null) { // L: 8309
+						Client.npcs[var4] = new NPC(); // L: 8310
+						var5 = true; // L: 8311
+					}
+
+					NPC var6 = Client.npcs[var4]; // L: 8313
+					Client.npcIndices[++Client.npcCount - 1] = var4; // L: 8314
+					var6.npcCycle = Client.cycle; // L: 8315
+					int var10 = var1.readBits(1); // L: 8319
+					if (var10 == 1) { // L: 8320
+						Client.field662[++Client.field539 - 1] = var4;
+					}
+
+					var6.definition = class188.getNpcDefinition(var1.readBits(14)); // L: 8321
+					int var9;
+					if (var0) { // L: 8322
+						var9 = var1.readBits(8); // L: 8323
+						if (var9 > 127) { // L: 8324
+							var9 -= 256;
+						}
+					} else {
+						var9 = var1.readBits(5); // L: 8327
+						if (var9 > 15) { // L: 8328
+							var9 -= 32;
+						}
+					}
+
+					int var7 = var1.readBits(1); // L: 8330
+					boolean var11 = var1.readBits(1) == 1; // L: 8331
+					if (var11) { // L: 8332
+						var1.readBits(32); // L: 8333
+					}
+
+					int var8;
+					if (var0) { // L: 8335
+						var8 = var1.readBits(8); // L: 8336
+						if (var8 > 127) { // L: 8337
+							var8 -= 256;
+						}
+					} else {
+						var8 = var1.readBits(5); // L: 8340
+						if (var8 > 15) { // L: 8341
+							var8 -= 32;
+						}
+					}
+
+					int var12 = Client.field612[var1.readBits(3)]; // L: 8343
+					if (var5) { // L: 8344
+						var6.orientation = var6.rotation = var12;
+					}
+
+					class418.method7808(var6); // L: 8345
+					if (var6.field1209 == 0) { // L: 8346
+						var6.rotation = 0;
+					}
+
+					var6.method2557(BuddyRankComparator.localPlayer.pathX[0] + var8, BuddyRankComparator.localPlayer.pathY[0] + var9, var7 == 1); // L: 8347
+					continue; // L: 8348
+				}
+			}
+
+			var1.exportIndex(); // L: 8349
+			return; // L: 8350
+		}
 	}
 }

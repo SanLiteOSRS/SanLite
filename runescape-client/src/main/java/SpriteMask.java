@@ -4,133 +4,81 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kp")
+@ObfuscatedName("lx")
 @Implements("SpriteMask")
 public class SpriteMask extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -1630376351
+		intValue = 1325150283
 	)
 	@Export("width")
 	public final int width;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 890911275
+		intValue = -606386499
 	)
 	@Export("height")
 	public final int height;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@Export("xWidths")
 	public final int[] xWidths;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@Export("xStarts")
 	public final int[] xStarts;
 
 	SpriteMask(int var1, int var2, int[] var3, int[] var4, int var5) {
-		this.width = var1; // L: 973
-		this.height = var2; // L: 974
-		this.xWidths = var3; // L: 975
-		this.xStarts = var4; // L: 976
-	} // L: 977
+		this.width = var1; // L: 1003
+		this.height = var2; // L: 1004
+		this.xWidths = var3; // L: 1005
+		this.xStarts = var4; // L: 1006
+	} // L: 1007
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "(III)Z",
-		garbageValue = "1395546386"
+		garbageValue = "-2050749327"
 	)
 	@Export("contains")
 	public boolean contains(int var1, int var2) {
-		if (var2 >= 0 && var2 < this.xStarts.length) { // L: 980
-			int var3 = this.xStarts[var2]; // L: 981
-			if (var1 >= var3 && var1 <= var3 + this.xWidths[var2]) { // L: 982
+		if (var2 >= 0 && var2 < this.xStarts.length) { // L: 1010
+			int var3 = this.xStarts[var2]; // L: 1011
+			if (var1 >= var3 && var1 <= var3 + this.xWidths[var2]) { // L: 1012
 				return true;
 			}
 		}
 
-		return false; // L: 984
+		return false; // L: 1014
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(B)[I",
-		garbageValue = "117"
+		descriptor = "([Lnt;IB)Lnt;",
+		garbageValue = "108"
 	)
-	public static int[] method5523() {
-		int[] var0 = new int[KeyHandler.field144]; // L: 257
+	@Export("findEnumerated")
+	public static class352 findEnumerated(class352[] var0, int var1) {
+		class352[] var2 = var0; // L: 17
 
-		for (int var1 = 0; var1 < KeyHandler.field144; ++var1) { // L: 258
-			var0[var1] = KeyHandler.field134[var1]; // L: 259
-		}
-
-		return var0; // L: 261
-	}
-
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-1051989669"
-	)
-	static int method5524(int var0, Script var1, boolean var2) {
-		if (var0 != 7000 && var0 != 7005 && var0 != 7010 && var0 != 7015 && var0 != 7020 && var0 != 7025 && var0 != 7030 && var0 != 7035) { // L: 4557
-			if (var0 != 7001 && var0 != 7002 && var0 != 7011 && var0 != 7012 && var0 != 7021 && var0 != 7022) { // L: 4561
-				if (var0 != 7003 && var0 != 7013 && var0 != 7023) { // L: 4565
-					if (var0 != 7006 && var0 != 7007 && var0 != 7016 && var0 != 7017 && var0 != 7026 && var0 != 7027) { // L: 4569
-						if (var0 != 7008 && var0 != 7018 && var0 != 7028) { // L: 4573
-							if (var0 != 7031 && var0 != 7032) { // L: 4577
-								if (var0 == 7033) { // L: 4582
-									--Interpreter.Interpreter_stringStackSize; // L: 4583
-									return 1; // L: 4584
-								} else if (var0 != 7036 && var0 != 7037) { // L: 4586
-									if (var0 == 7038) { // L: 4590
-										--class446.Interpreter_intStackSize; // L: 4591
-										return 1; // L: 4592
-									} else if (var0 != 7004 && var0 != 7009 && var0 != 7014 && var0 != 7019 && var0 != 7024 && var0 != 7029 && var0 != 7034 && var0 != 7039) { // L: 4594
-										return 2; // L: 4598
-									} else {
-										--class446.Interpreter_intStackSize; // L: 4595
-										return 1; // L: 4596
-									}
-								} else {
-									class446.Interpreter_intStackSize -= 2; // L: 4587
-									return 1; // L: 4588
-								}
-							} else {
-								--Interpreter.Interpreter_stringStackSize; // L: 4578
-								--class446.Interpreter_intStackSize; // L: 4579
-								return 1; // L: 4580
-							}
-						} else {
-							--class446.Interpreter_intStackSize; // L: 4574
-							return 1; // L: 4575
-						}
-					} else {
-						class446.Interpreter_intStackSize -= 2; // L: 4570
-						return 1; // L: 4571
-					}
-				} else {
-					class446.Interpreter_intStackSize -= 2; // L: 4566
-					return 1; // L: 4567
-				}
-			} else {
-				class446.Interpreter_intStackSize -= 3; // L: 4562
-				return 1; // L: 4563
+		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 18
+			class352 var4 = var2[var3]; // L: 19
+			if (var1 == var4.rsOrdinal()) {
+				return var4; // L: 21
 			}
-		} else {
-			class446.Interpreter_intStackSize -= 5; // L: 4558
-			return 1; // L: 4559
 		}
+
+		return null; // L: 25
 	}
 
-	@ObfuscatedName("gl")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1187838679"
+		garbageValue = "-1516793225"
 	)
-	static void method5522() {
-		PacketBufferNode var0 = EnumComposition.getPacketBufferNode(ClientPacket.field3008, Client.packetWriter.isaacCipher); // L: 4385
-		var0.packetBuffer.writeByte(class9.getWindowedMode()); // L: 4386
-		var0.packetBuffer.writeShort(Script.canvasWidth); // L: 4387
-		var0.packetBuffer.writeShort(class78.canvasHeight); // L: 4388
-		Client.packetWriter.addNode(var0); // L: 4389
-	} // L: 4390
+	public static void method5743() {
+		ByteArrayPool.field4424.clear(); // L: 43
+		ByteArrayPool.field4424.add(100); // L: 44
+		ByteArrayPool.field4424.add(5000); // L: 45
+		ByteArrayPool.field4424.add(10000); // L: 46
+		ByteArrayPool.field4424.add(30000); // L: 47
+	} // L: 48
 }
