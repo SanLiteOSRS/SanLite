@@ -3,14 +3,15 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dd")
+@ObfuscatedName("du")
 @Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
-	@ObfuscatedName("el")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lqu;"
 	)
-	static Archive field1383;
+	@Export("options_buttons_2Sprite")
+	static IndexedSprite options_buttons_2Sprite;
 	@ObfuscatedName("c")
 	@Export("reversed")
 	final boolean reversed;
@@ -21,8 +22,8 @@ public class UserComparator7 extends AbstractUserComparator {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "-1964984147"
+		descriptor = "(Lnr;Lnr;B)I",
+		garbageValue = "-114"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -37,35 +38,41 @@ public class UserComparator7 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 21
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfs;",
-		garbageValue = "-125"
+		descriptor = "(ILnj;Llb;I)V",
+		garbageValue = "-1549871621"
 	)
-	@Export("getEnum")
-	public static EnumComposition getEnum(int var0) {
-		EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0); // L: 29
-		if (var1 != null) { // L: 30
-			return var1;
-		} else {
-			byte[] var2 = EnumComposition.EnumDefinition_archive.takeFile(8, var0); // L: 31
-			var1 = new EnumComposition(); // L: 32
-			if (var2 != null) { // L: 33
-				var1.decode(new Buffer(var2));
+	static void method2750(int var0, ArchiveDisk var1, Archive var2) {
+		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 40
+		var3.type = 1; // L: 41
+		var3.key = (long)var0; // L: 42
+		var3.archiveDisk = var1; // L: 43
+		var3.archive = var2; // L: 44
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 45
+			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 46
+		} // L: 47
+
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) { // L: 49
+			if (ArchiveDiskActionHandler.field4018 == 0) { // L: 50
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler()); // L: 51
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setDaemon(true); // L: 52
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.start(); // L: 53
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setPriority(5); // L: 54
 			}
 
-			EnumComposition.EnumDefinition_cached.put(var1, (long)var0); // L: 34
-			return var1; // L: 35
+			ArchiveDiskActionHandler.field4018 = 600; // L: 56
 		}
-	}
+	} // L: 59
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lbr;",
-		garbageValue = "260622968"
+		descriptor = "(B)V",
+		garbageValue = "-48"
 	)
-	@Export("Messages_getMessage")
-	static Message Messages_getMessage(int var0) {
-		return (Message)Messages.Messages_hashTable.get((long)var0); // L: 40
-	}
+	static final void method2743() {
+		Object var10000 = null; // L: 183
+		String var0 = "You can't add yourself to your own ignore list";
+		class65.addGameMessage(30, "", var0); // L: 185
+	} // L: 187
 }

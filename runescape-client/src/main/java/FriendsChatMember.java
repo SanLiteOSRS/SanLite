@@ -3,7 +3,7 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nj")
+@ObfuscatedName("nh")
 @Implements("FriendsChatMember")
 public class FriendsChatMember extends Buddy {
 	@ObfuscatedName("c")
@@ -12,7 +12,7 @@ public class FriendsChatMember extends Buddy {
 	)
 	@Export("friend")
 	TriBool friend;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "Lnt;"
 	)
@@ -27,17 +27,17 @@ public class FriendsChatMember extends Buddy {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-2088884239"
+		garbageValue = "833153868"
 	)
 	@Export("clearIsFriend")
 	void clearIsFriend() {
 		this.friend = TriBool.TriBool_unknown; // L: 12
 	} // L: 13
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-138013262"
+		garbageValue = "-467119897"
 	)
 	@Export("isFriend")
 	public final boolean isFriend() {
@@ -48,56 +48,71 @@ public class FriendsChatMember extends Buddy {
 		return this.friend == TriBool.TriBool_true; // L: 19
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-43"
+		garbageValue = "16"
 	)
 	@Export("fillIsFriend")
 	void fillIsFriend() {
-		this.friend = Player.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 23
+		this.friend = Varps.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 23
 	} // L: 24
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1504039009"
+		garbageValue = "-1656136449"
 	)
 	@Export("clearIsIgnored")
 	void clearIsIgnored() {
 		this.ignored = TriBool.TriBool_unknown; // L: 27
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "-61"
+		garbageValue = "2"
 	)
 	@Export("isIgnored")
 	public final boolean isIgnored() {
-		if (this.ignored == TriBool.TriBool_unknown) { // L: 31
-			this.fillIsIgnored(); // L: 32
+		if (this.ignored == TriBool.TriBool_unknown) {
+			this.fillIsIgnored();
 		}
 
 		return this.ignored == TriBool.TriBool_true; // L: 34
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "2033430026"
+		descriptor = "(B)V",
+		garbageValue = "6"
 	)
 	@Export("fillIsIgnored")
 	void fillIsIgnored() {
-		this.ignored = Player.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 38
+		this.ignored = Varps.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 38
 	} // L: 39
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "34"
+		descriptor = "(IIS)I",
+		garbageValue = "26173"
 	)
-	public static int method6650(int var0) {
-		return class401.field4442[var0 & 16383]; // L: 28
+	static int method6838(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 28
+		if (var2 == null) { // L: 29
+			return 0;
+		} else if (var1 == -1) { // L: 30
+			return 0;
+		} else {
+			int var3 = 0; // L: 31
+
+			for (int var4 = 0; var4 < var2.quantities.length; ++var4) { // L: 32
+				if (var2.ids[var4] == var1) {
+					var3 += var2.quantities[var4]; // L: 33
+				}
+			}
+
+			return var3; // L: 35
+		}
 	}
 }

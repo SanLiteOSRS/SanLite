@@ -3,7 +3,7 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dm")
+@ObfuscatedName("df")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
 	@ObfuscatedName("c")
@@ -16,8 +16,8 @@ public class UserComparator8 extends AbstractUserComparator {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "1682683031"
+		descriptor = "(Lnr;Lnr;B)I",
+		garbageValue = "-112"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,55 +36,43 @@ public class UserComparator8 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 25
 	}
 
-	@ObfuscatedName("if")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "6"
+		descriptor = "(II)I",
+		garbageValue = "1857737872"
 	)
-	static void method2571(int var0, int var1) {
-		int var2 = TileItem.fontBold12.stringWidth("Choose Option"); // L: 8663
-
-		int var3;
-		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) { // L: 8664
-			Font var7 = TileItem.fontBold12; // L: 8665
-			String var8;
-			if (var3 < 0) { // L: 8668
-				var8 = ""; // L: 8669
-			} else if (Client.menuTargets[var3].length() > 0) { // L: 8672
-				var8 = Client.menuActions[var3] + " " + Client.menuTargets[var3];
-			} else {
-				var8 = Client.menuActions[var3]; // L: 8673
+	@Export("getVarbit")
+	public static int getVarbit(int var0) {
+		VarbitComposition var2 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0); // L: 26
+		VarbitComposition var1;
+		if (var2 != null) { // L: 27
+			var1 = var2; // L: 28
+		} else {
+			byte[] var3 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0); // L: 31
+			var2 = new VarbitComposition(); // L: 32
+			if (var3 != null) { // L: 33
+				var2.decode(new Buffer(var3));
 			}
 
-			int var6 = var7.stringWidth(var8); // L: 8675
-			if (var6 > var2) { // L: 8676
-				var2 = var6;
-			}
+			VarbitComposition.VarbitDefinition_cached.put(var2, (long)var0); // L: 34
+			var1 = var2; // L: 35
 		}
 
-		var2 += 8; // L: 8678
-		var3 = Client.menuOptionsCount * 15 + 22; // L: 8679
-		int var4 = var0 - var2 / 2; // L: 8680
-		if (var2 + var4 > Script.canvasWidth) { // L: 8681
-			var4 = Script.canvasWidth - var2;
-		}
+		int var7 = var1.baseVar; // L: 38
+		int var4 = var1.startBit; // L: 39
+		int var5 = var1.endBit; // L: 40
+		int var6 = Varps.Varps_masks[var5 - var4]; // L: 41
+		return Varps.Varps_main[var7] >> var4 & var6; // L: 42
+	}
 
-		if (var4 < 0) { // L: 8682
-			var4 = 0;
-		}
-
-		int var5 = var1; // L: 8683
-		if (var3 + var1 > class78.canvasHeight) { // L: 8684
-			var5 = class78.canvasHeight - var3;
-		}
-
-		if (var5 < 0) { // L: 8685
-			var5 = 0;
-		}
-
-		UserComparator3.menuX = var4; // L: 8686
-		ViewportMouse.menuY = var5; // L: 8687
-		Language.menuWidth = var2; // L: 8688
-		Player.menuHeight = Client.menuOptionsCount * 15 + 22; // L: 8689
-	} // L: 8690
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "14"
+	)
+	public static void method2742() {
+		SequenceDefinition.SequenceDefinition_cached.clear(); // L: 390
+		SequenceDefinition.SequenceDefinition_cachedFrames.clear(); // L: 391
+		SequenceDefinition.SequenceDefinition_cachedModel.clear(); // L: 392
+	} // L: 393
 }
