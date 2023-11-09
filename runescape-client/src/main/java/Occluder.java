@@ -4,141 +4,172 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gb")
+@ObfuscatedName("jn")
 @Implements("Occluder")
 public final class Occluder {
-	@ObfuscatedName("uw")
-	@ObfuscatedSignature(
-		descriptor = "Los;"
-	)
-	@Export("platformInfo")
-	static PlatformInfo platformInfo;
-	@ObfuscatedName("c")
+	@ObfuscatedName("nc")
 	@ObfuscatedGetter(
-		intValue = -1913259521
+		intValue = 1693604393
+	)
+	@Export("menuHeight")
+	static int menuHeight;
+	@ObfuscatedName("au")
+	@ObfuscatedGetter(
+		intValue = 1361881663
 	)
 	@Export("minTileX")
 	int minTileX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
-		intValue = -743836359
+		intValue = -254851491
 	)
 	@Export("maxTileX")
 	int maxTileX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -1643298167
+		intValue = 892109197
 	)
 	@Export("minTileY")
 	int minTileY;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1894194977
+		intValue = 1262324027
 	)
 	@Export("maxTileY")
 	int maxTileY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -741467087
+		intValue = 1521030227
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = 360875993
+		intValue = -1488032469
 	)
 	@Export("minX")
 	int minX;
-	@ObfuscatedName("g")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -1324054405
+		intValue = -234343827
 	)
 	@Export("maxX")
 	int maxX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 1977577685
+		intValue = 90793175
 	)
 	@Export("minZ")
 	int minZ;
-	@ObfuscatedName("y")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = 690008559
+		intValue = 211986193
 	)
 	@Export("maxZ")
 	int maxZ;
-	@ObfuscatedName("i")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = 638283975
+		intValue = -1860757305
 	)
 	@Export("minY")
 	int minY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = 1747045819
+		intValue = -1051252903
 	)
 	@Export("maxY")
 	int maxY;
-	@ObfuscatedName("t")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1792742847
+		intValue = 1064543433
 	)
-	int field2470;
-	@ObfuscatedName("z")
+	int field2657;
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 963802065
+		intValue = -1575321813
 	)
-	int field2472;
-	@ObfuscatedName("r")
+	int field2658;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -1423983461
+		intValue = -471429039
 	)
-	int field2466;
-	@ObfuscatedName("u")
+	int field2661;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 942298147
+		intValue = 623652531
 	)
-	int field2467;
-	@ObfuscatedName("k")
+	int field2660;
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = -740983489
+		intValue = 2072845555
 	)
-	int field2468;
-	@ObfuscatedName("h")
+	int field2664;
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = 336673989
+		intValue = -721294081
 	)
-	int field2462;
-	@ObfuscatedName("x")
+	int field2654;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 680765335
+		intValue = -1741613857
 	)
-	int field2473;
+	int field2646;
 
 	Occluder() {
 	} // L: 23
 
-	@ObfuscatedName("kc")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-49313522"
+		descriptor = "(IIIZIZI)V",
+		garbageValue = "124948705"
 	)
-	static final void method4354() {
-		PacketBufferNode var0 = EnumComposition.getPacketBufferNode(ClientPacket.field2987, Client.packetWriter.isaacCipher); // L: 11980
-		Client.packetWriter.addNode(var0); // L: 11981
-		Interpreter.field842 = true; // L: 11982
+	@Export("doWorldSorting")
+	static void doWorldSorting(int var0, int var1, int var2, boolean var3, int var4, boolean var5) {
+		if (var0 < var1) { // L: 178
+			int var6 = (var0 + var1) / 2; // L: 179
+			int var7 = var0; // L: 180
+			World var8 = class176.World_worlds[var6]; // L: 181
+			class176.World_worlds[var6] = class176.World_worlds[var1]; // L: 182
+			class176.World_worlds[var1] = var8; // L: 183
 
-		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) { // L: 11983
-			if (var1.type == 0 || var1.type == 3) { // L: 11984
-				MusicPatchPcmStream.closeInterface(var1, true);
+			for (int var9 = var0; var9 < var1; ++var9) { // L: 184
+				if (HealthBarUpdate.method2411(class176.World_worlds[var9], var8, var2, var3, var4, var5) <= 0) { // L: 185
+					World var10 = class176.World_worlds[var9]; // L: 186
+					class176.World_worlds[var9] = class176.World_worlds[var7]; // L: 187
+					class176.World_worlds[var7++] = var10; // L: 188
+				}
+			}
+
+			class176.World_worlds[var1] = class176.World_worlds[var7]; // L: 192
+			class176.World_worlds[var7] = var8; // L: 193
+			doWorldSorting(var0, var7 - 1, var2, var3, var4, var5); // L: 194
+			doWorldSorting(var7 + 1, var1, var2, var3, var4, var5); // L: 195
+		}
+
+	} // L: 197
+
+	@ObfuscatedName("jz")
+	@ObfuscatedSignature(
+		descriptor = "(Ldf;I)Z",
+		garbageValue = "-1141977008"
+	)
+	static boolean method4725(Player var0) {
+		if (Client.drawPlayerNames == 0) { // L: 5216
+			return false;
+		} else {
+			boolean var1;
+			if (VarbitComposition.localPlayer == var0) { // L: 5217
+				var1 = (Client.drawPlayerNames & 8) != 0; // L: 5231
+				return var1; // L: 5233
+			} else {
+				var1 = UserComparator6.method2921(); // L: 5218
+				if (!var1) { // L: 5219
+					boolean var2 = (Client.drawPlayerNames & 1) != 0; // L: 5222
+					var1 = var2 && var0.method2305(); // L: 5224
+				}
+
+				return var1 || UrlRequester.method2831() && var0.method2308(); // L: 5226
 			}
 		}
-
-		if (Client.meslayerContinueWidget != null) { // L: 11986
-			ChatChannel.invalidateWidget(Client.meslayerContinueWidget); // L: 11987
-			Client.meslayerContinueWidget = null; // L: 11988
-		}
-
-		Interpreter.field842 = false; // L: 11990
-	} // L: 11991
+	}
 }
