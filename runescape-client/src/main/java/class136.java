@@ -1,108 +1,98 @@
-import java.net.URL;
+import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ed")
-public class class136 extends class144 {
-	@ObfuscatedName("z")
+@ObfuscatedName("fo")
+public class class136 extends class139 {
+	@ObfuscatedName("ar")
+	@Export("ByteArrayPool_altSizeArrayCounts")
+	static int[] ByteArrayPool_altSizeArrayCounts;
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = 108140015
+		intValue = -830375851
 	)
-	static int field1612;
-	@ObfuscatedName("m")
-	@Export("BZip2Decompressor_block")
-	static int[] BZip2Decompressor_block;
-	@ObfuscatedName("c")
+	int field1629;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1682759161
+		intValue = 605814203
 	)
-	int field1615;
+	int field1626;
+	@ObfuscatedName("aw")
+	@ObfuscatedGetter(
+		intValue = -1826209289
+	)
+	int field1623;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		intValue = -1378851861
+	)
+	int field1627;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Leu;"
+		descriptor = "Lfa;"
 	)
-	final class145 this$0;
+	final class142 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Leu;)V"
+		descriptor = "(Lfa;)V"
 	)
-	class136(class145 var1) {
+	class136(class142 var1) {
 		this.this$0 = var1;
-		this.field1615 = -1; // L: 82
-	} // L: 84
+		this.field1629 = -1; // L: 158
+	} // L: 163
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "(Lsg;I)V",
+		garbageValue = "168736686"
 	)
-	void vmethod3137(Buffer var1) {
-		this.field1615 = var1.readUnsignedShort(); // L: 87
-		var1.readUnsignedByte(); // L: 88
-		if (var1.readUnsignedByte() != 255) { // L: 89
-			--var1.offset; // L: 90
-			var1.readLong(); // L: 91
-		}
+	void vmethod3461(Buffer var1) {
+		this.field1629 = var1.readUnsignedShort(); // L: 166
+		this.field1626 = var1.readInt(); // L: 167
+		this.field1623 = var1.readUnsignedByte(); // L: 168
+		this.field1627 = var1.readUnsignedByte(); // L: 169
+	} // L: 170
 
-	} // L: 93
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
+		descriptor = "(Lfj;I)V",
+		garbageValue = "1712319228"
 	)
-	void vmethod3138(ClanChannel var1) {
-		var1.removeMember(this.field1615); // L: 96
-	} // L: 97
+	void vmethod3458(ClanSettings var1) {
+		var1.method3323(this.field1629, this.field1626, this.field1623, this.field1627); // L: 173
+	} // L: 174
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1973466779"
-	)
-	@Export("loadWorlds")
-	static boolean loadWorlds() {
-		try {
-			if (class174.World_request == null) { // L: 31
-				class174.World_request = class138.urlRequester.request(new URL(Client.field481));
-			} else if (class174.World_request.isDone()) { // L: 33
-				byte[] var0 = class174.World_request.getResponse(); // L: 34
-				Buffer var1 = new Buffer(var0); // L: 35
-				var1.readInt(); // L: 36
-				World.World_count = var1.readUnsignedShort(); // L: 37
-				class362.World_worlds = new World[World.World_count]; // L: 38
-
-				World var3;
-				for (int var2 = 0; var2 < World.World_count; var3.index = var2++) { // L: 39 47
-					var3 = class362.World_worlds[var2] = new World(); // L: 40
-					var3.id = var1.readUnsignedShort(); // L: 41
-					var3.properties = var1.readInt(); // L: 42
-					var3.host = var1.readStringCp1252NullTerminated(); // L: 43
-					var3.activity = var1.readStringCp1252NullTerminated(); // L: 44
-					var3.location = var1.readUnsignedByte(); // L: 45
-					var3.population = var1.readShort(); // L: 46
-				}
-
-				MouseRecorder.sortWorlds(class362.World_worlds, 0, class362.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 49
-				class174.World_request = null; // L: 50
-				return true; // L: 51
-			}
-		} catch (Exception var4) { // L: 55
-			var4.printStackTrace(); // L: 56
-			class174.World_request = null; // L: 57
-		}
-
-		return false; // L: 59
+	@ObfuscatedName("af")
+	public static String method3194(long var0) {
+		Calendar.Calendar_calendar.setTime(new Date(var0)); // L: 31
+		int var2 = Calendar.Calendar_calendar.get(7);
+		int var3 = Calendar.Calendar_calendar.get(5);
+		int var4 = Calendar.Calendar_calendar.get(2);
+		int var5 = Calendar.Calendar_calendar.get(1);
+		int var6 = Calendar.Calendar_calendar.get(11);
+		int var7 = Calendar.Calendar_calendar.get(12); // L: 37
+		int var8 = Calendar.Calendar_calendar.get(13); // L: 38
+		return Calendar.DAYS_OF_THE_WEEK[var2 - 1] + ", " + var3 / 10 + var3 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var4] + "-" + var5 + " " + var6 / 10 + var6 % 10 + ":" + var7 / 10 + var7 % 10 + ":" + var8 / 10 + var8 % 10 + " GMT"; // L: 39
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "695321125"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;S)V",
+		garbageValue = "-29165"
 	)
-	public static int method2923(int var0, int var1) {
-		return (int)Math.round(Math.atan2((double)var0, (double)var1) * 2607.5945876176133D) & 16383; // L: 24
-	}
+	@Export("addChatMessage")
+	static void addChatMessage(int var0, String var1, String var2, String var3) {
+		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 27
+		if (var4 == null) { // L: 28
+			var4 = new ChatChannel(); // L: 29
+			Messages.Messages_channels.put(var0, var4); // L: 30
+		}
+
+		Message var5 = var4.addMessage(var0, var1, var2, var3); // L: 32
+		Messages.Messages_hashTable.put(var5, (long)var5.count); // L: 33
+		Messages.Messages_queue.add(var5); // L: 34
+		Client.chatCycle = Client.cycleCntr; // L: 35
+	} // L: 36
 }
