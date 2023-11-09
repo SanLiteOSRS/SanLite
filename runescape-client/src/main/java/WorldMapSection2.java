@@ -4,98 +4,121 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ht")
+@ObfuscatedName("hj")
 @Implements("WorldMapSection2")
 public class WorldMapSection2 implements WorldMapSection {
-	@ObfuscatedName("c")
+	@ObfuscatedName("va")
 	@ObfuscatedGetter(
-		intValue = 1337709959
+		intValue = 1383695695
+	)
+	@Export("foundItemIndex")
+	static int foundItemIndex;
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "Lqw;"
+	)
+	@Export("NetCache_responseArchiveBuffer")
+	public static Buffer NetCache_responseArchiveBuffer;
+	@ObfuscatedName("fl")
+	@ObfuscatedGetter(
+		intValue = -1433834637
+	)
+	static int field2691;
+	@ObfuscatedName("ie")
+	@ObfuscatedSignature(
+		descriptor = "[Lqj;"
+	)
+	@Export("mapMarkerSprites")
+	static SpritePixels[] mapMarkerSprites;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = -1622796575
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -2041431669
+		intValue = -237991141
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 313441815
+		intValue = 439211747
 	)
 	@Export("regionStartX")
 	int regionStartX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1342474779
+		intValue = 524831955
 	)
 	@Export("regionStartY")
 	int regionStartY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1683492737
+		intValue = 1059862557
 	)
 	@Export("regionEndX")
 	int regionEndX;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -966327777
+		intValue = 769010907
 	)
 	@Export("regionEndY")
 	int regionEndY;
-	@ObfuscatedName("g")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -578189287
+		intValue = -1154211551
 	)
-	int field2693;
-	@ObfuscatedName("w")
+	int field2681;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 306558807
+		intValue = 415204313
+	)
+	int field2688;
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = 1371216217
 	)
 	int field2689;
-	@ObfuscatedName("y")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 2143624865
+		intValue = 12571677
 	)
-	int field2695;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = 1064831407
-	)
-	int field2687;
+	int field2690;
 
 	WorldMapSection2() {
 	} // L: 18
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lhg;I)V",
-		garbageValue = "1585435431"
+		descriptor = "(Lhw;B)V",
+		garbageValue = "11"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
-		if (var1.regionLowX > this.field2693) { // L: 22
-			var1.regionLowX = this.field2693;
+		if (var1.regionLowX > this.field2681) { // L: 22
+			var1.regionLowX = this.field2681;
 		}
 
-		if (var1.regionHighX < this.field2695) {
-			var1.regionHighX = this.field2695; // L: 23
+		if (var1.regionHighX < this.field2689) {
+			var1.regionHighX = this.field2689; // L: 23
 		}
 
-		if (var1.regionLowY > this.field2689) { // L: 24
-			var1.regionLowY = this.field2689;
+		if (var1.regionLowY > this.field2688) { // L: 24
+			var1.regionLowY = this.field2688;
 		}
 
-		if (var1.regionHighY < this.field2687) { // L: 25
-			var1.regionHighY = this.field2687;
+		if (var1.regionHighY < this.field2690) { // L: 25
+			var1.regionHighY = this.field2690;
 		}
 
 	} // L: 26
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)Z",
-		garbageValue = "-929111713"
+		garbageValue = "-1974716574"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -106,51 +129,51 @@ public class WorldMapSection2 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(III)Z",
-		garbageValue = "-47549823"
+		garbageValue = "819062651"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
-		return var1 >> 6 >= this.field2693 && var1 >> 6 <= this.field2695 && var2 >> 6 >= this.field2689 && var2 >> 6 <= this.field2687; // L: 38
+		return var1 >> 6 >= this.field2681 && var1 >> 6 <= this.field2689 && var2 >> 6 >= this.field2688 && var2 >> 6 <= this.field2690; // L: 38
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)[I",
-		garbageValue = "-561571792"
+		descriptor = "(IIIB)[I",
+		garbageValue = "24"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
 		if (!this.containsCoord(var1, var2, var3)) { // L: 43
 			return null; // L: 44
 		} else {
-			int[] var4 = new int[]{this.field2693 * 64 - this.regionStartX * 64 + var2, var3 + (this.field2689 * 64 - this.regionStartY * 64)}; // L: 46 47 48
+			int[] var4 = new int[]{this.field2681 * 64 - this.regionStartX * 64 + var2, var3 + (this.field2688 * 64 - this.regionStartY * 64)}; // L: 46 47 48
 			return var4; // L: 49
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lkd;",
-		garbageValue = "531454030"
+		descriptor = "(III)Lkp;",
+		garbageValue = "-711503187"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
 		if (!this.containsPosition(var1, var2)) { // L: 54
 			return null; // L: 55
 		} else {
-			int var3 = this.regionStartX * 64 - this.field2693 * 64 + var1; // L: 57
-			int var4 = this.regionStartY * 64 - this.field2689 * 64 + var2; // L: 58
+			int var3 = this.regionStartX * 64 - this.field2681 * 64 + var1; // L: 57
+			int var4 = this.regionStartY * 64 - this.field2688 * 64 + var2; // L: 58
 			return new Coord(this.minPlane, var3, var4); // L: 59
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "-27"
+		descriptor = "(Lqw;B)V",
+		garbageValue = "84"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -160,61 +183,58 @@ public class WorldMapSection2 implements WorldMapSection {
 		this.regionStartY = var1.readUnsignedShort(); // L: 67
 		this.regionEndX = var1.readUnsignedShort(); // L: 68
 		this.regionEndY = var1.readUnsignedShort(); // L: 69
-		this.field2693 = var1.readUnsignedShort(); // L: 70
-		this.field2689 = var1.readUnsignedShort(); // L: 71
-		this.field2695 = var1.readUnsignedShort(); // L: 72
-		this.field2687 = var1.readUnsignedShort(); // L: 73
+		this.field2681 = var1.readUnsignedShort(); // L: 70
+		this.field2688 = var1.readUnsignedShort(); // L: 71
+		this.field2689 = var1.readUnsignedShort(); // L: 72
+		this.field2690 = var1.readUnsignedShort(); // L: 73
 		this.postRead(); // L: 74
 	} // L: 75
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "20"
+		garbageValue = "0"
 	)
 	@Export("postRead")
 	void postRead() {
 	} // L: 77
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ix")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "692019623"
+		descriptor = "(III)V",
+		garbageValue = "-1225163550"
 	)
-	@Export("loadInterface")
-	public static boolean loadInterface(int var0) {
-		if (class228.Widget_loadedInterfaces[var0]) { // L: 237
-			return true;
-		} else if (!MusicPatchPcmStream.Widget_archive.tryLoadGroup(var0)) { // L: 238
-			return false;
+	@Export("resumePauseWidget")
+	static void resumePauseWidget(int var0, int var1) {
+		PacketBufferNode var2 = class433.getPacketBufferNode(ClientPacket.field2943, Client.packetWriter.isaacCipher); // L: 9457
+		var2.packetBuffer.writeIntME(var1); // L: 9458
+		var2.packetBuffer.writeInt(var0); // L: 9459
+		Client.packetWriter.addNode(var2); // L: 9460
+	} // L: 9461
+
+	@ObfuscatedName("lu")
+	@ObfuscatedSignature(
+		descriptor = "(IIIILqj;Lkr;I)V",
+		garbageValue = "2057360815"
+	)
+	@Export("worldToMinimap")
+	static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
+		int var6 = var3 * var3 + var2 * var2; // L: 12130
+		if (var6 > 4225 && var6 < 90000) { // L: 12131
+			int var7 = Client.camAngleY & 2047; // L: 12132
+			int var8 = Rasterizer3D.Rasterizer3D_sine[var7]; // L: 12133
+			int var9 = Rasterizer3D.Rasterizer3D_cosine[var7]; // L: 12134
+			int var10 = var9 * var2 + var3 * var8 >> 16; // L: 12135
+			int var11 = var3 * var9 - var8 * var2 >> 16; // L: 12136
+			double var12 = Math.atan2((double)var10, (double)var11); // L: 12137
+			int var14 = var5.width / 2 - 25; // L: 12138
+			int var15 = (int)(Math.sin(var12) * (double)var14); // L: 12139
+			int var16 = (int)(Math.cos(var12) * (double)var14); // L: 12140
+			byte var17 = 20; // L: 12141
+			LoginPacket.redHintArrowSprite.method8198(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256); // L: 12142
 		} else {
-			int var1 = MusicPatchPcmStream.Widget_archive.getGroupFileCount(var0); // L: 239
-			if (var1 == 0) { // L: 240
-				class228.Widget_loadedInterfaces[var0] = true; // L: 241
-				return true; // L: 242
-			} else {
-				if (SoundCache.Widget_interfaceComponents[var0] == null) { // L: 244
-					SoundCache.Widget_interfaceComponents[var0] = new Widget[var1];
-				}
-
-				for (int var2 = 0; var2 < var1; ++var2) { // L: 245
-					if (SoundCache.Widget_interfaceComponents[var0][var2] == null) { // L: 246
-						byte[] var3 = MusicPatchPcmStream.Widget_archive.takeFile(var0, var2); // L: 247
-						if (var3 != null) { // L: 248
-							SoundCache.Widget_interfaceComponents[var0][var2] = new Widget(); // L: 249
-							SoundCache.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16); // L: 250
-							if (var3[0] == -1) { // L: 251
-								SoundCache.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
-							} else {
-								SoundCache.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3)); // L: 252
-							}
-						}
-					}
-				}
-
-				class228.Widget_loadedInterfaces[var0] = true; // L: 256
-				return true; // L: 257
-			}
+			Canvas.drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5); // L: 12144
 		}
-	}
+
+	} // L: 12145
 }

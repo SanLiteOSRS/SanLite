@@ -4,68 +4,75 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cw")
+@ObfuscatedName("ci")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("th")
+	@ObfuscatedGetter(
+		intValue = -2039005153
+	)
+	static int field1052;
+	@ObfuscatedName("at")
+	protected static String field1045;
+	@ObfuscatedName("o")
 	@Export("args")
 	Object[] args;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@Export("isMouseInputEvent")
 	boolean isMouseInputEvent;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lku;"
 	)
 	@Export("widget")
 	Widget widget;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 708016645
+		intValue = -1867407423
 	)
 	@Export("mouseX")
 	int mouseX;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -768277781
+		intValue = 456579589
 	)
 	@Export("mouseY")
 	int mouseY;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1223835253
+		intValue = -1813921471
 	)
 	@Export("opIndex")
 	int opIndex;
-	@ObfuscatedName("g")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lku;"
 	)
 	@Export("dragTarget")
 	Widget dragTarget;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 308775773
+		intValue = 1264194041
 	)
 	@Export("keyTyped")
 	int keyTyped;
-	@ObfuscatedName("y")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1014377791
+		intValue = 1513519959
 	)
 	@Export("keyPressed")
 	int keyPressed;
-	@ObfuscatedName("i")
+	@ObfuscatedName("a")
 	@Export("targetName")
 	String targetName;
-	@ObfuscatedName("s")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 643045145
+		intValue = 1450692113
 	)
-	int field1056;
-	@ObfuscatedName("t")
+	int field1049;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1853302577
+		intValue = 1211441165
 	)
 	@Export("type")
 	int type;
@@ -74,77 +81,63 @@ public class ScriptEvent extends Node {
 		this.type = 76; // L: 19
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/Object;I)V",
-		garbageValue = "1631698731"
+		descriptor = "([Ljava/lang/Object;B)V",
+		garbageValue = "-107"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
 		this.args = var1; // L: 22
 	} // L: 23
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-59182126"
+		descriptor = "(IB)V",
+		garbageValue = "92"
 	)
 	@Export("setType")
 	public void setType(int var1) {
 		this.type = var1; // L: 26
 	} // L: 27
 
-	@ObfuscatedName("bf")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)I",
-		garbageValue = "-2093180066"
+		descriptor = "(II)I",
+		garbageValue = "-322270617"
 	)
-	@Export("stringCp1252NullTerminatedByteSize")
-	public static int stringCp1252NullTerminatedByteSize(String var0) {
-		return var0.length() + 1; // L: 117
+	public static int method2168(int var0) {
+		return class271.field3179[var0]; // L: 35
 	}
 
-	@ObfuscatedName("lf")
+	@ObfuscatedName("ii")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-372949524"
+		garbageValue = "8074476"
 	)
-	static void method2101() {
-		if (Client.field533 && class101.localPlayer != null) { // L: 12429
-			int var0 = class101.localPlayer.pathX[0]; // L: 12430
-			int var1 = class101.localPlayer.pathY[0]; // L: 12431
-			if (var0 < 0 || var1 < 0 || var0 >= 104 || var1 >= 104) { // L: 12432
-				return;
+	static final void method2169() {
+		int var0 = Language.menuX; // L: 8343
+		int var1 = UrlRequest.menuY; // L: 8344
+		int var2 = class402.menuWidth; // L: 8345
+		int var3 = class321.menuHeight; // L: 8346
+		int var4 = 6116423; // L: 8347
+		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, var4); // L: 8348
+		Rasterizer2D.Rasterizer2D_fillRectangle(var0 + 1, var1 + 1, var2 - 2, 16, 0); // L: 8349
+		Rasterizer2D.Rasterizer2D_drawRectangle(var0 + 1, var1 + 18, var2 - 2, var3 - 19, 0); // L: 8350
+		class116.fontBold12.draw("Choose Option", var0 + 3, var1 + 14, var4, -1); // L: 8351
+		int var5 = MouseHandler.MouseHandler_x; // L: 8352
+		int var6 = MouseHandler.MouseHandler_y; // L: 8353
+
+		for (int var7 = 0; var7 < Client.menuOptionsCount; ++var7) { // L: 8354
+			int var8 = (Client.menuOptionsCount - 1 - var7) * 15 + var1 + 31; // L: 8355
+			int var9 = 16777215; // L: 8356
+			if (var5 > var0 && var5 < var2 + var0 && var6 > var8 - 13 && var6 < var8 + 3) { // L: 8357
+				var9 = 16776960;
 			}
 
-			InterfaceParent.oculusOrbFocalPointX = class101.localPlayer.x; // L: 12433
-			int var2 = SceneTilePaint.getTileHeight(class101.localPlayer.x, class101.localPlayer.y, PacketWriter.Client_plane) - Client.camFollowHeight; // L: 12434
-			if (var2 < class181.field1992) { // L: 12435
-				class181.field1992 = var2;
-			}
-
-			class141.oculusOrbFocalPointY = class101.localPlayer.y; // L: 12436
-			Client.field533 = false; // L: 12437
+			class116.fontBold12.draw(ClanChannelMember.method2906(var7), var0 + 3, var8, var9, 0); // L: 8358
 		}
 
-	} // L: 12439
-
-	@ObfuscatedName("lo")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-115976306"
-	)
-	static void method2106() {
-		if (UrlRequester.field1362 != null) { // L: 12460
-			Client.field770 = Client.cycle; // L: 12461
-			UrlRequester.field1362.method6035(); // L: 12462
-
-			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 12463
-				if (Client.players[var0] != null) { // L: 12464
-					UrlRequester.field1362.method6048(class28.baseX * 64 + (Client.players[var0].x >> 7), WorldMapLabelSize.baseY * 64 + (Client.players[var0].y >> 7)); // L: 12465
-				}
-			}
-		}
-
-	} // L: 12469
+		class28.method387(Language.menuX, UrlRequest.menuY, class402.menuWidth, class321.menuHeight); // L: 8360
+	} // L: 8361
 }
