@@ -4,33 +4,33 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pw")
+@ObfuscatedName("pn")
 @Implements("IterableNodeHashTableIterator")
 public class IterableNodeHashTableIterator implements Iterator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lpb;"
+		descriptor = "Lpl;"
 	)
 	@Export("hashTable")
 	IterableNodeHashTable hashTable;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Loh;"
+		descriptor = "Lor;"
 	)
 	@Export("head")
 	Node head;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@Export("index")
 	int index;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "Loh;"
+		descriptor = "Lor;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpb;)V"
+		descriptor = "(Lpl;)V"
 	)
 	IterableNodeHashTableIterator(IterableNodeHashTable var1) {
 		this.last = null; // L: 10
@@ -38,7 +38,7 @@ public class IterableNodeHashTableIterator implements Iterator {
 		this.start(); // L: 14
 	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@Export("start")
 	void start() {
 		this.head = this.hashTable.buckets[0].previous; // L: 18

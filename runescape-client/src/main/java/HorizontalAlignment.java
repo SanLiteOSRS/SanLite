@@ -4,61 +4,51 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fk")
+@ObfuscatedName("fq")
 @Implements("HorizontalAlignment")
 public enum HorizontalAlignment implements MouseWheel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lfq;"
 	)
-	field1910(1, 0),
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lfk;"
-	)
-	@Export("HorizontalAlignment_centered")
-	HorizontalAlignment_centered(2, 1),
+	field1902(2, 0),
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lfq;"
 	)
-	field1905(0, 2);
-
+	@Export("HorizontalAlignment_centered")
+	HorizontalAlignment_centered(1, 1),
 	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Lfq;"
+	)
+	field1903(0, 2);
+
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -571312605
+		intValue = 1574414567
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -279458597
+		intValue = -1734271631
 	)
 	@Export("id")
 	final int id;
 
 	HorizontalAlignment(int var3, int var4) {
-		this.value = var3; // L: 18
-		this.id = var4; // L: 19
-	} // L: 20
+		this.value = var3; // L: 14
+		this.id = var4; // L: 15
+	} // L: 16
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "1790946346"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 24
-	}
-
-	@ObfuscatedName("jk")
-	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "20"
-	)
-	@Export("getTapToDrop")
-	static boolean getTapToDrop() {
-		return Client.tapToDrop; // L: 11040
+		return this.id; // L: 20
 	}
 }
