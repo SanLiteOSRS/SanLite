@@ -7,22 +7,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ls")
+@ObfuscatedName("nz")
 @Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
-	@ObfuscatedName("v")
+	@ObfuscatedName("wd")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
+	@ObfuscatedName("al")
 	@Export("GrandExchangeEvents_ageComparator")
 	public static Comparator GrandExchangeEvents_ageComparator;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@Export("GrandExchangeEvents_priceComparator")
 	public static Comparator GrandExchangeEvents_priceComparator;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@Export("GrandExchangeEvents_nameComparator")
 	public static Comparator GrandExchangeEvents_nameComparator;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@Export("GrandExchangeEvents_quantityComparator")
 	public static Comparator GrandExchangeEvents_quantityComparator;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@Export("events")
 	public final List events;
 
@@ -35,7 +38,7 @@ public class GrandExchangeEvents {
 	} // L: 67
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;Z)V",
+		descriptor = "(Lsy;Z)V",
 		garbageValue = "1"
 	)
 	public GrandExchangeEvents(Buffer var1, boolean var2) {
@@ -57,10 +60,10 @@ public class GrandExchangeEvents {
 
 	} // L: 92
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Comparator;ZS)V",
-		garbageValue = "-32109"
+		descriptor = "(Ljava/util/Comparator;ZI)V",
+		garbageValue = "1953519779"
 	)
 	@Export("sort")
 	public void sort(Comparator var1, boolean var2) {
@@ -71,4 +74,34 @@ public class GrandExchangeEvents {
 		}
 
 	} // L: 101
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "([BI)Ljava/lang/String;",
+		garbageValue = "370211652"
+	)
+	public static String method6539(byte[] var0) {
+		return ClientPreferences.method2537(var0, 0, var0.length); // L: 58
+	}
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(Lsy;II)Ljava/lang/String;",
+		garbageValue = "204170492"
+	)
+	static String method6535(Buffer var0, int var1) {
+		try {
+			int var2 = var0.readUShortSmart(); // L: 31
+			if (var2 > var1) { // L: 32
+				var2 = var1;
+			}
+
+			byte[] var3 = new byte[var2]; // L: 33
+			var0.offset += class315.huffman.decompress(var0.array, var0.offset, var3, 0, var2); // L: 34
+			String var4 = GrandExchangeOfferUnitPriceComparator.decodeStringCp1252(var3, 0, var2); // L: 35
+			return var4; // L: 36
+		} catch (Exception var6) { // L: 38
+			return "Cabbage"; // L: 39
+		}
+	}
 }

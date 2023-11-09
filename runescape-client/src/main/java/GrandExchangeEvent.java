@@ -4,37 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@Deprecated
-@ObfuscatedName("lj")
+@ObfuscatedName("nv")
 @Implements("GrandExchangeEvent")
 public class GrandExchangeEvent {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -719999359
+		intValue = -1336906377
 	)
 	@Export("world")
 	public final int world;
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		longValue = 2849565838648166291L
+		longValue = 7037428363075878983L
 	)
 	@Export("age")
 	public final long age;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Llu;"
+		descriptor = "Lnd;"
 	)
 	@Export("grandExchangeOffer")
 	public final GrandExchangeOffer grandExchangeOffer;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ab")
 	@Export("offerName")
 	String offerName;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@Export("previousOfferName")
 	String previousOfferName;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;BI)V"
+		descriptor = "(Lsy;BI)V"
 	)
 	GrandExchangeEvent(Buffer var1, byte var2, int var3) {
 		this.offerName = var1.readStringCp1252NullTerminated(); // L: 111
@@ -44,8 +43,8 @@ public class GrandExchangeEvent {
 		int var4 = var1.readInt(); // L: 115
 		int var5 = var1.readInt(); // L: 116
 		this.grandExchangeOffer = new GrandExchangeOffer(); // L: 117
-		this.grandExchangeOffer.method6007(2); // L: 118
-		this.grandExchangeOffer.method6005(var2); // L: 119
+		this.grandExchangeOffer.method6579(2); // L: 118
+		this.grandExchangeOffer.method6587(var2); // L: 119
 		this.grandExchangeOffer.unitPrice = var4; // L: 120
 		this.grandExchangeOffer.totalQuantity = var5; // L: 121
 		this.grandExchangeOffer.currentQuantity = 0; // L: 122
@@ -53,23 +52,74 @@ public class GrandExchangeEvent {
 		this.grandExchangeOffer.id = var3; // L: 124
 	} // L: 125
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-143150705"
+		garbageValue = "1165951902"
 	)
 	@Export("getOfferName")
 	public String getOfferName() {
 		return this.offerName; // L: 128
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "36"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "-564912902"
 	)
 	@Export("getPreviousOfferName")
 	public String getPreviousOfferName() {
 		return this.previousOfferName; // L: 132
+	}
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "-831918617"
+	)
+	@Export("loadInterface")
+	public static boolean loadInterface(int var0) {
+		if (class123.Widget_loadedInterfaces[var0]) { // L: 251
+			return true;
+		} else if (!MouseRecorder.Widget_archive.tryLoadGroup(var0)) { // L: 252
+			return false;
+		} else {
+			int var1 = MouseRecorder.Widget_archive.getGroupFileCount(var0); // L: 253
+			if (var1 == 0) { // L: 254
+				class123.Widget_loadedInterfaces[var0] = true; // L: 255
+				return true; // L: 256
+			} else {
+				if (class155.Widget_interfaceComponents[var0] == null) { // L: 258
+					class155.Widget_interfaceComponents[var0] = new Widget[var1];
+				}
+
+				for (int var2 = 0; var2 < var1; ++var2) { // L: 259
+					if (class155.Widget_interfaceComponents[var0][var2] == null) { // L: 260
+						byte[] var3 = MouseRecorder.Widget_archive.takeFile(var0, var2); // L: 261
+						if (var3 != null) { // L: 262
+							class155.Widget_interfaceComponents[var0][var2] = new Widget(); // L: 263
+							class155.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16); // L: 264
+							if (var3[0] == -1) { // L: 265
+								class155.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
+							} else {
+								class155.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3)); // L: 266
+							}
+						}
+					}
+				}
+
+				class123.Widget_loadedInterfaces[var0] = true; // L: 270
+				return true; // L: 271
+			}
+		}
+	}
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;I)I",
+		garbageValue = "1746202712"
+	)
+	public static int method6573(CharSequence var0) {
+		return class146.method3156(var0, 10, true); // L: 68
 	}
 }
