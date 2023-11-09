@@ -1,65 +1,116 @@
-import java.net.MalformedURLException;
 import java.net.URL;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ki")
+@ObfuscatedName("ks")
 public class class290 {
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lct;"
+		descriptor = "Lln;"
 	)
-	UrlRequest field3331;
+	@Export("musicPatchesArchive")
+	public static AbstractArchive musicPatchesArchive;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("musicSamplesArchive")
+	public static AbstractArchive musicSamplesArchive;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lqe;"
+		descriptor = "Lln;"
 	)
-	SpritePixels field3332;
-
+	@Export("soundEffectsArchive")
+	public static AbstractArchive soundEffectsArchive;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lcd;)V"
+		descriptor = "Lky;"
 	)
-	class290(String var1, UrlRequester var2) {
-		try {
-			this.field3331 = var2.request(new URL(var1)); // L: 16
-		} catch (MalformedURLException var4) { // L: 18
-			this.field3331 = null;
-		}
-
-	} // L: 21
-
+	@Export("midiPcmStream")
+	public static MidiPcmStream midiPcmStream;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = 1163473009
+	)
+	@Export("musicPlayerStatus")
+	public static int musicPlayerStatus;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = -423935109
+	)
+	@Export("musicTrackVolume")
+	public static int musicTrackVolume;
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(Lct;)V"
+		descriptor = "Loj;"
 	)
-	class290(UrlRequest var1) {
-		this.field3331 = var1; // L: 24
-	} // L: 25
+	static Bounds field3364;
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(B)Lqe;",
-		garbageValue = "47"
-	)
-	SpritePixels method5562() {
-		if (this.field3332 == null && this.field3331 != null && this.field3331.isDone()) { // L: 28
-			if (this.field3331.getResponse() != null) { // L: 29
-				this.field3332 = ItemLayer.method3920(this.field3331.getResponse()); // L: 30
-			}
-
-			this.field3331 = null; // L: 32
-		}
-
-		return this.field3332; // L: 34
+	static {
+		musicPlayerStatus = 0; // L: 11
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "21073206"
+		descriptor = "(I)Z",
+		garbageValue = "138356035"
 	)
-	@Export("addGameMessage")
-	static void addGameMessage(int var0, String var1, String var2) {
-		SecureRandomFuture.addChatMessage(var0, var1, var2, (String)null); // L: 19
-	} // L: 20
+	@Export("loadWorlds")
+	static boolean loadWorlds() {
+		try {
+			if (ClanChannel.World_request == null) { // L: 31
+				ClanChannel.World_request = class245.urlRequester.request(new URL(VerticalAlignment.field2070));
+			} else if (ClanChannel.World_request.isDone()) { // L: 33
+				byte[] var0 = ClanChannel.World_request.getResponse(); // L: 34
+				Buffer var1 = new Buffer(var0); // L: 35
+				var1.readInt(); // L: 36
+				World.World_count = var1.readUnsignedShort(); // L: 37
+				class88.World_worlds = new World[World.World_count]; // L: 38
+
+				World var3;
+				for (int var2 = 0; var2 < World.World_count; var3.index = var2++) { // L: 39 47
+					var3 = class88.World_worlds[var2] = new World(); // L: 40
+					var3.id = var1.readUnsignedShort(); // L: 41
+					var3.properties = var1.readInt(); // L: 42
+					var3.host = var1.readStringCp1252NullTerminated(); // L: 43
+					var3.activity = var1.readStringCp1252NullTerminated(); // L: 44
+					var3.location = var1.readUnsignedByte(); // L: 45
+					var3.population = var1.readShort(); // L: 46
+				}
+
+				class156.sortWorlds(class88.World_worlds, 0, class88.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 49
+				ClanChannel.World_request = null; // L: 50
+				return true; // L: 51
+			}
+		} catch (Exception var4) { // L: 55
+			var4.printStackTrace(); // L: 56
+			ClanChannel.World_request = null; // L: 57
+		}
+
+		return false; // L: 59
+	}
+
+	@ObfuscatedName("ju")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZB)V",
+		garbageValue = "35"
+	)
+	static final void method5598(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
+		if (!Client.isMenuOpen) { // L: 10448
+			if (Client.menuOptionsCount < 500) { // L: 10449
+				Client.menuActions[Client.menuOptionsCount] = var0; // L: 10450
+				Client.menuTargets[Client.menuOptionsCount] = var1; // L: 10451
+				Client.menuOpcodes[Client.menuOptionsCount] = var2; // L: 10452
+				Client.menuIdentifiers[Client.menuOptionsCount] = var3; // L: 10453
+				Client.menuArguments1[Client.menuOptionsCount] = var4; // L: 10454
+				Client.menuArguments2[Client.menuOptionsCount] = var5; // L: 10455
+				Client.field655[Client.menuOptionsCount] = var6; // L: 10456
+				Client.menuShiftClick[Client.menuOptionsCount] = var7; // L: 10457
+				++Client.menuOptionsCount; // L: 10458
+			}
+
+		}
+	} // L: 10460
 }

@@ -1,31 +1,39 @@
+import java.util.concurrent.Callable;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dh")
-public abstract class class128 extends Node {
-	class128() {
-	} // L: 68
-
-	@ObfuscatedName("c")
+@ObfuscatedName("dj")
+class class128 implements Callable {
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "Lei;"
 	)
-	abstract void vmethod3150(Buffer var1);
-
-	@ObfuscatedName("v")
+	final class133 this$0;
+	// $FF: synthetic field
+	final int val$workStart;
+	// $FF: synthetic field
+	final int val$workEnd;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "[Ldu;"
 	)
-	abstract void vmethod3149(ClanSettings var1);
+	final class124[] val$curveLoadJobs;
 
-	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Ljw;",
-		garbageValue = "182200833"
+		descriptor = "(Lei;II[Ldu;)V"
 	)
-	public static class262[] method2856() {
-		return new class262[]{class262.field3020, class262.field3017, class262.field3019, class262.field3018, class262.field3015, class262.field3016, class262.field3021, class262.field3022, class262.field3023, class262.field3024}; // L: 17
+	class128(class133 var1, int var2, int var3, class124[] var4) {
+		this.this$0 = var1; // L: 145
+		this.val$workStart = var2;
+		this.val$workEnd = var3;
+		this.val$curveLoadJobs = var4;
+	}
+
+	public Object call() {
+		for (int var1 = this.val$workStart; var1 < this.val$workEnd; ++var1) { // L: 148
+			this.val$curveLoadJobs[var1].call(); // L: 149
+		}
+
+		return null; // L: 151
 	}
 }

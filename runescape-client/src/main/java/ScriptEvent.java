@@ -4,68 +4,68 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cw")
+@ObfuscatedName("cd")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@Export("args")
 	Object[] args;
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@Export("isMouseInputEvent")
 	boolean isMouseInputEvent;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lkz;"
 	)
 	@Export("widget")
 	Widget widget;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 708016645
+		intValue = -227463845
 	)
 	@Export("mouseX")
 	int mouseX;
-	@ObfuscatedName("j")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -768277781
+		intValue = 1283983679
 	)
 	@Export("mouseY")
 	int mouseY;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1223835253
+		intValue = 1632865199
 	)
 	@Export("opIndex")
 	int opIndex;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lkz;"
 	)
 	@Export("dragTarget")
 	Widget dragTarget;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 308775773
+		intValue = -1466980021
 	)
 	@Export("keyTyped")
 	int keyTyped;
-	@ObfuscatedName("y")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1014377791
+		intValue = -257259557
 	)
 	@Export("keyPressed")
 	int keyPressed;
-	@ObfuscatedName("i")
+	@ObfuscatedName("k")
 	@Export("targetName")
 	String targetName;
-	@ObfuscatedName("s")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 643045145
+		intValue = 1989980605
 	)
-	int field1056;
-	@ObfuscatedName("t")
+	int field1071;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1853302577
+		intValue = 1561734475
 	)
 	@Export("type")
 	int type;
@@ -74,77 +74,45 @@ public class ScriptEvent extends Node {
 		this.type = 76; // L: 19
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "([Ljava/lang/Object;I)V",
-		garbageValue = "1631698731"
+		garbageValue = "710868309"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
 		this.args = var1; // L: 22
 	} // L: 23
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "-59182126"
+		garbageValue = "-2059816970"
 	)
 	@Export("setType")
 	public void setType(int var1) {
 		this.type = var1; // L: 26
 	} // L: 27
 
-	@ObfuscatedName("bf")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)I",
-		garbageValue = "-2093180066"
+		descriptor = "(Lkz;I)V",
+		garbageValue = "826217061"
 	)
-	@Export("stringCp1252NullTerminatedByteSize")
-	public static int stringCp1252NullTerminatedByteSize(String var0) {
-		return var0.length() + 1; // L: 117
-	}
+	public void method2313(Widget var1) {
+		this.widget = var1; // L: 30
+	} // L: 31
 
-	@ObfuscatedName("lf")
+	@ObfuscatedName("gj")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-372949524"
+		descriptor = "(IIB)V",
+		garbageValue = "-48"
 	)
-	static void method2101() {
-		if (Client.field533 && class101.localPlayer != null) { // L: 12429
-			int var0 = class101.localPlayer.pathX[0]; // L: 12430
-			int var1 = class101.localPlayer.pathY[0]; // L: 12431
-			if (var0 < 0 || var1 < 0 || var0 >= 104 || var1 >= 104) { // L: 12432
-				return;
-			}
-
-			InterfaceParent.oculusOrbFocalPointX = class101.localPlayer.x; // L: 12433
-			int var2 = SceneTilePaint.getTileHeight(class101.localPlayer.x, class101.localPlayer.y, PacketWriter.Client_plane) - Client.camFollowHeight; // L: 12434
-			if (var2 < class181.field1992) { // L: 12435
-				class181.field1992 = var2;
-			}
-
-			class141.oculusOrbFocalPointY = class101.localPlayer.y; // L: 12436
-			Client.field533 = false; // L: 12437
+	static void method2321(int var0, int var1) {
+		if (PacketWriter.clientPreferences.method2495() != 0 && var0 != -1) { // L: 4041
+			class148.method3216(MusicPatchNode.field3448, var0, 0, PacketWriter.clientPreferences.method2495(), false); // L: 4042
+			Client.playingJingle = true; // L: 4043
 		}
 
-	} // L: 12439
-
-	@ObfuscatedName("lo")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-115976306"
-	)
-	static void method2106() {
-		if (UrlRequester.field1362 != null) { // L: 12460
-			Client.field770 = Client.cycle; // L: 12461
-			UrlRequester.field1362.method6035(); // L: 12462
-
-			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 12463
-				if (Client.players[var0] != null) { // L: 12464
-					UrlRequester.field1362.method6048(class28.baseX * 64 + (Client.players[var0].x >> 7), WorldMapLabelSize.baseY * 64 + (Client.players[var0].y >> 7)); // L: 12465
-				}
-			}
-		}
-
-	} // L: 12469
+	} // L: 4045
 }

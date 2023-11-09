@@ -1,23 +1,60 @@
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pu")
-public class class430 {
-	@ObfuscatedName("v")
-	static final int[] field4652;
-	@ObfuscatedName("y")
-	static int[][] field4651;
+@ObfuscatedName("pt")
+public class class430 implements class428 {
+	@ObfuscatedName("f")
+	final Map field4684;
 
-	static {
-		field4652 = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, -1, 1, -1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3, 3, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}; // L: 5
+	public class430(Map var1) {
+		this.field4684 = var1; // L: 11
+	} // L: 12
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(B)Lpf;",
+		garbageValue = "1"
+	)
+	public class427 vmethod8059() {
+		return null; // L: 16
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;III)[Lqe;",
-		garbageValue = "-1014009105"
+		descriptor = "(B)[B",
+		garbageValue = "1"
 	)
-	public static SpritePixels[] method7547(AbstractArchive var0, int var1, int var2) {
-		return !Ignored.method6774(var0, var1, var2) ? null : class266.method5212(); // L: 52 53
+	public byte[] vmethod8061() throws UnsupportedEncodingException {
+		return this.method8060().getBytes("UTF-8"); // L: 21
+	}
+
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "1"
+	)
+	public String method8060() throws UnsupportedEncodingException {
+		StringBuilder var1 = new StringBuilder(); // L: 25
+		Iterator var2 = this.field4684.entrySet().iterator(); // L: 26
+
+		while (var2.hasNext()) {
+			Entry var3 = (Entry)var2.next(); // L: 27
+			String var4 = URLEncoder.encode((String)var3.getKey(), "UTF-8"); // L: 29
+			String var5 = URLEncoder.encode((String)var3.getValue(), "UTF-8"); // L: 30
+			var1.append(var4).append("=").append(var5).append("&"); // L: 31
+		}
+
+		if (var1.length() == 0) { // L: 34
+			return "";
+		} else {
+			var1.deleteCharAt(var1.length() - 1); // L: 35
+			var1.insert(0, "?"); // L: 36
+			return var1.toString(); // L: 37
+		}
 	}
 }
