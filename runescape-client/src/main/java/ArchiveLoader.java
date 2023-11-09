@@ -1,56 +1,58 @@
+import java.io.File;
+import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bj")
+@ObfuscatedName("dn")
 @Implements("ArchiveLoader")
 public class ArchiveLoader {
-	@ObfuscatedName("au")
+	@ObfuscatedName("ii")
 	@ObfuscatedSignature(
-		descriptor = "Lns;"
+		descriptor = "Lqz;"
 	)
-	static Bounds field1022;
-	@ObfuscatedName("v")
+	static AbstractSocket field1037;
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lny;"
 	)
 	@Export("archive")
 	final Archive archive;
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -955851169
+		intValue = 1189006953
 	)
 	@Export("groupCount")
 	final int groupCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 982415587
+		intValue = 1731597009
 	)
 	@Export("loadedCount")
 	int loadedCount;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llc;Ljava/lang/String;)V"
+		descriptor = "(Lny;Ljava/lang/String;)V"
 	)
 	ArchiveLoader(Archive var1, String var2) {
 		this.loadedCount = 0; // L: 9
-		this.archive = var1;
-		this.groupCount = var1.getGroupCount();
+		this.archive = var1; // L: 12
+		this.groupCount = var1.getGroupCount(); // L: 13
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "102"
+		descriptor = "(I)Z",
+		garbageValue = "-58994437"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
 		this.loadedCount = 0; // L: 17
 
 		for (int var1 = 0; var1 < this.groupCount; ++var1) { // L: 18
-			if (!this.archive.method5806(var1) || this.archive.method5805(var1)) {
+			if (!this.archive.method6657(var1) || this.archive.method6685(var1)) {
 				++this.loadedCount; // L: 19
 			}
 		}
@@ -58,47 +60,44 @@ public class ArchiveLoader {
 		return this.loadedCount >= this.groupCount; // L: 21
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1248295079"
+		descriptor = "(Ljava/io/File;ZB)Z",
+		garbageValue = "-31"
 	)
-	public static int method2075(int var0) {
-		return var0 != 0 && var0 != 1 ? -1 : 0; // L: 12 13 15
-	}
-
-	@ObfuscatedName("ao")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "280590426"
-	)
-	static int method2073(int var0, Script var1, boolean var2) {
-		if (var0 != 3700 && var0 != 3701) { // L: 2707
-			if (var0 == 3702) { // L: 2712
-				++class446.Interpreter_intStackSize; // L: 2713
-				return 1; // L: 2714
-			} else {
-				return 2; // L: 2716
+	static boolean method2217(File var0, boolean var1) {
+		try {
+			RandomAccessFile var2 = new RandomAccessFile(var0, "rw"); // L: 239
+			int var3 = var2.read(); // L: 240
+			var2.seek(0L); // L: 241
+			var2.write(var3); // L: 242
+			var2.seek(0L); // L: 243
+			var2.close(); // L: 244
+			if (var1) { // L: 245
+				var0.delete();
 			}
-		} else {
-			--class446.Interpreter_intStackSize; // L: 2708
-			--Interpreter.Interpreter_stringStackSize; // L: 2709
-			return 1; // L: 2710
+
+			return true; // L: 246
+		} catch (Exception var4) { // L: 248
+			return false; // L: 249
 		}
 	}
 
-	@ObfuscatedName("lc")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-818413481"
+		descriptor = "(III)I",
+		garbageValue = "-1476778115"
 	)
-	@Export("clanKickUser")
-	static final void clanKickUser(String var0) {
-		if (Huffman.friendsChatManager != null) { // L: 12225
-			PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2923, Client.packetWriter.isaacCipher); // L: 12226
-			var1.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0)); // L: 12227
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12228
-			Client.packetWriter.addNode(var1); // L: 12229
+	static int method2220(int var0, int var1) {
+		for (int var2 = 0; var2 < 8; ++var2) { // L: 1207
+			if (var1 <= var0 + 30) { // L: 1208
+				return var2; // L: 1209
+			}
+
+			var0 += 30; // L: 1211
+			var0 += var2 != 1 && var2 != 3 ? 5 : 20; // L: 1212
 		}
-	} // L: 12230
+
+		return 0; // L: 1214
+	}
 }

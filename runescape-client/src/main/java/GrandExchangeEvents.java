@@ -4,25 +4,32 @@ import java.util.Comparator;
 import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ls")
+@ObfuscatedName("nl")
 @Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@Export("GrandExchangeEvents_ageComparator")
 	public static Comparator GrandExchangeEvents_ageComparator;
-	@ObfuscatedName("q")
+	@ObfuscatedName("av")
 	@Export("GrandExchangeEvents_priceComparator")
 	public static Comparator GrandExchangeEvents_priceComparator;
-	@ObfuscatedName("f")
+	@ObfuscatedName("as")
 	@Export("GrandExchangeEvents_nameComparator")
 	public static Comparator GrandExchangeEvents_nameComparator;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ax")
 	@Export("GrandExchangeEvents_quantityComparator")
 	public static Comparator GrandExchangeEvents_quantityComparator;
-	@ObfuscatedName("c")
+	@ObfuscatedName("la")
+	@ObfuscatedGetter(
+		intValue = 1330093309
+	)
+	@Export("oculusOrbFocalPointY")
+	static int oculusOrbFocalPointY;
+	@ObfuscatedName("at")
 	@Export("events")
 	public final List events;
 
@@ -35,7 +42,7 @@ public class GrandExchangeEvents {
 	} // L: 67
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;Z)V",
+		descriptor = "(Ltz;Z)V",
 		garbageValue = "1"
 	)
 	public GrandExchangeEvents(Buffer var1, boolean var2) {
@@ -57,10 +64,10 @@ public class GrandExchangeEvents {
 
 	} // L: 92
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Comparator;ZS)V",
-		garbageValue = "-32109"
+		descriptor = "(Ljava/util/Comparator;ZI)V",
+		garbageValue = "701499603"
 	)
 	@Export("sort")
 	public void sort(Comparator var1, boolean var2) {
@@ -71,4 +78,27 @@ public class GrandExchangeEvents {
 		}
 
 	} // L: 101
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(IIIB)I",
+		garbageValue = "93"
+	)
+	static final int method6803(int var0, int var1, int var2) {
+		int var3 = var0 / var2; // L: 926
+		int var4 = var0 & var2 - 1; // L: 927
+		int var5 = var1 / var2; // L: 928
+		int var6 = var1 & var2 - 1; // L: 929
+		int var7 = class464.method8328(var3, var5); // L: 930
+		int var8 = class464.method8328(var3 + 1, var5); // L: 931
+		int var9 = class464.method8328(var3, var5 + 1); // L: 932
+		int var10 = class464.method8328(var3 + 1, var5 + 1); // L: 933
+		int var12 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1; // L: 936
+		int var11 = ((65536 - var12) * var7 >> 16) + (var12 * var8 >> 16); // L: 937
+		int var14 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1; // L: 942
+		int var13 = ((65536 - var14) * var9 >> 16) + (var14 * var10 >> 16); // L: 943
+		int var16 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var6 * 1024 / var2] >> 1; // L: 948
+		int var15 = ((65536 - var16) * var11 >> 16) + (var13 * var16 >> 16); // L: 949
+		return var15; // L: 951
+	}
 }
