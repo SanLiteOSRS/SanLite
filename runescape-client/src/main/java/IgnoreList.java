@@ -1,25 +1,27 @@
+import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mi")
+@ObfuscatedName("nu")
 @Implements("IgnoreList")
 public class IgnoreList extends NameableContainer {
-	@ObfuscatedName("w")
+	@ObfuscatedName("al")
+	@Export("client")
 	@ObfuscatedSignature(
-		descriptor = "Lqu;"
+		descriptor = "Lclient;"
 	)
-	static IndexedSprite field4284;
-	@ObfuscatedName("q")
+	static Client client;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lpe;"
+		descriptor = "Lpn;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpe;)V"
+		descriptor = "(Lpn;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400); // L: 13
@@ -28,28 +30,28 @@ public class IgnoreList extends NameableContainer {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lne;",
-		garbageValue = "-7122"
+		descriptor = "(B)Lnc;",
+		garbageValue = "-25"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Ignored(); // L: 19
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lne;",
-		garbageValue = "77510907"
+		descriptor = "(IB)[Lnc;",
+		garbageValue = "0"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Ignored[var1]; // L: 24
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "1241534529"
+		descriptor = "(Lqq;IB)V",
+		garbageValue = "67"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -57,15 +59,15 @@ public class IgnoreList extends NameableContainer {
 			if (var1.offset < var2) { // L: 28
 				int var3 = var1.readUnsignedByte(); // L: 29
 				boolean var4 = (var3 & 1) == 1; // L: 30
-				Username var5 = new Username(var1.readStringCp1252NullTerminated(), this.loginType); // L: 31
-				Username var6 = new Username(var1.readStringCp1252NullTerminated(), this.loginType); // L: 32
-				var1.readStringCp1252NullTerminated(); // L: 33
-				if (var5 != null && var5.hasCleanName()) { // L: 34
-					Ignored var7 = (Ignored)this.getByCurrentUsername(var5); // L: 35
-					if (var4) { // L: 36
-						Ignored var8 = (Ignored)this.getByCurrentUsername(var6); // L: 37
-						if (var8 != null && var7 != var8) { // L: 38
-							if (var7 != null) { // L: 39
+				Username var5 = new Username(var1.readStringCp1252NullTerminated(), this.loginType);
+				Username var6 = new Username(var1.readStringCp1252NullTerminated(), this.loginType);
+				var1.readStringCp1252NullTerminated();
+				if (var5 != null && var5.hasCleanName()) {
+					Ignored var7 = (Ignored)this.getByCurrentUsername(var5);
+					if (var4) {
+						Ignored var8 = (Ignored)this.getByCurrentUsername(var6);
+						if (var8 != null && var8 != var7) {
+							if (var7 != null) {
 								this.remove(var8); // L: 40
 							} else {
 								var7 = var8; // L: 43
@@ -91,5 +93,18 @@ public class IgnoreList extends NameableContainer {
 
 			return; // L: 57
 		}
+	}
+
+	@ObfuscatedName("c")
+	public static String method6781(long var0) {
+		Calendar.Calendar_calendar.setTime(new Date(var0)); // L: 31
+		int var2 = Calendar.Calendar_calendar.get(7); // L: 32
+		int var3 = Calendar.Calendar_calendar.get(5); // L: 33
+		int var4 = Calendar.Calendar_calendar.get(2); // L: 34
+		int var5 = Calendar.Calendar_calendar.get(1); // L: 35
+		int var6 = Calendar.Calendar_calendar.get(11); // L: 36
+		int var7 = Calendar.Calendar_calendar.get(12); // L: 37
+		int var8 = Calendar.Calendar_calendar.get(13); // L: 38
+		return Calendar.DAYS_OF_THE_WEEK[var2 - 1] + ", " + var3 / 10 + var3 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var4] + "-" + var5 + " " + var6 / 10 + var6 % 10 + ":" + var7 / 10 + var7 % 10 + ":" + var8 / 10 + var8 % 10 + " GMT"; // L: 39
 	}
 }

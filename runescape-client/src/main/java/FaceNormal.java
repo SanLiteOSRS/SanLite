@@ -4,24 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gt")
+@ObfuscatedName("gh")
 @Implements("FaceNormal")
 public class FaceNormal {
+	@ObfuscatedName("ed")
+	@ObfuscatedSignature(
+		descriptor = "Llb;"
+	)
+	@Export("archive11")
+	static Archive archive11;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 2045687167
+		intValue = -2023044953
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 259443193
+		intValue = 1127308585
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1323517785
+		intValue = 1704901571
 	)
 	@Export("z")
 	int z;
@@ -29,12 +35,18 @@ public class FaceNormal {
 	FaceNormal() {
 	} // L: 8
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-1766790995"
+		descriptor = "(I)V",
+		garbageValue = "1756706503"
 	)
-	public static int method4344(CharSequence var0) {
-		return HealthBar.method2356(var0, 10, true); // L: 77
-	}
+	static void method4466() {
+		Players.Players_count = 0; // L: 634
+
+		for (int var0 = 0; var0 < 2048; ++var0) { // L: 635
+			Players.field1292[var0] = null; // L: 636
+			Players.field1291[var0] = class193.field2246; // L: 637
+		}
+
+	} // L: 639
 }

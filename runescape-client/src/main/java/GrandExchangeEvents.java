@@ -4,24 +4,31 @@ import java.util.Comparator;
 import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ls")
+@ObfuscatedName("lg")
 @Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@Export("GrandExchangeEvents_ageComparator")
 	public static Comparator GrandExchangeEvents_ageComparator;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@Export("GrandExchangeEvents_priceComparator")
 	public static Comparator GrandExchangeEvents_priceComparator;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@Export("GrandExchangeEvents_nameComparator")
 	public static Comparator GrandExchangeEvents_nameComparator;
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@Export("GrandExchangeEvents_quantityComparator")
 	public static Comparator GrandExchangeEvents_quantityComparator;
+	@ObfuscatedName("mu")
+	@ObfuscatedGetter(
+		intValue = -2026299759
+	)
+	@Export("menuHeight")
+	static int menuHeight;
 	@ObfuscatedName("c")
 	@Export("events")
 	public final List events;
@@ -35,7 +42,7 @@ public class GrandExchangeEvents {
 	} // L: 67
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;Z)V",
+		descriptor = "(Lqq;Z)V",
 		garbageValue = "1"
 	)
 	public GrandExchangeEvents(Buffer var1, boolean var2) {
@@ -59,8 +66,8 @@ public class GrandExchangeEvents {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Comparator;ZS)V",
-		garbageValue = "-32109"
+		descriptor = "(Ljava/util/Comparator;ZI)V",
+		garbageValue = "-1963025801"
 	)
 	@Export("sort")
 	public void sort(Comparator var1, boolean var2) {
@@ -71,4 +78,20 @@ public class GrandExchangeEvents {
 		}
 
 	} // L: 101
+
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "(CS)Z",
+		garbageValue = "128"
+	)
+	@Export("isCharPrintable")
+	public static boolean isCharPrintable(char var0) {
+		if (var0 >= ' ' && var0 <= '~') { // L: 177
+			return true;
+		} else if (var0 >= 160 && var0 <= 255) { // L: 178
+			return true;
+		} else {
+			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376; // L: 179
+		}
+	}
 }

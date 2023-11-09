@@ -3,77 +3,76 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cg")
+@ObfuscatedName("cw")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1077280707
+		intValue = -1767120265
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1648453221
+		intValue = -101306375
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1684914079
+		intValue = -235463367
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 841494057
+		intValue = 1223672293
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 332033545
+		intValue = -675081877
 	)
 	@Export("objectId")
 	int objectId;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = 1740672261
-	)
-	int field1121;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = 1499374413
-	)
-	int field1122;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 1955707387
+		intValue = 649279117
+	)
+	int field1119;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = 1253109749
+	)
+	int field1121;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = -1567816187
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("y")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1729906445
+		intValue = 1426985427
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("i")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1250065699
+		intValue = -1255864427
 	)
-	int field1125;
-	@ObfuscatedName("s")
+	int field1123;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1981751259
+		intValue = 1779538209
 	)
 	@Export("delay")
 	int delay;
-	@ObfuscatedName("t")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 832910611
+		intValue = 1706194461
 	)
 	@Export("hitpoints")
 	int hitpoints;
@@ -83,64 +82,124 @@ public final class PendingSpawn extends Node {
 		this.hitpoints = -1; // L: 17
 	} // L: 19
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "630642952"
+		descriptor = "(I)[Lku;",
+		garbageValue = "-2075436167"
 	)
-	static int method2180(int var0, Script var1, boolean var2) {
-		int var3 = -1; // L: 571
-		Widget var4;
-		if (var0 >= 2000) { // L: 573
-			var0 -= 1000; // L: 574
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 575
-			var4 = class140.getWidget(var3); // L: 576
-		} else {
-			var4 = var2 ? class124.scriptDotWidget : GrandExchangeOfferOwnWorldComparator.scriptActiveWidget; // L: 578
-		}
-
-		if (var0 == ScriptOpcodes.CC_SETPOSITION) { // L: 579
-			class446.Interpreter_intStackSize -= 4; // L: 580
-			var4.rawX = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize]; // L: 581
-			var4.rawY = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 1]; // L: 582
-			var4.xAlignment = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 2]; // L: 583
-			var4.yAlignment = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 3]; // L: 584
-			ChatChannel.invalidateWidget(var4); // L: 585
-			class353.client.alignWidget(var4); // L: 586
-			if (var3 != -1 && var4.type == 0) { // L: 587
-				BufferedNetSocket.revalidateWidgetScroll(SoundCache.Widget_interfaceComponents[var3 >> 16], var4, false);
-			}
-
-			return 1; // L: 588
-		} else if (var0 == ScriptOpcodes.CC_SETSIZE) { // L: 590
-			class446.Interpreter_intStackSize -= 4; // L: 591
-			var4.rawWidth = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize]; // L: 592
-			var4.rawHeight = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 1]; // L: 593
-			var4.widthAlignment = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 2]; // L: 594
-			var4.heightAlignment = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 3]; // L: 595
-			ChatChannel.invalidateWidget(var4); // L: 596
-			class353.client.alignWidget(var4); // L: 597
-			if (var3 != -1 && var4.type == 0) { // L: 598
-				BufferedNetSocket.revalidateWidgetScroll(SoundCache.Widget_interfaceComponents[var3 >> 16], var4, false);
-			}
-
-			return 1; // L: 599
-		} else if (var0 == ScriptOpcodes.CC_SETHIDE) { // L: 601
-			boolean var5 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 602
-			if (var5 != var4.isHidden) { // L: 603
-				var4.isHidden = var5; // L: 604
-				ChatChannel.invalidateWidget(var4); // L: 605
-			}
-
-			return 1; // L: 607
-		} else if (var0 == ScriptOpcodes.CC_SETNOCLICKTHROUGH) { // L: 609
-			var4.noClickThrough = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 610
-			return 1; // L: 611
-		} else if (var0 == ScriptOpcodes.CC_SETNOSCROLLTHROUGH) { // L: 613
-			var4.noScrollThrough = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 614
-			return 1; // L: 615
-		} else {
-			return 2; // L: 617
-		}
+	static class303[] method2330() {
+		return new class303[]{class303.field3620, class303.field3619}; // L: 35
 	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "([Lbo;II[I[II)V",
+		garbageValue = "-2066626145"
+	)
+	@Export("sortWorlds")
+	static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
+		if (var1 < var2) { // L: 81
+			int var5 = var1 - 1; // L: 82
+			int var6 = var2 + 1; // L: 83
+			int var7 = (var2 + var1) / 2; // L: 84
+			World var8 = var0[var7]; // L: 85
+			var0[var7] = var0[var1]; // L: 86
+			var0[var1] = var8; // L: 87
+
+			while (var5 < var6) { // L: 88
+				boolean var9 = true; // L: 89
+
+				int var10;
+				int var11;
+				int var12;
+				do {
+					--var6; // L: 91
+
+					for (var10 = 0; var10 < 4; ++var10) { // L: 92
+						if (var3[var10] == 2) { // L: 95
+							var11 = var0[var6].index; // L: 96
+							var12 = var8.index; // L: 97
+						} else if (var3[var10] == 1) { // L: 99
+							var11 = var0[var6].population; // L: 100
+							var12 = var8.population; // L: 101
+							if (var11 == -1 && var4[var10] == 1) { // L: 102
+								var11 = 2001;
+							}
+
+							if (var12 == -1 && var4[var10] == 1) { // L: 103
+								var12 = 2001;
+							}
+						} else if (var3[var10] == 3) { // L: 105
+							var11 = var0[var6].isMembersOnly() ? 1 : 0; // L: 106
+							var12 = var8.isMembersOnly() ? 1 : 0; // L: 107
+						} else {
+							var11 = var0[var6].id; // L: 110
+							var12 = var8.id; // L: 111
+						}
+
+						if (var11 != var12) { // L: 113
+							if ((var4[var10] != 1 || var11 <= var12) && (var4[var10] != 0 || var11 >= var12)) { // L: 116 117
+								var9 = false; // L: 119
+							}
+							break;
+						}
+
+						if (var10 == 3) { // L: 114
+							var9 = false;
+						}
+					}
+				} while(var9);
+
+				var9 = true; // L: 124
+
+				do {
+					++var5; // L: 126
+
+					for (var10 = 0; var10 < 4; ++var10) { // L: 127
+						if (var3[var10] == 2) { // L: 130
+							var11 = var0[var5].index; // L: 131
+							var12 = var8.index; // L: 132
+						} else if (var3[var10] == 1) { // L: 134
+							var11 = var0[var5].population; // L: 135
+							var12 = var8.population; // L: 136
+							if (var11 == -1 && var4[var10] == 1) { // L: 137
+								var11 = 2001;
+							}
+
+							if (var12 == -1 && var4[var10] == 1) {
+								var12 = 2001; // L: 138
+							}
+						} else if (var3[var10] == 3) { // L: 140
+							var11 = var0[var5].isMembersOnly() ? 1 : 0; // L: 141
+							var12 = var8.isMembersOnly() ? 1 : 0; // L: 142
+						} else {
+							var11 = var0[var5].id; // L: 145
+							var12 = var8.id; // L: 146
+						}
+
+						if (var11 != var12) { // L: 148
+							if ((var4[var10] != 1 || var11 >= var12) && (var4[var10] != 0 || var11 <= var12)) { // L: 151 152
+								var9 = false; // L: 154
+							}
+							break;
+						}
+
+						if (var10 == 3) { // L: 149
+							var9 = false;
+						}
+					}
+				} while(var9);
+
+				if (var5 < var6) { // L: 159
+					World var13 = var0[var5]; // L: 160
+					var0[var5] = var0[var6]; // L: 161
+					var0[var6] = var13; // L: 162
+				}
+			}
+
+			sortWorlds(var0, var1, var6, var3, var4); // L: 165
+			sortWorlds(var0, var6 + 1, var2, var3, var4); // L: 166
+		}
+
+	} // L: 168
 }

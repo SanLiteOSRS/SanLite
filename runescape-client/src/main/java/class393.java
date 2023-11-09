@@ -1,24 +1,34 @@
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("or")
-public class class393 extends class394 {
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		longValue = -2173351521365145711L
+@ObfuscatedName("on")
+public class class393 implements class398 {
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Lpu;"
 	)
-	static long field4425;
+	public final class422 field4464;
 
-	public class393(int var1) {
-		super(var1); // L: 7
-	} // L: 8
+	@ObfuscatedSignature(
+		descriptor = "(Lpd;)V"
+	)
+	class393(class423 var1) {
+		this.field4464 = var1; // L: 14
+	} // L: 15
+
+	@ObfuscatedSignature(
+		descriptor = "(Lop;)V"
+	)
+	public class393(class394 var1) {
+		this(new class423(var1)); // L: 10
+	} // L: 11
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "803287054"
+		descriptor = "(IB)I",
+		garbageValue = "6"
 	)
-	void vmethod7080(Buffer var1, int var2) {
-	} // L: 12
+	public int method7265(int var1) {
+		return this.field4464.vmethod7651(var1); // L: 18
+	}
 }

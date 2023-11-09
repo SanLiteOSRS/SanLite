@@ -1,171 +1,139 @@
-import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nu")
-public class class388 {
+@ObfuscatedName("nn")
+public final class class388 {
 	@ObfuscatedName("c")
-	float field4405;
-	@ObfuscatedName("v")
-	float field4400;
-	@ObfuscatedName("q")
-	float field4402;
+	@ObfuscatedSignature(
+		descriptor = "[Lnn;"
+	)
+	static class388[] field4429;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = -842987581
+	)
+	static int field4430;
 	@ObfuscatedName("f")
-	float field4409;
-	@ObfuscatedName("j")
-	float field4403;
-	@ObfuscatedName("e")
-	float field4408;
-	@ObfuscatedName("g")
-	float field4401;
-	@ObfuscatedName("w")
-	float field4407;
-	@ObfuscatedName("y")
-	float field4406;
-	@ObfuscatedName("i")
-	float field4404;
+	@ObfuscatedGetter(
+		intValue = 1861704181
+	)
+	static int field4434;
+	@ObfuscatedName("n")
+	float field4432;
+	@ObfuscatedName("k")
+	float field4433;
 	@ObfuscatedName("s")
-	float field4410;
-	@ObfuscatedName("t")
-	float field4411;
+	float field4431;
+	@ObfuscatedName("q")
+	float field4435;
 
 	static {
+		field4429 = new class388[0]; // L: 4
+		Skeleton.method4247(100); // L: 9
 		new class388();
-	} // L: 6
+	} // L: 14
 
 	class388() {
-		this.method7022(); // L: 22
-	} // L: 23
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1938760120"
-	)
-	void method7022() {
-		this.field4411 = 0.0F;
-		this.field4410 = 0.0F;
-		this.field4404 = 0.0F;
-		this.field4407 = 0.0F;
-		this.field4401 = 0.0F; // L: 30
-		this.field4408 = 0.0F; // L: 31
-		this.field4409 = 0.0F; // L: 32
-		this.field4402 = 0.0F; // L: 33
-		this.field4400 = 0.0F; // L: 34
-		this.field4406 = 1.0F; // L: 35
-		this.field4403 = 1.0F; // L: 36
-		this.field4405 = 1.0F; // L: 37
-	} // L: 38
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(FI)V",
-		garbageValue = "1277086210"
-	)
-	void method7029(float var1) {
-		float var2 = (float)Math.cos((double)var1); // L: 41
-		float var3 = (float)Math.sin((double)var1); // L: 42
-		float var4 = this.field4400; // L: 43
-		float var5 = this.field4403; // L: 44
-		float var6 = this.field4407; // L: 45
-		float var7 = this.field4410; // L: 46
-		this.field4400 = var4 * var2 - var3 * this.field4402; // L: 47
-		this.field4402 = this.field4402 * var2 + var3 * var4; // L: 48
-		this.field4403 = var5 * var2 - var3 * this.field4408; // L: 49
-		this.field4408 = var3 * var5 + var2 * this.field4408; // L: 50
-		this.field4407 = var2 * var6 - this.field4406 * var3; // L: 51
-		this.field4406 = var3 * var6 + var2 * this.field4406; // L: 52
-		this.field4410 = var2 * var7 - var3 * this.field4411; // L: 53
-		this.field4411 = this.field4411 * var2 + var3 * var7; // L: 54
-	} // L: 55
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(FI)V",
-		garbageValue = "287874371"
-	)
-	void method7027(float var1) {
-		float var2 = (float)Math.cos((double)var1); // L: 58
-		float var3 = (float)Math.sin((double)var1); // L: 59
-		float var4 = this.field4405; // L: 60
-		float var5 = this.field4409; // L: 61
-		float var6 = this.field4401; // L: 62
-		float var7 = this.field4404; // L: 63
-		this.field4405 = var4 * var2 + this.field4402 * var3; // L: 64
-		this.field4402 = this.field4402 * var2 - var3 * var4; // L: 65
-		this.field4409 = var2 * var5 + this.field4408 * var3; // L: 66
-		this.field4408 = var2 * this.field4408 - var5 * var3; // L: 67
-		this.field4401 = var2 * var6 + this.field4406 * var3; // L: 68
-		this.field4406 = var2 * this.field4406 - var6 * var3; // L: 69
-		this.field4404 = var7 * var2 + var3 * this.field4411; // L: 70
-		this.field4411 = this.field4411 * var2 - var7 * var3; // L: 71
-	} // L: 72
+		this.method7157(); // L: 44
+	} // L: 45
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(FI)V",
-		garbageValue = "736372883"
+		descriptor = "(I)V",
+		garbageValue = "-814630220"
 	)
-	void method7039(float var1) {
-		float var2 = (float)Math.cos((double)var1); // L: 75
-		float var3 = (float)Math.sin((double)var1); // L: 76
-		float var4 = this.field4405; // L: 77
-		float var5 = this.field4409; // L: 78
-		float var6 = this.field4401; // L: 79
-		float var7 = this.field4404; // L: 80
-		this.field4405 = var4 * var2 - var3 * this.field4400; // L: 81
-		this.field4400 = var4 * var3 + var2 * this.field4400; // L: 82
-		this.field4409 = var5 * var2 - this.field4403 * var3; // L: 83
-		this.field4403 = var3 * var5 + this.field4403 * var2; // L: 84
-		this.field4401 = var2 * var6 - this.field4407 * var3; // L: 85
-		this.field4407 = var6 * var3 + this.field4407 * var2; // L: 86
-		this.field4404 = var7 * var2 - var3 * this.field4410; // L: 87
-		this.field4410 = var3 * var7 + var2 * this.field4410; // L: 88
-	} // L: 89
+	public void method7143() {
+		synchronized(field4429) { // L: 38
+			if (field4434 < field4430 - 1) { // L: 39
+				field4429[++field4434 - 1] = this;
+			}
 
-	@ObfuscatedName("j")
+		}
+	} // L: 41
+
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(FFFI)V",
-		garbageValue = "1389632603"
+		descriptor = "(FFFFI)V",
+		garbageValue = "-1516201827"
 	)
-	void method7026(float var1, float var2, float var3) {
-		this.field4404 += var1; // L: 92
-		this.field4410 += var2; // L: 93
-		this.field4411 += var3; // L: 94
-	} // L: 95
+	void method7141(float var1, float var2, float var3, float var4) {
+		this.field4432 = var1; // L: 48
+		this.field4433 = var2; // L: 49
+		this.field4431 = var3; // L: 50
+		this.field4435 = var4; // L: 51
+	} // L: 52
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		descriptor = "(FFFFB)V",
+		garbageValue = "2"
+	)
+	public void method7144(float var1, float var2, float var3, float var4) {
+		float var5 = (float)Math.sin((double)(var4 * 0.5F)); // L: 55
+		float var6 = (float)Math.cos((double)(0.5F * var4)); // L: 56
+		this.field4432 = var1 * var5; // L: 57
+		this.field4433 = var2 * var5; // L: 58
+		this.field4431 = var3 * var5; // L: 59
+		this.field4435 = var6; // L: 60
+	} // L: 61
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "2126804452"
+	)
+	final void method7157() {
+		this.field4431 = 0.0F; // L: 64
+		this.field4433 = 0.0F; // L: 65
+		this.field4432 = 0.0F; // L: 66
+		this.field4435 = 1.0F; // L: 67
+	} // L: 68
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(Lnn;B)V",
+		garbageValue = "65"
+	)
+	public final void method7163(class388 var1) {
+		this.method7141(var1.field4433 * this.field4431 + var1.field4435 * this.field4432 + var1.field4432 * this.field4435 - this.field4433 * var1.field4431, this.field4435 * var1.field4433 + (this.field4433 * var1.field4435 - this.field4431 * var1.field4432) + var1.field4431 * this.field4432, var1.field4432 * this.field4433 + var1.field4435 * this.field4431 - this.field4432 * var1.field4433 + var1.field4431 * this.field4435, var1.field4435 * this.field4435 - this.field4432 * var1.field4432 - this.field4433 * var1.field4433 - this.field4431 * var1.field4431); // L: 71
+	} // L: 72
+
+	public boolean equals(Object var1) {
+		if (!(var1 instanceof class388)) { // L: 76
+			return false; // L: 80
+		} else {
+			class388 var2 = (class388)var1; // L: 77
+			return this.field4432 == var2.field4432 && var2.field4433 == this.field4433 && var2.field4431 == this.field4431 && this.field4435 == var2.field4435; // L: 78
+		}
+	}
+
+	public int hashCode() {
+		boolean var1 = true; // L: 85
+		float var2 = 1.0F; // L: 86
+		var2 = this.field4432 + 31.0F * var2; // L: 87
+		var2 = this.field4433 + var2 * 31.0F; // L: 88
+		var2 = this.field4431 + var2 * 31.0F; // L: 89
+		var2 = this.field4435 + 31.0F * var2;
+		return (int)var2; // L: 91
+	}
 
 	public String toString() {
-		return this.field4405 + "," + this.field4409 + "," + this.field4401 + "," + this.field4404 + "\n" + this.field4400 + "," + this.field4403 + "," + this.field4407 + "," + this.field4410 + "\n" + this.field4402 + "," + this.field4408 + "," + this.field4406 + "," + this.field4411; // L: 99
+		return this.field4432 + "," + this.field4433 + "," + this.field4431 + "," + this.field4435; // L: 96
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "-34"
+		descriptor = "(II)Ldt;",
+		garbageValue = "-1154602557"
 	)
-	@Export("getVarbit")
-	public static int getVarbit(int var0) {
-		VarbitComposition var1 = WorldMapCacheName.method5054(var0); // L: 24
-		int var2 = var1.baseVar; // L: 25
-		int var3 = var1.startBit; // L: 26
-		int var4 = var1.endBit; // L: 27
-		int var5 = Varps.Varps_masks[var4 - var3]; // L: 28
-		return Varps.Varps_main[var2] >> var3 & var5; // L: 29
-	}
+	static class120 method7152(int var0) {
+		class120[] var1 = new class120[]{class120.field1498, class120.field1486, class120.field1492, class120.field1488, class120.field1489, class120.field1487, class120.field1491, class120.field1501, class120.field1490, class120.field1494, class120.field1495, class120.field1496, class120.field1497, class120.field1503, class120.field1499, class120.field1500, class120.field1493}; // L: 90
+		class120 var2 = (class120)Varps.findEnumerated(var1, var0); // L: 92
+		if (var2 == null) { // L: 93
+			var2 = class120.field1498;
+		}
 
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(FFFF[FI)V",
-		garbageValue = "-885047060"
-	)
-	static void method7040(float var0, float var1, float var2, float var3, float[] var4) {
-		float var5 = var1 - var0; // L: 321
-		float var6 = var2 - var1; // L: 322
-		float var7 = var3 - var2; // L: 323
-		float var8 = var6 - var5; // L: 324
-		var4[3] = var7 - var6 - var8; // L: 325
-		var4[2] = var8 + var8 + var8; // L: 326
-		var4[1] = var5 + var5 + var5; // L: 327
-		var4[0] = var0; // L: 328
-	} // L: 329
+		return var2; // L: 94
+	}
 }
