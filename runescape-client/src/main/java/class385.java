@@ -1,39 +1,18 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nx")
+@ObfuscatedName("nz")
 public class class385 {
-	@ObfuscatedName("c")
-	float field4383;
-	@ObfuscatedName("v")
-	float field4382;
-	@ObfuscatedName("q")
-	float field4384;
-
-	static {
-		new class385(0.0F, 0.0F, 0.0F); // L: 5
-		new class385(1.0F, 1.0F, 1.0F); // L: 9
-		new class385(1.0F, 0.0F, 0.0F); // L: 13
-		new class385(0.0F, 1.0F, 0.0F); // L: 17
-		new class385(0.0F, 0.0F, 1.0F); // L: 21
-	} // L: 26
-
-	class385(float var1, float var2, float var3) {
-		this.field4383 = var1; // L: 33
-		this.field4382 = var2; // L: 34
-		this.field4384 = var3; // L: 35
-	} // L: 36
-
-	@ObfuscatedName("c")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(B)F",
-		garbageValue = "84"
+		descriptor = "(Ljava/lang/String;II)V",
+		garbageValue = "-1249793384"
 	)
-	final float method6929() {
-		return (float)Math.sqrt((double)(this.field4384 * this.field4384 + this.field4383 * this.field4383 + this.field4382 * this.field4382)); // L: 39
-	}
-
-	public String toString() {
-		return this.field4383 + ", " + this.field4382 + ", " + this.field4384; // L: 44
-	}
+	static final void method7407(String var0, int var1) {
+		PacketBufferNode var2 = Renderable.getPacketBufferNode(ClientPacket.field3114, Client.packetWriter.isaacCipher); // L: 248
+		var2.packetBuffer.writeByte(class96.stringCp1252NullTerminatedByteSize(var0) + 1); // L: 249
+		var2.packetBuffer.method8765(var1); // L: 250
+		var2.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 251
+		Client.packetWriter.addNode(var2); // L: 252
+	} // L: 253
 }

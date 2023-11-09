@@ -4,44 +4,45 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ka")
+@ObfuscatedName("lp")
 @Implements("GameBuild")
 public class GameBuild {
-	@ObfuscatedName("to")
-	@ObfuscatedGetter(
-		intValue = 688457543
-	)
-	static int field3588;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lka;"
-	)
-	@Export("LIVE")
-	static final GameBuild LIVE;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lka;"
-	)
-	@Export("BUILDLIVE")
-	static final GameBuild BUILDLIVE;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Lka;"
-	)
-	@Export("RC")
-	static final GameBuild RC;
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "Llp;"
+	)
+	@Export("LIVE")
+	public static final GameBuild LIVE;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "Llp;"
+	)
+	@Export("BUILDLIVE")
+	public static final GameBuild BUILDLIVE;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Llp;"
+	)
+	@Export("RC")
+	public static final GameBuild RC;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Llp;"
 	)
 	@Export("WIP")
-	static final GameBuild WIP;
-	@ObfuscatedName("j")
+	public static final GameBuild WIP;
+	@ObfuscatedName("ld")
+	@ObfuscatedSignature(
+		descriptor = "Lho;"
+	)
+	@Export("textureProvider")
+	static TextureProvider textureProvider;
+	@ObfuscatedName("z")
 	@Export("name")
 	public final String name;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 413873867
+		intValue = -207916577
 	)
 	@Export("buildId")
 	public final int buildId;
@@ -54,7 +55,7 @@ public class GameBuild {
 	}
 
 	GameBuild(String var1, int var2) {
-		this.name = var1; // L: 17
-		this.buildId = var2; // L: 18
-	} // L: 19
+		this.name = var1; // L: 13
+		this.buildId = var2; // L: 14
+	} // L: 15
 }
