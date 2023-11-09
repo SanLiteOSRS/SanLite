@@ -1,276 +1,255 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("db")
-public class class127 extends class128 {
-	@ObfuscatedName("c")
+@ObfuscatedName("ek")
+public class class127 {
+	@ObfuscatedName("wn")
+	@ObfuscatedSignature(
+		descriptor = "Lsq;"
+	)
+	@Export("worldMap")
+	static WorldMap worldMap;
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -1838469371
+		intValue = 310242103
 	)
-	int field1566;
-	// $FF: synthetic field
+	public final int field1505;
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lek;"
 	)
-	final class131 this$0;
+	public class127 field1500;
+	@ObfuscatedName("ar")
+	float[][] field1501;
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "[Lrm;"
+	)
+	final class451[] field1502;
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "[Lrm;"
+	)
+	class451[] field1503;
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "[Lrm;"
+	)
+	class451[] field1513;
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "Lrm;"
+	)
+	class451 field1508;
+	@ObfuscatedName("az")
+	boolean field1506;
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "Lrm;"
+	)
+	class451 field1507;
+	@ObfuscatedName("ap")
+	boolean field1504;
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "Lrm;"
+	)
+	class451 field1510;
+	@ObfuscatedName("at")
+	float[][] field1509;
+	@ObfuscatedName("ah")
+	float[][] field1511;
+	@ObfuscatedName("ax")
+	float[][] field1512;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(ILty;Z)V"
 	)
-	class127(class131 var1) {
-		this.this$0 = var1;
-		this.field1566 = -1; // L: 114
-	} // L: 116
+	public class127(int var1, Buffer var2, boolean var3) {
+		this.field1508 = new class451(); // L: 13
+		this.field1506 = true; // L: 14
+		this.field1507 = new class451(); // L: 15
+		this.field1504 = true; // L: 16
+		this.field1510 = new class451(); // L: 17
+		this.field1505 = var2.readShort(); // L: 23
+		this.field1502 = new class451[var1]; // L: 24
+		this.field1503 = new class451[this.field1502.length]; // L: 25
+		this.field1513 = new class451[this.field1502.length]; // L: 26
+		this.field1501 = new float[this.field1502.length][3]; // L: 27
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
-	)
-	void vmethod3150(Buffer var1) {
-		this.field1566 = var1.readUnsignedShort(); // L: 119
-	} // L: 120
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2957(this.field1566); // L: 123
-	} // L: 124
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(IIILgu;Lgv;S)Z",
-		garbageValue = "21818"
-	)
-	public static final boolean method2844(int var0, int var1, int var2, RouteStrategy var3, CollisionMap var4) {
-		int var5 = var0; // L: 137
-		int var6 = var1; // L: 138
-		byte var7 = 64; // L: 139
-		byte var8 = 64; // L: 140
-		int var9 = var0 - var7; // L: 141
-		int var10 = var1 - var8; // L: 142
-		class193.directions[var7][var8] = 99; // L: 143
-		class193.distances[var7][var8] = 0; // L: 144
-		byte var11 = 0; // L: 145
-		int var12 = 0; // L: 146
-		class193.bufferX[var11] = var0; // L: 147
-		int var20 = var11 + 1;
-		class193.bufferY[var11] = var1; // L: 148
-		int[][] var13 = var4.flags; // L: 149
-
-		while (true) {
-			label303:
-			while (true) {
-				int var14;
-				int var15;
-				int var16;
-				int var17;
-				int var18;
-				int var19;
-				do {
-					do {
-						do {
-							label280:
-							do {
-								if (var20 == var12) { // L: 150
-									class193.field2219 = var5; // L: 269
-									class394.field4429 = var6; // L: 270
-									return false; // L: 271
-								}
-
-								var5 = class193.bufferX[var12]; // L: 151
-								var6 = class193.bufferY[var12]; // L: 152
-								var12 = var12 + 1 & 4095; // L: 153
-								var18 = var5 - var9; // L: 154
-								var19 = var6 - var10; // L: 155
-								var14 = var5 - var4.xInset; // L: 156
-								var15 = var6 - var4.yInset; // L: 157
-								if (var3.hasArrived(var2, var5, var6, var4)) { // L: 158
-									class193.field2219 = var5; // L: 159
-									class394.field4429 = var6; // L: 160
-									return true; // L: 161
-								}
-
-								var16 = class193.distances[var18][var19] + 1; // L: 163
-								if (var18 > 0 && class193.directions[var18 - 1][var19] == 0 && (var13[var14 - 1][var15] & 19136782) == 0 && (var13[var14 - 1][var15 + var2 - 1] & 19136824) == 0) { // L: 164 165 166 167
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2 - 1) {
-											class193.bufferX[var20] = var5 - 1; // L: 171
-											class193.bufferY[var20] = var6; // L: 172
-											var20 = var20 + 1 & 4095; // L: 173
-											class193.directions[var18 - 1][var19] = 2; // L: 174
-											class193.distances[var18 - 1][var19] = var16; // L: 175
-											break;
-										}
-
-										if ((var13[var14 - 1][var15 + var17] & 19136830) != 0) { // L: 169
-											break;
-										}
-
-										++var17; // L: 168
-									}
-								}
-
-								if (var18 < 128 - var2 && class193.directions[var18 + 1][var19] == 0 && (var13[var14 + var2][var15] & 19136899) == 0 && (var13[var14 + var2][var15 + var2 - 1] & 19136992) == 0) { // L: 177 178 179 180
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2 - 1) {
-											class193.bufferX[var20] = var5 + 1; // L: 184
-											class193.bufferY[var20] = var6; // L: 185
-											var20 = var20 + 1 & 4095; // L: 186
-											class193.directions[var18 + 1][var19] = 8; // L: 187
-											class193.distances[var18 + 1][var19] = var16; // L: 188
-											break;
-										}
-
-										if ((var13[var14 + var2][var15 + var17] & 19136995) != 0) { // L: 182
-											break;
-										}
-
-										++var17; // L: 181
-									}
-								}
-
-								if (var19 > 0 && class193.directions[var18][var19 - 1] == 0 && (var13[var14][var15 - 1] & 19136782) == 0 && (var13[var14 + var2 - 1][var15 - 1] & 19136899) == 0) { // L: 190 191 192 193
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2 - 1) {
-											class193.bufferX[var20] = var5; // L: 197
-											class193.bufferY[var20] = var6 - 1; // L: 198
-											var20 = var20 + 1 & 4095; // L: 199
-											class193.directions[var18][var19 - 1] = 1; // L: 200
-											class193.distances[var18][var19 - 1] = var16; // L: 201
-											break;
-										}
-
-										if ((var13[var17 + var14][var15 - 1] & 19136911) != 0) { // L: 195
-											break;
-										}
-
-										++var17; // L: 194
-									}
-								}
-
-								if (var19 < 128 - var2 && class193.directions[var18][var19 + 1] == 0 && (var13[var14][var15 + var2] & 19136824) == 0 && (var13[var14 + var2 - 1][var15 + var2] & 19136992) == 0) { // L: 203 204 205 206
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2 - 1) {
-											class193.bufferX[var20] = var5; // L: 210
-											class193.bufferY[var20] = var6 + 1; // L: 211
-											var20 = var20 + 1 & 4095; // L: 212
-											class193.directions[var18][var19 + 1] = 4; // L: 213
-											class193.distances[var18][var19 + 1] = var16; // L: 214
-											break;
-										}
-
-										if ((var13[var14 + var17][var15 + var2] & 19137016) != 0) { // L: 208
-											break;
-										}
-
-										++var17; // L: 207
-									}
-								}
-
-								if (var18 > 0 && var19 > 0 && class193.directions[var18 - 1][var19 - 1] == 0 && (var13[var14 - 1][var15 - 1] & 19136782) == 0) { // L: 216 217 218
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2) {
-											class193.bufferX[var20] = var5 - 1; // L: 223
-											class193.bufferY[var20] = var6 - 1; // L: 224
-											var20 = var20 + 1 & 4095; // L: 225
-											class193.directions[var18 - 1][var19 - 1] = 3; // L: 226
-											class193.distances[var18 - 1][var19 - 1] = var16; // L: 227
-											break;
-										}
-
-										if ((var13[var14 - 1][var17 + (var15 - 1)] & 19136830) != 0 || (var13[var17 + (var14 - 1)][var15 - 1] & 19136911) != 0) { // L: 220 221
-											break;
-										}
-
-										++var17; // L: 219
-									}
-								}
-
-								if (var18 < 128 - var2 && var19 > 0 && class193.directions[var18 + 1][var19 - 1] == 0 && (var13[var14 + var2][var15 - 1] & 19136899) == 0) { // L: 229 230 231
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2) {
-											class193.bufferX[var20] = var5 + 1; // L: 236
-											class193.bufferY[var20] = var6 - 1; // L: 237
-											var20 = var20 + 1 & 4095; // L: 238
-											class193.directions[var18 + 1][var19 - 1] = 9; // L: 239
-											class193.distances[var18 + 1][var19 - 1] = var16; // L: 240
-											break;
-										}
-
-										if ((var13[var14 + var2][var17 + (var15 - 1)] & 19136995) != 0 || (var13[var17 + var14][var15 - 1] & 19136911) != 0) { // L: 233 234
-											break;
-										}
-
-										++var17; // L: 232
-									}
-								}
-
-								if (var18 > 0 && var19 < 128 - var2 && class193.directions[var18 - 1][var19 + 1] == 0 && (var13[var14 - 1][var15 + var2] & 19136824) == 0) { // L: 242 243 244
-									for (var17 = 1; var17 < var2; ++var17) { // L: 245
-										if ((var13[var14 - 1][var17 + var15] & 19136830) != 0 || (var13[var17 + (var14 - 1)][var15 + var2] & 19137016) != 0) { // L: 246 247
-											continue label280;
-										}
-									}
-
-									class193.bufferX[var20] = var5 - 1; // L: 249
-									class193.bufferY[var20] = var6 + 1; // L: 250
-									var20 = var20 + 1 & 4095; // L: 251
-									class193.directions[var18 - 1][var19 + 1] = 6; // L: 252
-									class193.distances[var18 - 1][var19 + 1] = var16; // L: 253
-								}
-							} while(var18 >= 128 - var2); // L: 255
-						} while(var19 >= 128 - var2);
-					} while(class193.directions[var18 + 1][var19 + 1] != 0); // L: 256
-				} while((var13[var14 + var2][var15 + var2] & 19136992) != 0); // L: 257
-
-				for (var17 = 1; var17 < var2; ++var17) { // L: 258
-					if ((var13[var14 + var17][var15 + var2] & 19137016) != 0 || (var13[var14 + var2][var17 + var15] & 19136995) != 0) { // L: 259 260
-						continue label303;
-					}
-				}
-
-				class193.bufferX[var20] = var5 + 1; // L: 262
-				class193.bufferY[var20] = var6 + 1; // L: 263
-				var20 = var20 + 1 & 4095; // L: 264
-				class193.directions[var18 + 1][var19 + 1] = 12; // L: 265
-				class193.distances[var18 + 1][var19 + 1] = var16; // L: 266
-			}
+		for (int var4 = 0; var4 < this.field1502.length; ++var4) { // L: 28
+			this.field1502[var4] = new class451(var2, var3); // L: 29
+			this.field1501[var4][0] = var2.method9094(); // L: 30
+			this.field1501[var4][1] = var2.method9094(); // L: 31
+			this.field1501[var4][2] = var2.method9094(); // L: 32
 		}
+
+		this.method2943(); // L: 34
+	} // L: 35
+
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1463837860"
+	)
+	void method2943() {
+		this.field1509 = new float[this.field1502.length][3]; // L: 38
+		this.field1511 = new float[this.field1502.length][3]; // L: 39
+		this.field1512 = new float[this.field1502.length][3]; // L: 40
+		class451 var1 = class138.method3097(); // L: 41
+
+		for (int var2 = 0; var2 < this.field1502.length; ++var2) { // L: 42
+			class451 var3 = this.method2965(var2); // L: 43
+			var1.method8289(var3); // L: 44
+			var1.method8259(); // L: 45
+			this.field1509[var2] = var1.method8257(); // L: 46
+			this.field1511[var2][0] = var3.field4743[12]; // L: 47
+			this.field1511[var2][1] = var3.field4743[13]; // L: 48
+			this.field1511[var2][2] = var3.field4743[14]; // L: 49
+			this.field1512[var2] = var3.method8253(); // L: 50
+		}
+
+		var1.method8279(); // L: 52
+	} // L: 53
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lrm;",
+		garbageValue = "-961715639"
+	)
+	class451 method2965(int var1) {
+		return this.field1502[var1]; // L: 56
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(CB)C",
-		garbageValue = "-102"
+		descriptor = "(II)Lrm;",
+		garbageValue = "-318230111"
 	)
-	static char method2848(char var0) {
-		if (var0 == 198) { // L: 95
-			return 'E';
-		} else if (var0 == 230) { // L: 96
-			return 'e';
-		} else if (var0 == 223) {
-			return 's'; // L: 97
-		} else if (var0 == 338) { // L: 98
-			return 'E';
+	class451 method2945(int var1) {
+		if (this.field1503[var1] == null) { // L: 60
+			this.field1503[var1] = new class451(this.method2965(var1)); // L: 61
+			if (this.field1500 != null) { // L: 62
+				this.field1503[var1].method8285(this.field1500.method2945(var1)); // L: 63
+			} else {
+				this.field1503[var1].method8285(class451.field4739); // L: 66
+			}
+		}
+
+		return this.field1503[var1]; // L: 69
+	}
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Lrm;",
+		garbageValue = "81"
+	)
+	class451 method2942(int var1) {
+		if (this.field1513[var1] == null) { // L: 73
+			this.field1513[var1] = new class451(this.method2945(var1)); // L: 74
+			this.field1513[var1].method8259(); // L: 75
+		}
+
+		return this.field1513[var1]; // L: 77
+	}
+
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "(Lrm;I)V",
+		garbageValue = "1524637069"
+	)
+	void method2974(class451 var1) {
+		this.field1508.method8289(var1); // L: 81
+		this.field1506 = true; // L: 82
+		this.field1504 = true; // L: 83
+	} // L: 84
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lrm;",
+		garbageValue = "144980279"
+	)
+	class451 method2948() {
+		return this.field1508; // L: 87
+	}
+
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "(B)Lrm;",
+		garbageValue = "0"
+	)
+	class451 method2949() {
+		if (this.field1506) { // L: 91
+			this.field1507.method8289(this.method2948()); // L: 92
+			if (this.field1500 != null) { // L: 93
+				this.field1507.method8285(this.field1500.method2949()); // L: 94
+			}
+
+			this.field1506 = false; // L: 96
+		}
+
+		return this.field1507; // L: 98
+	}
+
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Lrm;",
+		garbageValue = "2"
+	)
+	public class451 method2963(int var1) {
+		if (this.field1504) { // L: 102
+			this.field1510.method8289(this.method2942(var1)); // L: 103
+			this.field1510.method8285(this.method2949()); // L: 104
+			this.field1504 = false; // L: 105
+		}
+
+		return this.field1510; // L: 107
+	}
+
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "(II)[F",
+		garbageValue = "-1038210043"
+	)
+	float[] method2951(int var1) {
+		return this.field1509[var1]; // L: 111
+	}
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(II)[F",
+		garbageValue = "-2141591558"
+	)
+	float[] method2952(int var1) {
+		return this.field1511[var1]; // L: 115
+	}
+
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(IB)[F",
+		garbageValue = "0"
+	)
+	float[] method2953(int var1) {
+		return this.field1512[var1]; // L: 119
+	}
+
+	@ObfuscatedName("ks")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "552746163"
+	)
+	static final boolean method2959(int var0) {
+		if (var0 < 0) { // L: 9333
+			return false;
 		} else {
-			return (char)(var0 == 339 ? 'e' : '\u0000'); // L: 99 100
+			int var1 = Client.menuOpcodes[var0]; // L: 9334
+			if (var1 >= 2000) { // L: 9335
+				var1 -= 2000;
+			}
+
+			return var1 == 1007; // L: 9336
 		}
 	}
 }

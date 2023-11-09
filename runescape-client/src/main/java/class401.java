@@ -1,21 +1,28 @@
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ov")
-public class class401 {
-	@ObfuscatedName("j")
-	static final int[] field4442;
-	@ObfuscatedName("e")
-	static final int[] field4443;
+@ObfuscatedName("pj")
+public class class401 extends class407 {
+	@ObfuscatedSignature(
+		descriptor = "(Lpp;)V"
+	)
+	public class401(class407 var1) {
+		super(var1); // L: 8
+		super.field4528 = "SwapSongTask"; // L: 9
+	} // L: 10
 
-	static {
-		field4442 = new int[16384]; // L: 8
-		field4443 = new int[16384]; // L: 9
-		double var0 = 3.834951969714103E-4D; // L: 12
-
-		for (int var2 = 0; var2 < 16384; ++var2) { // L: 13
-			field4442[var2] = (int)(16384.0D * Math.sin(var0 * (double)var2)); // L: 14
-			field4443[var2] = (int)(16384.0D * Math.cos((double)var2 * var0)); // L: 15
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "994462530"
+	)
+	public boolean vmethod7676(int var1) {
+		if (class306.field3394.size() > 1 && class306.field3394.get(0) != null && ((class318)class306.field3394.get(0)).field3516.isReady() && class306.field3394.get(1) != null && ((class318)class306.field3394.get(1)).field3516.isReady()) { // L: 14
+			class318 var2 = (class318)class306.field3394.get(0); // L: 15
+			class306.field3394.set(0, class306.field3394.get(1)); // L: 16
+			class306.field3394.set(1, var2); // L: 17
 		}
 
-	} // L: 17
+		return true; // L: 19
+	}
 }

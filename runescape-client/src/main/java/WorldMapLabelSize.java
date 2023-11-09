@@ -4,150 +4,99 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hq")
+@ObfuscatedName("jj")
 @Implements("WorldMapLabelSize")
 public class WorldMapLabelSize {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lhq;"
+		descriptor = "Ljj;"
 	)
 	@Export("WorldMapLabelSize_small")
 	public static final WorldMapLabelSize WorldMapLabelSize_small;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lhq;"
+		descriptor = "Ljj;"
 	)
 	@Export("WorldMapLabelSize_medium")
 	public static final WorldMapLabelSize WorldMapLabelSize_medium;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lhq;"
+		descriptor = "Ljj;"
 	)
 	@Export("WorldMapLabelSize_large")
 	public static final WorldMapLabelSize WorldMapLabelSize_large;
-	@ObfuscatedName("ha")
-	@ObfuscatedGetter(
-		intValue = -794445137
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Luu;"
 	)
-	@Export("baseY")
-	static int baseY;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = 1344743675
+	static IndexedSprite field2862;
+	@ObfuscatedName("si")
+	@ObfuscatedSignature(
+		descriptor = "Lgh;"
 	)
-	final int field2671;
-	@ObfuscatedName("j")
+	@Export("guestClanChannel")
+	static ClanChannel guestClanChannel;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -1890052329
+		intValue = -1138617503
 	)
-	final int field2672;
-	@ObfuscatedName("e")
+	final int field2858;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = -241742535
+		intValue = 1772890649
 	)
-	final int field2676;
+	final int field2861;
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = -1703029901
+	)
+	final int field2860;
 
 	static {
-		WorldMapLabelSize_small = new WorldMapLabelSize(2, 0, 4); // L: 7
-		WorldMapLabelSize_medium = new WorldMapLabelSize(0, 1, 2); // L: 8
+		WorldMapLabelSize_small = new WorldMapLabelSize(0, 0, 4); // L: 7
+		WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2); // L: 8
 		WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0); // L: 9
 	}
 
 	WorldMapLabelSize(int var1, int var2, int var3) {
-		this.field2671 = var1; // L: 19
-		this.field2672 = var2; // L: 20
-		this.field2676 = var3; // L: 21
-	} // L: 22
+		this.field2858 = var1; // L: 15
+		this.field2861 = var2; // L: 16
+		this.field2860 = var3; // L: 17
+	} // L: 18
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(FI)Z",
-		garbageValue = "2012056978"
+		descriptor = "(FB)Z",
+		garbageValue = "-3"
 	)
-	boolean method4567(float var1) {
-		return var1 >= (float)this.field2676; // L: 25
+	boolean method5088(float var1) {
+		return var1 >= (float)this.field2860; // L: 21
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("me")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lhq;",
-		garbageValue = "2063977691"
+		descriptor = "(IIII)Ldn;",
+		garbageValue = "977578301"
 	)
-	static WorldMapLabelSize[] method4568() {
-		return new WorldMapLabelSize[]{WorldMapLabelSize_small, WorldMapLabelSize_large, WorldMapLabelSize_medium}; // L: 15
+	static final InterfaceParent method5085(int var0, int var1, int var2) {
+		InterfaceParent var3 = new InterfaceParent(); // L: 12426
+		var3.group = var1; // L: 12427
+		var3.type = var2; // L: 12428
+		Client.interfaceParents.put(var3, (long)var0); // L: 12429
+		class92.Widget_resetModelFrames(var1); // L: 12430
+		Widget var4 = VarbitComposition.getWidget(var0); // L: 12431
+		class200.invalidateWidget(var4); // L: 12432
+		if (Client.meslayerContinueWidget != null) { // L: 12433
+			class200.invalidateWidget(Client.meslayerContinueWidget); // L: 12434
+			Client.meslayerContinueWidget = null; // L: 12435
+		}
+
+		SoundCache.revalidateWidgetScroll(ArchiveLoader.Widget_interfaceComponents[var0 >> 16], var4, false); // L: 12437
+		ScriptFrame.runWidgetOnLoadListener(var1); // L: 12438
+		if (Client.rootInterface != -1) { // L: 12439
+			ChatChannel.runIntfCloseListeners(Client.rootInterface, 1);
+		}
+
+		return var3; // L: 12440
 	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-480347083"
-	)
-	public static boolean method4575(int var0) {
-		return var0 == WorldMapDecorationType.field3544.id; // L: 47
-	}
-
-	@ObfuscatedName("bp")
-	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "1"
-	)
-	@Export("runWidgetOnLoadListener")
-	static void runWidgetOnLoadListener(int var0) {
-		if (var0 != -1) { // L: 4972
-			if (WorldMapSection2.loadInterface(var0)) { // L: 4973
-				Widget[] var1 = SoundCache.Widget_interfaceComponents[var0]; // L: 4974
-
-				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 4975
-					Widget var3 = var1[var2]; // L: 4976
-					if (var3.onLoad != null) { // L: 4977
-						ScriptEvent var4 = new ScriptEvent(); // L: 4978
-						var4.widget = var3; // L: 4979
-						var4.args = var3.onLoad; // L: 4980
-						class135.runScript(var4, 5000000, 0); // L: 4981
-					}
-				}
-
-			}
-		}
-	} // L: 4984
-
-	@ObfuscatedName("gd")
-	@ObfuscatedSignature(
-		descriptor = "(IS)V",
-		garbageValue = "-23388"
-	)
-	@Export("setWindowedMode")
-	static void setWindowedMode(int var0) {
-		Client.field711 = 0L; // L: 4371
-		if (var0 >= 2) { // L: 4372
-			Client.isResizable = true;
-		} else {
-			Client.isResizable = false; // L: 4373
-		}
-
-		if (class9.getWindowedMode() == 1) { // L: 4374
-			class353.client.setMaxCanvasSize(765, 503); // L: 4375
-		} else {
-			class353.client.setMaxCanvasSize(7680, 2160); // L: 4378
-		}
-
-		if (Client.gameState >= 25) { // L: 4380
-			SpriteMask.method5522();
-		}
-
-	} // L: 4381
-
-	@ObfuscatedName("kr")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-1407297152"
-	)
-	static void method4566(int var0) {
-		class20.tempMenuAction = new MenuAction(); // L: 11719
-		class20.tempMenuAction.param0 = Client.menuArguments1[var0]; // L: 11720
-		class20.tempMenuAction.param1 = Client.menuArguments2[var0]; // L: 11721
-		class20.tempMenuAction.opcode = Client.menuOpcodes[var0]; // L: 11722
-		class20.tempMenuAction.identifier = Client.menuIdentifiers[var0]; // L: 11723
-		class20.tempMenuAction.action = Client.menuActions[var0]; // L: 11724
-	} // L: 11725
 }
