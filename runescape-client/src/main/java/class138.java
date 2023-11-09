@@ -1,83 +1,73 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eq")
-public class class138 extends class128 {
-	@ObfuscatedName("he")
-	@ObfuscatedSignature(
-		descriptor = "Lcd;"
-	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
+@ObfuscatedName("ex")
+public class class138 extends class129 {
 	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1956537991
-	)
-	int field1623;
-	@ObfuscatedName("v")
-	String field1620;
+	String field1619;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Leo;"
 	)
-	final class131 this$0;
+	final class132 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Leo;)V"
 	)
-	class138(class131 var1) {
-		this.this$0 = var1; // L: 323
+	class138(class132 var1) {
+		this.this$0 = var1; // L: 229
 	}
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lqq;B)V",
+		garbageValue = "-41"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1623 = var1.readInt(); // L: 326
-		this.field1620 = var1.readStringCp1252NullTerminated(); // L: 327
-	} // L: 328
+	void vmethod3320(Buffer var1) {
+		this.field1619 = var1.readStringCp1252NullTerminated(); // L: 232
+		var1.readInt(); // L: 233
+	} // L: 234
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Led;I)V",
+		garbageValue = "-538131930"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2968(this.field1623, this.field1620); // L: 331
-	} // L: 332
+	void vmethod3313(ClanSettings var1) {
+		var1.name = this.field1619; // L: 237
+	} // L: 238
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("bf")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "4"
+		descriptor = "([BI)[B",
+		garbageValue = "2099576217"
 	)
-	public static void method2948(AbstractArchive var0) {
-		class435.field4666 = var0; // L: 19
-	} // L: 20
+	@Export("decompressBytes")
+	static final byte[] decompressBytes(byte[] var0) {
+		Buffer var1 = new Buffer(var0); // L: 452
+		int var2 = var1.readUnsignedByte(); // L: 453
+		int var3 = var1.readInt(); // L: 454
+		if (var3 < 0 || AbstractArchive.field4054 != 0 && var3 > AbstractArchive.field4054) { // L: 455
+			throw new RuntimeException(); // L: 456
+		} else if (var2 == 0) { // L: 458
+			byte[] var6 = new byte[var3]; // L: 459
+			var1.readBytes(var6, 0, var3); // L: 460
+			return var6; // L: 461
+		} else {
+			int var4 = var1.readInt(); // L: 464
+			if (var4 >= 0 && (AbstractArchive.field4054 == 0 || var4 <= AbstractArchive.field4054)) { // L: 465
+				byte[] var5 = new byte[var4]; // L: 468
+				if (var2 == 1) { // L: 469
+					BZip2Decompressor.BZip2Decompressor_decompress(var5, var4, var0, var3, 9);
+				} else {
+					AbstractArchive.gzipDecompressor.decompress(var1, var5); // L: 470
+				}
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IZIZI)V",
-		garbageValue = "1195912675"
-	)
-	@Export("sortWorldList")
-	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-		if (class362.World_worlds != null) { // L: 171
-			class131.doWorldSorting(0, class362.World_worlds.length - 1, var0, var1, var2, var3); // L: 172
+				return var5; // L: 471
+			} else {
+				throw new RuntimeException(); // L: 466
+			}
 		}
-
-	} // L: 174
-
-	@ObfuscatedName("hj")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1549613437"
-	)
-	static boolean method2944() {
-		return (Client.drawPlayerNames & 8) != 0; // L: 4953
 	}
 }

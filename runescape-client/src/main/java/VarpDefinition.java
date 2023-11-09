@@ -4,31 +4,29 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fp")
+@ObfuscatedName("fo")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Llv;"
 	)
 	@Export("VarpDefinition_archive")
 	public static AbstractArchive VarpDefinition_archive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 486330385
+		intValue = 1908361649
 	)
-	public static int field1822;
-	@ObfuscatedName("q")
+	public static int field1841;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Lif;"
 	)
 	@Export("VarpDefinition_cached")
 	public static EvictingDualNodeHashTable VarpDefinition_cached;
-	@ObfuscatedName("ct")
-	static boolean field1821;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -737478807
+		intValue = -220539481
 	)
 	@Export("type")
 	public int type;
@@ -41,10 +39,10 @@ public class VarpDefinition extends DualNode {
 		this.type = 0; // L: 13
 	} // L: 15
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "-1095475514"
+		descriptor = "(Lqq;S)V",
+		garbageValue = "8196"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -58,10 +56,10 @@ public class VarpDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "1370423223"
+		descriptor = "(Lqq;II)V",
+		garbageValue = "1285334577"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -71,30 +69,35 @@ public class VarpDefinition extends DualNode {
 
 	} // L: 38
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1678307117"
+		descriptor = "(IB)V",
+		garbageValue = "55"
 	)
-	public static int method3374(int var0) {
-		return class270.field3179[var0]; // L: 24
-	}
-
-	@ObfuscatedName("iy")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1226531684"
-	)
-	static final boolean method3373(int var0) {
-		if (var0 < 0) { // L: 8693
-			return false;
-		} else {
-			int var1 = Client.menuOpcodes[var0]; // L: 8694
-			if (var1 >= 2000) { // L: 8695
-				var1 -= 2000;
+	@Export("clearItemContainer")
+	static void clearItemContainer(int var0) {
+		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 63
+		if (var1 != null) { // L: 64
+			for (int var2 = 0; var2 < var1.ids.length; ++var2) { // L: 65
+				var1.ids[var2] = -1; // L: 66
+				var1.quantities[var2] = 0; // L: 67
 			}
 
-			return var1 == 1007; // L: 8696
 		}
+	} // L: 69
+
+	@ObfuscatedName("mm")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lpb;",
+		garbageValue = "1112569904"
+	)
+	static class438 method3527(int var0) {
+		class438 var1 = (class438)Client.Widget_cachedModels.get((long)var0); // L: 12201
+		if (var1 == null) { // L: 12202
+			var1 = new class438(PcmPlayer.field308, class425.method7664(var0), TaskHandler.method3414(var0)); // L: 12203
+			Client.Widget_cachedModels.put(var1, (long)var0); // L: 12204
+		}
+
+		return var1; // L: 12206
 	}
 }
