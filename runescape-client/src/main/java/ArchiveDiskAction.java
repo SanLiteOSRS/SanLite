@@ -1,182 +1,190 @@
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InvalidClassException;
-import java.io.ObjectInputStream;
-import java.io.OptionalDataException;
-import java.io.StreamCorruptedException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("kv")
+@ObfuscatedName("ks")
 @Implements("ArchiveDiskAction")
 public class ArchiveDiskAction extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1477037843
+		intValue = 16021623
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("v")
-	@Export("data")
-	public byte[] data;
 	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "Lnd;"
-	)
-	@Export("archiveDisk")
-	public ArchiveDisk archiveDisk;
+	@Export("data")
+	byte[] data;
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lng;"
+	)
+	@Export("archiveDisk")
+	ArchiveDisk archiveDisk;
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "Llu;"
 	)
 	@Export("archive")
-	public Archive archive;
+	Archive archive;
 
 	ArchiveDiskAction() {
 	} // L: 12
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lpq;I)V",
-		garbageValue = "206933702"
+		descriptor = "(Lqw;Ljava/lang/String;I)I",
+		garbageValue = "1650594582"
 	)
-	@Export("performReflectionCheck")
-	public static void performReflectionCheck(PacketBuffer var0) {
-		ReflectionCheck var1 = (ReflectionCheck)class33.reflectionChecks.last(); // L: 35
-		if (var1 != null) { // L: 36
-			int var2 = var0.offset; // L: 37
-			var0.writeInt(var1.id); // L: 38
+	public static int method5785(Buffer var0, String var1) {
+		int var2 = var0.offset; // L: 14
+		int var4 = var1.length(); // L: 17
+		byte[] var5 = new byte[var4]; // L: 18
 
-			for (int var3 = 0; var3 < var1.size; ++var3) { // L: 39
-				if (var1.creationErrors[var3] != 0) { // L: 40
-					var0.writeByte(var1.creationErrors[var3]); // L: 41
-				} else {
-					try {
-						int var4 = var1.operations[var3]; // L: 45
-						Field var5;
-						int var6;
-						if (var4 == 0) { // L: 46
-							var5 = var1.fields[var3]; // L: 47
-							var6 = Reflection.getInt(var5, (Object)null); // L: 48
-							var0.writeByte(0); // L: 49
-							var0.writeInt(var6); // L: 50
-						} else if (var4 == 1) { // L: 52
-							var5 = var1.fields[var3]; // L: 53
-							Reflection.setInt(var5, (Object)null, var1.intReplaceValues[var3]); // L: 54
-							var0.writeByte(0); // L: 55
-						} else if (var4 == 2) { // L: 57
-							var5 = var1.fields[var3]; // L: 58
-							var6 = var5.getModifiers(); // L: 59
-							var0.writeByte(0); // L: 60
-							var0.writeInt(var6); // L: 61
-						}
-
-						Method var25;
-						if (var4 != 3) { // L: 63
-							if (var4 == 4) { // L: 83
-								var25 = var1.methods[var3]; // L: 84
-								var6 = var25.getModifiers(); // L: 85
-								var0.writeByte(0); // L: 86
-								var0.writeInt(var6); // L: 87
-							}
-						} else {
-							var25 = var1.methods[var3]; // L: 64
-							byte[][] var10 = var1.arguments[var3]; // L: 65
-							Object[] var7 = new Object[var10.length]; // L: 66
-
-							for (int var8 = 0; var8 < var10.length; ++var8) { // L: 67
-								ObjectInputStream var9 = new ObjectInputStream(new ByteArrayInputStream(var10[var8])); // L: 68
-								var7[var8] = var9.readObject(); // L: 69
-							}
-
-							Object var11 = Reflection.invoke(var25, (Object)null, var7); // L: 71
-							if (var11 == null) { // L: 72
-								var0.writeByte(0);
-							} else if (var11 instanceof Number) { // L: 73
-								var0.writeByte(1); // L: 74
-								var0.writeLong(((Number)var11).longValue()); // L: 75
-							} else if (var11 instanceof String) { // L: 77
-								var0.writeByte(2); // L: 78
-								var0.writeStringCp1252NullTerminated((String)var11); // L: 79
-							} else {
-								var0.writeByte(4); // L: 81
-							}
-						}
-					} catch (ClassNotFoundException var13) { // L: 90
-						var0.writeByte(-10); // L: 91
-					} catch (InvalidClassException var14) { // L: 93
-						var0.writeByte(-11); // L: 94
-					} catch (StreamCorruptedException var15) { // L: 96
-						var0.writeByte(-12); // L: 97
-					} catch (OptionalDataException var16) { // L: 99
-						var0.writeByte(-13); // L: 100
-					} catch (IllegalAccessException var17) { // L: 102
-						var0.writeByte(-14); // L: 103
-					} catch (IllegalArgumentException var18) { // L: 105
-						var0.writeByte(-15); // L: 106
-					} catch (InvocationTargetException var19) { // L: 108
-						var0.writeByte(-16); // L: 109
-					} catch (SecurityException var20) { // L: 111
-						var0.writeByte(-17); // L: 112
-					} catch (IOException var21) { // L: 114
-						var0.writeByte(-18); // L: 115
-					} catch (NullPointerException var22) { // L: 117
-						var0.writeByte(-19); // L: 118
-					} catch (Exception var23) { // L: 120
-						var0.writeByte(-20); // L: 121
-					} catch (Throwable var24) { // L: 123
-						var0.writeByte(-21); // L: 124
-					}
-				}
-			}
-
-			var0.writeCrc(var2); // L: 127
-			var1.remove(); // L: 128
-		}
-	} // L: 129
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "1685326414"
-	)
-	public static String method5777(String var0) {
-		int var1 = var0.length(); // L: 167
-		char[] var2 = new char[var1]; // L: 168
-		byte var3 = 2; // L: 169
-
-		for (int var4 = 0; var4 < var1; ++var4) { // L: 170
-			char var5 = var0.charAt(var4); // L: 171
-			if (var3 == 0) { // L: 172
-				var5 = Character.toLowerCase(var5);
-			} else if (var3 == 2 || Character.isUpperCase(var5)) { // L: 173
-				var5 = class326.method6050(var5);
-			}
-
-			if (Character.isLetter(var5)) { // L: 174
-				var3 = 0;
-			} else if (var5 != '.' && var5 != '?' && var5 != '!') { // L: 175
-				if (Character.isSpaceChar(var5)) { // L: 176
-					if (var3 != 2) { // L: 177
-						var3 = 1;
-					}
-				} else {
-					var3 = 1; // L: 179
-				}
+		for (int var6 = 0; var6 < var4; ++var6) { // L: 19
+			char var7 = var1.charAt(var6); // L: 20
+			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) { // L: 21
+				var5[var6] = (byte)var7;
+			} else if (var7 == 8364) { // L: 22
+				var5[var6] = -128;
+			} else if (var7 == 8218) { // L: 23
+				var5[var6] = -126;
+			} else if (var7 == 402) { // L: 24
+				var5[var6] = -125;
+			} else if (var7 == 8222) { // L: 25
+				var5[var6] = -124;
+			} else if (var7 == 8230) { // L: 26
+				var5[var6] = -123;
+			} else if (var7 == 8224) { // L: 27
+				var5[var6] = -122;
+			} else if (var7 == 8225) { // L: 28
+				var5[var6] = -121;
+			} else if (var7 == 710) { // L: 29
+				var5[var6] = -120;
+			} else if (var7 == 8240) { // L: 30
+				var5[var6] = -119;
+			} else if (var7 == 352) { // L: 31
+				var5[var6] = -118;
+			} else if (var7 == 8249) { // L: 32
+				var5[var6] = -117;
+			} else if (var7 == 338) { // L: 33
+				var5[var6] = -116;
+			} else if (var7 == 381) { // L: 34
+				var5[var6] = -114;
+			} else if (var7 == 8216) { // L: 35
+				var5[var6] = -111;
+			} else if (var7 == 8217) { // L: 36
+				var5[var6] = -110;
+			} else if (var7 == 8220) { // L: 37
+				var5[var6] = -109;
+			} else if (var7 == 8221) { // L: 38
+				var5[var6] = -108;
+			} else if (var7 == 8226) { // L: 39
+				var5[var6] = -107;
+			} else if (var7 == 8211) { // L: 40
+				var5[var6] = -106;
+			} else if (var7 == 8212) { // L: 41
+				var5[var6] = -105;
+			} else if (var7 == 732) { // L: 42
+				var5[var6] = -104;
+			} else if (var7 == 8482) { // L: 43
+				var5[var6] = -103;
+			} else if (var7 == 353) { // L: 44
+				var5[var6] = -102;
+			} else if (var7 == 8250) { // L: 45
+				var5[var6] = -101;
+			} else if (var7 == 339) { // L: 46
+				var5[var6] = -100;
+			} else if (var7 == 382) { // L: 47
+				var5[var6] = -98;
+			} else if (var7 == 376) { // L: 48
+				var5[var6] = -97;
 			} else {
-				var3 = 2;
+				var5[var6] = 63; // L: 49
 			}
-
-			var2[var4] = var5; // L: 180
 		}
 
-		return new String(var2); // L: 182
+		var0.writeSmartByteShort(var5.length); // L: 54
+		var0.offset += class18.huffman.compress(var5, 0, var5.length, var0.array, var0.offset); // L: 55
+		return var0.offset - var2; // L: 56
 	}
+
+	@ObfuscatedName("fz")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "-1242746658"
+	)
+	static int method5786() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1573
+			int var0 = 0; // L: 1574
+
+			for (int var1 = 0; var1 <= Client.archiveLoadersDone; ++var1) { // L: 1575
+				var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount; // L: 1576
+			}
+
+			return var0 * 10000 / Client.field630; // L: 1578
+		} else {
+			return 10000;
+		}
+	}
+
+	@ObfuscatedName("id")
+	@ObfuscatedSignature(
+		descriptor = "(Lbe;III)V",
+		garbageValue = "410958599"
+	)
+	static final void method5787(MenuAction var0, int var1, int var2) {
+		if (var0 != null) { // L: 8572
+			class9.method78(var0.param0, var0.param1, var0.opcode, var0.identifier, var0.field879, var0.field880, var0.action, var1, var2); // L: 8573
+		}
+
+	} // L: 8575
+
+	@ObfuscatedName("kq")
+	@ObfuscatedSignature(
+		descriptor = "([Lku;II)V",
+		garbageValue = "-1292694171"
+	)
+	@Export("runComponentCloseListeners")
+	static final void runComponentCloseListeners(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) { // L: 11481
+			Widget var3 = var0[var2]; // L: 11482
+			if (var3 != null) { // L: 11483
+				if (var3.type == 0) { // L: 11484
+					if (var3.children != null) { // L: 11485
+						runComponentCloseListeners(var3.children, var1);
+					}
+
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id); // L: 11486
+					if (var4 != null) { // L: 11487
+						class220.runIntfCloseListeners(var4.group, var1);
+					}
+				}
+
+				ScriptEvent var5;
+				if (var1 == 0 && var3.onDialogAbort != null) { // L: 11489
+					var5 = new ScriptEvent(); // L: 11490
+					var5.widget = var3; // L: 11491
+					var5.args = var3.onDialogAbort; // L: 11492
+					class17.runScriptEvent(var5); // L: 11493
+				}
+
+				if (var1 == 1 && var3.onSubChange != null) { // L: 11495
+					if (var3.childIndex >= 0) { // L: 11496
+						Widget var6 = FloorUnderlayDefinition.getWidget(var3.id); // L: 11497
+						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) { // L: 11498
+							continue;
+						}
+					}
+
+					var5 = new ScriptEvent(); // L: 11502
+					var5.widget = var3; // L: 11503
+					var5.args = var3.onSubChange; // L: 11504
+					class17.runScriptEvent(var5); // L: 11505
+				}
+			}
+		}
+
+	} // L: 11508
 }

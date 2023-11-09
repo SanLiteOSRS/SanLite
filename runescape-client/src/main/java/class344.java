@@ -2,86 +2,121 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mk")
-public final class class344 {
-	@ObfuscatedName("c")
-	@Export("base37Table")
-	public static final char[] base37Table;
-	@ObfuscatedName("v")
-	static long[] field4153;
-	@ObfuscatedName("y")
-	static int[] field4152;
-	@ObfuscatedName("ih")
+@ObfuscatedName("ml")
+public class class344 {
+	@ObfuscatedName("vj")
 	@ObfuscatedSignature(
-		descriptor = "Lqe;"
+		descriptor = "Lot;"
 	)
-	@Export("redHintArrowSprite")
-	static SpritePixels redHintArrowSprite;
+	@Export("worldMap")
+	static WorldMap worldMap;
+	@ObfuscatedName("fe")
+	static String field4179;
 
-	static {
-		base37Table = new char[]{'_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; // L: 4
-		field4153 = new long[12]; // L: 5
-
-		for (int var0 = 0; var0 < field4153.length; ++var0) { // L: 8
-			field4153[var0] = (long)Math.pow(37.0D, (double)var0);
-		}
-
-	} // L: 9
-
-	@ObfuscatedName("f")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "([BB)Lbi;",
-		garbageValue = "8"
+		descriptor = "(IILgh;Lgr;B)Z",
+		garbageValue = "-94"
 	)
-	@Export("newScript")
-	static Script newScript(byte[] var0) {
-		Script var1 = new Script(); // L: 84
-		Buffer var2 = new Buffer(var0); // L: 85
-		var2.offset = var2.array.length - 2; // L: 86
-		int var3 = var2.readUnsignedShort(); // L: 87
-		int var4 = var2.array.length - 2 - var3 - 12; // L: 88
-		var2.offset = var4; // L: 89
-		int var5 = var2.readInt(); // L: 90
-		var1.localIntCount = var2.readUnsignedShort(); // L: 91
-		var1.localStringCount = var2.readUnsignedShort(); // L: 92
-		var1.intArgumentCount = var2.readUnsignedShort(); // L: 93
-		var1.stringArgumentCount = var2.readUnsignedShort(); // L: 94
-		int var6 = var2.readUnsignedByte(); // L: 95
-		int var7;
-		int var8;
-		if (var6 > 0) { // L: 96
-			var1.switches = var1.newIterableNodeHashTable(var6); // L: 97
+	public static final boolean method6344(int var0, int var1, RouteStrategy var2, CollisionMap var3) {
+		int var4 = var0; // L: 19
+		int var5 = var1; // L: 20
+		byte var6 = 64; // L: 21
+		byte var7 = 64; // L: 22
+		int var8 = var0 - var6; // L: 23
+		int var9 = var1 - var7; // L: 24
+		class193.directions[var6][var7] = 99; // L: 25
+		class193.distances[var6][var7] = 0; // L: 26
+		byte var10 = 0; // L: 27
+		int var11 = 0; // L: 28
+		class193.bufferX[var10] = var0; // L: 29
+		byte var10001 = var10;
+		int var18 = var10 + 1;
+		class193.bufferY[var10001] = var1; // L: 30
+		int[][] var12 = var3.flags; // L: 31
 
-			for (var7 = 0; var7 < var6; ++var7) { // L: 98
-				var8 = var2.readUnsignedShort(); // L: 99
-				IterableNodeHashTable var9 = new IterableNodeHashTable(var8 > 0 ? class135.method2910(var8) : 1); // L: 100
-				var1.switches[var7] = var9; // L: 101
+		while (var11 != var18) { // L: 34
+			var4 = class193.bufferX[var11]; // L: 35
+			var5 = class193.bufferY[var11]; // L: 36
+			var11 = var11 + 1 & 4095; // L: 37
+			int var16 = var4 - var8; // L: 38
+			int var17 = var5 - var9; // L: 39
+			int var13 = var4 - var3.xInset; // L: 40
+			int var14 = var5 - var3.yInset; // L: 41
+			if (var2.hasArrived(1, var4, var5, var3)) { // L: 42
+				class352.field4222 = var4; // L: 43
+				DirectByteArrayCopier.field3302 = var5; // L: 44
+				return true; // L: 45
+			}
 
-				while (var8-- > 0) { // L: 102
-					int var10 = var2.readInt(); // L: 103
-					int var11 = var2.readInt(); // L: 104
-					var9.put(new IntegerNode(var11), (long)var10); // L: 105
-				}
+			int var15 = class193.distances[var16][var17] + 1; // L: 47
+			if (var16 > 0 && class193.directions[var16 - 1][var17] == 0 && (var12[var13 - 1][var14] & 19136776) == 0) { // L: 48
+				class193.bufferX[var18] = var4 - 1; // L: 49
+				class193.bufferY[var18] = var5; // L: 50
+				var18 = var18 + 1 & 4095; // L: 51
+				class193.directions[var16 - 1][var17] = 2; // L: 52
+				class193.distances[var16 - 1][var17] = var15; // L: 53
+			}
+
+			if (var16 < 127 && class193.directions[var16 + 1][var17] == 0 && (var12[var13 + 1][var14] & 19136896) == 0) { // L: 55
+				class193.bufferX[var18] = var4 + 1; // L: 56
+				class193.bufferY[var18] = var5; // L: 57
+				var18 = var18 + 1 & 4095; // L: 58
+				class193.directions[var16 + 1][var17] = 8; // L: 59
+				class193.distances[var16 + 1][var17] = var15; // L: 60
+			}
+
+			if (var17 > 0 && class193.directions[var16][var17 - 1] == 0 && (var12[var13][var14 - 1] & 19136770) == 0) { // L: 62
+				class193.bufferX[var18] = var4; // L: 63
+				class193.bufferY[var18] = var5 - 1; // L: 64
+				var18 = var18 + 1 & 4095; // L: 65
+				class193.directions[var16][var17 - 1] = 1; // L: 66
+				class193.distances[var16][var17 - 1] = var15; // L: 67
+			}
+
+			if (var17 < 127 && class193.directions[var16][var17 + 1] == 0 && (var12[var13][var14 + 1] & 19136800) == 0) { // L: 69
+				class193.bufferX[var18] = var4; // L: 70
+				class193.bufferY[var18] = var5 + 1; // L: 71
+				var18 = var18 + 1 & 4095; // L: 72
+				class193.directions[var16][var17 + 1] = 4; // L: 73
+				class193.distances[var16][var17 + 1] = var15; // L: 74
+			}
+
+			if (var16 > 0 && var17 > 0 && class193.directions[var16 - 1][var17 - 1] == 0 && (var12[var13 - 1][var14 - 1] & 19136782) == 0 && (var12[var13 - 1][var14] & 19136776) == 0 && (var12[var13][var14 - 1] & 19136770) == 0) { // L: 76
+				class193.bufferX[var18] = var4 - 1; // L: 77
+				class193.bufferY[var18] = var5 - 1; // L: 78
+				var18 = var18 + 1 & 4095; // L: 79
+				class193.directions[var16 - 1][var17 - 1] = 3; // L: 80
+				class193.distances[var16 - 1][var17 - 1] = var15; // L: 81
+			}
+
+			if (var16 < 127 && var17 > 0 && class193.directions[var16 + 1][var17 - 1] == 0 && (var12[var13 + 1][var14 - 1] & 19136899) == 0 && (var12[var13 + 1][var14] & 19136896) == 0 && (var12[var13][var14 - 1] & 19136770) == 0) { // L: 83
+				class193.bufferX[var18] = var4 + 1; // L: 84
+				class193.bufferY[var18] = var5 - 1; // L: 85
+				var18 = var18 + 1 & 4095; // L: 86
+				class193.directions[var16 + 1][var17 - 1] = 9; // L: 87
+				class193.distances[var16 + 1][var17 - 1] = var15; // L: 88
+			}
+
+			if (var16 > 0 && var17 < 127 && class193.directions[var16 - 1][var17 + 1] == 0 && (var12[var13 - 1][var14 + 1] & 19136824) == 0 && (var12[var13 - 1][var14] & 19136776) == 0 && (var12[var13][var14 + 1] & 19136800) == 0) { // L: 90
+				class193.bufferX[var18] = var4 - 1; // L: 91
+				class193.bufferY[var18] = var5 + 1; // L: 92
+				var18 = var18 + 1 & 4095; // L: 93
+				class193.directions[var16 - 1][var17 + 1] = 6; // L: 94
+				class193.distances[var16 - 1][var17 + 1] = var15; // L: 95
+			}
+
+			if (var16 < 127 && var17 < 127 && class193.directions[var16 + 1][var17 + 1] == 0 && (var12[var13 + 1][var14 + 1] & 19136992) == 0 && (var12[var13 + 1][var14] & 19136896) == 0 && (var12[var13][var14 + 1] & 19136800) == 0) { // L: 97
+				class193.bufferX[var18] = var4 + 1; // L: 98
+				class193.bufferY[var18] = var5 + 1; // L: 99
+				var18 = var18 + 1 & 4095; // L: 100
+				class193.directions[var16 + 1][var17 + 1] = 12; // L: 101
+				class193.distances[var16 + 1][var17 + 1] = var15; // L: 102
 			}
 		}
 
-		var2.offset = 0; // L: 109
-		var1.field967 = var2.readStringCp1252NullTerminatedOrNull(); // L: 110
-		var1.opcodes = new int[var5]; // L: 111
-		var1.intOperands = new int[var5]; // L: 112
-		var1.stringOperands = new String[var5]; // L: 113
-
-		for (var7 = 0; var2.offset < var4; var1.opcodes[var7++] = var8) { // L: 114 115 120
-			var8 = var2.readUnsignedShort(); // L: 116
-			if (var8 == 3) { // L: 117
-				var1.stringOperands[var7] = var2.readStringCp1252NullTerminated();
-			} else if (var8 < 100 && var8 != 21 && var8 != 38 && var8 != 39) { // L: 118
-				var1.intOperands[var7] = var2.readInt();
-			} else {
-				var1.intOperands[var7] = var2.readUnsignedByte(); // L: 119
-			}
-		}
-
-		return var1; // L: 122
+		class352.field4222 = var4; // L: 105
+		DirectByteArrayCopier.field3302 = var5; // L: 106
+		return false; // L: 107
 	}
 }
