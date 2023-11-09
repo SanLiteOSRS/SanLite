@@ -1,111 +1,97 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gh")
+@ObfuscatedName("ha")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("td")
+	@ObfuscatedGetter(
+		intValue = -1844423635
+	)
+	static int field2616;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "[Lgl;"
+		descriptor = "Lra;"
+	)
+	static IndexedSprite field2611;
+	@ObfuscatedName("a")
+	@Export("ByteArrayPool_alternativeSizes")
+	public static int[] ByteArrayPool_alternativeSizes;
+	@ObfuscatedName("ez")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("archive10")
+	static Archive archive10;
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "[Lho;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;IZ)V"
+		descriptor = "(Lly;Lly;IZ)V",
+		garbageValue = "0"
 	)
-	Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
+	public Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
 		NodeDeque var5 = new NodeDeque();
-		int var6 = var1.getGroupFileCount(var3);
-		this.frames = new Animation[var6]; // L: 37
-		int[] var7 = var1.getGroupFileIds(var3); // L: 38
+		int var6 = var1.getGroupFileCount(var3); // L: 12
+		this.frames = new Animation[var6]; // L: 13
+		int[] var7 = var1.getGroupFileIds(var3);
 
 		for (int var8 = 0; var8 < var7.length; ++var8) {
-			byte[] var9 = var1.takeFile(var3, var7[var8]); // L: 40
-			Skeleton var10 = null; // L: 41
-			int var11 = (var9[0] & 255) << 8 | var9[1] & 255; // L: 42
+			byte[] var9 = var1.takeFile(var3, var7[var8]);
+			Skeleton var10 = null; // L: 17
+			int var11 = (var9[0] & 255) << 8 | var9[1] & 255;
 
-			for (Skeleton var12 = (Skeleton)var5.last(); var12 != null; var12 = (Skeleton)var5.previous()) { // L: 43 49
-				if (var11 == var12.id) { // L: 45
-					var10 = var12; // L: 46
+			for (Skeleton var12 = (Skeleton)var5.last(); var12 != null; var12 = (Skeleton)var5.previous()) { // L: 19 20 25
+				if (var11 == var12.id) { // L: 21
+					var10 = var12; // L: 22
 					break;
 				}
 			}
 
-			if (var10 == null) { // L: 51
-				byte[] var13;
-				if (var4) { // L: 53
-					var13 = var2.getFile(0, var11);
-				} else {
-					var13 = var2.getFile(var11, 0); // L: 54
-				}
-
-				var10 = new Skeleton(var11, var13); // L: 55
-				var5.addFirst(var10); // L: 56
+			if (var10 == null) { // L: 27
+				byte[] var13 = var2.getFile(var11, 0); // L: 30
+				var10 = new Skeleton(var11, var13); // L: 31
+				var5.addFirst(var10); // L: 32
 			}
 
-			this.frames[var7[var8]] = new Animation(var9, var10); // L: 58
+			this.frames[var7[var8]] = new Animation(var9, var10); // L: 34
 		}
 
-	} // L: 60
+	} // L: 36
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "-473814926"
+		garbageValue = "-974350891"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
-		return this.frames[var1].hasAlphaTransform; // L: 63
+		return this.frames[var1].hasAlphaTransform; // L: 39
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "117"
+		descriptor = "(Ljava/lang/Object;ZI)[B",
+		garbageValue = "2083897545"
 	)
-	public static int method4349() {
-		return ViewportMouse.ViewportMouse_entityCount; // L: 44
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;[II)[Ljava/lang/Object;",
-		garbageValue = "746047274"
-	)
-	static Object[] method4353(Buffer var0, int[] var1) {
-		int var2 = var0.readUShortSmart(); // L: 30
-		Object[] var3 = new Object[var1.length * var2]; // L: 31
-
-		for (int var4 = 0; var4 < var2; ++var4) { // L: 32
-			for (int var5 = 0; var5 < var1.length; ++var5) { // L: 33
-				int var6 = var1.length * var4 + var5; // L: 34
-				class432 var7 = MusicPatchNode.method5472(var1[var5]); // L: 35
-				var3[var6] = var7.method7565(var0); // L: 36
-			}
+	public static byte[] method4623(Object var0, boolean var1) {
+		if (var0 == null) { // L: 8
+			return null;
+		} else if (var0 instanceof byte[]) { // L: 9
+			byte[] var3 = (byte[])((byte[])var0); // L: 10
+			return var1 ? class451.method8356(var3) : var3; // L: 11
+		} else if (var0 instanceof AbstractByteArrayCopier) { // L: 14
+			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0; // L: 15
+			return var2.get(); // L: 16
+		} else {
+			throw new IllegalArgumentException(); // L: 18
 		}
-
-		return var3; // L: 39
-	}
-
-	@ObfuscatedName("at")
-	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "20"
-	)
-	static int method4350(int var0) {
-		return (int)((Math.log((double)var0) / Interpreter.field845 - 7.0D) * 256.0D); // L: 3851
-	}
-
-	@ObfuscatedName("ln")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)Z",
-		garbageValue = "-824638040"
-	)
-	@Export("isComponentHidden")
-	static boolean isComponentHidden(Widget var0) {
-		return var0.isHidden; // L: 12305
 	}
 }
