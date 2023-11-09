@@ -1,62 +1,70 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ep")
+@ObfuscatedName("ez")
 public class class146 extends class128 {
-	@ObfuscatedName("sg")
+	@ObfuscatedName("x")
+	@Export("operatingSystemName")
+	static String operatingSystemName;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1417840077
+		intValue = -1115938959
 	)
-	static int field1682;
-	@ObfuscatedName("c")
+	int field1658;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1388421223
+		intValue = -1203803603
 	)
-	int field1683;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 132668311
-	)
-	int field1679;
+	int field1654;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lei;"
 	)
 	final class131 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lei;)V"
 	)
 	class146(class131 var1) {
 		this.this$0 = var1; // L: 271
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lqr;I)V",
+		garbageValue = "-885940784"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1683 = var1.readInt(); // L: 274
-		this.field1679 = var1.readInt(); // L: 275
+	void vmethod3087(Buffer var1) {
+		this.field1658 = var1.readInt(); // L: 274
+		this.field1654 = var1.readInt(); // L: 275
 	} // L: 276
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Leh;B)V",
+		garbageValue = "0"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2965(this.field1683, this.field1679); // L: 279
+	void vmethod3084(ClanSettings var1) {
+		var1.method2914(this.field1658, this.field1654); // L: 279
 	} // L: 280
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;I)V",
-		garbageValue = "-1659219140"
+		descriptor = "(Lah;B)V",
+		garbageValue = "1"
 	)
-	public static void method3082(AbstractArchive var0) {
-		FloorOverlayDefinition.FloorOverlayDefinition_archive = var0; // L: 26
-	} // L: 27
+	@Export("PcmStream_disable")
+	static final void PcmStream_disable(PcmStream var0) {
+		var0.active = false; // L: 263
+		if (var0.sound != null) { // L: 264
+			var0.sound.position = 0;
+		}
+
+		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
+			PcmStream_disable(var1); // L: 265
+		}
+
+	} // L: 266
 }
