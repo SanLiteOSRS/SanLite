@@ -1,73 +1,61 @@
+import java.io.File;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
+@ObfuscatedName("ex")
 public class class132 extends class128 {
-	@ObfuscatedName("er")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	static Archive field1588;
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1669105563
+		intValue = -1043630541
 	)
-	int field1590;
-	@ObfuscatedName("v")
-	byte field1589;
+	int field1572;
+	@ObfuscatedName("q")
+	byte field1567;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lec;"
 	)
 	final class131 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lec;)V"
 	)
 	class132(class131 var1) {
 		this.this$0 = var1;
-		this.field1590 = -1; // L: 128
+		this.field1572 = -1; // L: 128
 	} // L: 131
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lqw;I)V",
+		garbageValue = "-423569520"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1590 = var1.readUnsignedShort(); // L: 134
-		this.field1589 = var1.readByte(); // L: 135
+	void vmethod3155(Buffer var1) {
+		this.field1572 = var1.readUnsignedShort(); // L: 134
+		this.field1567 = var1.readByte(); // L: 135
 	} // L: 136
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Lez;I)V",
+		garbageValue = "-1755436064"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2961(this.field1590, this.field1589); // L: 139
+	void vmethod3154(ClanSettings var1) {
+		var1.method2983(this.field1572, this.field1567); // L: 139
 	} // L: 140
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Law;I)V",
-		garbageValue = "-1204833299"
+		descriptor = "(Ljava/io/File;B)V",
+		garbageValue = "-3"
 	)
-	public static final void method2885(class47 var0) {
-		ModelData0.pcmPlayerProvider = var0; // L: 45
-	} // L: 46
-
-	@ObfuscatedName("gz")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "854083418"
-	)
-	static void method2887() {
-		if (class121.worldMap != null) { // L: 4337
-			class121.worldMap.method7192(PacketWriter.Client_plane, class28.baseX * 64 + (class101.localPlayer.x >> 7), WorldMapLabelSize.baseY * 64 + (class101.localPlayer.y >> 7), false); // L: 4338
-			class121.worldMap.loadCache(); // L: 4339
+	public static void method2918(File var0) {
+		FileSystem.FileSystem_cacheDir = var0; // L: 16
+		if (!FileSystem.FileSystem_cacheDir.exists()) { // L: 17
+			throw new RuntimeException("");
+		} else {
+			FileSystem.FileSystem_hasPermissions = true; // L: 18
 		}
-
-	} // L: 4341
+	} // L: 19
 }
