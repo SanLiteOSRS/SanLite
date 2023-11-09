@@ -1,110 +1,96 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
+import java.io.UnsupportedEncodingException;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-@ObfuscatedName("px")
-public class class437 extends DualNode {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	static AbstractArchive field4675;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lii;"
-	)
-	@Export("DBRowType_cache")
-	static EvictingDualNodeHashTable DBRowType_cache;
-	@ObfuscatedName("q")
-	Object[][] field4676;
-	@ObfuscatedName("f")
-	int[][] field4677;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 1231945791
-	)
-	public int field4678;
+@ObfuscatedName("qv")
+public class class437 implements class436 {
+	@ObfuscatedName("ai")
+	public static short[][] field4707;
+	@ObfuscatedName("an")
+	JSONObject field4708;
 
-	static {
-		DBRowType_cache = new EvictingDualNodeHashTable(64); // L: 11
+	public class437(byte[] var1) throws UnsupportedEncodingException {
+		this.method8330(var1);
+	} // L: 22
+
+	public class437(JSONObject var1) {
+		this.field4708 = var1; // L: 13
+	} // L: 14
+
+	public class437(String var1) throws UnsupportedEncodingException {
+		this.method8340(var1); // L: 17
+	} // L: 18
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lqz;",
+		garbageValue = "-1368831969"
+	)
+	public class435 vmethod8346() {
+		return class435.field4703; // L: 26
 	}
 
-	class437() {
-	} // L: 17
-
-	@ObfuscatedName("q")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "1"
+		descriptor = "(I)[B",
+		garbageValue = "888549065"
 	)
-	void method7635(Buffer var1) {
-		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 36
-			if (var2 == 0) { // L: 37
-				return; // L: 40
-			}
-
-			this.method7627(var1, var2); // L: 38
-		}
+	public byte[] vmethod8347() throws UnsupportedEncodingException {
+		return this.field4708 == null ? new byte[0] : this.field4708.toString().getBytes("UTF-8"); // L: 59 60 62
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(IB)[Ljava/lang/Object;",
-		garbageValue = "-23"
+		descriptor = "([BI)V",
+		garbageValue = "773111973"
 	)
-	public Object[] method7625(int var1) {
-		return this.field4676 == null ? null : this.field4676[var1]; // L: 43 44
-	}
+	void method8330(byte[] var1) throws UnsupportedEncodingException {
+		String var2 = new String(var1, "UTF-8"); // L: 30
+		this.method8340(var2); // L: 31
+	} // L: 32
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1966368366"
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "101"
 	)
-	void method7627(Buffer var1, int var2) {
-		if (var2 == 3) { // L: 48
-			int var3 = var1.readUnsignedByte(); // L: 49
-			if (this.field4676 == null) { // L: 50
-				this.field4676 = new Object[var3][]; // L: 51
-				this.field4677 = new int[var3][]; // L: 52
-			}
-
-			for (int var4 = var1.readUnsignedByte(); var4 != 255; var4 = var1.readUnsignedByte()) { // L: 54 55 78
-				int var5 = var1.readUnsignedByte(); // L: 56
-				int[] var6 = new int[var5]; // L: 57
-
-				for (int var7 = 0; var7 < var5; ++var7) { // L: 58
-					var6[var7] = var1.readUShortSmart(); // L: 59
+	void method8340(String var1) throws UnsupportedEncodingException {
+		try {
+			if (var1.charAt(0) == '{') { // L: 36
+				this.field4708 = new JSONObject(var1); // L: 37
+			} else {
+				if (var1.charAt(0) != '[') { // L: 39
+					throw new UnsupportedEncodingException("Invalid JSON passed to the JSON content builder."); // L: 45
 				}
 
-				Object[][] var16 = this.field4676; // L: 61
-				int var10 = var1.readUShortSmart(); // L: 65
-				Object[] var11 = new Object[var6.length * var10]; // L: 66
-
-				for (int var12 = 0; var12 < var10; ++var12) { // L: 67
-					for (int var13 = 0; var13 < var6.length; ++var13) { // L: 68
-						int var14 = var13 + var6.length * var12; // L: 69
-						class432 var15 = MusicPatchNode.method5472(var6[var13]); // L: 70
-						var11[var14] = var15.method7565(var1); // L: 71
-					}
-				}
-
-				var16[var4] = var11; // L: 76
-				this.field4677[var4] = var6; // L: 77
+				JSONArray var2 = new JSONArray(var1); // L: 40
+				this.field4708 = new JSONObject(); // L: 41
+				this.field4708.put("arrayValues", var2); // L: 42
 			}
-		} else if (var2 == 4) { // L: 81
-			this.field4678 = var1.method7754(); // L: 82
+
+		} catch (JSONException var3) { // L: 48
+			throw new UnsupportedEncodingException(var3.getMessage()); // L: 49
 		}
+	} // L: 51
 
-	} // L: 85
-
-	@ObfuscatedName("e")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-110987764"
+		descriptor = "(I)Lorg/json/JSONObject;",
+		garbageValue = "-288365426"
 	)
-	void method7636() {
-	} // L: 87
+	public JSONObject method8332() {
+		return this.field4708; // L: 54
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIB)I",
+		garbageValue = "34"
+	)
+	static final int method8344(int var0, int var1, int var2, int var3) {
+		return var2 * var1 + var3 * var0 >> 16; // L: 21
+	}
 }
