@@ -1,91 +1,134 @@
-import java.util.Iterator;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("du")
-public class class126 extends class128 {
-	@ObfuscatedName("n")
+@ObfuscatedName("ex")
+public class class126 {
+	@ObfuscatedName("at")
+	public static final float field1505;
+	@ObfuscatedName("ac")
+	public static final float field1506;
+	@ObfuscatedName("ai")
+	static float[] field1507;
+	@ObfuscatedName("az")
+	static float[] field1509;
+	@ObfuscatedName("ee")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Ldt;"
 	)
-	@Export("Widget_modelsArchive")
-	public static AbstractArchive Widget_modelsArchive;
-	@ObfuscatedName("cx")
+	@Export("mouseRecorder")
+	static MouseRecorder mouseRecorder;
+	@ObfuscatedName("fe")
 	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
+		descriptor = "Lgz;"
 	)
-	@Export("worldSelectFlagSprites")
-	static IndexedSprite[] worldSelectFlagSprites;
-	@ObfuscatedName("ig")
-	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
-	)
-	@Export("scrollBarSprites")
-	static IndexedSprite[] scrollBarSprites;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		longValue = -8228182624755456153L
-	)
-	long field1562;
-	@ObfuscatedName("v")
-	String field1559;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lej;"
-	)
-	final class131 this$0;
+	@Export("js5SocketTask")
+	static Task js5SocketTask;
 
-	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
-	)
-	class126(class131 var1) {
-		this.this$0 = var1;
-		this.field1562 = -1L; // L: 74
-		this.field1559 = null; // L: 75
-	} // L: 77
+	static {
+		field1505 = Math.ulp(1.0F);
+		field1506 = field1505 * 2.0F;
+		field1507 = new float[4]; // L: 12
+		field1509 = new float[5]; // L: 13
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Ljava/lang/Object;ZI)[B",
+		garbageValue = "-1457731236"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 80
-			--var1.offset; // L: 81
-			this.field1562 = var1.readLong(); // L: 82
+	public static byte[] method2930(Object var0, boolean var1) {
+		if (var0 == null) { // L: 8
+			return null;
+		} else if (var0 instanceof byte[]) { // L: 9
+			byte[] var6 = (byte[])((byte[])var0); // L: 10
+			if (var1) { // L: 11
+				int var4 = var6.length; // L: 14
+				byte[] var5 = new byte[var4]; // L: 15
+				System.arraycopy(var6, 0, var5, 0, var4); // L: 16
+				return var5; // L: 19
+			} else {
+				return var6; // L: 21
+			}
+		} else if (var0 instanceof AbstractByteArrayCopier) { // L: 23
+			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0; // L: 24
+			return var2.get(); // L: 25
+		} else {
+			throw new IllegalArgumentException(); // L: 27
+		}
+	}
+
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1320879691"
+	)
+	public static void method2941() {
+		ParamComposition.ParamComposition_cached.clear(); // L: 60
+	} // L: 61
+
+	@ObfuscatedName("ad")
+	@ObfuscatedSignature(
+		descriptor = "(Lmi;IIIB)V",
+		garbageValue = "-45"
+	)
+	@Export("Widget_setKeyRate")
+	static final void Widget_setKeyRate(Widget var0, int var1, int var2, int var3) {
+		if (var0.field3724 == null) { // L: 1229
+			throw new RuntimeException(); // L: 1230
+		} else {
+			var0.field3724[var1] = var2; // L: 1232
+			var0.field3725[var1] = var3; // L: 1233
+		}
+	} // L: 1234
+
+	@ObfuscatedName("if")
+	@ObfuscatedSignature(
+		descriptor = "(IIIS)V",
+		garbageValue = "158"
+	)
+	static final void method2942(int var0, int var1, int var2) {
+		if (NPCComposition.cameraX < var0) { // L: 3780
+			NPCComposition.cameraX = (var0 - NPCComposition.cameraX) * MouseHandler.field252 / 1000 + NPCComposition.cameraX + class344.field3874; // L: 3781
+			if (NPCComposition.cameraX > var0) { // L: 3782
+				NPCComposition.cameraX = var0;
+			}
 		}
 
-		this.field1559 = var1.readStringCp1252NullTerminatedOrNull(); // L: 84
-	} // L: 85
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2956(this.field1562, this.field1559, 0); // L: 88
-	} // L: 89
-
-	@ObfuscatedName("km")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "78"
-	)
-	@Export("FriendSystem_invalidateIgnoreds")
-	static final void FriendSystem_invalidateIgnoreds() {
-		Iterator var0 = Messages.Messages_hashTable.iterator(); // L: 12195
-
-		while (var0.hasNext()) {
-			Message var1 = (Message)var0.next(); // L: 12196
-			var1.clearIsFromIgnored(); // L: 12198
+		if (NPCComposition.cameraX > var0) { // L: 3784
+			NPCComposition.cameraX -= (NPCComposition.cameraX - var0) * MouseHandler.field252 / 1000 + class344.field3874; // L: 3785
+			if (NPCComposition.cameraX < var0) { // L: 3786
+				NPCComposition.cameraX = var0;
+			}
 		}
 
-		if (Huffman.friendsChatManager != null) { // L: 12202
-			Huffman.friendsChatManager.invalidateIgnoreds(); // L: 12203
+		if (class133.cameraY < var1) { // L: 3788
+			class133.cameraY = (var1 - class133.cameraY) * MouseHandler.field252 / 1000 + class133.cameraY + class344.field3874; // L: 3789
+			if (class133.cameraY > var1) { // L: 3790
+				class133.cameraY = var1;
+			}
 		}
 
-	} // L: 12205
+		if (class133.cameraY > var1) { // L: 3792
+			class133.cameraY -= (class133.cameraY - var1) * MouseHandler.field252 / 1000 + class344.field3874; // L: 3793
+			if (class133.cameraY < var1) { // L: 3794
+				class133.cameraY = var1;
+			}
+		}
+
+		if (class139.cameraZ < var2) { // L: 3796
+			class139.cameraZ = (var2 - class139.cameraZ) * MouseHandler.field252 / 1000 + class139.cameraZ + class344.field3874; // L: 3797
+			if (class139.cameraZ > var2) { // L: 3798
+				class139.cameraZ = var2;
+			}
+		}
+
+		if (class139.cameraZ > var2) { // L: 3800
+			class139.cameraZ -= (class139.cameraZ - var2) * MouseHandler.field252 / 1000 + class344.field3874; // L: 3801
+			if (class139.cameraZ < var2) { // L: 3802
+				class139.cameraZ = var2;
+			}
+		}
+
+	} // L: 3804
 }

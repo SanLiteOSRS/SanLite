@@ -4,128 +4,134 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("no")
+@ObfuscatedName("qc")
 @Implements("FriendsChatManager")
 public class FriendsChatManager extends NameableContainer {
-	@ObfuscatedName("v")
+	@ObfuscatedName("iv")
 	@ObfuscatedSignature(
-		descriptor = "Lpe;"
+		descriptor = "Lev;"
+	)
+	@Export("urlRequester")
+	static UrlRequester urlRequester;
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "Lsl;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lnv;"
+		descriptor = "Lql;"
 	)
 	@Export("localUser")
 	final Usernamed localUser;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@Export("name")
 	public String name;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ac")
 	@Export("owner")
 	public String owner;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ai")
 	@Export("minKick")
 	public byte minKick;
-	@ObfuscatedName("g")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -1691262047
+		intValue = 106239799
 	)
 	@Export("rank")
 	public int rank;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 860712691
+		intValue = -727783247
 	)
-	int field4297;
+	int field4638;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpe;Lnv;)V"
+		descriptor = "(Lsl;Lql;)V"
 	)
 	public FriendsChatManager(LoginType var1, Usernamed var2) {
 		super(500); // L: 19
 		this.name = null; // L: 12
 		this.owner = null; // L: 13
-		this.field4297 = 1; // L: 16
+		this.field4638 = 1; // L: 16
 		this.loginType = var1; // L: 20
 		this.localUser = var2; // L: 21
 	} // L: 22
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lne;",
-		garbageValue = "-7122"
+		descriptor = "(I)Lqs;",
+		garbageValue = "-1997275235"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new FriendsChatMember(); // L: 26
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lne;",
-		garbageValue = "77510907"
+		descriptor = "(IB)[Lqs;",
+		garbageValue = "99"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new FriendsChatMember[var1]; // L: 31
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "-82"
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-1793987000"
 	)
-	final void method6590(String var1) {
-		this.name = TaskHandler.method3240(var1); // L: 35
+	final void method7835(String var1) {
+		this.name = class385.method7165(var1); // L: 35
 	} // L: 36
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "1"
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-1839249281"
 	)
-	final void method6591(String var1) {
-		this.owner = TaskHandler.method3240(var1); // L: 39
-	} // L: 40
+	final void method7836(String var1) {
+		this.owner = class385.method7165(var1);
+	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;II)V",
-		garbageValue = "-1186116576"
+		descriptor = "(Ltm;II)V",
+		garbageValue = "1203512341"
 	)
-	public final void method6592(Buffer var1, int var2) {
-		this.method6591(var1.readStringCp1252NullTerminated()); // L: 43
-		long var3 = var1.readLong(); // L: 44
-		long var6 = var3; // L: 46
+	public final void method7837(Buffer var1, int var2) {
+		this.method7836(var1.readStringCp1252NullTerminated()); // L: 43
+		long var3 = var1.readLong();
+		long var6 = var3;
 		String var5;
 		int var8;
-		if (var3 > 0L && var3 < 6582952005840035281L) { // L: 48
-			if (var3 % 37L == 0L) { // L: 52
-				var5 = null; // L: 53
+		if (var3 > 0L && var3 < 6582952005840035281L) {
+			if (var3 % 37L == 0L) {
+				var5 = null;
 			} else {
-				var8 = 0; // L: 56
+				var8 = 0;
 
-				for (long var9 = var3; var9 != 0L; var9 /= 37L) { // L: 57 58 60
-					++var8; // L: 59
+				for (long var9 = var3; 0L != var9; var9 /= 37L) { // L: 57
+					++var8;
 				}
 
 				StringBuilder var11 = new StringBuilder(var8); // L: 62
 
-				while (0L != var6) { // L: 63
+				while (var6 != 0L) { // L: 63
 					long var12 = var6; // L: 64
 					var6 /= 37L; // L: 65
-					var11.append(class344.base37Table[(int)(var12 - 37L * var6)]); // L: 66
+					var11.append(class388.base37Table[(int)(var12 - var6 * 37L)]); // L: 66
 				}
 
 				var5 = var11.reverse().toString(); // L: 68
 			}
 		} else {
-			var5 = null; // L: 49
+			var5 = null;
 		}
 
-		this.method6590(var5); // L: 70
+		this.method7835(var5); // L: 70
 		this.minKick = var1.readByte(); // L: 71
 		short var14;
 		if (var2 == 1) { // L: 74
@@ -136,7 +142,7 @@ public class FriendsChatManager extends NameableContainer {
 				throw new IllegalArgumentException("Invalid friend chat full update version: " + var2); // L: 83
 			}
 
-			var8 = var1.method7749(); // L: 79
+			var8 = var1.method9075(); // L: 79
 			var14 = -1; // L: 80
 		}
 
@@ -147,7 +153,7 @@ public class FriendsChatManager extends NameableContainer {
 			for (int var15 = 0; var15 < var10; ++var15) { // L: 90
 				FriendsChatMember var16 = (FriendsChatMember)this.addLastNoPreviousUsername(new Username(var1.readStringCp1252NullTerminated(), this.loginType)); // L: 91
 				int var13 = var1.readUnsignedShort(); // L: 92
-				var16.set(var13, ++this.field4297 - 1); // L: 93
+				var16.set(var13, ++this.field4638 - 1); // L: 93
 				var16.rank = var1.readByte(); // L: 94
 				var1.readStringCp1252NullTerminated(); // L: 95
 				this.isLocalPlayer(var16); // L: 96
@@ -156,12 +162,12 @@ public class FriendsChatManager extends NameableContainer {
 		}
 	} // L: 86 98
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "123"
+		descriptor = "(Ltm;B)V",
+		garbageValue = "-59"
 	)
-	public final void method6612(Buffer var1) {
+	public final void method7838(Buffer var1) {
 		Username var2 = new Username(var1.readStringCp1252NullTerminated(), this.loginType); // L: 101
 		int var3 = var1.readUnsignedShort(); // L: 102
 		byte var4 = var1.readByte(); // L: 103
@@ -191,17 +197,17 @@ public class FriendsChatManager extends NameableContainer {
 				var6 = (FriendsChatMember)this.addLastNoPreviousUsername(var2); // L: 118
 			}
 
-			var6.set(var3, ++this.field4297 - 1); // L: 120
+			var6.set(var3, ++this.field4638 - 1); // L: 120
 			var6.rank = var4; // L: 121
 			this.isLocalPlayer(var6); // L: 122
 		}
 
 	} // L: 124
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "679696158"
+		descriptor = "(B)V",
+		garbageValue = "-39"
 	)
 	@Export("clearFriends")
 	public final void clearFriends() {
@@ -211,10 +217,10 @@ public class FriendsChatManager extends NameableContainer {
 
 	} // L: 130
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1412688360"
+		descriptor = "(B)V",
+		garbageValue = "-1"
 	)
 	@Export("invalidateIgnoreds")
 	public final void invalidateIgnoreds() {
@@ -224,10 +230,10 @@ public class FriendsChatManager extends NameableContainer {
 
 	} // L: 136
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Lnj;I)V",
-		garbageValue = "2099019894"
+		descriptor = "(Lqx;I)V",
+		garbageValue = "-617315153"
 	)
 	@Export("isLocalPlayer")
 	final void isLocalPlayer(FriendsChatMember var1) {
@@ -236,4 +242,90 @@ public class FriendsChatManager extends NameableContainer {
 		}
 
 	} // L: 140
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(IIIII)V",
+		garbageValue = "-652647003"
+	)
+	@Export("itemContainerSetItem")
+	static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
+		ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 39
+		if (var4 == null) { // L: 40
+			var4 = new ItemContainer(); // L: 41
+			ItemContainer.itemContainers.put(var4, (long)var0); // L: 42
+		}
+
+		if (var4.ids.length <= var1) { // L: 44
+			int[] var5 = new int[var1 + 1]; // L: 45
+			int[] var6 = new int[var1 + 1]; // L: 46
+
+			int var7;
+			for (var7 = 0; var7 < var4.ids.length; ++var7) { // L: 47
+				var5[var7] = var4.ids[var7]; // L: 48
+				var6[var7] = var4.quantities[var7]; // L: 49
+			}
+
+			for (var7 = var4.ids.length; var7 < var1; ++var7) { // L: 51
+				var5[var7] = -1; // L: 52
+				var6[var7] = 0; // L: 53
+			}
+
+			var4.ids = var5; // L: 55
+			var4.quantities = var6; // L: 56
+		}
+
+		var4.ids[var1] = var2; // L: 58
+		var4.quantities[var1] = var3; // L: 59
+	} // L: 60
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "([BIILiv;[Lis;I)V",
+		garbageValue = "420755705"
+	)
+	static final void method7860(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
+		Buffer var5 = new Buffer(var0); // L: 247
+		int var6 = -1; // L: 248
+
+		while (true) {
+			int var7 = var5.method9076(); // L: 250
+			if (var7 == 0) { // L: 251
+				return; // L: 275
+			}
+
+			var6 += var7; // L: 252
+			int var8 = 0; // L: 253
+
+			while (true) {
+				int var9 = var5.readUShortSmart(); // L: 255
+				if (var9 == 0) { // L: 256
+					break;
+				}
+
+				var8 += var9 - 1; // L: 257
+				int var10 = var8 & 63; // L: 258
+				int var11 = var8 >> 6 & 63; // L: 259
+				int var12 = var8 >> 12; // L: 260
+				int var13 = var5.readUnsignedByte(); // L: 261
+				int var14 = var13 >> 2; // L: 262
+				int var15 = var13 & 3; // L: 263
+				int var16 = var11 + var1; // L: 264
+				int var17 = var10 + var2; // L: 265
+				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) { // L: 266
+					int var18 = var12; // L: 267
+					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) { // L: 268
+						var18 = var12 - 1;
+					}
+
+					CollisionMap var19 = null; // L: 269
+					if (var18 >= 0) { // L: 270
+						var19 = var4[var18];
+					}
+
+					class128.addObjects(var12, var16, var17, var6, var15, var14, var3, var19); // L: 271
+				}
+			}
+		}
+	}
 }

@@ -4,12 +4,12 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nb")
+@ObfuscatedName("qu")
 @Implements("Ignored")
 public class Ignored extends Nameable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -1766830117
+		intValue = -1984190391
 	)
 	@Export("id")
 	int id;
@@ -17,20 +17,20 @@ public class Ignored extends Nameable {
 	Ignored() {
 	} // L: 6
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lnb;I)I",
-		garbageValue = "-1083429285"
+		descriptor = "(Lqu;I)I",
+		garbageValue = "-1019476190"
 	)
 	@Export("compareTo_ignored")
 	int compareTo_ignored(Ignored var1) {
 		return this.id - var1.id; // L: 9
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lne;B)I",
-		garbageValue = "-81"
+		descriptor = "(Lqs;I)I",
+		garbageValue = "1756748027"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
@@ -41,37 +41,76 @@ public class Ignored extends Nameable {
 		return this.compareTo_ignored((Ignored)var1); // L: 17
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("kp")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lqg;",
-		garbageValue = "-15"
+		descriptor = "(B)V",
+		garbageValue = "44"
 	)
-	public static PrivateChatMode method6780(int var0) {
-		PrivateChatMode[] var1 = new PrivateChatMode[]{PrivateChatMode.field4818, PrivateChatMode.field4817, PrivateChatMode.field4819}; // L: 18
-		PrivateChatMode[] var2 = var1; // L: 20
+	static final void method7992() {
+		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 8451 8452 8495
+			if (var0.hitpoints > 0) { // L: 8453
+				--var0.hitpoints;
+			}
 
-		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 21
-			PrivateChatMode var4 = var2[var3]; // L: 22
-			if (var0 == var4.field4820) { // L: 24
-				return var4;
+			boolean var1;
+			int var2;
+			int var3;
+			ObjectComposition var4;
+			if (var0.hitpoints == 0) { // L: 8454
+				if (var0.objectId >= 0) { // L: 8456
+					var2 = var0.objectId; // L: 8458
+					var3 = var0.field1186; // L: 8459
+					var4 = WorldMapElement.getObjectDefinition(var2); // L: 8461
+					if (var3 == 11) { // L: 8462
+						var3 = 10;
+					}
+
+					if (var3 >= 5 && var3 <= 8) { // L: 8463
+						var3 = 4;
+					}
+
+					var1 = var4.method3892(var3); // L: 8464
+					if (!var1) { // L: 8466
+						continue;
+					}
+				}
+
+				WorldMap.method8696(var0.plane, var0.type, var0.x, var0.y, var0.objectId, var0.field1185, var0.field1186, var0.field1190); // L: 8468
+				var0.remove(); // L: 8469
+			} else {
+				if (var0.delay > 0) { // L: 8473
+					--var0.delay;
+				}
+
+				if (var0.delay == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102) { // L: 8474
+					if (var0.field1187 >= 0) { // L: 8476
+						var2 = var0.field1187; // L: 8478
+						var3 = var0.field1183; // L: 8479
+						var4 = WorldMapElement.getObjectDefinition(var2); // L: 8481
+						if (var3 == 11) { // L: 8482
+							var3 = 10;
+						}
+
+						if (var3 >= 5 && var3 <= 8) { // L: 8483
+							var3 = 4;
+						}
+
+						var1 = var4.method3892(var3); // L: 8484
+						if (!var1) { // L: 8486
+							continue;
+						}
+					}
+
+					WorldMap.method8696(var0.plane, var0.type, var0.x, var0.y, var0.field1187, var0.field1189, var0.field1183, var0.field1190); // L: 8488
+					var0.delay = -1; // L: 8489
+					if (var0.field1187 == var0.objectId && var0.objectId == -1) {
+						var0.remove(); // L: 8490
+					} else if (var0.field1187 == var0.objectId && var0.field1189 == var0.field1185 && var0.field1186 == var0.field1183) { // L: 8491
+						var0.remove();
+					}
+				}
 			}
 		}
 
-		return null; // L: 28
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;IIB)Z",
-		garbageValue = "-50"
-	)
-	public static boolean method6774(AbstractArchive var0, int var1, int var2) {
-		byte[] var3 = var0.takeFile(var1, var2); // L: 176
-		if (var3 == null) { // L: 177
-			return false;
-		} else {
-			ChatChannel.SpriteBuffer_decode(var3); // L: 178
-			return true; // L: 179
-		}
-	}
+	} // L: 8497
 }
