@@ -1,9 +1,13 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ql")
+@ObfuscatedName("qj")
 public class class465 {
-	@ObfuscatedName("z")
-	@Export("Tiles_hueMultiplier")
-	static int[] Tiles_hueMultiplier;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Ljp;"
+	)
+	@Export("huffman")
+	static Huffman huffman;
 }

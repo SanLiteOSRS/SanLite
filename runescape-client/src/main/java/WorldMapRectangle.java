@@ -3,87 +3,71 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("ij")
+@ObfuscatedName("iv")
 @Implements("WorldMapRectangle")
 public final class WorldMapRectangle {
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1451061377
+		intValue = 172936477
 	)
 	@Export("width")
 	int width;
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -216115115
+		intValue = -1149493653
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -90003499
+		intValue = 1711487245
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1498862133
+		intValue = -1262950775
 	)
 	@Export("y")
 	int y;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lhm;"
+		descriptor = "Lhw;"
 	)
 	final WorldMapManager this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lhm;)V"
+		descriptor = "(Lhw;)V"
 	)
 	WorldMapRectangle(WorldMapManager var1) {
 		this.this$0 = var1; // L: 305
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ed")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
-		garbageValue = "-2108490134"
+		descriptor = "(Lgh;IIII)V",
+		garbageValue = "-2019802998"
 	)
-	@Export("loadClassFromDescriptor")
-	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-		if (var0.equals("B")) { // L: 222
-			return Byte.TYPE;
-		} else if (var0.equals("I")) { // L: 223
-			return Integer.TYPE;
-		} else if (var0.equals("S")) { // L: 224
-			return Short.TYPE;
-		} else if (var0.equals("J")) { // L: 225
-			return Long.TYPE;
-		} else if (var0.equals("Z")) { // L: 226
-			return Boolean.TYPE;
-		} else if (var0.equals("F")) { // L: 227
-			return Float.TYPE;
-		} else if (var0.equals("D")) { // L: 228
-			return Double.TYPE;
-		} else if (var0.equals("C")) { // L: 229
-			return Character.TYPE;
-		} else {
-			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0); // L: 230 231
-		}
-	}
+	static void method4912(SequenceDefinition var0, int var1, int var2, int var3) {
+		if (Client.soundEffectCount < 50 && FriendsChatMember.clientPreferences.method2226() != 0) { // L: 3577
+			if (var0.field2174 != null && var0.field2174.containsKey(var1)) { // L: 3578
+				int var4 = (Integer)var0.field2174.get(var1); // L: 3579
+				if (var4 != 0) { // L: 3583
+					int var7 = var4 >> 8; // L: 3584
+					int var8 = var4 >> 4 & 7; // L: 3585
+					int var9 = var4 & 15; // L: 3586
+					Client.soundEffectIds[Client.soundEffectCount] = var7; // L: 3587
+					Client.queuedSoundEffectLoops[Client.soundEffectCount] = var8; // L: 3588
+					Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0; // L: 3589
+					Client.soundEffects[Client.soundEffectCount] = null; // L: 3590
+					int var10 = (var2 - 64) / 128; // L: 3591
+					int var11 = (var3 - 64) / 128; // L: 3592
+					Client.soundLocations[Client.soundEffectCount] = var9 + (var11 << 8) + (var10 << 16); // L: 3593
+					++Client.soundEffectCount; // L: 3594
+				}
 
-	@ObfuscatedName("li")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Lps;",
-		garbageValue = "46"
-	)
-	static class436 method4988(int var0) {
-		class436 var1 = (class436)Client.Widget_cachedFonts.get((long)var0); // L: 12486
-		if (var1 == null) { // L: 12487
-			var1 = new class436(class132.field1588, var0); // L: 12488
+			}
 		}
-
-		return var1; // L: 12490
-	}
+	} // L: 3596
 }
