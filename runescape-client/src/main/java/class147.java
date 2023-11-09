@@ -3,48 +3,51 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("em")
-public class class147 extends class128 {
-	@ObfuscatedName("v")
+@ObfuscatedName("fs")
+public class class147 extends class143 {
+	@ObfuscatedName("fw")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lqh;"
 	)
-	@Export("SpotAnimationDefinition_modelArchive")
-	public static AbstractArchive SpotAnimationDefinition_modelArchive;
-	@ObfuscatedName("c")
+	@Export("js5Socket")
+	static AbstractSocket js5Socket;
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -1269941877
+		intValue = 739864291
 	)
-	int field1686;
+	int field1663;
+	@ObfuscatedName("ay")
+	byte field1662;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfr;"
 	)
-	final class131 this$0;
+	final class146 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfr;)V"
 	)
-	class147(class131 var1) {
+	class147(class146 var1) {
 		this.this$0 = var1;
-		this.field1686 = -1; // L: 144
-	} // L: 146
+		this.field1663 = -1; // L: 128
+	} // L: 131
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lty;B)V",
+		garbageValue = "1"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1686 = var1.readUnsignedShort(); // L: 149
-	} // L: 150
+	void vmethod3412(Buffer var1) {
+		this.field1663 = var1.readUnsignedShort(); // L: 134
+		this.field1662 = var1.readByte(); // L: 135
+	} // L: 136
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Lfx;B)V",
+		garbageValue = "-72"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method3016(this.field1686); // L: 153
-	} // L: 154
+	void vmethod3419(ClanSettings var1) {
+		var1.method3236(this.field1663, this.field1662); // L: 139
+	} // L: 140
 }

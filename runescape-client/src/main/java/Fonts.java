@@ -4,30 +4,27 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("oy")
+@ObfuscatedName("sz")
 @Implements("Fonts")
 public class Fonts {
-	@ObfuscatedName("h")
-	@Export("cacheParentPaths")
-	static String[] cacheParentPaths;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lnd;"
 	)
 	@Export("spritesArchive")
 	AbstractArchive spritesArchive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lnd;"
 	)
 	@Export("fontsArchive")
 	AbstractArchive fontsArchive;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@Export("map")
 	HashMap map;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;)V"
+		descriptor = "(Lnd;Lnd;)V"
 	)
 	public Fonts(AbstractArchive var1, AbstractArchive var2) {
 		this.spritesArchive = var1; // L: 14
@@ -35,10 +32,10 @@ public class Fonts {
 		this.map = new HashMap(); // L: 16
 	} // L: 17
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "([Lpd;B)Ljava/util/HashMap;",
-		garbageValue = "82"
+		descriptor = "([Lsg;I)Ljava/util/HashMap;",
+		garbageValue = "-631729363"
 	)
 	@Export("createMap")
 	public HashMap createMap(FontName[] var1) {
@@ -50,14 +47,25 @@ public class Fonts {
 			if (this.map.containsKey(var5)) { // L: 26
 				var2.put(var5, this.map.get(var5)); // L: 27
 			} else {
-				Font var6 = ServerPacket.method5211(this.spritesArchive, this.fontsArchive, var5.name, ""); // L: 30
-				if (var6 != null) { // L: 31
-					this.map.put(var5, var6); // L: 32
-					var2.put(var5, var6); // L: 33
+				AbstractArchive var7 = this.spritesArchive; // L: 31
+				AbstractArchive var8 = this.fontsArchive; // L: 32
+				String var9 = var5.name; // L: 33
+				Font var6;
+				if (!var7.isValidFileName(var9, "")) { // L: 35
+					var6 = null; // L: 36
+				} else {
+					int var10 = var7.getGroupId(var9); // L: 39
+					int var11 = var7.getFileId(var10, ""); // L: 40
+					var6 = class408.method7672(var7, var8, var10, var11); // L: 41
+				}
+
+				if (var6 != null) { // L: 44
+					this.map.put(var5, var6); // L: 45
+					var2.put(var5, var6); // L: 46
 				}
 			}
 		}
 
-		return var2; // L: 39
+		return var2; // L: 52
 	}
 }

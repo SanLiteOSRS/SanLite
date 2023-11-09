@@ -3,10 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dv")
+@ObfuscatedName("ey")
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class UserComparator9 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "-582515893"
+		descriptor = "(Lqa;Lqa;I)I",
+		garbageValue = "-236621973"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -32,12 +32,31 @@ public class UserComparator9 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 22
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Ldt;",
-		garbageValue = "6"
+		descriptor = "(I)[Lir;",
+		garbageValue = "-164706283"
 	)
-	static class119[] method2599() {
-		return new class119[]{class119.field1497, class119.field1504, class119.field1505, class119.field1501, class119.field1492, class119.field1493, class119.field1494, class119.field1495, class119.field1496, class119.field1489, class119.field1498, class119.field1499, class119.field1500, class119.field1502, class119.field1488, class119.field1503, class119.field1491}; // L: 74
+	static class215[] method2896() {
+		return new class215[]{class215.field2352, class215.field2349, class215.field2355, class215.field2351, class215.field2350, class215.field2354, class215.field2353}; // L: 25
 	}
+
+	@ObfuscatedName("bx")
+	@ObfuscatedSignature(
+		descriptor = "(Lmt;IB)V",
+		garbageValue = "0"
+	)
+	public static void method2889(Widget var0, int var1) {
+		ItemComposition var2 = class125.ItemComposition_get(var1); // L: 1006
+		var0.field3681.equipment[var2.maleModel] = var1 + 512; // L: 1007
+		if (var2.maleModel1 != -1) { // L: 1008
+			var0.field3681.equipment[var2.maleModel1] = 0; // L: 1009
+		}
+
+		if (var2.maleModel2 != -1) { // L: 1011
+			var0.field3681.equipment[var2.maleModel2] = 0; // L: 1012
+		}
+
+		var0.field3681.method6128(); // L: 1014
+	} // L: 1015
 }

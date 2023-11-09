@@ -1,18 +1,16 @@
-import java.text.ParseException;
 import java.util.Comparator;
-import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ly")
+@ObfuscatedName("ov")
 @Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Llj;Llj;I)I",
-		garbageValue = "-2004855128"
+		descriptor = "(Lol;Lol;I)I",
+		garbageValue = "693078358"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -27,119 +25,40 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 		return super.equals(var1); // L: 51
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-118"
+		descriptor = "(IIB)I",
+		garbageValue = "17"
 	)
-	static boolean method6031() {
-		Date var0;
-		try {
-			var0 = GameObject.method4552(); // L: 1077
-		} catch (ParseException var9) { // L: 1079
-			GraphicsObject.method1877("Date not valid.", "Please ensure date follows the format", "DD/MM/YYYY and is after 01/01/1900"); // L: 1080
-			return false; // L: 1081
-		}
-
-		if (var0 == null) { // L: 1083
-			return false; // L: 1084
-		} else {
-			java.util.Calendar var2 = java.util.Calendar.getInstance(); // L: 1088
-			var2.set(1, var2.get(1) - 13); // L: 1089
-			var2.set(5, var2.get(5) + 1); // L: 1090
-			var2.set(11, 0); // L: 1091
-			var2.set(12, 0); // L: 1092
-			var2.set(13, 0); // L: 1093
-			var2.set(14, 0); // L: 1094
-			Date var3 = var2.getTime(); // L: 1095
-			boolean var5 = var0.before(var3); // L: 1096
-			Date var4 = BufferedNetSocket.method6835(); // L: 1101
-			boolean var7 = var0.after(var4); // L: 1102
-			if (!var7) { // L: 1105
-				GraphicsObject.method1877("Date not valid.", "Please ensure date follows the format", "DD/MM/YYYY and is after 01/01/1900"); // L: 1106
-				return false; // L: 1107
-			} else {
-				if (!var5) { // L: 1109
-					class174.field1891 = 8388607; // L: 1110
-				} else {
-					class174.field1891 = (int)(var0.getTime() / 86400000L - 11745L); // L: 1113
-				}
-
-				return true; // L: 1115
-			}
-		}
+	public static int method6962(int var0, int var1) {
+		return (int)Math.round(Math.atan2((double)var0, (double)var1) * 2607.5945876176133D) & 16383; // L: 24
 	}
 
-	@ObfuscatedName("ij")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1960096370"
+		descriptor = "([BI)V",
+		garbageValue = "-890105680"
 	)
-	static final void method6024() {
-		PacketBuffer var0 = Client.packetWriter.packetBuffer; // L: 8009
-		var0.importIndex(); // L: 8010
-		int var1 = var0.readBits(8); // L: 8011
-		int var2;
-		if (var1 < Client.npcCount) { // L: 8012
-			for (var2 = var1; var2 < Client.npcCount; ++var2) { // L: 8013
-				Client.field616[++Client.field615 - 1] = Client.npcIndices[var2];
-			}
-		}
-
-		if (var1 > Client.npcCount) { // L: 8015
-			throw new RuntimeException("");
+	@Export("ByteArrayPool_release")
+	public static synchronized void ByteArrayPool_release(byte[] var0) {
+		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < ByteArrayPool.field4548) { // L: 96
+			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0; // L: 97
+		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < ByteArrayPool.field4549) { // L: 100
+			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0; // L: 101
+		} else if (var0.length == 10000 && ByteArrayPool.ByteArrayPool_largeCount < ByteArrayPool.field4544) { // L: 104
+			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0; // L: 105
+		} else if (var0.length == 30000 && ByteArrayPool.field4547 < ByteArrayPool.field4555) { // L: 108
+			ByteArrayPool.field4551[++ByteArrayPool.field4547 - 1] = var0; // L: 109
 		} else {
-			Client.npcCount = 0; // L: 8016
-
-			for (var2 = 0; var2 < var1; ++var2) { // L: 8017
-				int var3 = Client.npcIndices[var2]; // L: 8018
-				NPC var4 = Client.npcs[var3]; // L: 8019
-				int var5 = var0.readBits(1); // L: 8020
-				if (var5 == 0) { // L: 8021
-					Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8022
-					var4.npcCycle = Client.cycle; // L: 8023
-				} else {
-					int var6 = var0.readBits(2); // L: 8026
-					if (var6 == 0) { // L: 8027
-						Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8028
-						var4.npcCycle = Client.cycle; // L: 8029
-						Client.field539[++Client.field538 - 1] = var3; // L: 8030
-					} else {
-						int var7;
-						int var8;
-						if (var6 == 1) { // L: 8033
-							Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8034
-							var4.npcCycle = Client.cycle; // L: 8035
-							var7 = var0.readBits(3); // L: 8036
-							var4.method2361(var7, class192.field2212); // L: 8037
-							var8 = var0.readBits(1); // L: 8038
-							if (var8 == 1) { // L: 8039
-								Client.field539[++Client.field538 - 1] = var3;
-							}
-						} else if (var6 == 2) { // L: 8042
-							Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8043
-							var4.npcCycle = Client.cycle; // L: 8044
-							if (var0.readBits(1) == 1) { // L: 8045
-								var7 = var0.readBits(3); // L: 8046
-								var4.method2361(var7, class192.field2211); // L: 8047
-								var8 = var0.readBits(3); // L: 8048
-								var4.method2361(var8, class192.field2211); // L: 8049
-							} else {
-								var7 = var0.readBits(3); // L: 8052
-								var4.method2361(var7, class192.field2209); // L: 8053
-							}
-
-							var7 = var0.readBits(1); // L: 8055
-							if (var7 == 1) { // L: 8056
-								Client.field539[++Client.field538 - 1] = var3;
-							}
-						} else if (var6 == 3) { // L: 8059
-							Client.field616[++Client.field615 - 1] = var3; // L: 8060
-						}
+			if (class152.ByteArrayPool_arrays != null) { // L: 112
+				for (int var1 = 0; var1 < ByteArrayPool.ByteArrayPool_alternativeSizes.length; ++var1) { // L: 113
+					if (var0.length == ByteArrayPool.ByteArrayPool_alternativeSizes[var1] && class125.ByteArrayPool_altSizeArrayCounts[var1] < class152.ByteArrayPool_arrays[var1].length) { // L: 114
+						class152.ByteArrayPool_arrays[var1][class125.ByteArrayPool_altSizeArrayCounts[var1]++] = var0; // L: 115
+						return; // L: 116
 					}
 				}
 			}
 
 		}
-	} // L: 8064
+	} // L: 98 102 106 110 120
 }
