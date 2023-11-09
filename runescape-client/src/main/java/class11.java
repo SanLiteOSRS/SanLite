@@ -1,4 +1,3 @@
-import java.awt.FontMetrics;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.cert.CertificateException;
@@ -12,144 +11,76 @@ import org.bouncycastle.crypto.tls.CertificateRequest;
 import org.bouncycastle.crypto.tls.TlsAuthentication;
 import org.bouncycastle.crypto.tls.TlsCredentials;
 
-@ObfuscatedName("t")
+@ObfuscatedName("ao")
 class class11 implements TlsAuthentication {
-	@ObfuscatedName("s")
-	@Export("musicTrackBoolean")
-	public static boolean musicTrackBoolean;
-	@ObfuscatedName("ab")
-	@Export("loginScreenFontMetrics")
-	static FontMetrics loginScreenFontMetrics;
+	@ObfuscatedName("ay")
+	@Export("Interpreter_stringLocals")
+	static String[] Interpreter_stringLocals;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lr;"
+		descriptor = "Lam;"
 	)
 	final class13 this$2;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lr;)V"
+		descriptor = "(Lam;)V"
 	)
 	class11(class13 var1) {
-		this.this$2 = var1; // L: 306
+		this.this$2 = var1; // L: 313
+	}
+
+	public TlsCredentials getClientCredentials(CertificateRequest var1) throws IOException {
+		return null; // L: 337
 	}
 
 	public void notifyServerCertificate(Certificate var1) throws IOException {
 		try {
-			CertificateFactory var2 = CertificateFactory.getInstance("X.509"); // L: 310
-			LinkedList var3 = new LinkedList(); // L: 311
-			org.bouncycastle.asn1.x509.Certificate[] var4 = var1.getCertificateList(); // L: 313
+			CertificateFactory var2 = CertificateFactory.getInstance("X.509"); // L: 317
+			LinkedList var3 = new LinkedList(); // L: 318
+			org.bouncycastle.asn1.x509.Certificate[] var4 = var1.getCertificateList(); // L: 320
 
-			for (int var5 = 0; var5 < var4.length; ++var5) { // L: 314
-				org.bouncycastle.asn1.x509.Certificate var6 = var4[var5]; // L: 315
-				var3.add(var2.generateCertificate(new ByteArrayInputStream(var6.getEncoded()))); // L: 317
+			for (int var5 = 0; var5 < var4.length; ++var5) { // L: 321
+				org.bouncycastle.asn1.x509.Certificate var6 = var4[var5]; // L: 322
+				var3.add(var2.generateCertificate(new ByteArrayInputStream(var6.getEncoded()))); // L: 324
 			}
 
-			this.this$2.this$1.field63 = (java.security.cert.Certificate[])((java.security.cert.Certificate[])var3.toArray(new java.security.cert.Certificate[0])); // L: 321
-		} catch (CertificateException var7) { // L: 323
-			throw new IOException(var7); // L: 324
+			this.this$2.this$1.field57 = (java.security.cert.Certificate[])((java.security.cert.Certificate[])var3.toArray(new java.security.cert.Certificate[0])); // L: 328
+		} catch (CertificateException var7) { // L: 330
+			throw new IOException(var7); // L: 331
 		}
-	} // L: 326
+	} // L: 333
 
-	public TlsCredentials getClientCredentials(CertificateRequest var1) throws IOException {
-		return null; // L: 330
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Lld;",
+		garbageValue = "-1405458613"
+	)
+	public static ServerPacket[] method128() {
+		return new ServerPacket[]{ServerPacket.field3289, ServerPacket.field3303, ServerPacket.field3229, ServerPacket.field3250, ServerPacket.field3347, ServerPacket.field3232, ServerPacket.field3257, ServerPacket.field3234, ServerPacket.field3235, ServerPacket.field3301, ServerPacket.field3237, ServerPacket.field3238, ServerPacket.field3239, ServerPacket.field3240, ServerPacket.field3241, ServerPacket.field3247, ServerPacket.field3243, ServerPacket.field3244, ServerPacket.field3245, ServerPacket.field3246, ServerPacket.field3253, ServerPacket.field3248, ServerPacket.field3249, ServerPacket.field3314, ServerPacket.field3292, ServerPacket.field3252, ServerPacket.field3272, ServerPacket.field3254, ServerPacket.field3267, ServerPacket.field3256, ServerPacket.field3264, ServerPacket.field3258, ServerPacket.field3227, ServerPacket.field3260, ServerPacket.field3261, ServerPacket.field3262, ServerPacket.field3242, ServerPacket.field3255, ServerPacket.field3265, ServerPacket.field3266, ServerPacket.field3311, ServerPacket.field3268, ServerPacket.field3259, ServerPacket.field3270, ServerPacket.field3271, ServerPacket.field3319, ServerPacket.field3288, ServerPacket.field3274, ServerPacket.field3275, ServerPacket.field3276, ServerPacket.field3277, ServerPacket.field3278, ServerPacket.field3279, ServerPacket.field3280, ServerPacket.field3281, ServerPacket.field3299, ServerPacket.field3283, ServerPacket.field3310, ServerPacket.field3322, ServerPacket.field3286, ServerPacket.field3287, ServerPacket.field3231, ServerPacket.field3328, ServerPacket.field3290, ServerPacket.field3291, ServerPacket.field3306, ServerPacket.field3293, ServerPacket.field3294, ServerPacket.field3295, ServerPacket.field3296, ServerPacket.field3345, ServerPacket.field3298, ServerPacket.field3230, ServerPacket.field3300, ServerPacket.field3308, ServerPacket.field3302, ServerPacket.field3324, ServerPacket.field3273, ServerPacket.field3316, ServerPacket.field3312, ServerPacket.field3282, ServerPacket.field3284, ServerPacket.field3309, ServerPacket.field3228, ServerPacket.field3341, ServerPacket.field3320, ServerPacket.field3313, ServerPacket.field3304, ServerPacket.field3315, ServerPacket.field3307, ServerPacket.field3317, ServerPacket.field3318, ServerPacket.field3334, ServerPacket.field3297, ServerPacket.field3321, ServerPacket.field3305, ServerPacket.field3269, ServerPacket.field3251, ServerPacket.field3325, ServerPacket.field3326, ServerPacket.field3327, ServerPacket.field3285, ServerPacket.field3329, ServerPacket.field3330, ServerPacket.field3331, ServerPacket.field3236, ServerPacket.field3333, ServerPacket.field3263, ServerPacket.field3335, ServerPacket.field3323, ServerPacket.field3337, ServerPacket.field3338, ServerPacket.field3339, ServerPacket.field3340, ServerPacket.field3336, ServerPacket.field3342, ServerPacket.field3343, ServerPacket.field3344, ServerPacket.field3233, ServerPacket.field3346, ServerPacket.field3350, ServerPacket.field3348}; // L: 131
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "1603427189"
+		descriptor = "(I)V",
+		garbageValue = "2146883949"
 	)
-	static final void method98(int var0, int var1, int var2, int var3) {
-		for (int var4 = var1; var4 <= var3 + var1; ++var4) { // L: 79
-			for (int var5 = var0; var5 <= var0 + var2; ++var5) { // L: 80
-				if (var5 >= 0 && var5 < 104 && var4 >= 0 && var4 < 104) { // L: 81
-					UserComparator6.field1415[0][var5][var4] = 127; // L: 82
-					if (var0 == var5 && var5 > 0) { // L: 83
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5 - 1][var4];
-					}
+	public static void method123() {
+		class36.reflectionChecks = new IterableNodeDeque();
+	} // L: 25
 
-					if (var0 + var2 == var5 && var5 < 103) { // L: 84
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5 + 1][var4];
-					}
-
-					if (var4 == var1 && var4 > 0) { // L: 85
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5][var4 - 1];
-					}
-
-					if (var3 + var1 == var4 && var4 < 103) { // L: 86
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5][var4 + 1];
-					}
-				}
-			}
-		}
-
-	} // L: 90
-
-	@ObfuscatedName("ac")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(ILkb;IIIII[FI)Lkb;",
-		garbageValue = "1978245093"
+		descriptor = "(II)Ltt;",
+		garbageValue = "-746413596"
 	)
-	static Widget method97(int var0, Widget var1, int var2, int var3, int var4, int var5, int var6, float[] var7) {
-		Widget var8 = new Widget(); // L: 920
-		var8.type = var0; // L: 921
-		var8.parentId = var1.id; // L: 922
-		var8.childIndex = var2; // L: 923
-		var8.isIf3 = true; // L: 924
-		var8.xAlignment = var3; // L: 925
-		var8.yAlignment = var4; // L: 926
-		var8.widthAlignment = var5; // L: 927
-		var8.heightAlignment = var6; // L: 928
-		var8.rawX = (int)(var7[0] * (float)var1.width); // L: 929
-		var8.rawY = (int)((float)var1.height * var7[1]); // L: 930
-		var8.rawWidth = (int)((float)var1.width * var7[2]); // L: 931
-		var8.rawHeight = (int)(var7[3] * (float)var1.height); // L: 932
-		return var8; // L: 933
-	}
-
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZB)I",
-		garbageValue = "-27"
-	)
-	static int method96(int var0, Script var1, boolean var2) {
-		if (var0 == 7100) { // L: 4602
-			++class446.Interpreter_intStackSize; // L: 4603
-			return 1; // L: 4604
-		} else if (var0 == 7101) { // L: 4606
-			Interpreter.Interpreter_stringStackSize += 2; // L: 4607
-			return 1; // L: 4608
-		} else if (var0 != 7102 && var0 != 7103 && var0 != 7104 && var0 != 7105 && var0 != 7109) { // L: 4610
-			if (var0 == 7106) { // L: 4614
-				++class446.Interpreter_intStackSize; // L: 4615
-				return 1; // L: 4616
-			} else if (var0 == 7107) { // L: 4618
-				++class446.Interpreter_intStackSize; // L: 4619
-				return 1; // L: 4620
-			} else if (var0 == 7108) { // L: 4622
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = class18.method234() ? 1 : 0; // L: 4623
-				return 1; // L: 4624
-			} else if (var0 == 7110) { // L: 4626
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = 0; // L: 4627
-				return 1; // L: 4628
-			} else if (var0 == 7120) { // L: 4630
-				--class446.Interpreter_intStackSize; // L: 4631
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = 0; // L: 4632
-				return 1; // L: 4633
-			} else if (var0 == 7121) { // L: 4635
-				class446.Interpreter_intStackSize -= 2; // L: 4636
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = -1; // L: 4637
-				return 1; // L: 4638
-			} else if (var0 == 7122) { // L: 4640
-				class446.Interpreter_intStackSize -= 2; // L: 4641
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = 0; // L: 4642
-				return 1; // L: 4643
-			} else {
-				return 2; // L: 4645
-			}
+	public static class502 method129(int var0) {
+		int var1 = class500.field5028[var0]; // L: 19
+		if (var1 == 1) { // L: 20
+			return class502.field5037; // L: 21
+		} else if (var1 == 2) { // L: 23
+			return class502.field5034; // L: 24
 		} else {
-			++class446.Interpreter_intStackSize; // L: 4611
-			return 1; // L: 4612
+			return var1 == 3 ? class502.field5031 : null; // L: 26 27 29
 		}
 	}
 }

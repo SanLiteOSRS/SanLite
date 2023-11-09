@@ -1,103 +1,141 @@
+import java.util.ArrayList;
 import java.util.concurrent.Callable;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("v")
+@ObfuscatedName("aj")
 public class class1 implements Callable {
-	@ObfuscatedName("u")
-	static int[][][] field2;
-	@ObfuscatedName("ky")
+	@ObfuscatedName("fg")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lqg;"
 	)
-	static Widget field4;
-	@ObfuscatedName("c")
+	@Export("js5Socket")
+	static AbstractSocket js5Socket;
+	@ObfuscatedName("kp")
 	@ObfuscatedSignature(
-		descriptor = "Lqt;"
+		descriptor = "Luq;"
 	)
-	final Buffer field1;
-	@ObfuscatedName("v")
+	@Export("redHintArrowSprite")
+	static SpritePixels redHintArrowSprite;
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lf;"
+		descriptor = "Ltl;"
 	)
-	final class3 field3;
+	final Buffer field7;
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "Law;"
+	)
+	final class3 field0;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lw;"
+		descriptor = "Lan;"
 	)
 	final class7 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lw;Lqt;Lf;)V"
+		descriptor = "(Lan;Ltl;Law;)V"
 	)
 	class1(class7 var1, Buffer var2, class3 var3) {
 		this.this$0 = var1; // L: 47
-		this.field1 = var2; // L: 48
-		this.field3 = var3; // L: 49
+		this.field7 = var2; // L: 48
+		this.field0 = var3; // L: 49
 	} // L: 50
 
 	public Object call() {
-		return this.field3.vmethod10(this.field1); // L: 54
+		return this.field0.vmethod9(this.field7); // L: 54
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZS)I",
-		garbageValue = "-15642"
+		descriptor = "(IIIIS)V",
+		garbageValue = "18980"
 	)
-	static int method7(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class124.scriptDotWidget : GrandExchangeOfferOwnWorldComparator.scriptActiveWidget; // L: 1140
-		if (var0 == ScriptOpcodes.CC_GETSCROLLX) { // L: 1141
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.scrollX; // L: 1142
-			return 1; // L: 1143
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLY) { // L: 1145
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.scrollY; // L: 1146
-			return 1; // L: 1147
-		} else if (var0 == ScriptOpcodes.CC_GETTEXT) { // L: 1149
-			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.text; // L: 1150
-			return 1; // L: 1151
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLWIDTH) { // L: 1153
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.scrollWidth; // L: 1154
-			return 1; // L: 1155
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLHEIGHT) { // L: 1157
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.scrollHeight; // L: 1158
-			return 1; // L: 1159
-		} else if (var0 == ScriptOpcodes.CC_GETMODELZOOM) { // L: 1161
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.modelZoom; // L: 1162
-			return 1; // L: 1163
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_X) { // L: 1165
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.modelAngleX; // L: 1166
-			return 1; // L: 1167
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Z) { // L: 1169
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.modelAngleZ; // L: 1170
-			return 1; // L: 1171
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Y) { // L: 1173
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.modelAngleY; // L: 1174
-			return 1; // L: 1175
-		} else if (var0 == ScriptOpcodes.CC_GETTRANS) { // L: 1177
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.transparencyTop; // L: 1178
-			return 1; // L: 1179
-		} else if (var0 == 1610) { // L: 1181
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.transparencyBot; // L: 1182
-			return 1; // L: 1183
-		} else if (var0 == ScriptOpcodes.CC_GETCOLOUR) { // L: 1185
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.color; // L: 1186
-			return 1; // L: 1187
-		} else if (var0 == ScriptOpcodes.CC_GETFILLCOLOUR) { // L: 1189
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.color2; // L: 1190
-			return 1; // L: 1191
-		} else if (var0 == 1613) { // L: 1193
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal(); // L: 1194
-			return 1; // L: 1195
-		} else if (var0 == ScriptOpcodes.CC_GETMODELTRANSPARENT) { // L: 1197
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0; // L: 1198
-			return 1; // L: 1199
-		} else if (var0 != 1615 && var0 != 1616) { // L: 1201
-			return 2; // L: 1205
-		} else {
-			++class446.Interpreter_intStackSize; // L: 1202
-			return 1; // L: 1203
+	public static void method5(int var0, int var1, int var2, int var3) {
+		if (class305.field3397.size() > 1 && class305.field3397.get(0) != null && ((class317)class305.field3397.get(0)).field3511.isReady() && class305.field3397.get(1) != null && ((class317)class305.field3397.get(1)).field3511.isReady()) { // L: 138
+			class305.field3401 = var0; // L: 140
+			class305.field3400 = var1; // L: 141
+			class305.field3403 = var2; // L: 142
+			class305.field3402 = var3; // L: 143
+			class305.field3393.add(new class400((class406)null)); // L: 145
+			ArrayList var4 = new ArrayList(); // L: 146
+			var4.add(new class402(new class405((class406)null, 1, false, class305.field3402), class305.field3403)); // L: 147
+			var4.add(new class402(new class404((class406)null, 0, false, class305.field3400), class305.field3401)); // L: 148
+			class305.field3393.add(new class407((class406)null, var4)); // L: 149
+			if (class305.field3398.get(0) != null && class305.field3398.get(1) != null) { // L: 150
+				class317 var5 = (class317)class305.field3398.get(0); // L: 151
+				class305.field3398.set(0, class305.field3397.get(1)); // L: 152
+				class305.field3398.set(1, var5); // L: 153
+			}
 		}
-	}
+
+	} // L: 156
+
+	@ObfuscatedName("ci")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-302193721"
+	)
+	@Export("runWidgetOnLoadListener")
+	static void runWidgetOnLoadListener(int var0) {
+		if (var0 != -1) { // L: 5284
+			if (GrandExchangeEvent.loadInterface(var0)) { // L: 5285
+				Widget[] var1 = class179.Widget_interfaceComponents[var0]; // L: 5286
+
+				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 5287
+					Widget var3 = var1[var2]; // L: 5288
+					if (var3.onLoad != null) { // L: 5289
+						ScriptEvent var4 = new ScriptEvent(); // L: 5290
+						var4.widget = var3; // L: 5291
+						var4.args = var3.onLoad; // L: 5292
+						class156.runScript(var4, 5000000, 0); // L: 5293
+					}
+				}
+
+			}
+		}
+	} // L: 5296
+
+	@ObfuscatedName("hu")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/util/ArrayList;IIIIB)V",
+		garbageValue = "4"
+	)
+	static void method7(ArrayList var0, int var1, int var2, int var3, int var4) {
+		if (!var0.isEmpty()) { // L: 3789
+			int var5 = (Integer)var0.get(0); // L: 3792
+			if (var5 == -1 && !Client.playingJingle) { // L: 3793
+				class90.method2339(0, 0); // L: 3794
+			} else if (var5 != -1) { // L: 3796
+				boolean var6;
+				if (class305.field3398.isEmpty()) { // L: 3799
+					var6 = false; // L: 3804
+				} else {
+					class317 var7 = (class317)class305.field3398.get(0); // L: 3800
+					var6 = var7 != null && var5 == var7.field3509; // L: 3801
+				}
+
+				if (!var6 && ScriptFrame.clientPreferences.method2516() != 0) { // L: 3806 3807
+					ArrayList var9 = new ArrayList(); // L: 3808
+
+					for (int var8 = 0; var8 < var0.size(); ++var8) { // L: 3809
+						var9.add(new class317(class329.archive11, (Integer)var0.get(var8), 0, ScriptFrame.clientPreferences.method2516(), false)); // L: 3810
+					}
+
+					if (Client.playingJingle) { // L: 3812
+						class305.field3398.clear(); // L: 3814
+						class305.field3398.addAll(var9); // L: 3815
+						class305.field3401 = var1; // L: 3817
+						class305.field3400 = var2; // L: 3818
+						class305.field3403 = var3; // L: 3819
+						class305.field3402 = var4; // L: 3820
+					} else {
+						NPCComposition.method3873(var9, var1, var2, var3, var4, false); // L: 3825
+					}
+				}
+			}
+
+		}
+	} // L: 3790 3830
 }

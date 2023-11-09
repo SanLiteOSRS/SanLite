@@ -4,32 +4,43 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gm")
+@ObfuscatedName("ij")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("e")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 1780002005
+		intValue = -2086767325
+	)
+	public static int field2553;
+	@ObfuscatedName("sm")
+	@ObfuscatedSignature(
+		descriptor = "Lfn;"
+	)
+	@Export("guestClanSettings")
+	static ClanSettings guestClanSettings;
+	@ObfuscatedName("ap")
+	@ObfuscatedGetter(
+		intValue = -1760606919
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("g")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -64074659
+		intValue = -169016461
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("w")
+	@ObfuscatedName("an")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("y")
+	@ObfuscatedName("au")
 	@Export("labels")
 	int[][] labels;
-	@ObfuscatedName("i")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lgq;"
+		descriptor = "Lie;"
 	)
-	class201 field2376;
+	class227 field2544;
 
 	public Skeleton(int var1, byte[] var2) {
 		this.id = var1; // L: 19
@@ -56,27 +67,27 @@ public class Skeleton extends Node {
 		if (var3.offset < var3.array.length) { // L: 29
 			var4 = var3.readUnsignedShort(); // L: 30
 			if (var4 > 0) { // L: 31
-				this.field2376 = new class201(var3, var4); // L: 32
+				this.field2544 = new class227(var3, var4); // L: 32
 			}
 		}
 
 	} // L: 35
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-58631089"
+		garbageValue = "2116326629"
 	)
-	public int method4148() {
+	public int method4609() {
 		return this.count; // L: 38
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lgq;",
-		garbageValue = "1269137329"
+		descriptor = "(I)Lie;",
+		garbageValue = "579255145"
 	)
-	public class201 method4150() {
-		return this.field2376; // L: 42
+	public class227 method4608() {
+		return this.field2544; // L: 42
 	}
 }

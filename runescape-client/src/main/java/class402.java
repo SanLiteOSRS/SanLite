@@ -1,21 +1,43 @@
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("oc")
-public class class402 {
-	@ObfuscatedName("i")
-	static final int[] field4449;
-	@ObfuscatedName("s")
-	static final int[] field4450;
+@ObfuscatedName("pi")
+public class class402 extends class406 {
+	@ObfuscatedName("ai")
+	@ObfuscatedGetter(
+		longValue = 7767078370621973443L
+	)
+	long field4498;
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = -922716481
+	)
+	int field4503;
+	@ObfuscatedName("ac")
+	boolean field4500;
 
-	static {
-		field4449 = new int[2048]; // L: 13
-		field4450 = new int[2048]; // L: 14
-		double var0 = 0.0030679615757712823D; // L: 17
+	@ObfuscatedSignature(
+		descriptor = "(Lps;I)V"
+	)
+	public class402(class406 var1, int var2) {
+		super(var1); // L: 9
+		this.field4500 = false; // L: 6
+		this.field4503 = var2; // L: 10
+		super.field4513 = "DelayFadeTask"; // L: 11
+	} // L: 12
 
-		for (int var2 = 0; var2 < 2048; ++var2) { // L: 18
-			field4449[var2] = (int)(65536.0D * Math.sin(var0 * (double)var2)); // L: 19
-			field4450[var2] = (int)(65536.0D * Math.cos((double)var2 * var0)); // L: 20
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "1705548260"
+	)
+	public boolean vmethod7648(int var1) {
+		if (!this.field4500) { // L: 16
+			this.field4498 = (long)var1; // L: 17
+			this.field4500 = true; // L: 18
 		}
 
-	} // L: 22
+		return (long)var1 >= (long)this.field4503 + this.field4498; // L: 20
+	}
 }

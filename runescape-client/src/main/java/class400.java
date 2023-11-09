@@ -1,51 +1,28 @@
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("op")
-public class class400 implements class398 {
-	@ObfuscatedName("v")
-	final Map field4437;
-
-	public class400(Map var1) {
-		this.field4437 = var1; // L: 11
-	} // L: 12
-
-	@ObfuscatedName("c")
+@ObfuscatedName("pm")
+public class class400 extends class406 {
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "793389020"
+		descriptor = "(Lps;)V"
 	)
-	public byte[] vmethod7114() throws UnsupportedEncodingException {
-		return this.method7122().getBytes("UTF-8"); // L: 16
-	}
+	public class400(class406 var1) {
+		super(var1); // L: 8
+		super.field4513 = "SwapSongTask"; // L: 9
+	} // L: 10
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "1192893333"
+		descriptor = "(II)Z",
+		garbageValue = "1705548260"
 	)
-	public String method7122() throws UnsupportedEncodingException {
-		StringBuilder var1 = new StringBuilder(); // L: 20
-		Iterator var2 = this.field4437.entrySet().iterator(); // L: 21
-
-		while (var2.hasNext()) {
-			Entry var3 = (Entry)var2.next(); // L: 22
-			String var4 = URLEncoder.encode((String)var3.getKey(), "UTF-8"); // L: 24
-			String var5 = URLEncoder.encode((String)var3.getValue(), "UTF-8"); // L: 25
-			var1.append(var4).append("=").append(var5).append("&"); // L: 26
+	public boolean vmethod7648(int var1) {
+		if (class305.field3397.size() > 1 && class305.field3397.get(0) != null && ((class317)class305.field3397.get(0)).field3511.isReady() && class305.field3397.get(1) != null && ((class317)class305.field3397.get(1)).field3511.isReady()) { // L: 14
+			class317 var2 = (class317)class305.field3397.get(0); // L: 15
+			class305.field3397.set(0, class305.field3397.get(1)); // L: 16
+			class305.field3397.set(1, var2); // L: 17
 		}
 
-		if (var1.length() == 0) { // L: 29
-			return "";
-		} else {
-			var1.deleteCharAt(var1.length() - 1); // L: 30
-			var1.insert(0, "?"); // L: 31
-			return var1.toString(); // L: 32
-		}
+		return true; // L: 19
 	}
 }

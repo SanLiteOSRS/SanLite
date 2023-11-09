@@ -3,645 +3,594 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("aa")
+@ObfuscatedName("ci")
 @Implements("VorbisSample")
 public class VorbisSample extends Node {
-	@ObfuscatedName("g")
-	@Export("VorbisSample_bytes")
-	static byte[] VorbisSample_bytes;
-	@ObfuscatedName("w")
-	@Export("VorbisSample_byteOffset")
-	static int VorbisSample_byteOffset;
-	@ObfuscatedName("y")
-	@Export("VorbisSample_bitOffset")
-	static int VorbisSample_bitOffset;
-	@ObfuscatedName("i")
-	@Export("VorbisSample_blockSize0")
-	static int VorbisSample_blockSize0;
-	@ObfuscatedName("s")
-	@Export("VorbisSample_blockSize1")
-	static int VorbisSample_blockSize1;
-	@ObfuscatedName("t")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "[Lau;"
+		descriptor = "Lcl;"
 	)
-	@Export("VorbisSample_codebooks")
-	static VorbisCodebook[] VorbisSample_codebooks;
-	@ObfuscatedName("z")
+	static class60 field374;
+	@ObfuscatedName("an")
+	static int field396;
+	@ObfuscatedName("au")
+	static int field376;
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "[Lax;"
+		descriptor = "[Lch;"
 	)
-	@Export("VorbisSample_floors")
-	static VorbisFloor[] VorbisSample_floors;
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "[Lah;"
-	)
-	@Export("VorbisSample_residues")
-	static VorbisResidue[] VorbisSample_residues;
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "[Lav;"
-	)
-	@Export("VorbisSample_mappings")
-	static VorbisMapping[] VorbisSample_mappings;
-	@ObfuscatedName("k")
-	@Export("VorbisSample_blockFlags")
-	static boolean[] VorbisSample_blockFlags;
-	@ObfuscatedName("h")
-	@Export("VorbisSample_mapping")
-	static int[] VorbisSample_mapping;
-	@ObfuscatedName("x")
-	static boolean field377;
-	@ObfuscatedName("n")
-	static float[] field380;
-	@ObfuscatedName("o")
-	static float[] field383;
-	@ObfuscatedName("m")
-	static float[] field384;
-	@ObfuscatedName("d")
-	static float[] field385;
-	@ObfuscatedName("ad")
-	static float[] field386;
-	@ObfuscatedName("ak")
-	static float[] field387;
-	@ObfuscatedName("al")
-	static float[] field388;
-	@ObfuscatedName("ao")
-	static int[] field371;
+	static VorbisCodebook[] field377;
 	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "[Lbp;"
+	)
+	static VorbisFloor[] field389;
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "[Lbz;"
+	)
+	static class46[] field379;
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "[Lbs;"
+	)
+	static VorbisMapping[] field386;
+	@ObfuscatedName("am")
+	static boolean[] field381;
+	@ObfuscatedName("ag")
 	static int[] field375;
-	@ObfuscatedName("c")
-	byte[][] field361;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aa")
+	static boolean field392;
+	@ObfuscatedName("al")
+	static float[] field382;
+	@ObfuscatedName("aq")
+	static float[] field390;
+	@ObfuscatedName("ah")
+	static float[] field391;
+	@ObfuscatedName("ak")
+	static float[] field368;
+	@ObfuscatedName("ax")
+	static float[] field383;
+	@ObfuscatedName("bm")
+	static float[] field394;
+	@ObfuscatedName("bt")
+	static int[] field395;
+	@ObfuscatedName("by")
+	static int[] field393;
+	@ObfuscatedName("ai")
+	byte[][] field398;
+	@ObfuscatedName("aj")
 	@Export("sampleRate")
 	int sampleRate;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@Export("sampleCount")
 	int sampleCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@Export("start")
 	int start;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ay")
 	@Export("end")
 	int end;
-	@ObfuscatedName("e")
-	boolean field378;
-	@ObfuscatedName("l")
-	float[] field389;
-	@ObfuscatedName("a")
-	int field379;
-	@ObfuscatedName("p")
-	int field376;
-	@ObfuscatedName("b")
-	boolean field360;
 	@ObfuscatedName("ap")
+	boolean field373;
+	@ObfuscatedName("ar")
+	float[] field384;
+	@ObfuscatedName("ad")
+	int field380;
+	@ObfuscatedName("at")
+	int field378;
+	@ObfuscatedName("af")
+	boolean field387;
+	@ObfuscatedName("ae")
+	float[] field388;
+	@ObfuscatedName("bc")
 	@Export("samples")
 	byte[] samples;
-	@ObfuscatedName("ac")
-	int field392;
-	@ObfuscatedName("ae")
-	int field393;
+	@ObfuscatedName("bw")
+	int field385;
+	@ObfuscatedName("bq")
+	int field399;
 
 	static {
-		field377 = false; // L: 28
+		field374 = new class60(); // L: 17
+		field392 = false; // L: 26
 	}
 
 	VorbisSample(byte[] var1) {
-		this.read(var1); // L: 401
-	} // L: 402
+		this.read(var1); // L: 364
+	} // L: 365
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("aj")
 	@Export("read")
 	void read(byte[] var1) {
-		Buffer var2 = new Buffer(var1); // L: 89
-		this.sampleRate = var2.readInt(); // L: 90
-		this.sampleCount = var2.readInt(); // L: 91
-		this.start = var2.readInt(); // L: 92
-		this.end = var2.readInt(); // L: 93
-		if (this.end < 0) { // L: 94
-			this.end = ~this.end; // L: 95
-			this.field378 = true; // L: 96
+		Buffer var2 = new Buffer(var1); // L: 53
+		this.sampleRate = var2.readInt(); // L: 54
+		this.sampleCount = var2.readInt(); // L: 55
+		this.start = var2.readInt(); // L: 56
+		this.end = var2.readInt(); // L: 57
+		if (this.end < 0) { // L: 58
+			this.end = ~this.end; // L: 59
+			this.field373 = true; // L: 60
 		}
 
-		int var3 = var2.readInt(); // L: 98
-		this.field361 = new byte[var3][]; // L: 99
+		int var3 = var2.readInt(); // L: 62
+		this.field398 = new byte[var3][]; // L: 63
 
-		for (int var4 = 0; var4 < var3; ++var4) { // L: 100
-			int var5 = 0; // L: 101
+		for (int var4 = 0; var4 < var3; ++var4) { // L: 64
+			int var5 = 0; // L: 65
 
 			int var6;
 			do {
-				var6 = var2.readUnsignedByte(); // L: 103
-				var5 += var6; // L: 104
-			} while(var6 >= 255); // L: 105
+				var6 = var2.readUnsignedByte(); // L: 67
+				var5 += var6; // L: 68
+			} while(var6 >= 255); // L: 69
 
-			byte[] var7 = new byte[var5]; // L: 107
-			var2.readBytes(var7, 0, var5); // L: 108
-			this.field361[var4] = var7; // L: 109
+			byte[] var7 = new byte[var5]; // L: 71
+			var2.readBytes(var7, 0, var5); // L: 72
+			this.field398[var4] = var7; // L: 73
 		}
 
-	} // L: 111
+	} // L: 75
 
-	@ObfuscatedName("g")
-	float[] method991(int var1) {
-		VorbisSample_setData(this.field361[var1], 0); // L: 182
-		readBit(); // L: 183
-		int var2 = readBits(Messages.iLog(VorbisSample_mapping.length - 1)); // L: 184
-		boolean var3 = VorbisSample_blockFlags[var2]; // L: 185
-		int var4 = var3 ? VorbisSample_blockSize1 : VorbisSample_blockSize0; // L: 186
-		boolean var5 = false; // L: 187
-		boolean var6 = false; // L: 188
-		if (var3) { // L: 189
-			var5 = readBit() != 0; // L: 190
-			var6 = readBit() != 0; // L: 191
+	@ObfuscatedName("aw")
+	float[] method1116(int var1) {
+		class60 var2 = new class60(); // L: 146
+		var2.method1177(this.field398[var1], 0); // L: 147
+		this.field388 = new float[field376]; // L: 148
+		var2.method1179(); // L: 149
+		int var3 = var2.method1183(EnumComposition.iLog(field375.length - 1)); // L: 150
+		boolean var4 = field381[var3]; // L: 151
+		int var5 = var4 ? field376 : field396; // L: 152
+		boolean var6 = false; // L: 153
+		boolean var7 = false; // L: 154
+		if (var4) { // L: 155
+			var6 = var2.method1179() != 0; // L: 156
+			var7 = var2.method1179() != 0; // L: 157
 		}
 
-		int var7 = var4 >> 1; // L: 193
-		int var8;
+		int var8 = var5 >> 1; // L: 159
 		int var9;
 		int var10;
-		if (var3 && !var5) { // L: 197
-			var8 = (var4 >> 2) - (VorbisSample_blockSize0 >> 2); // L: 198
-			var9 = (VorbisSample_blockSize0 >> 2) + (var4 >> 2); // L: 199
-			var10 = VorbisSample_blockSize0 >> 1; // L: 200
+		int var11;
+		if (var4 && !var6) { // L: 163
+			var9 = (var5 >> 2) - (field396 >> 2); // L: 164
+			var10 = (field396 >> 2) + (var5 >> 2); // L: 165
+			var11 = field396 >> 1; // L: 166
 		} else {
-			var8 = 0; // L: 203
-			var9 = var7; // L: 204
-			var10 = var4 >> 1; // L: 205
+			var9 = 0; // L: 169
+			var10 = var8; // L: 170
+			var11 = var5 >> 1; // L: 171
 		}
 
-		int var11;
 		int var12;
 		int var13;
-		if (var3 && !var6) { // L: 210
-			var11 = var4 - (var4 >> 2) - (VorbisSample_blockSize0 >> 2); // L: 211
-			var12 = (VorbisSample_blockSize0 >> 2) + (var4 - (var4 >> 2)); // L: 212
-			var13 = VorbisSample_blockSize0 >> 1; // L: 213
+		int var14;
+		if (var4 && !var7) { // L: 176
+			var12 = var5 - (var5 >> 2) - (field396 >> 2); // L: 177
+			var13 = (field396 >> 2) + (var5 - (var5 >> 2)); // L: 178
+			var14 = field396 >> 1; // L: 179
 		} else {
-			var11 = var7; // L: 216
-			var12 = var4; // L: 217
-			var13 = var4 >> 1; // L: 218
+			var12 = var8; // L: 182
+			var13 = var5; // L: 183
+			var14 = var5 >> 1; // L: 184
 		}
 
-		VorbisMapping var14 = VorbisSample_mappings[VorbisSample_mapping[var2]]; // L: 220
-		int var16 = var14.mappingMux; // L: 223
-		int var17 = var14.submapFloor[var16]; // L: 224
-		boolean var15 = !VorbisSample_floors[var17].readSubmapFloor(); // L: 225
-		boolean var45 = var15; // L: 227
+		VorbisMapping var15 = field386[field375[var3]]; // L: 186
+		int var16 = var15.field354; // L: 187
+		int var17 = var15.field357[var16]; // L: 188
+		class59 var18 = field389[var17].method772(var2); // L: 189
+		boolean var19 = !var18.method1165(); // L: 190
 
-		for (var17 = 0; var17 < var14.submaps; ++var17) { // L: 228
-			VorbisResidue var42 = VorbisSample_residues[var14.submapResidue[var17]]; // L: 229
-			float[] var44 = field380; // L: 230
-			var42.method768(var44, var4 >> 1, var45); // L: 231
+		int var20;
+		for (var20 = 0; var20 < var15.field356; ++var20) { // L: 191
+			class46 var45 = field379[var15.field355[var20]]; // L: 192
+			float[] var47 = this.field388; // L: 193
+			var45.method882(var47, var5 >> 1, var19, var2); // L: 194
 		}
 
-		int var18;
-		if (!var15) { // L: 234
-			var17 = var14.mappingMux; // L: 235
-			var18 = var14.submapFloor[var17]; // L: 236
-			VorbisSample_floors[var18].method643(field380, var4 >> 1); // L: 237
+		if (var18.method1165()) { // L: 197
+			var16 = var15.field354; // L: 198
+			int var10000 = var15.field357[var16]; // L: 199
+			var18.method1175(this.field388, var5 >> 1); // L: 200
 		}
 
-		int var19;
-		if (var15) { // L: 240
-			for (var17 = var4 >> 1; var17 < var4; ++var17) { // L: 241
-				field380[var17] = 0.0F;
+		int var21;
+		int var22;
+		if (!var18.method1165()) { // L: 203
+			for (var20 = var5 >> 1; var20 < var5; ++var20) { // L: 204
+				this.field388[var20] = 0.0F;
 			}
 		} else {
-			var17 = var4 >> 1; // L: 244
-			var18 = var4 >> 2; // L: 245
-			var19 = var4 >> 3; // L: 246
-			float[] var20 = field380; // L: 247
+			var20 = var5 >> 1; // L: 207
+			var21 = var5 >> 2; // L: 208
+			var22 = var5 >> 3; // L: 209
+			float[] var23 = this.field388; // L: 210
 
-			int var21;
-			for (var21 = 0; var21 < var17; ++var21) { // L: 248
-				var20[var21] *= 0.5F;
+			int var24;
+			for (var24 = 0; var24 < var20; ++var24) { // L: 211
+				var23[var24] *= 0.5F;
 			}
 
-			for (var21 = var17; var21 < var4; ++var21) { // L: 249
-				var20[var21] = -var20[var4 - var21 - 1];
+			for (var24 = var20; var24 < var5; ++var24) { // L: 212
+				var23[var24] = -var23[var5 - var24 - 1];
 			}
 
-			float[] var40 = var3 ? field386 : field383; // L: 250
-			float[] var22 = var3 ? field387 : field384; // L: 251
-			float[] var23 = var3 ? field388 : field385; // L: 252
-			int[] var24 = var3 ? field375 : field371; // L: 253
+			float[] var43 = var4 ? field368 : field382; // L: 213
+			float[] var25 = var4 ? field383 : field390; // L: 214
+			float[] var26 = var4 ? field394 : field391; // L: 215
+			int[] var27 = var4 ? field393 : field395; // L: 216
 
-			int var25;
-			float var26;
-			float var27;
-			float var28;
+			int var28;
 			float var29;
-			for (var25 = 0; var25 < var18; ++var25) { // L: 254
-				var26 = var20[var25 * 4] - var20[var4 - var25 * 4 - 1]; // L: 255
-				var27 = var20[var25 * 4 + 2] - var20[var4 - var25 * 4 - 3]; // L: 256
-				var28 = var40[var25 * 2]; // L: 257
-				var29 = var40[var25 * 2 + 1]; // L: 258
-				var20[var4 - var25 * 4 - 1] = var26 * var28 - var27 * var29; // L: 259
-				var20[var4 - var25 * 4 - 3] = var26 * var29 + var27 * var28; // L: 260
-			}
-
 			float var30;
 			float var31;
-			for (var25 = 0; var25 < var19; ++var25) { // L: 262
-				var26 = var20[var17 + var25 * 4 + 3]; // L: 263
-				var27 = var20[var17 + var25 * 4 + 1]; // L: 264
-				var28 = var20[var25 * 4 + 3]; // L: 265
-				var29 = var20[var25 * 4 + 1]; // L: 266
-				var20[var17 + var25 * 4 + 3] = var26 + var28; // L: 267
-				var20[var17 + var25 * 4 + 1] = var27 + var29; // L: 268
-				var30 = var40[var17 - 4 - var25 * 4]; // L: 269
-				var31 = var40[var17 - 3 - var25 * 4]; // L: 270
-				var20[var25 * 4 + 3] = (var26 - var28) * var30 - (var27 - var29) * var31; // L: 271
-				var20[var25 * 4 + 1] = (var27 - var29) * var30 + (var26 - var28) * var31; // L: 272
+			float var32;
+			for (var28 = 0; var28 < var21; ++var28) { // L: 217
+				var29 = var23[var28 * 4] - var23[var5 - var28 * 4 - 1]; // L: 218
+				var30 = var23[var28 * 4 + 2] - var23[var5 - var28 * 4 - 3]; // L: 219
+				var31 = var43[var28 * 2]; // L: 220
+				var32 = var43[var28 * 2 + 1]; // L: 221
+				var23[var5 - var28 * 4 - 1] = var29 * var31 - var30 * var32; // L: 222
+				var23[var5 - var28 * 4 - 3] = var29 * var32 + var30 * var31; // L: 223
 			}
 
-			var25 = Messages.iLog(var4 - 1); // L: 274
+			float var33;
+			float var34;
+			for (var28 = 0; var28 < var22; ++var28) { // L: 225
+				var29 = var23[var20 + var28 * 4 + 3]; // L: 226
+				var30 = var23[var20 + var28 * 4 + 1]; // L: 227
+				var31 = var23[var28 * 4 + 3]; // L: 228
+				var32 = var23[var28 * 4 + 1]; // L: 229
+				var23[var20 + var28 * 4 + 3] = var29 + var31; // L: 230
+				var23[var20 + var28 * 4 + 1] = var30 + var32; // L: 231
+				var33 = var43[var20 - 4 - var28 * 4]; // L: 232
+				var34 = var43[var20 - 3 - var28 * 4]; // L: 233
+				var23[var28 * 4 + 3] = (var29 - var31) * var33 - (var30 - var32) * var34; // L: 234
+				var23[var28 * 4 + 1] = (var30 - var32) * var33 + (var29 - var31) * var34; // L: 235
+			}
 
-			int var46;
-			int var47;
+			var28 = EnumComposition.iLog(var5 - 1); // L: 237
+
 			int var48;
 			int var49;
-			for (var46 = 0; var46 < var25 - 3; ++var46) { // L: 275
-				var47 = var4 >> var46 + 2; // L: 276
-				var48 = 8 << var46; // L: 277
+			int var50;
+			int var51;
+			for (var48 = 0; var48 < var28 - 3; ++var48) { // L: 238
+				var49 = var5 >> var48 + 2; // L: 239
+				var50 = 8 << var48; // L: 240
 
-				for (var49 = 0; var49 < 2 << var46; ++var49) { // L: 278
-					int var50 = var4 - var47 * var49 * 2; // L: 279
-					int var51 = var4 - var47 * (var49 * 2 + 1); // L: 280
+				for (var51 = 0; var51 < 2 << var48; ++var51) { // L: 241
+					int var52 = var5 - var49 * var51 * 2; // L: 242
+					int var53 = var5 - var49 * (var51 * 2 + 1); // L: 243
 
-					for (int var32 = 0; var32 < var4 >> var46 + 4; ++var32) { // L: 281
-						int var33 = var32 * 4; // L: 282
-						float var34 = var20[var50 - 1 - var33]; // L: 283
-						float var35 = var20[var50 - 3 - var33]; // L: 284
-						float var36 = var20[var51 - 1 - var33]; // L: 285
-						float var37 = var20[var51 - 3 - var33]; // L: 286
-						var20[var50 - 1 - var33] = var34 + var36; // L: 287
-						var20[var50 - 3 - var33] = var35 + var37; // L: 288
-						float var38 = var40[var32 * var48]; // L: 289
-						float var39 = var40[var32 * var48 + 1]; // L: 290
-						var20[var51 - 1 - var33] = (var34 - var36) * var38 - (var35 - var37) * var39; // L: 291
-						var20[var51 - 3 - var33] = (var35 - var37) * var38 + (var34 - var36) * var39; // L: 292
+					for (int var35 = 0; var35 < var5 >> var48 + 4; ++var35) { // L: 244
+						int var36 = var35 * 4; // L: 245
+						float var37 = var23[var52 - 1 - var36]; // L: 246
+						float var38 = var23[var52 - 3 - var36]; // L: 247
+						float var39 = var23[var53 - 1 - var36]; // L: 248
+						float var40 = var23[var53 - 3 - var36]; // L: 249
+						var23[var52 - 1 - var36] = var37 + var39; // L: 250
+						var23[var52 - 3 - var36] = var38 + var40; // L: 251
+						float var41 = var43[var35 * var50]; // L: 252
+						float var42 = var43[var35 * var50 + 1]; // L: 253
+						var23[var53 - 1 - var36] = (var37 - var39) * var41 - (var38 - var40) * var42; // L: 254
+						var23[var53 - 3 - var36] = (var38 - var40) * var41 + (var37 - var39) * var42; // L: 255
 					}
 				}
 			}
 
-			for (var46 = 1; var46 < var19 - 1; ++var46) { // L: 296
-				var47 = var24[var46]; // L: 297
-				if (var46 < var47) { // L: 298
-					var48 = var46 * 8; // L: 299
-					var49 = var47 * 8; // L: 300
-					var30 = var20[var48 + 1]; // L: 302
-					var20[var48 + 1] = var20[var49 + 1]; // L: 303
-					var20[var49 + 1] = var30; // L: 304
-					var30 = var20[var48 + 3]; // L: 305
-					var20[var48 + 3] = var20[var49 + 3]; // L: 306
-					var20[var49 + 3] = var30; // L: 307
-					var30 = var20[var48 + 5]; // L: 308
-					var20[var48 + 5] = var20[var49 + 5]; // L: 309
-					var20[var49 + 5] = var30; // L: 310
-					var30 = var20[var48 + 7]; // L: 311
-					var20[var48 + 7] = var20[var49 + 7]; // L: 312
-					var20[var49 + 7] = var30; // L: 313
+			for (var48 = 1; var48 < var22 - 1; ++var48) { // L: 259
+				var49 = var27[var48]; // L: 260
+				if (var48 < var49) { // L: 261
+					var50 = var48 * 8; // L: 262
+					var51 = var49 * 8; // L: 263
+					var33 = var23[var50 + 1]; // L: 265
+					var23[var50 + 1] = var23[var51 + 1]; // L: 266
+					var23[var51 + 1] = var33; // L: 267
+					var33 = var23[var50 + 3]; // L: 268
+					var23[var50 + 3] = var23[var51 + 3]; // L: 269
+					var23[var51 + 3] = var33; // L: 270
+					var33 = var23[var50 + 5]; // L: 271
+					var23[var50 + 5] = var23[var51 + 5]; // L: 272
+					var23[var51 + 5] = var33; // L: 273
+					var33 = var23[var50 + 7]; // L: 274
+					var23[var50 + 7] = var23[var51 + 7]; // L: 275
+					var23[var51 + 7] = var33; // L: 276
 				}
 			}
 
-			for (var46 = 0; var46 < var17; ++var46) { // L: 316
-				var20[var46] = var20[var46 * 2 + 1];
+			for (var48 = 0; var48 < var20; ++var48) { // L: 279
+				var23[var48] = var23[var48 * 2 + 1];
 			}
 
-			for (var46 = 0; var46 < var19; ++var46) { // L: 317
-				var20[var4 - 1 - var46 * 2] = var20[var46 * 4]; // L: 318
-				var20[var4 - 2 - var46 * 2] = var20[var46 * 4 + 1]; // L: 319
-				var20[var4 - var18 - 1 - var46 * 2] = var20[var46 * 4 + 2]; // L: 320
-				var20[var4 - var18 - 2 - var46 * 2] = var20[var46 * 4 + 3]; // L: 321
+			for (var48 = 0; var48 < var22; ++var48) { // L: 280
+				var23[var5 - 1 - var48 * 2] = var23[var48 * 4]; // L: 281
+				var23[var5 - 2 - var48 * 2] = var23[var48 * 4 + 1]; // L: 282
+				var23[var5 - var21 - 1 - var48 * 2] = var23[var48 * 4 + 2]; // L: 283
+				var23[var5 - var21 - 2 - var48 * 2] = var23[var48 * 4 + 3]; // L: 284
 			}
 
-			for (var46 = 0; var46 < var19; ++var46) { // L: 323
-				var27 = var23[var46 * 2]; // L: 324
-				var28 = var23[var46 * 2 + 1]; // L: 325
-				var29 = var20[var17 + var46 * 2]; // L: 326
-				var30 = var20[var17 + var46 * 2 + 1]; // L: 327
-				var31 = var20[var4 - 2 - var46 * 2]; // L: 328
-				float var52 = var20[var4 - 1 - var46 * 2]; // L: 329
-				float var53 = var28 * (var29 - var31) + var27 * (var30 + var52); // L: 330
-				var20[var17 + var46 * 2] = (var29 + var31 + var53) * 0.5F; // L: 331
-				var20[var4 - 2 - var46 * 2] = (var29 + var31 - var53) * 0.5F; // L: 332
-				var53 = var28 * (var30 + var52) - var27 * (var29 - var31); // L: 333
-				var20[var17 + var46 * 2 + 1] = (var30 - var52 + var53) * 0.5F; // L: 334
-				var20[var4 - 1 - var46 * 2] = (-var30 + var52 + var53) * 0.5F; // L: 335
+			for (var48 = 0; var48 < var22; ++var48) { // L: 286
+				var30 = var26[var48 * 2]; // L: 287
+				var31 = var26[var48 * 2 + 1]; // L: 288
+				var32 = var23[var20 + var48 * 2]; // L: 289
+				var33 = var23[var20 + var48 * 2 + 1]; // L: 290
+				var34 = var23[var5 - 2 - var48 * 2]; // L: 291
+				float var54 = var23[var5 - 1 - var48 * 2]; // L: 292
+				float var55 = var31 * (var32 - var34) + var30 * (var33 + var54); // L: 293
+				var23[var20 + var48 * 2] = (var32 + var34 + var55) * 0.5F; // L: 294
+				var23[var5 - 2 - var48 * 2] = (var32 + var34 - var55) * 0.5F; // L: 295
+				var55 = var31 * (var33 + var54) - var30 * (var32 - var34); // L: 296
+				var23[var20 + var48 * 2 + 1] = (var33 - var54 + var55) * 0.5F; // L: 297
+				var23[var5 - 1 - var48 * 2] = (-var33 + var54 + var55) * 0.5F; // L: 298
 			}
 
-			for (var46 = 0; var46 < var18; ++var46) { // L: 337
-				var20[var46] = var20[var17 + var46 * 2] * var22[var46 * 2] + var20[var17 + var46 * 2 + 1] * var22[var46 * 2 + 1]; // L: 338
-				var20[var17 - 1 - var46] = var20[var17 + var46 * 2] * var22[var46 * 2 + 1] - var20[var17 + var46 * 2 + 1] * var22[var46 * 2]; // L: 339
+			for (var48 = 0; var48 < var21; ++var48) { // L: 300
+				var23[var48] = var23[var20 + var48 * 2] * var25[var48 * 2] + var23[var20 + var48 * 2 + 1] * var25[var48 * 2 + 1]; // L: 301
+				var23[var20 - 1 - var48] = var23[var20 + var48 * 2] * var25[var48 * 2 + 1] - var23[var20 + var48 * 2 + 1] * var25[var48 * 2]; // L: 302
 			}
 
-			for (var46 = 0; var46 < var18; ++var46) { // L: 341
-				var20[var46 + (var4 - var18)] = -var20[var46];
+			for (var48 = 0; var48 < var21; ++var48) { // L: 304
+				var23[var48 + (var5 - var21)] = -var23[var48];
 			}
 
-			for (var46 = 0; var46 < var18; ++var46) { // L: 342
-				var20[var46] = var20[var18 + var46];
+			for (var48 = 0; var48 < var21; ++var48) { // L: 305
+				var23[var48] = var23[var21 + var48];
 			}
 
-			for (var46 = 0; var46 < var18; ++var46) { // L: 343
-				var20[var18 + var46] = -var20[var18 - var46 - 1];
+			for (var48 = 0; var48 < var21; ++var48) { // L: 306
+				var23[var21 + var48] = -var23[var21 - var48 - 1];
 			}
 
-			for (var46 = 0; var46 < var18; ++var46) { // L: 344
-				var20[var17 + var46] = var20[var4 - var46 - 1];
+			for (var48 = 0; var48 < var21; ++var48) { // L: 307
+				var23[var20 + var48] = var23[var5 - var48 - 1];
 			}
 
-			float[] var10000;
-			for (var46 = var8; var46 < var9; ++var46) { // L: 345
-				var27 = (float)Math.sin(((double)(var46 - var8) + 0.5D) / (double)var10 * 0.5D * 3.141592653589793D); // L: 346
-				var10000 = field380; // L: 347
-				var10000[var46] *= (float)Math.sin(1.5707963267948966D * (double)var27 * (double)var27);
+			float[] var57;
+			for (var48 = var9; var48 < var10; ++var48) { // L: 308
+				var30 = (float)Math.sin(((double)(var48 - var9) + 0.5D) / (double)var11 * 0.5D * 3.141592653589793D); // L: 309
+				var57 = this.field388; // L: 310
+				var57[var48] *= (float)Math.sin(1.5707963267948966D * (double)var30 * (double)var30);
 			}
 
-			for (var46 = var11; var46 < var12; ++var46) { // L: 349
-				var27 = (float)Math.sin(((double)(var46 - var11) + 0.5D) / (double)var13 * 0.5D * 3.141592653589793D + 1.5707963267948966D); // L: 350
-				var10000 = field380; // L: 351
-				var10000[var46] *= (float)Math.sin(1.5707963267948966D * (double)var27 * (double)var27);
+			for (var48 = var12; var48 < var13; ++var48) { // L: 312
+				var30 = (float)Math.sin(((double)(var48 - var12) + 0.5D) / (double)var14 * 0.5D * 3.141592653589793D + 1.5707963267948966D); // L: 313
+				var57 = this.field388; // L: 314
+				var57[var48] *= (float)Math.sin(1.5707963267948966D * (double)var30 * (double)var30);
 			}
 		}
 
-		float[] var41 = null; // L: 354
-		if (this.field379 > 0) { // L: 355
-			var18 = var4 + this.field379 >> 2; // L: 356
-			var41 = new float[var18]; // L: 357
-			int var43;
-			if (!this.field360) { // L: 358
-				for (var19 = 0; var19 < this.field376; ++var19) { // L: 359
-					var43 = var19 + (this.field379 >> 1); // L: 360
-					var41[var19] += this.field389[var43]; // L: 361
+		float[] var44 = null; // L: 317
+		if (this.field380 > 0) { // L: 318
+			var21 = var5 + this.field380 >> 2; // L: 319
+			var44 = new float[var21]; // L: 320
+			int var46;
+			if (!this.field387) { // L: 321
+				for (var22 = 0; var22 < this.field378; ++var22) { // L: 322
+					var46 = var22 + (this.field380 >> 1); // L: 323
+					var44[var22] += this.field384[var46]; // L: 324
 				}
 			}
 
-			if (!var15) { // L: 364
-				for (var19 = var8; var19 < var4 >> 1; ++var19) { // L: 365
-					var43 = var41.length - (var4 >> 1) + var19; // L: 366
-					var41[var43] += field380[var19]; // L: 367
+			if (var18.method1165()) { // L: 327
+				for (var22 = var9; var22 < var5 >> 1; ++var22) { // L: 328
+					var46 = var44.length - (var5 >> 1) + var22; // L: 329
+					var44[var46] += this.field388[var22]; // L: 330
 				}
 			}
 		}
 
-		float[] var54 = this.field389; // L: 371
-		this.field389 = field380; // L: 372
-		field380 = var54; // L: 373
-		this.field379 = var4; // L: 374
-		this.field376 = var12 - (var4 >> 1); // L: 375
-		this.field360 = var15; // L: 376
-		return var41; // L: 377
+		float[] var56 = this.field384; // L: 334
+		this.field384 = this.field388; // L: 335
+		this.field388 = var56; // L: 336
+		this.field380 = var5; // L: 337
+		this.field378 = var13 - (var5 >> 1); // L: 338
+		this.field387 = !var18.method1165(); // L: 339
+		return var44; // L: 340
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "([I)Laf;"
+		descriptor = "([I)Lbe;"
 	)
 	@Export("toRawSound")
 	RawSound toRawSound(int[] var1) {
-		if (var1 != null && var1[0] <= 0) { // L: 405
+		if (var1 != null && var1[0] <= 0) { // L: 368
 			return null;
 		} else {
-			if (this.samples == null) { // L: 406
-				this.field379 = 0; // L: 407
-				this.field389 = new float[VorbisSample_blockSize1]; // L: 408
-				this.samples = new byte[this.sampleCount]; // L: 409
-				this.field392 = 0; // L: 410
-				this.field393 = 0; // L: 411
+			if (this.samples == null) { // L: 369
+				this.field380 = 0; // L: 370
+				this.field384 = new float[field376]; // L: 371
+				this.samples = new byte[this.sampleCount]; // L: 372
+				this.field385 = 0; // L: 373
+				this.field399 = 0; // L: 374
 			}
 
-			for (; this.field393 < this.field361.length; ++this.field393) { // L: 413 428
-				if (var1 != null && var1[0] <= 0) { // L: 414
+			for (; this.field399 < this.field398.length; ++this.field399) { // L: 376 391
+				if (var1 != null && var1[0] <= 0) { // L: 377
 					return null;
 				}
 
-				float[] var2 = this.method991(this.field393); // L: 415
-				if (var2 != null) { // L: 416
-					int var3 = this.field392; // L: 417
-					int var4 = var2.length; // L: 418
-					if (var4 > this.sampleCount - var3) { // L: 419
+				float[] var2 = this.method1116(this.field399); // L: 378
+				if (var2 != null) { // L: 379
+					int var3 = this.field385; // L: 380
+					int var4 = var2.length; // L: 381
+					if (var4 > this.sampleCount - var3) { // L: 382
 						var4 = this.sampleCount - var3;
 					}
 
-					for (int var5 = 0; var5 < var4; ++var5) { // L: 420
-						int var6 = (int)(128.0F + var2[var5] * 128.0F); // L: 421
-						if ((var6 & -256) != 0) { // L: 422
+					for (int var5 = 0; var5 < var4; ++var5) { // L: 383
+						int var6 = (int)(128.0F + var2[var5] * 128.0F); // L: 384
+						if ((var6 & -256) != 0) { // L: 385
 							var6 = ~var6 >> 31;
 						}
 
-						this.samples[var3++] = (byte)(var6 - 128); // L: 423
+						this.samples[var3++] = (byte)(var6 - 128); // L: 386
 					}
 
-					if (var1 != null) { // L: 425
-						var1[0] -= var3 - this.field392;
+					if (var1 != null) { // L: 388
+						var1[0] -= var3 - this.field385;
 					}
 
-					this.field392 = var3; // L: 426
+					this.field385 = var3; // L: 389
 				}
 			}
 
-			this.field389 = null; // L: 430
-			byte[] var7 = this.samples; // L: 431
-			this.samples = null; // L: 432
-			return new RawSound(this.sampleRate, var7, this.start, this.end, this.field378); // L: 433
+			this.field384 = null; // L: 393
+			byte[] var7 = this.samples; // L: 394
+			this.samples = null; // L: 395
+			return new RawSound(this.sampleRate, var7, this.start, this.end, this.field373); // L: 396
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@Export("float32Unpack")
 	static float float32Unpack(int var0) {
-		int var1 = var0 & 2097151; // L: 47
-		int var2 = var0 & Integer.MIN_VALUE; // L: 48
-		int var3 = (var0 & 2145386496) >> 21; // L: 49
-		if (var2 != 0) { // L: 50
+		int var1 = var0 & 2097151; // L: 45
+		int var2 = var0 & Integer.MIN_VALUE; // L: 46
+		int var3 = (var0 & 2145386496) >> 21; // L: 47
+		if (var2 != 0) { // L: 48
 			var1 = -var1;
 		}
 
-		return (float)((double)var1 * Math.pow(2.0D, (double)(var3 - 788))); // L: 51
+		return (float)((double)var1 * Math.pow(2.0D, (double)(var3 - 788))); // L: 49
 	}
 
-	@ObfuscatedName("v")
-	@Export("VorbisSample_setData")
-	static void VorbisSample_setData(byte[] var0, int var1) {
-		VorbisSample_bytes = var0; // L: 55
-		VorbisSample_byteOffset = var1; // L: 56
-		VorbisSample_bitOffset = 0; // L: 57
-	} // L: 58
+	@ObfuscatedName("ac")
+	static void method1115(byte[] var0) {
+		class60 var1 = field374; // L: 78
+		var1.method1177(var0, 0); // L: 79
+		field396 = 1 << var1.method1183(4); // L: 80
+		field376 = 1 << var1.method1183(4); // L: 81
 
-	@ObfuscatedName("q")
-	@Export("readBit")
-	static int readBit() {
-		int var0 = VorbisSample_bytes[VorbisSample_byteOffset] >> VorbisSample_bitOffset & 1; // L: 61
-		++VorbisSample_bitOffset; // L: 62
-		VorbisSample_byteOffset += VorbisSample_bitOffset >> 3; // L: 63
-		VorbisSample_bitOffset &= 7; // L: 64
-		return var0; // L: 65
-	}
-
-	@ObfuscatedName("f")
-	@Export("readBits")
-	static int readBits(int var0) {
-		int var1 = 0; // L: 69
-
-		int var2;
-		int var3;
-		for (var2 = 0; var0 >= 8 - VorbisSample_bitOffset; var0 -= var3) { // L: 70 71 78
-			var3 = 8 - VorbisSample_bitOffset; // L: 72
-			int var4 = (1 << var3) - 1; // L: 73
-			var1 += (VorbisSample_bytes[VorbisSample_byteOffset] >> VorbisSample_bitOffset & var4) << var2; // L: 74
-			VorbisSample_bitOffset = 0; // L: 75
-			++VorbisSample_byteOffset; // L: 76
-			var2 += var3; // L: 77
-		}
-
-		if (var0 > 0) { // L: 80
-			var3 = (1 << var0) - 1; // L: 81
-			var1 += (VorbisSample_bytes[VorbisSample_byteOffset] >> VorbisSample_bitOffset & var3) << var2; // L: 82
-			VorbisSample_bitOffset += var0; // L: 83
-		}
-
-		return var1; // L: 85
-	}
-
-	@ObfuscatedName("e")
-	static void method984(byte[] var0) {
-		VorbisSample_setData(var0, 0); // L: 114
-		VorbisSample_blockSize0 = 1 << readBits(4); // L: 115
-		VorbisSample_blockSize1 = 1 << readBits(4); // L: 116
-		field380 = new float[VorbisSample_blockSize1]; // L: 117
-
-		int var1;
 		int var2;
 		int var3;
 		int var4;
 		int var5;
-		for (var1 = 0; var1 < 2; ++var1) { // L: 118
-			var2 = var1 != 0 ? VorbisSample_blockSize1 : VorbisSample_blockSize0; // L: 119
-			var3 = var2 >> 1; // L: 120
-			var4 = var2 >> 2; // L: 121
-			var5 = var2 >> 3; // L: 122
-			float[] var12 = new float[var3]; // L: 123
+		int var6;
+		for (var2 = 0; var2 < 2; ++var2) { // L: 82
+			var3 = var2 != 0 ? field376 : field396; // L: 83
+			var4 = var3 >> 1; // L: 84
+			var5 = var3 >> 2; // L: 85
+			var6 = var3 >> 3; // L: 86
+			float[] var13 = new float[var4]; // L: 87
 
-			for (int var7 = 0; var7 < var4; ++var7) { // L: 124
-				var12[var7 * 2] = (float)Math.cos((double)(var7 * 4) * 3.141592653589793D / (double)var2); // L: 125
-				var12[var7 * 2 + 1] = -((float)Math.sin((double)(var7 * 4) * 3.141592653589793D / (double)var2)); // L: 126
+			for (int var8 = 0; var8 < var5; ++var8) { // L: 88
+				var13[var8 * 2] = (float)Math.cos((double)(var8 * 4) * 3.141592653589793D / (double)var3); // L: 89
+				var13[var8 * 2 + 1] = -((float)Math.sin((double)(var8 * 4) * 3.141592653589793D / (double)var3)); // L: 90
 			}
 
-			float[] var13 = new float[var3]; // L: 128
+			float[] var14 = new float[var4]; // L: 92
 
-			for (int var8 = 0; var8 < var4; ++var8) { // L: 129
-				var13[var8 * 2] = (float)Math.cos((double)(var8 * 2 + 1) * 3.141592653589793D / (double)(var2 * 2)); // L: 130
-				var13[var8 * 2 + 1] = (float)Math.sin((double)(var8 * 2 + 1) * 3.141592653589793D / (double)(var2 * 2)); // L: 131
+			for (int var9 = 0; var9 < var5; ++var9) { // L: 93
+				var14[var9 * 2] = (float)Math.cos((double)(var9 * 2 + 1) * 3.141592653589793D / (double)(var3 * 2)); // L: 94
+				var14[var9 * 2 + 1] = (float)Math.sin((double)(var9 * 2 + 1) * 3.141592653589793D / (double)(var3 * 2)); // L: 95
 			}
 
-			float[] var14 = new float[var4]; // L: 133
+			float[] var15 = new float[var5]; // L: 97
 
-			for (int var9 = 0; var9 < var5; ++var9) { // L: 134
-				var14[var9 * 2] = (float)Math.cos((double)(var9 * 4 + 2) * 3.141592653589793D / (double)var2); // L: 135
-				var14[var9 * 2 + 1] = -((float)Math.sin((double)(var9 * 4 + 2) * 3.141592653589793D / (double)var2)); // L: 136
+			for (int var10 = 0; var10 < var6; ++var10) { // L: 98
+				var15[var10 * 2] = (float)Math.cos((double)(var10 * 4 + 2) * 3.141592653589793D / (double)var3); // L: 99
+				var15[var10 * 2 + 1] = -((float)Math.sin((double)(var10 * 4 + 2) * 3.141592653589793D / (double)var3)); // L: 100
 			}
 
-			int[] var15 = new int[var5]; // L: 138
-			int var10 = Messages.iLog(var5 - 1); // L: 139
+			int[] var16 = new int[var6]; // L: 102
+			int var11 = EnumComposition.iLog(var6 - 1); // L: 103
 
-			for (int var11 = 0; var11 < var5; ++var11) { // L: 140
-				var15[var11] = KeyHandler.method302(var11, var10);
+			for (int var12 = 0; var12 < var6; ++var12) { // L: 104
+				var16[var12] = UrlRequester.method2892(var12, var11);
 			}
 
-			if (var1 != 0) { // L: 141
-				field386 = var12; // L: 142
-				field387 = var13; // L: 143
-				field388 = var14; // L: 144
-				field375 = var15; // L: 145
+			if (var2 != 0) { // L: 105
+				field368 = var13; // L: 106
+				field383 = var14; // L: 107
+				field394 = var15; // L: 108
+				field393 = var16; // L: 109
 			} else {
-				field383 = var12; // L: 148
-				field384 = var13; // L: 149
-				field385 = var14; // L: 150
-				field371 = var15; // L: 151
+				field382 = var13; // L: 112
+				field390 = var14; // L: 113
+				field391 = var15; // L: 114
+				field395 = var16; // L: 115
 			}
 		}
 
-		var1 = readBits(8) + 1; // L: 154
-		VorbisSample_codebooks = new VorbisCodebook[var1]; // L: 155
+		var2 = var1.method1183(8) + 1; // L: 118
+		field377 = new VorbisCodebook[var2]; // L: 119
 
-		for (var2 = 0; var2 < var1; ++var2) { // L: 156
-			VorbisSample_codebooks[var2] = new VorbisCodebook();
+		for (var3 = 0; var3 < var2; ++var3) { // L: 120
+			field377[var3] = new VorbisCodebook();
 		}
 
-		var2 = readBits(6) + 1; // L: 158
+		var3 = var1.method1183(6) + 1; // L: 122
 
-		for (var3 = 0; var3 < var2; ++var3) { // L: 159
-			readBits(16);
+		for (var4 = 0; var4 < var3; ++var4) { // L: 123
+			var1.method1183(16);
 		}
 
-		var2 = readBits(6) + 1; // L: 161
-		VorbisSample_floors = new VorbisFloor[var2]; // L: 162
+		var3 = var1.method1183(6) + 1; // L: 125
+		field389 = new VorbisFloor[var3]; // L: 126
 
-		for (var3 = 0; var3 < var2; ++var3) { // L: 163
-			VorbisSample_floors[var3] = new VorbisFloor();
+		for (var4 = 0; var4 < var3; ++var4) { // L: 127
+			field389[var4] = new VorbisFloor();
 		}
 
-		var3 = readBits(6) + 1; // L: 164
-		VorbisSample_residues = new VorbisResidue[var3]; // L: 165
+		var4 = var1.method1183(6) + 1; // L: 128
+		field379 = new class46[var4]; // L: 129
 
-		for (var4 = 0; var4 < var3; ++var4) { // L: 166
-			VorbisSample_residues[var4] = new VorbisResidue();
+		for (var5 = 0; var5 < var4; ++var5) { // L: 130
+			field379[var5] = new class46();
 		}
 
-		var4 = readBits(6) + 1; // L: 167
-		VorbisSample_mappings = new VorbisMapping[var4]; // L: 168
+		var5 = var1.method1183(6) + 1; // L: 131
+		field386 = new VorbisMapping[var5]; // L: 132
 
-		for (var5 = 0; var5 < var4; ++var5) { // L: 169
-			VorbisSample_mappings[var5] = new VorbisMapping();
+		for (var6 = 0; var6 < var5; ++var6) { // L: 133
+			field386[var6] = new VorbisMapping();
 		}
 
-		var5 = readBits(6) + 1; // L: 170
-		VorbisSample_blockFlags = new boolean[var5]; // L: 171
-		VorbisSample_mapping = new int[var5]; // L: 172
+		var6 = var1.method1183(6) + 1; // L: 134
+		field381 = new boolean[var6]; // L: 135
+		field375 = new int[var6]; // L: 136
 
-		for (int var6 = 0; var6 < var5; ++var6) { // L: 173
-			VorbisSample_blockFlags[var6] = readBit() != 0; // L: 174
-			readBits(16); // L: 175
-			readBits(16); // L: 176
-			VorbisSample_mapping[var6] = readBits(8); // L: 177
+		for (int var7 = 0; var7 < var6; ++var7) { // L: 137
+			field381[var7] = var1.method1179() != 0; // L: 138
+			var1.method1183(16); // L: 139
+			var1.method1183(16); // L: 140
+			field375[var7] = var1.method1183(8); // L: 141
 		}
 
-	} // L: 179
+	} // L: 143
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;)Z"
+		descriptor = "(Lnr;)Z"
 	)
-	static boolean method970(AbstractArchive var0) {
-		if (!field377) { // L: 381
-			byte[] var1 = var0.takeFile(0, 0); // L: 382
-			if (var1 == null) { // L: 383
+	static boolean method1131(AbstractArchive var0) {
+		if (!field392) { // L: 344
+			byte[] var1 = var0.takeFile(0, 0); // L: 345
+			if (var1 == null) { // L: 346
 				return false;
 			}
 
-			method984(var1); // L: 384
-			field377 = true; // L: 385
+			method1115(var1); // L: 347
+			field392 = true; // L: 348
 		}
 
-		return true; // L: 387
+		return true; // L: 350
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;II)Laa;"
+		descriptor = "(Lnr;II)Lci;"
 	)
 	@Export("readMusicSample")
 	static VorbisSample readMusicSample(AbstractArchive var0, int var1, int var2) {
-		if (!method970(var0)) { // L: 391
-			var0.tryLoadFile(var1, var2); // L: 392
-			return null; // L: 393
+		if (!method1131(var0)) { // L: 354
+			var0.tryLoadFile(var1, var2); // L: 355
+			return null; // L: 356
 		} else {
-			byte[] var3 = var0.takeFile(var1, var2); // L: 395
-			return var3 == null ? null : new VorbisSample(var3); // L: 396
+			byte[] var3 = var0.takeFile(var1, var2); // L: 358
+			return var3 == null ? null : new VorbisSample(var3); // L: 359
 		}
 	}
 }

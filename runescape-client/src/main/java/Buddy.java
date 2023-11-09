@@ -4,30 +4,29 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nm")
+@ObfuscatedName("qd")
 @Implements("Buddy")
 public class Buddy extends Nameable {
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "Lle;"
-	)
-	@Export("NetCache_currentResponse")
-	public static NetFileRequest NetCache_currentResponse;
-	@ObfuscatedName("j")
+	@ObfuscatedName("um")
 	@ObfuscatedGetter(
-		intValue = 821675641
+		intValue = 339796037
+	)
+	static int field4655;
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = 483726265
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 1716524007
+		intValue = 1942829033
 	)
 	@Export("int2")
 	public int int2;
-	@ObfuscatedName("g")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = 1730087151
+		intValue = -583560957
 	)
 	@Export("rank")
 	public int rank;
@@ -36,10 +35,10 @@ public class Buddy extends Nameable {
 		this.world = -1; // L: 4
 	} // L: 8
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("bh")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-1738253192"
+		descriptor = "(IIB)V",
+		garbageValue = "64"
 	)
 	@Export("set")
 	void set(int var1, int var2) {
@@ -47,23 +46,32 @@ public class Buddy extends Nameable {
 		this.int2 = var2; // L: 12
 	} // L: 13
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("be")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-983995080"
+		garbageValue = "-1300381580"
 	)
 	@Export("getWorld")
 	public int getWorld() {
 		return this.world; // L: 16
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("bp")
 	@ObfuscatedSignature(
-		descriptor = "(S)Z",
-		garbageValue = "20819"
+		descriptor = "(B)Z",
+		garbageValue = "0"
 	)
 	@Export("hasWorld")
 	public boolean hasWorld() {
 		return this.world > 0; // L: 20
+	}
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(IB)I",
+		garbageValue = "-29"
+	)
+	public static int method8045(int var0) {
+		return class464.field4782[var0 & 16383]; // L: 28
 	}
 }

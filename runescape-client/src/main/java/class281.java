@@ -1,13 +1,19 @@
-import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jo")
-public class class281 {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lji;"
+@ObfuscatedName("kr")
+public abstract class class281 implements class283 {
+	@ObfuscatedName("ai")
+	@ObfuscatedGetter(
+		intValue = 95534223
 	)
-	@Export("huffman")
-	public static Huffman huffman;
+	protected int field3079;
+
+	@ObfuscatedSignature(
+		descriptor = "(Lnj;Lol;I)V"
+	)
+	protected class281(StudioGame var1, Language var2, int var3) {
+		this.field3079 = var3; // L: 10
+	} // L: 11
 }

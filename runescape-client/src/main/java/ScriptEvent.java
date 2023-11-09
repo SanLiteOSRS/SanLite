@@ -4,68 +4,67 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cw")
+@ObfuscatedName("dw")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@Export("args")
 	Object[] args;
-	@ObfuscatedName("v")
-	@Export("isMouseInputEvent")
-	boolean isMouseInputEvent;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aj")
+	boolean field1074;
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lme;"
 	)
 	@Export("widget")
 	Widget widget;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 708016645
+		intValue = -1292644207
 	)
 	@Export("mouseX")
 	int mouseX;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -768277781
+		intValue = 1299316113
 	)
 	@Export("mouseY")
 	int mouseY;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -1223835253
+		intValue = -968705449
 	)
 	@Export("opIndex")
 	int opIndex;
-	@ObfuscatedName("g")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lme;"
 	)
 	@Export("dragTarget")
 	Widget dragTarget;
-	@ObfuscatedName("w")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 308775773
+		intValue = -2072453003
 	)
 	@Export("keyTyped")
 	int keyTyped;
-	@ObfuscatedName("y")
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -1014377791
+		intValue = -1894525465
 	)
 	@Export("keyPressed")
 	int keyPressed;
-	@ObfuscatedName("i")
+	@ObfuscatedName("az")
 	@Export("targetName")
 	String targetName;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 643045145
+		intValue = 2051284605
 	)
-	int field1056;
-	@ObfuscatedName("t")
+	int field1077;
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 1853302577
+		intValue = -84148979
 	)
 	@Export("type")
 	int type;
@@ -74,77 +73,141 @@ public class ScriptEvent extends Node {
 		this.type = 76; // L: 19
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
 		descriptor = "([Ljava/lang/Object;I)V",
-		garbageValue = "1631698731"
+		garbageValue = "633862964"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
 		this.args = var1; // L: 22
 	} // L: 23
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-59182126"
+		descriptor = "(IB)V",
+		garbageValue = "22"
 	)
 	@Export("setType")
 	public void setType(int var1) {
 		this.type = var1; // L: 26
 	} // L: 27
 
-	@ObfuscatedName("bf")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)I",
-		garbageValue = "-2093180066"
+		descriptor = "(Lme;S)V",
+		garbageValue = "-6458"
 	)
-	@Export("stringCp1252NullTerminatedByteSize")
-	public static int stringCp1252NullTerminatedByteSize(String var0) {
-		return var0.length() + 1; // L: 117
-	}
+	public void method2309(Widget var1) {
+		this.widget = var1; // L: 30
+	} // L: 31
 
-	@ObfuscatedName("lf")
+	@ObfuscatedName("lb")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-372949524"
+		descriptor = "(Lme;B)V",
+		garbageValue = "1"
 	)
-	static void method2101() {
-		if (Client.field533 && class101.localPlayer != null) { // L: 12429
-			int var0 = class101.localPlayer.pathX[0]; // L: 12430
-			int var1 = class101.localPlayer.pathY[0]; // L: 12431
-			if (var0 < 0 || var1 < 0 || var0 >= 104 || var1 >= 104) { // L: 12432
-				return;
-			}
-
-			InterfaceParent.oculusOrbFocalPointX = class101.localPlayer.x; // L: 12433
-			int var2 = SceneTilePaint.getTileHeight(class101.localPlayer.x, class101.localPlayer.y, PacketWriter.Client_plane) - Client.camFollowHeight; // L: 12434
-			if (var2 < class181.field1992) { // L: 12435
-				class181.field1992 = var2;
-			}
-
-			class141.oculusOrbFocalPointY = class101.localPlayer.y; // L: 12436
-			Client.field533 = false; // L: 12437
+	static final void method2314(Widget var0) {
+		String var1;
+		int var2;
+		int var3;
+		if (var0.buttonType == 1) { // L: 11273
+			var1 = var0.field3677; // L: 11274
+			var2 = var0.id; // L: 11275
+			var3 = var0.itemId; // L: 11276
+			StructComposition.method3990(var1, "", 24, 0, 0, var2, var3, false); // L: 11278
 		}
 
-	} // L: 12439
+		int var4;
+		String var8;
+		if (var0.buttonType == 2 && !Client.isSpellSelected) { // L: 11282
+			var1 = class108.Widget_getSpellActionName(var0); // L: 11283
+			if (var1 != null) { // L: 11284
+				var8 = class17.colorStartTag(65280) + var0.field3756; // L: 11285
+				var3 = var0.id; // L: 11286
+				var4 = var0.itemId; // L: 11287
+				StructComposition.method3990(var1, var8, 25, 0, -1, var3, var4, false); // L: 11289
+			}
+		}
 
-	@ObfuscatedName("lo")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-115976306"
-	)
-	static void method2106() {
-		if (UrlRequester.field1362 != null) { // L: 12460
-			Client.field770 = Client.cycle; // L: 12461
-			UrlRequester.field1362.method6035(); // L: 12462
+		if (var0.buttonType == 3) { // L: 11294
+			class238.insertMenuItemNoShift("Close", "", 26, 0, 0, var0.id); // L: 11295
+		}
 
-			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 12463
-				if (Client.players[var0] != null) { // L: 12464
-					UrlRequester.field1362.method6048(class28.baseX * 64 + (Client.players[var0].x >> 7), WorldMapLabelSize.baseY * 64 + (Client.players[var0].y >> 7)); // L: 12465
+		if (var0.buttonType == 4) { // L: 11298
+			class238.insertMenuItemNoShift(var0.field3677, "", 28, 0, 0, var0.id); // L: 11299
+		}
+
+		if (var0.buttonType == 5) { // L: 11302
+			class238.insertMenuItemNoShift(var0.field3677, "", 29, 0, 0, var0.id); // L: 11303
+		}
+
+		if (var0.buttonType == 6 && Client.meslayerContinueWidget == null) { // L: 11306
+			class238.insertMenuItemNoShift(var0.field3677, "", 30, 0, -1, var0.id); // L: 11307
+		}
+
+		if (var0.isIf3) { // L: 11310
+			int var5;
+			if (Client.isSpellSelected) { // L: 11311
+				if (SecureRandomFuture.method2177(class19.getWidgetFlags(var0)) && (class13.selectedSpellFlags & 32) == 32) { // L: 11312
+					var1 = Client.field665; // L: 11313
+					var8 = Client.field666 + " " + "->" + " " + var0.dataText; // L: 11314
+					var3 = var0.childIndex; // L: 11315
+					var4 = var0.id; // L: 11316
+					var5 = var0.itemId; // L: 11317
+					StructComposition.method3990(var1, var8, 58, 0, var3, var4, var5, false); // L: 11319
+				}
+			} else {
+				String var10;
+				for (int var9 = 9; var9 >= 5; --var9) { // L: 11325
+					var8 = class132.method3125(var0, var9); // L: 11326
+					if (var8 != null) { // L: 11327
+						var10 = var0.dataText; // L: 11328
+						var4 = var9 + 1; // L: 11329
+						var5 = var0.childIndex; // L: 11330
+						int var6 = var0.id; // L: 11331
+						int var7 = var0.itemId; // L: 11332
+						StructComposition.method3990(var8, var10, 1007, var4, var5, var6, var7, false); // L: 11334
+					}
+				}
+
+				var1 = class108.Widget_getSpellActionName(var0); // L: 11339
+				if (var1 != null) { // L: 11340
+					var8 = var0.dataText; // L: 11341
+					var3 = var0.childIndex; // L: 11342
+					var4 = var0.id; // L: 11343
+					var5 = var0.itemId; // L: 11344
+					StructComposition.method3990(var1, var8, 25, 0, var3, var4, var5, false); // L: 11346
+				}
+
+				for (var2 = 4; var2 >= 0; --var2) { // L: 11350
+					var10 = class132.method3125(var0, var2); // L: 11351
+					if (var10 != null) { // L: 11352
+						StructComposition.method3990(var10, var0.dataText, 57, var2 + 1, var0.childIndex, var0.id, var0.itemId, var0.prioritizeMenuEntry); // L: 11353
+					}
+				}
+
+				var3 = class19.getWidgetFlags(var0); // L: 11358
+				boolean var11 = (var3 & 1) != 0; // L: 11360
+				if (var11) { // L: 11362
+					class238.insertMenuItemNoShift("Continue", "", 30, 0, var0.childIndex, var0.id); // L: 11363
 				}
 			}
 		}
 
-	} // L: 12469
+	} // L: 11368
+
+	@ObfuscatedName("lx")
+	@ObfuscatedSignature(
+		descriptor = "(Lme;S)Lme;",
+		garbageValue = "23598"
+	)
+	static Widget method2318(Widget var0) {
+		Widget var1 = NPC.method2687(var0); // L: 12085
+		if (var1 == null) {
+			var1 = var0.parent; // L: 12086
+		}
+
+		return var1; // L: 12087
+	}
 }

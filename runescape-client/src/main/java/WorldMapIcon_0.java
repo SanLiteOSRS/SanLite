@@ -4,48 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hz")
+@ObfuscatedName("km")
 @Implements("WorldMapIcon_0")
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
-	@ObfuscatedName("iz")
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = 2063269649
-	)
-	@Export("selectedItemId")
-	static int selectedItemId;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -717867737
+		intValue = 147903781
 	)
 	@Export("element")
 	final int element;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Liz;"
+		descriptor = "Lkc;"
 	)
 	@Export("label")
 	final WorldMapLabel label;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -466218723
+		intValue = -648601801
 	)
 	@Export("subWidth")
 	final int subWidth;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 1083440853
+		intValue = -680760437
 	)
 	@Export("subHeight")
 	final int subHeight;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkd;Lkd;ILiz;)V"
+		descriptor = "(Lmk;Lmk;ILkc;)V"
 	)
 	WorldMapIcon_0(Coord var1, Coord var2, int var3, WorldMapLabel var4) {
 		super(var1, var2); // L: 14
 		this.element = var3; // L: 15
 		this.label = var4; // L: 16
-		WorldMapElement var5 = class432.WorldMapElement_get(this.getElement()); // L: 17
+		WorldMapElement var5 = class127.WorldMapElement_get(this.getElement()); // L: 17
 		SpritePixels var6 = var5.getSpriteBool(false); // L: 18
 		if (var6 != null) { // L: 19
 			this.subWidth = var6.subWidth; // L: 20
@@ -57,57 +51,74 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	} // L: 27
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "781292504"
+		garbageValue = "1344079947"
 	)
 	@Export("getElement")
 	public int getElement() {
 		return this.element; // L: 31
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(I)Liz;",
-		garbageValue = "1473728"
+		descriptor = "(I)Lkc;",
+		garbageValue = "-248484486"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
 		return this.label; // L: 36
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1263012412"
+		garbageValue = "1481600529"
 	)
 	@Export("getSubWidth")
 	int getSubWidth() {
 		return this.subWidth; // L: 41
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-34"
+		garbageValue = "-33"
 	)
 	@Export("getSubHeight")
 	int getSubHeight() {
 		return this.subHeight; // L: 46
 	}
 
-	@ObfuscatedName("lj")
+	@ObfuscatedName("mb")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)Ljava/lang/String;",
-		garbageValue = "-1970746569"
+		descriptor = "(II)V",
+		garbageValue = "-110345311"
 	)
-	@Export("Widget_getSpellActionName")
-	static String Widget_getSpellActionName(Widget var0) {
-		if (WorldMapID.Widget_unpackTargetMask(class124.getWidgetFlags(var0)) == 0) { // L: 12322
-			return null;
-		} else {
-			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null; // L: 12323 12324 12326
+	static final void method5479(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 255); // L: 12183
+		if (var0 != ScriptFrame.clientPreferences.method2516()) { // L: 12184
+			label26: {
+				if (ScriptFrame.clientPreferences.method2516() == 0) { // L: 12186
+					boolean var1 = !class305.field3398.isEmpty(); // L: 12189
+					if (var1) { // L: 12191
+						class147.method3233(class329.archive11, var0); // L: 12192
+						Client.playingJingle = false; // L: 12193
+						break label26;
+					}
+				}
+
+				if (var0 == 0) { // L: 12197
+					class90.method2339(0, 0); // L: 12198
+					Client.playingJingle = false; // L: 12199
+				} else {
+					Calendar.method6618(var0); // L: 12201
+				}
+			}
+
+			ScriptFrame.clientPreferences.method2593(var0); // L: 12203
 		}
-	}
+
+	} // L: 12205
 }

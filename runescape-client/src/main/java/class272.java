@@ -1,71 +1,31 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jd")
+@ObfuscatedName("kn")
 public class class272 {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "(Lnr;Lnr;I)Z",
+		garbageValue = "-1243836620"
 	)
-	@Export("musicPatchesArchive")
-	public static AbstractArchive musicPatchesArchive;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	@Export("musicSamplesArchive")
-	public static AbstractArchive musicSamplesArchive;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Ljp;"
-	)
-	@Export("midiPcmStream")
-	public static MidiPcmStream midiPcmStream;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = -759925957
-	)
-	@Export("musicPlayerStatus")
-	public static int musicPlayerStatus;
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "Llh;"
-	)
-	@Export("musicTrackArchive")
-	public static AbstractArchive musicTrackArchive;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = -551405229
-	)
-	@Export("musicTrackGroupId")
-	public static int musicTrackGroupId;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = -1837276653
-	)
-	@Export("musicTrackVolume")
-	public static int musicTrackVolume;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -1550491905
-	)
-	@Export("pcmSampleLength")
-	public static int pcmSampleLength;
-	@ObfuscatedName("co")
-	@ObfuscatedGetter(
-		intValue = 208157847
-	)
-	public static int field3196;
-	@ObfuscatedName("hj")
-	@ObfuscatedSignature(
-		descriptor = "Loy;"
-	)
-	@Export("WorldMapElement_fonts")
-	static Fonts WorldMapElement_fonts;
+	public static boolean method5551(AbstractArchive var0, AbstractArchive var1) {
+		WorldMapElement.WorldMapElement_archive = var1; // L: 44
+		if (!var0.isFullyLoaded()) { // L: 45
+			return false; // L: 46
+		} else {
+			WorldMapElement.WorldMapElement_count = var0.getGroupFileCount(35); // L: 48
+			WorldMapElement.WorldMapElement_cached = new WorldMapElement[WorldMapElement.WorldMapElement_count]; // L: 49
 
-	static {
-		musicPlayerStatus = 0; // L: 11
+			for (int var2 = 0; var2 < WorldMapElement.WorldMapElement_count; ++var2) { // L: 50
+				byte[] var3 = var0.takeFile(35, var2); // L: 51
+				WorldMapElement.WorldMapElement_cached[var2] = new WorldMapElement(var2); // L: 52
+				if (var3 != null) { // L: 53
+					WorldMapElement.WorldMapElement_cached[var2].decode(new Buffer(var3)); // L: 54
+					WorldMapElement.WorldMapElement_cached[var2].method3704(); // L: 55
+				}
+			}
+
+			return true; // L: 58
+		}
 	}
 }
