@@ -1,66 +1,43 @@
 import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("al")
+@ObfuscatedName("aj")
 public class class28 {
-	@ObfuscatedName("q")
+	@ObfuscatedName("lq")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lcz;"
 	)
-	@Export("soundEffectsArchive")
-	public static AbstractArchive soundEffectsArchive;
-	@ObfuscatedName("hh")
-	@ObfuscatedGetter(
-		intValue = -140156033
-	)
-	@Export("baseX")
-	static int baseX;
-	@ObfuscatedName("iy")
-	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
-	)
-	@Export("headIconPrayerSprites")
-	static SpritePixels[] headIconPrayerSprites;
+	@Export("localPlayer")
+	static Player localPlayer;
 
 	static {
 		ImageIO.setUseCache(false); // L: 12
 	} // L: 13
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("f")
+	public static boolean method388(long var0) {
+		boolean var2 = 0L != var0; // L: 52
+		if (var2) { // L: 53
+			boolean var3 = (int)(var0 >>> 16 & 1L) == 1; // L: 56
+			var2 = !var3; // L: 58
+		}
+
+		return var2; // L: 60
+	}
+
+	@ObfuscatedName("ie")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)V",
-		garbageValue = "181658487"
+		descriptor = "(IIIIB)V",
+		garbageValue = "-68"
 	)
-	static final void method352(int var0, int var1, int var2) {
-		int var3;
-		for (var3 = 0; var3 < 8; ++var3) { // L: 130
-			for (int var4 = 0; var4 < 8; ++var4) { // L: 131
-				Tiles.Tiles_heights[var0][var3 + var1][var4 + var2] = 0;
+	static final void method387(int var0, int var1, int var2, int var3) {
+		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) { // L: 8374
+			if (Client.rootWidgetWidths[var4] + Client.rootWidgetXs[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetYs[var4] + Client.rootWidgetHeights[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) { // L: 8375
+				Client.field691[var4] = true;
 			}
 		}
 
-		if (var1 > 0) { // L: 133
-			for (var3 = 1; var3 < 8; ++var3) { // L: 134
-				Tiles.Tiles_heights[var0][var1][var3 + var2] = Tiles.Tiles_heights[var0][var1 - 1][var3 + var2];
-			}
-		}
-
-		if (var2 > 0) { // L: 136
-			for (var3 = 1; var3 < 8; ++var3) { // L: 137
-				Tiles.Tiles_heights[var0][var3 + var1][var2] = Tiles.Tiles_heights[var0][var3 + var1][var2 - 1];
-			}
-		}
-
-		if (var1 > 0 && Tiles.Tiles_heights[var0][var1 - 1][var2] != 0) { // L: 139
-			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1 - 1][var2];
-		} else if (var2 > 0 && Tiles.Tiles_heights[var0][var1][var2 - 1] != 0) { // L: 140
-			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1][var2 - 1];
-		} else if (var1 > 0 && var2 > 0 && Tiles.Tiles_heights[var0][var1 - 1][var2 - 1] != 0) { // L: 141
-			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1 - 1][var2 - 1];
-		}
-
-	} // L: 142
+	} // L: 8377
 }

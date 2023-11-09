@@ -1,22 +1,37 @@
 import java.net.URL;
-import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("cb")
 @Implements("UrlRequest")
 public class UrlRequest {
-	@ObfuscatedName("us")
-	static List field1373;
-	@ObfuscatedName("c")
+	@ObfuscatedName("tz")
+	@ObfuscatedGetter(
+		intValue = 99769733
+	)
+	static int field1350;
+	@ObfuscatedName("lb")
+	@ObfuscatedSignature(
+		descriptor = "Lhm;"
+	)
+	@Export("textureProvider")
+	static TextureProvider textureProvider;
+	@ObfuscatedName("mo")
+	@ObfuscatedGetter(
+		intValue = -1080470825
+	)
+	@Export("menuY")
+	static int menuY;
+	@ObfuscatedName("o")
 	@Export("url")
 	final URL url;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@Export("isDone0")
 	volatile boolean isDone0;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@Export("response0")
 	volatile byte[] response0;
 
@@ -24,43 +39,42 @@ public class UrlRequest {
 		this.url = var1; // L: 118
 	} // L: 119
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "-60"
+		garbageValue = "63"
 	)
 	@Export("isDone")
 	public boolean isDone() {
 		return this.isDone0; // L: 122
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "(I)[B",
-		garbageValue = "-1112773966"
+		garbageValue = "-1645564466"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
 		return this.response0; // L: 126
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-2136536725"
+		garbageValue = "-1459888208"
 	)
-	public String method2553() {
+	public String method2638() {
 		return this.url.toString(); // L: 130
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(ZZI)I",
-		garbageValue = "-1626715483"
+		descriptor = "(CI)Z",
+		garbageValue = "-407109329"
 	)
-	public static int method2557(boolean var0, boolean var1) {
-		byte var2 = 0; // L: 143
-		int var3 = var2 + NetCache.NetCache_pendingPriorityWritesCount + NetCache.NetCache_pendingPriorityResponsesCount; // L: 144
-		return var3; // L: 145
+	@Export("isAlphaNumeric")
+	public static boolean isAlphaNumeric(char var0) {
+		return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z'; // L: 147
 	}
 }

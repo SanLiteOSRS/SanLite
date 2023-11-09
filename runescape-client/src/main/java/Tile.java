@@ -4,129 +4,129 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gy")
+@ObfuscatedName("gt")
 @Implements("Tile")
 public final class Tile extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1461576443
+		intValue = -948321613
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 107736561
+		intValue = 49406973
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1903824993
+		intValue = -24808023
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 183262573
+		intValue = -730007907
 	)
 	@Export("originalPlane")
 	int originalPlane;
-	@ObfuscatedName("j")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lhu;"
+		descriptor = "Lhf;"
 	)
 	@Export("paint")
 	SceneTilePaint paint;
-	@ObfuscatedName("e")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lhs;"
+		descriptor = "Lhk;"
 	)
 	@Export("model")
 	SceneTileModel model;
-	@ObfuscatedName("g")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "Lhi;"
+		descriptor = "Lhl;"
 	)
 	@Export("wallObject")
 	WallObject wallObject;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lhr;"
+		descriptor = "Lhv;"
 	)
 	@Export("decorativeObject")
 	DecorativeObject decorativeObject;
-	@ObfuscatedName("y")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lge;"
+		descriptor = "Lgb;"
 	)
 	@Export("groundObject")
 	GroundObject groundObject;
-	@ObfuscatedName("i")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lgz;"
+		descriptor = "Lga;"
 	)
 	@Export("itemLayer")
 	ItemLayer itemLayer;
-	@ObfuscatedName("s")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1959220913
+		intValue = 750773541
 	)
 	@Export("gameObjectsCount")
 	int gameObjectsCount;
-	@ObfuscatedName("t")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "[Lhb;"
+		descriptor = "[Lho;"
 	)
 	@Export("gameObjects")
 	GameObject[] gameObjects;
-	@ObfuscatedName("z")
+	@ObfuscatedName("x")
 	@Export("gameObjectEdgeMasks")
 	int[] gameObjectEdgeMasks;
-	@ObfuscatedName("r")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1592606351
+		intValue = -608278959
 	)
 	@Export("gameObjectsEdgeMask")
 	int gameObjectsEdgeMask;
-	@ObfuscatedName("u")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 876783023
+		intValue = -456317475
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@Export("drawPrimary")
 	boolean drawPrimary;
-	@ObfuscatedName("h")
+	@ObfuscatedName("l")
 	@Export("drawSecondary")
 	boolean drawSecondary;
-	@ObfuscatedName("x")
+	@ObfuscatedName("y")
 	@Export("drawGameObjects")
 	boolean drawGameObjects;
-	@ObfuscatedName("l")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -1840099321
+		intValue = 1631939595
 	)
 	@Export("drawGameObjectEdges")
 	int drawGameObjectEdges;
-	@ObfuscatedName("a")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1630683853
+		intValue = -185533757
 	)
-	int field2333;
-	@ObfuscatedName("p")
+	int field2307;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1394148627
+		intValue = -1929279565
 	)
-	int field2334;
-	@ObfuscatedName("b")
+	int field2323;
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1332026471
+		intValue = -1846310317
 	)
-	int field2326;
-	@ObfuscatedName("n")
+	int field2324;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lgy;"
+		descriptor = "Lgt;"
 	)
 	@Export("linkedBelowTile")
 	Tile linkedBelowTile;
@@ -140,26 +140,43 @@ public final class Tile extends Node {
 		this.y = var3; // L: 33
 	} // L: 34
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("hn")
 	@ObfuscatedSignature(
-		descriptor = "(IZB)Ljava/lang/String;",
-		garbageValue = "69"
+		descriptor = "(Lcz;ZI)V",
+		garbageValue = "2105473278"
 	)
-	@Export("intToString")
-	public static String intToString(int var0, boolean var1) {
-		return var1 && var0 >= 0 ? class140.method3038(var0, 10, var1) : Integer.toString(var0); // L: 115 116
-	}
+	@Export("addPlayerToScene")
+	static void addPlayerToScene(Player var0, boolean var1) {
+		if (var0 != null && var0.isVisible() && !var0.isHidden) { // L: 5026
+			var0.isUnanimated = false; // L: 5027
+			if ((Client.isLowDetail && Players.Players_count > 50 || Players.Players_count > 200) && var1 && var0.idleSequence == var0.movementSequence) { // L: 5028 5029
+				var0.isUnanimated = true;
+			}
 
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "29"
-	)
-	public static int method4019(int var0) {
-		if (var0 > 0) { // L: 204
-			return 1;
-		} else {
-			return var0 < 0 ? -1 : 0; // L: 205 206
+			int var2 = var0.x >> 7; // L: 5031
+			int var3 = var0.y >> 7; // L: 5032
+			if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) { // L: 5033
+				long var4 = class394.calculateTag(0, 0, 0, false, var0.index); // L: 5034
+				if (var0.model0 != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) { // L: 5035
+					var0.isUnanimated = false; // L: 5036
+					var0.tileHeight = SecureRandomFuture.getTileHeight(var0.x, var0.y, FriendSystem.Client_plane); // L: 5037
+					var0.playerCycle = Client.cycle; // L: 5038
+					Decimator.scene.addNullableObject(FriendSystem.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.minX, var0.minY, var0.maxX, var0.maxY); // L: 5039
+				} else {
+					if ((var0.x & 127) == 64 && (var0.y & 127) == 64) { // L: 5042
+						if (Client.tileLastDrawnActor[var2][var3] == Client.viewportDrawCount) { // L: 5043
+							return;
+						}
+
+						Client.tileLastDrawnActor[var2][var3] = Client.viewportDrawCount; // L: 5044
+					}
+
+					var0.tileHeight = SecureRandomFuture.getTileHeight(var0.x, var0.y, FriendSystem.Client_plane); // L: 5046
+					var0.playerCycle = Client.cycle; // L: 5047
+					Decimator.scene.drawEntity(FriendSystem.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.isWalking); // L: 5048
+				}
+			}
 		}
-	}
+
+	} // L: 5052
 }
