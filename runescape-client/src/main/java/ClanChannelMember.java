@@ -4,21 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ew")
+@ObfuscatedName("ec")
 @Implements("ClanChannelMember")
 public class ClanChannelMember {
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
+	@Export("Tiles_hueMultiplier")
+	static int[] Tiles_hueMultiplier;
+	@ObfuscatedName("aa")
+	@Export("client")
+	@ObfuscatedSignature(
+		descriptor = "Lclient;"
+	)
+	static Client client;
+	@ObfuscatedName("a")
 	@Export("rank")
 	public byte rank;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 44459875
+		intValue = -1833678213
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("q")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lrg;"
 	)
 	@Export("username")
 	public Username username;
@@ -26,52 +35,76 @@ public class ClanChannelMember {
 	ClanChannelMember() {
 	} // L: 10
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ip")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;III)[Lqu;",
-		garbageValue = "658098688"
+		descriptor = "(I)V",
+		garbageValue = "27643045"
 	)
-	public static IndexedSprite[] method2867(AbstractArchive var0, int var1, int var2) {
-		if (!Ignored.method6774(var0, var1, var2)) { // L: 23
-			return null;
-		} else {
-			IndexedSprite[] var4 = new IndexedSprite[class456.SpriteBuffer_spriteCount]; // L: 26
+	static final void method3000() {
+		PacketBuffer var0 = Client.packetWriter.packetBuffer; // L: 8602
+		var0.importIndex(); // L: 8603
+		int var1 = var0.readBits(8); // L: 8604
+		int var2;
+		if (var1 < Client.npcCount) { // L: 8605
+			for (var2 = var1; var2 < Client.npcCount; ++var2) { // L: 8606
+				Client.field627[++Client.field626 - 1] = Client.npcIndices[var2];
+			}
+		}
 
-			for (int var5 = 0; var5 < class456.SpriteBuffer_spriteCount; ++var5) { // L: 27
-				IndexedSprite var6 = var4[var5] = new IndexedSprite(); // L: 28
-				var6.width = ModelData0.SpriteBuffer_spriteWidth; // L: 29
-				var6.height = class456.SpriteBuffer_spriteHeight; // L: 30
-				var6.xOffset = class426.SpriteBuffer_xOffsets[var5]; // L: 31
-				var6.yOffset = class142.SpriteBuffer_yOffsets[var5]; // L: 32
-				var6.subWidth = class359.SpriteBuffer_spriteWidths[var5]; // L: 33
-				var6.subHeight = class456.SpriteBuffer_spriteHeights[var5]; // L: 34
-				var6.palette = class13.SpriteBuffer_spritePalette; // L: 35
-				var6.pixels = class421.SpriteBuffer_pixels[var5]; // L: 36
+		if (var1 > Client.npcCount) { // L: 8608
+			throw new RuntimeException("");
+		} else {
+			Client.npcCount = 0; // L: 8609
+
+			for (var2 = 0; var2 < var1; ++var2) { // L: 8610
+				int var3 = Client.npcIndices[var2]; // L: 8611
+				NPC var4 = Client.npcs[var3]; // L: 8612
+				int var5 = var0.readBits(1); // L: 8613
+				if (var5 == 0) { // L: 8614
+					Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8615
+					var4.npcCycle = Client.cycle; // L: 8616
+				} else {
+					int var6 = var0.readBits(2); // L: 8619
+					if (var6 == 0) { // L: 8620
+						Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8621
+						var4.npcCycle = Client.cycle; // L: 8622
+						Client.field551[++Client.field550 - 1] = var3; // L: 8623
+					} else {
+						int var7;
+						int var8;
+						if (var6 == 1) { // L: 8626
+							Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8627
+							var4.npcCycle = Client.cycle; // L: 8628
+							var7 = var0.readBits(3); // L: 8629
+							var4.method2487(var7, class202.field2282); // L: 8630
+							var8 = var0.readBits(1); // L: 8631
+							if (var8 == 1) { // L: 8632
+								Client.field551[++Client.field550 - 1] = var3;
+							}
+						} else if (var6 == 2) { // L: 8635
+							Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8636
+							var4.npcCycle = Client.cycle; // L: 8637
+							if (var0.readBits(1) == 1) { // L: 8638
+								var7 = var0.readBits(3); // L: 8639
+								var4.method2487(var7, class202.field2284); // L: 8640
+								var8 = var0.readBits(3); // L: 8641
+								var4.method2487(var8, class202.field2284); // L: 8642
+							} else {
+								var7 = var0.readBits(3); // L: 8645
+								var4.method2487(var7, class202.field2281); // L: 8646
+							}
+
+							var7 = var0.readBits(1); // L: 8648
+							if (var7 == 1) { // L: 8649
+								Client.field551[++Client.field550 - 1] = var3;
+							}
+						} else if (var6 == 3) { // L: 8652
+							Client.field627[++Client.field626 - 1] = var3; // L: 8653
+						}
+					}
+				}
 			}
 
-			class426.SpriteBuffer_xOffsets = null; // L: 39
-			class142.SpriteBuffer_yOffsets = null; // L: 40
-			class359.SpriteBuffer_spriteWidths = null; // L: 41
-			class456.SpriteBuffer_spriteHeights = null; // L: 42
-			class13.SpriteBuffer_spritePalette = null; // L: 43
-			class421.SpriteBuffer_pixels = null;
-			return var4;
 		}
-	}
-
-	@ObfuscatedName("v")
-	static boolean method2865(long var0) {
-		return class7.method51(var0) == 2; // L: 48
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "88442168"
-	)
-	@Export("Messages_getHistorySize")
-	static int Messages_getHistorySize(int var0) {
-		ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 44
-		return var1 == null ? 0 : var1.size(); // L: 45 46
-	}
+	} // L: 8657
 }

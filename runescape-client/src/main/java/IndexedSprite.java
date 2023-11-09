@@ -1,46 +1,50 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("qu")
+@ObfuscatedName("ry")
 @Implements("IndexedSprite")
 public final class IndexedSprite extends Rasterizer2D {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@Export("pixels")
 	public byte[] pixels;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@Export("palette")
 	public int[] palette;
-	@ObfuscatedName("q")
+	@ObfuscatedName("c")
 	@Export("subWidth")
 	public int subWidth;
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = 934214685
+	)
 	@Export("subHeight")
 	public int subHeight;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@Export("xOffset")
 	public int xOffset;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("yOffset")
 	public int yOffset;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@Export("width")
 	public int width;
-	@ObfuscatedName("w")
+	@ObfuscatedName("d")
 	@Export("height")
 	public int height;
 
 	IndexedSprite() {
 	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
 	@Export("normalize")
 	public void normalize() {
-		if (this.subWidth != this.width || this.subHeight != this.height) { // L: 18
+		if (this.subWidth != this.width || this.subHeight * -507610800 != this.height) { // L: 18
 			byte[] var1 = new byte[this.width * this.height]; // L: 19
 			int var2 = 0; // L: 20
 
-			for (int var3 = 0; var3 < this.subHeight; ++var3) { // L: 21
+			for (int var3 = 0; var3 < this.subHeight * -507610800; ++var3) { // L: 21
 				for (int var4 = 0; var4 < this.subWidth; ++var4) { // L: 22
 					var1[var4 + (var3 + this.yOffset) * this.width + this.xOffset] = this.pixels[var2++]; // L: 23
 				}
@@ -48,13 +52,13 @@ public final class IndexedSprite extends Rasterizer2D {
 
 			this.pixels = var1; // L: 26
 			this.subWidth = this.width; // L: 27
-			this.subHeight = this.height; // L: 28
+			this.subHeight = this.height * 934214685; // L: 28
 			this.xOffset = 0; // L: 29
 			this.yOffset = 0; // L: 30
 		}
 	} // L: 31
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@Export("shiftColors")
 	public void shiftColors(int var1, int var2, int var3) {
 		for (int var4 = 0; var4 < this.palette.length; ++var4) { // L: 34
@@ -87,14 +91,14 @@ public final class IndexedSprite extends Rasterizer2D {
 
 	} // L: 49
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("c")
 	@Export("drawAt")
 	public void drawAt(int var1, int var2) {
 		var1 += this.xOffset; // L: 52
 		var2 += this.yOffset; // L: 53
 		int var3 = var1 + var2 * Rasterizer2D.Rasterizer2D_width; // L: 54
 		int var4 = 0; // L: 55
-		int var5 = this.subHeight; // L: 56
+		int var5 = this.subHeight * -507610800; // L: 56
 		int var6 = this.subWidth; // L: 57
 		int var7 = Rasterizer2D.Rasterizer2D_width - var6; // L: 58
 		int var8 = 0; // L: 59
@@ -133,10 +137,10 @@ public final class IndexedSprite extends Rasterizer2D {
 		}
 	} // L: 85
 
-	@ObfuscatedName("j")
-	public void method8135(int var1, int var2, int var3, int var4) {
+	@ObfuscatedName("h")
+	public void method8806(int var1, int var2, int var3, int var4) {
 		int var5 = this.subWidth; // L: 116
-		int var6 = this.subHeight; // L: 117
+		int var6 = this.subHeight * -507610800; // L: 117
 		int var7 = 0; // L: 118
 		int var8 = 0; // L: 119
 		int var9 = this.width; // L: 120
@@ -195,7 +199,7 @@ public final class IndexedSprite extends Rasterizer2D {
 		IndexedSprite_something(Rasterizer2D.Rasterizer2D_pixels, this.pixels, this.palette, var7, var8, var13, var14, var3, var4, var11, var12, var5); // L: 157
 	} // L: 158
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("x")
 	@Export("IndexedSprite_two")
 	static void IndexedSprite_two(int[] var0, byte[] var1, int[] var2, int var3, int var4, int var5, int var6, int var7, int var8) {
 		int var9 = -(var5 >> 2); // L: 88
@@ -249,7 +253,7 @@ public final class IndexedSprite extends Rasterizer2D {
 
 	} // L: 113
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("IndexedSprite_something")
 	static void IndexedSprite_something(int[] var0, byte[] var1, int[] var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
 		int var12 = var3; // L: 161
