@@ -4,34 +4,35 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("il")
+@ObfuscatedName("iv")
 @Implements("WorldMapID")
 public class WorldMapID {
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lil;"
+		descriptor = "Liv;"
 	)
-	static final WorldMapID field2843;
+	static final WorldMapID field2984;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "Liv;"
+	)
+	static final WorldMapID field2983;
+	@ObfuscatedName("lw")
+	@ObfuscatedSignature(
+		descriptor = "Lkd;"
+	)
+	@Export("hoveredItemContainer")
+	static Widget hoveredItemContainer;
 	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Lil;"
-	)
-	static final WorldMapID field2840;
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "Len;"
-	)
-	static ClanSettings field2842;
-	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 785745011
+		intValue = 1808192051
 	)
 	@Export("value")
 	final int value;
 
 	static {
-		field2843 = new WorldMapID(0); // L: 4
-		field2840 = new WorldMapID(1); // L: 5
+		field2984 = new WorldMapID(0); // L: 4
+		field2983 = new WorldMapID(1); // L: 5
 	}
 
 	WorldMapID(int var1) {
@@ -40,20 +41,57 @@ public class WorldMapID {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-1614868880"
+		descriptor = "([Ljava/lang/String;[IIII)V",
+		garbageValue = "-71600503"
 	)
-	@Export("Widget_unpackTargetMask")
-	public static int Widget_unpackTargetMask(int var0) {
-		return var0 >> 11 & 63; // L: 13
-	}
+	static void method5277(String[] var0, int[] var1, int var2, int var3) {
+		if (var2 < var3) { // L: 43
+			int var4 = (var3 + var2) / 2; // L: 44
+			int var5 = var2; // L: 45
+			String var6 = var0[var4]; // L: 46
+			var0[var4] = var0[var3]; // L: 47
+			var0[var3] = var6; // L: 48
+			int var7 = var1[var4]; // L: 49
+			var1[var4] = var1[var3]; // L: 50
+			var1[var3] = var7; // L: 51
 
-	@ObfuscatedName("f")
+			for (int var8 = var2; var8 < var3; ++var8) { // L: 52
+				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) { // L: 53
+					String var9 = var0[var8]; // L: 54
+					var0[var8] = var0[var5]; // L: 55
+					var0[var5] = var9; // L: 56
+					int var10 = var1[var8]; // L: 57
+					var1[var8] = var1[var5]; // L: 58
+					var1[var5++] = var10; // L: 59
+				}
+			}
+
+			var0[var3] = var0[var5]; // L: 63
+			var0[var5] = var6; // L: 64
+			var1[var3] = var1[var5]; // L: 65
+			var1[var5] = var7; // L: 66
+			method5277(var0, var1, var2, var5 - 1); // L: 67
+			method5277(var0, var1, var5 + 1, var3); // L: 68
+		}
+
+	} // L: 70
+
+	@ObfuscatedName("nv")
 	@ObfuscatedSignature(
-		descriptor = "(IS)Z",
-		garbageValue = "255"
+		descriptor = "(B)V",
+		garbageValue = "1"
 	)
-	public static boolean method5003(int var0) {
-		return (var0 >> 20 & 1) != 0; // L: 21
-	}
+	static void method5276() {
+		if (GameEngine.field241 != null) { // L: 12724
+			Client.field801 = Client.cycle; // L: 12725
+			GameEngine.field241.method6663(); // L: 12726
+
+			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 12727
+				if (Client.players[var0] != null) { // L: 12728
+					GameEngine.field241.method6652(class154.baseX * 64 + (Client.players[var0].x >> 7), class365.baseY * 64 + (Client.players[var0].y >> 7)); // L: 12729
+				}
+			}
+		}
+
+	} // L: 12733
 }
