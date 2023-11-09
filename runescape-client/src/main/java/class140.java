@@ -1,122 +1,115 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ei")
-public class class140 extends class144 {
-	@ObfuscatedName("ea")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive2")
-	static Archive archive2;
-	@ObfuscatedName("c")
-	String field1655;
-	@ObfuscatedName("v")
+@ObfuscatedName("fq")
+public class class140 extends class143 {
+	@ObfuscatedName("aq")
+	public static short[][] field1659;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = 718016379
+		intValue = 1568997835
 	)
-	int field1651;
-	@ObfuscatedName("q")
-	byte field1652;
+	int field1658;
+	@ObfuscatedName("ae")
+	@ObfuscatedGetter(
+		intValue = -1547450271
+	)
+	int field1657;
+	@ObfuscatedName("ao")
+	@ObfuscatedGetter(
+		intValue = -20381335
+	)
+	int field1661;
+	@ObfuscatedName("at")
+	@ObfuscatedGetter(
+		intValue = -947832085
+	)
+	int field1656;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Leu;"
+		descriptor = "Lfn;"
 	)
-	final class145 this$0;
+	final class146 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Leu;)V"
+		descriptor = "(Lfn;)V"
 	)
-	class140(class145 var1) {
+	class140(class146 var1) {
 		this.this$0 = var1;
-		this.field1655 = null; // L: 55
-	} // L: 59
+		this.field1658 = -1; // L: 158
+	} // L: 163
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "(Ltm;I)V",
+		garbageValue = "209179459"
 	)
-	void vmethod3137(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 62
-			--var1.offset; // L: 63
-			var1.readLong(); // L: 64
-		}
+	void vmethod3337(Buffer var1) {
+		this.field1658 = var1.readUnsignedShort(); // L: 166
+		this.field1657 = var1.readInt(); // L: 167
+		this.field1661 = var1.readUnsignedByte(); // L: 168
+		this.field1656 = var1.readUnsignedByte(); // L: 169
+	} // L: 170
 
-		this.field1655 = var1.readStringCp1252NullTerminatedOrNull(); // L: 66
-		this.field1651 = var1.readUnsignedShort(); // L: 67
-		this.field1652 = var1.readByte(); // L: 68
-		var1.readLong(); // L: 69
-	} // L: 70
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
+		descriptor = "(Lfi;B)V",
+		garbageValue = "73"
 	)
-	void vmethod3138(ClanChannel var1) {
-		ClanChannelMember var2 = new ClanChannelMember(); // L: 73
-		var2.username = new Username(this.field1655); // L: 74
-		var2.world = this.field1651; // L: 75
-		var2.rank = this.field1652; // L: 76
-		var1.addMember(var2); // L: 77
-	} // L: 78
+	void vmethod3339(ClanSettings var1) {
+		var1.method3192(this.field1658, this.field1657, this.field1661, this.field1656); // L: 173
+	} // L: 174
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ii")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lkb;",
-		garbageValue = "1295683453"
+		descriptor = "(B)V",
+		garbageValue = "-64"
 	)
-	@Export("getWidget")
-	public static Widget getWidget(int var0) {
-		int var1 = var0 >> 16; // L: 220
-		int var2 = var0 & 65535; // L: 221
-		if (SoundCache.Widget_interfaceComponents[var1] == null || SoundCache.Widget_interfaceComponents[var1][var2] == null) { // L: 222
-			boolean var3 = WorldMapSection2.loadInterface(var1); // L: 223
-			if (!var3) { // L: 224
-				return null;
-			}
-		}
-
-		return SoundCache.Widget_interfaceComponents[var1][var2]; // L: 226
-	}
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(IIZI)Ljava/lang/String;",
-		garbageValue = "1221665034"
-	)
-	static String method3038(int var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) { // L: 120
-			if (var2 && var0 >= 0) { // L: 121
-				int var3 = 2; // L: 122
-
-				for (int var4 = var0 / var1; var4 != 0; ++var3) { // L: 123 124 126
-					var4 /= var1; // L: 125
-				}
-
-				char[] var5 = new char[var3]; // L: 128
-				var5[0] = '+'; // L: 129
-
-				for (int var6 = var3 - 1; var6 > 0; --var6) { // L: 130
-					int var7 = var0; // L: 131
-					var0 /= var1; // L: 132
-					int var8 = var7 - var0 * var1; // L: 133
-					if (var8 >= 10) { // L: 134
-						var5[var6] = (char)(var8 + 87);
-					} else {
-						var5[var6] = (char)(var8 + 48); // L: 135
-					}
-				}
-
-				return new String(var5); // L: 137
+	static final void method3093() {
+		int var0;
+		int var1;
+		int var2;
+		if (!Client.field788) { // L: 3854
+			var0 = Players.field1374 * 128 + 64; // L: 3855
+			var1 = class33.field180 * 128 + 64; // L: 3856
+			var2 = class18.getTileHeight(var0, var1, HealthBar.Client_plane) - VarpDefinition.field1937; // L: 3857
+			class126.method2942(var0, var2, var1); // L: 3858
+		} else if (Client.field791 != null) { // L: 3860
+			NPCComposition.cameraX = Client.field791.vmethod8458(); // L: 3861
+			class139.cameraZ = Client.field791.vmethod8459(); // L: 3862
+			if (Client.field790) { // L: 3863
+				class133.cameraY = Client.field791.vmethod8460(); // L: 3864
 			} else {
-				return Integer.toString(var0, var1);
+				class133.cameraY = class18.getTileHeight(NPCComposition.cameraX, class139.cameraZ, HealthBar.Client_plane) - Client.field791.vmethod8460(); // L: 3867
 			}
-		} else {
-			throw new IllegalArgumentException("" + var1);
+
+			Client.field791.method8479(); // L: 3869
 		}
-	}
+
+		if (!Client.field789) { // L: 3871
+			var0 = PendingSpawn.field1182 * 16384 + 64; // L: 3872
+			var1 = VarbitComposition.field2127 * 128 + 64; // L: 3873
+			var2 = class18.getTileHeight(var0, var1, HealthBar.Client_plane) - MusicPatchNode2.field3397; // L: 3874
+			int var3 = var0 - NPCComposition.cameraX; // L: 3875
+			int var4 = var2 - class133.cameraY; // L: 3876
+			int var5 = var1 - class139.cameraZ; // L: 3877
+			int var6 = (int)Math.sqrt((double)(var5 * var5 + var3 * var3)); // L: 3878
+			int var7 = (int)(Math.atan2((double)var4, (double)var6) * 325.9490051269531D) & 2047; // L: 3879
+			int var8 = (int)(Math.atan2((double)var3, (double)var5) * -325.9490051269531D) & 2047; // L: 3880
+			class416.method7711(var7, var8); // L: 3881
+		} else {
+			if (Client.field608 != null) { // L: 3884
+				class129.cameraPitch = Client.field608.method8455(); // L: 3885
+				class129.cameraPitch = Math.min(Math.max(class129.cameraPitch, 128), 383); // L: 3886
+				Client.field608.method8479(); // L: 3887
+			}
+
+			if (Client.field582 != null) { // L: 3889
+				UserComparator10.cameraYaw = Client.field582.method8455() & 2047; // L: 3890
+				Client.field582.method8479(); // L: 3891
+			}
+		}
+
+	} // L: 3894
 }

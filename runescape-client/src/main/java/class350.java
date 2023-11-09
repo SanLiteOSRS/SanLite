@@ -1,71 +1,32 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mq")
+@ObfuscatedName("ni")
 public class class350 {
-	@ObfuscatedName("c")
-	@Export("writeRandomDat")
-	public static void writeRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-		if (var2 == var0) { // L: 12
-			if (var3 == var1) { // L: 13
-				return;
+	static {
+		int var0 = 0; // L: 9
+		int var1 = 0; // L: 10
+		class345[] var2 = class466.method8362(); // L: 12
+
+		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 13
+			class345 var4 = var2[var3]; // L: 14
+			if (var4.field3877 > var0) {
+				var0 = var4.field3877; // L: 16
 			}
 
-			if (var3 > var1 && var3 < var4 + var1) { // L: 14
-				--var4; // L: 15
-				var1 += var4; // L: 16
-				var3 += var4; // L: 17
-				var4 = var1 - var4; // L: 18
-
-				for (var4 += 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 19 20 28
-					var2[var3--] = var0[var1--]; // L: 21
-					var2[var3--] = var0[var1--]; // L: 22
-					var2[var3--] = var0[var1--]; // L: 23
-					var2[var3--] = var0[var1--]; // L: 24
-					var2[var3--] = var0[var1--]; // L: 25
-					var2[var3--] = var0[var1--]; // L: 26
-					var2[var3--] = var0[var1--]; // L: 27
-				}
-
-				for (var4 -= 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 30 31
-				}
-
-				return; // L: 32
+			if (var4.field3876 > var1) { // L: 17
+				var1 = var4.field3876;
 			}
 		}
 
-		var4 += var1; // L: 35
+	} // L: 21
 
-		for (var4 -= 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 36 37 45
-			var2[var3++] = var0[var1++]; // L: 38
-			var2[var3++] = var0[var1++]; // L: 39
-			var2[var3++] = var0[var1++]; // L: 40
-			var2[var3++] = var0[var1++]; // L: 41
-			var2[var3++] = var0[var1++]; // L: 42
-			var2[var3++] = var0[var1++]; // L: 43
-			var2[var3++] = var0[var1++]; // L: 44
-		}
-
-		for (var4 += 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 47 48
-		}
-
-	} // L: 49
-
-	@ObfuscatedName("i")
-	@Export("clearIntArray")
-	public static void clearIntArray(int[] var0, int var1, int var2) {
-		for (var2 = var2 + var1 - 7; var1 < var2; var0[var1++] = 0) { // L: 364 365 373
-			var0[var1++] = 0; // L: 366
-			var0[var1++] = 0; // L: 367
-			var0[var1++] = 0; // L: 368
-			var0[var1++] = 0; // L: 369
-			var0[var1++] = 0; // L: 370
-			var0[var1++] = 0; // L: 371
-			var0[var1++] = 0; // L: 372
-		}
-
-		for (var2 += 7; var1 < var2; var0[var1++] = 0) { // L: 375 376
-		}
-
-	} // L: 377
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "-1513335843"
+	)
+	public static int method6620(int var0, int var1) {
+		return (int)Math.round(Math.atan2((double)var0, (double)var1) * 2607.5945876176133D) & 16383; // L: 24
+	}
 }
