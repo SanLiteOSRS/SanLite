@@ -1,72 +1,93 @@
-import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-@ObfuscatedName("om")
-public class class399 implements class398 {
-	@ObfuscatedName("q")
-	JSONObject field4436;
-
-	public class399(byte[] var1) throws UnsupportedEncodingException {
-		this.method7098(var1); // L: 17
-	} // L: 18
-
-	public class399(String var1) throws UnsupportedEncodingException {
-		this.method7099(var1); // L: 13
-	} // L: 14
-
-	@ObfuscatedName("c")
+@ObfuscatedName("pf")
+public class class399 extends class406 {
+	@ObfuscatedName("tw")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "793389020"
+		descriptor = "Lbb;"
 	)
-	public byte[] vmethod7114() throws UnsupportedEncodingException {
-		return this.field4436 == null ? new byte[0] : this.field4436.toString().getBytes("UTF-8"); // L: 50 51 53
+	@Export("pcmPlayer0")
+	static PcmPlayer pcmPlayer0;
+
+	@ObfuscatedSignature(
+		descriptor = "(Lpm;)V"
+	)
+	public class399(class406 var1) {
+		super(var1); // L: 9
+		super.field4523 = "AddRequestTask"; // L: 10
+	} // L: 11
+
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1604030758"
+	)
+	public boolean vmethod7621() {
+		while (!class305.field3411.isEmpty()) { // L: 15
+			class317 var1 = (class317)class305.field3411.peek(); // L: 16
+			if (var1 == null) { // L: 17
+				class305.field3411.pop(); // L: 18
+			} else {
+				var1.field3517 = this.method7571(); // L: 21
+				class305.field3404.add(var1); // L: 22
+				class305.field3411.pop(); // L: 23
+			}
+		}
+
+		return true; // L: 25
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "-448448712"
+		descriptor = "(B)Llf;",
+		garbageValue = "53"
 	)
-	void method7098(byte[] var1) throws UnsupportedEncodingException {
-		String var2 = new String(var1, "UTF-8"); // L: 21
-		this.method7099(var2); // L: 22
-	} // L: 23
+	MidiPcmStream method7571() {
+		MidiPcmStream var1 = null; // L: 29
+		Iterator var2 = class305.field3402.iterator(); // L: 30
 
-	@ObfuscatedName("y")
+		while (true) {
+			MidiPcmStream var3;
+			do {
+				do {
+					if (!var2.hasNext()) {
+						if (var1 != null) { // L: 38
+							++var1.field3443; // L: 39
+							if (var1.method5830() == 0 && var1.isReady()) { // L: 40
+								var1.clear(); // L: 41
+								var1.removeAll(); // L: 42
+								var1.setPcmStreamVolume(0); // L: 43
+							}
+						}
+
+						return var1; // L: 46
+					}
+
+					var3 = (MidiPcmStream)var2.next(); // L: 31
+				} while(var3 == null); // L: 33
+			} while(var1 != null && var1.field3443 <= var3.field3443 && (var3.method5830() != 0 || !var3.isReady()));
+
+			var1 = var3; // L: 34
+		}
+	}
+
+	@ObfuscatedName("ij")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "2042516666"
+		descriptor = "(B)V",
+		garbageValue = "-71"
 	)
-	void method7099(String var1) throws UnsupportedEncodingException {
-		try {
-			if (var1.charAt(0) == '{') { // L: 27
-				this.field4436 = new JSONObject(var1); // L: 28
-			} else {
-				if (var1.charAt(0) != '[') { // L: 30
-					throw new UnsupportedEncodingException("Invalid JSON passed to the JSON content builder."); // L: 36
-				}
-
-				JSONArray var2 = new JSONArray(var1); // L: 31
-				this.field4436 = new JSONObject(); // L: 32
-				this.field4436.put("arrayValues", var2); // L: 33
+	static final void method7574() {
+		if (WorldMapIcon_0.field2973) { // L: 3657
+			for (int var0 = 0; var0 < Players.Players_count; ++var0) { // L: 3659
+				Player var1 = Client.players[Players.Players_indices[var0]]; // L: 3660
+				var1.method2353(); // L: 3661
 			}
 
-		} catch (JSONException var3) { // L: 39
-			throw new UnsupportedEncodingException(var3.getMessage()); // L: 40
+			WorldMapIcon_0.field2973 = false; // L: 3664
 		}
-	} // L: 42
 
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lorg/json/JSONObject;",
-		garbageValue = "1036463091"
-	)
-	public JSONObject method7100() {
-		return this.field4436; // L: 45
-	}
+	} // L: 3666
 }

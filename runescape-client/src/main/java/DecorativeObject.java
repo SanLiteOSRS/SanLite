@@ -4,72 +4,78 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hr")
+@ObfuscatedName("jw")
 @Implements("DecorativeObject")
 public final class DecorativeObject {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "[Ltd;"
+	)
+	@Export("JagexCache_idxFiles")
+	public static BufferedFile[] JagexCache_idxFiles;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = 1818161665
+		intValue = -1365937923
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
-		intValue = -394717143
+		intValue = 787946685
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -732373363
+		intValue = -218934925
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -568181089
+		intValue = 52639641
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 1054718707
+		intValue = 489110633
 	)
 	@Export("orientation2")
 	int orientation2;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = -1599500981
+		intValue = 1102500453
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("g")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -1858126929
+		intValue = 1708077931
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lik;"
 	)
 	@Export("renderable1")
 	public Renderable renderable1;
-	@ObfuscatedName("y")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lik;"
 	)
 	@Export("renderable2")
 	public Renderable renderable2;
-	@ObfuscatedName("i")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		longValue = 1587928550129983111L
+		longValue = -5570150087619181313L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = 1186627599
+		intValue = 1405593685
 	)
 	@Export("flags")
 	int flags;
@@ -78,13 +84,4 @@ public final class DecorativeObject {
 		this.tag = 0L; // L: 13
 		this.flags = 0; // L: 14
 	} // L: 16
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "106"
-	)
-	public static boolean method4551(int var0) {
-		return (var0 >> 22 & 1) != 0; // L: 29
-	}
 }

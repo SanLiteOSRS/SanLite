@@ -1,120 +1,115 @@
+import java.net.URL;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dk")
-public class class125 extends class128 {
-	@ObfuscatedName("c")
+@ObfuscatedName("eg")
+public class class125 {
+	@ObfuscatedName("iy")
 	@ObfuscatedGetter(
-		intValue = -901358283
+		longValue = -1653606137358564459L
 	)
-	int field1557;
-	@ObfuscatedName("v")
+	static long field1501;
+	@ObfuscatedName("jh")
 	@ObfuscatedGetter(
-		intValue = 963189529
+		intValue = 788509083
 	)
-	int field1553;
-	@ObfuscatedName("q")
+	static int field1499;
+	@ObfuscatedName("lw")
 	@ObfuscatedGetter(
-		intValue = -1782830973
+		intValue = -644441085
 	)
-	int field1554;
-	@ObfuscatedName("f")
+	static int field1494;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -1564673701
+		intValue = -1852442399
 	)
-	int field1555;
-	// $FF: synthetic field
+	int field1492;
+	@ObfuscatedName("ae")
+	float field1495;
+	@ObfuscatedName("ao")
+	float field1503;
+	@ObfuscatedName("at")
+	float field1493;
+	@ObfuscatedName("ac")
+	float field1496;
+	@ObfuscatedName("ai")
+	float field1497;
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Leg;"
 	)
-	final class131 this$0;
+	class125 field1498;
 
-	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
-	)
-	class125(class131 var1) {
-		this.this$0 = var1;
-		this.field1557 = -1; // L: 158
-	} // L: 163
+	class125() {
+		this.field1503 = Float.MAX_VALUE; // L: 8
+		this.field1493 = Float.MAX_VALUE; // L: 9
+		this.field1496 = Float.MAX_VALUE; // L: 10
+		this.field1497 = Float.MAX_VALUE; // L: 11
+	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Ltm;IS)V",
+		garbageValue = "249"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1557 = var1.readUnsignedShort(); // L: 166
-		this.field1553 = var1.readInt(); // L: 167
-		this.field1554 = var1.readUnsignedByte(); // L: 168
-		this.field1555 = var1.readUnsignedByte(); // L: 169
-	} // L: 170
+	void method2924(Buffer var1, int var2) {
+		this.field1492 = var1.readShort(); // L: 17
+		this.field1495 = var1.method9066(); // L: 18
+		this.field1503 = var1.method9066(); // L: 19
+		this.field1493 = var1.method9066(); // L: 20
+		this.field1496 = var1.method9066(); // L: 21
+		this.field1497 = var1.method9066(); // L: 22
+	} // L: 23
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(I)Z",
+		garbageValue = "1201510681"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2964(this.field1557, this.field1553, this.field1554, this.field1555); // L: 173
-	} // L: 174
+	@Export("loadWorlds")
+	static boolean loadWorlds() {
+		try {
+			if (WorldMapLabelSize.World_request == null) { // L: 32
+				WorldMapLabelSize.World_request = FriendsChatManager.urlRequester.request(new URL(class200.field2121));
+			} else if (WorldMapLabelSize.World_request.isDone()) { // L: 34
+				byte[] var0 = WorldMapLabelSize.World_request.getResponse(); // L: 35
+				Buffer var1 = new Buffer(var0); // L: 36
+				var1.readInt(); // L: 37
+				World.World_count = var1.readUnsignedShort(); // L: 38
+				class176.World_worlds = new World[World.World_count]; // L: 39
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "2000471685"
-	)
-	static String method2829() {
-		return class19.clientPreferences.method2247() ? NetCache.method5952(Login.Login_username) : Login.Login_username; // L: 272
-	}
+				World var3;
+				for (int var2 = 0; var2 < World.World_count; var3.index = var2++) { // L: 40 48
+					var3 = class176.World_worlds[var2] = new World(); // L: 41
+					var3.id = var1.readUnsignedShort(); // L: 42
+					var3.properties = var1.readInt(); // L: 43
+					var3.host = var1.readStringCp1252NullTerminated(); // L: 44
+					var3.activity = var1.readStringCp1252NullTerminated(); // L: 45
+					var3.location = var1.readUnsignedByte(); // L: 46
+					var3.population = var1.readShort(); // L: 47
+				}
 
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "718423512"
-	)
-	static void method2830() {
-		ItemContainer.itemContainers = new NodeHashTable(32); // L: 78
-	} // L: 79
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZB)I",
-		garbageValue = "-61"
-	)
-	static int method2821(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class124.scriptDotWidget : GrandExchangeOfferOwnWorldComparator.scriptActiveWidget; // L: 1111
-		if (var0 == ScriptOpcodes.CC_GETX) { // L: 1112
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.x; // L: 1113
-			return 1; // L: 1114
-		} else if (var0 == ScriptOpcodes.CC_GETY) { // L: 1116
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.y; // L: 1117
-			return 1; // L: 1118
-		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) { // L: 1120
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.width; // L: 1121
-			return 1; // L: 1122
-		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) { // L: 1124
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.height; // L: 1125
-			return 1; // L: 1126
-		} else if (var0 == ScriptOpcodes.CC_GETHIDE) { // L: 1128
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1129
-			return 1; // L: 1130
-		} else if (var0 == ScriptOpcodes.CC_GETLAYER) { // L: 1132
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.parentId; // L: 1133
-			return 1; // L: 1134
-		} else {
-			return 2; // L: 1136
+				GameEngine.sortWorlds(class176.World_worlds, 0, class176.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 50
+				WorldMapLabelSize.World_request = null; // L: 51
+				return true; // L: 52
+			}
+		} catch (Exception var4) { // L: 56
+			var4.printStackTrace(); // L: 57
+			WorldMapLabelSize.World_request = null; // L: 58
 		}
+
+		return false; // L: 60
 	}
 
-	@ObfuscatedName("ie")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-111"
+		descriptor = "(IB)[B",
+		garbageValue = "-47"
 	)
-	static void method2824() {
-		Client.menuOptionsCount = 0; // L: 8423
-		Client.isMenuOpen = false; // L: 8424
-	} // L: 8425
+	@Export("ByteArrayPool_getArray")
+	public static synchronized byte[] ByteArrayPool_getArray(int var0) {
+		return ByteArrayPool.ByteArrayPool_getArrayBool(var0, false); // L: 112
+	}
 }
