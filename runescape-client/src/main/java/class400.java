@@ -1,51 +1,21 @@
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("op")
-public class class400 implements class398 {
-	@ObfuscatedName("v")
-	final Map field4437;
+@ObfuscatedName("pe")
+public final class class400 {
+	@ObfuscatedName("at")
+	@Export("base37Table")
+	public static final char[] base37Table;
+	@ObfuscatedName("ah")
+	static long[] field4466;
 
-	public class400(Map var1) {
-		this.field4437 = var1; // L: 11
-	} // L: 12
+	static {
+		base37Table = new char[]{'_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; // L: 4
+		field4466 = new long[12]; // L: 5
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "793389020"
-	)
-	public byte[] vmethod7114() throws UnsupportedEncodingException {
-		return this.method7122().getBytes("UTF-8"); // L: 16
-	}
-
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "1192893333"
-	)
-	public String method7122() throws UnsupportedEncodingException {
-		StringBuilder var1 = new StringBuilder(); // L: 20
-		Iterator var2 = this.field4437.entrySet().iterator(); // L: 21
-
-		while (var2.hasNext()) {
-			Entry var3 = (Entry)var2.next(); // L: 22
-			String var4 = URLEncoder.encode((String)var3.getKey(), "UTF-8"); // L: 24
-			String var5 = URLEncoder.encode((String)var3.getValue(), "UTF-8"); // L: 25
-			var1.append(var4).append("=").append(var5).append("&"); // L: 26
+		for (int var0 = 0; var0 < field4466.length; ++var0) { // L: 8
+			field4466[var0] = (long)Math.pow(37.0D, (double)var0);
 		}
 
-		if (var1.length() == 0) { // L: 29
-			return "";
-		} else {
-			var1.deleteCharAt(var1.length() - 1); // L: 30
-			var1.insert(0, "?"); // L: 31
-			return var1.toString(); // L: 32
-		}
-	}
+	} // L: 9
 }
