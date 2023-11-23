@@ -4,32 +4,32 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gm")
+@ObfuscatedName("kd")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("e")
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = 1780002005
+		intValue = 334360487
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("g")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = -64074659
+		intValue = 521667617
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ac")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("y")
+	@ObfuscatedName("al")
 	@Export("labels")
 	int[][] labels;
-	@ObfuscatedName("i")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lgq;"
+		descriptor = "Lkz;"
 	)
-	class201 field2376;
+	class267 field2795;
 
 	public Skeleton(int var1, byte[] var2) {
 		this.id = var1; // L: 19
@@ -56,27 +56,42 @@ public class Skeleton extends Node {
 		if (var3.offset < var3.array.length) { // L: 29
 			var4 = var3.readUnsignedShort(); // L: 30
 			if (var4 > 0) { // L: 31
-				this.field2376 = new class201(var3, var4); // L: 32
+				this.field2795 = new class267(var3, var4); // L: 32
 			}
 		}
 
 	} // L: 35
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-58631089"
+		garbageValue = "-1055269733"
 	)
-	public int method4148() {
+	public int method5316() {
 		return this.count; // L: 38
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lgq;",
-		garbageValue = "1269137329"
+		descriptor = "(I)Lkz;",
+		garbageValue = "-155827584"
 	)
-	public class201 method4150() {
-		return this.field2376; // L: 42
+	public class267 method5317() {
+		return this.field2795; // L: 42
+	}
+
+	@ObfuscatedName("ha")
+	@ObfuscatedSignature(
+		descriptor = "(IZZZZI)Loh;",
+		garbageValue = "-1589546581"
+	)
+	@Export("newArchive")
+	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
+		ArchiveDisk var5 = null; // L: 1981
+		if (JagexCache.JagexCache_dat2File != null) { // L: 1982
+			var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, class25.JagexCache_idxFiles[var0], 1000000); // L: 1983
+		}
+
+		return new Archive(var5, class302.field3118, WorldMapSectionType.field2556, var0, var1, var2, var3, var4, false); // L: 1985
 	}
 }

@@ -1,65 +1,43 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ek")
-public class class143 extends class128 {
-	@ObfuscatedName("ur")
-	@ObfuscatedSignature(
-		descriptor = "Lls;"
-	)
-	@Export("grandExchangeEvents")
-	static GrandExchangeEvents grandExchangeEvents;
-	@ObfuscatedName("c")
+@ObfuscatedName("fg")
+public class class143 extends class144 {
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		longValue = -4142648210474393183L
+		intValue = 826856409
 	)
-	long field1668;
-	@ObfuscatedName("v")
-	String field1667;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 81354487
-	)
-	int field1669;
+	int field1634;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfv;"
 	)
-	final class131 this$0;
+	final class147 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfv;)V"
 	)
-	class143(class131 var1) {
+	class143(class147 var1) {
 		this.this$0 = var1;
-		this.field1668 = -1L; // L: 93
-		this.field1667 = null; // L: 94
-		this.field1669 = 0; // L: 95
-	} // L: 97
+		this.field1634 = -1; // L: 114
+	} // L: 116
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Luj;I)V",
+		garbageValue = "-734756620"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 100
-			--var1.offset; // L: 101
-			this.field1668 = var1.readLong(); // L: 102
-		}
+	void vmethod3510(Buffer var1) {
+		this.field1634 = var1.readUnsignedShort(); // L: 119
+	} // L: 120
 
-		this.field1667 = var1.readStringCp1252NullTerminatedOrNull(); // L: 104
-		this.field1669 = var1.readUnsignedShort(); // L: 105
-	} // L: 106
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Lfc;I)V",
+		garbageValue = "-2111347169"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2956(this.field1668, this.field1667, this.field1669); // L: 109
-	} // L: 110
+	void vmethod3506(ClanSettings var1) {
+		var1.method3328(this.field1634); // L: 123
+	} // L: 124
 }

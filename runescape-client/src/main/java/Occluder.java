@@ -2,143 +2,112 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gb")
+@ObfuscatedName("kw")
 @Implements("Occluder")
 public final class Occluder {
-	@ObfuscatedName("uw")
-	@ObfuscatedSignature(
-		descriptor = "Los;"
-	)
-	@Export("platformInfo")
-	static PlatformInfo platformInfo;
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1913259521
+		intValue = 1500000161
 	)
 	@Export("minTileX")
 	int minTileX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -743836359
+		intValue = 1950990387
 	)
 	@Export("maxTileX")
 	int maxTileX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -1643298167
+		intValue = -423883149
 	)
 	@Export("minTileY")
 	int minTileY;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -1894194977
+		intValue = 2133572259
 	)
 	@Export("maxTileY")
 	int maxTileY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = -741467087
+		intValue = -1027506815
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("e")
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = 360875993
+		intValue = -184781
 	)
 	@Export("minX")
 	int minX;
-	@ObfuscatedName("g")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = -1324054405
+		intValue = 1188920765
 	)
 	@Export("maxX")
 	int maxX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 1977577685
+		intValue = 1152134789
 	)
 	@Export("minZ")
 	int minZ;
-	@ObfuscatedName("y")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 690008559
+		intValue = -1562247403
 	)
 	@Export("maxZ")
 	int maxZ;
-	@ObfuscatedName("i")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = 638283975
+		intValue = 1496311129
 	)
 	@Export("minY")
 	int minY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 1747045819
+		intValue = 1178347281
 	)
 	@Export("maxY")
 	int maxY;
-	@ObfuscatedName("t")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -1792742847
+		intValue = 1202051099
 	)
-	int field2470;
-	@ObfuscatedName("z")
+	int field2889;
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 963802065
+		intValue = -632467235
 	)
-	int field2472;
-	@ObfuscatedName("r")
+	int field2878;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = -1423983461
+		intValue = -660173925
 	)
-	int field2466;
-	@ObfuscatedName("u")
+	int field2890;
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = 942298147
+		intValue = -2085859197
 	)
-	int field2467;
-	@ObfuscatedName("k")
+	int field2893;
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = -740983489
+		intValue = 1182033659
 	)
-	int field2468;
-	@ObfuscatedName("h")
+	int field2894;
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 336673989
+		intValue = -858078367
 	)
-	int field2462;
-	@ObfuscatedName("x")
+	int field2891;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 680765335
+		intValue = 875544763
 	)
-	int field2473;
+	int field2892;
 
 	Occluder() {
 	} // L: 23
-
-	@ObfuscatedName("kc")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-49313522"
-	)
-	static final void method4354() {
-		PacketBufferNode var0 = EnumComposition.getPacketBufferNode(ClientPacket.field2987, Client.packetWriter.isaacCipher); // L: 11980
-		Client.packetWriter.addNode(var0); // L: 11981
-		Interpreter.field842 = true; // L: 11982
-
-		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) { // L: 11983
-			if (var1.type == 0 || var1.type == 3) { // L: 11984
-				MusicPatchPcmStream.closeInterface(var1, true);
-			}
-		}
-
-		if (Client.meslayerContinueWidget != null) { // L: 11986
-			ChatChannel.invalidateWidget(Client.meslayerContinueWidget); // L: 11987
-			Client.meslayerContinueWidget = null; // L: 11988
-		}
-
-		Interpreter.field842 = false; // L: 11990
-	} // L: 11991
 }

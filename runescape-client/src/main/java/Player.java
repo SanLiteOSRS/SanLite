@@ -4,549 +4,550 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ci")
+@ObfuscatedName("ds")
 @Implements("Player")
 public final class Player extends Actor {
-	@ObfuscatedName("ug")
+	@ObfuscatedName("ir")
 	@ObfuscatedSignature(
-		descriptor = "Lbl;"
+		descriptor = "Liq;"
 	)
-	@Export("friendSystem")
-	public static FriendSystem friendSystem;
-	@ObfuscatedName("mu")
-	@ObfuscatedGetter(
-		intValue = 1878220187
-	)
-	@Export("menuHeight")
-	static int menuHeight;
-	@ObfuscatedName("c")
+	@Export("socketTask")
+	static Task socketTask;
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lvj;"
 	)
 	@Export("username")
 	Username username;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lkt;"
+		descriptor = "Lnb;"
 	)
 	@Export("appearance")
 	PlayerComposition appearance;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -1076287933
+		intValue = -110809851
 	)
 	@Export("headIconPk")
 	int headIconPk;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 1720053255
+		intValue = -262723037
 	)
 	@Export("headIconPrayer")
 	int headIconPrayer;
-	@ObfuscatedName("e")
+	@ObfuscatedName("au")
 	@Export("actions")
 	String[] actions;
-	@ObfuscatedName("g")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = -1534122855
+		intValue = 578825607
 	)
 	@Export("combatLevel")
 	int combatLevel;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 351433381
+		intValue = -1809832575
 	)
 	@Export("skillLevel")
 	int skillLevel;
-	@ObfuscatedName("y")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 1504708523
+		intValue = -1976632803
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("i")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -1066412829
+		intValue = -1150711645
 	)
 	@Export("animationCycleStart")
 	int animationCycleStart;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 2100929431
+		intValue = -2021409739
 	)
 	@Export("animationCycleEnd")
 	int animationCycleEnd;
-	@ObfuscatedName("t")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -1217050523
+		intValue = 613981459
 	)
-	int field1095;
-	@ObfuscatedName("z")
+	int field1106;
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 363139371
+		intValue = -1369176927
 	)
 	@Export("tileHeight2")
 	int tileHeight2;
-	@ObfuscatedName("r")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = -1513637527
+		intValue = -159661273
 	)
 	int field1108;
-	@ObfuscatedName("u")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "Lhy;"
+		descriptor = "Lka;"
 	)
 	@Export("model0")
 	Model model0;
-	@ObfuscatedName("k")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = 458056289
+		intValue = -1657474235
 	)
 	@Export("minX")
 	int minX;
-	@ObfuscatedName("h")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 872094215
+		intValue = -1355131803
 	)
 	@Export("minY")
 	int minY;
-	@ObfuscatedName("x")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -863733713
+		intValue = 1460572105
 	)
 	@Export("maxX")
 	int maxX;
-	@ObfuscatedName("l")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -381044703
+		intValue = -1149731389
 	)
 	@Export("maxY")
 	int maxY;
-	@ObfuscatedName("a")
+	@ObfuscatedName("ai")
 	@Export("isUnanimated")
 	boolean isUnanimated;
-	@ObfuscatedName("p")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 9198677
+		intValue = 1173843827
 	)
 	@Export("team")
 	int team;
-	@ObfuscatedName("b")
+	@ObfuscatedName("ae")
 	@Export("isHidden")
 	boolean isHidden;
-	@ObfuscatedName("n")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -1115427467
+		intValue = 371254959
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("o")
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = -1343839549
+		intValue = -1363065099
 	)
 	@Export("index")
 	int index;
-	@ObfuscatedName("m")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lrw;"
 	)
 	@Export("isFriendTriBool")
 	TriBool isFriendTriBool;
-	@ObfuscatedName("d")
+	@ObfuscatedName("be")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lrw;"
 	)
 	@Export("isInFriendsChat")
 	TriBool isInFriendsChat;
-	@ObfuscatedName("ad")
+	@ObfuscatedName("bd")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lrw;"
 	)
 	@Export("isInClanChat")
 	TriBool isInClanChat;
-	@ObfuscatedName("ak")
-	boolean field1088;
-	@ObfuscatedName("al")
+	@ObfuscatedName("bl")
+	boolean field1122;
+	@ObfuscatedName("bi")
 	@ObfuscatedGetter(
-		intValue = -335116009
+		intValue = 488168873
 	)
 	@Export("tileX")
 	int tileX;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("bv")
 	@ObfuscatedGetter(
-		intValue = 1610456875
+		intValue = -694970577
 	)
 	@Export("tileY")
 	int tileY;
 
 	Player() {
-		this.headIconPk = -1; // L: 20
-		this.headIconPrayer = -1; // L: 21
-		this.actions = new String[3]; // L: 23
+		this.headIconPk = -1; // L: 19
+		this.headIconPrayer = -1; // L: 20
+		this.actions = new String[3]; // L: 22
 
-		for (int var1 = 0; var1 < 3; ++var1) { // L: 26
+		for (int var1 = 0; var1 < 3; ++var1) { // L: 25
 			this.actions[var1] = "";
 		}
 
-		this.combatLevel = 0; // L: 29
-		this.skillLevel = 0; // L: 30
-		this.animationCycleStart = 0; // L: 32
-		this.animationCycleEnd = 0; // L: 33
-		this.isUnanimated = false; // L: 42
-		this.team = 0; // L: 43
-		this.isHidden = false; // L: 44
-		this.isFriendTriBool = TriBool.TriBool_unknown; // L: 47
-		this.isInFriendsChat = TriBool.TriBool_unknown; // L: 48
-		this.isInClanChat = TriBool.TriBool_unknown; // L: 49
-		this.field1088 = false; // L: 50
-	} // L: 54
+		this.combatLevel = 0; // L: 28
+		this.skillLevel = 0; // L: 29
+		this.animationCycleStart = 0; // L: 31
+		this.animationCycleEnd = 0; // L: 32
+		this.isUnanimated = false; // L: 41
+		this.team = 0; // L: 42
+		this.isHidden = false; // L: 43
+		this.isFriendTriBool = TriBool.TriBool_unknown; // L: 46
+		this.isInFriendsChat = TriBool.TriBool_unknown; // L: 47
+		this.isInClanChat = TriBool.TriBool_unknown; // L: 48
+		this.field1122 = false; // L: 49
+	} // L: 53
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "2050981456"
+		descriptor = "(Luj;I)V",
+		garbageValue = "722515666"
 	)
 	@Export("read")
 	final void read(Buffer var1) {
-		var1.offset = 0; // L: 57
-		int var2 = var1.readUnsignedByte(); // L: 58
+		var1.offset = 0; // L: 56
+		int var2 = var1.readUnsignedByte(); // L: 57
+		boolean var3 = true; // L: 58
 		this.headIconPk = var1.readByte(); // L: 59
 		this.headIconPrayer = var1.readByte(); // L: 60
-		int var3 = -1; // L: 61
+		int var4 = -1; // L: 61
 		this.team = 0; // L: 62
-		int[] var4 = new int[12]; // L: 63
+		int[] var5 = new int[12]; // L: 63
 
-		int var6;
 		int var7;
 		int var8;
-		for (int var5 = 0; var5 < 12; ++var5) { // L: 64
-			var6 = var1.readUnsignedByte(); // L: 65
-			if (var6 == 0) { // L: 66
-				var4[var5] = 0; // L: 67
+		int var9;
+		for (int var6 = 0; var6 < 12; ++var6) { // L: 64
+			var7 = var1.readUnsignedByte(); // L: 65
+			if (var7 == 0) { // L: 66
+				var5[var6] = 0; // L: 67
 			} else {
-				var7 = var1.readUnsignedByte(); // L: 70
-				var4[var5] = var7 + (var6 << 8); // L: 71
-				if (var5 == 0 && var4[0] == 65535) { // L: 72
-					var3 = var1.readUnsignedShort(); // L: 73
+				var8 = var1.readUnsignedByte(); // L: 70
+				var5[var6] = var8 + (var7 << 8); // L: 71
+				if (var6 == 0 && var5[0] == 65535) { // L: 72
+					var4 = var1.readUnsignedShort(); // L: 73
 					break;
 				}
 
-				if (var4[var5] >= 512) { // L: 76
-					var8 = EnumComposition.ItemComposition_get(var4[var5] - 512).team; // L: 77
-					if (var8 != 0) { // L: 78
-						this.team = var8;
+				if (var5[var6] >= 512) { // L: 76
+					var9 = class214.ItemComposition_get(var5[var6] - 512).team; // L: 77
+					if (var9 != 0) { // L: 78
+						this.team = var9;
 					}
 				}
 			}
 		}
 
-		int[] var11 = new int[5]; // L: 81
+		int[] var13 = null;
+		if (Client.field492 >= 213) {
+			var13 = new int[12];
 
-		for (var6 = 0; var6 < 5; ++var6) { // L: 82
-			var7 = var1.readUnsignedByte(); // L: 83
-			if (var7 < 0 || var7 >= PlayerComposition.field3342[var6].length) { // L: 84
-				var7 = 0;
+			for (var7 = 0; var7 < 12; ++var7) { // L: 84
+				var8 = var1.readUnsignedByte(); // L: 85
+				if (var8 == 0) { // L: 86
+					var13[var7] = 0; // L: 87
+				} else {
+					var9 = var1.readUnsignedByte(); // L: 90
+					var13[var7] = var9 + (var8 << 8); // L: 91
+				}
 			}
-
-			var11[var6] = var7; // L: 85
 		}
 
-		super.idleSequence = var1.readUnsignedShort(); // L: 87
-		if (super.idleSequence == 65535) { // L: 88
+		int[] var14 = new int[5]; // L: 94
+
+		for (var8 = 0; var8 < 5; ++var8) { // L: 95
+			var9 = var1.readUnsignedByte(); // L: 96
+			if (var9 < 0 || var9 >= class90.field1094[var8].length) { // L: 97
+				var9 = 0;
+			}
+
+			var14[var8] = var9; // L: 98
+		}
+
+		super.idleSequence = var1.readUnsignedShort(); // L: 100
+		if (super.idleSequence == 65535) { // L: 101
 			super.idleSequence = -1;
 		}
 
-		super.turnLeftSequence = var1.readUnsignedShort(); // L: 89
-		if (super.turnLeftSequence == 65535) { // L: 90
-			super.turnLeftSequence = -1;
+		super.field1191 = var1.readUnsignedShort(); // L: 102
+		if (super.field1191 == 65535) { // L: 103
+			super.field1191 = -1;
 		}
 
-		super.turnRightSequence = super.turnLeftSequence; // L: 91
-		super.walkSequence = var1.readUnsignedShort(); // L: 92
-		if (super.walkSequence == 65535) { // L: 93
+		super.field1207 = super.field1191; // L: 104
+		super.walkSequence = var1.readUnsignedShort(); // L: 105
+		if (super.walkSequence == 65535) { // L: 106
 			super.walkSequence = -1;
 		}
 
-		super.walkBackSequence = var1.readUnsignedShort(); // L: 94
-		if (super.walkBackSequence == 65535) { // L: 95
+		super.walkBackSequence = var1.readUnsignedShort(); // L: 107
+		if (super.walkBackSequence == 65535) { // L: 108
 			super.walkBackSequence = -1;
 		}
 
-		super.walkLeftSequence = var1.readUnsignedShort(); // L: 96
-		if (super.walkLeftSequence == 65535) { // L: 97
+		super.walkLeftSequence = var1.readUnsignedShort(); // L: 109
+		if (super.walkLeftSequence == 65535) { // L: 110
 			super.walkLeftSequence = -1;
 		}
 
-		super.walkRightSequence = var1.readUnsignedShort(); // L: 98
-		if (super.walkRightSequence == 65535) { // L: 99
+		super.walkRightSequence = var1.readUnsignedShort(); // L: 111
+		if (super.walkRightSequence == 65535) { // L: 112
 			super.walkRightSequence = -1;
 		}
 
-		super.runSequence = var1.readUnsignedShort(); // L: 100
-		if (super.runSequence == 65535) { // L: 101
+		super.runSequence = var1.readUnsignedShort(); // L: 113
+		if (super.runSequence == 65535) { // L: 114
 			super.runSequence = -1;
 		}
 
-		this.username = new Username(var1.readStringCp1252NullTerminated(), HealthBarDefinition.loginType); // L: 102
-		this.clearIsFriend(); // L: 103
-		this.clearIsInFriendsChat(); // L: 104
-		this.method2135(); // L: 105
-		if (this == class101.localPlayer) { // L: 106
-			RunException.localPlayerName = this.username.getName();
+		this.username = new Username(var1.readStringCp1252NullTerminated(), class89.loginType); // L: 115
+		this.clearIsFriend(); // L: 116
+		this.method2423(); // L: 117
+		this.method2394(); // L: 118
+		if (this == class229.localPlayer) { // L: 119
+			class17.field77 = this.username.getName();
 		}
 
-		this.combatLevel = var1.readUnsignedByte(); // L: 107
-		this.skillLevel = var1.readUnsignedShort(); // L: 108
-		this.isHidden = var1.readUnsignedByte() == 1; // L: 109
-		if (Client.gameBuild == 0 && Client.staffModLevel >= 2) { // L: 110
+		this.combatLevel = var1.readUnsignedByte(); // L: 120
+		this.skillLevel = var1.readUnsignedShort(); // L: 121
+		this.isHidden = var1.readUnsignedByte() == 1; // L: 122
+		if (Client.gameBuild == 0 && Client.staffModLevel >= 2) { // L: 123
 			this.isHidden = false;
 		}
 
-		class167[] var12 = null; // L: 111
-		boolean var13 = false; // L: 112
-		var8 = var1.readUnsignedShort(); // L: 113
-		var13 = (var8 >> 15 & 1) == 1; // L: 114
-		int var9;
-		if (var8 > 0 && var8 != 32768) { // L: 115
-			var12 = new class167[12]; // L: 116
+		class169[] var15 = null; // L: 124
+		boolean var17 = false; // L: 125
+		int var10 = var1.readUnsignedShort(); // L: 126
+		var17 = (var10 >> 15 & 1) == 1; // L: 127
+		int var11;
+		if (var10 > 0 && var10 != 32768) { // L: 128
+			var15 = new class169[12]; // L: 129
 
-			for (var9 = 0; var9 < 12; ++var9) { // L: 117
-				int var10 = var8 >> 12 - var9 & 1; // L: 118
-				if (var10 == 1) { // L: 119
-					var12[var9] = UserComparator10.method2609(var4[var9] - 512, var1); // L: 120
+			for (var11 = 0; var11 < 12; ++var11) { // L: 130
+				int var12 = var10 >> 12 - var11 & 1; // L: 131
+				if (var12 == 1) { // L: 132
+					var15[var11] = class306.method5914(var5[var11] - 512, var1); // L: 133
 				}
 			}
 		}
 
-		if (var1.offset < var1.array.length) { // L: 124
-			for (var9 = 0; var9 < 3; ++var9) { // L: 125
-				this.actions[var9] = var1.readStringCp1252NullTerminated(); // L: 126
-			}
+		for (var11 = 0; var11 < 3; ++var11) { // L: 137
+			this.actions[var11] = var1.readStringCp1252NullTerminated(); // L: 138
 		}
 
-		if (this.appearance == null) { // L: 129
+		int var16 = var1.readUnsignedByte(); // L: 140
+		if (this.appearance == null) { // L: 141
 			this.appearance = new PlayerComposition();
 		}
 
-		this.appearance.method5566(var4, var12, var13, var11, var2 == 1, var3); // L: 130
-	} // L: 131
+		this.appearance.method6313(var13, var5, var15, var17, var14, var2, var4, var16); // L: 142
+	} // L: 143
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhy;",
-		garbageValue = "1081110576"
+		descriptor = "(B)Lka;",
+		garbageValue = "1"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		if (this.appearance == null) { // L: 194
+		if (this.appearance == null) { // L: 206
 			return null;
 		} else {
-			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? ScriptFrame.SequenceDefinition_get(super.sequence) : null; // L: 195
-			SequenceDefinition var2 = super.movementSequence == -1 || this.isUnanimated || super.idleSequence == super.movementSequence && var1 != null ? null : ScriptFrame.SequenceDefinition_get(super.movementSequence); // L: 196
-			Model var3 = this.appearance.getModel(var1, super.sequenceFrame, var2, super.movementFrame); // L: 197
-			if (var3 == null) { // L: 198
+			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? DynamicObject.SequenceDefinition_get(super.sequence) : null; // L: 207
+			SequenceDefinition var2 = super.movementSequence == -1 || this.isUnanimated || super.movementSequence == super.idleSequence && var1 != null ? null : DynamicObject.SequenceDefinition_get(super.movementSequence); // L: 208
+			Model var3 = this.appearance.getModel(var1, super.sequenceFrame, var2, super.movementFrame); // L: 209
+			if (var3 == null) { // L: 210
 				return null;
 			} else {
-				var3.calculateBoundsCylinder(); // L: 199
-				super.defaultHeight = var3.height; // L: 200
-				Model var4;
-				Model[] var5;
-				if (!this.isUnanimated && super.spotAnimation != -1 && super.spotAnimationFrame != -1) { // L: 201
-					var4 = ObjectSound.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame); // L: 202
-					if (var4 != null) { // L: 203
-						var4.offsetBy(0, -super.spotAnimationHeight, 0); // L: 204
-						var5 = new Model[]{var3, var4}; // L: 205
-						var3 = new Model(var5, 2); // L: 206
-					}
+				var3.calculateBoundsCylinder(); // L: 211
+				super.defaultHeight = var3.height; // L: 212
+				int var4 = var3.indicesCount; // L: 213
+				if (!this.isUnanimated) { // L: 214
+					var3 = this.method2469(var3); // L: 215
 				}
 
-				if (!this.isUnanimated && this.model0 != null) { // L: 209
-					if (Client.cycle >= this.animationCycleEnd) { // L: 210
+				if (!this.isUnanimated && this.model0 != null) { // L: 217
+					if (Client.cycle >= this.animationCycleEnd) { // L: 218
 						this.model0 = null;
 					}
 
-					if (Client.cycle >= this.animationCycleStart && Client.cycle < this.animationCycleEnd) { // L: 211
-						var4 = this.model0; // L: 212
-						var4.offsetBy(this.field1095 * 4096 - super.x, this.tileHeight2 - this.tileHeight, this.field1108 * 4096 - super.y); // L: 213
-						if (super.orientation == 512) { // L: 214
-							var4.rotateY90Ccw(); // L: 215
-							var4.rotateY90Ccw(); // L: 216
-							var4.rotateY90Ccw(); // L: 217
-						} else if (super.orientation == 1024) { // L: 219
-							var4.rotateY90Ccw(); // L: 220
-							var4.rotateY90Ccw(); // L: 221
-						} else if (super.orientation == 1536) { // L: 223
-							var4.rotateY90Ccw();
-						}
-
-						var5 = new Model[]{var3, var4}; // L: 224
-						var3 = new Model(var5, 2); // L: 225
-						if (super.orientation == 512) { // L: 226
-							var4.rotateY90Ccw();
+					if (Client.cycle >= this.animationCycleStart && Client.cycle < this.animationCycleEnd) { // L: 219
+						Model var5 = this.model0; // L: 220
+						var5.offsetBy(this.field1106 * 4096 - super.x, this.tileHeight2 - this.tileHeight, this.field1108 * 4096 - super.y); // L: 221
+						if (super.orientation == 512) { // L: 222
+							var5.rotateY90Ccw(); // L: 223
+							var5.rotateY90Ccw(); // L: 224
+							var5.rotateY90Ccw(); // L: 225
 						} else if (super.orientation == 1024) { // L: 227
-							var4.rotateY90Ccw(); // L: 228
-							var4.rotateY90Ccw(); // L: 229
+							var5.rotateY90Ccw(); // L: 228
+							var5.rotateY90Ccw(); // L: 229
 						} else if (super.orientation == 1536) { // L: 231
-							var4.rotateY90Ccw(); // L: 232
-							var4.rotateY90Ccw(); // L: 233
-							var4.rotateY90Ccw(); // L: 234
+							var5.rotateY90Ccw();
 						}
 
-						var4.offsetBy(super.x - this.field1095 * 4096, this.tileHeight - this.tileHeight2, super.y - this.field1108 * 4096); // L: 236
+						Model[] var6 = new Model[]{var3, var5}; // L: 232
+						var3 = new Model(var6, 2); // L: 233
+						if (super.orientation == 512) { // L: 234
+							var5.rotateY90Ccw();
+						} else if (super.orientation == 1024) { // L: 235
+							var5.rotateY90Ccw(); // L: 236
+							var5.rotateY90Ccw(); // L: 237
+						} else if (super.orientation == 1536) { // L: 239
+							var5.rotateY90Ccw(); // L: 240
+							var5.rotateY90Ccw(); // L: 241
+							var5.rotateY90Ccw(); // L: 242
+						}
+
+						var5.offsetBy(super.x - this.field1106 * 4096, this.tileHeight - this.tileHeight2, super.y - this.field1108 * 4096); // L: 244
 					}
 				}
 
-				var3.isSingleTile = true; // L: 239
-				if (super.field1133 != 0 && Client.cycle >= super.field1189 && Client.cycle < super.field1135) { // L: 240
-					var3.overrideHue = super.field1191; // L: 241
-					var3.overrideSaturation = super.field1192; // L: 242
-					var3.overrideLuminance = super.field1193; // L: 243
-					var3.overrideAmount = super.field1133; // L: 244
+				var3.isSingleTile = true; // L: 247
+				if (super.field1237 != 0 && Client.cycle >= super.field1232 && Client.cycle < super.field1215) { // L: 248
+					var3.overrideHue = super.field1234; // L: 249
+					var3.overrideSaturation = super.field1235; // L: 250
+					var3.overrideLuminance = super.field1171; // L: 251
+					var3.overrideAmount = super.field1237; // L: 252
+					var3.field3006 = (short)var4; // L: 253
 				} else {
-					var3.overrideAmount = 0; // L: 247
+					var3.overrideAmount = 0; // L: 256
 				}
 
-				return var3; // L: 249
+				return var3; // L: 258
 			}
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "541693037"
+		garbageValue = "-1713250919"
 	)
-	@Export("isFriend")
-	boolean isFriend() {
-		if (this.isFriendTriBool == TriBool.TriBool_unknown) { // L: 134
-			this.checkIsFriend(); // L: 135
+	boolean method2388() {
+		if (this.isFriendTriBool == TriBool.TriBool_unknown) { // L: 146
+			this.checkIsFriend(); // L: 147
 		}
 
-		return this.isFriendTriBool == TriBool.TriBool_true; // L: 137
+		return this.isFriendTriBool == TriBool.TriBool_true; // L: 149
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-842597449"
+		descriptor = "(B)V",
+		garbageValue = "-81"
 	)
 	@Export("clearIsFriend")
 	void clearIsFriend() {
-		this.isFriendTriBool = TriBool.TriBool_unknown; // L: 141
-	} // L: 142
+		this.isFriendTriBool = TriBool.TriBool_unknown; // L: 153
+	} // L: 154
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "82"
+		garbageValue = "-14"
 	)
 	@Export("checkIsFriend")
 	void checkIsFriend() {
-		this.isFriendTriBool = friendSystem.isFriendAndHasWorld(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 145
-	} // L: 146
+		this.isFriendTriBool = class12.friendSystem.isFriendAndHasWorld(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 157
+	} // L: 158
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1871762564"
+		descriptor = "(B)Z",
+		garbageValue = "14"
 	)
-	@Export("isFriendsChatMember")
-	boolean isFriendsChatMember() {
-		if (this.isInFriendsChat == TriBool.TriBool_unknown) { // L: 149
-			this.updateIsInFriendsChat(); // L: 150
+	boolean method2391() {
+		if (this.isInFriendsChat == TriBool.TriBool_unknown) { // L: 161
+			this.updateIsInFriendsChat(); // L: 162
 		}
 
-		return this.isInFriendsChat == TriBool.TriBool_true; // L: 152
+		return this.isInFriendsChat == TriBool.TriBool_true; // L: 164
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1664103781"
+		garbageValue = "-2089631916"
 	)
-	@Export("clearIsInFriendsChat")
-	void clearIsInFriendsChat() {
-		this.isInFriendsChat = TriBool.TriBool_unknown; // L: 156
-	} // L: 157
+	void method2423() {
+		this.isInFriendsChat = TriBool.TriBool_unknown; // L: 168
+	} // L: 169
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1421965855"
+		garbageValue = "1196848864"
 	)
 	@Export("updateIsInFriendsChat")
 	void updateIsInFriendsChat() {
-		this.isInFriendsChat = Huffman.friendsChatManager != null && Huffman.friendsChatManager.contains(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 160
-	} // L: 161
+		this.isInFriendsChat = class20.friendsChatManager != null && class20.friendsChatManager.contains(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false; // L: 172
+	} // L: 173
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1544435810"
+		descriptor = "(B)V",
+		garbageValue = "115"
 	)
 	@Export("updateIsInClanChat")
 	void updateIsInClanChat() {
-		for (int var1 = 0; var1 < 4; ++var1) { // L: 164
-			if (Client.currentClanSettings[var1] != null && Client.currentClanSettings[var1].method2991(this.username.getName()) != -1 && var1 != 2) { // L: 165 166
-				this.isInClanChat = TriBool.TriBool_true; // L: 167
-				return; // L: 168
+		for (int var1 = 0; var1 < 4; ++var1) { // L: 176
+			if (Client.currentClanSettings[var1] != null && Client.currentClanSettings[var1].method3323(this.username.getName()) != -1 && var1 != 2) { // L: 177 178
+				this.isInClanChat = TriBool.TriBool_true; // L: 179
+				return; // L: 180
 			}
 		}
 
-		this.isInClanChat = TriBool.TriBool_false; // L: 172
-	} // L: 173
+		this.isInClanChat = TriBool.TriBool_false; // L: 184
+	} // L: 185
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-2144863199"
+		descriptor = "(B)V",
+		garbageValue = "-73"
 	)
-	void method2135() {
-		this.isInClanChat = TriBool.TriBool_unknown; // L: 176
-	} // L: 177
+	void method2394() {
+		this.isInClanChat = TriBool.TriBool_unknown; // L: 188
+	} // L: 189
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "2071495153"
+		garbageValue = "-2021409739"
 	)
 	@Export("isClanMember")
 	boolean isClanMember() {
-		if (this.isInClanChat == TriBool.TriBool_unknown) { // L: 180
-			this.updateIsInClanChat(); // L: 181
+		if (this.isInClanChat == TriBool.TriBool_unknown) { // L: 192
+			this.updateIsInClanChat(); // L: 193
 		}
 
-		return this.isInClanChat == TriBool.TriBool_true; // L: 183
+		return this.isInClanChat == TriBool.TriBool_true; // L: 195
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "20"
+		descriptor = "(I)I",
+		garbageValue = "2046405362"
 	)
 	@Export("transformedSize")
 	int transformedSize() {
-		return this.appearance != null && this.appearance.npcTransformId != -1 ? BuddyRankComparator.getNpcDefinition(this.appearance.npcTransformId).size : 1; // L: 187 188 190
+		return this.appearance != null && this.appearance.npcTransformId != -1 ? VerticalAlignment.getNpcDefinition(this.appearance.npcTransformId).size : 1; // L: 199 200 202
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(IILgn;S)V",
-		garbageValue = "26658"
+		descriptor = "(IILiz;I)V",
+		garbageValue = "2103873992"
 	)
-	final void method2139(int var1, int var2, class192 var3) {
-		if (super.sequence != -1 && ScriptFrame.SequenceDefinition_get(super.sequence).field2188 == 1) { // L: 253
+	final void method2398(int var1, int var2, class228 var3) {
+		if (super.sequence != -1 && DynamicObject.SequenceDefinition_get(super.sequence).field2205 == 1) { // L: 262
 			super.sequence = -1;
 		}
 
-		super.field1165 = -1; // L: 254
-		if (var1 >= 0 && var1 < 104 && var2 >= 0 && var2 < 104) { // L: 255
-			if (super.pathX[0] >= 0 && super.pathX[0] < 104 && super.pathY[0] >= 0 && super.pathY[0] < 104) { // L: 256
-				if (var3 == class192.field2211) {
-					class306.method5765(this, var1, var2, class192.field2211); // L: 258
+		this.method2480(); // L: 263
+		if (var1 >= 0 && var1 < 104 && var2 >= 0 && var2 < 104) { // L: 264
+			if (super.pathX[0] >= 0 && super.pathX[0] < 104 && super.pathY[0] >= 0 && super.pathY[0] < 104) { // L: 265
+				if (var3 == class228.field2410) {
+					WorldMapCacheName.method5006(this, var1, var2, class228.field2410); // L: 267
 				}
 
-				this.method2141(var1, var2, var3); // L: 259
+				this.method2400(var1, var2, var3); // L: 268
 			} else {
 				this.resetPath(var1, var2);
 			}
@@ -554,53 +555,92 @@ public final class Player extends Actor {
 			this.resetPath(var1, var2);
 		}
 
-	} // L: 261
+	} // L: 270
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "3"
+		descriptor = "(III)V",
+		garbageValue = "1104771167"
 	)
 	@Export("resetPath")
 	void resetPath(int var1, int var2) {
-		super.pathLength = 0; // L: 264
-		super.field1203 = 0; // L: 265
-		super.field1202 = 0; // L: 266
-		super.pathX[0] = var1; // L: 267
-		super.pathY[0] = var2; // L: 268
-		int var3 = this.transformedSize(); // L: 269
-		super.x = super.pathX[0] * 128 + var3 * 64; // L: 270
-		super.y = var3 * 64 + super.pathY[0] * 128; // L: 271
-	} // L: 272
+		super.pathLength = 0; // L: 273
+		super.field1220 = 0; // L: 274
+		super.field1245 = 0; // L: 275
+		super.pathX[0] = var1; // L: 276
+		super.pathY[0] = var2; // L: 277
+		int var3 = this.transformedSize(); // L: 278
+		super.x = super.pathX[0] * 128 + var3 * 64; // L: 279
+		super.y = super.pathY[0] * 128 + var3 * 64; // L: 280
+	} // L: 281
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(IILgn;I)V",
-		garbageValue = "829621719"
+		descriptor = "(IILiz;I)V",
+		garbageValue = "1624897043"
 	)
-	final void method2141(int var1, int var2, class192 var3) {
-		if (super.pathLength < 9) { // L: 275
+	final void method2400(int var1, int var2, class228 var3) {
+		if (super.pathLength < 9) { // L: 284
 			++super.pathLength;
 		}
 
-		for (int var4 = super.pathLength; var4 > 0; --var4) { // L: 276
-			super.pathX[var4] = super.pathX[var4 - 1]; // L: 277
-			super.pathY[var4] = super.pathY[var4 - 1]; // L: 278
-			super.pathTraversed[var4] = super.pathTraversed[var4 - 1]; // L: 279
+		for (int var4 = super.pathLength; var4 > 0; --var4) { // L: 285
+			super.pathX[var4] = super.pathX[var4 - 1]; // L: 286
+			super.pathY[var4] = super.pathY[var4 - 1]; // L: 287
+			super.pathTraversed[var4] = super.pathTraversed[var4 - 1]; // L: 288
 		}
 
-		super.pathX[0] = var1; // L: 281
-		super.pathY[0] = var2; // L: 282
-		super.pathTraversed[0] = var3; // L: 283
-	} // L: 284
+		super.pathX[0] = var1; // L: 290
+		super.pathY[0] = var2; // L: 291
+		super.pathTraversed[0] = var3; // L: 292
+	} // L: 293
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "9013641"
+		garbageValue = "1221291483"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
-		return this.appearance != null; // L: 287
+		return this.appearance != null; // L: 296
+	}
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(Ltz;III)I",
+		garbageValue = "319825494"
+	)
+	static int method2444(IterableNodeHashTable var0, int var1, int var2) {
+		if (var0 == null) { // L: 33
+			return var2;
+		} else {
+			IntegerNode var3 = (IntegerNode)var0.get((long)var1); // L: 34
+			return var3 == null ? var2 : var3.integer; // L: 35 36
+		}
+	}
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(IIIZII)J",
+		garbageValue = "211437143"
+	)
+	@Export("calculateTag")
+	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
+		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17; // L: 81
+		if (var3) { // L: 82
+			var5 |= 65536L;
+		}
+
+		return var5; // L: 83
+	}
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(CB)Z",
+		garbageValue = "2"
+	)
+	@Export("isDigit")
+	public static boolean isDigit(char var0) {
+		return var0 >= '0' && var0 <= '9'; // L: 151
 	}
 }
