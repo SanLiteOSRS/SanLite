@@ -1,18 +1,16 @@
-import java.text.ParseException;
 import java.util.Comparator;
-import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ly")
+@ObfuscatedName("ob")
 @Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Llj;Llj;I)I",
-		garbageValue = "-2004855128"
+		descriptor = "(Log;Log;I)I",
+		garbageValue = "714689738"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -27,119 +25,137 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 		return super.equals(var1); // L: 51
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-118"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "1588481788"
 	)
-	static boolean method6031() {
-		Date var0;
-		try {
-			var0 = GameObject.method4552(); // L: 1077
-		} catch (ParseException var9) { // L: 1079
-			GraphicsObject.method1877("Date not valid.", "Please ensure date follows the format", "DD/MM/YYYY and is after 01/01/1900"); // L: 1080
-			return false; // L: 1081
-		}
+	@Export("addGameMessage")
+	static void addGameMessage(int var0, String var1, String var2) {
+		ArchiveLoader.addChatMessage(var0, var1, var2, (String)null); // L: 19
+	} // L: 20
 
-		if (var0 == null) { // L: 1083
-			return false; // L: 1084
-		} else {
-			java.util.Calendar var2 = java.util.Calendar.getInstance(); // L: 1088
-			var2.set(1, var2.get(1) - 13); // L: 1089
-			var2.set(5, var2.get(5) + 1); // L: 1090
-			var2.set(11, 0); // L: 1091
-			var2.set(12, 0); // L: 1092
-			var2.set(13, 0); // L: 1093
-			var2.set(14, 0); // L: 1094
-			Date var3 = var2.getTime(); // L: 1095
-			boolean var5 = var0.before(var3); // L: 1096
-			Date var4 = BufferedNetSocket.method6835(); // L: 1101
-			boolean var7 = var0.after(var4); // L: 1102
-			if (!var7) { // L: 1105
-				GraphicsObject.method1877("Date not valid.", "Please ensure date follows the format", "DD/MM/YYYY and is after 01/01/1900"); // L: 1106
-				return false; // L: 1107
+	@ObfuscatedName("jd")
+	@ObfuscatedSignature(
+		descriptor = "(ZLuo;ZI)V",
+		garbageValue = "151188621"
+	)
+	static final void method7146(boolean var0, PacketBuffer var1, boolean var2) {
+		Client.field595 = var0; // L: 5703
+		int var3;
+		int var5;
+		int var6;
+		int var7;
+		int var8;
+		if (!Client.field595) { // L: 5704
+			int var4;
+			if (var2) { // L: 5708
+				var1.method9306(); // L: 5709
+				var4 = var1.readUnsignedShort(); // L: 5710
+				var3 = var1.readUnsignedShort(); // L: 5711
+				var5 = var1.readUnsignedShort(); // L: 5712
 			} else {
-				if (!var5) { // L: 1109
-					class174.field1891 = 8388607; // L: 1110
-				} else {
-					class174.field1891 = (int)(var0.getTime() / 86400000L - 11745L); // L: 1113
+				var4 = var1.readUnsignedShort(); // L: 5715
+				var3 = var1.method9303(); // L: 5716
+				var5 = var1.readUnsignedShort(); // L: 5717
+			}
+
+			Varcs.field1394 = new int[var5][4]; // L: 5719
+
+			for (var6 = 0; var6 < var5; ++var6) { // L: 5720
+				for (var7 = 0; var7 < 4; ++var7) { // L: 5721
+					Varcs.field1394[var6][var7] = var1.readInt(); // L: 5722
 				}
-
-				return true; // L: 1115
 			}
-		}
-	}
 
-	@ObfuscatedName("ij")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1960096370"
-	)
-	static final void method6024() {
-		PacketBuffer var0 = Client.packetWriter.packetBuffer; // L: 8009
-		var0.importIndex(); // L: 8010
-		int var1 = var0.readBits(8); // L: 8011
-		int var2;
-		if (var1 < Client.npcCount) { // L: 8012
-			for (var2 = var1; var2 < Client.npcCount; ++var2) { // L: 8013
-				Client.field616[++Client.field615 - 1] = Client.npcIndices[var2];
+			KitDefinition.field1864 = new int[var5]; // L: 5725
+			UserComparator7.field1444 = new int[var5]; // L: 5726
+			UserComparator3.field1448 = new int[var5]; // L: 5727
+			WorldMapData_1.field2511 = new byte[var5][]; // L: 5728
+			GrandExchangeEvent.field4369 = new byte[var5][]; // L: 5729
+			var5 = 0; // L: 5730
+
+			for (var6 = (var3 - 6) / 8; var6 <= (var3 + 6) / 8; ++var6) { // L: 5731
+				for (var7 = (var4 - 6) / 8; var7 <= (var4 + 6) / 8; ++var7) { // L: 5732
+					var8 = var7 + (var6 << 8); // L: 5733
+					KitDefinition.field1864[var5] = var8; // L: 5734
+					UserComparator7.field1444[var5] = WorldMapSection0.field2532.getGroupId("m" + var6 + "_" + var7); // L: 5735
+					UserComparator3.field1448[var5] = WorldMapSection0.field2532.getGroupId("l" + var6 + "_" + var7); // L: 5736
+					++var5; // L: 5737
+				}
 			}
-		}
 
-		if (var1 > Client.npcCount) { // L: 8015
-			throw new RuntimeException("");
+			class292.method5834(var3, var4, true); // L: 5740
 		} else {
-			Client.npcCount = 0; // L: 8016
+			var3 = var1.method9303(); // L: 5743
+			boolean var16 = var1.readUnsignedByte() == 1; // L: 5744
+			var5 = var1.readUnsignedShort(); // L: 5745
+			var6 = var1.readUnsignedShort(); // L: 5746
+			var1.importIndex(); // L: 5747
 
-			for (var2 = 0; var2 < var1; ++var2) { // L: 8017
-				int var3 = Client.npcIndices[var2]; // L: 8018
-				NPC var4 = Client.npcs[var3]; // L: 8019
-				int var5 = var0.readBits(1); // L: 8020
-				if (var5 == 0) { // L: 8021
-					Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8022
-					var4.npcCycle = Client.cycle; // L: 8023
-				} else {
-					int var6 = var0.readBits(2); // L: 8026
-					if (var6 == 0) { // L: 8027
-						Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8028
-						var4.npcCycle = Client.cycle; // L: 8029
-						Client.field539[++Client.field538 - 1] = var3; // L: 8030
-					} else {
-						int var7;
-						int var8;
-						if (var6 == 1) { // L: 8033
-							Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8034
-							var4.npcCycle = Client.cycle; // L: 8035
-							var7 = var0.readBits(3); // L: 8036
-							var4.method2361(var7, class192.field2212); // L: 8037
-							var8 = var0.readBits(1); // L: 8038
-							if (var8 == 1) { // L: 8039
-								Client.field539[++Client.field538 - 1] = var3;
-							}
-						} else if (var6 == 2) { // L: 8042
-							Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8043
-							var4.npcCycle = Client.cycle; // L: 8044
-							if (var0.readBits(1) == 1) { // L: 8045
-								var7 = var0.readBits(3); // L: 8046
-								var4.method2361(var7, class192.field2211); // L: 8047
-								var8 = var0.readBits(3); // L: 8048
-								var4.method2361(var8, class192.field2211); // L: 8049
-							} else {
-								var7 = var0.readBits(3); // L: 8052
-								var4.method2361(var7, class192.field2209); // L: 8053
-							}
-
-							var7 = var0.readBits(1); // L: 8055
-							if (var7 == 1) { // L: 8056
-								Client.field539[++Client.field538 - 1] = var3;
-							}
-						} else if (var6 == 3) { // L: 8059
-							Client.field616[++Client.field615 - 1] = var3; // L: 8060
+			int var9;
+			int var10;
+			for (var7 = 0; var7 < 4; ++var7) { // L: 5748
+				for (var8 = 0; var8 < 13; ++var8) { // L: 5749
+					for (var9 = 0; var9 < 13; ++var9) { // L: 5750
+						var10 = var1.readBits(1); // L: 5751
+						if (var10 == 1) {
+							Client.field562[var7][var8][var9] = var1.readBits(26); // L: 5752
+						} else {
+							Client.field562[var7][var8][var9] = -1; // L: 5753
 						}
 					}
 				}
 			}
 
+			var1.exportIndex(); // L: 5757
+			Varcs.field1394 = new int[var6][4]; // L: 5758
+
+			for (var7 = 0; var7 < var6; ++var7) { // L: 5759
+				for (var8 = 0; var8 < 4; ++var8) { // L: 5760
+					Varcs.field1394[var7][var8] = var1.readInt(); // L: 5761
+				}
+			}
+
+			KitDefinition.field1864 = new int[var6]; // L: 5764
+			UserComparator7.field1444 = new int[var6]; // L: 5765
+			UserComparator3.field1448 = new int[var6]; // L: 5766
+			WorldMapData_1.field2511 = new byte[var6][]; // L: 5767
+			GrandExchangeEvent.field4369 = new byte[var6][]; // L: 5768
+			var6 = 0; // L: 5769
+
+			for (var7 = 0; var7 < 4; ++var7) { // L: 5770
+				for (var8 = 0; var8 < 13; ++var8) { // L: 5771
+					for (var9 = 0; var9 < 13; ++var9) { // L: 5772
+						var10 = Client.field562[var7][var8][var9]; // L: 5773
+						if (var10 != -1) { // L: 5774
+							int var11 = var10 >> 14 & 1023; // L: 5775
+							int var12 = var10 >> 3 & 2047; // L: 5776
+							int var13 = (var11 / 8 << 8) + var12 / 8; // L: 5777
+
+							int var14;
+							for (var14 = 0; var14 < var6; ++var14) { // L: 5778
+								if (KitDefinition.field1864[var14] == var13) {
+									var13 = -1; // L: 5779
+									break; // L: 5780
+								}
+							}
+
+							if (var13 != -1) { // L: 5782
+								KitDefinition.field1864[var6] = var13; // L: 5783
+								var14 = var13 >> 8 & 255; // L: 5784
+								int var15 = var13 & 255; // L: 5785
+								UserComparator7.field1444[var6] = WorldMapSection0.field2532.getGroupId("m" + var14 + "_" + var15); // L: 5786
+								UserComparator3.field1448[var6] = WorldMapSection0.field2532.getGroupId("l" + var14 + "_" + var15); // L: 5787
+								++var6; // L: 5788
+							}
+						}
+					}
+				}
+			}
+
+			class292.method5834(var5, var3, !var16); // L: 5794
 		}
-	} // L: 8064
+
+	} // L: 5796
 }

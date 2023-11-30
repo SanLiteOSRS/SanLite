@@ -3,22 +3,23 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ew")
+@ObfuscatedName("ft")
 @Implements("ClanChannelMember")
 public class ClanChannelMember {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@Export("rank")
 	public byte rank;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 44459875
+		intValue = 55866297
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lvj;"
 	)
 	@Export("username")
 	public Username username;
@@ -26,52 +27,33 @@ public class ClanChannelMember {
 	ClanChannelMember() {
 	} // L: 10
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;III)[Lqu;",
-		garbageValue = "658098688"
+		descriptor = "(ILdt;ZI)I",
+		garbageValue = "-1206628329"
 	)
-	public static IndexedSprite[] method2867(AbstractArchive var0, int var1, int var2) {
-		if (!Ignored.method6774(var0, var1, var2)) { // L: 23
-			return null;
+	static int method3248(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? Interpreter.scriptDotWidget : HealthBar.field1302; // L: 1340
+		if (var0 == ScriptOpcodes.CC_GETX) { // L: 1341
+			Interpreter.Interpreter_intStack[++class517.Interpreter_intStackSize - 1] = var3.x; // L: 1342
+			return 1; // L: 1343
+		} else if (var0 == ScriptOpcodes.CC_GETY) { // L: 1345
+			Interpreter.Interpreter_intStack[++class517.Interpreter_intStackSize - 1] = var3.y; // L: 1346
+			return 1; // L: 1347
+		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) { // L: 1349
+			Interpreter.Interpreter_intStack[++class517.Interpreter_intStackSize - 1] = var3.width; // L: 1350
+			return 1; // L: 1351
+		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) { // L: 1353
+			Interpreter.Interpreter_intStack[++class517.Interpreter_intStackSize - 1] = var3.height; // L: 1354
+			return 1; // L: 1355
+		} else if (var0 == ScriptOpcodes.CC_GETHIDE) { // L: 1357
+			Interpreter.Interpreter_intStack[++class517.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1358
+			return 1; // L: 1359
+		} else if (var0 == ScriptOpcodes.CC_GETLAYER) { // L: 1361
+			Interpreter.Interpreter_intStack[++class517.Interpreter_intStackSize - 1] = var3.parentId; // L: 1362
+			return 1; // L: 1363
 		} else {
-			IndexedSprite[] var4 = new IndexedSprite[class456.SpriteBuffer_spriteCount]; // L: 26
-
-			for (int var5 = 0; var5 < class456.SpriteBuffer_spriteCount; ++var5) { // L: 27
-				IndexedSprite var6 = var4[var5] = new IndexedSprite(); // L: 28
-				var6.width = ModelData0.SpriteBuffer_spriteWidth; // L: 29
-				var6.height = class456.SpriteBuffer_spriteHeight; // L: 30
-				var6.xOffset = class426.SpriteBuffer_xOffsets[var5]; // L: 31
-				var6.yOffset = class142.SpriteBuffer_yOffsets[var5]; // L: 32
-				var6.subWidth = class359.SpriteBuffer_spriteWidths[var5]; // L: 33
-				var6.subHeight = class456.SpriteBuffer_spriteHeights[var5]; // L: 34
-				var6.palette = class13.SpriteBuffer_spritePalette; // L: 35
-				var6.pixels = class421.SpriteBuffer_pixels[var5]; // L: 36
-			}
-
-			class426.SpriteBuffer_xOffsets = null; // L: 39
-			class142.SpriteBuffer_yOffsets = null; // L: 40
-			class359.SpriteBuffer_spriteWidths = null; // L: 41
-			class456.SpriteBuffer_spriteHeights = null; // L: 42
-			class13.SpriteBuffer_spritePalette = null; // L: 43
-			class421.SpriteBuffer_pixels = null;
-			return var4;
+			return 2; // L: 1365
 		}
-	}
-
-	@ObfuscatedName("v")
-	static boolean method2865(long var0) {
-		return class7.method51(var0) == 2; // L: 48
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "88442168"
-	)
-	@Export("Messages_getHistorySize")
-	static int Messages_getHistorySize(int var0) {
-		ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 44
-		return var1 == null ? 0 : var1.size(); // L: 45 46
 	}
 }

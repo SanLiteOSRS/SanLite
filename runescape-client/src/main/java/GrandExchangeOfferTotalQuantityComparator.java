@@ -4,16 +4,20 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lv")
+@ObfuscatedName("oq")
 @Implements("GrandExchangeOfferTotalQuantityComparator")
 final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
-	@ObfuscatedName("bv")
-	static String field4045;
-
-	@ObfuscatedName("c")
+	@ObfuscatedName("jl")
 	@ObfuscatedSignature(
-		descriptor = "(Llj;Llj;I)I",
-		garbageValue = "1878854014"
+		descriptor = "Lpf;"
+	)
+	@Export("fontBold12")
+	static Font fontBold12;
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(Log;Log;I)I",
+		garbageValue = "-2047796467"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -25,33 +29,44 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
 	}
 
 	public int compare(Object var1, Object var2) {
-		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
+		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2); // L: 73
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "285627704"
+		descriptor = "(Lnn;B)I",
+		garbageValue = "0"
 	)
-	static void method5969(int var0) {
-		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 72
-		if (var1 != null) {
-			var1.remove(); // L: 74
+	static int method7080(Widget var0) {
+		if (var0.type != 11) { // L: 1572
+			Interpreter.Interpreter_stringStack[class127.Interpreter_stringStackSize - 1] = ""; // L: 1573
+			return 1; // L: 1574
+		} else {
+			String var1 = Interpreter.Interpreter_stringStack[--class127.Interpreter_stringStackSize]; // L: 1576
+			Interpreter.Interpreter_stringStack[++class127.Interpreter_stringStackSize - 1] = var0.method6765(var1); // L: 1577
+			return 1; // L: 1578
 		}
-	} // L: 73 75
+	}
 
-	@ObfuscatedName("gu")
+	@ObfuscatedName("lm")
 	@ObfuscatedSignature(
-		descriptor = "(Lcj;I)V",
-		garbageValue = "-1624008508"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZS)V",
+		garbageValue = "14887"
 	)
-	static final void method5970(Actor var0) {
-		int var1 = Math.max(1, var0.field1184 - Client.cycle); // L: 4162
-		int var2 = var0.field1140 * 128 + var0.field1205 * 1526988800; // L: 4163
-		int var3 = var0.field1182 * 128 + var0.field1205 * 1526988800; // L: 4164
-		var0.x += (var2 - var0.x) / var1; // L: 4165
-		var0.y += (var3 - var0.y) / var1; // L: 4166
-		var0.field1202 = 0; // L: 4167
-		var0.orientation = var0.field1186; // L: 4168
-	} // L: 4169
+	static final void method7091(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
+		if (!Client.isMenuOpen) { // L: 10351
+			if (Client.menuOptionsCount < 500) { // L: 10352
+				Client.menuActions[Client.menuOptionsCount] = var0; // L: 10353
+				Client.menuTargets[Client.menuOptionsCount] = var1; // L: 10354
+				Client.menuOpcodes[Client.menuOptionsCount] = var2; // L: 10355
+				Client.menuIdentifiers[Client.menuOptionsCount] = var3; // L: 10356
+				Client.menuArguments1[Client.menuOptionsCount] = var4; // L: 10357
+				Client.menuArguments2[Client.menuOptionsCount] = var5; // L: 10358
+				Client.field639[Client.menuOptionsCount] = var6; // L: 10359
+				Client.menuShiftClick[Client.menuOptionsCount] = var7; // L: 10360
+				++Client.menuOptionsCount; // L: 10361
+			}
+
+		}
+	} // L: 10363
 }

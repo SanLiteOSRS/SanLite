@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hj")
+@ObfuscatedName("ky")
 @Implements("VertexNormal")
 public class VertexNormal {
-	@ObfuscatedName("v")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 852204679
+		intValue = 1632182417
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -2028083131
+		intValue = -1512330425
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1173750943
+		intValue = -1705979805
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -860468825
+		intValue = -2066830911
 	)
 	@Export("magnitude")
 	int magnitude;
@@ -36,7 +36,7 @@ public class VertexNormal {
 	} // L: 9
 
 	@ObfuscatedSignature(
-		descriptor = "(Lhj;)V"
+		descriptor = "(Lky;)V"
 	)
 	VertexNormal(VertexNormal var1) {
 		this.x = var1.x; // L: 12
@@ -45,62 +45,59 @@ public class VertexNormal {
 		this.magnitude = var1.magnitude; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "886166360"
+		descriptor = "(Lol;B)V",
+		garbageValue = "-54"
 	)
-	public static boolean method4528(int var0) {
-		return var0 >= 0 && var0 < 112 ? KeyHandler.field136[var0] : false;
-	}
+	public static void method5701(AbstractArchive var0) {
+		ParamComposition.ParamDefinition_archive = var0; // L: 21
+	} // L: 22
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "([BIILgg;[Lgv;I)V",
-		garbageValue = "-1413330538"
+		descriptor = "(Lol;IIB)[Luz;",
+		garbageValue = "-73"
 	)
-	static final void method4527(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
-		Buffer var5 = new Buffer(var0); // L: 228
-		int var6 = -1; // L: 229
+	public static SpritePixels[] method5702(AbstractArchive var0, int var1, int var2) {
+		byte[] var4 = var0.takeFile(var1, var2); // L: 61
+		boolean var3;
+		if (var4 == null) { // L: 62
+			var3 = false; // L: 63
+		} else {
+			class162.SpriteBuffer_decode(var4); // L: 66
+			var3 = true; // L: 67
+		}
 
-		while (true) {
-			int var7 = var5.method7770(); // L: 231
-			if (var7 == 0) { // L: 232
-				return; // L: 256
-			}
+		if (!var3) { // L: 69
+			return null;
+		} else {
+			SpritePixels[] var5 = new SpritePixels[class541.SpriteBuffer_spriteCount]; // L: 72
 
-			var6 += var7; // L: 233
-			int var8 = 0; // L: 234
+			for (int var6 = 0; var6 < class541.SpriteBuffer_spriteCount; ++var6) { // L: 73
+				SpritePixels var7 = var5[var6] = new SpritePixels(); // L: 74
+				var7.width = class541.SpriteBuffer_spriteWidth; // L: 75
+				var7.height = GrandExchangeOfferWorldComparator.SpriteBuffer_spriteHeight; // L: 76
+				var7.xOffset = class541.SpriteBuffer_xOffsets[var6]; // L: 77
+				var7.yOffset = class541.SpriteBuffer_yOffsets[var6]; // L: 78
+				var7.subWidth = class541.SpriteBuffer_spriteWidths[var6]; // L: 79
+				var7.subHeight = class520.SpriteBuffer_spriteHeights[var6]; // L: 80
+				int var8 = var7.subHeight * var7.subWidth; // L: 81
+				byte[] var9 = class396.SpriteBuffer_pixels[var6]; // L: 82
+				var7.pixels = new int[var8]; // L: 83
 
-			while (true) {
-				int var9 = var5.readUShortSmart(); // L: 236
-				if (var9 == 0) { // L: 237
-					break;
-				}
-
-				var8 += var9 - 1; // L: 238
-				int var10 = var8 & 63; // L: 239
-				int var11 = var8 >> 6 & 63; // L: 240
-				int var12 = var8 >> 12; // L: 241
-				int var13 = var5.readUnsignedByte(); // L: 242
-				int var14 = var13 >> 2; // L: 243
-				int var15 = var13 & 3; // L: 244
-				int var16 = var11 + var1; // L: 245
-				int var17 = var10 + var2; // L: 246
-				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) { // L: 247
-					int var18 = var12; // L: 248
-					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) { // L: 249
-						var18 = var12 - 1;
-					}
-
-					CollisionMap var19 = null; // L: 250
-					if (var18 >= 0) { // L: 251
-						var19 = var4[var18];
-					}
-
-					class268.addObjects(var12, var16, var17, var6, var15, var14, var3, var19); // L: 252
+				for (int var10 = 0; var10 < var8; ++var10) { // L: 84
+					var7.pixels[var10] = class541.SpriteBuffer_spritePalette[var9[var10] & 255];
 				}
 			}
+
+			class541.SpriteBuffer_xOffsets = null; // L: 87
+			class541.SpriteBuffer_yOffsets = null; // L: 88
+			class541.SpriteBuffer_spriteWidths = null; // L: 89
+			class520.SpriteBuffer_spriteHeights = null; // L: 90
+			class541.SpriteBuffer_spritePalette = null; // L: 91
+			class396.SpriteBuffer_pixels = null; // L: 92
+			return var5; // L: 96
 		}
 	}
 }
