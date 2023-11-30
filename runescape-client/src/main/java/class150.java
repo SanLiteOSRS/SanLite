@@ -3,127 +3,147 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
-public class class150 extends class128 {
-	@ObfuscatedName("rf")
-	@ObfuscatedSignature(
-		descriptor = "Lex;"
-	)
-	@Export("guestClanChannel")
-	static ClanChannel guestClanChannel;
-	@ObfuscatedName("c")
+@ObfuscatedName("fz")
+public class class150 extends class160 {
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		longValue = -8713006525766535939L
+		intValue = -1503644171
 	)
-	long field1707;
-	@ObfuscatedName("v")
-	String field1708;
+	int field1674;
+	@ObfuscatedName("ah")
+	byte field1675;
+	@ObfuscatedName("ar")
+	@ObfuscatedGetter(
+		intValue = -1825811703
+	)
+	int field1672;
+	@ObfuscatedName("ao")
+	String field1673;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lgi;"
 	)
-	final class131 this$0;
+	final class161 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lgi;)V"
 	)
-	class150(class131 var1) {
+	class150(class161 var1) {
 		this.this$0 = var1;
-		this.field1707 = -1L; // L: 194
-		this.field1708 = null; // L: 195
-	} // L: 197
+		this.field1674 = -1; // L: 103
+	} // L: 108
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Luj;I)V",
+		garbageValue = "1810249387"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 200
-			--var1.offset; // L: 201
-			this.field1707 = var1.readLong(); // L: 202
+	void vmethod3497(Buffer var1) {
+		this.field1674 = var1.readUnsignedShort(); // L: 111
+		this.field1675 = var1.readByte(); // L: 112
+		this.field1672 = var1.readUnsignedShort(); // L: 113
+		var1.readLong(); // L: 114
+		this.field1673 = var1.readStringCp1252NullTerminated(); // L: 115
+	} // L: 116
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(Lgn;B)V",
+		garbageValue = "-75"
+	)
+	void vmethod3501(ClanChannel var1) {
+		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1674); // L: 119
+		var2.rank = this.field1675; // L: 120
+		var2.world = this.field1672; // L: 121
+		var2.username = new Username(this.field1673); // L: 122
+	} // L: 123
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1818675777"
+	)
+	static void method3281() {
+		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) { // L: 329
+			Login.currentLoginField = 1; // L: 330
+		} else {
+			Login.currentLoginField = 0; // L: 333
 		}
 
-		this.field1708 = var1.readStringCp1252NullTerminatedOrNull(); // L: 204
-	} // L: 205
+	} // L: 335
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Ljava/lang/CharSequence;I)I",
+		garbageValue = "2073691331"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2959(this.field1707, this.field1708); // L: 208
-	} // L: 209
+	@Export("hashString")
+	public static int hashString(CharSequence var0) {
+		int var1 = var0.length(); // L: 133
+		int var2 = 0; // L: 134
 
-	@ObfuscatedName("iv")
+		for (int var3 = 0; var3 < var1; ++var3) { // L: 135
+			var2 = (var2 << 5) - var2 + class137.charToByteCp1252(var0.charAt(var3));
+		}
+
+		return var2; // L: 136
+	}
+
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-22445945"
+		descriptor = "([BIII)Z",
+		garbageValue = "-851651370"
 	)
-	static final void method3135(int var0, int var1) {
-		if (Client.menuOptionsCount >= 2 || Client.isItemSelected != 0 || Client.isSpellSelected) { // L: 8437
-			if (Client.showMouseOverText) { // L: 8438
-				int var2 = class240.method5005(); // L: 8439
-				String var3;
-				if (Client.isItemSelected == 1 && Client.menuOptionsCount < 2) { // L: 8441
-					var3 = "Use" + " " + Client.selectedItemName + " " + "->";
-				} else if (Client.isSpellSelected && Client.menuOptionsCount < 2) { // L: 8442
-					var3 = Client.selectedSpellActionName + " " + Client.selectedSpellName + " " + "->";
-				} else {
-					String var4;
-					if (var2 < 0) { // L: 8446
-						var4 = ""; // L: 8447
-					} else if (Client.menuTargets[var2].length() > 0) { // L: 8450
-						var4 = Client.menuActions[var2] + " " + Client.menuTargets[var2];
-					} else {
-						var4 = Client.menuActions[var2]; // L: 8451
+	static final boolean method3283(byte[] var0, int var1, int var2) {
+		boolean var3 = true; // L: 214
+		Buffer var4 = new Buffer(var0); // L: 215
+		int var5 = -1; // L: 216
+
+		label68:
+		while (true) {
+			int var6 = var4.method9278(); // L: 218
+			if (var6 == 0) { // L: 219
+				return var3; // L: 250
+			}
+
+			var5 += var6; // L: 220
+			int var7 = 0; // L: 221
+			boolean var8 = false; // L: 222
+
+			while (true) {
+				int var9;
+				while (!var8) { // L: 224
+					var9 = var4.readUShortSmart(); // L: 230
+					if (var9 == 0) { // L: 231
+						continue label68;
 					}
 
-					var3 = var4; // L: 8453
+					var7 += var9 - 1; // L: 232
+					int var10 = var7 & 63; // L: 233
+					int var11 = var7 >> 6 & 63; // L: 234
+					int var12 = var4.readUnsignedByte() >> 2; // L: 235
+					int var13 = var11 + var1; // L: 236
+					int var14 = var10 + var2; // L: 237
+					if (var13 > 0 && var14 > 0 && var13 < 103 && var14 < 103) { // L: 238
+						ObjectComposition var15 = WorldMapSection2.getObjectDefinition(var5); // L: 239
+						if (var12 != 22 || !Client.isLowDetail || var15.int1 != 0 || var15.interactType == 1 || var15.boolean2) { // L: 240
+							if (!var15.needsModelFiles()) { // L: 241
+								++Client.field521; // L: 242
+								var3 = false; // L: 243
+							}
+
+							var8 = true; // L: 245
+						}
+					}
 				}
 
-				if (Client.menuOptionsCount > 2) { // L: 8455
-					var3 = var3 + class122.colorStartTag(16777215) + " " + '/' + " " + (Client.menuOptionsCount - 2) + " more options";
+				var9 = var4.readUShortSmart(); // L: 225
+				if (var9 == 0) { // L: 226
+					break;
 				}
 
-				TileItem.fontBold12.drawRandomAlphaAndSpacing(var3, var0 + 4, var1 + 15, 16777215, 0, Client.cycle / 1000); // L: 8456
+				var4.readUnsignedByte(); // L: 227
 			}
 		}
-	} // L: 8457
-
-	@ObfuscatedName("jy")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;Lgs;IIZB)V",
-		garbageValue = "119"
-	)
-	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
-		String[] var5 = var1.inventoryActions; // L: 10868
-		byte var6 = -1; // L: 10869
-		String var7 = null; // L: 10870
-		if (var5 != null && var5[var3] != null) { // L: 10871
-			if (var3 == 0) { // L: 10872
-				var6 = 33;
-			} else if (var3 == 1) { // L: 10873
-				var6 = 34;
-			} else if (var3 == 2) {
-				var6 = 35; // L: 10874
-			} else if (var3 == 3) { // L: 10875
-				var6 = 36;
-			} else {
-				var6 = 37; // L: 10876
-			}
-
-			var7 = var5[var3]; // L: 10877
-		} else if (var3 == 4) { // L: 10880
-			var6 = 37; // L: 10881
-			var7 = "Drop"; // L: 10882
-		}
-
-		if (var6 != -1 && var7 != null) { // L: 10885
-			class268.insertMenuItem(var7, class122.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4); // L: 10886
-		}
-
-	} // L: 10888
+	}
 }

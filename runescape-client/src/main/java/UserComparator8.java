@@ -3,10 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dm")
+@ObfuscatedName("eh")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class UserComparator8 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "1682683031"
+		descriptor = "(Lrh;Lrh;B)I",
+		garbageValue = "118"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,55 +36,49 @@ public class UserComparator8 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 25
 	}
 
-	@ObfuscatedName("if")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "6"
+		descriptor = "(S)[Lfw;",
+		garbageValue = "226"
 	)
-	static void method2571(int var0, int var1) {
-		int var2 = TileItem.fontBold12.stringWidth("Choose Option"); // L: 8663
+	static class140[] method2955() {
+		return new class140[]{class140.field1617, class140.field1608, class140.field1618, class140.field1610, class140.field1611, class140.field1613, class140.field1607, class140.field1614, class140.field1615}; // L: 97
+	}
 
-		int var3;
-		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) { // L: 8664
-			Font var7 = TileItem.fontBold12; // L: 8665
-			String var8;
-			if (var3 < 0) { // L: 8668
-				var8 = ""; // L: 8669
-			} else if (Client.menuTargets[var3].length() > 0) { // L: 8672
-				var8 = Client.menuActions[var3] + " " + Client.menuTargets[var3];
-			} else {
-				var8 = Client.menuActions[var3]; // L: 8673
-			}
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(Lol;Lol;I)V",
+		garbageValue = "-1842959884"
+	)
+	public static void method2948(AbstractArchive var0, AbstractArchive var1) {
+		SpotAnimationDefinition.SpotAnimationDefinition_archive = var0; // L: 32
+		SpotAnimationDefinition.field1998 = var1; // L: 33
+	} // L: 34
 
-			int var6 = var7.stringWidth(var8); // L: 8675
-			if (var6 > var2) { // L: 8676
-				var2 = var6;
-			}
+	@ObfuscatedName("nq")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)Ldc;",
+		garbageValue = "853776255"
+	)
+	static final InterfaceParent method2954(int var0, int var1, int var2) {
+		InterfaceParent var3 = new InterfaceParent(); // L: 12475
+		var3.group = var1; // L: 12476
+		var3.type = var2; // L: 12477
+		Client.interfaceParents.put(var3, (long)var0); // L: 12478
+		class130.method3095(var1); // L: 12479
+		Widget var4 = HealthBarDefinition.field1877.method6285(var0); // L: 12480
+		class159.invalidateWidget(var4); // L: 12481
+		if (Client.meslayerContinueWidget != null) { // L: 12482
+			class159.invalidateWidget(Client.meslayerContinueWidget); // L: 12483
+			Client.meslayerContinueWidget = null; // L: 12484
 		}
 
-		var2 += 8; // L: 8678
-		var3 = Client.menuOptionsCount * 15 + 22; // L: 8679
-		int var4 = var0 - var2 / 2; // L: 8680
-		if (var2 + var4 > Script.canvasWidth) { // L: 8681
-			var4 = Script.canvasWidth - var2;
+		class132.revalidateWidgetScroll(HealthBarDefinition.field1877.field3568[var0 >> 16], var4, false); // L: 12486
+		class106.method2778(var1); // L: 12487
+		if (Client.rootInterface != -1) { // L: 12488
+			class514.method9131(Client.rootInterface, 1);
 		}
 
-		if (var4 < 0) { // L: 8682
-			var4 = 0;
-		}
-
-		int var5 = var1; // L: 8683
-		if (var3 + var1 > class78.canvasHeight) { // L: 8684
-			var5 = class78.canvasHeight - var3;
-		}
-
-		if (var5 < 0) { // L: 8685
-			var5 = 0;
-		}
-
-		UserComparator3.menuX = var4; // L: 8686
-		ViewportMouse.menuY = var5; // L: 8687
-		Language.menuWidth = var2; // L: 8688
-		Player.menuHeight = Client.menuOptionsCount * 15 + 22; // L: 8689
-	} // L: 8690
+		return var3; // L: 12489
+	}
 }
