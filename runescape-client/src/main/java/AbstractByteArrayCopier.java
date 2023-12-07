@@ -3,38 +3,40 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jb")
+@ObfuscatedName("np")
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
-	@ObfuscatedName("f")
+	@ObfuscatedName("kn")
 	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
+		descriptor = "[Luz;"
 	)
-	@Export("runesSprite")
-	static IndexedSprite[] runesSprite;
-	@ObfuscatedName("ep")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive13")
-	static Archive archive13;
+	static SpritePixels[] field3816;
 
 	AbstractByteArrayCopier() {
 	} // L: 4
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(B)[B",
-		garbageValue = "-87"
+		garbageValue = "5"
 	)
 	@Export("get")
 	abstract byte[] get();
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "2067022612"
+		descriptor = "([BB)V",
+		garbageValue = "67"
 	)
 	@Export("set")
 	abstract void set(byte[] var1);
+
+	@ObfuscatedName("jn")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-880488507"
+	)
+	static boolean method6822() {
+		return (Client.drawPlayerNames & 1) != 0; // L: 5184
+	}
 }

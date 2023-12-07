@@ -2,31 +2,21 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Hashtable;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.DefaultTlsClient;
 import org.bouncycastle.crypto.tls.TlsAuthentication;
 
-@ObfuscatedName("r")
+@ObfuscatedName("as")
 class class13 extends DefaultTlsClient {
-	@ObfuscatedName("w")
-	@Export("SpriteBuffer_spritePalette")
-	public static int[] SpriteBuffer_spritePalette;
-	@ObfuscatedName("iu")
-	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
-	)
-	@Export("mapSceneSprites")
-	static IndexedSprite[] mapSceneSprites;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lz;"
+		descriptor = "Lax;"
 	)
 	final class12 this$1;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lz;)V"
+		descriptor = "(Lax;)V"
 	)
 	class13(class12 var1) {
 		this.this$1 = var1; // L: 285
@@ -53,4 +43,36 @@ class class13 extends DefaultTlsClient {
 	public TlsAuthentication getAuthentication() throws IOException {
 		return new class11(this); // L: 306
 	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Lnv;",
+		garbageValue = "173861677"
+	)
+	public static GameBuild[] method173() {
+		return new GameBuild[]{GameBuild.BUILDLIVE, GameBuild.LIVE, GameBuild.RC, GameBuild.WIP}; // L: 13
+	}
+
+	@ObfuscatedName("hy")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "20"
+	)
+	static final void method177() {
+		Client.packetWriter.close(); // L: 2866
+		ObjectSound.method1980(); // L: 2867
+		class36.scene.clear(); // L: 2868
+
+		for (int var0 = 0; var0 < 4; ++var0) { // L: 2869
+			Client.collisionMaps[var0].clear();
+		}
+
+		Client.field725.method4281(); // L: 2870
+		System.gc(); // L: 2871
+		WorldMapManager.method4769(0, 0); // L: 2872
+		class472.method8564(); // L: 2873
+		Client.playingJingle = false; // L: 2874
+		WorldMapSectionType.method4888(); // L: 2875
+		WorldMapSection2.method4516(10); // L: 2876
+	} // L: 2877
 }
