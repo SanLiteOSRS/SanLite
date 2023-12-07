@@ -3,12 +3,12 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lr")
+@ObfuscatedName("od")
 @Implements("DualNodeDeque")
 public final class DualNodeDeque {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Loo;"
+		descriptor = "Lsn;"
 	)
 	@Export("sentinel")
 	DualNode sentinel;
@@ -19,12 +19,11 @@ public final class DualNodeDeque {
 		this.sentinel.nextDual = this.sentinel; // L: 10
 	} // L: 11
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Loo;)V"
+		descriptor = "(Lsn;)V"
 	)
-	@Export("addFirst")
-	public void addFirst(DualNode var1) {
+	public void method7215(DualNode var1) {
 		if (var1.nextDual != null) { // L: 14
 			var1.removeDual();
 		}
@@ -35,12 +34,11 @@ public final class DualNodeDeque {
 		var1.previousDual.nextDual = var1; // L: 18
 	} // L: 19
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Loo;)V"
+		descriptor = "(Lsn;)V"
 	)
-	@Export("addLast")
-	public void addLast(DualNode var1) {
+	public void method7213(DualNode var1) {
 		if (var1.nextDual != null) { // L: 22
 			var1.removeDual();
 		}
@@ -51,9 +49,9 @@ public final class DualNodeDeque {
 		var1.previousDual.nextDual = var1; // L: 26
 	} // L: 27
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "()Loo;"
+		descriptor = "()Lsn;"
 	)
 	@Export("removeLast")
 	public DualNode removeLast() {

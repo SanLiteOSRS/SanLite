@@ -1,79 +1,66 @@
-import net.runelite.mapping.Export;
+import java.util.Collections;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import netscape.javascript.JSObject;
 
-@ObfuscatedName("j")
+@ObfuscatedName("ab")
 public final class class4 {
-	@ObfuscatedName("q")
+	@ObfuscatedName("iy")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lro;"
 	)
-	@Export("HitSplatDefinition_fontsArchive")
-	public static AbstractArchive HitSplatDefinition_fontsArchive;
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	@Export("titleboxSprite")
-	static IndexedSprite titleboxSprite;
-	@ObfuscatedName("ee")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive20")
-	static Archive archive20;
+	static AbstractSocket field4;
 
-	@ObfuscatedName("hw")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1151585250"
+		descriptor = "([I[II)V",
+		garbageValue = "1584240093"
 	)
-	static final void method11() {
-		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 7783 7784 7790
-			if (var0.hitpoints == -1) { // L: 7785
-				var0.delay = 0; // L: 7786
-				class151.method3146(var0); // L: 7787
-			} else {
-				var0.remove(); // L: 7789
-			}
-		}
+	public static void method20(int[] var0, int[] var1) {
+		if (var0 != null && var1 != null) { // L: 44
+			Clock.ByteArrayPool_alternativeSizes = var0; // L: 51
+			class267.ByteArrayPool_altSizeArrayCounts = new int[var0.length]; // L: 52
+			class1.ByteArrayPool_arrays = new byte[var0.length][][]; // L: 53
 
-	} // L: 7792
-
-	@ObfuscatedName("ii")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIII)V",
-		garbageValue = "-1285432829"
-	)
-	@Export("insertMenuItemNoShift")
-	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
-		class268.insertMenuItem(var0, var1, var2, var3, var4, var5, false); // L: 9700
-	} // L: 9701
-
-	@ObfuscatedName("ly")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-2033528269"
-	)
-	static void method12(String var0) {
-		GrandExchangeOfferTotalQuantityComparator.field4045 = var0; // L: 12343
-
-		try {
-			String var1 = class353.client.getParameter(Integer.toString(18)); // L: 12345
-			String var2 = class353.client.getParameter(Integer.toString(13)); // L: 12346
-			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2; // L: 12347
-			if (var0.length() == 0) { // L: 12348
-				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
-			} else {
-				var3 = var3 + "; Expires=" + NPC.method2382(class115.method2692() + 94608000000L) + "; Max-Age=" + 94608000L; // L: 12349
+			for (int var2 = 0; var2 < Clock.ByteArrayPool_alternativeSizes.length; ++var2) { // L: 54
+				class1.ByteArrayPool_arrays[var2] = new byte[var1[var2]][]; // L: 55
+				ByteArrayPool.field4590.add(var0[var2]); // L: 56
 			}
 
-			Client var4 = class353.client; // L: 12350
-			String var5 = "document.cookie=\"" + var3 + "\""; // L: 12351
-			JSObject.getWindow(var4).eval(var5); // L: 12354
-		} catch (Throwable var6) { // L: 12357
+			Collections.sort(ByteArrayPool.field4590); // L: 58
+		} else {
+			Clock.ByteArrayPool_alternativeSizes = null; // L: 45
+			class267.ByteArrayPool_altSizeArrayCounts = null; // L: 46
+			class1.ByteArrayPool_arrays = null; // L: 47
+			Renderable.method5509(); // L: 48
 		}
+	} // L: 49 59
 
-	} // L: 12358
+	@ObfuscatedName("nk")
+	@ObfuscatedSignature(
+		descriptor = "(IIZB)V",
+		garbageValue = "0"
+	)
+	static final void method19(int var0, int var1, boolean var2) {
+		if (Client.currentClanChannels[var0] != null) { // L: 12735
+			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method3479()) { // L: 12736
+				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1); // L: 12737
+				PacketBufferNode var4 = class113.getPacketBufferNode(ClientPacket.field3129, Client.packetWriter.isaacCipher); // L: 12738
+				var4.packetBuffer.writeByte(4 + ClanChannel.stringCp1252NullTerminatedByteSize(var3.username.getName())); // L: 12739
+				var4.packetBuffer.writeByte(var0); // L: 12740
+				var4.packetBuffer.writeShort(var1); // L: 12741
+				var4.packetBuffer.writeBoolean(var2); // L: 12742
+				var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName()); // L: 12743
+				Client.packetWriter.addNode(var4); // L: 12744
+			}
+		}
+	} // L: 12745
+
+	@ObfuscatedName("ov")
+	@ObfuscatedSignature(
+		descriptor = "(S)Z",
+		garbageValue = "2291"
+	)
+	static boolean method21() {
+		return WorldMapIcon_1.clientPreferences.method2562() >= Client.field488; // L: 12936
+	}
 }
