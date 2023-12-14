@@ -2,61 +2,48 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ef")
-public class class152 extends class128 {
-	@ObfuscatedName("c")
+@ObfuscatedName("fu")
+public class class152 extends class160 {
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 557898497
+		intValue = 314823731
 	)
-	int field1715;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		longValue = -6189068569361167089L
-	)
-	long field1716;
+	int field1684;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lgi;"
 	)
-	final class131 this$0;
+	final class161 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lgi;)V"
 	)
-	class152(class131 var1) {
-		this.this$0 = var1; // L: 307
-	}
+	class152(class161 var1) {
+		this.this$0 = var1;
+		this.field1684 = -1; // L: 84
+	} // L: 86
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Luj;I)V",
+		garbageValue = "1810249387"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1715 = var1.readInt(); // L: 310
-		this.field1716 = var1.readLong(); // L: 311
-	} // L: 312
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2967(this.field1715, this.field1716); // L: 315
-	} // L: 316
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "2011587938"
-	)
-	static int method3147(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 14
-		if (var2 == null) { // L: 15
-			return -1;
-		} else {
-			return var1 >= 0 && var1 < var2.ids.length ? var2.ids[var1] : -1; // L: 16 17
+	void vmethod3497(Buffer var1) {
+		this.field1684 = var1.readUnsignedShort(); // L: 89
+		var1.readUnsignedByte(); // L: 90
+		if (var1.readUnsignedByte() != 255) { // L: 91
+			--var1.offset; // L: 92
+			var1.readLong(); // L: 93
 		}
-	}
+
+	} // L: 95
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(Lgn;B)V",
+		garbageValue = "-75"
+	)
+	void vmethod3501(ClanChannel var1) {
+		var1.removeMember(this.field1684); // L: 98
+	} // L: 99
 }

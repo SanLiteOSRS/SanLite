@@ -1,115 +1,81 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fn")
+@ObfuscatedName("gi")
 public class class161 {
-	@ObfuscatedName("le")
-	@ObfuscatedSignature(
-		descriptor = "Lkb;"
-	)
-	@Export("hoveredItemContainer")
-	static Widget hoveredItemContainer;
-	@ObfuscatedName("f")
-	public String field1775;
-	@ObfuscatedName("j")
-	public float[] field1776;
-	@ObfuscatedName("e")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 1972368239
+		longValue = -3329713020240726457L
 	)
-	public int field1773;
-	@ObfuscatedName("g")
+	long field1756;
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -1667706695
+		longValue = 756066404053775467L
 	)
-	public int field1777;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -7571905
-	)
-	public int field1779;
-	// $FF: synthetic field
+	public long field1752;
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Les;"
+		descriptor = "Lpm;"
 	)
-	final class155 this$0;
+	IterableNodeDeque field1753;
 
 	@ObfuscatedSignature(
-		descriptor = "(Les;)V"
+		descriptor = "(Luj;)V"
 	)
-	class161(class155 var1) {
-		this.this$0 = var1;
-		this.field1776 = new float[4]; // L: 336
-		this.field1773 = 1; // L: 337
-		this.field1777 = 1; // L: 338
-		this.field1779 = 0; // L: 339
-	} // L: 341
+	public class161(Buffer var1) {
+		this.field1752 = -1L; // L: 10
+		this.field1753 = new IterableNodeDeque(); // L: 11
+		this.method3436(var1); // L: 19
+	} // L: 20
 
-	@ObfuscatedName("jb")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "-68"
+		descriptor = "(Luj;B)V",
+		garbageValue = "-62"
 	)
-	static boolean method3289(int var0) {
-		for (int var1 = 0; var1 < Client.field719; ++var1) { // L: 11574
-			if (Client.field721[var1] == var0) { // L: 11575
-				return true;
-			}
-		}
+	void method3436(Buffer var1) {
+		this.field1756 = var1.readLong(); // L: 23
+		this.field1752 = var1.readLong(); // L: 24
 
-		return false; // L: 11577
-	}
-
-	@ObfuscatedName("js")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;III)V",
-		garbageValue = "1253772800"
-	)
-	@Export("clickWidget")
-	static final void clickWidget(Widget var0, int var1, int var2) {
-		if (Client.clickedWidget == null && !Client.isMenuOpen) { // L: 11616
-			if (var0 != null) { // L: 11618
-				Widget var4 = UserComparator10.method2610(var0); // L: 11621
-				if (var4 == null) { // L: 11622
-					var4 = var0.parent;
+		for (int var2 = var1.readUnsignedByte(); var2 != 0; var2 = var1.readUnsignedByte()) { // L: 25 26 36
+			Object var3;
+			if (var2 == 1) { // L: 28
+				var3 = new class156(this);
+			} else if (var2 == 4) { // L: 29
+				var3 = new class167(this);
+			} else if (var2 == 3) { // L: 30
+				var3 = new class152(this);
+			} else if (var2 == 2) { // L: 31
+				var3 = new class150(this);
+			} else {
+				if (var2 != 5) { // L: 32
+					throw new RuntimeException(""); // L: 33
 				}
 
-				if (var4 != null) { // L: 11625
-					Client.clickedWidget = var0; // L: 11629
-					var4 = UserComparator10.method2610(var0); // L: 11632
-					if (var4 == null) { // L: 11633
-						var4 = var0.parent;
-					}
-
-					Client.clickedWidgetParent = var4; // L: 11636
-					Client.widgetClickX = var1; // L: 11637
-					Client.widgetClickY = var2; // L: 11638
-					Timer.widgetDragDuration = 0; // L: 11639
-					Client.isDraggingWidget = false; // L: 11640
-					int var5 = class240.method5005(); // L: 11641
-					if (var5 != -1) { // L: 11642
-						WorldMapLabelSize.method4566(var5);
-					}
-
-					return; // L: 11643
-				}
+				var3 = new class157(this);
 			}
 
+			((class160)var3).vmethod3497(var1); // L: 34
+			this.field1753.addFirst((Node)var3); // L: 35
 		}
-	} // L: 11627
 
-	@ObfuscatedName("ky")
+	} // L: 38
+
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-21"
+		descriptor = "(Lgn;I)V",
+		garbageValue = "1259262891"
 	)
-	static final void method3287() {
-		for (int var0 = 0; var0 < Players.Players_count; ++var0) { // L: 12208
-			Player var1 = Client.players[Players.Players_indices[var0]]; // L: 12209
-			var1.clearIsInFriendsChat(); // L: 12210
-		}
+	public void method3437(ClanChannel var1) {
+		if (var1.key == this.field1756 && this.field1752 == var1.field1772) { // L: 41
+			for (class160 var2 = (class160)this.field1753.last(); var2 != null; var2 = (class160)this.field1753.previous()) { // L: 44
+				var2.vmethod3501(var1); // L: 45
+			}
 
-	} // L: 12212
+			++var1.field1772; // L: 47
+		} else {
+			throw new RuntimeException(""); // L: 42
+		}
+	} // L: 48
 }

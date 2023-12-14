@@ -1,51 +1,48 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fu")
-public class class174 {
-	@ObfuscatedName("i")
+@ObfuscatedName("gy")
+public class class174 extends DualNode {
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lct;"
+		descriptor = "Llk;"
 	)
-	@Export("World_request")
-	static UrlRequest World_request;
-	@ObfuscatedName("br")
-	@ObfuscatedGetter(
-		intValue = 1359206661
-	)
-	static int field1891;
-
-	@ObfuscatedName("c")
+	@Export("archive7")
+	static EvictingDualNodeHashTable archive7;
+	@ObfuscatedName("op")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgf;",
-		garbageValue = "-64"
+		descriptor = "Lcb;"
 	)
-	@Export("getParamDefinition")
-	public static ParamComposition getParamDefinition(int var0) {
-		ParamComposition var1 = (ParamComposition)ParamComposition.ParamComposition_cached.get((long)var0); // L: 21
-		if (var1 != null) { // L: 22
-			return var1;
-		} else {
-			byte[] var2 = ParamComposition.ParamDefinition_archive.takeFile(11, var0); // L: 23
-			var1 = new ParamComposition(); // L: 24
-			if (var2 != null) { // L: 25
-				var1.decode(new Buffer(var2));
-			}
+	@Export("tempMenuAction")
+	static MenuAction tempMenuAction;
 
-			var1.postDecode(); // L: 26
-			ParamComposition.ParamComposition_cached.put(var1, (long)var0); // L: 27
-			return var1; // L: 28
-		}
+	static {
+		archive7 = new EvictingDualNodeHashTable(64); // L: 7
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "16"
+		descriptor = "(II)I",
+		garbageValue = "-1688673442"
 	)
-	static final boolean method3458() {
-		return ViewportMouse.ViewportMouse_isInViewport; // L: 99
+	public static int method3539(int var0) {
+		return class476.field4817[var0 & 16383]; // L: 28
+	}
+
+	@ObfuscatedName("bn")
+	@ObfuscatedSignature(
+		descriptor = "([BIII)I",
+		garbageValue = "-2127919093"
+	)
+	public static int method3540(byte[] var0, int var1, int var2) {
+		int var3 = -1; // L: 47
+
+		for (int var4 = var1; var4 < var2; ++var4) { // L: 48
+			var3 = var3 >>> 8 ^ Buffer.crc32Table[(var3 ^ var0[var4]) & 255]; // L: 49
+		}
+
+		var3 = ~var3; // L: 51
+		return var3; // L: 52
 	}
 }
