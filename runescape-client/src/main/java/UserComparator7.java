@@ -3,15 +3,17 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dd")
+@ObfuscatedName("ei")
 @Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
-	@ObfuscatedName("el")
+	@ObfuscatedName("fw")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Loh;"
 	)
-	static Archive field1383;
-	@ObfuscatedName("c")
+	static Archive field1441;
+	@ObfuscatedName("jd")
+	static int[] field1444;
+	@ObfuscatedName("at")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -19,10 +21,10 @@ public class UserComparator7 extends AbstractUserComparator {
 		this.reversed = var1; // L: 10
 	} // L: 11
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "-1964984147"
+		descriptor = "(Lrh;Lrh;I)I",
+		garbageValue = "1768375186"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -37,35 +39,33 @@ public class UserComparator7 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 21
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfs;",
-		garbageValue = "-125"
+		descriptor = "(IB)V",
+		garbageValue = "-90"
 	)
-	@Export("getEnum")
-	public static EnumComposition getEnum(int var0) {
-		EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0); // L: 29
-		if (var1 != null) { // L: 30
-			return var1;
-		} else {
-			byte[] var2 = EnumComposition.EnumDefinition_archive.takeFile(8, var0); // L: 31
-			var1 = new EnumComposition(); // L: 32
-			if (var2 != null) { // L: 33
-				var1.decode(new Buffer(var2));
-			}
-
-			EnumComposition.EnumDefinition_cached.put(var1, (long)var0); // L: 34
-			return var1; // L: 35
+	static void method2966(int var0) {
+		if (var0 != Login.loginIndex) { // L: 2266
+			Login.loginIndex = var0; // L: 2267
 		}
-	}
+	} // L: 2268
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ol")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lbr;",
-		garbageValue = "260622968"
+		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "-1939309328"
 	)
-	@Export("Messages_getMessage")
-	static Message Messages_getMessage(int var0) {
-		return (Message)Messages.Messages_hashTable.get((long)var0); // L: 40
+	static String method2959(String var0) {
+		PlayerType[] var1 = class320.PlayerType_values(); // L: 12907
+
+		for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12908
+			PlayerType var3 = var1[var2]; // L: 12909
+			if (var3.modIcon != -1 && var0.startsWith(FloorUnderlayDefinition.method3799(var3.modIcon))) { // L: 12911 12912
+				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length()); // L: 12913
+				break;
+			}
+		}
+
+		return var0; // L: 12920
 	}
 }
