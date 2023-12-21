@@ -3,26 +3,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ix")
+@ObfuscatedName("js")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 1217125903
+		intValue = -1757511385
 	)
 	@Export("objectDefinitionId")
 	final int objectDefinitionId;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -1822794685
+		intValue = -982756641
 	)
 	@Export("decoration")
 	final int decoration;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -1636858953
+		intValue = 805230653
 	)
 	@Export("rotation")
 	final int rotation;
@@ -33,64 +32,89 @@ public class WorldMapDecoration {
 		this.rotation = var3; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-2049294776"
+		descriptor = "(B)Lrz;",
+		garbageValue = "55"
 	)
-	static int method4992(int var0, Script var1, boolean var2) {
-		Widget var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1322
-		if (var0 == ScriptOpcodes.IF_GETX) { // L: 1323
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.x; // L: 1324
-			return 1; // L: 1325
-		} else if (var0 == ScriptOpcodes.IF_GETY) { // L: 1327
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.y; // L: 1328
-			return 1; // L: 1329
-		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) { // L: 1331
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.width; // L: 1332
-			return 1; // L: 1333
-		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) { // L: 1335
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.height; // L: 1336
-			return 1; // L: 1337
-		} else if (var0 == ScriptOpcodes.IF_GETHIDE) { // L: 1339
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0; // L: 1340
-			return 1; // L: 1341
-		} else if (var0 == ScriptOpcodes.IF_GETLAYER) { // L: 1343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.parentId; // L: 1344
-			return 1; // L: 1345
-		} else {
-			return 2; // L: 1347
+	public static class462 method4928() {
+		synchronized(class462.field4770) { // L: 27
+			if (DirectByteArrayCopier.field3822 == 0) { // L: 28
+				return new class462();
+			} else {
+				class462.field4770[--DirectByteArrayCopier.field3822].method8457(); // L: 30
+				return class462.field4770[DirectByteArrayCopier.field3822]; // L: 31
+			}
 		}
 	}
 
-	@ObfuscatedName("ig")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-80"
-	)
-	@Export("Widget_runOnTargetLeave")
-	static void Widget_runOnTargetLeave() {
-		if (Client.isSpellSelected) { // L: 9573
-			Widget var0 = ScriptFrame.getWidgetChild(NetCache.selectedSpellWidget, Client.selectedSpellChildIndex); // L: 9574
-			if (var0 != null && var0.onTargetLeave != null) { // L: 9575
-				ScriptEvent var1 = new ScriptEvent(); // L: 9576
-				var1.widget = var0; // L: 9577
-				var1.args = var0.onTargetLeave; // L: 9578
-				WallObject.runScriptEvent(var1); // L: 9579
-			}
-
-			Client.selectedSpellItemId = -1; // L: 9581
-			Client.isSpellSelected = false; // L: 9582
-			ChatChannel.invalidateWidget(var0); // L: 9583
-		}
-	} // L: 9584
-
-	@ObfuscatedName("lp")
+	@ObfuscatedName("jz")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "1243783436"
+		garbageValue = "750324904"
 	)
-	static void method4991(int var0) {
-		Client.oculusOrbState = var0; // L: 12414
-	} // L: 12415
+	static final void method4929(int var0) {
+		int[] var1 = class102.sceneMinimapSprite.pixels; // L: 6101
+		int var2 = var1.length; // L: 6102
+
+		int var3;
+		for (var3 = 0; var3 < var2; ++var3) { // L: 6103
+			var1[var3] = 0;
+		}
+
+		int var4;
+		int var5;
+		for (var3 = 1; var3 < 103; ++var3) { // L: 6104
+			var4 = (103 - var3) * 2048 + 24628; // L: 6105
+
+			for (var5 = 1; var5 < 103; ++var5) { // L: 6106
+				if ((Tiles.Tiles_renderFlags[var0][var5][var3] & 24) == 0) { // L: 6107
+					class36.scene.drawTileMinimap(var1, var4, 512, var0, var5, var3);
+				}
+
+				if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var5][var3] & 8) != 0) { // L: 6108
+					class36.scene.drawTileMinimap(var1, var4, 512, var0 + 1, var5, var3);
+				}
+
+				var4 += 4; // L: 6109
+			}
+		}
+
+		var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10); // L: 6112
+		var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16; // L: 6113
+		class102.sceneMinimapSprite.setRaster(); // L: 6114
+
+		int var6;
+		for (var5 = 1; var5 < 103; ++var5) { // L: 6115
+			for (var6 = 1; var6 < 103; ++var6) { // L: 6116
+				if ((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) { // L: 6117
+					class511.drawObject(var0, var6, var5, var3, var4);
+				}
+
+				if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) { // L: 6118
+					class511.drawObject(var0 + 1, var6, var5, var3, var4);
+				}
+			}
+		}
+
+		Client.mapIconCount = 0; // L: 6121
+
+		for (var5 = 0; var5 < 104; ++var5) { // L: 6122
+			for (var6 = 0; var6 < 104; ++var6) { // L: 6123
+				long var7 = class36.scene.getGroundObjectTag(ItemLayer.Client_plane, var5, var6); // L: 6124
+				if (0L != var7) { // L: 6125
+					int var9 = class232.Entity_unpackID(var7); // L: 6126
+					int var10 = WorldMapSection2.getObjectDefinition(var9).mapIconId; // L: 6127
+					if (var10 >= 0 && class141.WorldMapElement_get(var10).field1824) { // L: 6128 6129
+						Client.mapIcons[Client.mapIconCount] = class141.WorldMapElement_get(var10).getSpriteBool(false); // L: 6132
+						Client.mapIconXs[Client.mapIconCount] = var5; // L: 6133
+						Client.mapIconYs[Client.mapIconCount] = var6; // L: 6134
+						++Client.mapIconCount; // L: 6135
+					}
+				}
+			}
+		}
+
+		class338.rasterProvider.apply(); // L: 6141
+	} // L: 6143
 }

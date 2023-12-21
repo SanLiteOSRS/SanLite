@@ -2,11 +2,12 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dv")
+@ObfuscatedName("ez")
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +15,10 @@ public class UserComparator9 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "-582515893"
+		descriptor = "(Lrh;Lrh;I)I",
+		garbageValue = "573682833"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -32,12 +33,30 @@ public class UserComparator9 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 22
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("bo")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Ldt;",
-		garbageValue = "6"
+		descriptor = "(ILdt;ZI)I",
+		garbageValue = "1141161217"
 	)
-	static class119[] method2599() {
-		return new class119[]{class119.field1497, class119.field1504, class119.field1505, class119.field1501, class119.field1492, class119.field1493, class119.field1494, class119.field1495, class119.field1496, class119.field1489, class119.field1498, class119.field1499, class119.field1500, class119.field1502, class119.field1488, class119.field1503, class119.field1491}; // L: 74
+	static int method2987(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.LOGOUT) { // L: 4422
+			Client.logoutTimer = 250; // L: 4423
+			return 1; // L: 4424
+		} else {
+			return 2; // L: 4426
+		}
 	}
+
+	@ObfuscatedName("na")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "40"
+	)
+	static final void method2988() {
+		for (int var0 = 0; var0 < Players.Players_count; ++var0) { // L: 12668
+			Player var1 = Client.players[Players.Players_indices[var0]]; // L: 12669
+			var1.method2394(); // L: 12670
+		}
+
+	} // L: 12672
 }
