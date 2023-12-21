@@ -3,37 +3,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qg")
+@ObfuscatedName("un")
 @Implements("PrivateChatMode")
 public class PrivateChatMode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lqg;"
+		descriptor = "Lun;"
 	)
-	static final PrivateChatMode field4818;
-	@ObfuscatedName("v")
+	static final PrivateChatMode field5278;
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lqg;"
+		descriptor = "Lun;"
 	)
-	public static final PrivateChatMode field4817;
-	@ObfuscatedName("q")
+	public static final PrivateChatMode field5280;
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lqg;"
+		descriptor = "Lun;"
 	)
-	static final PrivateChatMode field4819;
-	@ObfuscatedName("f")
+	static final PrivateChatMode field5277;
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -2146881289
+		intValue = -1957988793
 	)
-	public final int field4820;
+	public final int field5279;
 
 	static {
-		field4818 = new PrivateChatMode(0); // L: 5
-		field4817 = new PrivateChatMode(1); // L: 6
-		field4819 = new PrivateChatMode(2);
+		field5278 = new PrivateChatMode(0); // L: 5
+		field5280 = new PrivateChatMode(1); // L: 6
+		field5277 = new PrivateChatMode(2);
 	} // L: 7
 
 	PrivateChatMode(int var1) {
-		this.field4820 = var1; // L: 11
-	} // L: 12
+		this.field5279 = var1; // L: 15
+	} // L: 16
 }

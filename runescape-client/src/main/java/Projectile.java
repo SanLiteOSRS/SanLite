@@ -4,326 +4,432 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bu")
+@ObfuscatedName("ck")
 @Implements("Projectile")
 public final class Projectile extends Renderable {
-	@ObfuscatedName("rp")
-	@Export("FriendsChatManager_inFriendsChat")
-	static boolean FriendsChatManager_inFriendsChat;
-	@ObfuscatedName("c")
+	@ObfuscatedName("vl")
 	@ObfuscatedGetter(
-		intValue = -630035333
+		intValue = -1106968031
+	)
+	static int field937;
+	@ObfuscatedName("at")
+	@ObfuscatedGetter(
+		intValue = -1715665897
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -753482197
+		intValue = 950599391
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -1909485103
+		intValue = 1474959745
 	)
 	@Export("sourceX")
 	int sourceX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -867044193
+		intValue = -1673087401
 	)
 	@Export("sourceY")
 	int sourceY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 1371453553
+		intValue = -1451961285
 	)
 	@Export("sourceZ")
 	int sourceZ;
-	@ObfuscatedName("e")
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = 1478366795
+		intValue = -1112467891
 	)
 	@Export("endHeight")
 	int endHeight;
-	@ObfuscatedName("g")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = 1542338147
+		intValue = -1278515723
+	)
+	int field960;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		intValue = 799813617
+	)
+	int field938;
+	@ObfuscatedName("al")
+	@ObfuscatedGetter(
+		intValue = -499492361
+	)
+	int field945;
+	@ObfuscatedName("az")
+	@ObfuscatedGetter(
+		intValue = -1803322589
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 981154783
+		intValue = -605935351
 	)
 	@Export("cycleEnd")
 	int cycleEnd;
-	@ObfuscatedName("y")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -1247849497
+		intValue = -822202755
 	)
 	@Export("slope")
 	int slope;
-	@ObfuscatedName("i")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = -1919042303
+		intValue = -584446471
 	)
 	@Export("startHeight")
 	int startHeight;
-	@ObfuscatedName("s")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = -1467854933
+		intValue = -489123553
+	)
+	int field950;
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = 868463931
 	)
 	@Export("targetIndex")
 	int targetIndex;
-	@ObfuscatedName("t")
+	@ObfuscatedName("ak")
 	@Export("isMoving")
 	boolean isMoving;
-	@ObfuscatedName("z")
+	@ObfuscatedName("aj")
 	@Export("x")
 	double x;
-	@ObfuscatedName("r")
+	@ObfuscatedName("am")
 	@Export("y")
 	double y;
-	@ObfuscatedName("u")
+	@ObfuscatedName("aq")
 	@Export("z")
 	double z;
-	@ObfuscatedName("k")
-	@Export("speedX")
-	double speedX;
-	@ObfuscatedName("h")
-	@Export("speedY")
-	double speedY;
-	@ObfuscatedName("x")
-	@Export("speed")
-	double speed;
-	@ObfuscatedName("l")
+	@ObfuscatedName("ai")
+	double field956;
+	@ObfuscatedName("aw")
+	double field957;
+	@ObfuscatedName("ae")
+	double field944;
+	@ObfuscatedName("an")
 	@Export("speedZ")
 	double speedZ;
-	@ObfuscatedName("a")
-	@Export("accelerationZ")
-	double accelerationZ;
-	@ObfuscatedName("p")
+	@ObfuscatedName("ag")
+	double field943;
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = 262224371
+		intValue = -777446121
 	)
 	@Export("yaw")
 	int yaw;
-	@ObfuscatedName("b")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -703855763
+		intValue = -1808297649
 	)
 	@Export("pitch")
 	int pitch;
-	@ObfuscatedName("n")
+	@ObfuscatedName("be")
 	@ObfuscatedSignature(
-		descriptor = "Lgc;"
+		descriptor = "Lhx;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("o")
+	@ObfuscatedName("bd")
 	@ObfuscatedGetter(
-		intValue = -100465905
+		intValue = 93342027
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("m")
+	@ObfuscatedName("bl")
 	@ObfuscatedGetter(
-		intValue = 784173733
+		intValue = 1377913919
 	)
 	@Export("frameCycle")
 	int frameCycle;
 
 	Projectile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
-		this.isMoving = false; // L: 20
-		this.frame = 0; // L: 32
-		this.frameCycle = 0; // L: 33
-		this.id = var1; // L: 36
-		this.plane = var2; // L: 37
-		this.sourceX = var3; // L: 38
-		this.sourceY = var4; // L: 39
-		this.sourceZ = var5; // L: 40
-		this.cycleStart = var6; // L: 41
-		this.cycleEnd = var7; // L: 42
-		this.slope = var8; // L: 43
-		this.startHeight = var9; // L: 44
-		this.targetIndex = var10; // L: 45
-		this.endHeight = var11; // L: 46
-		this.isMoving = false; // L: 47
-		int var12 = ObjectSound.SpotAnimationDefinition_get(this.id).sequence; // L: 48
-		if (var12 != -1) { // L: 49
-			this.sequenceDefinition = ScriptFrame.SequenceDefinition_get(var12);
+		this.isMoving = false; // L: 24
+		this.frame = 0; // L: 36
+		this.frameCycle = 0; // L: 37
+		this.id = var1; // L: 40
+		this.plane = var2; // L: 41
+		this.sourceX = var3; // L: 42
+		this.sourceY = var4; // L: 43
+		this.sourceZ = var5; // L: 44
+		this.cycleStart = var6; // L: 45
+		this.cycleEnd = var7; // L: 46
+		this.slope = var8; // L: 47
+		this.startHeight = var9; // L: 48
+		this.targetIndex = var10; // L: 49
+		this.endHeight = var11; // L: 50
+		this.isMoving = false; // L: 51
+		int var12 = Canvas.SpotAnimationDefinition_get(this.id).sequence; // L: 52
+		if (var12 != -1) { // L: 53
+			this.sequenceDefinition = DynamicObject.SequenceDefinition_get(var12);
 		} else {
-			this.sequenceDefinition = null; // L: 50
+			this.sequenceDefinition = null; // L: 54
 		}
 
-	} // L: 51
+	} // L: 55
 
-	@ObfuscatedName("c")
+	Projectile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12) {
+		this(var1, var2, var3, var4, var5, var6, var7, var8, var9, var11, var12); // L: 58
+		this.field950 = var10; // L: 59
+	} // L: 60
+
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "-1811806599"
+		garbageValue = "34043964"
 	)
 	@Export("setDestination")
 	final void setDestination(int var1, int var2, int var3, int var4) {
+		this.field960 = var1; // L: 63
+		this.field938 = var2; // L: 64
+		this.field945 = var3; // L: 65
 		double var5;
-		if (!this.isMoving) { // L: 54
-			var5 = (double)(var1 - this.sourceX); // L: 55
-			double var7 = (double)(var2 - this.sourceY); // L: 56
-			double var9 = Math.sqrt(var5 * var5 + var7 * var7); // L: 57
-			this.x = (double)this.startHeight * var5 / var9 + (double)this.sourceX; // L: 58
-			this.y = var7 * (double)this.startHeight / var9 + (double)this.sourceY; // L: 59
-			this.z = (double)this.sourceZ; // L: 60
-		}
-
-		var5 = (double)(this.cycleEnd + 1 - var4); // L: 62
-		this.speedX = ((double)var1 - this.x) / var5; // L: 63
-		this.speedY = ((double)var2 - this.y) / var5; // L: 64
-		this.speed = Math.sqrt(this.speedX * this.speedX + this.speedY * this.speedY); // L: 65
 		if (!this.isMoving) { // L: 66
-			this.speedZ = -this.speed * Math.tan((double)this.slope * 0.02454369D);
+			var5 = (double)(this.field960 - this.sourceX); // L: 67
+			double var7 = (double)(this.field938 - this.sourceY); // L: 68
+			double var9 = Math.sqrt(var7 * var7 + var5 * var5); // L: 69
+			this.x = (double)this.sourceX + (double)this.startHeight * var5 / var9; // L: 70
+			this.y = (double)this.startHeight * var7 / var9 + (double)this.sourceY; // L: 71
+			this.z = (double)this.sourceZ; // L: 72
 		}
 
-		this.accelerationZ = 2.0D * ((double)var3 - this.z - var5 * this.speedZ) / (var5 * var5); // L: 67
-	} // L: 68
+		var5 = (double)(this.cycleEnd + 1 - var4); // L: 74
+		this.field956 = ((double)this.field960 - this.x) / var5; // L: 75
+		this.field957 = ((double)this.field938 - this.y) / var5; // L: 76
+		this.field944 = Math.sqrt(this.field957 * this.field957 + this.field956 * this.field956); // L: 77
+		if (!this.isMoving) { // L: 78
+			this.speedZ = -this.field944 * Math.tan(0.02454369D * (double)this.slope);
+		}
 
-	@ObfuscatedName("v")
+		this.field943 = 2.0D * ((double)this.field945 - this.z - this.speedZ * var5) / (var5 * var5); // L: 79
+	} // L: 80
+
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhy;",
-		garbageValue = "1081110576"
+		descriptor = "(B)Lka;",
+		garbageValue = "1"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = ObjectSound.SpotAnimationDefinition_get(this.id); // L: 101
-		Model var2 = var1.getModel(this.frame); // L: 102
-		if (var2 == null) { // L: 103
+		SpotAnimationDefinition var1 = Canvas.SpotAnimationDefinition_get(this.id); // L: 113
+		Model var2 = var1.getModel(this.frame); // L: 114
+		if (var2 == null) { // L: 115
 			return null;
 		} else {
-			var2.rotateZ(this.pitch); // L: 104
-			return var2; // L: 105
+			var2.rotateZ(this.pitch); // L: 116
+			return var2; // L: 117
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "-99"
+		descriptor = "(II)V",
+		garbageValue = "-1019112167"
 	)
 	@Export("advance")
 	final void advance(int var1) {
-		this.isMoving = true; // L: 71
-		this.x += this.speedX * (double)var1; // L: 72
-		this.y += (double)var1 * this.speedY; // L: 73
-		this.z += (double)var1 * this.speedZ + (double)var1 * this.accelerationZ * 0.5D * (double)var1; // L: 74
-		this.speedZ += this.accelerationZ * (double)var1; // L: 75
-		this.yaw = (int)(Math.atan2(this.speedX, this.speedY) * 325.949D) + 1024 & 2047; // L: 76
-		this.pitch = (int)(Math.atan2(this.speedZ, this.speed) * 325.949D) & 2047; // L: 77
-		if (this.sequenceDefinition != null) { // L: 78
-			if (!this.sequenceDefinition.isCachedModelIdSet()) { // L: 79
-				this.frameCycle += var1; // L: 80
+		this.isMoving = true; // L: 83
+		this.x += (double)var1 * this.field956; // L: 84
+		this.y += (double)var1 * this.field957; // L: 85
+		this.z += (double)var1 * this.speedZ + (double)var1 * (double)var1 * 0.5D * this.field943; // L: 86
+		this.speedZ += this.field943 * (double)var1; // L: 87
+		this.yaw = (int)(Math.atan2(this.field956, this.field957) * 325.949D) + 1024 & 2047; // L: 88
+		this.pitch = (int)(Math.atan2(this.speedZ, this.field944) * 325.949D) & 2047; // L: 89
+		if (this.sequenceDefinition != null) { // L: 90
+			if (!this.sequenceDefinition.isCachedModelIdSet()) { // L: 91
+				this.frameCycle += var1; // L: 92
 
 				while (true) {
 					do {
 						do {
-							if (this.frameCycle <= this.sequenceDefinition.frameLengths[this.frame]) { // L: 81
-								return; // L: 98
+							if (this.frameCycle <= this.sequenceDefinition.frameLengths[this.frame]) { // L: 93
+								return; // L: 110
 							}
 
-							this.frameCycle -= this.sequenceDefinition.frameLengths[this.frame]; // L: 82
-							++this.frame; // L: 83
-						} while(this.frame < this.sequenceDefinition.frameIds.length); // L: 84
+							this.frameCycle -= this.sequenceDefinition.frameLengths[this.frame]; // L: 94
+							++this.frame; // L: 95
+						} while(this.frame < this.sequenceDefinition.frameIds.length); // L: 96
 
-						this.frame -= this.sequenceDefinition.frameCount; // L: 85
-					} while(this.frame >= 0 && this.frame < this.sequenceDefinition.frameIds.length); // L: 86
+						this.frame -= this.sequenceDefinition.frameCount; // L: 97
+					} while(this.frame >= 0 && this.frame < this.sequenceDefinition.frameIds.length); // L: 98
 
 					this.frame = 0;
 				}
 			} else {
-				this.frame += var1; // L: 91
-				int var2 = this.sequenceDefinition.method3835(); // L: 92
-				if (this.frame >= var2) { // L: 93
-					this.frame = var2 - this.sequenceDefinition.frameCount; // L: 94
+				this.frame += var1; // L: 103
+				int var2 = this.sequenceDefinition.method4064(); // L: 104
+				if (this.frame >= var2) { // L: 105
+					this.frame = var2 - this.sequenceDefinition.frameCount; // L: 106
 				}
 			}
 		}
 
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("jm")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-1805196162"
+		descriptor = "(I)Z",
+		garbageValue = "-1070521773"
 	)
-	public static int method1950(CharSequence var0) {
-		int var1 = var0.length(); // L: 148
-		int var2 = 0; // L: 149
-
-		for (int var3 = 0; var3 < var1; ++var3) { // L: 150
-			var2 = (var2 << 5) - var2 + var0.charAt(var3);
-		}
-
-		return var2; // L: 151
+	static boolean method2209() {
+		return (Client.drawPlayerNames & 8) != 0; // L: 5188
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("mp")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "72"
+		descriptor = "(II)V",
+		garbageValue = "2039275921"
 	)
-	public static void method1959() {
-		ItemComposition.ItemComposition_cachedSprites.clear(); // L: 569
-	} // L: 570
+	@Export("changeGameOptions")
+	static final void changeGameOptions(int var0) {
+		class396.method7403(); // L: 12347
+		class159.method3426(); // L: 12348
+		int var1 = FloorOverlayDefinition.VarpDefinition_get(var0).type; // L: 12349
+		if (var1 != 0) { // L: 12350
+			int var2 = Varps.Varps_main[var0]; // L: 12351
+			if (var1 == 1) { // L: 12352
+				if (var2 == 1) { // L: 12353
+					Rasterizer3D.Rasterizer3D_setBrightness(0.9D); // L: 12354
+					((TextureProvider)Rasterizer3D.field2772.Rasterizer3D_textureLoader).setBrightness(0.9D); // L: 12355
+					class166.method3495(); // L: 12356
+					WorldMapIcon_1.clientPreferences.method2551(0.9D); // L: 12357
+				}
 
-	@ObfuscatedName("fa")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1050216582"
-	)
-	static final void method1961() {
-		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear(); // L: 2950
-		NPC.method2379(); // L: 2952
-		Widget.method5711(); // L: 2953
-		class141.method3047(); // L: 2954
-		PacketBufferNode.method5194(); // L: 2955
-		ObjectSound.method1702(); // L: 2956
-		SequenceDefinition.SequenceDefinition_cached.clear(); // L: 2958
-		SequenceDefinition.SequenceDefinition_cachedFrames.clear(); // L: 2959
-		SequenceDefinition.SequenceDefinition_cachedModel.clear(); // L: 2960
-		FileSystem.method3282(); // L: 2962
-		VarbitComposition.VarbitDefinition_cached.clear(); // L: 2964
-		VarpDefinition.VarpDefinition_cached.clear(); // L: 2967
-		AbstractWorldMapData.HitSplatDefinition_cachedSprites.method7525(); // L: 2969
-		ModeWhere.Ignored_cached.method7525(); // L: 2970
-		HitSplatDefinition.HitSplatDefinition_cached.clear(); // L: 2972
-		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear(); // L: 2973
-		HitSplatDefinition.HitSplatDefinition_cachedFonts.clear(); // L: 2974
-		class92.method2389(); // L: 2976
-		Interpreter.method1868(); // L: 2977
-		class67.method1886(); // L: 2978
-		SoundCache.method763(); // L: 2979
-		MilliClock.method3301(); // L: 2980
-		class67.method1887(); // L: 2981
-		Client.Widget_cachedModels.clear(); // L: 2982
-		Client.Widget_cachedFonts.clear(); // L: 2983
-		class14.method148(); // L: 2984
-		Widget.Widget_cachedSprites.clear(); // L: 2986
-		Widget.Widget_cachedModels.clear(); // L: 2987
-		Widget.Widget_cachedFonts.clear(); // L: 2988
-		Widget.Widget_cachedSpriteMasks.clear(); // L: 2989
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear(); // L: 2991
-		Script.Script_cached.clear(); // L: 2992
-		Varcs.archive5.clearFiles(); // L: 2993
-		WorldMapEvent.field2882.clearFiles(); // L: 2994
-		class341.archive7.clearFiles(); // L: 2995
-		Client.archive4.clearFiles(); // L: 2996
-		WorldMapSectionType.archive9.clearFiles(); // L: 2997
-		class121.archive6.clearFiles(); // L: 2998
-		class10.archive11.clearFiles(); // L: 2999
-		class304.archive8.clearFiles(); // L: 3000
-		Language.field4098.clearFiles(); // L: 3001
-		ApproximateRouteStrategy.archive10.clearFiles(); // L: 3002
-		UserComparator7.field1383.clearFiles(); // L: 3003
-		class267.archive12.clearFiles(); // L: 3004
-		class132.field1588.clearFiles(); // L: 3005
-	} // L: 3006
+				if (var2 == 2) { // L: 12359
+					Rasterizer3D.Rasterizer3D_setBrightness(0.8D); // L: 12360
+					((TextureProvider)Rasterizer3D.field2772.Rasterizer3D_textureLoader).setBrightness(0.8D); // L: 12361
+					class166.method3495(); // L: 12362
+					WorldMapIcon_1.clientPreferences.method2551(0.8D); // L: 12363
+				}
+
+				if (var2 == 3) { // L: 12365
+					Rasterizer3D.Rasterizer3D_setBrightness(0.7D); // L: 12366
+					((TextureProvider)Rasterizer3D.field2772.Rasterizer3D_textureLoader).setBrightness(0.7D); // L: 12367
+					class166.method3495(); // L: 12368
+					WorldMapIcon_1.clientPreferences.method2551(0.7D); // L: 12369
+				}
+
+				if (var2 == 4) { // L: 12371
+					Rasterizer3D.Rasterizer3D_setBrightness(0.6D); // L: 12372
+					((TextureProvider)Rasterizer3D.field2772.Rasterizer3D_textureLoader).setBrightness(0.6D); // L: 12373
+					class166.method3495(); // L: 12374
+					WorldMapIcon_1.clientPreferences.method2551(0.6D); // L: 12375
+				}
+			}
+
+			if (var1 == 3) { // L: 12378
+				if (var2 == 0) { // L: 12379
+					Decimator.method1153(255);
+				}
+
+				if (var2 == 1) { // L: 12380
+					Decimator.method1153(192);
+				}
+
+				if (var2 == 2) { // L: 12381
+					Decimator.method1153(128);
+				}
+
+				if (var2 == 3) { // L: 12382
+					Decimator.method1153(64);
+				}
+
+				if (var2 == 4) { // L: 12383
+					Decimator.method1153(0);
+				}
+			}
+
+			if (var1 == 4) { // L: 12385
+				if (var2 == 0) { // L: 12386
+					SoundSystem.method868(127);
+				}
+
+				if (var2 == 1) { // L: 12387
+					SoundSystem.method868(96);
+				}
+
+				if (var2 == 2) { // L: 12388
+					SoundSystem.method868(64);
+				}
+
+				if (var2 == 3) { // L: 12389
+					SoundSystem.method868(32);
+				}
+
+				if (var2 == 4) { // L: 12390
+					SoundSystem.method868(0);
+				}
+			}
+
+			if (var1 == 5) { // L: 12392
+				Client.field632 = var2 == 1;
+			}
+
+			if (var1 == 6) { // L: 12393
+				Client.chatEffects = var2;
+			}
+
+			if (var1 == 9) { // L: 12394
+			}
+
+			if (var1 == 10) { // L: 12395
+				if (var2 == 0) { // L: 12396
+					Login.method2198(127);
+				}
+
+				if (var2 == 1) { // L: 12397
+					Login.method2198(96);
+				}
+
+				if (var2 == 2) { // L: 12398
+					Login.method2198(64);
+				}
+
+				if (var2 == 3) { // L: 12399
+					Login.method2198(32);
+				}
+
+				if (var2 == 4) { // L: 12400
+					Login.method2198(0);
+				}
+			}
+
+			if (var1 == 17) { // L: 12402
+				Client.followerIndex = var2 & 65535; // L: 12403
+			}
+
+			if (var1 == 18) { // L: 12405
+				Client.playerAttackOption = (AttackOption)class12.findEnumerated(MenuAction.method2139(), var2); // L: 12406
+				if (Client.playerAttackOption == null) { // L: 12407
+					Client.playerAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
+				}
+			}
+
+			if (var1 == 19) { // L: 12409
+				if (var2 == -1) { // L: 12410
+					Client.combatTargetPlayerIndex = -1;
+				} else {
+					Client.combatTargetPlayerIndex = var2 & 2047; // L: 12411
+				}
+			}
+
+			if (var1 == 22) { // L: 12413
+				AttackOption[] var3 = new AttackOption[]{AttackOption.field1334, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_hidden, AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.field1337}; // L: 12416
+				Client.npcAttackOption = (AttackOption)class12.findEnumerated(var3, var2); // L: 12418
+				if (Client.npcAttackOption == null) { // L: 12419
+					Client.npcAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
+				}
+			}
+
+		}
+	} // L: 12421
 }

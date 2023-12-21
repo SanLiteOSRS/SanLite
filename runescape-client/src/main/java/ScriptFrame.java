@@ -4,31 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bg")
+@ObfuscatedName("cs")
 @Implements("ScriptFrame")
 public class ScriptFrame {
-	@ObfuscatedName("cw")
-	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
+	@ObfuscatedName("lk")
+	@ObfuscatedGetter(
+		intValue = -1780121491
 	)
-	@Export("worldSelectBackSprites")
-	static SpritePixels[] worldSelectBackSprites;
-	@ObfuscatedName("c")
+	@Export("oculusOrbFocalPointY")
+	static int oculusOrbFocalPointY;
+	@ObfuscatedName("uh")
+	@ObfuscatedGetter(
+		intValue = 1895489664
+	)
+	static int field456;
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lbi;"
+		descriptor = "Ldt;"
 	)
 	@Export("script")
 	Script script;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 1512825097
+		intValue = 640777695
 	)
 	@Export("pc")
 	int pc;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@Export("intLocals")
 	int[] intLocals;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@Export("stringLocals")
 	String[] stringLocals;
 
@@ -36,55 +41,53 @@ public class ScriptFrame {
 		this.pc = -1; // L: 5
 	} // L: 9
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgc;",
-		garbageValue = "12"
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "1468769999"
 	)
-	@Export("SequenceDefinition_get")
-	public static SequenceDefinition SequenceDefinition_get(int var0) {
-		SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0); // L: 52
-		if (var1 != null) { // L: 53
-			return var1;
-		} else {
-			byte[] var2 = SequenceDefinition.SequenceDefinition_archive.takeFile(12, var0); // L: 54
-			var1 = new SequenceDefinition(); // L: 55
-			if (var2 != null) { // L: 56
-				var1.decode(new Buffer(var2));
-			}
+	static final void method1213(String var0) {
+		PacketBufferNode var1 = class113.getPacketBufferNode(ClientPacket.field3206, Client.packetWriter.isaacCipher); // L: 181
+		var1.packetBuffer.writeByte(ClanChannel.stringCp1252NullTerminatedByteSize(var0)); // L: 182
+		var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 183
+		Client.packetWriter.addNode(var1); // L: 184
+	} // L: 185
 
-			var1.postDecode(); // L: 57
-			SequenceDefinition.SequenceDefinition_cached.put(var1, (long)var0); // L: 58
-			return var1; // L: 59
-		}
-	}
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("kr")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lkb;",
-		garbageValue = "114682209"
+		descriptor = "(Ldp;I)V",
+		garbageValue = "128237974"
 	)
-	@Export("getWidgetChild")
-	public static Widget getWidgetChild(int var0, int var1) {
-		Widget var2 = class140.getWidget(var0); // L: 230
-		if (var1 == -1) { // L: 231
-			return var2;
-		} else {
-			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null; // L: 232 233
-		}
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ldf;",
-		garbageValue = "-246877585"
-	)
-	static class123 method1052(int var0) {
-		class123 var1 = (class123)Actor.findEnumerated(Interpreter.method1866(), var0); // L: 126
-		if (var1 == null) {
-			var1 = class123.field1528; // L: 127
+	static final void method1212(PendingSpawn var0) {
+		long var1 = 0L; // L: 8496
+		int var3 = -1; // L: 8497
+		int var4 = 0; // L: 8498
+		int var5 = 0; // L: 8499
+		if (var0.type == 0) { // L: 8500
+			var1 = class36.scene.getWallObjectTag(var0.plane, var0.x, var0.y);
 		}
 
-		return var1; // L: 128
-	}
+		if (var0.type == 1) { // L: 8501
+			var1 = class36.scene.getDecorativeObjectTag(var0.plane, var0.x, var0.y);
+		}
+
+		if (var0.type == 2) { // L: 8502
+			var1 = class36.scene.getGameObjectTag(var0.plane, var0.x, var0.y);
+		}
+
+		if (var0.type == 3) {
+			var1 = class36.scene.getGroundObjectTag(var0.plane, var0.x, var0.y); // L: 8503
+		}
+
+		if (0L != var1) { // L: 8504
+			int var6 = class36.scene.getObjectFlags(var0.plane, var0.x, var0.y, var1); // L: 8505
+			var3 = class232.Entity_unpackID(var1); // L: 8506
+			var4 = var6 & 31; // L: 8507
+			var5 = var6 >> 6 & 3; // L: 8508
+		}
+
+		var0.objectId = var3; // L: 8510
+		var0.field1158 = var4; // L: 8511
+		var0.field1157 = var5; // L: 8512
+	} // L: 8513
 }

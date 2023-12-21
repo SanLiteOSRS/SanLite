@@ -1,14 +1,15 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kn")
+@ObfuscatedName("nj")
 @Implements("Skills")
 public class Skills {
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@Export("Skills_enabled")
 	public static final boolean[] Skills_enabled;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@Export("Skills_experienceTable")
 	public static int[] Skills_experienceTable;
 
@@ -25,4 +26,35 @@ public class Skills {
 		}
 
 	} // L: 16
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(Lol;Ljava/lang/String;Ljava/lang/String;I)[Lup;",
+		garbageValue = "900236984"
+	)
+	public static IndexedSprite[] method6857(AbstractArchive var0, String var1, String var2) {
+		if (!var0.isValidFileName(var1, var2)) { // L: 115
+			return null;
+		} else {
+			int var3 = var0.getGroupId(var1); // L: 116
+			int var4 = var0.getFileId(var3, var2); // L: 117
+			byte[] var7 = var0.takeFile(var3, var4); // L: 122
+			boolean var6;
+			if (var7 == null) { // L: 123
+				var6 = false; // L: 124
+			} else {
+				class162.SpriteBuffer_decode(var7); // L: 127
+				var6 = true; // L: 128
+			}
+
+			IndexedSprite[] var5;
+			if (!var6) { // L: 130
+				var5 = null; // L: 131
+			} else {
+				var5 = class518.method9159(); // L: 134
+			}
+
+			return var5; // L: 136
+		}
+	}
 }
