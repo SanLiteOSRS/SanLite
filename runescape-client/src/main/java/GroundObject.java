@@ -4,48 +4,47 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ge")
+@ObfuscatedName("km")
 @Implements("GroundObject")
 public final class GroundObject {
-	@ObfuscatedName("ff")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = 512715127
+		intValue = -1764906591
 	)
-	@Export("worldPort")
-	static int worldPort;
-	@ObfuscatedName("c")
+	static int field2713;
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 1018448231
+		intValue = 1858852897
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 934546239
+		intValue = 1647703591
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 230480863
+		intValue = -880112075
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lkt;"
 	)
 	@Export("renderable")
 	public Renderable renderable;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		longValue = -1913872919662932177L
+		longValue = 2857987176138791039L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("e")
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -1980232569
+		intValue = 342494541
 	)
 	@Export("flags")
 	int flags;

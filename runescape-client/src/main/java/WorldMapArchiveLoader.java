@@ -1,33 +1,38 @@
+import java.awt.image.BufferedImage;
+import java.awt.image.PixelGrabber;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ox")
+@ObfuscatedName("sl")
 @Implements("WorldMapArchiveLoader")
 public class WorldMapArchiveLoader {
-	@ObfuscatedName("j")
+	@ObfuscatedName("ab")
 	@Export("cacheName")
 	String cacheName;
-	@ObfuscatedName("e")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lol;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
-	@ObfuscatedName("g")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = -1239125603
+		intValue = -1424135489
 	)
 	@Export("percentLoaded")
 	int percentLoaded;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ac")
 	@Export("loaded")
 	boolean loaded;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llh;)V"
+		descriptor = "(Lol;)V"
 	)
 	WorldMapArchiveLoader(AbstractArchive var1) {
 		this.percentLoaded = 0; // L: 13
@@ -35,75 +40,116 @@ public class WorldMapArchiveLoader {
 		this.archive = var1; // L: 17
 	} // L: 18
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-1356083812"
+		garbageValue = "2039026903"
 	)
 	@Export("reset")
 	void reset(String var1) {
 		if (var1 != null && !var1.isEmpty()) { // L: 21
-			if (var1 != this.cacheName) { // L: 24
-				this.cacheName = var1; // L: 27
-				this.percentLoaded = 0; // L: 28
-				this.loaded = false; // L: 29
-				this.load(); // L: 30
+			if (var1 != this.cacheName) {
+				this.cacheName = var1;
+				this.percentLoaded = 0;
+				this.loaded = false;
+				this.method8703();
 			}
 		}
-	} // L: 22 25 31
+	} // L: 31
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-22"
+		garbageValue = "-24"
 	)
-	@Export("load")
-	int load() {
-		if (this.percentLoaded < 33) { // L: 34
-			if (!this.archive.tryLoadFileByNames(WorldMapCacheName.field2865.name, this.cacheName)) { // L: 35
-				return this.percentLoaded; // L: 36
+	int method8703() {
+		if (this.cacheName == null) {
+			this.percentLoaded = 100; // L: 35
+			this.loaded = true; // L: 36
+		} else {
+			if (this.percentLoaded < 33) { // L: 39
+				if (!this.archive.tryLoadFileByNames(WorldMapCacheName.field2626.name, this.cacheName)) { // L: 40
+					return this.percentLoaded; // L: 41
+				}
+
+				this.percentLoaded = 33; // L: 43
 			}
 
-			this.percentLoaded = 33; // L: 38
-		}
+			if (this.percentLoaded == 33) { // L: 45
+				if (this.archive.isValidFileName(WorldMapCacheName.field2628.name, this.cacheName) && !this.archive.tryLoadFileByNames(WorldMapCacheName.field2628.name, this.cacheName)) { // L: 46 47
+					return this.percentLoaded; // L: 48
+				}
 
-		if (this.percentLoaded == 33) { // L: 40
-			if (this.archive.isValidFileName(WorldMapCacheName.field2866.name, this.cacheName) && !this.archive.tryLoadFileByNames(WorldMapCacheName.field2866.name, this.cacheName)) { // L: 41 42
-				return this.percentLoaded; // L: 43
+				this.percentLoaded = 66; // L: 51
 			}
 
-			this.percentLoaded = 66; // L: 46
-		}
+			if (this.percentLoaded == 66) { // L: 53
+				if (!this.archive.tryLoadFileByNames(this.cacheName, WorldMapCacheName.field2630.name)) { // L: 54
+					return this.percentLoaded; // L: 55
+				}
 
-		if (this.percentLoaded == 66) { // L: 48
-			if (!this.archive.tryLoadFileByNames(this.cacheName, WorldMapCacheName.field2868.name)) { // L: 49
-				return this.percentLoaded; // L: 50
+				this.percentLoaded = 100; // L: 57
+				this.loaded = true; // L: 58
 			}
-
-			this.percentLoaded = 100; // L: 52
-			this.loaded = true; // L: 53
 		}
 
-		return this.percentLoaded; // L: 55
+		return this.percentLoaded; // L: 61
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-923588263"
+		descriptor = "(B)Z",
+		garbageValue = "74"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
-		return this.loaded; // L: 59
+		return this.loaded; // L: 65
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "1790621398"
+		garbageValue = "301299850"
 	)
 	@Export("getPercentLoaded")
 	int getPercentLoaded() {
-		return this.percentLoaded; // L: 63
+		return this.percentLoaded; // L: 69
+	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "([BI)Luz;",
+		garbageValue = "1918465427"
+	)
+	public static final SpritePixels method8710(byte[] var0) {
+		BufferedImage var1 = null; // L: 20
+
+		try {
+			Class var2 = ImageIO.class; // L: 22
+			synchronized(ImageIO.class) {
+				var1 = ImageIO.read(new ByteArrayInputStream(var0)); // L: 23
+			} // L: 24
+
+			int var6 = var1.getWidth(); // L: 25
+			int var7 = var1.getHeight(); // L: 26
+			int[] var4 = new int[var7 * var6]; // L: 27
+			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var6, var7, var4, 0, var6); // L: 28
+			var5.grabPixels(); // L: 29
+			return new SpritePixels(var4, var6, var7); // L: 30
+		} catch (IOException var9) { // L: 32
+		} catch (InterruptedException var10) { // L: 33
+		}
+
+		return new SpritePixels(0, 0); // L: 34
+	}
+
+	@ObfuscatedName("gj")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ltn;",
+		garbageValue = "-472166633"
+	)
+	@Export("getWorldMap")
+	static WorldMap getWorldMap() {
+		return class187.worldMap; // L: 759
 	}
 }
