@@ -4,48 +4,47 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hz")
+@ObfuscatedName("jq")
 @Implements("WorldMapIcon_0")
 public class WorldMapIcon_0 extends AbstractWorldMapIcon {
-	@ObfuscatedName("iz")
+	@ObfuscatedName("ul")
 	@ObfuscatedGetter(
-		intValue = 2063269649
+		intValue = -2119811283
 	)
-	@Export("selectedItemId")
-	static int selectedItemId;
-	@ObfuscatedName("c")
+	static int field2529;
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -717867737
+		intValue = -1185793619
 	)
 	@Export("element")
 	final int element;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Liz;"
+		descriptor = "Ljk;"
 	)
 	@Export("label")
 	final WorldMapLabel label;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -466218723
+		intValue = 1255469535
 	)
 	@Export("subWidth")
 	final int subWidth;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 1083440853
+		intValue = 1995138313
 	)
 	@Export("subHeight")
 	final int subHeight;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkd;Lkd;ILiz;)V"
+		descriptor = "(Lmh;Lmh;ILjk;)V"
 	)
 	WorldMapIcon_0(Coord var1, Coord var2, int var3, WorldMapLabel var4) {
 		super(var1, var2); // L: 14
 		this.element = var3; // L: 15
 		this.label = var4; // L: 16
-		WorldMapElement var5 = class432.WorldMapElement_get(this.getElement()); // L: 17
+		WorldMapElement var5 = class141.WorldMapElement_get(this.getElement()); // L: 17
 		SpritePixels var6 = var5.getSpriteBool(false); // L: 18
 		if (var6 != null) { // L: 19
 			this.subWidth = var6.subWidth; // L: 20
@@ -57,57 +56,66 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	} // L: 27
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "781292504"
+		garbageValue = "574784276"
 	)
 	@Export("getElement")
 	public int getElement() {
 		return this.element; // L: 31
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I)Liz;",
-		garbageValue = "1473728"
+		descriptor = "(B)Ljk;",
+		garbageValue = "-49"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
 		return this.label; // L: 36
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1263012412"
+		garbageValue = "472460923"
 	)
 	@Export("getSubWidth")
 	int getSubWidth() {
 		return this.subWidth; // L: 41
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-34"
+		descriptor = "(I)I",
+		garbageValue = "-653051141"
 	)
 	@Export("getSubHeight")
 	int getSubHeight() {
 		return this.subHeight; // L: 46
 	}
 
-	@ObfuscatedName("lj")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)Ljava/lang/String;",
-		garbageValue = "-1970746569"
+		descriptor = "(IIIB)I",
+		garbageValue = "-4"
 	)
-	@Export("Widget_getSpellActionName")
-	static String Widget_getSpellActionName(Widget var0) {
-		if (WorldMapID.Widget_unpackTargetMask(class124.getWidgetFlags(var0)) == 0) { // L: 12322
-			return null;
-		} else {
-			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null; // L: 12323 12324 12326
-		}
+	static final int method4849(int var0, int var1, int var2) {
+		int var3 = var0 / var2; // L: 957
+		int var4 = var0 & var2 - 1; // L: 958
+		int var5 = var1 / var2; // L: 959
+		int var6 = var1 & var2 - 1; // L: 960
+		int var7 = class416.method7829(var3, var5); // L: 961
+		int var8 = class416.method7829(var3 + 1, var5); // L: 962
+		int var9 = class416.method7829(var3, var5 + 1); // L: 963
+		int var10 = class416.method7829(var3 + 1, var5 + 1); // L: 964
+		int var12 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1; // L: 967
+		int var11 = ((65536 - var12) * var7 >> 16) + (var8 * var12 >> 16); // L: 968
+		int var14 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1; // L: 973
+		int var13 = ((65536 - var14) * var9 >> 16) + (var14 * var10 >> 16); // L: 974
+		int var16 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var6 * 1024 / var2] >> 1; // L: 979
+		int var15 = ((65536 - var16) * var11 >> 16) + (var13 * var16 >> 16); // L: 980
+		return var15; // L: 982
 	}
 }
