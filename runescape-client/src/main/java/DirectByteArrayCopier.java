@@ -5,25 +5,25 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jr")
+@ObfuscatedName("na")
 @Implements("DirectByteArrayCopier")
 public class DirectByteArrayCopier extends AbstractByteArrayCopier {
-	@ObfuscatedName("fy")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -1703500315
+		intValue = 1472985539
 	)
-	static int field3306;
-	@ObfuscatedName("c")
+	static int field3822;
+	@ObfuscatedName("at")
 	@Export("directBuffer")
 	ByteBuffer directBuffer;
 
 	DirectByteArrayCopier() {
 	} // L: 10
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		descriptor = "(B)[B",
-		garbageValue = "-87"
+		garbageValue = "5"
 	)
 	@Export("get")
 	byte[] get() {
@@ -33,10 +33,10 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		return var1; // L: 16
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "2067022612"
+		descriptor = "([BB)V",
+		garbageValue = "67"
 	)
 	@Export("set")
 	void set(byte[] var1) {
@@ -45,38 +45,27 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		this.directBuffer.put(var1); // L: 22
 	} // L: 23
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Llc;IB)V",
-		garbageValue = "20"
+		descriptor = "(CI)Z",
+		garbageValue = "-946296977"
 	)
-	public static void method5512(Archive var0, int var1) {
-		KitDefinition.field1862.offset = var1 * 8 + 5; // L: 87
-		if (KitDefinition.field1862.offset >= KitDefinition.field1862.array.length) { // L: 88
-			if (var0.field3990) { // L: 89
-				var0.method5822(); // L: 90
-			} else {
-				throw new RuntimeException(""); // L: 93
-			}
+	public static boolean method6830(char var0) {
+		if (var0 >= ' ' && var0 < 127 || var0 > 127 && var0 < 160 || var0 > 160 && var0 <= 255) { // L: 61
+			return true;
 		} else {
-			int var2 = KitDefinition.field1862.readInt(); // L: 95
-			int var3 = KitDefinition.field1862.readInt(); // L: 96
-			var0.loadIndex(var2, var3); // L: 97
-		}
-	} // L: 91 98
+			if (var0 != 0) { // L: 62
+				char[] var1 = class396.cp1252AsciiExtension; // L: 64
 
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1018448231"
-	)
-	@Export("Messages_getLastChatID")
-	static int Messages_getLastChatID(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0); // L: 57
-		if (var1 == null) { // L: 58
-			return -1;
-		} else {
-			return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count; // L: 59 60
+				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 65
+					char var3 = var1[var2]; // L: 66
+					if (var0 == var3) { // L: 68
+						return true; // L: 69
+					}
+				}
+			}
+
+			return false; // L: 75
 		}
 	}
 }

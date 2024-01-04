@@ -1,47 +1,65 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gn")
-public enum class192 implements MouseWheel {
-	@ObfuscatedName("c")
+@ObfuscatedName("hc")
+public class class192 {
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lhc;"
 	)
-	field2208((byte)-1),
-	@ObfuscatedName("v")
+	static final class192 field1989;
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lhc;"
 	)
-	field2209((byte)0),
-	@ObfuscatedName("q")
+	static final class192 field1982;
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lhc;"
 	)
-	field2212((byte)1),
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Lgn;"
-	)
-	field2211((byte)2);
-
+	static final class192 field1983;
 	@ObfuscatedName("ao")
-	@Export("fontHelvetica13")
-	static java.awt.Font fontHelvetica13;
-	@ObfuscatedName("j")
-	public byte field2210;
-
-	class192(byte var3) {
-		this.field2210 = var3; // L: 14
-	} // L: 15
-
-	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "Lhc;"
 	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field2210; // L: 19
+	static final class192 field1986;
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "Lhc;"
+	)
+	static final class192 field1985;
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "Lhc;"
+	)
+	static final class192 field1987;
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "Lhc;"
+	)
+	static final class192 field1984;
+	@ObfuscatedName("lv")
+	@ObfuscatedGetter(
+		intValue = 95975365
+	)
+	@Export("cameraYaw")
+	static int cameraYaw;
+
+	static {
+		field1989 = new class192(0, class205.field2242); // L: 4
+		field1982 = new class192(1, class205.field2231); // L: 5
+		field1983 = new class192(2, class205.field2235); // L: 6
+		field1986 = new class192(3, class205.field2237); // L: 7
+		field1985 = new class192(4, class205.field2240); // L: 8
+		field1987 = new class192(5, class205.field2236); // L: 9
+		field1984 = new class192(6, class205.field2241); // L: 10
 	}
+
+	@ObfuscatedSignature(
+		descriptor = "(ILhm;)V"
+	)
+	class192(int var1, class205 var2) {
+	} // L: 12
 }

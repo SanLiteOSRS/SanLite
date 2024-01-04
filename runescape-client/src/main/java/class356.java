@@ -1,13 +1,8 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mu")
+@ObfuscatedName("ns")
 public class class356 {
-	@ObfuscatedName("ij")
-	@ObfuscatedSignature(
-		descriptor = "Lgg;"
-	)
-	@Export("scene")
-	static Scene scene;
+	static {
+		Math.sqrt(8192.0D); // L: 9
+	} // L: 10
 }
