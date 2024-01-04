@@ -3,109 +3,88 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ec")
+@ObfuscatedName("fj")
 public class class141 extends class144 {
-	@ObfuscatedName("jm")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1799721325
+		intValue = 363593983
 	)
-	@Export("oculusOrbFocalPointY")
-	static int oculusOrbFocalPointY;
-	@ObfuscatedName("c")
+	int field1624;
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 1400461077
+		intValue = -949021879
 	)
-	int field1659;
-	@ObfuscatedName("v")
-	byte field1660;
-	@ObfuscatedName("q")
+	int field1621;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1585058459
+		intValue = -444644241
 	)
-	int field1658;
-	@ObfuscatedName("f")
-	String field1656;
+	int field1622;
+	@ObfuscatedName("ao")
+	@ObfuscatedGetter(
+		intValue = 1952126939
+	)
+	int field1627;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Leu;"
+		descriptor = "Lfv;"
 	)
-	final class145 this$0;
+	final class147 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Leu;)V"
+		descriptor = "(Lfv;)V"
 	)
-	class141(class145 var1) {
+	class141(class147 var1) {
 		this.this$0 = var1;
-		this.field1659 = -1; // L: 125
-	} // L: 130
+		this.field1624 = -1; // L: 158
+	} // L: 163
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "(Luj;I)V",
+		garbageValue = "-734756620"
 	)
-	void vmethod3137(Buffer var1) {
-		var1.readUnsignedByte(); // L: 133
-		this.field1659 = var1.readUnsignedShort(); // L: 134
-		this.field1660 = var1.readByte(); // L: 135
-		this.field1658 = var1.readUnsignedShort(); // L: 136
-		var1.readLong(); // L: 137
-		this.field1656 = var1.readStringCp1252NullTerminated(); // L: 138
-		var1.readUnsignedByte(); // L: 139
-	} // L: 140
+	void vmethod3510(Buffer var1) {
+		this.field1624 = var1.readUnsignedShort(); // L: 166
+		this.field1621 = var1.readInt(); // L: 167
+		this.field1622 = var1.readUnsignedByte(); // L: 168
+		this.field1627 = var1.readUnsignedByte(); // L: 169
+	} // L: 170
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
+		descriptor = "(Lfc;I)V",
+		garbageValue = "-2111347169"
 	)
-	void vmethod3138(ClanChannel var1) {
-		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1659); // L: 143
-		var2.rank = this.field1660; // L: 144
-		var2.world = this.field1658; // L: 145
-		var2.username = new Username(this.field1656); // L: 146
-	} // L: 147
+	void vmethod3506(ClanSettings var1) {
+		var1.method3335(this.field1624, this.field1621, this.field1622, this.field1627); // L: 173
+	} // L: 174
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-113948023"
+		descriptor = "(II)Lgr;",
+		garbageValue = "931002418"
 	)
-	public static int method3048(int var0) {
-		return (var0 & class438.field4680) - 1; // L: 26
+	@Export("WorldMapElement_get")
+	public static WorldMapElement WorldMapElement_get(int var0) {
+		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0); // L: 44 45
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIII)I",
-		garbageValue = "-612042966"
+		descriptor = "(IIB)Z",
+		garbageValue = "-6"
 	)
-	public static int method3044(int var0, int var1, int var2, int var3, int var4, int var5) {
-		if ((var5 & 1) == 1) { // L: 38
-			int var6 = var3; // L: 39
-			var3 = var4; // L: 40
-			var4 = var6; // L: 41
+	static final boolean method3211(int var0, int var1) {
+		ObjectComposition var2 = WorldMapSection2.getObjectDefinition(var0); // L: 1030
+		if (var1 == 11) { // L: 1031
+			var1 = 10;
 		}
 
-		var2 &= 3; // L: 43
-		if (var2 == 0) { // L: 44
-			return var1;
-		} else if (var2 == 1) { // L: 45
-			return 7 - var0 - (var3 - 1);
-		} else {
-			return var2 == 2 ? 7 - var1 - (var4 - 1) : var0; // L: 46
+		if (var1 >= 5 && var1 <= 8) {
+			var1 = 4; // L: 1032
 		}
+
+		return var2.method3892(var1); // L: 1033
 	}
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1644827355"
-	)
-	public static void method3047() {
-		ObjectComposition.ObjectDefinition_cached.clear(); // L: 429
-		ObjectComposition.ObjectDefinition_cachedModelData.clear(); // L: 430
-		ObjectComposition.ObjectDefinition_cachedEntities.clear(); // L: 431
-		ObjectComposition.ObjectDefinition_cachedModels.clear(); // L: 432
-	} // L: 433
 }

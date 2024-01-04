@@ -4,40 +4,39 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gv")
+@ObfuscatedName("iw")
 @Implements("CollisionMap")
 public class CollisionMap {
-	@ObfuscatedName("uq")
-	@ObfuscatedSignature(
-		descriptor = "Lnd;"
-	)
-	@Export("masterDisk")
-	static ArchiveDisk masterDisk;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("vj")
 	@ObfuscatedGetter(
-		intValue = 414195973
+		intValue = 703712075
+	)
+	static int field2370;
+	@ObfuscatedName("ba")
+	@ObfuscatedGetter(
+		intValue = -356375381
 	)
 	@Export("xInset")
-	public int xInset;
-	@ObfuscatedName("aj")
+	int xInset;
+	@ObfuscatedName("bm")
 	@ObfuscatedGetter(
-		intValue = 1573477015
+		intValue = 1562012705
 	)
 	@Export("yInset")
-	public int yInset;
-	@ObfuscatedName("am")
+	int yInset;
+	@ObfuscatedName("bp")
 	@ObfuscatedGetter(
-		intValue = 288008669
+		intValue = -562831735
 	)
 	@Export("xSize")
 	int xSize;
-	@ObfuscatedName("an")
+	@ObfuscatedName("bw")
 	@ObfuscatedGetter(
-		intValue = 1138846055
+		intValue = 702872543
 	)
 	@Export("ySize")
 	int ySize;
-	@ObfuscatedName("af")
+	@ObfuscatedName("bj")
 	@Export("flags")
 	public int[][] flags;
 
@@ -50,10 +49,10 @@ public class CollisionMap {
 		this.clear(); // L: 49
 	} // L: 50
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "171"
+		descriptor = "(I)V",
+		garbageValue = "-1902574063"
 	)
 	@Export("clear")
 	public void clear() {
@@ -67,16 +66,16 @@ public class CollisionMap {
 			}
 		}
 
-	} // L: 59
+	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIZI)V",
-		garbageValue = "740345801"
+		garbageValue = "-1712724177"
 	)
-	public void method3878(int var1, int var2, int var3, int var4, boolean var5) {
-		var1 -= this.xInset; // L: 62
-		var2 -= this.yInset; // L: 63
+	public void method4349(int var1, int var2, int var3, int var4, boolean var5) {
+		var1 -= this.xInset;
+		var2 -= this.yInset;
 		if (var3 == 0) { // L: 64
 			if (var4 == 0) { // L: 65
 				this.setFlag(var1, var2, 128); // L: 66
@@ -221,10 +220,10 @@ public class CollisionMap {
 
 	} // L: 182
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZI)V",
-		garbageValue = "129633396"
+		descriptor = "(IIIIZB)V",
+		garbageValue = "83"
 	)
 	@Export("addGameObject")
 	public void addGameObject(int var1, int var2, int var3, int var4, boolean var5) {
@@ -248,10 +247,10 @@ public class CollisionMap {
 
 	} // L: 196
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-1940880076"
+		garbageValue = "-1907019996"
 	)
 	@Export("setBlockedByFloor")
 	public void setBlockedByFloor(int var1, int var2) {
@@ -261,10 +260,10 @@ public class CollisionMap {
 		var10000[var2] |= 2097152;
 	} // L: 202
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-2021417424"
+		garbageValue = "-1671554834"
 	)
 	@Export("setBlockedByFloorDec")
 	public void setBlockedByFloorDec(int var1, int var2) {
@@ -274,10 +273,10 @@ public class CollisionMap {
 		var10000[var2] |= 262144;
 	} // L: 208
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(IIIB)V",
-		garbageValue = "-124"
+		garbageValue = "1"
 	)
 	@Export("setFlag")
 	void setFlag(int var1, int var2, int var3) {
@@ -285,12 +284,12 @@ public class CollisionMap {
 		var10000[var2] |= var3;
 	} // L: 212
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZB)V",
-		garbageValue = "-83"
+		descriptor = "(IIIIZI)V",
+		garbageValue = "1877141157"
 	)
-	public void method3883(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method4382(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset; // L: 215
 		var2 -= this.yInset; // L: 216
 		if (var3 == 0) { // L: 217
@@ -437,10 +436,10 @@ public class CollisionMap {
 
 	} // L: 335
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIIZI)V",
-		garbageValue = "1140474967"
+		garbageValue = "-1490436324"
 	)
 	@Export("setFlagOffNonSquare")
 	public void setFlagOffNonSquare(int var1, int var2, int var3, int var4, int var5, boolean var6) {
@@ -470,10 +469,10 @@ public class CollisionMap {
 
 	} // L: 354
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)V",
-		garbageValue = "-2090051353"
+		garbageValue = "1035067169"
 	)
 	@Export("setFlagOff")
 	void setFlagOff(int var1, int var2, int var3) {
@@ -481,48 +480,70 @@ public class CollisionMap {
 		var10000[var2] &= ~var3;
 	} // L: 358
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-2033602418"
+		descriptor = "(IIB)V",
+		garbageValue = "-95"
 	)
-	public void method3886(int var1, int var2) {
+	public void method4362(int var1, int var2) {
 		var1 -= this.xInset; // L: 361
 		var2 -= this.yInset; // L: 362
 		int[] var10000 = this.flags[var1]; // L: 363
 		var10000[var2] &= -262145;
 	} // L: 364
 
-	@ObfuscatedName("hs")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "35579750"
+		descriptor = "(I[BLrg;I)V",
+		garbageValue = "412809840"
 	)
-	static final void method3907() {
-		for (GraphicsObject var0 = (GraphicsObject)Client.graphicsObjects.last(); var0 != null; var0 = (GraphicsObject)Client.graphicsObjects.previous()) { // L: 4873 4874 4881
-			if (var0.plane == PacketWriter.Client_plane && !var0.isFinished) { // L: 4875
-				if (Client.cycle >= var0.cycleStart) { // L: 4876
-					var0.advance(Client.field555); // L: 4877
-					if (var0.isFinished) { // L: 4878
-						var0.remove();
-					} else {
-						class356.scene.drawEntity(var0.plane, var0.x, var0.y, var0.z, 60, var0, 0, -1L, false); // L: 4879
-					}
-				}
-			} else {
-				var0.remove();
+	static void method4381(int var0, byte[] var1, ArchiveDisk var2) {
+		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 21
+		var3.type = 0; // L: 22
+		var3.key = (long)var0; // L: 23
+		var3.data = var1; // L: 24
+		var3.archiveDisk = var2; // L: 25
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 26
+			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 27
+		} // L: 28
+
+		synchronized(ArchiveDiskActionHandler.field4272) { // L: 30
+			if (ArchiveDiskActionHandler.field4271 == 0) { // L: 31
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler()); // L: 32
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setDaemon(true); // L: 33
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.start(); // L: 34
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setPriority(5); // L: 35
 			}
+
+			ArchiveDiskActionHandler.field4271 = 600; // L: 37
+			ArchiveDiskActionHandler.field4274 = false; // L: 38
+		}
+	} // L: 41
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Throwable;Ljava/lang/String;)Lvf;"
+	)
+	@Export("newRunException")
+	public static RunException newRunException(Throwable var0, String var1) {
+		RunException var2;
+		if (var0 instanceof RunException) { // L: 58
+			var2 = (RunException)var0; // L: 59
+			var2.message = var2.message + ' ' + var1; // L: 60
+		} else {
+			var2 = new RunException(var0, var1); // L: 62
 		}
 
-	} // L: 4883
+		return var2; // L: 63
+	}
 
-	@ObfuscatedName("kd")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-122477483"
+		descriptor = "(I)V",
+		garbageValue = "2056075058"
 	)
-	static void method3906(int var0, int var1) {
-		class229.method4904(class20.tempMenuAction, var0, var1); // L: 11728
-		class20.tempMenuAction = null; // L: 11729
-	} // L: 11730
+	static void method4354() {
+		UserComparator7.method2966(24); // L: 2261
+		class139.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", ""); // L: 2262
+	} // L: 2263
 }
