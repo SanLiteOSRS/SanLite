@@ -1,107 +1,110 @@
-import java.util.concurrent.Future;
+import java.io.IOException;
+import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("a")
-public class class19 {
-	@ObfuscatedName("up")
-	@ObfuscatedSignature(
-		descriptor = "Lcv;"
+@ObfuscatedName("as")
+public class class19 implements Callable {
+	@ObfuscatedName("ae")
+	@ObfuscatedGetter(
+		intValue = 332696567
 	)
-	@Export("clientPreferences")
-	static ClientPreferences clientPreferences;
-	@ObfuscatedName("c")
-	Future field107;
-	@ObfuscatedName("v")
-	String field106;
-
-	class19(Future var1) {
-		this.field107 = var1; // L: 10
-	} // L: 11
-
-	class19(String var1) {
-		this.method243(var1); // L: 14
-	} // L: 15
-
-	@ObfuscatedName("c")
+	public static int field99;
+	@ObfuscatedName("fc")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "1161369831"
+		descriptor = "Loz;"
 	)
-	void method243(String var1) {
-		if (var1 == null) { // L: 18
-			var1 = "";
-		}
-
-		this.field106 = var1; // L: 19
-		if (this.field107 != null) { // L: 20
-			this.field107.cancel(true); // L: 21
-			this.field107 = null; // L: 22
-		}
-
-	} // L: 24
-
-	@ObfuscatedName("v")
+	static Archive field94;
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-688611992"
+		descriptor = "Lau;"
 	)
-	public final String method244() {
-		return this.field106; // L: 27
-	}
-
-	@ObfuscatedName("q")
+	final class10 field96;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "731102059"
+		descriptor = "Law;"
 	)
-	public boolean method251() {
-		return this.field106 != null || this.field107 == null; // L: 31
-	}
+	final class14 this$0;
 
-	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1151479385"
+		descriptor = "(Law;Lau;)V"
 	)
-	public final boolean method246() {
-		return this.method251() ? true : this.field107.isDone(); // L: 35 36
-	}
+	class19(class14 var1, class10 var2) {
+		this.this$0 = var1; // L: 46
+		this.field96 = var2; // L: 47
+	} // L: 48
 
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(S)Lb;",
-		garbageValue = "-5003"
-	)
-	public final class21 method249() {
-		if (this.method251()) { // L: 40
-			return new class21(this.field106);
-		} else if (!this.method246()) { // L: 41
-			return null;
-		} else {
-			try {
-				return (class21)this.field107.get(); // L: 43
-			} catch (Exception var3) { // L: 45
-				String var2 = "Error retrieving REST request reply"; // L: 46
-				System.err.println(var2 + "\r\n" + var3); // L: 47
-				this.method243(var2); // L: 48
-				return new class21(var2); // L: 49
+	public Object call() throws Exception {
+		try {
+			while (this.field96.method84()) { // L: 53
+				BuddyRankComparator.method2992(10L); // L: 54
 			}
+		} catch (IOException var2) { // L: 57
+			return new class20("Error servicing REST query: " + var2.getMessage()); // L: 58
+		}
+
+		return this.field96.method85(); // L: 60
+	}
+
+	@ObfuscatedName("am")
+	@Export("base37DecodeLong")
+	public static String base37DecodeLong(long var0) {
+		if (var0 > 0L && var0 < 6582952005840035281L) { // L: 16
+			if (0L == var0 % 37L) { // L: 17
+				return null;
+			} else {
+				int var2 = 0; // L: 18
+
+				for (long var3 = var0; var3 != 0L; var3 /= 37L) { // L: 19 20 22
+					++var2; // L: 21
+				}
+
+				StringBuilder var5;
+				char var8;
+				for (var5 = new StringBuilder(var2); 0L != var0; var5.append(var8)) { // L: 24 25 34
+					long var6 = var0; // L: 26
+					var0 /= 37L; // L: 27
+					var8 = class404.base37Table[(int)(var6 - var0 * 37L)]; // L: 28
+					if (var8 == '_') { // L: 29
+						int var9 = var5.length() - 1; // L: 30
+						var5.setCharAt(var9, Character.toUpperCase(var5.charAt(var9))); // L: 31
+						var8 = 160; // L: 32
+					}
+				}
+
+				var5.reverse(); // L: 36
+				var5.setCharAt(0, Character.toUpperCase(var5.charAt(0))); // L: 37
+				return var5.toString(); // L: 38
+			}
+		} else {
+			return null;
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("kr")
 	@ObfuscatedSignature(
-		descriptor = "(II)Ldt;",
-		garbageValue = "234177073"
+		descriptor = "(IIIB)I",
+		garbageValue = "9"
 	)
-	static class119 method254(int var0) {
-		class119 var1 = (class119)Actor.findEnumerated(UserComparator9.method2599(), var0); // L: 92
-		if (var1 == null) {
-			var1 = class119.field1497; // L: 93
-		}
+	@Export("getTileHeight")
+	static final int getTileHeight(int var0, int var1, int var2) {
+		int var3 = var0 >> 7; // L: 5767
+		int var4 = var1 >> 7; // L: 5768
+		if (var3 >= 0 && var4 >= 0 && var3 <= 103 && var4 <= 103) { // L: 5769
+			int var5 = var2; // L: 5770
+			if (var2 < 3 && (Tiles.Tiles_renderFlags[1][var3][var4] & 2) == 2) { // L: 5771
+				var5 = var2 + 1;
+			}
 
-		return var1; // L: 94
+			int var6 = var0 & 127; // L: 5772
+			int var7 = var1 & 127; // L: 5773
+			int var8 = (128 - var6) * Tiles.Tiles_heights[var5][var3][var4] + var6 * Tiles.Tiles_heights[var5][var3 + 1][var4] >> 7; // L: 5774
+			int var9 = var6 * Tiles.Tiles_heights[var5][var3 + 1][var4 + 1] + Tiles.Tiles_heights[var5][var3][var4 + 1] * (128 - var6) >> 7; // L: 5775
+			return var7 * var9 + var8 * (128 - var7) >> 7; // L: 5776
+		} else {
+			return 0;
+		}
 	}
 }

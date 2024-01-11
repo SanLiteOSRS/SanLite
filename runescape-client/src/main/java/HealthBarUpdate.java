@@ -1,49 +1,42 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cp")
+@ObfuscatedName("do")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
-	@ObfuscatedName("vu")
+	@ObfuscatedName("lb")
 	@ObfuscatedGetter(
-		intValue = 793464983
+		intValue = 377744389
 	)
-	@Export("foundItemIdCount")
-	static int foundItemIdCount;
-	@ObfuscatedName("y")
+	@Export("cameraYaw")
+	static int cameraYaw;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 834997317
-	)
-	static int field1212;
-	@ObfuscatedName("fv")
-	@ObfuscatedGetter(
-		intValue = 1144016037
-	)
-	static int field1206;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1062197261
+		intValue = 117482167
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -1440518285
+		intValue = 1379394921
 	)
 	@Export("health")
 	int health;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = 878626357
+		intValue = 954587129
 	)
 	@Export("health2")
 	int health2;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -1008759007
+		intValue = 1959792261
 	)
 	@Export("cycleOffset")
 	int cycleOffset;
@@ -55,168 +48,189 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "-384341292"
+		garbageValue = "1277563512"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
 		this.cycle = var1; // L: 19
 		this.health = var2; // L: 20
 		this.health2 = var3; // L: 21
-		this.cycleOffset = var4;
+		this.cycleOffset = var4; // L: 22
 	} // L: 23
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;B)I",
-		garbageValue = "-1"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;III)V",
+		garbageValue = "908009629"
 	)
-	static int method2203(AbstractArchive var0, AbstractArchive var1) {
-		int var2 = 0; // L: 159
-		String[] var3 = Login.field924; // L: 161
+	public static void method2495(String var0, String var1, String var2, int var3, int var4) throws IOException {
+		if (var1 != null && !var1.isEmpty()) { // L: 40
+			var0 = var0 + "-" + var1; // L: 41
+		}
 
-		int var4;
-		String var5;
-		for (var4 = 0; var4 < var3.length; ++var4) { // L: 162
-			var5 = var3[var4]; // L: 163
-			if (var0.tryLoadFileByNames(var5, "")) { // L: 165
-				++var2;
+		JagexCache.idxCount = var4; // L: 43
+		class189.cacheGamebuild = var3; // L: 44
+
+		try {
+			class108.field1383 = System.getProperty("os.name"); // L: 46
+		} catch (Exception var21) { // L: 48
+			class108.field1383 = "Unknown"; // L: 49
+		}
+
+		class184.field1926 = class108.field1383.toLowerCase(); // L: 51
+		RouteStrategy.userHomeDirectory = null; // L: 52
+
+		try {
+			RouteStrategy.userHomeDirectory = System.getProperty("jagex.userhome"); // L: 54
+		} catch (Exception var20) { // L: 56
+		}
+
+		if (RouteStrategy.userHomeDirectory == null) { // L: 57
+			try {
+				RouteStrategy.userHomeDirectory = System.getProperty("user.home"); // L: 58
+			} catch (Exception var19) { // L: 60
 			}
 		}
 
-		var3 = Login.field916; // L: 170
+		if (RouteStrategy.userHomeDirectory != null) { // L: 61
+			RouteStrategy.userHomeDirectory = RouteStrategy.userHomeDirectory + "/";
+		}
 
-		for (var4 = 0; var4 < var3.length; ++var4) { // L: 171
-			var5 = var3[var4]; // L: 172
-			if (var1.tryLoadFileByNames(var5, "")) { // L: 174
-				++var2;
+		try {
+			if (class184.field1926.startsWith("win")) { // L: 63
+				if (RouteStrategy.userHomeDirectory == null) { // L: 64
+					RouteStrategy.userHomeDirectory = System.getenv("USERPROFILE");
+				}
+			} else if (RouteStrategy.userHomeDirectory == null) { // L: 67
+				RouteStrategy.userHomeDirectory = System.getenv("HOME");
+			}
+
+			if (RouteStrategy.userHomeDirectory != null) { // L: 69
+				RouteStrategy.userHomeDirectory = RouteStrategy.userHomeDirectory + "/";
+			}
+		} catch (Exception var18) { // L: 71
+		}
+
+		if (RouteStrategy.userHomeDirectory == null) { // L: 72
+			RouteStrategy.userHomeDirectory = "~/";
+		}
+
+		GrandExchangeOfferOwnWorldComparator.field494 = new String[]{"c:/rscache/", "/rscache/", "c:/windows/", "c:/winnt/", "c:/", RouteStrategy.userHomeDirectory, "/tmp/", ""}; // L: 73
+		UserComparator3.field1458 = new String[]{".jagex_cache_" + class189.cacheGamebuild, ".file_store_" + class189.cacheGamebuild}; // L: 74
+		int var13 = 0;
+
+		label157:
+		while (var13 < 4) {
+			class404.cacheDir = class331.method6303(var0, var2, var13); // L: 76
+			if (!class404.cacheDir.exists()) { // L: 77
+				class404.cacheDir.mkdirs();
+			}
+
+			File[] var6 = class404.cacheDir.listFiles(); // L: 78
+			if (var6 == null) { // L: 79
+				break;
+			}
+
+			File[] var7 = var6; // L: 81
+			int var8 = 0;
+
+			while (true) {
+				if (var8 >= var7.length) {
+					break label157;
+				}
+
+				File var9 = var7[var8]; // L: 83
+
+				boolean var10;
+				try {
+					RandomAccessFile var11 = new RandomAccessFile(var9, "rw"); // L: 88
+					int var12 = var11.read(); // L: 89
+					var11.seek(0L); // L: 90
+					var11.write(var12); // L: 91
+					var11.seek(0L); // L: 92
+					var11.close(); // L: 93
+					var10 = true; // L: 95
+				} catch (Exception var17) { // L: 97
+					var10 = false; // L: 98
+				}
+
+				if (!var10) { // L: 101
+					++var13; // L: 75
+					break;
+				}
+
+				++var8; // L: 82
 			}
 		}
 
-		return var2; // L: 178
-	}
+		GrandExchangeOfferNameComparator.method7178(class404.cacheDir); // L: 108
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "329398587"
-	)
-	public static int method2199(int var0) {
-		return var0 >>> 4 & class438.field4683; // L: 22
-	}
-
-	@ObfuscatedName("et")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1918682655"
-	)
-	@Export("updateGameState")
-	static void updateGameState(int var0) {
-		if (var0 != Client.gameState) { // L: 1248
-			if (Client.gameState == 0) { // L: 1249
-				class353.client.method410();
-			}
-
-			if (var0 == 20 || var0 == 40 || var0 == 45 || var0 == 50) { // L: 1250
-				HitSplatDefinition.method3624(0); // L: 1251
-				Client.field512 = 0; // L: 1252
-				Client.field609 = 0; // L: 1253
-				Client.timer.method6528(var0); // L: 1254
-				if (var0 != 20) { // L: 1255
-					TriBool.method6791(false);
-				}
-			}
-
-			if (var0 != 20 && var0 != 40 && Message.field461 != null) { // L: 1257 1258
-				Message.field461.close(); // L: 1259
-				Message.field461 = null; // L: 1260
-			}
-
-			if (Client.gameState == 25) { // L: 1263
-				Client.field549 = 0; // L: 1264
-				Client.field694 = 0; // L: 1265
-				Client.field546 = 1; // L: 1266
-				Client.field547 = 0; // L: 1267
-				Client.field548 = 1; // L: 1268
-			}
-
-			if (var0 != 5 && var0 != 10) { // L: 1270
-				if (var0 == 20) { // L: 1278
-					int var3 = Client.gameState == 11 ? 4 : 0; // L: 1279
-					ClanSettings.method3020(ApproximateRouteStrategy.archive10, class304.archive8, false, var3); // L: 1280
-				} else if (var0 == 11) { // L: 1282
-					ClanSettings.method3020(ApproximateRouteStrategy.archive10, class304.archive8, false, 4); // L: 1283
-				} else if (var0 == 50) { // L: 1285
-					class101.setLoginResponseString("", "Updating date of birth...", ""); // L: 1286
-					ClanSettings.method3020(ApproximateRouteStrategy.archive10, class304.archive8, false, 7); // L: 1287
-				} else if (Login.clearLoginScreen) { // L: 1290
-					class4.titleboxSprite = null; // L: 1291
-					class6.titlebuttonSprite = null; // L: 1292
-					AbstractByteArrayCopier.runesSprite = null; // L: 1293
-					class16.leftTitleSprite = null; // L: 1294
-					Login.rightTitleSprite = null; // L: 1295
-					Login.logoSprite = null; // L: 1296
-					class145.title_muteSprite = null; // L: 1297
-					class345.options_buttons_0Sprite = null; // L: 1298
-					class228.options_buttons_2Sprite = null; // L: 1299
-					ScriptFrame.worldSelectBackSprites = null; // L: 1300
-					class126.worldSelectFlagSprites = null; // L: 1301
-					FriendSystem.worldSelectArrows = null; // L: 1302
-					class220.worldSelectStars = null; // L: 1303
-					UserComparator5.field1385 = null; // L: 1304
-					Login.loginScreenRunesAnimation.method2209(); // L: 1305
-					class272.musicPlayerStatus = 1; // L: 1307
-					class272.musicTrackArchive = null; // L: 1308
-					class272.musicTrackGroupId = -1; // L: 1309
-					class151.musicTrackFileId = -1; // L: 1310
-					class272.musicTrackVolume = 0; // L: 1311
-					class11.musicTrackBoolean = false; // L: 1312
-					class272.pcmSampleLength = 2; // L: 1313
-					class115.method2693(true); // L: 1315
-					Login.clearLoginScreen = false; // L: 1316
-				}
+		try {
+			File var5 = new File(RouteStrategy.userHomeDirectory, "random.dat"); // L: 111
+			int var15;
+			if (var5.exists()) { // L: 112
+				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var5, "rw", 25L), 24, 0); // L: 113
 			} else {
-				boolean var1 = class19.clientPreferences.method2266() >= Client.field482; // L: 1273
-				int var2 = var1 ? 0 : 12; // L: 1275
-				ClanSettings.method3020(ApproximateRouteStrategy.archive10, class304.archive8, true, var2); // L: 1276
+				label138:
+				for (int var14 = 0; var14 < UserComparator3.field1458.length; ++var14) { // L: 116
+					for (var15 = 0; var15 < GrandExchangeOfferOwnWorldComparator.field494.length; ++var15) { // L: 117
+						File var16 = new File(GrandExchangeOfferOwnWorldComparator.field494[var15] + UserComparator3.field1458[var14] + File.separatorChar + "random.dat"); // L: 118
+						if (var16.exists()) { // L: 119
+							JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var16, "rw", 25L), 24, 0); // L: 120
+							break label138; // L: 121
+						}
+					}
+				}
 			}
 
-			Client.gameState = var0; // L: 1318
-		}
-	} // L: 1319
-
-	@ObfuscatedName("fh")
-	@ObfuscatedSignature(
-		descriptor = "(Llc;Ljava/lang/String;I)V",
-		garbageValue = "1432577615"
-	)
-	static void method2202(Archive var0, String var1) {
-		ArchiveLoader var2 = new ArchiveLoader(var0, var1); // L: 1628
-		Client.archiveLoaders.add(var2); // L: 1629
-		Client.field626 += var2.groupCount; // L: 1630
-	} // L: 1631
-
-	@ObfuscatedName("gj")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1636421425"
-	)
-	static void method2204() {
-		if (Client.renderSelf) { // L: 4787
-			ByteArrayPool.addPlayerToScene(class101.localPlayer, false); // L: 4788
+			if (JagexCache.JagexCache_randomDat == null) { // L: 126
+				RandomAccessFile var23 = new RandomAccessFile(var5, "rw"); // L: 127
+				var15 = var23.read(); // L: 128
+				var23.seek(0L); // L: 129
+				var23.write(var15); // L: 130
+				var23.seek(0L); // L: 131
+				var23.close(); // L: 132
+				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var5, "rw", 25L), 24, 0); // L: 133
+			}
+		} catch (IOException var22) { // L: 136
 		}
 
-	} // L: 4790
+		JagexCache.JagexCache_dat2File = new BufferedFile(new AccessFile(class176.getFile("main_file_cache.dat2"), "rw", 1048576000L), 5200, 0); // L: 138
+		JagexCache.JagexCache_idx255File = new BufferedFile(new AccessFile(class176.getFile("main_file_cache.idx255"), "rw", 1048576L), 6000, 0); // L: 139
+		JagexCache.JagexCache_idxFiles = new BufferedFile[JagexCache.idxCount]; // L: 140
 
-	@ObfuscatedName("lb")
+		for (var13 = 0; var13 < JagexCache.idxCount; ++var13) { // L: 141
+			JagexCache.JagexCache_idxFiles[var13] = new BufferedFile(new AccessFile(class176.getFile("main_file_cache.idx" + var13), "rw", 1048576L), 6000, 0); // L: 142
+		}
+
+	} // L: 144
+
+	@ObfuscatedName("hx")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "-12087"
+		descriptor = "(Loz;Ljava/lang/String;B)V",
+		garbageValue = "14"
 	)
-	static void method2205() {
-		Client.packetWriter.addNode(EnumComposition.getPacketBufferNode(ClientPacket.field2945, Client.packetWriter.isaacCipher)); // L: 12418
-		Client.oculusOrbState = 0; // L: 12419
-	} // L: 12420
+	static void method2491(Archive var0, String var1) {
+		ArchiveLoader var2 = new ArchiveLoader(var0, var1); // L: 1468
+		Client.archiveLoaders.add(var2); // L: 1469
+		Client.field785 += var2.groupCount; // L: 1470
+	} // L: 1471
+
+	@ObfuscatedName("oh")
+	@ObfuscatedSignature(
+		descriptor = "(Lnn;IB)Ljava/lang/String;",
+		garbageValue = "23"
+	)
+	static String method2496(Widget var0, int var1) {
+		int var3 = class405.getWidgetFlags(var0); // L: 12569
+		boolean var2 = (var3 >> var1 + 1 & 1) != 0; // L: 12571
+		if (!var2 && var0.onOp == null) { // L: 12573
+			return null;
+		} else {
+			return var0.actions != null && var0.actions.length > var1 && var0.actions[var1] != null && var0.actions[var1].trim().length() != 0 ? var0.actions[var1] : null; // L: 12574 12575 12577
+		}
+	}
 }

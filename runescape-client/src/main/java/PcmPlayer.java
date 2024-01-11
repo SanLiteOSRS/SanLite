@@ -4,575 +4,712 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ar")
+@ObfuscatedName("bb")
 @Implements("PcmPlayer")
 public class PcmPlayer {
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 1517063499
-	)
-	public static int field287;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ao")
 	@Export("soundSystemExecutor")
-	static ScheduledExecutorService soundSystemExecutor;
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "Lag;"
-	)
-	@Export("soundSystem")
-	static SoundSystem soundSystem;
+	public static ScheduledExecutorService soundSystemExecutor;
 	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Lns;"
+		descriptor = "Lbw;"
 	)
-	static Bounds field294;
-	@ObfuscatedName("hw")
-	@Export("regionMapArchiveIds")
-	static int[] regionMapArchiveIds;
-	@ObfuscatedName("r")
+	@Export("soundSystem")
+	public static SoundSystem soundSystem;
+	@ObfuscatedName("ax")
 	@Export("samples")
-	protected int[] samples;
-	@ObfuscatedName("u")
+	public int[] samples;
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Laz;"
+		descriptor = "Lbl;"
 	)
 	@Export("stream")
 	PcmStream stream;
-	@ObfuscatedName("k")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -1871567331
+		intValue = 544795385
 	)
-	int field274;
-	@ObfuscatedName("h")
+	int field295;
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		longValue = -199998738011106139L
+		longValue = 2923713038662853309L
 	)
 	@Export("timeMs")
 	long timeMs;
-	@ObfuscatedName("x")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = -387059293
+		intValue = 1811234521
 	)
 	@Export("capacity")
-	int capacity;
-	@ObfuscatedName("l")
+	public int capacity;
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = 266426517
+		intValue = -700999465
 	)
-	int field282;
-	@ObfuscatedName("a")
+	public int field288;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 890315289
+		intValue = 1061162499
 	)
-	int field283;
-	@ObfuscatedName("p")
+	int field289;
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		longValue = 7385207387876044501L
+		longValue = -3737012796057226807L
 	)
-	long field284;
-	@ObfuscatedName("b")
+	long field281;
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -284119641
-	)
-	int field285;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = 1652209615
-	)
-	int field286;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 218560279
-	)
-	int field296;
-	@ObfuscatedName("m")
-	@ObfuscatedGetter(
-		longValue = 3493257443098912669L
-	)
-	long field288;
-	@ObfuscatedName("d")
-	boolean field293;
-	@ObfuscatedName("ap")
-	@ObfuscatedGetter(
-		intValue = -1315224697
+		intValue = -1556259401
 	)
 	int field291;
+	@ObfuscatedName("ai")
+	@ObfuscatedGetter(
+		intValue = 761147211
+	)
+	int field292;
 	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "[Laz;"
+	@ObfuscatedGetter(
+		intValue = -1186639275
 	)
-	PcmStream[] field289;
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		descriptor = "[Laz;"
+	int field293;
+	@ObfuscatedName("al")
+	@ObfuscatedGetter(
+		longValue = 5892979677882615623L
 	)
-	PcmStream[] field292;
+	long field294;
+	@ObfuscatedName("at")
+	boolean field284;
+	@ObfuscatedName("ba")
+	@ObfuscatedGetter(
+		intValue = 810684273
+	)
+	int field285;
+	@ObfuscatedName("bk")
+	@ObfuscatedSignature(
+		descriptor = "[Lbl;"
+	)
+	PcmStream[] field298;
+	@ObfuscatedName("bn")
+	@ObfuscatedSignature(
+		descriptor = "[Lbl;"
+	)
+	PcmStream[] field283;
 
-	protected PcmPlayer() {
-		this.field274 = 32;
-		this.timeMs = class115.method2692();
-		this.field284 = 0L;
-		this.field285 = 0;
-		this.field286 = 0;
-		this.field296 = 0;
-		this.field288 = 0L;
-		this.field293 = true;
-		this.field291 = 0;
-		this.field289 = new PcmStream[8];
-		this.field292 = new PcmStream[8];
+	public PcmPlayer() {
+		this.field295 = 32; // L: 22
+		this.timeMs = UserComparator9.method2973(); // L: 23
+		this.field281 = 0L; // L: 27
+		this.field291 = 0; // L: 28
+		this.field292 = 0; // L: 29
+		this.field293 = 0; // L: 30
+		this.field294 = 0L; // L: 31
+		this.field284 = true; // L: 32
+		this.field285 = 0; // L: 38
+		this.field298 = new PcmStream[8]; // L: 39
+		this.field283 = new PcmStream[8]; // L: 40
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-609921240"
+		descriptor = "(S)V",
+		garbageValue = "128"
 	)
 	@Export("init")
-	protected void init() throws Exception {
-	} // L: 284
+	public void init() throws Exception {
+	} // L: 244
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1372651644"
+		descriptor = "(IB)V",
+		garbageValue = "-81"
 	)
 	@Export("open")
-	protected void open(int var1) throws Exception {
-	} // L: 285
+	public void open(int var1) throws Exception {
+	} // L: 245
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "2144118703"
+		descriptor = "(B)I",
+		garbageValue = "-95"
 	)
 	@Export("position")
 	protected int position() throws Exception {
-		return this.capacity; // L: 288
+		return this.capacity; // L: 248
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("aj")
 	@Export("write")
 	protected void write() throws Exception {
-	} // L: 291
+	} // L: 251
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-49"
+		descriptor = "(I)V",
+		garbageValue = "1232699455"
 	)
 	@Export("close")
 	protected void close() {
-	} // L: 292
+	} // L: 252
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "35"
+		descriptor = "(I)V",
+		garbageValue = "1520596872"
 	)
 	@Export("discard")
 	protected void discard() throws Exception {
-	} // L: 293
+	} // L: 253
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Laz;I)V",
-		garbageValue = "-2073910324"
+		descriptor = "(Lbl;B)V",
+		garbageValue = "22"
 	)
 	@Export("setStream")
 	public final synchronized void setStream(PcmStream var1) {
-		this.stream = var1; // L: 83
-	} // L: 84
+		this.stream = var1; // L: 43
+	} // L: 44
 
-	@ObfuscatedName("ad")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-987567305"
+		garbageValue = "2034283035"
 	)
 	@Export("run")
 	public final synchronized void run() {
-		if (this.samples != null) { // L: 87
-			long var1 = class115.method2692(); // L: 88
+		if (this.samples != null) { // L: 47
+			long var1 = UserComparator9.method2973(); // L: 48
 
 			try {
-				if (this.field284 != 0L) { // L: 90
-					if (var1 < this.field284) { // L: 91
+				if (this.field281 != 0L) { // L: 50
+					if (var1 < this.field281) { // L: 51
 						return;
 					}
 
-					this.open(this.capacity); // L: 92
-					this.field284 = 0L; // L: 93
-					this.field293 = true; // L: 94
+					this.open(this.capacity); // L: 52
+					this.field281 = 0L; // L: 53
+					this.field284 = true; // L: 54
 				}
 
-				int var3 = this.position(); // L: 96
-				if (this.field296 - var3 > this.field285) { // L: 97
-					this.field285 = this.field296 - var3;
+				int var3 = this.position(); // L: 56
+				if (this.field293 - var3 > this.field291) { // L: 57
+					this.field291 = this.field293 - var3;
 				}
 
-				int var4 = this.field283 + this.field282; // L: 98
-				if (var4 + 256 > 16384) { // L: 99
+				int var4 = this.field289 + this.field288; // L: 58
+				if (var4 + 256 > 16384) { // L: 59
 					var4 = 16128;
 				}
 
-				if (var4 + 256 > this.capacity) { // L: 100
-					this.capacity += 1024; // L: 101
-					if (this.capacity > 16384) { // L: 102
+				if (var4 + 256 > this.capacity) { // L: 60
+					this.capacity += 1024; // L: 61
+					if (this.capacity > 16384) { // L: 62
 						this.capacity = 16384;
 					}
 
-					this.close(); // L: 103
-					this.open(this.capacity); // L: 104
-					var3 = 0; // L: 105
-					this.field293 = true; // L: 106
-					if (var4 + 256 > this.capacity) { // L: 107
-						var4 = this.capacity - 256; // L: 108
-						this.field283 = var4 - this.field282; // L: 109
+					this.close(); // L: 63
+					this.open(this.capacity); // L: 64
+					var3 = 0; // L: 65
+					this.field284 = true; // L: 66
+					if (var4 + 256 > this.capacity) { // L: 67
+						var4 = this.capacity - 256; // L: 68
+						this.field289 = var4 - this.field288; // L: 69
 					}
 				}
 
-				while (var3 < var4) { // L: 112
-					this.fill(this.samples, 256); // L: 113
-					this.write(); // L: 114
-					var3 += 256; // L: 115
+				while (var3 < var4) { // L: 72
+					this.fill(this.samples, 256); // L: 73
+					this.write(); // L: 74
+					var3 += 256; // L: 75
 				}
 
-				if (var1 > this.field288) { // L: 117
-					if (!this.field293) { // L: 118
-						if (this.field285 == 0 && this.field286 == 0) { // L: 119
-							this.close(); // L: 120
-							this.field284 = var1 + 2000L; // L: 121
-							return; // L: 122
+				if (var1 > this.field294) { // L: 77
+					if (!this.field284) { // L: 78
+						if (this.field291 == 0 && this.field292 == 0) { // L: 79
+							this.close(); // L: 80
+							this.field281 = 2000L + var1; // L: 81
+							return; // L: 82
 						}
 
-						this.field283 = Math.min(this.field286, this.field285); // L: 124
-						this.field286 = this.field285; // L: 125
+						this.field289 = Math.min(this.field292, this.field291); // L: 84
+						this.field292 = this.field291; // L: 85
 					} else {
-						this.field293 = false; // L: 127
+						this.field284 = false; // L: 87
 					}
 
-					this.field285 = 0; // L: 128
-					this.field288 = var1 + 2000L; // L: 129
+					this.field291 = 0; // L: 88
+					this.field294 = var1 + 2000L; // L: 89
 				}
 
-				this.field296 = var3; // L: 131
-			} catch (Exception var7) { // L: 133
-				this.close(); // L: 134
-				this.field284 = var1 + 2000L; // L: 135
+				this.field293 = var3; // L: 91
+			} catch (Exception var7) { // L: 93
+				this.close(); // L: 94
+				this.field281 = var1 + 2000L; // L: 95
 			}
 
 			try {
-				if (var1 > 500000L + this.timeMs) { // L: 138
+				if (var1 > this.timeMs + 500000L) { // L: 98
 					var1 = this.timeMs;
 				}
 
-				while (var1 > this.timeMs + 5000L) { // L: 139
-					this.skip(256); // L: 140
-					this.timeMs += (long)(256000 / field287); // L: 141
+				while (var1 > 5000L + this.timeMs) { // L: 99
+					this.skip(256); // L: 100
+					this.timeMs += (long)(256000 / (class189.field1993 * 22050)); // L: 101
 				}
-			} catch (Exception var6) { // L: 144
-				this.timeMs = var1; // L: 145
+			} catch (Exception var6) { // L: 104
+				this.timeMs = var1; // L: 105
 			}
 
 		}
-	} // L: 147
+	} // L: 107
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-2134156100"
+		garbageValue = "246556055"
 	)
-	public final void method715() {
-		this.field293 = true; // L: 150
-	} // L: 151
+	public final void method845() {
+		this.field284 = true; // L: 110
+	} // L: 111
 
 	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-643520817"
+		garbageValue = "-1777076574"
 	)
 	@Export("tryDiscard")
 	public final synchronized void tryDiscard() {
-		this.field293 = true; // L: 154
+		this.field284 = true; // L: 114
 
 		try {
-			this.discard(); // L: 156
-		} catch (Exception var2) { // L: 158
-			this.close(); // L: 159
-			this.field284 = class115.method2692() + 2000L; // L: 160
+			this.discard(); // L: 116
+		} catch (Exception var2) { // L: 118
+			this.close(); // L: 119
+			this.field281 = UserComparator9.method2973() + 2000L; // L: 120
 		}
 
-	} // L: 162
+	} // L: 122
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "2"
+		descriptor = "(I)V",
+		garbageValue = "-1331387146"
 	)
 	@Export("shutdown")
 	public final synchronized void shutdown() {
-		if (soundSystem != null) { // L: 165
-			boolean var1 = true; // L: 166
+		if (soundSystem != null) { // L: 125
+			boolean var1 = true; // L: 126
 
-			for (int var2 = 0; var2 < 2; ++var2) { // L: 167
-				if (this == soundSystem.players[var2]) {
-					soundSystem.players[var2] = null; // L: 168
+			for (int var2 = 0; var2 < 2; ++var2) { // L: 127
+				if (this == soundSystem.players[var2]) { // L: 128
+					soundSystem.players[var2] = null;
 				}
 
-				if (soundSystem.players[var2] != null) { // L: 169
+				if (soundSystem.players[var2] != null) { // L: 129
 					var1 = false;
 				}
 			}
 
-			if (var1) { // L: 171
-				soundSystemExecutor.shutdownNow(); // L: 172
-				soundSystemExecutor = null; // L: 173
-				soundSystem = null; // L: 174
+			if (var1) { // L: 131
+				soundSystemExecutor.shutdownNow(); // L: 132
+				soundSystemExecutor = null; // L: 133
+				soundSystem = null; // L: 134
 			}
 		}
 
-		this.close(); // L: 177
-		this.samples = null; // L: 178
-	} // L: 179
+		this.close(); // L: 137
+		this.samples = null; // L: 138
+	} // L: 139
 
-	@ObfuscatedName("ab")
+	@ObfuscatedName("bj")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1021979490"
+		descriptor = "(IB)V",
+		garbageValue = "-32"
 	)
 	@Export("skip")
 	final void skip(int var1) {
-		this.field291 -= var1; // L: 182
-		if (this.field291 < 0) {
-			this.field291 = 0; // L: 183
+		this.field285 -= var1; // L: 142
+		if (this.field285 < 0) {
+			this.field285 = 0; // L: 143
 		}
 
 		if (this.stream != null) {
-			this.stream.skip(var1); // L: 184
+			this.stream.skip(var1); // L: 144
 		}
 
-	} // L: 185
+	} // L: 145
 
-	@ObfuscatedName("ap")
+	@ObfuscatedName("bd")
 	@Export("fill")
 	final void fill(int[] var1, int var2) {
-		int var3 = var2; // L: 189
-		if (BuddyRankComparator.PcmPlayer_stereo) { // L: 190
+		int var3 = var2; // L: 149
+		if (class462.PcmPlayer_stereo) { // L: 150
 			var3 = var2 << 1;
 		}
 
-		class350.clearIntArray(var1, 0, var3); // L: 191
-		this.field291 -= var2; // L: 192
-		if (this.stream != null && this.field291 <= 0) { // L: 193
-			this.field291 += field287 >> 4; // L: 194
-			Language.PcmStream_disable(this.stream); // L: 195
-			this.method673(this.stream, this.stream.vmethod948()); // L: 196
-			int var4 = 0; // L: 197
-			int var5 = 255; // L: 198
+		class425.clearIntArray(var1, 0, var3); // L: 151
+		this.field285 -= var2; // L: 152
+		if (this.stream != null && this.field285 <= 0) { // L: 153
+			this.field285 += class189.field1993 * 22050 >> 4; // L: 154
+			FloorOverlayDefinition.PcmStream_disable(this.stream); // L: 155
+			this.method814(this.stream, this.stream.vmethod1061()); // L: 156
+			int var4 = 0; // L: 157
+			int var5 = 255; // L: 158
 
 			int var6;
 			PcmStream var10;
 			label108:
-			for (var6 = 7; var5 != 0; --var6) { // L: 199
+			for (var6 = 7; var5 != 0; --var6) { // L: 159
 				int var7;
 				int var8;
-				if (var6 < 0) { // L: 202
-					var7 = var6 & 3; // L: 203
-					var8 = -(var6 >> 2); // L: 204
+				if (var6 < 0) { // L: 162
+					var7 = var6 & 3; // L: 163
+					var8 = -(var6 >> 2); // L: 164
 				} else {
-					var7 = var6; // L: 207
-					var8 = 0; // L: 208
+					var7 = var6; // L: 167
+					var8 = 0; // L: 168
 				}
 
-				for (int var9 = var5 >>> var7 & 286331153; var9 != 0; var9 >>>= 4) { // L: 210 212
-					if ((var9 & 1) != 0) { // L: 215
-						var5 &= ~(1 << var7); // L: 218
-						var10 = null; // L: 219
-						PcmStream var11 = this.field289[var7]; // L: 220
+				for (int var9 = var5 >>> var7 & 286331153; var9 != 0; var9 >>>= 4) { // L: 170 172
+					if ((var9 & 1) != 0) { // L: 175
+						var5 &= ~(1 << var7); // L: 178
+						var10 = null; // L: 179
+						PcmStream var11 = this.field298[var7]; // L: 180
 
 						label102:
 						while (true) {
 							while (true) {
-								if (var11 == null) { // L: 221
+								if (var11 == null) { // L: 181
 									break label102;
 								}
 
-								AbstractSound var12 = var11.sound; // L: 222
-								if (var12 != null && var12.position > var8) { // L: 223
-									var5 |= 1 << var7; // L: 224
-									var10 = var11; // L: 225
-									var11 = var11.after; // L: 226
+								AbstractSound var12 = var11.sound; // L: 182
+								if (var12 != null && var12.position > var8) { // L: 183
+									var5 |= 1 << var7; // L: 184
+									var10 = var11; // L: 185
+									var11 = var11.after; // L: 186
 								} else {
-									var11.active = true; // L: 229
-									int var13 = var11.vmethod5437(); // L: 230
-									var4 += var13; // L: 231
-									if (var12 != null) {
-										var12.position += var13; // L: 232
+									var11.active = true; // L: 189
+									int var13 = var11.vmethod6281(); // L: 190
+									var4 += var13; // L: 191
+									if (var12 != null) { // L: 192
+										var12.position += var13;
 									}
 
-									if (var4 >= this.field274) { // L: 233
+									if (var4 >= this.field295) { // L: 193
 										break label108;
 									}
 
-									PcmStream var14 = var11.firstSubStream(); // L: 234
-									if (var14 != null) { // L: 235
-										for (int var15 = var11.field346; var14 != null; var14 = var11.nextSubStream()) { // L: 236 237 239
-											this.method673(var14, var15 * var14.vmethod948() >> 8); // L: 238
+									PcmStream var14 = var11.firstSubStream(); // L: 194
+									if (var14 != null) { // L: 195
+										for (int var15 = var11.field353; var14 != null; var14 = var11.nextSubStream()) { // L: 196 197 199
+											this.method814(var14, var15 * var14.vmethod1061() >> 8); // L: 198
 										}
 									}
 
-									PcmStream var18 = var11.after; // L: 242
-									var11.after = null; // L: 243
-									if (var10 == null) { // L: 244
-										this.field289[var7] = var18;
+									PcmStream var18 = var11.after; // L: 202
+									var11.after = null; // L: 203
+									if (var10 == null) { // L: 204
+										this.field298[var7] = var18;
 									} else {
-										var10.after = var18; // L: 245
+										var10.after = var18; // L: 205
 									}
 
-									if (var18 == null) { // L: 246
-										this.field292[var7] = var10;
+									if (var18 == null) { // L: 206
+										this.field283[var7] = var10;
 									}
 
-									var11 = var18; // L: 247
+									var11 = var18; // L: 207
 								}
 							}
 						}
 					}
 
-					var7 += 4; // L: 211
+					var7 += 4; // L: 171
 					++var8;
 				}
 			}
 
-			for (var6 = 0; var6 < 8; ++var6) { // L: 251
-				PcmStream var16 = this.field289[var6]; // L: 252
-				PcmStream[] var17 = this.field289; // L: 253
-				this.field292[var6] = null; // L: 255
+			for (var6 = 0; var6 < 8; ++var6) { // L: 211
+				PcmStream var16 = this.field298[var6]; // L: 212
+				PcmStream[] var17 = this.field298; // L: 213
+				this.field283[var6] = null; // L: 215
 
-				for (var17[var6] = null; var16 != null; var16 = var10) { // L: 256 257 260
-					var10 = var16.after; // L: 258
-					var16.after = null; // L: 259
+				for (var17[var6] = null; var16 != null; var16 = var10) { // L: 216 217 220
+					var10 = var16.after; // L: 218
+					var16.after = null; // L: 219
 				}
 			}
 		}
 
-		if (this.field291 < 0) { // L: 264
-			this.field291 = 0;
+		if (this.field285 < 0) { // L: 224
+			this.field285 = 0;
 		}
 
-		if (this.stream != null) { // L: 265
-			this.stream.fill(var1, 0, var2);
+		if (this.stream != null) {
+			this.stream.fill(var1, 0, var2); // L: 225
 		}
 
-		this.timeMs = class115.method2692(); // L: 266
-	} // L: 267
+		this.timeMs = UserComparator9.method2973(); // L: 226
+	} // L: 227
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("bt")
 	@ObfuscatedSignature(
-		descriptor = "(Laz;II)V",
-		garbageValue = "-2042142637"
+		descriptor = "(Lbl;II)V",
+		garbageValue = "429153206"
 	)
-	final void method673(PcmStream var1, int var2) {
-		int var3 = var2 >> 5; // L: 276
-		PcmStream var4 = this.field292[var3]; // L: 277
-		if (var4 == null) { // L: 278
-			this.field289[var3] = var1;
+	final void method814(PcmStream var1, int var2) {
+		int var3 = var2 >> 5; // L: 236
+		PcmStream var4 = this.field283[var3]; // L: 237
+		if (var4 == null) { // L: 238
+			this.field298[var3] = var1;
 		} else {
-			var4.after = var1; // L: 279
+			var4.after = var1; // L: 239
 		}
 
-		this.field292[var3] = var1; // L: 280
-		var1.field346 = var2; // L: 281
-	} // L: 282
+		this.field283[var3] = var1; // L: 240
+		var1.field353 = var2; // L: 241
+	} // L: 242
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("bk")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;Ljava/lang/String;I)I",
-		garbageValue = "347450782"
+		descriptor = "(ILdd;ZI)I",
+		garbageValue = "-1767711937"
 	)
-	public static int method720(Buffer var0, String var1) {
-		int var2 = var0.offset; // L: 14
-		int var4 = var1.length(); // L: 17
-		byte[] var5 = new byte[var4]; // L: 18
-
-		for (int var6 = 0; var6 < var4; ++var6) { // L: 19
-			char var7 = var1.charAt(var6); // L: 20
-			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) { // L: 21
-				var5[var6] = (byte)var7;
-			} else if (var7 == 8364) { // L: 22
-				var5[var6] = -128;
-			} else if (var7 == 8218) { // L: 23
-				var5[var6] = -126;
-			} else if (var7 == 402) { // L: 24
-				var5[var6] = -125;
-			} else if (var7 == 8222) { // L: 25
-				var5[var6] = -124;
-			} else if (var7 == 8230) { // L: 26
-				var5[var6] = -123;
-			} else if (var7 == 8224) { // L: 27
-				var5[var6] = -122;
-			} else if (var7 == 8225) { // L: 28
-				var5[var6] = -121;
-			} else if (var7 == 710) { // L: 29
-				var5[var6] = -120;
-			} else if (var7 == 8240) { // L: 30
-				var5[var6] = -119;
-			} else if (var7 == 352) { // L: 31
-				var5[var6] = -118;
-			} else if (var7 == 8249) { // L: 32
-				var5[var6] = -117;
-			} else if (var7 == 338) { // L: 33
-				var5[var6] = -116;
-			} else if (var7 == 381) { // L: 34
-				var5[var6] = -114;
-			} else if (var7 == 8216) { // L: 35
-				var5[var6] = -111;
-			} else if (var7 == 8217) { // L: 36
-				var5[var6] = -110;
-			} else if (var7 == 8220) { // L: 37
-				var5[var6] = -109;
-			} else if (var7 == 8221) { // L: 38
-				var5[var6] = -108;
-			} else if (var7 == 8226) { // L: 39
-				var5[var6] = -107;
-			} else if (var7 == 8211) { // L: 40
-				var5[var6] = -106;
-			} else if (var7 == 8212) { // L: 41
-				var5[var6] = -105;
-			} else if (var7 == 732) { // L: 42
-				var5[var6] = -104;
-			} else if (var7 == 8482) { // L: 43
-				var5[var6] = -103;
-			} else if (var7 == 353) { // L: 44
-				var5[var6] = -102;
-			} else if (var7 == 8250) { // L: 45
-				var5[var6] = -101;
-			} else if (var7 == 339) { // L: 46
-				var5[var6] = -100;
-			} else if (var7 == 382) { // L: 47
-				var5[var6] = -98;
-			} else if (var7 == 376) { // L: 48
-				var5[var6] = -97;
+	static int method860(int var0, Script var1, boolean var2) {
+		int var3;
+		if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERTYPE) { // L: 3473
+			var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3474
+			Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].type(); // L: 3475
+			return 1; // L: 3476
+		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERITEM) { // L: 3478
+			var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3479
+			Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].id; // L: 3480
+			return 1; // L: 3481
+		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERPRICE) { // L: 3483
+			var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3484
+			Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].unitPrice; // L: 3485
+			return 1; // L: 3486
+		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERCOUNT) { // L: 3488
+			var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3489
+			Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].totalQuantity; // L: 3490
+			return 1; // L: 3491
+		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERCOMPLETEDCOUNT) { // L: 3493
+			var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3494
+			Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].currentQuantity; // L: 3495
+			return 1; // L: 3496
+		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERCOMPLETEDGOLD) { // L: 3498
+			var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3499
+			Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].currentPrice; // L: 3500
+			return 1; // L: 3501
+		} else {
+			int var13;
+			if (var0 == ScriptOpcodes.STOCKMARKET_ISOFFEREMPTY) { // L: 3503
+				var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3504
+				var13 = Client.grandExchangeOffers[var3].status(); // L: 3505
+				Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = var13 == 0 ? 1 : 0; // L: 3506
+				return 1; // L: 3507
+			} else if (var0 == ScriptOpcodes.STOCKMARKET_ISOFFERSTABLE) { // L: 3509
+				var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3510
+				var13 = Client.grandExchangeOffers[var3].status(); // L: 3511
+				Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = var13 == 2 ? 1 : 0; // L: 3512
+				return 1; // L: 3513
+			} else if (var0 == ScriptOpcodes.STOCKMARKET_ISOFFERFINISHED) { // L: 3515
+				var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3516
+				var13 = Client.grandExchangeOffers[var3].status(); // L: 3517
+				Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = var13 == 5 ? 1 : 0; // L: 3518
+				return 1; // L: 3519
+			} else if (var0 == ScriptOpcodes.STOCKMARKET_ISOFFERADDING) { // L: 3521
+				var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3522
+				var13 = Client.grandExchangeOffers[var3].status(); // L: 3523
+				Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = var13 == 1 ? 1 : 0; // L: 3524
+				return 1; // L: 3525
 			} else {
-				var5[var6] = 63; // L: 49
+				boolean var12;
+				if (var0 == ScriptOpcodes.TRADINGPOST_SORTBY_NAME) { // L: 3527
+					var12 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize] == 1; // L: 3528
+					if (class380.grandExchangeEvents != null) { // L: 3529
+						class380.grandExchangeEvents.sort(GrandExchangeEvents.GrandExchangeEvents_nameComparator, var12); // L: 3530
+					}
+
+					return 1; // L: 3532
+				} else if (var0 == ScriptOpcodes.TRADINGPOST_SORTBY_PRICE) { // L: 3534
+					var12 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize] == 1; // L: 3535
+					if (class380.grandExchangeEvents != null) { // L: 3536
+						class380.grandExchangeEvents.sort(GrandExchangeEvents.GrandExchangeEvents_priceComparator, var12); // L: 3537
+					}
+
+					return 1; // L: 3539
+				} else if (var0 == ScriptOpcodes.TRADINGPOST_SORTFILTERBY_WORLD) { // L: 3541
+					UserComparator6.Interpreter_intStackSize -= 2; // L: 3542
+					var12 = Interpreter.Interpreter_intStack[UserComparator6.Interpreter_intStackSize] == 1; // L: 3543
+					boolean var11 = Interpreter.Interpreter_intStack[UserComparator6.Interpreter_intStackSize + 1] == 1; // L: 3544
+					if (class380.grandExchangeEvents != null) { // L: 3545
+						Client.GrandExchangeEvents_worldComparator.filterWorlds = var11; // L: 3546
+						class380.grandExchangeEvents.sort(Client.GrandExchangeEvents_worldComparator, var12); // L: 3547
+					}
+
+					return 1; // L: 3549
+				} else if (var0 == ScriptOpcodes.TRADINGPOST_SORTBY_AGE) { // L: 3551
+					var12 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize] == 1; // L: 3552
+					if (class380.grandExchangeEvents != null) { // L: 3553
+						class380.grandExchangeEvents.sort(GrandExchangeEvents.GrandExchangeEvents_ageComparator, var12); // L: 3554
+					}
+
+					return 1; // L: 3556
+				} else if (var0 == ScriptOpcodes.TRADINGPOST_SORTBY_COUNT) { // L: 3558
+					var12 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize] == 1; // L: 3559
+					if (class380.grandExchangeEvents != null) { // L: 3560
+						class380.grandExchangeEvents.sort(GrandExchangeEvents.GrandExchangeEvents_quantityComparator, var12); // L: 3561
+					}
+
+					return 1; // L: 3563
+				} else if (var0 == ScriptOpcodes.TRADINGPOST_GETTOTALOFFERS) { // L: 3565
+					Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = class380.grandExchangeEvents == null ? 0 : class380.grandExchangeEvents.events.size(); // L: 3566
+					return 1; // L: 3567
+				} else {
+					GrandExchangeEvent var4;
+					if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERWORLD) { // L: 3569
+						var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3570
+						var4 = (GrandExchangeEvent)class380.grandExchangeEvents.events.get(var3); // L: 3571
+						Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = var4.world; // L: 3572
+						return 1; // L: 3573
+					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERNAME) { // L: 3575
+						var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3576
+						var4 = (GrandExchangeEvent)class380.grandExchangeEvents.events.get(var3); // L: 3577
+						Interpreter.Interpreter_stringStack[++class211.Interpreter_stringStackSize - 1] = var4.getOfferName(); // L: 3578
+						return 1; // L: 3579
+					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERPREVIOUSNAME) { // L: 3581
+						var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3582
+						var4 = (GrandExchangeEvent)class380.grandExchangeEvents.events.get(var3); // L: 3583
+						Interpreter.Interpreter_stringStack[++class211.Interpreter_stringStackSize - 1] = var4.getPreviousOfferName(); // L: 3584
+						return 1; // L: 3585
+					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERAGE) { // L: 3587
+						var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3588
+						var4 = (GrandExchangeEvent)class380.grandExchangeEvents.events.get(var3); // L: 3589
+						long var5 = UserComparator9.method2973() - class17.field74 - var4.age; // L: 3590
+						int var7 = (int)(var5 / 3600000L); // L: 3591
+						int var8 = (int)((var5 - (long)(var7 * 3600000)) / 60000L); // L: 3592
+						int var9 = (int)((var5 - (long)(var7 * 3600000) - (long)(var8 * 60000)) / 1000L); // L: 3593
+						String var10 = var7 + ":" + var8 / 10 + var8 % 10 + ":" + var9 / 10 + var9 % 10; // L: 3594
+						Interpreter.Interpreter_stringStack[++class211.Interpreter_stringStackSize - 1] = var10; // L: 3595
+						return 1; // L: 3596
+					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERCOUNT) { // L: 3598
+						var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3599
+						var4 = (GrandExchangeEvent)class380.grandExchangeEvents.events.get(var3); // L: 3600
+						Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = var4.grandExchangeOffer.totalQuantity; // L: 3601
+						return 1; // L: 3602
+					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERPRICE) { // L: 3604
+						var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3605
+						var4 = (GrandExchangeEvent)class380.grandExchangeEvents.events.get(var3); // L: 3606
+						Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = var4.grandExchangeOffer.unitPrice; // L: 3607
+						return 1; // L: 3608
+					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERITEM) { // L: 3610
+						var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3611
+						var4 = (GrandExchangeEvent)class380.grandExchangeEvents.events.get(var3); // L: 3612
+						Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = var4.grandExchangeOffer.id; // L: 3613
+						return 1; // L: 3614
+					} else if (var0 == 3939) { // L: 3616
+						var3 = Interpreter.Interpreter_intStack[--UserComparator6.Interpreter_intStackSize]; // L: 3617
+						Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = class341.ItemComposition_get(var3).isTradable ? 1 : 0; // L: 3618
+						return 1; // L: 3619
+					} else {
+						return 2; // L: 3621
+					}
+				}
+			}
+		}
+	}
+
+	@ObfuscatedName("ln")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIIIIIZI)V",
+		garbageValue = "-1536525774"
+	)
+	static void method859(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, boolean var9) {
+		TileItem var10 = new TileItem(); // L: 8427
+		var10.id = var3; // L: 8428
+		var10.quantity = var4; // L: 8429
+		var10.method2750(var5); // L: 8430
+		if (Client.groundItems[var0][var1][var2] == null) { // L: 8431
+			Client.groundItems[var0][var1][var2] = new NodeDeque(); // L: 8432
+		}
+
+		Client.groundItems[var0][var1][var2].addFirst(var10); // L: 8434
+		class134.method3141(var0, var1, var2); // L: 8435
+	} // L: 8436
+
+	@ObfuscatedName("le")
+	@ObfuscatedSignature(
+		descriptor = "(Luo;B)V",
+		garbageValue = "84"
+	)
+	static final void method846(PacketBuffer var0) {
+		var0.importIndex(); // L: 8726
+		int var1 = var0.readBits(8); // L: 8727
+		int var2;
+		if (var1 < Client.npcCount) { // L: 8728
+			for (var2 = var1; var2 < Client.npcCount; ++var2) { // L: 8729
+				Client.field625[++Client.field708 - 1] = Client.npcIndices[var2];
 			}
 		}
 
-		var0.writeSmartByteShort(var5.length); // L: 54
-		var0.offset += class281.huffman.compress(var5, 0, var5.length, var0.array, var0.offset); // L: 55
-		return var0.offset - var2; // L: 56
-	}
+		if (var1 > Client.npcCount) { // L: 8731
+			throw new RuntimeException("");
+		} else {
+			Client.npcCount = 0; // L: 8732
 
-	@ObfuscatedName("fd")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "-101"
-	)
-	static void method719(int var0, int var1) {
-		if (class19.clientPreferences.method2258() != 0 && var0 != -1) { // L: 3778
-			AttackOption.method2410(UserComparator7.field1383, var0, 0, class19.clientPreferences.method2258(), false); // L: 3779
-			Client.playingJingle = true; // L: 3780
+			for (var2 = 0; var2 < var1; ++var2) { // L: 8733
+				int var3 = Client.npcIndices[var2]; // L: 8734
+				NPC var4 = Client.npcs[var3]; // L: 8735
+				int var5 = var0.readBits(1); // L: 8736
+				if (var5 == 0) { // L: 8737
+					Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8738
+					var4.npcCycle = Client.cycle; // L: 8739
+				} else {
+					int var6 = var0.readBits(2); // L: 8742
+					if (var6 == 0) { // L: 8743
+						Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8744
+						var4.npcCycle = Client.cycle; // L: 8745
+						Client.field603[++Client.field549 - 1] = var3; // L: 8746
+					} else {
+						int var7;
+						int var8;
+						if (var6 == 1) { // L: 8749
+							Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8750
+							var4.npcCycle = Client.cycle; // L: 8751
+							var7 = var0.readBits(3); // L: 8752
+							var4.method2661(var7, class231.field2458); // L: 8753
+							var8 = var0.readBits(1); // L: 8754
+							if (var8 == 1) { // L: 8755
+								Client.field603[++Client.field549 - 1] = var3;
+							}
+						} else if (var6 == 2) { // L: 8758
+							Client.npcIndices[++Client.npcCount - 1] = var3; // L: 8759
+							var4.npcCycle = Client.cycle; // L: 8760
+							if (var0.readBits(1) == 1) { // L: 8761
+								var7 = var0.readBits(3); // L: 8762
+								var4.method2661(var7, class231.field2459); // L: 8763
+								var8 = var0.readBits(3); // L: 8764
+								var4.method2661(var8, class231.field2459); // L: 8765
+							} else {
+								var7 = var0.readBits(3); // L: 8768
+								var4.method2661(var7, class231.field2456); // L: 8769
+							}
+
+							var7 = var0.readBits(1); // L: 8771
+							if (var7 == 1) { // L: 8772
+								Client.field603[++Client.field549 - 1] = var3;
+							}
+						} else if (var6 == 3) { // L: 8775
+							Client.field625[++Client.field708 - 1] = var3; // L: 8776
+						}
+					}
+				}
+			}
+
 		}
-
-	} // L: 3782
+	} // L: 8780
 }

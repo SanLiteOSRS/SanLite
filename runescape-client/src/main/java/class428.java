@@ -1,19 +1,42 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pf")
-public interface class428 {
-	@ObfuscatedName("c")
+@ObfuscatedName("qs")
+public class class428 {
+	@ObfuscatedName("mq")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;Lqt;B)V",
-		garbageValue = "-51"
+		descriptor = "([Lnn;IIIZI)V",
+		garbageValue = "670906254"
 	)
-	void vmethod7583(Object var1, Buffer var2);
+	@Export("resizeInterface")
+	static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
+		for (int var5 = 0; var5 < var0.length; ++var5) { // L: 11017
+			Widget var6 = var0[var5]; // L: 11018
+			if (var6 != null && var6.parentId == var1) { // L: 11019 11020
+				class418.alignWidgetSize(var6, var2, var3, var4); // L: 11021
+				WorldMapID.alignWidgetPosition(var6, var2, var3); // L: 11022
+				if (var6.scrollX > var6.scrollWidth - var6.width) { // L: 11023
+					var6.scrollX = var6.scrollWidth - var6.width;
+				}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)Ljava/lang/Object;",
-		garbageValue = "-261873850"
-	)
-	Object vmethod7580(Buffer var1);
+				if (var6.scrollX < 0) { // L: 11024
+					var6.scrollX = 0;
+				}
+
+				if (var6.scrollY > var6.scrollHeight - var6.height) { // L: 11025
+					var6.scrollY = var6.scrollHeight - var6.height;
+				}
+
+				if (var6.scrollY < 0) { // L: 11026
+					var6.scrollY = 0;
+				}
+
+				if (var6.type == 0) { // L: 11027
+					class16.revalidateWidgetScroll(var0, var6, var4);
+				}
+			}
+		}
+
+	} // L: 11029
 }
