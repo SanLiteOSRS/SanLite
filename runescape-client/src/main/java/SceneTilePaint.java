@@ -3,52 +3,49 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-@ObfuscatedName("hu")
+@ObfuscatedName("kh")
 @Implements("SceneTilePaint")
 public final class SceneTilePaint {
-	@ObfuscatedName("cj")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	@Export("worldSelectRightSprite")
-	static IndexedSprite worldSelectRightSprite;
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 1769216381
+		intValue = -1107319853
 	)
 	@Export("swColor")
 	int swColor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -78289351
+		intValue = 1339424929
 	)
 	@Export("seColor")
 	int seColor;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -184307337
+		intValue = -418227247
 	)
 	@Export("neColor")
 	int neColor;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -1175452837
+		intValue = 1160273677
 	)
 	@Export("nwColor")
 	int nwColor;
-	@ObfuscatedName("j")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = 516518743
+		intValue = -78371499
 	)
 	@Export("texture")
 	int texture;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ar")
 	@Export("isFlat")
 	boolean isFlat;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = 1480522927
+		intValue = 1192930527
 	)
 	@Export("rgb")
 	int rgb;
@@ -57,84 +54,62 @@ public final class SceneTilePaint {
 		this.isFlat = true; // L: 9
 		this.swColor = var1; // L: 13
 		this.seColor = var2; // L: 14
-		this.neColor = var3; // L: 15
+		this.neColor = var3;
 		this.nwColor = var4; // L: 16
 		this.texture = var5; // L: 17
 		this.rgb = var6; // L: 18
 		this.isFlat = var7; // L: 19
 	} // L: 20
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)Ljava/lang/String;",
-		garbageValue = "-117"
+		descriptor = "(I)[Loc;",
+		garbageValue = "1713026222"
 	)
-	@Export("decodeStringCp1252")
-	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
-		char[] var3 = new char[var2]; // L: 114
-		int var4 = 0; // L: 115
+	public static class367[] method5788() {
+		return new class367[]{class367.field4286, class367.field4288, class367.field4287, class367.field4289}; // L: 15
+	}
 
-		for (int var5 = 0; var5 < var2; ++var5) { // L: 116
-			int var6 = var0[var5 + var1] & 255; // L: 117
-			if (var6 != 0) { // L: 118
-				if (var6 >= 128 && var6 < 160) { // L: 119
-					char var7 = class340.cp1252AsciiExtension[var6 - 128]; // L: 120
-					if (var7 == 0) { // L: 121
-						var7 = '?';
-					}
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "(Lorg/json/JSONObject;Ljava/lang/String;B)[F",
+		garbageValue = "-53"
+	)
+	static float[] method5787(JSONObject var0, String var1) throws JSONException {
+		float[] var2 = new float[4]; // L: 277
 
-					var6 = var7; // L: 122
+		try {
+			JSONArray var3 = var0.getJSONArray(var1); // L: 279
+			var2[0] = (float)var3.optDouble(0, 0.0D); // L: 280
+			var2[1] = (float)var3.optDouble(1, 0.0D); // L: 281
+			var2[2] = (float)var3.optDouble(2, 1.0D); // L: 282
+			var2[3] = (float)var3.optDouble(3, 1.0D); // L: 283
+		} catch (JSONException var4) { // L: 285
+			var2[0] = 0.0F; // L: 286
+			var2[1] = 0.0F; // L: 287
+			var2[2] = 1.0F; // L: 288
+			var2[3] = 1.0F; // L: 289
+		}
+
+		return var2; // L: 291
+	}
+
+	@ObfuscatedName("pz")
+	@ObfuscatedSignature(
+		descriptor = "(S)V",
+		garbageValue = "191"
+	)
+	static void method5786() {
+		if (Varps.field3599 != null) { // L: 12737
+			Client.field758 = Client.cycle; // L: 12738
+			Varps.field3599.method7264(); // L: 12739
+
+			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 12740
+				if (Client.players[var0] != null) { // L: 12741
+					Varps.field3599.method7252(HealthBarDefinition.baseX * 64 + (Client.players[var0].x >> 7), WorldMapScaleHandler.baseY * 64 + (Client.players[var0].y >> 7)); // L: 12742
 				}
-
-				var3[var4++] = (char)var6; // L: 124
 			}
 		}
 
-		return new String(var3, 0, var4); // L: 126
-	}
-
-	@ObfuscatedName("hr")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "744577981"
-	)
-	@Export("getTileHeight")
-	static final int getTileHeight(int var0, int var1, int var2) {
-		int var3 = var0 >> 7; // L: 5462
-		int var4 = var1 >> 7; // L: 5463
-		if (var3 >= 0 && var4 >= 0 && var3 <= 103 && var4 <= 103) { // L: 5464
-			int var5 = var2; // L: 5465
-			if (var2 < 3 && (Tiles.Tiles_renderFlags[1][var3][var4] & 2) == 2) { // L: 5466
-				var5 = var2 + 1;
-			}
-
-			int var6 = var0 & 127; // L: 5467
-			int var7 = var1 & 127; // L: 5468
-			int var8 = Tiles.Tiles_heights[var5][var3 + 1][var4] * var6 + (128 - var6) * Tiles.Tiles_heights[var5][var3][var4] >> 7; // L: 5469
-			int var9 = var6 * Tiles.Tiles_heights[var5][var3 + 1][var4 + 1] + Tiles.Tiles_heights[var5][var3][var4 + 1] * (128 - var6) >> 7; // L: 5470
-			return var8 * (128 - var7) + var9 * var7 >> 7; // L: 5471
-		} else {
-			return 0;
-		}
-	}
-
-	@ObfuscatedName("lv")
-	@ObfuscatedSignature(
-		descriptor = "(IIZI)V",
-		garbageValue = "1779675406"
-	)
-	static final void method4530(int var0, int var1, boolean var2) {
-		if (Client.currentClanChannels[var0] != null) { // L: 12276
-			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method3113()) { // L: 12277
-				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1); // L: 12278
-				PacketBufferNode var4 = EnumComposition.getPacketBufferNode(ClientPacket.field2960, Client.packetWriter.isaacCipher); // L: 12279
-				var4.packetBuffer.writeByte(4 + ScriptEvent.stringCp1252NullTerminatedByteSize(var3.username.getName())); // L: 12280
-				var4.packetBuffer.writeByte(var0); // L: 12281
-				var4.packetBuffer.writeShort(var1); // L: 12282
-				var4.packetBuffer.writeBoolean(var2); // L: 12283
-				var4.packetBuffer.writeStringCp1252NullTerminated(var3.username.getName()); // L: 12284
-				Client.packetWriter.addNode(var4); // L: 12285
-			}
-		}
-	} // L: 12286
+	} // L: 12746
 }

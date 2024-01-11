@@ -3,109 +3,114 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ec")
-public class class141 extends class144 {
-	@ObfuscatedName("jm")
+@ObfuscatedName("fl")
+public class class141 extends class143 {
+	@ObfuscatedName("ar")
+	static byte[][][] field1628;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -1799721325
+		longValue = -6949237618253814325L
 	)
-	@Export("oculusOrbFocalPointY")
-	static int oculusOrbFocalPointY;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 1400461077
-	)
-	int field1659;
-	@ObfuscatedName("v")
-	byte field1660;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 1585058459
-	)
-	int field1658;
-	@ObfuscatedName("f")
-	String field1656;
+	long field1627;
+	@ObfuscatedName("ap")
+	String field1626;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Leu;"
+		descriptor = "Lfm;"
 	)
-	final class145 this$0;
+	final class146 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Leu;)V"
+		descriptor = "(Lfm;)V"
 	)
-	class141(class145 var1) {
+	class141(class146 var1) {
 		this.this$0 = var1;
-		this.field1659 = -1; // L: 125
-	} // L: 130
+		this.field1627 = -1L; // L: 74
+		this.field1626 = null; // L: 75
+	} // L: 77
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "(Luk;I)V",
+		garbageValue = "-411371469"
 	)
-	void vmethod3137(Buffer var1) {
-		var1.readUnsignedByte(); // L: 133
-		this.field1659 = var1.readUnsignedShort(); // L: 134
-		this.field1660 = var1.readByte(); // L: 135
-		this.field1658 = var1.readUnsignedShort(); // L: 136
-		var1.readLong(); // L: 137
-		this.field1656 = var1.readStringCp1252NullTerminated(); // L: 138
-		var1.readUnsignedByte(); // L: 139
-	} // L: 140
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
-	)
-	void vmethod3138(ClanChannel var1) {
-		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1659); // L: 143
-		var2.rank = this.field1660; // L: 144
-		var2.world = this.field1658; // L: 145
-		var2.username = new Username(this.field1656); // L: 146
-	} // L: 147
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-113948023"
-	)
-	public static int method3048(int var0) {
-		return (var0 & class438.field4680) - 1; // L: 26
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIII)I",
-		garbageValue = "-612042966"
-	)
-	public static int method3044(int var0, int var1, int var2, int var3, int var4, int var5) {
-		if ((var5 & 1) == 1) { // L: 38
-			int var6 = var3; // L: 39
-			var3 = var4; // L: 40
-			var4 = var6; // L: 41
+	void vmethod3531(Buffer var1) {
+		if (var1.readUnsignedByte() != 255) { // L: 80
+			--var1.offset; // L: 81
+			this.field1627 = var1.readLong(); // L: 82
 		}
 
-		var2 &= 3; // L: 43
-		if (var2 == 0) { // L: 44
+		this.field1626 = var1.readStringCp1252NullTerminatedOrNull(); // L: 84
+	} // L: 85
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(Lfn;I)V",
+		garbageValue = "1048713263"
+	)
+	void vmethod3529(ClanSettings var1) {
+		var1.method3344(this.field1627, this.field1626, 0); // L: 88
+	} // L: 89
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lhz;",
+		garbageValue = "1341518248"
+	)
+	public static FloorUnderlayDefinition method3213(int var0) {
+		FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.field2039.get((long)var0); // L: 25
+		if (var1 != null) { // L: 26
 			return var1;
-		} else if (var2 == 1) { // L: 45
-			return 7 - var0 - (var3 - 1);
 		} else {
-			return var2 == 2 ? 7 - var1 - (var4 - 1) : var0; // L: 46
+			byte[] var2 = FloorUnderlayDefinition.field2035.takeFile(1, var0); // L: 27
+			var1 = new FloorUnderlayDefinition(); // L: 28
+			if (var2 != null) { // L: 29
+				var1.decode(new Buffer(var2), var0);
+			}
+
+			var1.postDecode(); // L: 30
+			FloorUnderlayDefinition.field2039.put(var1, (long)var0); // L: 31
+			return var1; // L: 32
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("ja")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1644827355"
+		descriptor = "(Ldn;ZI)V",
+		garbageValue = "-11258464"
 	)
-	public static void method3047() {
-		ObjectComposition.ObjectDefinition_cached.clear(); // L: 429
-		ObjectComposition.ObjectDefinition_cachedModelData.clear(); // L: 430
-		ObjectComposition.ObjectDefinition_cachedEntities.clear(); // L: 431
-		ObjectComposition.ObjectDefinition_cachedModels.clear(); // L: 432
-	} // L: 433
+	@Export("addPlayerToScene")
+	static void addPlayerToScene(Player var0, boolean var1) {
+		if (var0 != null && var0.isVisible() && !var0.isHidden) { // L: 4969
+			var0.isUnanimated = false; // L: 4970
+			if ((Client.isLowDetail && Players.Players_count > 50 || Players.Players_count > 200) && var1 && var0.movementSequence == var0.idleSequence) { // L: 4971 4972
+				var0.isUnanimated = true;
+			}
+
+			int var2 = var0.x >> 7; // L: 4974
+			int var3 = var0.y >> 7; // L: 4975
+			if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) { // L: 4976
+				long var4 = DynamicObject.calculateTag(0, 0, 0, false, var0.index); // L: 4977
+				if (var0.model0 != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) { // L: 4978
+					var0.isUnanimated = false; // L: 4979
+					var0.tileHeight = class19.getTileHeight(var0.x, var0.y, class113.Client_plane); // L: 4980
+					var0.playerCycle = Client.cycle; // L: 4981
+					GrandExchangeOfferOwnWorldComparator.scene.addNullableObject(class113.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.minX, var0.minY, var0.maxX, var0.maxY); // L: 4982
+				} else {
+					if ((var0.x & 127) == 64 && (var0.y & 127) == 64) { // L: 4985
+						if (Client.tileLastDrawnActor[var2][var3] == Client.viewportDrawCount) { // L: 4986
+							return;
+						}
+
+						Client.tileLastDrawnActor[var2][var3] = Client.viewportDrawCount; // L: 4987
+					}
+
+					var0.tileHeight = class19.getTileHeight(var0.x, var0.y, class113.Client_plane); // L: 4989
+					var0.playerCycle = Client.cycle; // L: 4990
+					GrandExchangeOfferOwnWorldComparator.scene.drawEntity(class113.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.isWalking); // L: 4991
+				}
+			}
+		}
+
+	} // L: 4995
 }

@@ -1,47 +1,78 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gn")
-public enum class192 implements MouseWheel {
-	@ObfuscatedName("c")
+@ObfuscatedName("hh")
+public class class192 {
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lhh;"
 	)
-	field2208((byte)-1),
-	@ObfuscatedName("v")
+	static final class192 field2009;
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lhh;"
 	)
-	field2209((byte)0),
-	@ObfuscatedName("q")
+	static final class192 field2016;
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lhh;"
 	)
-	field2212((byte)1),
-	@ObfuscatedName("f")
+	static final class192 field2010;
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lhh;"
 	)
-	field2211((byte)2);
+	static final class192 field2011;
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "Lhh;"
+	)
+	static final class192 field2012;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lhh;"
+	)
+	static final class192 field2013;
+	@ObfuscatedName("ag")
+	@ObfuscatedSignature(
+		descriptor = "Lhh;"
+	)
+	static final class192 field2014;
 
-	@ObfuscatedName("ao")
-	@Export("fontHelvetica13")
-	static java.awt.Font fontHelvetica13;
-	@ObfuscatedName("j")
-	public byte field2210;
+	static {
+		field2009 = new class192(0, class205.field2255); // L: 4
+		field2016 = new class192(1, class205.field2257); // L: 5
+		field2010 = new class192(2, class205.field2251); // L: 6
+		field2011 = new class192(3, class205.field2253); // L: 7
+		field2012 = new class192(4, class205.field2261); // L: 8
+		field2013 = new class192(5, class205.field2254); // L: 9
+		field2014 = new class192(6, class205.field2256); // L: 10
+	}
 
-	class192(byte var3) {
-		this.field2210 = var3; // L: 14
-	} // L: 15
-
-	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(ILhs;)V"
 	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field2210; // L: 19
+	class192(int var1, class205 var2) {
+	} // L: 12
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lhy;",
+		garbageValue = "-1270369602"
+	)
+	public static HitSplatDefinition method3790(int var0) {
+		HitSplatDefinition var1 = (HitSplatDefinition)HitSplatDefinition.HitSplatDefinition_cached.get((long)var0); // L: 46
+		if (var1 != null) { // L: 47
+			return var1;
+		} else {
+			byte[] var2 = HitSplatDefinition.HitSplatDefinition_archive.takeFile(32, var0); // L: 48
+			var1 = new HitSplatDefinition(); // L: 49
+			if (var2 != null) { // L: 50
+				var1.decode(new Buffer(var2));
+			}
+
+			HitSplatDefinition.HitSplatDefinition_cached.put(var1, (long)var0); // L: 51
+			return var1; // L: 52
+		}
 	}
 }
