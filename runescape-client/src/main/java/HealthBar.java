@@ -4,48 +4,39 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cn")
+@ObfuscatedName("dq")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("ri")
-	@ObfuscatedSignature(
-		descriptor = "Len;"
-	)
-	@Export("guestClanSettings")
-	static ClanSettings guestClanSettings;
-	@ObfuscatedName("cn")
-	public static char field1258;
-	@ObfuscatedName("nf")
+	@ObfuscatedName("uj")
 	@ObfuscatedGetter(
-		intValue = 1249602607
+		intValue = -1778066565
 	)
-	@Export("selectedSpellFlags")
-	static int selectedSpellFlags;
-	@ObfuscatedName("q")
+	static int field1296;
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lfe;"
+		descriptor = "Lgd;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Llk;"
+		descriptor = "Lph;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfe;)V"
+		descriptor = "(Lgd;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque(); // L: 12
 		this.definition = var1; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "1392818075"
+		garbageValue = "-600017305"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -59,8 +50,8 @@ public class HealthBar extends Node {
 				return; // L: 25
 			}
 
-			if (var7.cycle <= var1) {
-				var5 = var7; // L: 27
+			if (var7.cycle <= var1) { // L: 27
+				var5 = var7;
 			}
 		}
 
@@ -78,10 +69,10 @@ public class HealthBar extends Node {
 		}
 	} // L: 31 35
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lcp;",
-		garbageValue = "14"
+		descriptor = "(II)Ldo;",
+		garbageValue = "1806626844"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -103,119 +94,189 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-1385237709"
+		garbageValue = "-1638250969"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method6147(); // L: 55
+		return this.updates.method7364(); // L: 55
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Ldo;[F[FI)V",
-		garbageValue = "-1662385101"
+		descriptor = "(CB)C",
+		garbageValue = "-51"
 	)
-	static void method2355(class117 var0, float[] var1, float[] var2) {
-		if (var0 != null) { // L: 273
-			var0.field1464 = var1[0]; // L: 276
-			float var3 = var1[3] - var1[0]; // L: 277
-			float var4 = var2[3] - var2[0]; // L: 278
-			float var5 = var1[1] - var1[0]; // L: 279
-			float var6 = 0.0F; // L: 280
-			float var7 = 0.0F; // L: 281
-			if (0.0D != (double)var5) { // L: 282
-				var6 = (var2[1] - var2[0]) / var5; // L: 283
-			}
-
-			var5 = var1[3] - var1[2]; // L: 285
-			if ((double)var5 != 0.0D) { // L: 286
-				var7 = (var2[3] - var2[2]) / var5; // L: 287
-			}
-
-			float var8 = 1.0F / (var3 * var3); // L: 289
-			float var9 = var3 * var6; // L: 290
-			float var10 = var3 * var7; // L: 291
-			var0.field1465[0] = (var10 + var9 - var4 - var4) * var8 / var3; // L: 292
-			var0.field1465[1] = (var4 + var4 + var4 - var9 - var9 - var10) * var8; // L: 293
-			var0.field1465[2] = var6; // L: 294
-			var0.field1465[3] = var2[0]; // L: 295
-		}
-	} // L: 274 296
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;IZB)I",
-		garbageValue = "9"
-	)
-	static int method2356(CharSequence var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) { // L: 85
-			boolean var3 = false; // L: 86
-			boolean var4 = false; // L: 87
-			int var5 = 0; // L: 88
-			int var6 = var0.length(); // L: 89
-
-			for (int var7 = 0; var7 < var6; ++var7) { // L: 90
-				char var8 = var0.charAt(var7); // L: 91
-				if (var7 == 0) { // L: 92
-					if (var8 == '-') { // L: 93
-						var3 = true; // L: 94
-						continue;
-					}
-
-					if (var8 == '+') { // L: 97
-						continue;
-					}
-				}
-
-				int var10;
-				if (var8 >= '0' && var8 <= '9') {
-					var10 = var8 - '0'; // L: 99
-				} else if (var8 >= 'A' && var8 <= 'Z') { // L: 100
-					var10 = var8 - '7';
-				} else {
-					if (var8 < 'a' || var8 > 'z') { // L: 101
-						throw new NumberFormatException(); // L: 102
-					}
-
-					var10 = var8 - 'W';
-				}
-
-				if (var10 >= var1) { // L: 103
-					throw new NumberFormatException();
-				}
-
-				if (var3) { // L: 104
-					var10 = -var10;
-				}
-
-				int var9 = var10 + var5 * var1; // L: 105
-				if (var9 / var1 != var5) { // L: 106
-					throw new NumberFormatException();
-				}
-
-				var5 = var9; // L: 107
-				var4 = true; // L: 108
-			}
-
-			if (!var4) { // L: 110
-				throw new NumberFormatException();
-			} else {
-				return var5; // L: 111
-			}
+	static char method2654(char var0) {
+		if (var0 == 198) { // L: 95
+			return 'E';
+		} else if (var0 == 230) { // L: 96
+			return 'e';
+		} else if (var0 == 223) {
+			return 's'; // L: 97
+		} else if (var0 == 338) { // L: 98
+			return 'E';
 		} else {
-			throw new IllegalArgumentException("" + var1);
+			return (char)(var0 == 339 ? 'e' : '\u0000'); // L: 99 100
 		}
 	}
 
-	@ObfuscatedName("hi")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "1947801286"
+		descriptor = "(Ljava/lang/CharSequence;I)I",
+		garbageValue = "-835116985"
 	)
-	static final void method2349(int var0, int var1, int var2, int var3) {
-		WorldMap.method7376(); // L: 5428
-	} // L: 5429
+	public static int method2644(CharSequence var0) {
+		return KitDefinition.method3666(var0, 10, true); // L: 73
+	}
+
+	@ObfuscatedName("io")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "559859122"
+	)
+	@Export("getLoginError")
+	static void getLoginError(int var0) {
+		int var1 = Login.loginIndex; // L: 2768
+		if (var0 == -3) { // L: 2771
+			class142.setLoginResponseString("Connection timed out.", "Please try using a different world.", "");
+		} else if (var0 == -2) { // L: 2772
+			class142.setLoginResponseString("Error connecting to server.", "Please try using a different world.", "");
+		} else if (var0 == -1) { // L: 2773
+			class142.setLoginResponseString("No response from server.", "Please try using a different world.", "");
+		} else if (var0 == 3) { // L: 2774
+			Actor.method2489(3); // L: 2775
+			Login.field916 = 1; // L: 2776
+		} else if (var0 == 4) { // L: 2778
+			Actor.method2489(14); // L: 2780
+			Login.field919 = 0; // L: 2781
+		} else if (var0 == 5) { // L: 2784
+			Login.field916 = 2; // L: 2785
+			class142.setLoginResponseString("Either your account is still logged in, or the last", "world you were using has become unavailable.", "Please try again later."); // L: 2786
+		} else if (var0 == 68) { // L: 2788
+			if (!Client.isLoading) { // L: 2789
+				Client.isLoading = true; // L: 2790
+				class281.method5621(); // L: 2791
+				return; // L: 2792
+			}
+
+			class142.setLoginResponseString("RuneScape has been updated!", "Please reload this page.", ""); // L: 2795
+		} else if (!Client.onMobile && var0 == 6) { // L: 2798
+			class142.setLoginResponseString("RuneScape has been updated!", "Please reload this page.", ""); // L: 2799
+		} else if (var0 == 7) { // L: 2801
+			class142.setLoginResponseString("This world is full.", "Please use a different world.", "");
+		} else if (var0 == 8) { // L: 2802
+			class142.setLoginResponseString("Unable to connect.", "Login server offline.", "");
+		} else if (var0 == 9) { // L: 2803
+			class142.setLoginResponseString("Login limit exceeded.", "Too many connections from your address.", "");
+		} else if (var0 == 10) { // L: 2804
+			class142.setLoginResponseString("Unable to connect.", "Bad session id.", "");
+		} else if (var0 == 11) { // L: 2805
+			class142.setLoginResponseString("We suspect someone knows your password.", "Press 'change your password' on front page.", "");
+		} else if (var0 == 12) { // L: 2806
+			class142.setLoginResponseString("You need a members account to login to this world.", "Please subscribe, or use a different world.", "");
+		} else if (var0 == 13) { // L: 2807
+			class142.setLoginResponseString("Could not complete login.", "Please try using a different world.", "");
+		} else if (var0 == 14) { // L: 2808
+			class142.setLoginResponseString("The server is being updated.", "Please wait 1 minute and try again.", "");
+		} else if (var0 == 16) { // L: 2809
+			class142.setLoginResponseString("Too many login attempts.", "You can use the Jagex Launcher to continue playing.", "Press the button below to download it now."); // L: 2810
+			Actor.method2489(33); // L: 2811
+		} else if (var0 == 17) { // L: 2813
+			class142.setLoginResponseString("To access this free world, log into a", "members world and move your character", "to a non-members area.");
+		} else if (var0 == 18) { // L: 2814
+			Actor.method2489(14); // L: 2816
+			Login.field919 = 1; // L: 2817
+		} else if (var0 == 19) { // L: 2820
+			class142.setLoginResponseString("This world is running a closed Beta.", "Sorry invited players only.", "Please use a different world.");
+		} else if (var0 == 20) { // L: 2821
+			class142.setLoginResponseString("Invalid loginserver requested.", "Please try using a different world.", "");
+		} else if (var0 == 22) { // L: 2822
+			class142.setLoginResponseString("Malformed login packet.", "Please try again.", "");
+		} else if (var0 == 23) { // L: 2823
+			class142.setLoginResponseString("No reply from loginserver.", "Please wait 1 minute and try again.", "");
+		} else if (var0 == 24) { // L: 2824
+			class142.setLoginResponseString("Error loading your profile.", "Please contact customer support.", "");
+		} else if (var0 == 25) { // L: 2825
+			class142.setLoginResponseString("Unexpected loginserver response.", "Please try using a different world.", "");
+		} else if (var0 == 26) { // L: 2826
+			class142.setLoginResponseString("This computers address has been blocked", "as it was used to break our rules.", "");
+		} else if (var0 == 27) { // L: 2827
+			class142.setLoginResponseString("", "Service unavailable.", "");
+		} else if (var0 == 31) { // L: 2828
+			class142.setLoginResponseString("Your account must have a displayname set", "in order to play the game.  Please set it", "via the website, or the main game.");
+		} else if (var0 == 32) { // L: 2829
+			Actor.method2489(14); // L: 2831
+			Login.field919 = 2; // L: 2832
+		} else if (var0 == 37) { // L: 2835
+			class142.setLoginResponseString("Your account is currently inaccessible.", "Please try again in a few minutes.", "");
+		} else if (var0 == 38) { // L: 2836
+			class142.setLoginResponseString("You need to vote to play!", "Visit runescape.com and vote,", "and then come back here!");
+		} else if (var0 == 55) { // L: 2837
+			Actor.method2489(8); // L: 2838
+		} else {
+			if (var0 == 56) { // L: 2840
+				class142.setLoginResponseString("Enter the 6-digit code generated by your", "authenticator app.", ""); // L: 2841
+				class131.method3087(11); // L: 2842
+				return; // L: 2843
+			}
+
+			if (var0 == 57) { // L: 2845
+				class142.setLoginResponseString("The code you entered was incorrect.", "Please try again.", ""); // L: 2846
+				class131.method3087(11); // L: 2847
+				return; // L: 2848
+			}
+
+			if (var0 == 61) { // L: 2850
+				class142.setLoginResponseString("", "Please enter your date of birth (DD/MM/YYYY)", ""); // L: 2851
+				Actor.method2489(7); // L: 2852
+			} else {
+				if (var0 == 62) { // L: 2854
+					class131.method3087(10); // L: 2855
+					Actor.method2489(9); // L: 2856
+					class142.setLoginResponseString("Login attempt timed out.", "Please try again.", ""); // L: 2857
+					return; // L: 2858
+				}
+
+				if (var0 == 63) { // L: 2860
+					class131.method3087(10); // L: 2861
+					Actor.method2489(9); // L: 2862
+					class142.setLoginResponseString("You were signed out.", "Please sign in again.", ""); // L: 2863
+					return; // L: 2864
+				}
+
+				if (var0 == 65 || var0 == 67) { // L: 2866
+					class131.method3087(10); // L: 2867
+					Actor.method2489(9); // L: 2868
+					class142.setLoginResponseString("Failed to login.", "Please try again.", ""); // L: 2869
+					return; // L: 2870
+				}
+
+				if (var0 == 71) { // L: 2872
+					class131.method3087(10); // L: 2873
+					Actor.method2489(7); // L: 2874
+					class142.setLoginResponseString("There was a problem updating your DOB.", "Please try again later. If the problem ", "persists, please contact Jagex Support."); // L: 2875
+				} else if (var0 == 73) { // L: 2877
+					class131.method3087(10); // L: 2878
+					Actor.method2489(6); // L: 2879
+					class142.setLoginResponseString("Your date of birth information is waiting", "to be reviewed by our staff.", "It will be processed shortly."); // L: 2880
+				} else if (var0 == 72) { // L: 2882
+					class131.method3087(10); // L: 2883
+					Actor.method2489(32); // L: 2884
+				} else {
+					class142.setLoginResponseString("Unexpected server response", "Please try using a different world.", ""); // L: 2886
+				}
+			}
+		}
+
+		class131.method3087(10); // L: 2887
+		int var4 = Login.loginIndex; // L: 2891
+		boolean var5 = var1 != var4; // L: 2893
+		if (!var5 && Client.field626.method9672()) { // L: 2894
+			Actor.method2489(9); // L: 2895
+		}
+
+	} // L: 2897
 }

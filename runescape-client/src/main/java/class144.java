@@ -1,22 +1,46 @@
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("el")
-public abstract class class144 extends Node {
-	class144() {
-	} // L: 49
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+@ObfuscatedName("ft")
+public class class144 extends class143 {
+	@ObfuscatedName("am")
+	@ObfuscatedGetter(
+		intValue = 869632299
 	)
-	abstract void vmethod3137(Buffer var1);
-
-	@ObfuscatedName("v")
+	int field1639;
+	@ObfuscatedName("ap")
+	boolean field1638;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
+		descriptor = "Lfm;"
 	)
-	abstract void vmethod3138(ClanChannel var1);
+	final class146 this$0;
+
+	@ObfuscatedSignature(
+		descriptor = "(Lfm;)V"
+	)
+	class144(class146 var1) {
+		this.this$0 = var1;
+		this.field1639 = -1; // L: 178
+	} // L: 181
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(Luk;I)V",
+		garbageValue = "-411371469"
+	)
+	void vmethod3531(Buffer var1) {
+		this.field1639 = var1.readUnsignedShort(); // L: 184
+		this.field1638 = var1.readUnsignedByte() == 1; // L: 185
+	} // L: 186
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(Lfn;I)V",
+		garbageValue = "1048713263"
+	)
+	void vmethod3529(ClanSettings var1) {
+		var1.method3351(this.field1639, this.field1638); // L: 189
+	} // L: 190
 }

@@ -2,23 +2,21 @@ import java.awt.Component;
 import java.awt.Graphics;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("d")
+@ObfuscatedName("ac")
 @Implements("Canvas")
 public final class Canvas extends java.awt.Canvas {
-	@ObfuscatedName("h")
-	@Export("ByteArrayPool_alternativeSizes")
-	public static int[] ByteArrayPool_alternativeSizes;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = -1814972075
+	@ObfuscatedName("bf")
+	protected static String field120;
+	@ObfuscatedName("ec")
+	@ObfuscatedSignature(
+		descriptor = "Ldb;"
 	)
-	@Export("loginBoxCenter")
-	static int loginBoxCenter;
-	@ObfuscatedName("c")
+	@Export("mouseRecorder")
+	static MouseRecorder mouseRecorder;
+	@ObfuscatedName("am")
 	@Export("component")
 	Component component;
 
@@ -34,382 +32,259 @@ public final class Canvas extends java.awt.Canvas {
 		this.component.paint(var1); // L: 19
 	} // L: 20
 
-	@ObfuscatedName("q")
-	public static boolean method322(long var0) {
-		boolean var2 = var0 != 0L; // L: 52
-		if (var2) { // L: 53
-			boolean var3 = (int)(var0 >>> 16 & 1L) == 1; // L: 56
-			var2 = !var3; // L: 58
-		}
-
-		return var2; // L: 60
-	}
-
-	@ObfuscatedName("j")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "([BIIIIIII[Lgv;B)V",
-		garbageValue = "70"
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-1288797139"
 	)
-	static final void method315(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, CollisionMap[] var8) {
-		int var10;
-		for (int var9 = 0; var9 < 8; ++var9) { // L: 111
-			for (var10 = 0; var10 < 8; ++var10) { // L: 112
-				if (var9 + var2 > 0 && var9 + var2 < 103 && var3 + var10 > 0 && var3 + var10 < 103) {
-					int[] var10000 = var8[var1].flags[var9 + var2]; // L: 113
-					var10000[var3 + var10] &= -16777217;
-				}
-			}
+	static final void method334(String var0) {
+		GrandExchangeEvents.addGameMessage(30, "", var0); // L: 108
+	} // L: 109
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "73"
+	)
+	static final void method333(String var0) {
+		method334("Please remove " + var0 + " from your ignore list first"); // L: 112
+	} // L: 113
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIIIILkn;Lii;I)V",
+		garbageValue = "-470023103"
+	)
+	static final void method332(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, Scene var8, CollisionMap var9) {
+		ObjectComposition var10 = class137.getObjectDefinition(var4); // L: 1058
+		int var11 = var7 >= 0 ? var7 : var10.animationId; // L: 1059
+		int var12;
+		int var13;
+		if (var5 != 1 && var5 != 3) { // L: 1062
+			var12 = var10.sizeX; // L: 1067
+			var13 = var10.sizeY; // L: 1068
+		} else {
+			var12 = var10.sizeY; // L: 1063
+			var13 = var10.sizeX; // L: 1064
 		}
 
-		Buffer var13 = new Buffer(var0); // L: 116
+		int var14;
+		int var15;
+		if (var12 + var2 <= 104) { // L: 1074
+			var14 = (var12 >> 1) + var2; // L: 1075
+			var15 = var2 + (var12 + 1 >> 1); // L: 1076
+		} else {
+			var14 = var2; // L: 1079
+			var15 = var2 + 1; // L: 1080
+		}
 
-		for (var10 = 0; var10 < 4; ++var10) { // L: 117
-			for (int var11 = 0; var11 < 64; ++var11) { // L: 118
-				for (int var12 = 0; var12 < 64; ++var12) { // L: 119
-					if (var10 == var4 && var11 >= var5 && var11 < var5 + 8 && var12 >= var6 && var12 < var6 + 8) { // L: 120
-						Players.loadTerrain(var13, var1, var2 + class122.method2763(var11 & 7, var12 & 7, var7), var3 + FloorOverlayDefinition.method3818(var11 & 7, var12 & 7, var7), 0, 0, var7); // L: 121
+		int var16;
+		int var17;
+		if (var3 + var13 <= 104) { // L: 1082
+			var16 = var3 + (var13 >> 1); // L: 1083
+			var17 = var3 + (var13 + 1 >> 1); // L: 1084
+		} else {
+			var16 = var3; // L: 1087
+			var17 = var3 + 1; // L: 1088
+		}
+
+		int[][] var18 = Tiles.Tiles_heights[var1]; // L: 1090
+		int var19 = var18[var15][var17] + var18[var15][var16] + var18[var14][var16] + var18[var14][var17] >> 2; // L: 1091
+		int var20 = (var2 << 7) + (var12 << 6); // L: 1092
+		int var21 = (var3 << 7) + (var13 << 6); // L: 1093
+		long var22 = DynamicObject.calculateTag(var2, var3, 2, var10.int1 == 0, var4); // L: 1094
+		int var24 = (var5 << 6) + var6; // L: 1095
+		if (var10.int3 == 1) { // L: 1096
+			var24 += 256;
+		}
+
+		Object var32;
+		if (var6 == 22) { // L: 1097
+			if (var11 == -1 && var10.transforms == null) { // L: 1099
+				var32 = var10.getModel(22, var5, var18, var20, var19, var21);
+			} else {
+				var32 = new DynamicObject(var4, 22, var5, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1100
+			}
+
+			var8.newGroundObject(var0, var2, var3, var19, (Renderable)var32, var22, var24); // L: 1101
+			if (var10.interactType == 1) { // L: 1102
+				var9.setBlockedByFloorDec(var2, var3);
+			}
+
+		} else if (var6 != 10 && var6 != 11) { // L: 1105
+			if (var6 >= 12) { // L: 1113
+				if (var11 == -1 && var10.transforms == null) { // L: 1115
+					var32 = var10.getModel(var6, var5, var18, var20, var19, var21);
+				} else {
+					var32 = new DynamicObject(var4, var6, var5, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1116
+				}
+
+				var8.method5521(var0, var2, var3, var19, 1, 1, (Renderable)var32, 0, var22, var24); // L: 1117
+				if (var10.interactType != 0) { // L: 1118
+					var9.addGameObject(var2, var3, var12, var13, var10.boolean1);
+				}
+
+			} else if (var6 == 0) { // L: 1121
+				if (var11 == -1 && var10.transforms == null) { // L: 1123
+					var32 = var10.getModel(0, var5, var18, var20, var19, var21);
+				} else {
+					var32 = new DynamicObject(var4, 0, var5, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1124
+				}
+
+				var8.newWallObject(var0, var2, var3, var19, (Renderable)var32, (Renderable)null, Tiles.field1014[var5], 0, var22, var24); // L: 1125
+				if (var10.interactType != 0) { // L: 1126
+					var9.method4466(var2, var3, var6, var5, var10.boolean1);
+				}
+
+			} else if (var6 == 1) { // L: 1129
+				if (var11 == -1 && var10.transforms == null) { // L: 1131
+					var32 = var10.getModel(1, var5, var18, var20, var19, var21);
+				} else {
+					var32 = new DynamicObject(var4, 1, var5, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1132
+				}
+
+				var8.newWallObject(var0, var2, var3, var19, (Renderable)var32, (Renderable)null, Tiles.field1015[var5], 0, var22, var24); // L: 1133
+				if (var10.interactType != 0) { // L: 1134
+					var9.method4466(var2, var3, var6, var5, var10.boolean1);
+				}
+
+			} else {
+				int var25;
+				if (var6 == 2) { // L: 1137
+					var25 = var5 + 1 & 3; // L: 1138
+					Object var27;
+					Object var33;
+					if (var11 == -1 && var10.transforms == null) { // L: 1141
+						var33 = var10.getModel(2, var5 + 4, var18, var20, var19, var21); // L: 1142
+						var27 = var10.getModel(2, var25, var18, var20, var19, var21); // L: 1143
 					} else {
-						Players.loadTerrain(var13, 0, -1, -1, 0, 0, 0); // L: 123
+						var33 = new DynamicObject(var4, 2, var5 + 4, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1146
+						var27 = new DynamicObject(var4, 2, var25, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1147
+					}
+
+					var8.newWallObject(var0, var2, var3, var19, (Renderable)var33, (Renderable)var27, Tiles.field1014[var5], Tiles.field1014[var25], var22, var24); // L: 1149
+					if (var10.interactType != 0) { // L: 1150
+						var9.method4466(var2, var3, var6, var5, var10.boolean1);
+					}
+
+				} else if (var6 == 3) { // L: 1153
+					if (var11 == -1 && var10.transforms == null) { // L: 1155
+						var32 = var10.getModel(3, var5, var18, var20, var19, var21);
+					} else {
+						var32 = new DynamicObject(var4, 3, var5, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1156
+					}
+
+					var8.newWallObject(var0, var2, var3, var19, (Renderable)var32, (Renderable)null, Tiles.field1015[var5], 0, var22, var24); // L: 1157
+					if (var10.interactType != 0) { // L: 1158
+						var9.method4466(var2, var3, var6, var5, var10.boolean1);
+					}
+
+				} else if (var6 == 9) { // L: 1161
+					if (var11 == -1 && var10.transforms == null) { // L: 1163
+						var32 = var10.getModel(var6, var5, var18, var20, var19, var21);
+					} else {
+						var32 = new DynamicObject(var4, var6, var5, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1164
+					}
+
+					var8.method5521(var0, var2, var3, var19, 1, 1, (Renderable)var32, 0, var22, var24); // L: 1165
+					if (var10.interactType != 0) { // L: 1166
+						var9.addGameObject(var2, var3, var12, var13, var10.boolean1);
+					}
+
+				} else if (var6 == 4) { // L: 1169
+					if (var11 == -1 && var10.transforms == null) { // L: 1171
+						var32 = var10.getModel(4, var5, var18, var20, var19, var21);
+					} else {
+						var32 = new DynamicObject(var4, 4, var5, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1172
+					}
+
+					var8.newDecorativeObject(var0, var2, var3, var19, (Renderable)var32, (Renderable)null, Tiles.field1014[var5], 0, 0, 0, var22, var24); // L: 1173
+				} else {
+					long var26;
+					Object var28;
+					if (var6 == 5) { // L: 1176
+						var25 = 16; // L: 1177
+						var26 = var8.getWallObjectTag(var0, var2, var3); // L: 1178
+						if (var26 != 0L) { // L: 1179
+							var25 = class137.getObjectDefinition(class167.Entity_unpackID(var26)).int2;
+						}
+
+						if (var11 == -1 && var10.transforms == null) { // L: 1181
+							var28 = var10.getModel(4, var5, var18, var20, var19, var21);
+						} else {
+							var28 = new DynamicObject(var4, 4, var5, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1182
+						}
+
+						var8.newDecorativeObject(var0, var2, var3, var19, (Renderable)var28, (Renderable)null, Tiles.field1014[var5], 0, var25 * Tiles.field1018[var5], var25 * Tiles.field1017[var5], var22, var24); // L: 1183
+					} else if (var6 == 6) { // L: 1186
+						var25 = 8; // L: 1187
+						var26 = var8.getWallObjectTag(var0, var2, var3); // L: 1188
+						if (0L != var26) { // L: 1189
+							var25 = class137.getObjectDefinition(class167.Entity_unpackID(var26)).int2 / 2;
+						}
+
+						if (var11 == -1 && var10.transforms == null) { // L: 1191
+							var28 = var10.getModel(4, var5 + 4, var18, var20, var19, var21);
+						} else {
+							var28 = new DynamicObject(var4, 4, var5 + 4, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1192
+						}
+
+						var8.newDecorativeObject(var0, var2, var3, var19, (Renderable)var28, (Renderable)null, 256, var5, var25 * Tiles.field1010[var5], var25 * Tiles.field1007[var5], var22, var24); // L: 1193
+					} else if (var6 == 7) { // L: 1196
+						int var31 = var5 + 2 & 3; // L: 1198
+						if (var11 == -1 && var10.transforms == null) { // L: 1199
+							var32 = var10.getModel(4, var31 + 4, var18, var20, var19, var21);
+						} else {
+							var32 = new DynamicObject(var4, 4, var31 + 4, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1200
+						}
+
+						var8.newDecorativeObject(var0, var2, var3, var19, (Renderable)var32, (Renderable)null, 256, var31, 0, 0, var22, var24); // L: 1201
+					} else if (var6 == 8) { // L: 1204
+						var25 = 8; // L: 1205
+						var26 = var8.getWallObjectTag(var0, var2, var3); // L: 1206
+						if (0L != var26) { // L: 1207
+							var25 = class137.getObjectDefinition(class167.Entity_unpackID(var26)).int2 / 2;
+						}
+
+						int var30 = var5 + 2 & 3; // L: 1210
+						Object var29;
+						if (var11 == -1 && var10.transforms == null) { // L: 1211
+							var28 = var10.getModel(4, var5 + 4, var18, var20, var19, var21); // L: 1212
+							var29 = var10.getModel(4, var30 + 4, var18, var20, var19, var21); // L: 1213
+						} else {
+							var28 = new DynamicObject(var4, 4, var5 + 4, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1216
+							var29 = new DynamicObject(var4, 4, var30 + 4, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1217
+						}
+
+						var8.newDecorativeObject(var0, var2, var3, var19, (Renderable)var28, (Renderable)var29, 256, var5, var25 * Tiles.field1010[var5], var25 * Tiles.field1007[var5], var22, var24); // L: 1219
 					}
 				}
 			}
+		} else {
+			if (var11 == -1 && var10.transforms == null) { // L: 1107
+				var32 = var10.getModel(10, var5, var18, var20, var19, var21);
+			} else {
+				var32 = new DynamicObject(var4, 10, var5, var1, var2, var3, var11, var10.boolean3, (Renderable)null); // L: 1108
+			}
+
+			if (var32 != null) { // L: 1109
+				var8.method5521(var0, var2, var3, var19, var12, var13, (Renderable)var32, var6 == 11 ? 256 : 0, var22, var24);
+			}
+
+			if (var10.interactType != 0) { // L: 1110
+				var9.addGameObject(var2, var3, var12, var13, var10.boolean1);
+			}
+
 		}
+	} // L: 1103 1111 1119 1127 1135 1151 1159 1167 1174 1184 1194 1202 1220 1222
 
-	} // L: 127
-
-	@ObfuscatedName("fv")
+	@ObfuscatedName("nb")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "-113372020"
+		garbageValue = "-830137151"
 	)
-	@Export("getLoginError")
-	static void getLoginError(int var0) {
-		int var1 = Login.loginIndex; // L: 2788
-		if (var0 == -3) { // L: 2791
-			class101.setLoginResponseString("Connection timed out.", "Please try using a different world.", "");
-		} else if (var0 == -2) { // L: 2792
-			class101.setLoginResponseString("Error connecting to server.", "Please try using a different world.", "");
-		} else if (var0 == -1) { // L: 2793
-			class101.setLoginResponseString("No response from server.", "Please try using a different world.", "");
-		} else if (var0 == 3) { // L: 2794
-			WorldMapData_1.method4872(3); // L: 2795
-			Login.field902 = 1; // L: 2796
-		} else if (var0 == 4) { // L: 2798
-			WorldMapData_1.method4872(14); // L: 2800
-			Login.field897 = 0; // L: 2801
-		} else if (var0 == 5) { // L: 2804
-			Login.field902 = 2; // L: 2805
-			class101.setLoginResponseString("Your account has not logged out from its last", "session or the server is too busy right now.", "Please try again in a few minutes."); // L: 2806
-		} else if (var0 != 68 && (Client.onMobile || var0 != 6)) { // L: 2808
-			if (var0 == 7) { // L: 2811
-				class101.setLoginResponseString("This world is full.", "Please use a different world.", "");
-			} else if (var0 == 8) { // L: 2812
-				class101.setLoginResponseString("Unable to connect.", "Login server offline.", "");
-			} else if (var0 == 9) { // L: 2813
-				class101.setLoginResponseString("Login limit exceeded.", "Too many connections from your address.", "");
-			} else if (var0 == 10) { // L: 2814
-				class101.setLoginResponseString("Unable to connect.", "Bad session id.", "");
-			} else if (var0 == 11) { // L: 2815
-				class101.setLoginResponseString("We suspect someone knows your password.", "Press 'change your password' on front page.", "");
-			} else if (var0 == 12) { // L: 2816
-				class101.setLoginResponseString("You need a members account to login to this world.", "Please subscribe, or use a different world.", "");
-			} else if (var0 == 13) { // L: 2817
-				class101.setLoginResponseString("Could not complete login.", "Please try using a different world.", "");
-			} else if (var0 == 14) { // L: 2818
-				class101.setLoginResponseString("The server is being updated.", "Please wait 1 minute and try again.", "");
-			} else if (var0 == 16) { // L: 2819
-				class101.setLoginResponseString("Too many login attempts.", "Please wait a few minutes before trying again.", "");
-			} else if (var0 == 17) { // L: 2820
-				class101.setLoginResponseString("To access this free world, log into a", "members world and move your character", "to a non-members area.");
-			} else if (var0 == 18) { // L: 2821
-				WorldMapData_1.method4872(14); // L: 2823
-				Login.field897 = 1; // L: 2824
-			} else if (var0 == 19) { // L: 2827
-				class101.setLoginResponseString("This world is running a closed Beta.", "Sorry invited players only.", "Please use a different world.");
-			} else if (var0 == 20) { // L: 2828
-				class101.setLoginResponseString("Invalid loginserver requested.", "Please try using a different world.", "");
-			} else if (var0 == 22) { // L: 2829
-				class101.setLoginResponseString("Malformed login packet.", "Please try again.", "");
-			} else if (var0 == 23) { // L: 2830
-				class101.setLoginResponseString("No reply from loginserver.", "Please wait 1 minute and try again.", "");
-			} else if (var0 == 24) { // L: 2831
-				class101.setLoginResponseString("Error loading your profile.", "Please contact customer support.", "");
-			} else if (var0 == 25) { // L: 2832
-				class101.setLoginResponseString("Unexpected loginserver response.", "Please try using a different world.", "");
-			} else if (var0 == 26) { // L: 2833
-				class101.setLoginResponseString("This computers address has been blocked", "as it was used to break our rules.", "");
-			} else if (var0 == 27) { // L: 2834
-				class101.setLoginResponseString("", "Service unavailable.", "");
-			} else if (var0 == 31) { // L: 2835
-				class101.setLoginResponseString("Your account must have a displayname set", "in order to play the game.  Please set it", "via the website, or the main game.");
-			} else if (var0 == 32) { // L: 2836
-				class101.setLoginResponseString("Your attempt to log into your account was", "unsuccessful.  Don't worry, you can sort", "this out by visiting the billing system.");
-			} else if (var0 == 37) { // L: 2837
-				class101.setLoginResponseString("Your account is currently inaccessible.", "Please try again in a few minutes.", "");
-			} else if (var0 == 38) { // L: 2838
-				class101.setLoginResponseString("You need to vote to play!", "Visit runescape.com and vote,", "and then come back here!");
-			} else if (var0 == 55) { // L: 2839
-				WorldMapData_1.method4872(8); // L: 2840
-			} else {
-				if (var0 == 56) { // L: 2842
-					class101.setLoginResponseString("Enter the 6-digit code generated by your", "authenticator app.", ""); // L: 2843
-					HealthBarUpdate.updateGameState(11); // L: 2844
-					return; // L: 2845
-				}
-
-				if (var0 == 57) { // L: 2847
-					class101.setLoginResponseString("The code you entered was incorrect.", "Please try again.", ""); // L: 2848
-					HealthBarUpdate.updateGameState(11); // L: 2849
-					return; // L: 2850
-				}
-
-				if (var0 == 61) { // L: 2852
-					class101.setLoginResponseString("", "Please enter your date of birth (DD/MM/YYYY)", ""); // L: 2853
-					WorldMapData_1.method4872(7); // L: 2854
-				} else {
-					if (var0 == 62) { // L: 2856
-						HealthBarUpdate.updateGameState(10); // L: 2857
-						WorldMapData_1.method4872(9); // L: 2858
-						class101.setLoginResponseString("Login attempt timed out.", "Please try again.", ""); // L: 2859
-						return; // L: 2860
-					}
-
-					if (var0 == 63) { // L: 2862
-						HealthBarUpdate.updateGameState(10); // L: 2863
-						WorldMapData_1.method4872(9); // L: 2864
-						class101.setLoginResponseString("You were signed out.", "Please sign in again.", ""); // L: 2865
-						return; // L: 2866
-					}
-
-					if (var0 == 65 || var0 == 67) { // L: 2868
-						HealthBarUpdate.updateGameState(10); // L: 2869
-						WorldMapData_1.method4872(9); // L: 2870
-						class101.setLoginResponseString("Failed to login.", "Please try again.", ""); // L: 2871
-						return; // L: 2872
-					}
-
-					if (var0 == 71) { // L: 2874
-						HealthBarUpdate.updateGameState(10); // L: 2875
-						WorldMapData_1.method4872(7); // L: 2876
-						class101.setLoginResponseString("There was a problem updating your DOB.", "Please try again later. If the problem ", "persists, please contact Jagex Support."); // L: 2877
-					} else if (var0 == 73) { // L: 2879
-						HealthBarUpdate.updateGameState(10); // L: 2880
-						WorldMapData_1.method4872(6); // L: 2881
-						class101.setLoginResponseString("Your date of birth information is waiting", "to be reviewed by our staff.", "It will be processed shortly."); // L: 2882
-					} else if (var0 == 72) { // L: 2884
-						HealthBarUpdate.updateGameState(10); // L: 2885
-						WorldMapData_1.method4872(26); // L: 2886
-					} else {
-						class101.setLoginResponseString("Unexpected server response", "Please try using a different world.", ""); // L: 2888
-					}
-				}
-			}
-		} else {
-			class101.setLoginResponseString("RuneScape has been updated!", "Please reload this page.", ""); // L: 2809
-		}
-
-		HealthBarUpdate.updateGameState(10); // L: 2889
-		int var4 = Login.loginIndex; // L: 2893
-		boolean var5 = var4 != var1; // L: 2895
-		if (!var5 && Client.field516.method8008()) { // L: 2896
-			WorldMapData_1.method4872(9); // L: 2897
-		}
-
-	} // L: 2899
-
-	@ObfuscatedName("hf")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIIII)V",
-		garbageValue = "-525734760"
-	)
-	@Export("updatePendingSpawn")
-	static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
-		PendingSpawn var9 = null; // L: 7757
-
-		for (PendingSpawn var10 = (PendingSpawn)Client.pendingSpawns.last(); var10 != null; var10 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 7758 7759 7764
-			if (var0 == var10.plane && var10.x == var1 && var2 == var10.y && var3 == var10.type) { // L: 7760
-				var9 = var10; // L: 7761
-				break;
-			}
-		}
-
-		if (var9 == null) { // L: 7766
-			var9 = new PendingSpawn(); // L: 7767
-			var9.plane = var0; // L: 7768
-			var9.type = var3; // L: 7769
-			var9.x = var1; // L: 7770
-			var9.y = var2; // L: 7771
-			class151.method3146(var9); // L: 7772
-			Client.pendingSpawns.addFirst(var9); // L: 7773
-		}
-
-		var9.id = var4; // L: 7775
-		var9.field1125 = var5; // L: 7776
-		var9.orientation = var6; // L: 7777
-		var9.delay = var7; // L: 7778
-		var9.hitpoints = var8; // L: 7779
-	} // L: 7780
-
-	@ObfuscatedName("jg")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;IB)I",
-		garbageValue = "9"
-	)
-	static final int method319(Widget var0, int var1) {
-		if (var0.cs1Instructions != null && var1 < var0.cs1Instructions.length) { // L: 10788
-			try {
-				int[] var2 = var0.cs1Instructions[var1]; // L: 10790
-				int var3 = 0; // L: 10791
-				int var4 = 0; // L: 10792
-				byte var5 = 0; // L: 10793
-
-				while (true) {
-					int var6 = var2[var4++]; // L: 10795
-					int var7 = 0; // L: 10796
-					byte var8 = 0; // L: 10797
-					if (var6 == 0) { // L: 10798
-						return var3;
-					}
-
-					if (var6 == 1) { // L: 10799
-						var7 = Client.currentLevels[var2[var4++]];
-					}
-
-					if (var6 == 2) { // L: 10800
-						var7 = Client.levels[var2[var4++]];
-					}
-
-					if (var6 == 3) { // L: 10801
-						var7 = Client.experience[var2[var4++]];
-					}
-
-					int var9;
-					Widget var10;
-					int var11;
-					int var12;
-					if (var6 == 4) { // L: 10802
-						var9 = var2[var4++] << 16; // L: 10803
-						var9 += var2[var4++]; // L: 10804
-						var10 = class140.getWidget(var9); // L: 10805
-						var11 = var2[var4++]; // L: 10806
-						if (var11 != -1 && (!EnumComposition.ItemComposition_get(var11).isMembersOnly || Client.isMembersWorld)) { // L: 10807
-							for (var12 = 0; var12 < var10.itemIds.length; ++var12) { // L: 10808
-								if (var11 + 1 == var10.itemIds[var12]) { // L: 10809
-									var7 += var10.itemQuantities[var12];
-								}
-							}
-						}
-					}
-
-					if (var6 == 5) { // L: 10813
-						var7 = Varps.Varps_main[var2[var4++]];
-					}
-
-					if (var6 == 6) { // L: 10814
-						var7 = Skills.Skills_experienceTable[Client.levels[var2[var4++]] - 1];
-					}
-
-					if (var6 == 7) { // L: 10815
-						var7 = Varps.Varps_main[var2[var4++]] * 100 / 46875;
-					}
-
-					if (var6 == 8) { // L: 10816
-						var7 = class101.localPlayer.combatLevel;
-					}
-
-					if (var6 == 9) { // L: 10817
-						for (var9 = 0; var9 < 25; ++var9) { // L: 10818
-							if (Skills.Skills_enabled[var9]) { // L: 10819
-								var7 += Client.levels[var9];
-							}
-						}
-					}
-
-					if (var6 == 10) { // L: 10822
-						var9 = var2[var4++] << 16; // L: 10823
-						var9 += var2[var4++]; // L: 10824
-						var10 = class140.getWidget(var9); // L: 10825
-						var11 = var2[var4++]; // L: 10826
-						if (var11 != -1 && (!EnumComposition.ItemComposition_get(var11).isMembersOnly || Client.isMembersWorld)) { // L: 10827
-							for (var12 = 0; var12 < var10.itemIds.length; ++var12) { // L: 10828
-								if (var11 + 1 == var10.itemIds[var12]) { // L: 10829
-									var7 = 999999999; // L: 10830
-									break; // L: 10831
-								}
-							}
-						}
-					}
-
-					if (var6 == 11) { // L: 10836
-						var7 = Client.runEnergy;
-					}
-
-					if (var6 == 12) { // L: 10837
-						var7 = Client.weight;
-					}
-
-					if (var6 == 13) { // L: 10838
-						var9 = Varps.Varps_main[var2[var4++]]; // L: 10839
-						int var13 = var2[var4++]; // L: 10840
-						var7 = (var9 & 1 << var13) != 0 ? 1 : 0; // L: 10841
-					}
-
-					if (var6 == 14) { // L: 10843
-						var9 = var2[var4++]; // L: 10844
-						var7 = class388.getVarbit(var9); // L: 10845
-					}
-
-					if (var6 == 15) { // L: 10847
-						var8 = 1;
-					}
-
-					if (var6 == 16) { // L: 10848
-						var8 = 2;
-					}
-
-					if (var6 == 17) { // L: 10849
-						var8 = 3;
-					}
-
-					if (var6 == 18) { // L: 10850
-						var7 = class28.baseX * 64 + (class101.localPlayer.x >> 7);
-					}
-
-					if (var6 == 19) { // L: 10851
-						var7 = WorldMapLabelSize.baseY * 64 + (class101.localPlayer.y >> 7);
-					}
-
-					if (var6 == 20) { // L: 10852
-						var7 = var2[var4++];
-					}
-
-					if (var8 == 0) { // L: 10853
-						if (var5 == 0) { // L: 10854
-							var3 += var7;
-						}
-
-						if (var5 == 1) { // L: 10855
-							var3 -= var7;
-						}
-
-						if (var5 == 2 && var7 != 0) { // L: 10856
-							var3 /= var7;
-						}
-
-						if (var5 == 3) { // L: 10857
-							var3 *= var7;
-						}
-
-						var5 = 0; // L: 10858
-					} else {
-						var5 = var8; // L: 10860
-					}
-				}
-			} catch (Exception var14) { // L: 10863
-				return -1; // L: 10864
-			}
-		} else {
-			return -2;
-		}
-	}
+	static final void method327(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 127); // L: 12155
+		class93.clientPreferences.updateSoundEffectVolume(var0); // L: 12156
+	} // L: 12157
 }
