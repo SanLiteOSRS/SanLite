@@ -1,108 +1,169 @@
+import java.awt.Desktop;
+import java.awt.Desktop.Action;
+import java.net.URI;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("mc")
+@ObfuscatedName("ne")
 public class class353 {
-	@ObfuscatedName("ay")
-	@Export("client")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Lclient;"
+		descriptor = "Lnc;"
 	)
-	static Client client;
+	@Export("huffman")
+	static Huffman huffman;
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/String;[II)V",
-		garbageValue = "-221200866"
+		descriptor = "(Ljava/lang/String;ZLjava/lang/String;ZI)V",
+		garbageValue = "1180448642"
 	)
-	public static void method6507(String[] var0, int[] var1) {
-		method6505(var0, var1, 0, var0.length - 1); // L: 39
-	} // L: 40
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/String;[IIIB)V",
-		garbageValue = "81"
-	)
-	static void method6505(String[] var0, int[] var1, int var2, int var3) {
-		if (var2 < var3) { // L: 43
-			int var4 = (var3 + var2) / 2; // L: 44
-			int var5 = var2; // L: 45
-			String var6 = var0[var4]; // L: 46
-			var0[var4] = var0[var3]; // L: 47
-			var0[var3] = var6; // L: 48
-			int var7 = var1[var4]; // L: 49
-			var1[var4] = var1[var3]; // L: 50
-			var1[var3] = var7; // L: 51
-
-			for (int var8 = var2; var8 < var3; ++var8) { // L: 52
-				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) { // L: 53
-					String var9 = var0[var8]; // L: 54
-					var0[var8] = var0[var5]; // L: 55
-					var0[var5] = var9; // L: 56
-					int var10 = var1[var8]; // L: 57
-					var1[var8] = var1[var5]; // L: 58
-					var1[var5++] = var10; // L: 59
+	static void method6906(String var0, boolean var1, String var2, boolean var3) {
+		if (var1) { // L: 26
+			if (!var3 && Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) { // L: 27
+				try {
+					Desktop.getDesktop().browse(new URI(var0)); // L: 29
+					return; // L: 30
+				} catch (Exception var5) { // L: 32
 				}
 			}
 
-			var0[var3] = var0[var5]; // L: 63
-			var0[var5] = var6; // L: 64
-			var1[var3] = var1[var5]; // L: 65
-			var1[var5] = var7; // L: 66
-			method6505(var0, var1, var2, var5 - 1); // L: 67
-			method6505(var0, var1, var5 + 1, var3); // L: 68
-		}
-
-	} // L: 70
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-2096074968"
-	)
-	static int method6506(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 == ScriptOpcodes.IF_GETINVOBJECT) { // L: 1420
-			var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1421
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.itemId; // L: 1422
-			return 1; // L: 1423
-		} else if (var0 == ScriptOpcodes.IF_GETINVCOUNT) { // L: 1425
-			var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1426
-			if (var3.itemId != -1) { // L: 1427
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.itemQuantity;
-			} else {
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = 0; // L: 1428
+			if (class31.field161.startsWith("win") && !var3) { // L: 34 35
+				class414.method7910(var0, 0); // L: 36
+				return; // L: 37
 			}
 
-			return 1; // L: 1429
-		} else if (var0 == ScriptOpcodes.IF_HASSUB) { // L: 1431
-			int var5 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 1432
-			InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var5); // L: 1433
-			if (var4 != null) { // L: 1434
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = 1;
-			} else {
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = 0; // L: 1435
+			if (class31.field161.startsWith("mac")) { // L: 40
+				KeyHandler.method428(var0, 1, var2); // L: 41
+				return; // L: 42
 			}
 
-			return 1; // L: 1436
-		} else if (var0 == ScriptOpcodes.IF_GETTOP) { // L: 1438
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = Client.rootInterface; // L: 1439
-			return 1; // L: 1440
-		} else if (var0 == 2707) { // L: 1442
-			var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1443
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var3.method5680() ? 1 : 0; // L: 1444
-			return 1; // L: 1445
-		} else if (var0 == 2708) { // L: 1447
-			var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1448
-			return class29.method363(var3); // L: 1449
-		} else if (var0 == 2709) { // L: 1451
-			var3 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1452
-			return WorldMapSection0.method4947(var3); // L: 1453
+			class414.method7910(var0, 2); // L: 44
 		} else {
-			return 2; // L: 1455
+			class414.method7910(var0, 3); // L: 47
 		}
-	}
+
+	} // L: 49
+
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;II)V",
+		garbageValue = "-201582987"
+	)
+	static final void method6914(String var0, int var1) {
+		PacketBufferNode var2 = class482.getPacketBufferNode(ClientPacket.field3180, Client.packetWriter.isaacCipher); // L: 220
+		var2.packetBuffer.writeByte(CollisionMap.stringCp1252NullTerminatedByteSize(var0) + 1); // L: 221
+		var2.packetBuffer.method9416(var1); // L: 222
+		var2.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 223
+		Client.packetWriter.addNode(var2); // L: 224
+	} // L: 225
+
+	@ObfuscatedName("ld")
+	@ObfuscatedSignature(
+		descriptor = "(ZLuo;I)V",
+		garbageValue = "-1277234617"
+	)
+	@Export("updateNpcs")
+	static final void updateNpcs(boolean var0, PacketBuffer var1) {
+		Client.field708 = 0; // L: 8654
+		Client.field549 = 0; // L: 8655
+		PcmPlayer.method846(var1); // L: 8656
+
+		int var3;
+		while (true) {
+			byte var2 = 16; // L: 8659
+			var3 = 1 << var2; // L: 8660
+			if (var1.bitsRemaining(Client.packetWriter.serverPacketLength) < var2 + 12) { // L: 8661
+				break;
+			}
+
+			int var4 = var1.readBits(var2); // L: 8662
+			if (var4 == var3 - 1) { // L: 8663
+				break;
+			}
+
+			boolean var5 = false; // L: 8664
+			if (Client.npcs[var4] == null) { // L: 8665
+				Client.npcs[var4] = new NPC(); // L: 8666
+				var5 = true; // L: 8667
+			}
+
+			NPC var6 = Client.npcs[var4]; // L: 8669
+			Client.npcIndices[++Client.npcCount - 1] = var4; // L: 8670
+			var6.npcCycle = Client.cycle; // L: 8671
+			int var10 = var1.readBits(1); // L: 8675
+			if (var10 == 1) { // L: 8676
+				Client.field603[++Client.field549 - 1] = var4;
+			}
+
+			boolean var11 = var1.readBits(1) == 1; // L: 8677
+			if (var11) { // L: 8678
+				var1.readBits(32); // L: 8679
+			}
+
+			int var7 = var1.readBits(1); // L: 8681
+			int var9;
+			if (var0) { // L: 8682
+				var9 = var1.readBits(8); // L: 8683
+				if (var9 > 127) { // L: 8684
+					var9 -= 256;
+				}
+			} else {
+				var9 = var1.readBits(5); // L: 8687
+				if (var9 > 15) { // L: 8688
+					var9 -= 32;
+				}
+			}
+
+			int var8;
+			if (var0) { // L: 8690
+				var8 = var1.readBits(8); // L: 8691
+				if (var8 > 127) { // L: 8692
+					var8 -= 256;
+				}
+			} else {
+				var8 = var1.readBits(5); // L: 8695
+				if (var8 > 15) { // L: 8696
+					var8 -= 32;
+				}
+			}
+
+			int var12 = Client.field635[var1.readBits(3)]; // L: 8698
+			if (var5) { // L: 8699
+				var6.orientation = var6.rotation = var12;
+			}
+
+			var6.definition = Script.getNpcDefinition(var1.readBits(14)); // L: 8700
+			class142.method3229(var6); // L: 8701
+			if (var6.field1240 == 0) { // L: 8702
+				var6.rotation = 0;
+			}
+
+			var6.method2658(class25.localPlayer.pathX[0] + var8, class25.localPlayer.pathY[0] + var9, var7 == 1); // L: 8703
+		}
+
+		var1.exportIndex(); // L: 8705
+		UrlRequester.method2903(var1); // L: 8707
+
+		int var13;
+		for (var13 = 0; var13 < Client.field708; ++var13) { // L: 8708
+			var3 = Client.field625[var13]; // L: 8709
+			if (Client.npcs[var3].npcCycle != Client.cycle) { // L: 8710
+				Client.npcs[var3].definition = null; // L: 8711
+				Client.npcs[var3] = null; // L: 8712
+			}
+		}
+
+		if (var1.offset != Client.packetWriter.serverPacketLength) { // L: 8715
+			throw new RuntimeException(var1.offset + "," + Client.packetWriter.serverPacketLength); // L: 8716
+		} else {
+			for (var13 = 0; var13 < Client.npcCount; ++var13) { // L: 8718
+				if (Client.npcs[Client.npcIndices[var13]] == null) { // L: 8719
+					throw new RuntimeException(var13 + "," + Client.npcCount); // L: 8720
+				}
+			}
+
+		}
+	} // L: 8723
 }

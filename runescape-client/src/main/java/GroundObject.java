@@ -4,52 +4,66 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ge")
+@ObfuscatedName("ku")
 @Implements("GroundObject")
 public final class GroundObject {
-	@ObfuscatedName("ff")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 512715127
-	)
-	@Export("worldPort")
-	static int worldPort;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 1018448231
+		intValue = 1418849961
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 934546239
+		intValue = -200326855
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = 230480863
+		intValue = 1095674875
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lkp;"
 	)
 	@Export("renderable")
 	public Renderable renderable;
-	@ObfuscatedName("j")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		longValue = -1913872919662932177L
+		longValue = 6086387616366978933L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -1980232569
+		intValue = -740836945
 	)
 	@Export("flags")
 	int flags;
 
 	GroundObject() {
 	} // L: 11
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(B)[Lsu;",
+		garbageValue = "44"
+	)
+	static class469[] method5234() {
+		return new class469[]{class469.field4829, class469.field4830, class469.field4831, class469.field4828}; // L: 16
+	}
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(III)Lco;",
+		garbageValue = "-1339823329"
+	)
+	@Export("Messages_getByChannelAndID")
+	static Message Messages_getByChannelAndID(int var0, int var1) {
+		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 35
+		return var2.getMessage(var1); // L: 36
+	}
 }

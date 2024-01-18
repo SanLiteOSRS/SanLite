@@ -3,135 +3,113 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fo")
-public abstract class class165 {
-	@ObfuscatedName("tf")
+@ObfuscatedName("gv")
+public class class165 extends class143 {
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 602051603
+		longValue = -8063989231043793109L
 	)
-	static int field1809;
-	@ObfuscatedName("f")
-	String field1805;
+	long field1780;
+	@ObfuscatedName("ap")
+	String field1776;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Les;"
+		descriptor = "Lfm;"
 	)
-	final class155 this$0;
+	final class146 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Les;Ljava/lang/String;)V"
+		descriptor = "(Lfm;)V"
 	)
-	class165(class155 var1, String var2) {
-		this.this$0 = var1; // L: 349
-		this.field1805 = var2; // L: 350
-	} // L: 351
+	class165(class146 var1) {
+		this.this$0 = var1;
+		this.field1780 = -1L; // L: 194
+		this.field1776 = null; // L: 195
+	} // L: 197
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-118"
+		descriptor = "(Luk;I)V",
+		garbageValue = "-411371469"
 	)
-	public abstract int vmethod3314();
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "11"
-	)
-	public String vmethod3320() {
-		return null; // L: 360
-	}
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "16777215"
-	)
-	public int vmethod3318() {
-		return -1; // L: 364
-	}
-
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-1817569519"
-	)
-	public String method3315() {
-		return this.field1805; // L: 354
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;II[BII)I",
-		garbageValue = "-944677500"
-	)
-	@Export("encodeStringCp1252")
-	public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
-		int var5 = var2 - var1; // L: 77
-
-		for (int var6 = 0; var6 < var5; ++var6) { // L: 78
-			char var7 = var0.charAt(var6 + var1); // L: 79
-			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) { // L: 80
-				var3[var6 + var4] = (byte)var7;
-			} else if (var7 == 8364) { // L: 81
-				var3[var6 + var4] = -128;
-			} else if (var7 == 8218) { // L: 82
-				var3[var6 + var4] = -126;
-			} else if (var7 == 402) { // L: 83
-				var3[var6 + var4] = -125;
-			} else if (var7 == 8222) { // L: 84
-				var3[var6 + var4] = -124;
-			} else if (var7 == 8230) { // L: 85
-				var3[var6 + var4] = -123;
-			} else if (var7 == 8224) { // L: 86
-				var3[var6 + var4] = -122;
-			} else if (var7 == 8225) { // L: 87
-				var3[var6 + var4] = -121;
-			} else if (var7 == 710) {
-				var3[var6 + var4] = -120; // L: 88
-			} else if (var7 == 8240) { // L: 89
-				var3[var6 + var4] = -119;
-			} else if (var7 == 352) { // L: 90
-				var3[var6 + var4] = -118;
-			} else if (var7 == 8249) { // L: 91
-				var3[var6 + var4] = -117;
-			} else if (var7 == 338) { // L: 92
-				var3[var6 + var4] = -116;
-			} else if (var7 == 381) { // L: 93
-				var3[var6 + var4] = -114;
-			} else if (var7 == 8216) { // L: 94
-				var3[var6 + var4] = -111;
-			} else if (var7 == 8217) { // L: 95
-				var3[var6 + var4] = -110;
-			} else if (var7 == 8220) { // L: 96
-				var3[var6 + var4] = -109;
-			} else if (var7 == 8221) { // L: 97
-				var3[var6 + var4] = -108;
-			} else if (var7 == 8226) { // L: 98
-				var3[var6 + var4] = -107;
-			} else if (var7 == 8211) {
-				var3[var6 + var4] = -106; // L: 99
-			} else if (var7 == 8212) { // L: 100
-				var3[var6 + var4] = -105;
-			} else if (var7 == 732) { // L: 101
-				var3[var6 + var4] = -104;
-			} else if (var7 == 8482) { // L: 102
-				var3[var6 + var4] = -103;
-			} else if (var7 == 353) { // L: 103
-				var3[var6 + var4] = -102;
-			} else if (var7 == 8250) { // L: 104
-				var3[var6 + var4] = -101;
-			} else if (var7 == 339) { // L: 105
-				var3[var6 + var4] = -100;
-			} else if (var7 == 382) { // L: 106
-				var3[var6 + var4] = -98;
-			} else if (var7 == 376) { // L: 107
-				var3[var6 + var4] = -97;
-			} else {
-				var3[var6 + var4] = 63; // L: 108
-			}
+	void vmethod3531(Buffer var1) {
+		if (var1.readUnsignedByte() != 255) { // L: 200
+			--var1.offset; // L: 201
+			this.field1780 = var1.readLong(); // L: 202
 		}
 
-		return var5; // L: 110
+		this.field1776 = var1.readStringCp1252NullTerminatedOrNull(); // L: 204
+	} // L: 205
+
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "(Lfn;I)V",
+		garbageValue = "1048713263"
+	)
+	void vmethod3529(ClanSettings var1) {
+		var1.method3347(this.field1780, this.field1776); // L: 208
+	} // L: 209
+
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lky;",
+		garbageValue = "-1613158274"
+	)
+	@Export("getFrames")
+	static Frames getFrames(int var0) {
+		Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0); // L: 372
+		if (var1 != null) { // L: 373
+			return var1;
+		} else {
+			var1 = class226.method4463(SequenceDefinition.SequenceDefinition_animationsArchive, class332.SequenceDefinition_skeletonsArchive, var0, false); // L: 374
+			if (var1 != null) { // L: 375
+				SequenceDefinition.SequenceDefinition_cachedFrames.put(var1, (long)var0);
+			}
+
+			return var1; // L: 376
+		}
 	}
+
+	@ObfuscatedName("kf")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIB)V",
+		garbageValue = "-35"
+	)
+	static final void method3516(int var0, int var1, int var2, int var3) {
+		class410.method7742(); // L: 5729
+	} // L: 5730
+
+	@ObfuscatedName("kx")
+	@ObfuscatedSignature(
+		descriptor = "(Ldf;II)V",
+		garbageValue = "-434342130"
+	)
+	static final void method3517(Actor var0, int var1) {
+		FriendSystem.worldToScreen(var0.x, var0.y, var1); // L: 5733
+	} // L: 5734
+
+	@ObfuscatedName("nd")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-1895306323"
+	)
+	static final void method3515(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 127); // L: 12160
+		class93.clientPreferences.method2539(var0); // L: 12161
+	} // L: 12162
+
+	@ObfuscatedName("ou")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "1722840458"
+	)
+	@Export("clanKickUser")
+	static final void clanKickUser(String var0) {
+		if (ClientPreferences.friendsChatManager != null) { // L: 12476
+			PacketBufferNode var1 = class482.getPacketBufferNode(ClientPacket.field3219, Client.packetWriter.isaacCipher); // L: 12477
+			var1.packetBuffer.writeByte(CollisionMap.stringCp1252NullTerminatedByteSize(var0)); // L: 12478
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12479
+			Client.packetWriter.addNode(var1); // L: 12480
+		}
+	} // L: 12481
 }
