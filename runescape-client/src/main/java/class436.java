@@ -1,80 +1,98 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Comparator;
+import java.util.Map.Entry;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ps")
-public class class436 extends DualNode {
-	@ObfuscatedName("f")
+@ObfuscatedName("qv")
+class class436 implements Comparator {
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "[Lpv;"
+		descriptor = "Low;"
 	)
-	class432[] field4670;
-	@ObfuscatedName("j")
-	List field4673;
-
+	@Export("VarbitDefinition_archive")
+	public static AbstractArchive VarbitDefinition_archive;
+	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "(Llh;I)V"
+		descriptor = "Lqp;"
 	)
-	public class436(AbstractArchive var1, int var2) {
-		byte[] var3 = var1.takeFile(var2, 0); // L: 26
-		this.method7618(new Buffer(var3)); // L: 27
-	} // L: 28
+	final class435 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llh;II)V"
+		descriptor = "(Lqp;)V"
 	)
-	public class436(AbstractArchive var1, int var2, int var3) {
-		byte[] var4 = var1.takeFile(var2, var3 + 1); // L: 21
-		this.method7618(new Buffer(var4)); // L: 22
-	} // L: 23
+	class436(class435 var1) {
+		this.this$0 = var1; // L: 84
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "-1912545561"
+		descriptor = "(Ljava/util/Map$Entry;Ljava/util/Map$Entry;I)I",
+		garbageValue = "-1477804985"
 	)
-	void method7618(Buffer var1) {
-		int var2 = var1.method7754(); // L: 31
-		this.field4670 = new class432[var2]; // L: 32
-		this.field4673 = new ArrayList(var2); // L: 33
+	int method8117(Entry var1, Entry var2) {
+		return ((Float)var2.getValue()).compareTo((Float)var1.getValue()); // L: 86
+	}
 
-		for (int var3 = 0; var3 < var2; ++var3) { // L: 34
-			this.field4670[var3] = (class432)Actor.findEnumerated(class432.method7566(), var1.readUnsignedByte()); // L: 35
-			int var4 = var1.method7754(); // L: 36
-			HashMap var5 = new HashMap(var4); // L: 37
+	public int compare(Object var1, Object var2) {
+		return this.method8117((Entry)var1, (Entry)var2); // L: 90
+	}
 
-			while (var4-- > 0) { // L: 38
-				Object var6 = this.field4670[var3].method7565(var1); // L: 39
-				int var7 = var1.method7754(); // L: 40
-				ArrayList var8 = new ArrayList(); // L: 41
+	public boolean equals(Object var1) {
+		return super.equals(var1); // L: 94
+	}
 
-				while (var7-- > 0) { // L: 42
-					int var9 = var1.method7754(); // L: 43
-					var8.add(var9); // L: 44
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(Low;B)V",
+		garbageValue = "-63"
+	)
+	public static void method8118(AbstractArchive var0) {
+		class523.field5124 = var0; // L: 20
+	} // L: 21
+
+	@ObfuscatedName("mn")
+	@ObfuscatedSignature(
+		descriptor = "(Lnn;IIIIIII)V",
+		garbageValue = "1180138764"
+	)
+	static final void method8125(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		if (Client.field581) { // L: 11070
+			Client.alternativeScrollbarWidth = 32;
+		} else {
+			Client.alternativeScrollbarWidth = 0; // L: 11071
+		}
+
+		Client.field581 = false; // L: 11072
+		int var7;
+		if (MouseHandler.MouseHandler_currentButton == 1 || !SoundCache.mouseCam && MouseHandler.MouseHandler_currentButton == 4) { // L: 11073
+			if (var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) { // L: 11074
+				var0.scrollY -= 4; // L: 11075
+				FaceNormal.invalidateWidget(var0); // L: 11076
+			} else if (var5 >= var1 && var5 < var1 + 16 && var6 >= var3 + var2 - 16 && var6 < var3 + var2) { // L: 11078
+				var0.scrollY += 4; // L: 11079
+				FaceNormal.invalidateWidget(var0); // L: 11080
+			} else if (var5 >= var1 - Client.alternativeScrollbarWidth && var5 < Client.alternativeScrollbarWidth + var1 + 16 && var6 >= var2 + 16 && var6 < var3 + var2 - 16) { // L: 11082
+				var7 = var3 * (var3 - 32) / var4; // L: 11083
+				if (var7 < 8) { // L: 11084
+					var7 = 8;
 				}
 
-				var5.put(var6, var8); // L: 46
+				int var8 = var6 - var2 - 16 - var7 / 2; // L: 11085
+				int var9 = var3 - 32 - var7; // L: 11086
+				var0.scrollY = var8 * (var4 - var3) / var9; // L: 11087
+				FaceNormal.invalidateWidget(var0); // L: 11088
+				Client.field581 = true; // L: 11089
 			}
-
-			this.field4673.add(var3, var5); // L: 48
 		}
 
-	} // L: 50
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;II)Ljava/util/List;",
-		garbageValue = "-1640295603"
-	)
-	public List method7619(Object var1, int var2) {
-		if (var2 < 0) { // L: 53
-			var2 = 0;
+		if (Client.mouseWheelRotation != 0) { // L: 11092
+			var7 = var0.width; // L: 11093
+			if (var5 >= var1 - var7 && var6 >= var2 && var5 < var1 + 16 && var6 <= var3 + var2) { // L: 11094
+				var0.scrollY += Client.mouseWheelRotation * 45; // L: 11095
+				FaceNormal.invalidateWidget(var0); // L: 11096
+			}
 		}
 
-		Map var3 = (Map)this.field4673.get(var2); // L: 54
-		return (List)var3.get(var1); // L: 55
-	}
+	} // L: 11099
 }

@@ -3,87 +3,68 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("ij")
+@ObfuscatedName("je")
 @Implements("WorldMapRectangle")
 public final class WorldMapRectangle {
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -1451061377
+		intValue = 2084419831
 	)
 	@Export("width")
 	int width;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -216115115
+		intValue = 1215993933
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -90003499
+		intValue = -213602905
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -1498862133
+		intValue = 762996225
 	)
 	@Export("y")
 	int y;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lhm;"
+		descriptor = "Ljj;"
 	)
 	final WorldMapManager this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lhm;)V"
+		descriptor = "(Ljj;)V"
 	)
 	WorldMapRectangle(WorldMapManager var1) {
-		this.this$0 = var1; // L: 305
+		this.this$0 = var1; // L: 309
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
-		garbageValue = "-2108490134"
+		descriptor = "(IIIIB)V",
+		garbageValue = "17"
 	)
-	@Export("loadClassFromDescriptor")
-	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-		if (var0.equals("B")) { // L: 222
-			return Byte.TYPE;
-		} else if (var0.equals("I")) { // L: 223
-			return Integer.TYPE;
-		} else if (var0.equals("S")) { // L: 224
-			return Short.TYPE;
-		} else if (var0.equals("J")) { // L: 225
-			return Long.TYPE;
-		} else if (var0.equals("Z")) { // L: 226
-			return Boolean.TYPE;
-		} else if (var0.equals("F")) { // L: 227
-			return Float.TYPE;
-		} else if (var0.equals("D")) { // L: 228
-			return Double.TYPE;
-		} else if (var0.equals("C")) { // L: 229
-			return Character.TYPE;
-		} else {
-			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0); // L: 230 231
-		}
-	}
+	public static void method5019(int var0, int var1, int var2, int var3) {
+		class319.field3460 = var0; // L: 195
+		class319.field3464 = var1; // L: 196
+		class319.field3465 = var2; // L: 197
+		class319.field3454 = var3; // L: 198
+	} // L: 199
 
-	@ObfuscatedName("li")
+	@ObfuscatedName("it")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lps;",
-		garbageValue = "46"
+		descriptor = "(I)V",
+		garbageValue = "-1151527319"
 	)
-	static class436 method4988(int var0) {
-		class436 var1 = (class436)Client.Widget_cachedFonts.get((long)var0); // L: 12486
-		if (var1 == null) { // L: 12487
-			var1 = new class436(class132.field1588, var0); // L: 12488
+	static final void method5020() {
+		if (WorldMap.pcmPlayer1 != null) { // L: 3714
+			WorldMap.pcmPlayer1.run();
 		}
 
-		return var1; // L: 12490
-	}
+	} // L: 3715
 }
