@@ -1,171 +1,205 @@
+import java.util.HashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nu")
+@ObfuscatedName("ov")
 public class class388 {
-	@ObfuscatedName("c")
-	float field4405;
-	@ObfuscatedName("v")
-	float field4400;
-	@ObfuscatedName("q")
-	float field4402;
-	@ObfuscatedName("f")
-	float field4409;
-	@ObfuscatedName("j")
-	float field4403;
-	@ObfuscatedName("e")
-	float field4408;
-	@ObfuscatedName("g")
-	float field4401;
-	@ObfuscatedName("w")
-	float field4407;
-	@ObfuscatedName("y")
-	float field4406;
-	@ObfuscatedName("i")
-	float field4404;
-	@ObfuscatedName("s")
-	float field4410;
-	@ObfuscatedName("t")
-	float field4411;
+	@ObfuscatedName("aq")
+	@Export("SpriteBuffer_yOffsets")
+	static int[] SpriteBuffer_yOffsets;
 
 	static {
-		new class388();
-	} // L: 6
+		new HashMap();
+	} // L: 9
 
-	class388() {
-		this.method7022(); // L: 22
-	} // L: 23
-
-	@ObfuscatedName("c")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1938760120"
+		descriptor = "(Luo;II)V",
+		garbageValue = "632783225"
 	)
-	void method7022() {
-		this.field4411 = 0.0F;
-		this.field4410 = 0.0F;
-		this.field4404 = 0.0F;
-		this.field4407 = 0.0F;
-		this.field4401 = 0.0F; // L: 30
-		this.field4408 = 0.0F; // L: 31
-		this.field4409 = 0.0F; // L: 32
-		this.field4402 = 0.0F; // L: 33
-		this.field4400 = 0.0F; // L: 34
-		this.field4406 = 1.0F; // L: 35
-		this.field4403 = 1.0F; // L: 36
-		this.field4405 = 1.0F; // L: 37
-	} // L: 38
+	@Export("updatePlayers")
+	static final void updatePlayers(PacketBuffer var0, int var1) {
+		int var2 = var0.offset; // L: 72
+		Players.Players_pendingUpdateCount = 0; // L: 73
+		int var3 = 0; // L: 75
+		var0.importIndex(); // L: 76
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(FI)V",
-		garbageValue = "1277086210"
-	)
-	void method7029(float var1) {
-		float var2 = (float)Math.cos((double)var1); // L: 41
-		float var3 = (float)Math.sin((double)var1); // L: 42
-		float var4 = this.field4400; // L: 43
-		float var5 = this.field4403; // L: 44
-		float var6 = this.field4407; // L: 45
-		float var7 = this.field4410; // L: 46
-		this.field4400 = var4 * var2 - var3 * this.field4402; // L: 47
-		this.field4402 = this.field4402 * var2 + var3 * var4; // L: 48
-		this.field4403 = var5 * var2 - var3 * this.field4408; // L: 49
-		this.field4408 = var3 * var5 + var2 * this.field4408; // L: 50
-		this.field4407 = var2 * var6 - this.field4406 * var3; // L: 51
-		this.field4406 = var3 * var6 + var2 * this.field4406; // L: 52
-		this.field4410 = var2 * var7 - var3 * this.field4411; // L: 53
-		this.field4411 = this.field4411 * var2 + var3 * var7; // L: 54
-	} // L: 55
+		byte[] var10000;
+		int var4;
+		int var6;
+		int var8;
+		int var9;
+		int var10;
+		for (var4 = 0; var4 < Players.Players_count; ++var4) { // L: 77
+			var10 = Players.Players_indices[var4]; // L: 78
+			if ((Players.field1355[var10] & 1) == 0) { // L: 79
+				if (var3 > 0) { // L: 80
+					--var3; // L: 81
+					var10000 = Players.field1355; // L: 82
+					var10000[var10] = (byte)(var10000[var10] | 2);
+				} else {
+					var6 = var0.readBits(1); // L: 85
+					if (var6 == 0) { // L: 86
+						var8 = var0.readBits(2); // L: 89
+						if (var8 == 0) { // L: 91
+							var9 = 0;
+						} else if (var8 == 1) { // L: 92
+							var9 = var0.readBits(5);
+						} else if (var8 == 2) { // L: 93
+							var9 = var0.readBits(8);
+						} else {
+							var9 = var0.readBits(11); // L: 94
+						}
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(FI)V",
-		garbageValue = "287874371"
-	)
-	void method7027(float var1) {
-		float var2 = (float)Math.cos((double)var1); // L: 58
-		float var3 = (float)Math.sin((double)var1); // L: 59
-		float var4 = this.field4405; // L: 60
-		float var5 = this.field4409; // L: 61
-		float var6 = this.field4401; // L: 62
-		float var7 = this.field4404; // L: 63
-		this.field4405 = var4 * var2 + this.field4402 * var3; // L: 64
-		this.field4402 = this.field4402 * var2 - var3 * var4; // L: 65
-		this.field4409 = var2 * var5 + this.field4408 * var3; // L: 66
-		this.field4408 = var2 * this.field4408 - var5 * var3; // L: 67
-		this.field4401 = var2 * var6 + this.field4406 * var3; // L: 68
-		this.field4406 = var2 * this.field4406 - var6 * var3; // L: 69
-		this.field4404 = var7 * var2 + var3 * this.field4411; // L: 70
-		this.field4411 = this.field4411 * var2 - var7 * var3; // L: 71
-	} // L: 72
+						var3 = var9; // L: 97
+						var10000 = Players.field1355; // L: 98
+						var10000[var10] = (byte)(var10000[var10] | 2);
+					} else {
+						class513.readPlayerUpdate(var0, var10); // L: 101
+					}
+				}
+			}
+		}
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(FI)V",
-		garbageValue = "736372883"
-	)
-	void method7039(float var1) {
-		float var2 = (float)Math.cos((double)var1); // L: 75
-		float var3 = (float)Math.sin((double)var1); // L: 76
-		float var4 = this.field4405; // L: 77
-		float var5 = this.field4409; // L: 78
-		float var6 = this.field4401; // L: 79
-		float var7 = this.field4404; // L: 80
-		this.field4405 = var4 * var2 - var3 * this.field4400; // L: 81
-		this.field4400 = var4 * var3 + var2 * this.field4400; // L: 82
-		this.field4409 = var5 * var2 - this.field4403 * var3; // L: 83
-		this.field4403 = var3 * var5 + this.field4403 * var2; // L: 84
-		this.field4401 = var2 * var6 - this.field4407 * var3; // L: 85
-		this.field4407 = var6 * var3 + this.field4407 * var2; // L: 86
-		this.field4404 = var7 * var2 - var3 * this.field4410; // L: 87
-		this.field4410 = var3 * var7 + var2 * this.field4410; // L: 88
-	} // L: 89
+		var0.exportIndex(); // L: 104
+		if (var3 != 0) { // L: 105
+			throw new RuntimeException(); // L: 106
+		} else {
+			var0.importIndex(); // L: 108
 
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(FFFI)V",
-		garbageValue = "1389632603"
-	)
-	void method7026(float var1, float var2, float var3) {
-		this.field4404 += var1; // L: 92
-		this.field4410 += var2; // L: 93
-		this.field4411 += var3; // L: 94
-	} // L: 95
+			for (var4 = 0; var4 < Players.Players_count; ++var4) { // L: 109
+				var10 = Players.Players_indices[var4]; // L: 110
+				if ((Players.field1355[var10] & 1) != 0) { // L: 111
+					if (var3 > 0) { // L: 112
+						--var3; // L: 113
+						var10000 = Players.field1355; // L: 114
+						var10000[var10] = (byte)(var10000[var10] | 2);
+					} else {
+						var6 = var0.readBits(1); // L: 117
+						if (var6 == 0) { // L: 118
+							var8 = var0.readBits(2); // L: 121
+							if (var8 == 0) { // L: 123
+								var9 = 0;
+							} else if (var8 == 1) { // L: 124
+								var9 = var0.readBits(5);
+							} else if (var8 == 2) { // L: 125
+								var9 = var0.readBits(8);
+							} else {
+								var9 = var0.readBits(11); // L: 126
+							}
 
-	public String toString() {
-		return this.field4405 + "," + this.field4409 + "," + this.field4401 + "," + this.field4404 + "\n" + this.field4400 + "," + this.field4403 + "," + this.field4407 + "," + this.field4410 + "\n" + this.field4402 + "," + this.field4408 + "," + this.field4406 + "," + this.field4411; // L: 99
-	}
+							var3 = var9; // L: 129
+							var10000 = Players.field1355; // L: 130
+							var10000[var10] = (byte)(var10000[var10] | 2);
+						} else {
+							class513.readPlayerUpdate(var0, var10); // L: 133
+						}
+					}
+				}
+			}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "-34"
-	)
-	@Export("getVarbit")
-	public static int getVarbit(int var0) {
-		VarbitComposition var1 = WorldMapCacheName.method5054(var0); // L: 24
-		int var2 = var1.baseVar; // L: 25
-		int var3 = var1.startBit; // L: 26
-		int var4 = var1.endBit; // L: 27
-		int var5 = Varps.Varps_masks[var4 - var3]; // L: 28
-		return Varps.Varps_main[var2] >> var3 & var5; // L: 29
-	}
+			var0.exportIndex(); // L: 136
+			if (var3 != 0) { // L: 137
+				throw new RuntimeException(); // L: 138
+			} else {
+				var0.importIndex(); // L: 140
 
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(FFFF[FI)V",
-		garbageValue = "-885047060"
-	)
-	static void method7040(float var0, float var1, float var2, float var3, float[] var4) {
-		float var5 = var1 - var0; // L: 321
-		float var6 = var2 - var1; // L: 322
-		float var7 = var3 - var2; // L: 323
-		float var8 = var6 - var5; // L: 324
-		var4[3] = var7 - var6 - var8; // L: 325
-		var4[2] = var8 + var8 + var8; // L: 326
-		var4[1] = var5 + var5 + var5; // L: 327
-		var4[0] = var0; // L: 328
-	} // L: 329
+				for (var4 = 0; var4 < Players.Players_emptyIdxCount; ++var4) { // L: 141
+					var10 = Players.Players_emptyIndices[var4]; // L: 142
+					if ((Players.field1355[var10] & 1) != 0) { // L: 143
+						if (var3 > 0) { // L: 144
+							--var3; // L: 145
+							var10000 = Players.field1355; // L: 146
+							var10000[var10] = (byte)(var10000[var10] | 2);
+						} else {
+							var6 = var0.readBits(1); // L: 149
+							if (var6 == 0) { // L: 150
+								var8 = var0.readBits(2); // L: 153
+								if (var8 == 0) { // L: 155
+									var9 = 0;
+								} else if (var8 == 1) { // L: 156
+									var9 = var0.readBits(5);
+								} else if (var8 == 2) { // L: 157
+									var9 = var0.readBits(8);
+								} else {
+									var9 = var0.readBits(11); // L: 158
+								}
+
+								var3 = var9; // L: 161
+								var10000 = Players.field1355; // L: 162
+								var10000[var10] = (byte)(var10000[var10] | 2);
+							} else if (Players.updateExternalPlayer(var0, var10)) { // L: 165
+								var10000 = Players.field1355;
+								var10000[var10] = (byte)(var10000[var10] | 2);
+							}
+						}
+					}
+				}
+
+				var0.exportIndex(); // L: 168
+				if (var3 != 0) { // L: 169
+					throw new RuntimeException(); // L: 170
+				} else {
+					var0.importIndex(); // L: 172
+
+					for (var4 = 0; var4 < Players.Players_emptyIdxCount; ++var4) { // L: 173
+						var10 = Players.Players_emptyIndices[var4]; // L: 174
+						if ((Players.field1355[var10] & 1) == 0) { // L: 175
+							if (var3 > 0) { // L: 176
+								--var3; // L: 177
+								var10000 = Players.field1355; // L: 178
+								var10000[var10] = (byte)(var10000[var10] | 2);
+							} else {
+								var6 = var0.readBits(1); // L: 181
+								if (var6 == 0) { // L: 182
+									var8 = var0.readBits(2); // L: 185
+									if (var8 == 0) { // L: 187
+										var9 = 0;
+									} else if (var8 == 1) { // L: 188
+										var9 = var0.readBits(5);
+									} else if (var8 == 2) { // L: 189
+										var9 = var0.readBits(8);
+									} else {
+										var9 = var0.readBits(11); // L: 190
+									}
+
+									var3 = var9; // L: 193
+									var10000 = Players.field1355; // L: 194
+									var10000[var10] = (byte)(var10000[var10] | 2);
+								} else if (Players.updateExternalPlayer(var0, var10)) { // L: 197
+									var10000 = Players.field1355;
+									var10000[var10] = (byte)(var10000[var10] | 2);
+								}
+							}
+						}
+					}
+
+					var0.exportIndex(); // L: 200
+					if (var3 != 0) { // L: 201
+						throw new RuntimeException(); // L: 202
+					} else {
+						Players.Players_count = 0; // L: 204
+						Players.Players_emptyIdxCount = 0; // L: 205
+
+						for (var4 = 1; var4 < 2048; ++var4) { // L: 206
+							var10000 = Players.field1355; // L: 207
+							var10000[var4] = (byte)(var10000[var4] >> 1);
+							Player var5 = Client.players[var4]; // L: 208
+							if (var5 != null) { // L: 209
+								Players.Players_indices[++Players.Players_count - 1] = var4;
+							} else {
+								Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var4; // L: 210
+							}
+						}
+
+						SoundSystem.method877(var0); // L: 213
+						if (var0.offset - var2 != var1) { // L: 214
+							throw new RuntimeException(var0.offset - var2 + " " + var1); // L: 215
+						}
+					}
+				}
+			}
+		}
+	} // L: 217
 }

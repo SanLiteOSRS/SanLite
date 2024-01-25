@@ -4,51 +4,64 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("qn")
+@ObfuscatedName("un")
 @Implements("AbstractRasterProvider")
 public abstract class AbstractRasterProvider {
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
+	static byte[][][] field5260;
+	@ObfuscatedName("af")
 	@Export("pixels")
 	public int[] pixels;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -138324827
+		intValue = -470866495
 	)
 	@Export("width")
 	public int width;
-	@ObfuscatedName("j")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1542300623
+		intValue = -656805095
 	)
 	@Export("height")
 	public int height;
+	@ObfuscatedName("ar")
+	protected float[] field5259;
 
 	protected AbstractRasterProvider() {
-	} // L: 8
+	} // L: 9
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "37"
+		descriptor = "(III)V",
+		garbageValue = "1922041881"
 	)
 	@Export("drawFull")
 	public abstract void drawFull(int var1, int var2);
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "2018315911"
+		descriptor = "(IIIIB)V",
+		garbageValue = "-38"
 	)
 	@Export("draw")
 	public abstract void draw(int var1, int var2, int var3, int var4);
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "2111327986"
+		garbageValue = "-466034605"
 	)
 	@Export("apply")
 	public final void apply() {
-		Rasterizer2D.Rasterizer2D_replace(this.pixels, this.width, this.height); // L: 11
-	} // L: 12
+		Rasterizer2D.method9766(this.pixels, this.width, this.height, this.field5259); // L: 12
+	} // L: 13
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(ZI)V",
+		garbageValue = "-2139015279"
+	)
+	public final void method9790(boolean var1) {
+		this.field5259 = var1 ? new float[this.width * this.height + 1] : null; // L: 19
+	} // L: 20
 }

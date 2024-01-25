@@ -1,122 +1,129 @@
+import java.util.ArrayList;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dj")
-public enum class124 implements MouseWheel {
-	@ObfuscatedName("c")
+@ObfuscatedName("ea")
+public enum class124 implements class387 {
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Lea;"
 	)
-	field1546(0, 0),
-	@ObfuscatedName("v")
+	field1472(1, 0),
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Lea;"
 	)
-	field1544(4, 1),
-	@ObfuscatedName("q")
+	field1470(0, 1),
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Lea;"
 	)
-	field1543(1, 2),
-	@ObfuscatedName("f")
+	field1471(3, 2),
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Lea;"
 	)
-	field1550(2, 3),
-	@ObfuscatedName("j")
+	field1474(4, 3),
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Ldj;"
+		descriptor = "Lea;"
 	)
-	field1547(3, 4);
+	field1473(2, 4);
 
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "Lkb;"
-	)
-	@Export("scriptDotWidget")
-	static Widget scriptDotWidget;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -1017548215
+		intValue = -1046332187
 	)
-	public final int field1548;
-	@ObfuscatedName("g")
+	public final int field1475;
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = 972373499
+		intValue = 1180048497
 	)
 	@Export("id")
 	final int id;
 
 	class124(int var3, int var4) {
-		this.field1548 = var3; // L: 17
+		this.field1475 = var3; // L: 17
 		this.id = var4; // L: 18
 	} // L: 19
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "-884190501"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 23
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(Lpb;III)I",
-		garbageValue = "-1005056854"
+		descriptor = "(Low;Low;ZII)V",
+		garbageValue = "734075679"
 	)
-	static int method2818(IterableNodeHashTable var0, int var1, int var2) {
-		if (var0 == null) {
-			return var2;
-		} else {
-			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
-			return var3 == null ? var2 : var3.integer;
-		}
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Lgp;",
-		garbageValue = "15"
-	)
-	public static FloorOverlayDefinition method2814(int var0) {
-		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0); // L: 30
-		if (var1 != null) { // L: 31
-			return var1;
-		} else {
-			byte[] var2 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0); // L: 32
-			var1 = new FloorOverlayDefinition(); // L: 33
-			if (var2 != null) { // L: 34
-				var1.decode(new Buffer(var2), var0);
+	static void method3004(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
+		if (Login.clearLoginScreen) { // L: 185
+			if (var3 == 4) { // L: 186
+				Actor.method2489(4); // L: 187
 			}
 
-			var1.postDecode(); // L: 35
-			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var1, (long)var0); // L: 36
-			return var1; // L: 37
+		} else {
+			if (var3 == 0) { // L: 191
+				class408.method7592(var2); // L: 192
+			} else {
+				Actor.method2489(var3); // L: 195
+			}
+
+			Rasterizer2D.Rasterizer2D_clear(); // L: 197
+			byte[] var4 = var0.takeFileByNames("title.jpg", ""); // L: 198
+			Buddy.leftTitleSprite = class181.method3691(var4); // L: 199
+			SecureRandomCallable.rightTitleSprite = Buddy.leftTitleSprite.mirrorHorizontally(); // L: 200
+			SecureRandomFuture.method2235(var1, Client.worldProperties); // L: 201
+			Login.titleboxSprite = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "titlebox", ""); // L: 202
+			class182.field1904 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton", ""); // L: 203
+			Login.field925 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton_large", ""); // L: 204
+			class473.field4839 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "play_now_text", ""); // L: 205
+			VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton_wide42,1", ""); // L: 206
+			Login.field906 = class412.method7748(var1, "runes", ""); // L: 207
+			Clock.title_muteSprite = class412.method7748(var1, "title_mute", ""); // L: 208
+			class182.field1908 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,0", ""); // L: 209
+			class465.field4805 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", ""); // L: 210
+			class402.field4500 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", ""); // L: 211
+			Decimator.field410 = VarcInt.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", ""); // L: 212
+			class31.field168 = class182.field1908.subWidth; // L: 213
+			Skills.field3911 = class182.field1908.subHeight; // L: 214
+			SpriteMask.loginScreenRunesAnimation = new LoginScreenAnimation(Login.field906); // L: 215
+			if (var2) { // L: 216
+				Login.Login_username = ""; // L: 217
+				Login.Login_password = ""; // L: 218
+				Login.field934 = new String[8]; // L: 219
+				Login.field924 = 0; // L: 220
+			}
+
+			class130.field1525 = 0; // L: 222
+			class148.otp = ""; // L: 223
+			Login.field913 = true; // L: 224
+			Login.worldSelectOpen = false; // L: 225
+			if (!class93.clientPreferences.method2546()) { // L: 226
+				ArrayList var5 = new ArrayList(); // L: 227
+				var5.add(new class331(WorldMapSection0.field2587, "scape main", "", 255, false)); // L: 228
+				LoginScreenAnimation.method2528(var5, 0, 0, 0, 100, false); // L: 229
+			} else {
+				Actor.method2488(0, 0); // L: 231
+			}
+
+			FontName.method9049(); // L: 232
+			class220.method4348().method7126(false); // L: 233
+			Login.clearLoginScreen = true; // L: 234
+			Login.xPadding = (class524.canvasWidth - 765) / 2; // L: 235
+			Login.loginBoxX = Login.xPadding + 202; // L: 236
+			class433.loginBoxCenter = Login.loginBoxX + 180; // L: 237
+			Buddy.leftTitleSprite.drawAt(Login.xPadding, 0); // L: 238
+			SecureRandomCallable.rightTitleSprite.drawAt(Login.xPadding + 382, 0); // L: 239
+			GrandExchangeEvents.logoSprite.drawAt(Login.xPadding + 382 - GrandExchangeEvents.logoSprite.subWidth / 2, 18); // L: 240
 		}
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(B)[Lft;",
-		garbageValue = "127"
-	)
-	static VerticalAlignment[] method2820() {
-		return new VerticalAlignment[]{VerticalAlignment.field1963, VerticalAlignment.field1961, VerticalAlignment.VerticalAlignment_centered}; // L: 14
-	}
-
-	@ObfuscatedName("lw")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;I)I",
-		garbageValue = "1998673549"
-	)
-	@Export("getWidgetFlags")
-	static int getWidgetFlags(Widget var0) {
-		IntegerNode var1 = (IntegerNode)Client.widgetFlags.get((long)var0.childIndex + ((long)var0.id << 32)); // L: 12289
-		return var1 != null ? var1.integer : var0.flags; // L: 12290 12291
-	}
+	} // L: 189 241
 }

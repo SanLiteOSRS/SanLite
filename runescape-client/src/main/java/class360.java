@@ -1,44 +1,47 @@
-import java.util.Comparator;
-import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mg")
-class class360 implements Comparator {
-	@ObfuscatedName("c")
-	@Export("javaVendor")
-	public static String javaVendor;
-	// $FF: synthetic field
+@ObfuscatedName("nk")
+public class class360 {
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Lmy;"
+		descriptor = "Lnk;"
 	)
-	final class361 this$0;
+	static final class360 field3939;
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "Lnk;"
+	)
+	static final class360 field3937;
+	@ObfuscatedName("af")
+	@ObfuscatedGetter(
+		intValue = 1984923029
+	)
+	final int field3938;
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = -1060291329
+	)
+	final int field3940;
 
-	@ObfuscatedSignature(
-		descriptor = "(Lmy;)V"
-	)
-	class360(class361 var1) {
-		this.this$0 = var1; // L: 7
+	static {
+		field3939 = new class360(51, 27, 800, 0, 16, 16); // L: 33
+		field3937 = new class360(25, 28, 800, 656, 40, 40); // L: 34
 	}
 
-	@ObfuscatedName("c")
+	class360(int var1, int var2, int var3, int var4, int var5, int var6) {
+		this.field3938 = var5; // L: 39
+		this.field3940 = var6; // L: 40
+	} // L: 41
+
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(Lmv;Lmv;I)I",
-		garbageValue = "796004144"
+		descriptor = "(II)F",
+		garbageValue = "107623799"
 	)
-	int method6532(class362 var1, class362 var2) {
-		if (var1.field4277 > var2.field4277) {
-			return 1; // L: 9
-		} else {
-			return var1.field4277 < var2.field4277 ? -1 : 0; // L: 10 11
-		}
-	}
-
-	public int compare(Object var1, Object var2) {
-		return this.method6532((class362)var1, (class362)var2); // L: 15
-	}
-
-	public boolean equals(Object var1) {
-		return super.equals(var1); // L: 19
+	public static float method6933(int var0) {
+		var0 &= 16383; // L: 24
+		return (float)((double)((float)var0 / 16384.0F) * 6.283185307179586D); // L: 25
 	}
 }
