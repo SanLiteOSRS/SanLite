@@ -4,42 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ir")
+@ObfuscatedName("jg")
 @Implements("WorldMapSection1")
 public class WorldMapSection1 implements WorldMapSection {
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -2036174811
+		intValue = 1429332299
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 1537995989
+		intValue = -884816495
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -300775863
+		intValue = -199217743
 	)
 	@Export("regionStartX")
 	int regionStartX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 1381396249
+		intValue = -2018774791
 	)
 	@Export("regionStartY")
 	int regionStartY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1589676553
+		intValue = -1816170301
 	)
 	@Export("regionEndX")
 	int regionEndX;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1377237821
+		intValue = -1271566957
 	)
 	@Export("regionEndY")
 	int regionEndY;
@@ -47,10 +47,10 @@ public class WorldMapSection1 implements WorldMapSection {
 	WorldMapSection1() {
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(Lhg;I)V",
-		garbageValue = "1585435431"
+		descriptor = "(Ljr;S)V",
+		garbageValue = "30931"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -72,10 +72,10 @@ public class WorldMapSection1 implements WorldMapSection {
 
 	} // L: 22
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)Z",
-		garbageValue = "-929111713"
+		garbageValue = "1446024671"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -86,35 +86,35 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
 		descriptor = "(III)Z",
-		garbageValue = "-47549823"
+		garbageValue = "-1938918886"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
 		return var1 >> 6 == this.regionEndX && var2 >> 6 == this.regionEndY; // L: 34
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)[I",
-		garbageValue = "-561571792"
+		garbageValue = "2068201380"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
 		if (!this.containsCoord(var1, var2, var3)) { // L: 39
-			return null; // L: 40
+			return null;
 		} else {
 			int[] var4 = new int[]{this.regionEndX * 64 - this.regionStartX * 64 + var2, var3 + (this.regionEndY * 64 - this.regionStartY * 64)}; // L: 42 43 44
 			return var4; // L: 45
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lkd;",
-		garbageValue = "531454030"
+		descriptor = "(III)Lmu;",
+		garbageValue = "1554678257"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -127,10 +127,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "-27"
+		descriptor = "(Luk;B)V",
+		garbageValue = "16"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -143,12 +143,33 @@ public class WorldMapSection1 implements WorldMapSection {
 		this.postRead(); // L: 66
 	} // L: 67
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1018712398"
+		descriptor = "(S)V",
+		garbageValue = "16190"
 	)
 	@Export("postRead")
 	void postRead() {
 	} // L: 69
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "696305486"
+	)
+	static void method5058() {
+		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) { // L: 30
+			if (var0.stream1 != null) { // L: 31
+				ClanSettings.pcmStreamMixer.removeSubStream(var0.stream1); // L: 32
+				var0.stream1 = null; // L: 33
+			}
+
+			if (var0.stream2 != null) { // L: 35
+				ClanSettings.pcmStreamMixer.removeSubStream(var0.stream2); // L: 36
+				var0.stream2 = null; // L: 37
+			}
+		}
+
+		ObjectSound.objectSounds.clear(); // L: 40
+	} // L: 41
 }
