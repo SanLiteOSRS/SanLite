@@ -1,72 +1,53 @@
-import java.io.UnsupportedEncodingException;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-@ObfuscatedName("om")
-public class class399 implements class398 {
-	@ObfuscatedName("q")
-	JSONObject field4436;
-
-	public class399(byte[] var1) throws UnsupportedEncodingException {
-		this.method7098(var1); // L: 17
-	} // L: 18
-
-	public class399(String var1) throws UnsupportedEncodingException {
-		this.method7099(var1); // L: 13
-	} // L: 14
-
-	@ObfuscatedName("c")
+@ObfuscatedName("pk")
+public final class class399 {
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "793389020"
+		descriptor = "(ILuk;I)Lgb;",
+		garbageValue = "1974554113"
 	)
-	public byte[] vmethod7114() throws UnsupportedEncodingException {
-		return this.field4436 == null ? new byte[0] : this.field4436.toString().getBytes("UTF-8"); // L: 50 51 53
-	}
+	public static class168 method7487(int var0, Buffer var1) {
+		int var2 = var1.readUnsignedByte(); // L: 24
+		boolean var3 = (var2 & 1) != 0; // L: 25
+		boolean var4 = (var2 & 2) != 0; // L: 26
+		class168 var5 = new class168(var0); // L: 27
+		int var6;
+		int[] var7;
+		boolean var8;
+		int var9;
+		short var10;
+		if (var3) { // L: 28
+			var6 = var1.readUnsignedByte(); // L: 29
+			var7 = new int[]{var6 & 15, var6 >> 4 & 15}; // L: 30 31 32
+			var8 = var5.field1796 != null && var7.length == var5.field1796.length; // L: 33
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "-448448712"
-	)
-	void method7098(byte[] var1) throws UnsupportedEncodingException {
-		String var2 = new String(var1, "UTF-8"); // L: 21
-		this.method7099(var2); // L: 22
-	} // L: 23
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "2042516666"
-	)
-	void method7099(String var1) throws UnsupportedEncodingException {
-		try {
-			if (var1.charAt(0) == '{') { // L: 27
-				this.field4436 = new JSONObject(var1); // L: 28
-			} else {
-				if (var1.charAt(0) != '[') { // L: 30
-					throw new UnsupportedEncodingException("Invalid JSON passed to the JSON content builder."); // L: 36
+			for (var9 = 0; var9 < 2; ++var9) { // L: 34
+				if (var7[var9] != 15) { // L: 35
+					var10 = (short)var1.readUnsignedShort(); // L: 36
+					if (var8) { // L: 37
+						var5.field1796[var7[var9]] = var10; // L: 38
+					}
 				}
-
-				JSONArray var2 = new JSONArray(var1); // L: 31
-				this.field4436 = new JSONObject(); // L: 32
-				this.field4436.put("arrayValues", var2); // L: 33
 			}
-
-		} catch (JSONException var3) { // L: 39
-			throw new UnsupportedEncodingException(var3.getMessage()); // L: 40
 		}
-	} // L: 42
 
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lorg/json/JSONObject;",
-		garbageValue = "1036463091"
-	)
-	public JSONObject method7100() {
-		return this.field4436; // L: 45
+		if (var4) { // L: 43
+			var6 = var1.readUnsignedByte(); // L: 44
+			var7 = new int[]{var6 & 15, var6 >> 4 & 15}; // L: 45 46 47
+			var8 = var5.field1794 != null && var7.length == var5.field1794.length; // L: 48
+
+			for (var9 = 0; var9 < 2; ++var9) { // L: 49
+				if (var7[var9] != 15) { // L: 50
+					var10 = (short)var1.readUnsignedShort(); // L: 51
+					if (var8) { // L: 52
+						var5.field1794[var7[var9]] = var10; // L: 53
+					}
+				}
+			}
+		}
+
+		return var5; // L: 58
 	}
 }

@@ -3,34 +3,32 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fv")
+@ObfuscatedName("it")
 @Implements("Clock")
 public abstract class Clock {
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "[Lut;"
+	)
+	@Export("title_muteSprite")
+	static IndexedSprite[] title_muteSprite;
+
 	Clock() {
 	} // L: 4
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "814382249"
+		garbageValue = "65280"
 	)
 	@Export("mark")
 	public abstract void mark();
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "-83"
+		descriptor = "(III)I",
+		garbageValue = "-2123373080"
 	)
 	@Export("wait")
 	public abstract int wait(int var1, int var2);
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "2013103742"
-	)
-	public static boolean method3331(int var0) {
-		return var0 >= WorldMapDecorationType.field3553.id && var0 <= WorldMapDecorationType.field3552.id; // L: 43
-	}
 }

@@ -1,21 +1,40 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import java.util.Comparator;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pp")
-public class class438 {
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -1532753849
+@ObfuscatedName("qn")
+class class438 implements Comparator {
+	// $FF: synthetic field
+	@ObfuscatedSignature(
+		descriptor = "Lqj;"
 	)
-	static final int field4680;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = 875475555
-	)
-	static final int field4683;
+	final class439 this$0;
 
-	static {
-		field4680 = (int)(Math.pow(2.0D, 4.0D) - 1.0D); // L: 10
-		field4683 = (int)(Math.pow(2.0D, 8.0D) - 1.0D); // L: 11
+	@ObfuscatedSignature(
+		descriptor = "(Lqj;)V"
+	)
+	class438(class439 var1) {
+		this.this$0 = var1; // L: 7
+	}
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(Lqm;Lqm;B)I",
+		garbageValue = "16"
+	)
+	int method8128(class440 var1, class440 var2) {
+		if (var1.field4694 > var2.field4694) {
+			return 1; // L: 9
+		} else {
+			return var1.field4694 < var2.field4694 ? -1 : 0; // L: 10 11
+		}
+	}
+
+	public boolean equals(Object var1) {
+		return super.equals(var1); // L: 19
+	}
+
+	public int compare(Object var1, Object var2) {
+		return this.method8128((class440)var1, (class440)var2); // L: 15
 	}
 }

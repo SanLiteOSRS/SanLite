@@ -3,16 +3,21 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kr")
+@ObfuscatedName("mm")
 @Implements("Varps")
 public class Varps {
-	@ObfuscatedName("c")
+	@ObfuscatedName("wf")
+	@ObfuscatedSignature(
+		descriptor = "Loj;"
+	)
+	public static class385 field3599;
+	@ObfuscatedName("am")
 	@Export("Varps_masks")
 	static int[] Varps_masks;
-	@ObfuscatedName("v")
+	@ObfuscatedName("af")
 	@Export("Varps_temp")
 	public static int[] Varps_temp;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aj")
 	@Export("Varps_main")
 	public static int[] Varps_main;
 
@@ -25,26 +30,33 @@ public class Varps {
 			var0 += var0; // L: 12
 		}
 
-		Varps_temp = new int[4000]; // L: 16
-		Varps_main = new int[4000]; // L: 17
+		Varps_temp = new int[5000]; // L: 17
+		Varps_main = new int[5000]; // L: 18
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("js")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;ZB)[B",
-		garbageValue = "74"
+		descriptor = "(I)V",
+		garbageValue = "69187627"
 	)
-	public static byte[] method5530(Object var0, boolean var1) {
-		if (var0 == null) { // L: 21
-			return null;
-		} else if (var0 instanceof byte[]) { // L: 22
-			byte[] var3 = (byte[])((byte[])var0); // L: 23
-			return var1 ? MusicPatch.method5432(var3) : var3; // L: 24
-		} else if (var0 instanceof AbstractByteArrayCopier) { // L: 27
-			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0; // L: 28
-			return var2.get(); // L: 29
-		} else {
-			throw new IllegalArgumentException(); // L: 31
+	static void method6320() {
+		if (Client.combatTargetPlayerIndex >= 0 && Client.players[Client.combatTargetPlayerIndex] != null) { // L: 4963
+			class141.addPlayerToScene(Client.players[Client.combatTargetPlayerIndex], false); // L: 4964
 		}
-	}
+
+	} // L: 4966
+
+	@ObfuscatedName("ow")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-2067083131"
+	)
+	@Export("FriendSystem_invalidateIgnoreds")
+	static final void FriendSystem_invalidateIgnoreds() {
+		LoginPacket.method5995(); // L: 12460
+		if (ClientPreferences.friendsChatManager != null) { // L: 12461
+			ClientPreferences.friendsChatManager.invalidateIgnoreds(); // L: 12462
+		}
+
+	} // L: 12464
 }
