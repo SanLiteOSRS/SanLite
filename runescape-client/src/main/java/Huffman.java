@@ -1,24 +1,26 @@
+import java.io.File;
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ji")
+@ObfuscatedName("nc")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("ro")
-	@ObfuscatedSignature(
-		descriptor = "Lno;"
+	@ObfuscatedName("ve")
+	@ObfuscatedGetter(
+		intValue = 1973672625
 	)
-	@Export("friendsChatManager")
-	static FriendsChatManager friendsChatManager;
-	@ObfuscatedName("c")
+	static int field3870;
+	@ObfuscatedName("am")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@Export("keys")
 	int[] keys;
 
@@ -34,7 +36,7 @@ public class Huffman {
 			byte var6 = var1[var5]; // L: 16
 			if (var6 != 0) { // L: 17
 				int var7 = 1 << 32 - var6; // L: 18
-				int var8 = var3[var6]; // L: 19
+				int var8 = var3[var6];
 				this.masks[var5] = var8; // L: 20
 				int var9;
 				int var10;
@@ -47,7 +49,7 @@ public class Huffman {
 
 					for (var10 = var6 - 1; var10 >= 1; --var10) { // L: 25
 						var11 = var3[var10]; // L: 26
-						if (var8 != var11) { // L: 27
+						if (var11 != var8) { // L: 27
 							break;
 						}
 
@@ -103,21 +105,21 @@ public class Huffman {
 			}
 		}
 
-	}
+	} // L: 60
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
 		descriptor = "([BII[BIB)I",
-		garbageValue = "-98"
+		garbageValue = "-81"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
 		int var6 = 0; // L: 63
-		int var7 = var5 << 3;
+		int var7 = var5 << 3; // L: 64
 
-		for (var3 += var2; var2 < var3; ++var2) {
+		for (var3 += var2; var2 < var3; ++var2) { // L: 65 66
 			int var8 = var1[var2] & 255;
-			int var9 = this.masks[var8]; // L: 68
+			int var9 = this.masks[var8];
 			byte var10 = this.bits[var8];
 			if (var10 == 0) {
 				throw new RuntimeException("" + var8);
@@ -127,11 +129,11 @@ public class Huffman {
 			int var12 = var7 & 7;
 			var6 &= -var12 >> 31; // L: 73
 			int var13 = (var12 + var10 - 1 >> 3) + var11;
-			var12 += 24;
-			var4[var11] = (byte)(var6 |= var9 >>> var12);
-			if (var11 < var13) { // L: 78
+			var12 += 24; // L: 76
+			var4[var11] = (byte)(var6 |= var9 >>> var12); // L: 77
+			if (var11 < var13) {
 				++var11; // L: 79
-				var12 -= 8;
+				var12 -= 8; // L: 80
 				var4[var11] = (byte)(var6 = var9 >>> var12); // L: 81
 				if (var11 < var13) { // L: 82
 					++var11; // L: 83
@@ -156,10 +158,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5; // L: 97
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "([BI[BIII)I",
-		garbageValue = "669033826"
+		descriptor = "([BI[BIIB)I",
+		garbageValue = "1"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -278,8 +280,8 @@ public class Huffman {
 					var6 = 0; // L: 155
 				}
 
-				if ((var8 & 1) != 0) {
-					var6 = this.keys[var6]; // L: 157
+				if ((var8 & 1) != 0) { // L: 157
+					var6 = this.keys[var6];
 				} else {
 					++var6; // L: 158
 				}
@@ -300,49 +302,124 @@ public class Huffman {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lbi;",
-		garbageValue = "2027632889"
+		descriptor = "(II)Z",
+		garbageValue = "2797468"
 	)
-	static Script method5480(int var0, int var1) {
-		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16)); // L: 60
-		if (var2 != null) { // L: 61
-			return var2; // L: 62
-		} else {
-			String var3 = String.valueOf(var0); // L: 64
-			int var4 = class267.archive12.getGroupId(var3); // L: 65
-			if (var4 == -1) { // L: 66
-				return null; // L: 67
-			} else {
-				byte[] var5 = class267.archive12.takeFileFlat(var4); // L: 69
-				if (var5 != null) { // L: 70
-					if (var5.length <= 1) { // L: 71
-						return null; // L: 72
-					}
+	@Export("isWorldMapEvent")
+	public static boolean isWorldMapEvent(int var0) {
+		return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17; // L: 19
+	}
 
-					var2 = class344.newScript(var5); // L: 74
-					if (var2 != null) { // L: 75
-						Script.Script_cached.put(var2, (long)(var0 << 16)); // L: 76
-						return var2; // L: 77
-					}
-				}
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(Luk;I)Ljava/lang/String;",
+		garbageValue = "1834780919"
+	)
+	public static String method6899(Buffer var0) {
+		String var1;
+		try {
+			int var2 = var0.readUShortSmart(); // L: 67
+			if (var2 > 32767) { // L: 68
+				var2 = 32767;
+			}
 
-				return null; // L: 80
+			byte[] var3 = new byte[var2]; // L: 69
+			var0.offset += class353.huffman.decompress(var0.array, var0.offset, var3, 0, var2); // L: 70
+			String var4 = UrlRequest.decodeStringCp1252(var3, 0, var2); // L: 71
+			var1 = var4; // L: 72
+		} catch (Exception var6) { // L: 74
+			var1 = "Cabbage"; // L: 75
+		}
+
+		return var1; // L: 78
+	}
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;ZB)Ltt;",
+		garbageValue = "4"
+	)
+	@Export("getPreferencesFile")
+	public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
+		File var3 = new File(class404.cacheDir, "preferences" + var0 + ".dat"); // L: 288
+		if (var3.exists()) { // L: 289
+			try {
+				AccessFile var10 = new AccessFile(var3, "rw", 10000L); // L: 291
+				return var10; // L: 292
+			} catch (IOException var9) { // L: 294
 			}
 		}
-	}
 
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-1058305132"
-	)
-	static int method5474(int var0, int var1, int var2) {
-		if ((Tiles.Tiles_renderFlags[var0][var1][var2] & 8) != 0) { // L: 867
-			return 0;
-		} else {
-			return var0 > 0 && (Tiles.Tiles_renderFlags[1][var1][var2] & 2) != 0 ? var0 - 1 : var0; // L: 868
+		String var4 = ""; // L: 296
+		if (class189.cacheGamebuild == 33) { // L: 297
+			var4 = "_rc";
+		} else if (class189.cacheGamebuild == 34) { // L: 298
+			var4 = "_wip";
+		}
+
+		File var5 = new File(RouteStrategy.userHomeDirectory, "jagex_" + var1 + "_preferences" + var0 + var4 + ".dat"); // L: 299
+		AccessFile var6;
+		if (!var2 && var5.exists()) { // L: 300
+			try {
+				var6 = new AccessFile(var5, "rw", 10000L); // L: 302
+				return var6; // L: 303
+			} catch (IOException var8) { // L: 305
+			}
+		}
+
+		try {
+			var6 = new AccessFile(var3, "rw", 10000L); // L: 308
+			return var6; // L: 309
+		} catch (IOException var7) { // L: 311
+			throw new RuntimeException(); // L: 312
 		}
 	}
+
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "1869012713"
+	)
+	static final int method6900(int var0, int var1) {
+		int var2 = var1 * 57 + var0; // L: 1014
+		var2 ^= var2 << 13; // L: 1015
+		int var3 = var2 * (var2 * var2 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE; // L: 1016
+		return var3 >> 19 & 255; // L: 1017
+	}
+
+	@ObfuscatedName("mk")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIIZI)V",
+		garbageValue = "-1915394593"
+	)
+	static final void method6893(String var0, String var1, int var2, int var3, int var4, int var5, int var6, boolean var7) {
+		if (!Client.isMenuOpen) { // L: 10165
+			if (Client.menuOptionsCount < 500) { // L: 10166
+				Client.menuActions[Client.menuOptionsCount] = var0; // L: 10167
+				Client.menuTargets[Client.menuOptionsCount] = var1; // L: 10168
+				Client.menuOpcodes[Client.menuOptionsCount] = var2; // L: 10169
+				Client.menuIdentifiers[Client.menuOptionsCount] = var3; // L: 10170
+				Client.menuArguments1[Client.menuOptionsCount] = var4; // L: 10171
+				Client.menuArguments2[Client.menuOptionsCount] = var5; // L: 10172
+				Client.field687[Client.menuOptionsCount] = var6; // L: 10173
+				Client.menuShiftClick[Client.menuOptionsCount] = var7; // L: 10174
+				++Client.menuOptionsCount; // L: 10175
+			}
+
+		}
+	} // L: 10177
+
+	@ObfuscatedName("ni")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "753364985"
+	)
+	static final void method6901(int var0) {
+		var0 = Math.max(Math.min(var0, 100), 0); // L: 12092
+		var0 = 100 - var0; // L: 12093
+		float var1 = (float)var0 / 200.0F + 0.5F; // L: 12094
+		MidiPcmStream.method6190((double)var1); // L: 12095
+	} // L: 12096
 }

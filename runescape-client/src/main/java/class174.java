@@ -1,51 +1,37 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fu")
-public class class174 {
-	@ObfuscatedName("i")
+@ObfuscatedName("gh")
+public class class174 extends DualNode {
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Lct;"
+		descriptor = "Llq;"
 	)
-	@Export("World_request")
-	static UrlRequest World_request;
-	@ObfuscatedName("br")
-	@ObfuscatedGetter(
-		intValue = 1359206661
-	)
-	static int field1891;
-
-	@ObfuscatedName("c")
+	@Export("archive7")
+	static EvictingDualNodeHashTable archive7;
+	@ObfuscatedName("db")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgf;",
-		garbageValue = "-64"
+		descriptor = "Lut;"
 	)
-	@Export("getParamDefinition")
-	public static ParamComposition getParamDefinition(int var0) {
-		ParamComposition var1 = (ParamComposition)ParamComposition.ParamComposition_cached.get((long)var0); // L: 21
-		if (var1 != null) { // L: 22
-			return var1;
-		} else {
-			byte[] var2 = ParamComposition.ParamDefinition_archive.takeFile(11, var0); // L: 23
-			var1 = new ParamComposition(); // L: 24
-			if (var2 != null) { // L: 25
-				var1.decode(new Buffer(var2));
-			}
+	@Export("worldSelectLeftSprite")
+	static IndexedSprite worldSelectLeftSprite;
 
-			var1.postDecode(); // L: 26
-			ParamComposition.ParamComposition_cached.put(var1, (long)var0); // L: 27
-			return var1; // L: 28
-		}
+	static {
+		archive7 = new EvictingDualNodeHashTable(64); // L: 7
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("bl")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "16"
+		descriptor = "(ILdd;ZB)I",
+		garbageValue = "0"
 	)
-	static final boolean method3458() {
-		return ViewportMouse.ViewportMouse_isInViewport; // L: 99
+	static int method3571(int var0, Script var1, boolean var2) {
+		if (var0 == 7108) { // L: 5149
+			Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = class243.method4937() ? 1 : 0; // L: 5150
+			return 1; // L: 5151
+		} else {
+			return 2; // L: 5153
+		}
 	}
 }

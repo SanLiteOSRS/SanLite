@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nm")
+@ObfuscatedName("rj")
 @Implements("Buddy")
 public class Buddy extends Nameable {
-	@ObfuscatedName("r")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "Lle;"
+		descriptor = "Luc;"
 	)
-	@Export("NetCache_currentResponse")
-	public static NetFileRequest NetCache_currentResponse;
-	@ObfuscatedName("j")
+	@Export("leftTitleSprite")
+	static SpritePixels leftTitleSprite;
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = 821675641
+		intValue = 250013891
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1716524007
+		intValue = 493572503
 	)
 	@Export("int2")
 	public int int2;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = 1730087151
+		intValue = -543157203
 	)
 	@Export("rank")
 	public int rank;
@@ -36,10 +36,10 @@ public class Buddy extends Nameable {
 		this.world = -1; // L: 4
 	} // L: 8
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("bb")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-1738253192"
+		garbageValue = "734486288"
 	)
 	@Export("set")
 	void set(int var1, int var2) {
@@ -47,23 +47,37 @@ public class Buddy extends Nameable {
 		this.int2 = var2; // L: 12
 	} // L: 13
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("bh")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-983995080"
+		descriptor = "(S)I",
+		garbageValue = "-4063"
 	)
 	@Export("getWorld")
 	public int getWorld() {
-		return this.world; // L: 16
+		return this.world;
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("bw")
 	@ObfuscatedSignature(
-		descriptor = "(S)Z",
-		garbageValue = "20819"
+		descriptor = "(B)Z",
+		garbageValue = "22"
 	)
 	@Export("hasWorld")
 	public boolean hasWorld() {
 		return this.world > 0; // L: 20
+	}
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "91806107"
+	)
+	static int method8383(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 14
+		if (var2 == null) { // L: 15
+			return -1;
+		} else {
+			return var1 >= 0 && var1 < var2.ids.length ? var2.ids[var1] : -1; // L: 16 17
+		}
 	}
 }

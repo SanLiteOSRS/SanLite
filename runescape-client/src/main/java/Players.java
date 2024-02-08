@@ -4,162 +4,209 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ca")
+@ObfuscatedName("ec")
 @Implements("Players")
 public class Players {
-	@ObfuscatedName("q")
-	static byte[] field1311;
-	@ObfuscatedName("f")
+	@ObfuscatedName("af")
+	static byte[] field1355;
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "[Lgn;"
+		descriptor = "[Lir;"
 	)
-	static class192[] field1304;
-	@ObfuscatedName("j")
+	static class231[] field1348;
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "[Lqt;"
+		descriptor = "[Luk;"
 	)
-	static Buffer[] field1307;
-	@ObfuscatedName("e")
+	static Buffer[] field1347;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 698385475
+		intValue = -330310691
 	)
 	@Export("Players_count")
 	static int Players_count;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ag")
 	@Export("Players_indices")
 	static int[] Players_indices;
-	@ObfuscatedName("w")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 581177589
+		intValue = -1979773207
 	)
 	@Export("Players_emptyIdxCount")
 	static int Players_emptyIdxCount;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ae")
 	@Export("Players_emptyIndices")
 	static int[] Players_emptyIndices;
-	@ObfuscatedName("i")
+	@ObfuscatedName("aa")
 	@Export("Players_regions")
 	static int[] Players_regions;
-	@ObfuscatedName("s")
+	@ObfuscatedName("au")
 	@Export("Players_orientations")
 	static int[] Players_orientations;
-	@ObfuscatedName("t")
+	@ObfuscatedName("an")
 	@Export("Players_targetIndices")
 	static int[] Players_targetIndices;
-	@ObfuscatedName("z")
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = 1123966373
+		intValue = 844236579
 	)
 	@Export("Players_pendingUpdateCount")
 	static int Players_pendingUpdateCount;
-	@ObfuscatedName("r")
+	@ObfuscatedName("ax")
 	@Export("Players_pendingUpdateIndices")
 	static int[] Players_pendingUpdateIndices;
-	@ObfuscatedName("u")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lqt;"
+		descriptor = "Luk;"
 	)
-	static Buffer field1317;
-	@ObfuscatedName("bp")
+	static Buffer field1351;
+	@ObfuscatedName("kr")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "[Luc;"
 	)
-	static GameBuild field1305;
+	static SpritePixels[] field1346;
 
 	static {
-		field1311 = new byte[2048]; // L: 18
-		field1304 = new class192[2048]; // L: 19
-		field1307 = new Buffer[2048]; // L: 20
-		Players_count = 0; // L: 21
-		Players_indices = new int[2048]; // L: 22
-		Players_emptyIdxCount = 0; // L: 23
-		Players_emptyIndices = new int[2048]; // L: 24
-		Players_regions = new int[2048]; // L: 25
-		Players_orientations = new int[2048]; // L: 26
-		Players_targetIndices = new int[2048]; // L: 27
-		Players_pendingUpdateCount = 0; // L: 28
-		Players_pendingUpdateIndices = new int[2048]; // L: 29
-		field1317 = new Buffer(new byte[5000]); // L: 30
+		field1355 = new byte[2048]; // L: 19
+		field1348 = new class231[2048]; // L: 20
+		field1347 = new Buffer[2048]; // L: 21
+		Players_count = 0; // L: 22
+		Players_indices = new int[2048]; // L: 23
+		Players_emptyIdxCount = 0; // L: 24
+		Players_emptyIndices = new int[2048]; // L: 25
+		Players_regions = new int[2048]; // L: 26
+		Players_orientations = new int[2048]; // L: 27
+		Players_targetIndices = new int[2048]; // L: 28
+		Players_pendingUpdateCount = 0;
+		Players_pendingUpdateIndices = new int[2048];
+		field1351 = new Buffer(new byte[5000]); // L: 31
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;IIIIIII)V",
-		garbageValue = "1254271887"
+		descriptor = "(Lmb;I)V",
+		garbageValue = "-1302012413"
 	)
-	@Export("loadTerrain")
-	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+	public static void method2786(class325 var0) {
+		if (!class319.field3463.contains(var0)) { // L: 29
+			class319.field3463.add(var0); // L: 30
+		}
+
+	} // L: 32
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(Luo;II)Z",
+		garbageValue = "-494610009"
+	)
+	@Export("updateExternalPlayer")
+	static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
+		int var2 = var0.readBits(2); // L: 399
+		int var3;
+		int var4;
 		int var7;
-		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) { // L: 145
-			Tiles.Tiles_renderFlags[var1][var2][var3] = 0; // L: 146
-
-			while (true) {
-				var7 = var0.readUnsignedByte(); // L: 148
-				if (var7 == 0) { // L: 149
-					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -class14.method156(var2 + 932731 + var4, 556238 + var3 + var5) * 8; // L: 150
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240; // L: 151
-					}
-					break;
-				}
-
-				if (var7 == 1) { // L: 154
-					int var8 = var0.readUnsignedByte(); // L: 155
-					if (var8 == 1) { // L: 156
-						var8 = 0;
-					}
-
-					if (var1 == 0) { // L: 157
-						Tiles.Tiles_heights[0][var2][var3] = -var8 * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var8 * 8; // L: 158
-					}
-					break;
-				}
-
-				if (var7 <= 49) { // L: 161
-					Tiles.Tiles_overlays[var1][var2][var3] = var0.readByte(); // L: 162
-					Tiles.Tiles_shapes[var1][var2][var3] = (byte)((var7 - 2) / 4); // L: 163
-					Tiles.field996[var1][var2][var3] = (byte)(var7 - 2 + var6 & 3); // L: 164
-				} else if (var7 <= 81) { // L: 167
-					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var7 - 49); // L: 168
-				} else {
-					Tiles.Tiles_underlays[var1][var2][var3] = (byte)(var7 - 81); // L: 171
-				}
+		int var8;
+		int var9;
+		int var10;
+		if (var2 == 0) { // L: 400
+			if (var0.readBits(1) != 0) { // L: 401
+				updateExternalPlayer(var0, var1);
 			}
+
+			var3 = var0.readBits(13); // L: 402
+			var4 = var0.readBits(13); // L: 403
+			boolean var12 = var0.readBits(1) == 1; // L: 404
+			if (var12) { // L: 405
+				Players_pendingUpdateIndices[++Players_pendingUpdateCount - 1] = var1;
+			}
+
+			if (Client.players[var1] != null) { // L: 406
+				throw new RuntimeException(); // L: 407
+			} else {
+				Player var11 = Client.players[var1] = new Player(); // L: 409
+				var11.index = var1; // L: 410
+				if (field1347[var1] != null) { // L: 411
+					var11.read(field1347[var1]);
+				}
+
+				var11.orientation = Players_orientations[var1]; // L: 412
+				var11.targetIndex = Players_targetIndices[var1]; // L: 413
+				var7 = Players_regions[var1]; // L: 414
+				var8 = var7 >> 28; // L: 415
+				var9 = var7 >> 14 & 255; // L: 416
+				var10 = var7 & 255; // L: 417
+				var11.pathTraversed[0] = field1348[var1]; // L: 418
+				var11.plane = (byte)var8; // L: 419
+				var11.resetPath((var9 << 13) + var3 - HealthBarDefinition.baseX * 64, (var10 << 13) + var4 - WorldMapScaleHandler.baseY * 64); // L: 420
+				var11.field1124 = false; // L: 421
+				return true; // L: 422
+			}
+		} else if (var2 == 1) { // L: 424
+			var3 = var0.readBits(2); // L: 425
+			var4 = Players_regions[var1]; // L: 426
+			Players_regions[var1] = (var4 & 268435455) + (((var4 >> 28) + var3 & 3) << 28); // L: 427
+			return false; // L: 428
 		} else {
-			while (true) {
-				var7 = var0.readUnsignedByte(); // L: 176
-				if (var7 == 0) { // L: 177
-					break;
+			int var5;
+			int var6;
+			if (var2 == 2) { // L: 430
+				var3 = var0.readBits(5); // L: 431
+				var4 = var3 >> 3; // L: 432
+				var5 = var3 & 7; // L: 433
+				var6 = Players_regions[var1]; // L: 434
+				var7 = (var6 >> 28) + var4 & 3; // L: 435
+				var8 = var6 >> 14 & 255; // L: 436
+				var9 = var6 & 255; // L: 437
+				if (var5 == 0) { // L: 438
+					--var8; // L: 439
+					--var9; // L: 440
 				}
 
-				if (var7 == 1) { // L: 178
-					var0.readUnsignedByte(); // L: 179
-					break;
+				if (var5 == 1) { // L: 442
+					--var9;
 				}
 
-				if (var7 <= 49) { // L: 182
-					var0.readUnsignedByte();
+				if (var5 == 2) { // L: 443
+					++var8; // L: 444
+					--var9; // L: 445
 				}
+
+				if (var5 == 3) { // L: 447
+					--var8;
+				}
+
+				if (var5 == 4) { // L: 448
+					++var8;
+				}
+
+				if (var5 == 5) { // L: 449
+					--var8; // L: 450
+					++var9; // L: 451
+				}
+
+				if (var5 == 6) { // L: 453
+					++var9;
+				}
+
+				if (var5 == 7) { // L: 454
+					++var8; // L: 455
+					++var9; // L: 456
+				}
+
+				Players_regions[var1] = (var8 << 14) + var9 + (var7 << 28); // L: 458
+				return false; // L: 459
+			} else {
+				var3 = var0.readBits(18); // L: 461
+				var4 = var3 >> 16; // L: 462
+				var5 = var3 >> 8 & 255; // L: 463
+				var6 = var3 & 255; // L: 464
+				var7 = Players_regions[var1]; // L: 465
+				var8 = (var7 >> 28) + var4 & 3; // L: 466
+				var9 = var5 + (var7 >> 14) & 255; // L: 467
+				var10 = var6 + var7 & 255; // L: 468
+				Players_regions[var1] = (var9 << 14) + var10 + (var8 << 28); // L: 469
+				return false; // L: 470
 			}
 		}
-
-	} // L: 185
-
-	@ObfuscatedName("le")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "94"
-	)
-	@Export("Clan_joinChat")
-	static final void Clan_joinChat(String var0) {
-		if (!var0.equals("")) { // L: 12233
-			PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2942, Client.packetWriter.isaacCipher); // L: 12235
-			var1.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0)); // L: 12236
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12237
-			Client.packetWriter.addNode(var1); // L: 12238
-		}
-	} // L: 12239
+	}
 }
