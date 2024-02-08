@@ -1,47 +1,35 @@
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pj")
-final class class431 implements class428 {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;Lqt;B)V",
-		garbageValue = "-51"
+@ObfuscatedName("qw")
+public class class431 {
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = -2118328581
 	)
-	public void vmethod7583(Object var1, Buffer var2) {
-		this.method7554((Long)var1, var2); // L: 35
-	} // L: 36
+	static int field4647;
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)Ljava/lang/Object;",
-		garbageValue = "-261873850"
+		descriptor = "([BI)[I",
+		garbageValue = "1422300255"
 	)
-	public Object vmethod7580(Buffer var1) {
-		return var1.readLong(); // L: 31
-	}
+	public static int[] method8065(byte[] var0) {
+		if (var0 != null && var0.length != 0 && var0.length <= 8) { // L: 164
+			int[] var1 = new int[var0.length]; // L: 167
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Long;Lqt;I)V",
-		garbageValue = "590392359"
-	)
-	void method7554(Long var1, Buffer var2) {
-		var2.writeLong(var1); // L: 26
-	} // L: 27
+			for (int var2 = 0; var2 < var0.length; ++var2) { // L: 168
+				if (var0[var2] < 0 || var0[var2] > class554.field5330.length) { // L: 169
+					return null; // L: 170
+				}
 
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;II)Z",
-		garbageValue = "-140653331"
-	)
-	static boolean method7559(AbstractArchive var0, int var1) {
-		byte[] var2 = var0.takeFileFlat(var1); // L: 183
-		if (var2 == null) { // L: 184
-			return false;
+				var1[var2] = class554.field5330[var0[var2]]; // L: 172
+			}
+
+			return var1; // L: 174
 		} else {
-			ChatChannel.SpriteBuffer_decode(var2); // L: 185
-			return true; // L: 186
+			return null; // L: 165
 		}
 	}
 }

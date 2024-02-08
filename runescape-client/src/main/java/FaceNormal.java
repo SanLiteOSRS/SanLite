@@ -4,24 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gt")
+@ObfuscatedName("kl")
 @Implements("FaceNormal")
 public class FaceNormal {
-	@ObfuscatedName("c")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 2045687167
+		intValue = -22124443
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 259443193
+		intValue = 140913233
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = 1323517785
+		intValue = 598024359
 	)
 	@Export("z")
 	int z;
@@ -29,12 +29,16 @@ public class FaceNormal {
 	FaceNormal() {
 	} // L: 8
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("nc")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-1766790995"
+		descriptor = "(Lnn;I)V",
+		garbageValue = "740324846"
 	)
-	public static int method4344(CharSequence var0) {
-		return HealthBar.method2356(var0, 10, true); // L: 77
-	}
+	@Export("invalidateWidget")
+	public static void invalidateWidget(Widget var0) {
+		if (var0 != null && var0.cycle == Client.field607) { // L: 11992
+			Client.field720[var0.rootIndex] = true; // L: 11993
+		}
+
+	} // L: 11995
 }

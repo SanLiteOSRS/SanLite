@@ -1,43 +1,39 @@
-import java.util.Iterator;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ph")
-class class426 implements Iterator {
-	@ObfuscatedName("f")
-	@Export("SpriteBuffer_xOffsets")
-	public static int[] SpriteBuffer_xOffsets;
-	@ObfuscatedName("c")
+@ObfuscatedName("qi")
+public class class426 {
+	@ObfuscatedName("cc")
+	static String field4608;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 443476841
+		intValue = 275907375
 	)
-	int field4644;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lpr;"
+	int field4607;
+	@ObfuscatedName("ap")
+	@ObfuscatedGetter(
+		intValue = -1847575995
 	)
-	final class427 this$0;
-
-	@ObfuscatedSignature(
-		descriptor = "(Lpr;)V"
+	int field4610;
+	@ObfuscatedName("af")
+	@ObfuscatedGetter(
+		intValue = -1080458511
 	)
-	class426(class427 var1) {
-		this.this$0 = var1; // L: 51
-	}
+	int field4606;
+	@ObfuscatedName("aj")
+	@ObfuscatedGetter(
+		intValue = -1172611517
+	)
+	int field4609;
 
-	public boolean hasNext() {
-		return this.field4644 < this.this$0.method7058(); // L: 56
-	}
-
-	public void remove() {
-		throw new UnsupportedOperationException(); // L: 69
-	}
-
-	public Object next() {
-		int var1 = ++this.field4644 - 1; // L: 61
-		class393 var2 = (class393)this.this$0.field4648.get((long)var1); // L: 62
-		return var2 != null ? var2 : this.this$0.method7522(var1); // L: 63 64
+	public String toString() {
+		boolean var1 = true; // L: 15
+		int var2 = 10 - Integer.toString(this.field4607).length(); // L: 16
+		int var3 = 10 - Integer.toString(this.field4606).length(); // L: 17
+		int var4 = 10 - Integer.toString(this.field4610).length(); // L: 18
+		String var5 = "          ".substring(10 - var2); // L: 19
+		String var6 = "          ".substring(10 - var3); // L: 20
+		String var7 = "          ".substring(10 - var4); // L: 21
+		return "    Size: " + this.field4607 + var5 + "Created: " + this.field4610 + var7 + "Total used: " + this.field4606 + var6 + "Max-In-Use: " + this.field4609; // L: 22
 	}
 }

@@ -1,73 +1,120 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
-public class class132 extends class128 {
-	@ObfuscatedName("er")
+@ObfuscatedName("ff")
+public class class132 implements class387 {
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Lff;"
 	)
-	static Archive field1588;
-	@ObfuscatedName("c")
+	static final class132 field1555;
+	@ObfuscatedName("ap")
+	@ObfuscatedSignature(
+		descriptor = "Lff;"
+	)
+	static final class132 field1553;
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "Lff;"
+	)
+	static final class132 field1554;
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "Lff;"
+	)
+	static final class132 field1560;
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "Lff;"
+	)
+	static final class132 field1556;
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lff;"
+	)
+	static final class132 field1561;
+	@ObfuscatedName("ii")
+	@ObfuscatedSignature(
+		descriptor = "Lil;"
+	)
+	@Export("socketTask")
+	static Task socketTask;
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -1669105563
+		intValue = 1569709707
 	)
-	int field1590;
-	@ObfuscatedName("v")
-	byte field1589;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lej;"
+	final int field1558;
+	@ObfuscatedName("ao")
+	@ObfuscatedGetter(
+		intValue = -1331409345
 	)
-	final class131 this$0;
+	final int field1559;
+	@ObfuscatedName("ae")
+	@ObfuscatedGetter(
+		intValue = 2076256283
+	)
+	final int field1557;
 
-	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
-	)
-	class132(class131 var1) {
-		this.this$0 = var1;
-		this.field1590 = -1; // L: 128
-	} // L: 131
+	static {
+		field1555 = new class132(0, 0, (String)null, 0); // L: 14
+		field1553 = new class132(1, 1, (String)null, 9); // L: 15
+		field1554 = new class132(2, 2, (String)null, 3); // L: 16
+		field1560 = new class132(3, 3, (String)null, 6); // L: 17
+		field1556 = new class132(4, 4, (String)null, 1); // L: 18
+		field1561 = new class132(5, 5, (String)null, 3); // L: 19
+	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
-	)
-	void vmethod3150(Buffer var1) {
-		this.field1590 = var1.readUnsignedShort(); // L: 134
-		this.field1589 = var1.readByte(); // L: 135
-	} // L: 136
+	class132(int var1, int var2, String var3, int var4) {
+		this.field1558 = var1; // L: 29
+		this.field1559 = var2; // L: 30
+		this.field1557 = var4; // L: 31
+	} // L: 32
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(I)I",
+		garbageValue = "-884190501"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2961(this.field1590, this.field1589); // L: 139
-	} // L: 140
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1559; // L: 40
+	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Law;I)V",
-		garbageValue = "-1204833299"
+		descriptor = "(I)I",
+		garbageValue = "1760796725"
 	)
-	public static final void method2885(class47 var0) {
-		ModelData0.pcmPlayerProvider = var0; // L: 45
-	} // L: 46
+	int method3117() {
+		return this.field1557; // L: 35
+	}
 
-	@ObfuscatedName("gz")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "854083418"
+		descriptor = "(Lnn;I)I",
+		garbageValue = "340165408"
 	)
-	static void method2887() {
-		if (class121.worldMap != null) { // L: 4337
-			class121.worldMap.method7192(PacketWriter.Client_plane, class28.baseX * 64 + (class101.localPlayer.x >> 7), WorldMapLabelSize.baseY * 64 + (class101.localPlayer.y >> 7), false); // L: 4338
-			class121.worldMap.loadCache(); // L: 4339
+	static int method3116(Widget var0) {
+		if (var0.type != 11) { // L: 1592
+			--class211.Interpreter_stringStackSize; // L: 1593
+			Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = -1; // L: 1594
+			return 1; // L: 1595
+		} else {
+			String var1 = Interpreter.Interpreter_stringStack[--class211.Interpreter_stringStackSize]; // L: 1597
+			Interpreter.Interpreter_intStack[++UserComparator6.Interpreter_intStackSize - 1] = var0.method6712(var1); // L: 1598
+			return 1; // L: 1599
 		}
+	}
 
-	} // L: 4341
+	@ObfuscatedName("ht")
+	@ObfuscatedSignature(
+		descriptor = "(B)Ltc;",
+		garbageValue = "0"
+	)
+	@Export("getWorldMap")
+	static WorldMap getWorldMap() {
+		return GrandExchangeOfferUnitPriceComparator.worldMap; // L: 755
+	}
 }
