@@ -1,26 +1,20 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ne")
+@ObfuscatedName("ra")
 @Implements("Nameable")
 public class Nameable implements Comparable {
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -13406753
-	)
-	static int field4308;
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lvn;"
 	)
 	@Export("username")
 	Username username;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lqa;"
+		descriptor = "Lvn;"
 	)
 	@Export("previousUsername")
 	Username previousUsername;
@@ -28,101 +22,86 @@ public class Nameable implements Comparable {
 	Nameable() {
 	} // L: 9
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lne;B)I",
-		garbageValue = "-81"
+		descriptor = "(Lra;B)I",
+		garbageValue = "-67"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
 		return this.username.compareToTyped(var1.username); // L: 32
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lqa;",
-		garbageValue = "-97"
+		descriptor = "(I)Lvn;",
+		garbageValue = "1266225248"
 	)
 	@Export("getUsername")
 	public Username getUsername() {
-		return this.username;
+		return this.username; // L: 12
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("bu")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "119"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "385300674"
 	)
 	@Export("getName")
 	public String getName() {
-		return this.username == null ? "" : this.username.getName(); // L: 17
+		return this.username == null ? "" : this.username.getName(); // L: 16 17
 	}
 
-	@ObfuscatedName("aj")
+	@ObfuscatedName("bo")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "-24"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "2095047571"
 	)
 	@Export("getPreviousName")
 	public String getPreviousName() {
-		return this.previousUsername == null ? "" : this.previousUsername.getName();
+		return this.previousUsername == null ? "" : this.previousUsername.getName(); // L: 21 22
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("bd")
 	@ObfuscatedSignature(
-		descriptor = "(Lqa;Lqa;I)V",
-		garbageValue = "-639642586"
+		descriptor = "(Lvn;Lvn;B)V",
+		garbageValue = "-106"
 	)
 	@Export("set")
 	void set(Username var1, Username var2) {
-		if (var1 == null) {
+		if (var1 == null) { // L: 26
 			throw new NullPointerException();
 		} else {
-			this.username = var1;
-			this.previousUsername = var2;
+			this.username = var1; // L: 27
+			this.previousUsername = var2; // L: 28
 		}
-	}
+	} // L: 29
 
 	public int compareTo(Object var1) {
 		return this.compareTo_user((Nameable)var1); // L: 36
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("cd")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/CharSequence;III)Ljava/lang/String;",
-		garbageValue = "-1413737997"
+		descriptor = "(IB)V",
+		garbageValue = "50"
 	)
-	public static String method6679(CharSequence[] var0, int var1, int var2) {
-		if (var2 == 0) { // L: 12
-			return "";
-		} else if (var2 == 1) { // L: 13
-			CharSequence var10 = var0[var1]; // L: 14
-			return var10 == null ? "null" : var10.toString(); // L: 15 16
-		} else {
-			int var3 = var2 + var1; // L: 18
-			int var4 = 0; // L: 19
+	static void method8331(int var0) {
+		if (var0 != -1) { // L: 5354
+			if (ArchiveLoader.field1070.method6437(var0)) { // L: 5355
+				Widget[] var1 = ArchiveLoader.field1070.field3633[var0]; // L: 5356
 
-			for (int var5 = var1; var5 < var3; ++var5) { // L: 20
-				CharSequence var9 = var0[var5]; // L: 21
-				if (var9 == null) { // L: 22
-					var4 += 4;
-				} else {
-					var4 += var9.length(); // L: 23
+				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 5357
+					Widget var3 = var1[var2]; // L: 5358
+					if (var3.onLoad != null) { // L: 5359
+						ScriptEvent var4 = new ScriptEvent(); // L: 5360
+						var4.widget = var3; // L: 5361
+						var4.args = var3.onLoad; // L: 5362
+						class425.runScript(var4, 5000000, 0); // L: 5363
+					}
 				}
+
 			}
-
-			StringBuilder var8 = new StringBuilder(var4); // L: 25
-
-			for (int var6 = var1; var6 < var3; ++var6) { // L: 26
-				CharSequence var7 = var0[var6]; // L: 27
-				if (var7 == null) { // L: 28
-					var8.append("null");
-				} else {
-					var8.append(var7); // L: 29
-				}
-			}
-
-			return var8.toString(); // L: 31
 		}
-	}
+	} // L: 5366
 }
