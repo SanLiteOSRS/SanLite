@@ -1,101 +1,125 @@
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URLConnection;
+import javax.net.ssl.HttpsURLConnection;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dl")
-public class class114 {
-	@ObfuscatedName("f")
-	public static final float field1429;
-	@ObfuscatedName("j")
-	public static final float field1432;
+@ObfuscatedName("eg")
+public class class114 extends UrlRequester {
+	@ObfuscatedName("ar")
+	final boolean field1444;
 
-	static {
-		field1429 = Math.ulp(1.0F); // L: 10
-		field1432 = 2.0F * field1429; // L: 11
-	}
+	public class114(boolean var1, int var2) {
+		super(var2); // L: 13
+		this.field1444 = var1; // L: 14
+	} // L: 15
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;ZLmt;I)V",
-		garbageValue = "1005410507"
+		descriptor = "(Leb;I)V",
+		garbageValue = "407769226"
 	)
-	public static void method2636(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
-		UserComparator4.ItemComposition_archive = var0; // L: 84
-		ItemComposition.ItemComposition_modelArchive = var1; // L: 85
-		DevicePcmPlayerProvider.ItemComposition_inMembersWorld = var2; // L: 86
-		PacketBufferNode.ItemComposition_fileCount = UserComparator4.ItemComposition_archive.getGroupFileCount(10); // L: 87
-		ItemComposition.ItemComposition_fontPlain11 = var3; // L: 88
-	} // L: 89
+	void vmethod2913(UrlRequest var1) throws IOException {
+		URLConnection var2 = null; // L: 19
+		boolean var9 = false;
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;B)Z",
-		garbageValue = "-111"
-	)
-	@Export("isNumber")
-	public static boolean isNumber(CharSequence var0) {
-		boolean var2 = false; // L: 38
-		boolean var3 = false; // L: 39
-		int var4 = 0; // L: 40
-		int var5 = var0.length(); // L: 41
-		int var6 = 0;
+		HttpURLConnection var12;
+		label139: {
+			label131: {
+				try {
+					label134: {
+						var9 = true; // L: 21
+						String var3 = var1.field1447.getProtocol(); // L: 22
+						if (var3.equals("http")) {
+							var2 = this.method2914(var1); // L: 23
+						} else {
+							if (!var3.equals("https")) { // L: 25
+								var1.field1448 = UrlRequest.field1445; // L: 29
+								var9 = false;
+								break label134;
+							}
 
-		boolean var1;
-		while (true) {
-			if (var6 >= var5) {
-				var1 = var3; // L: 71
-				break;
+							var2 = this.method2912(var1); // L: 26
+						}
+
+						this.method2897(var2, var1); // L: 32
+						var9 = false;
+						break label139;
+					}
+				} catch (IOException var10) { // L: 34
+					var1.field1448 = UrlRequest.field1445; // L: 35
+					var9 = false;
+					break label131;
+				} finally {
+					if (var9) {
+						if (var2 != null && var2 instanceof HttpURLConnection) {
+							HttpURLConnection var6 = (HttpURLConnection)var2;
+							var6.disconnect();
+						}
+
+					}
+				}
+
+				if (var2 != null && var2 instanceof HttpURLConnection) {
+					HttpURLConnection var4 = (HttpURLConnection)var2;
+					var4.disconnect();
+				}
+
+				return; // L: 30
 			}
 
-			label84: {
-				char var7 = var0.charAt(var6); // L: 43
-				if (var6 == 0) { // L: 44
-					if (var7 == '-') { // L: 45
-						var2 = true; // L: 46
-						break label84;
-					}
-
-					if (var7 == '+') { // L: 49
-						break label84;
-					}
-				}
-
-				int var9;
-				if (var7 >= '0' && var7 <= '9') { // L: 51
-					var9 = var7 - '0';
-				} else if (var7 >= 'A' && var7 <= 'Z') { // L: 52
-					var9 = var7 - '7';
-				} else {
-					if (var7 < 'a' || var7 > 'z') { // L: 53
-						var1 = false; // L: 55
-						break;
-					}
-
-					var9 = var7 - 'W';
-				}
-
-				if (var9 >= 10) { // L: 58
-					var1 = false; // L: 59
-					break; // L: 60
-				}
-
-				if (var2) { // L: 62
-					var9 = -var9;
-				}
-
-				int var8 = var4 * 10 + var9; // L: 63
-				if (var4 != var8 / 10) { // L: 64
-					var1 = false; // L: 65
-					break; // L: 66
-				}
-
-				var4 = var8; // L: 68
-				var3 = true; // L: 69
+			if (var2 != null && var2 instanceof HttpURLConnection) { // L: 38 39
+				var12 = (HttpURLConnection)var2; // L: 40
+				var12.disconnect(); // L: 41
 			}
 
-			++var6; // L: 42
+			return; // L: 45
 		}
 
-		return var1; // L: 73
+		if (var2 != null && var2 instanceof HttpURLConnection) {
+			var12 = (HttpURLConnection)var2;
+			var12.disconnect();
+		}
+
 	}
+
+	@ObfuscatedName("am")
+	@ObfuscatedSignature(
+		descriptor = "(Leb;I)Ljava/net/URLConnection;",
+		garbageValue = "-1402377989"
+	)
+	URLConnection method2914(UrlRequest var1) throws IOException {
+		URLConnection var2 = var1.field1447.openConnection(); // L: 48
+		this.method2908(var2); // L: 49
+		return var2; // L: 50
+	}
+
+	@ObfuscatedName("ad")
+	@ObfuscatedSignature(
+		descriptor = "(Leb;B)Ljava/net/URLConnection;",
+		garbageValue = "1"
+	)
+	URLConnection method2912(UrlRequest var1) throws IOException {
+		HttpsURLConnection var2 = (HttpsURLConnection)var1.field1447.openConnection(); // L: 54
+		if (!this.field1444) { // L: 55
+			var2.setSSLSocketFactory(class15.method167()); // L: 56
+		}
+
+		this.method2908(var2); // L: 58
+		return var2; // L: 59
+	}
+
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;B)V",
+		garbageValue = "-80"
+	)
+	@Export("setLoginResponseString")
+	static void setLoginResponseString(String var0, String var1, String var2) {
+		Login.Login_response1 = var0; // L: 1901
+		Login.Login_response2 = var1; // L: 1902
+		Login.Login_response3 = var2; // L: 1903
+	} // L: 1904
 }

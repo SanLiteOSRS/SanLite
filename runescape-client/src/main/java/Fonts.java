@@ -4,30 +4,27 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("oy")
+@ObfuscatedName("tv")
 @Implements("Fonts")
 public class Fonts {
-	@ObfuscatedName("h")
-	@Export("cacheParentPaths")
-	static String[] cacheParentPaths;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lof;"
 	)
 	@Export("spritesArchive")
 	AbstractArchive spritesArchive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lof;"
 	)
 	@Export("fontsArchive")
 	AbstractArchive fontsArchive;
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@Export("map")
 	HashMap map;
 
 	@ObfuscatedSignature(
-		descriptor = "(Llh;Llh;)V"
+		descriptor = "(Lof;Lof;)V"
 	)
 	public Fonts(AbstractArchive var1, AbstractArchive var2) {
 		this.spritesArchive = var1; // L: 14
@@ -35,10 +32,10 @@ public class Fonts {
 		this.map = new HashMap(); // L: 16
 	} // L: 17
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "([Lpd;B)Ljava/util/HashMap;",
-		garbageValue = "82"
+		descriptor = "([Ltu;I)Ljava/util/HashMap;",
+		garbageValue = "-963615002"
 	)
 	@Export("createMap")
 	public HashMap createMap(FontName[] var1) {
@@ -50,14 +47,64 @@ public class Fonts {
 			if (this.map.containsKey(var5)) { // L: 26
 				var2.put(var5, this.map.get(var5)); // L: 27
 			} else {
-				Font var6 = ServerPacket.method5211(this.spritesArchive, this.fontsArchive, var5.name, ""); // L: 30
-				if (var6 != null) { // L: 31
-					this.map.put(var5, var6); // L: 32
-					var2.put(var5, var6); // L: 33
+				AbstractArchive var7 = this.spritesArchive; // L: 31
+				AbstractArchive var8 = this.fontsArchive; // L: 32
+				String var9 = var5.name; // L: 33
+				Font var6;
+				if (!var7.isValidFileName(var9, "")) { // L: 35
+					var6 = null; // L: 36
+				} else {
+					int var10 = var7.getGroupId(var9); // L: 39
+					int var11 = var7.getFileId(var10, ""); // L: 40
+					Font var12;
+					if (!class130.method3074(var7, var10, var11)) { // L: 43
+						var12 = null; // L: 44
+					} else {
+						var12 = class529.method9417(var8.takeFile(var10, var11)); // L: 47
+					}
+
+					var6 = var12; // L: 49
+				}
+
+				if (var6 != null) { // L: 52
+					this.map.put(var5, var6); // L: 53
+					var2.put(var5, var6); // L: 54
 				}
 			}
 		}
 
-		return var2; // L: 39
+		return var2; // L: 60
+	}
+
+	@ObfuscatedName("ka")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIII)Z",
+		garbageValue = "-2107938255"
+	)
+	static final boolean method9105(int var0, int var1, int var2, int var3, int var4) {
+		PendingSpawn var5 = null; // L: 8600
+
+		for (PendingSpawn var6 = (PendingSpawn)Client.pendingSpawns.last(); var6 != null; var6 = (PendingSpawn)Client.pendingSpawns.previous()) { // L: 8601 8602 8607
+			if (var0 == var6.plane && var6.x == var1 && var2 == var6.y && var3 == var6.type) { // L: 8603
+				var5 = var6; // L: 8604
+				break;
+			}
+		}
+
+		if (var5 != null) { // L: 8609
+			var5.field1203 = var4; // L: 8610
+			return true; // L: 8611
+		} else {
+			return false; // L: 8613
+		}
+	}
+
+	@ObfuscatedName("ot")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lot;",
+		garbageValue = "-2108213446"
+	)
+	static class378 method9109() {
+		return class356.field3897; // L: 13029
 	}
 }

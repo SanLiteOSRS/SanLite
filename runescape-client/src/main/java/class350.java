@@ -1,71 +1,42 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mq")
+@ObfuscatedName("nc")
 public class class350 {
-	@ObfuscatedName("c")
-	@Export("writeRandomDat")
-	public static void writeRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-		if (var2 == var0) { // L: 12
-			if (var3 == var1) { // L: 13
-				return;
-			}
+	@ObfuscatedName("aa")
+	static byte[][][] field3876;
 
-			if (var3 > var1 && var3 < var4 + var1) { // L: 14
-				--var4; // L: 15
-				var1 += var4; // L: 16
-				var3 += var4; // L: 17
-				var4 = var1 - var4; // L: 18
-
-				for (var4 += 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 19 20 28
-					var2[var3--] = var0[var1--]; // L: 21
-					var2[var3--] = var0[var1--]; // L: 22
-					var2[var3--] = var0[var1--]; // L: 23
-					var2[var3--] = var0[var1--]; // L: 24
-					var2[var3--] = var0[var1--]; // L: 25
-					var2[var3--] = var0[var1--]; // L: 26
-					var2[var3--] = var0[var1--]; // L: 27
-				}
-
-				for (var4 -= 7; var1 >= var4; var2[var3--] = var0[var1--]) { // L: 30 31
-				}
-
-				return; // L: 32
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lsf;",
+		garbageValue = "1898243774"
+	)
+	public static class468 method6940() {
+		synchronized(class468.field4833) { // L: 26
+			if (class468.field4834 == 0) { // L: 27
+				return new class468();
+			} else {
+				class468.field4833[--class468.field4834].method8593(); // L: 29
+				return class468.field4833[class468.field4834]; // L: 30
 			}
 		}
+	}
 
-		var4 += var1; // L: 35
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/CharSequence;B)I",
+		garbageValue = "0"
+	)
+	@Export("hashString")
+	public static int hashString(CharSequence var0) {
+		int var1 = var0.length(); // L: 137
+		int var2 = 0; // L: 138
 
-		for (var4 -= 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 36 37 45
-			var2[var3++] = var0[var1++]; // L: 38
-			var2[var3++] = var0[var1++]; // L: 39
-			var2[var3++] = var0[var1++]; // L: 40
-			var2[var3++] = var0[var1++]; // L: 41
-			var2[var3++] = var0[var1++]; // L: 42
-			var2[var3++] = var0[var1++]; // L: 43
-			var2[var3++] = var0[var1++]; // L: 44
+		for (int var3 = 0; var3 < var1; ++var3) { // L: 139
+			var2 = (var2 << 5) - var2 + class226.charToByteCp1252(var0.charAt(var3));
 		}
 
-		for (var4 += 7; var1 < var4; var2[var3++] = var0[var1++]) { // L: 47 48
-		}
-
-	} // L: 49
-
-	@ObfuscatedName("i")
-	@Export("clearIntArray")
-	public static void clearIntArray(int[] var0, int var1, int var2) {
-		for (var2 = var2 + var1 - 7; var1 < var2; var0[var1++] = 0) { // L: 364 365 373
-			var0[var1++] = 0; // L: 366
-			var0[var1++] = 0; // L: 367
-			var0[var1++] = 0; // L: 368
-			var0[var1++] = 0; // L: 369
-			var0[var1++] = 0; // L: 370
-			var0[var1++] = 0; // L: 371
-			var0[var1++] = 0; // L: 372
-		}
-
-		for (var2 += 7; var1 < var2; var0[var1++] = 0) { // L: 375 376
-		}
-
-	} // L: 377
+		return var2; // L: 140
+	}
 }

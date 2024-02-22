@@ -4,33 +4,33 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iz")
+@ObfuscatedName("ja")
 @Implements("WorldMapLabel")
 public class WorldMapLabel {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@Export("text")
 	String text;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 1772526111
+		intValue = 718811765
 	)
 	@Export("width")
 	int width;
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = -1037270607
+		intValue = -1837693909
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lhq;"
+		descriptor = "Ljh;"
 	)
 	@Export("size")
 	WorldMapLabelSize size;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;IILhq;)V"
+		descriptor = "(Ljava/lang/String;IILjh;)V"
 	)
 	WorldMapLabel(String var1, int var2, int var3, WorldMapLabelSize var4) {
 		this.text = var1; // L: 10
@@ -39,32 +39,17 @@ public class WorldMapLabel {
 		this.size = var4; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("bf")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "-115"
+		descriptor = "(Lnt;I)Z",
+		garbageValue = "800848691"
 	)
-	public static void method5000(AbstractArchive var0) {
-		VarcInt.VarcInt_archive = var0; // L: 15
-	} // L: 16
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1560877857"
-	)
-	public static void method4999() {
-		try {
-			JagexCache.JagexCache_dat2File.close(); // L: 295
-
-			for (int var0 = 0; var0 < class142.idxCount; ++var0) { // L: 296
-				class359.JagexCache_idxFiles[var0].close();
-			}
-
-			JagexCache.JagexCache_idx255File.close(); // L: 297
-			JagexCache.JagexCache_randomDat.close(); // L: 298
-		} catch (Exception var2) { // L: 300
+	static boolean method5041(PlayerComposition var0) {
+		if (var0.equipment[0] < 512) { // L: 1028
+			return false; // L: 1032
+		} else {
+			ItemComposition var1 = ArchiveDiskActionHandler.ItemComposition_get(var0.equipment[0] - 512); // L: 1029
+			return var1.maleModel1 != class207.field2280.field2289 && var1.maleModel2 != class207.field2280.field2289; // L: 1030
 		}
-
-	} // L: 301
+	}
 }
