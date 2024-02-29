@@ -1,87 +1,147 @@
-import net.runelite.mapping.Export;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mk")
-public final class class344 {
-	@ObfuscatedName("c")
-	@Export("base37Table")
-	public static final char[] base37Table;
-	@ObfuscatedName("v")
-	static long[] field4153;
-	@ObfuscatedName("y")
-	static int[] field4152;
-	@ObfuscatedName("ih")
+@ObfuscatedName("nm")
+public class class344 {
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Lqe;"
+		descriptor = "Leb;"
 	)
-	@Export("redHintArrowSprite")
-	static SpritePixels redHintArrowSprite;
+	UrlRequest field3651;
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lvd;"
+	)
+	SpritePixels field3650;
 
-	static {
-		base37Table = new char[]{'_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}; // L: 4
-		field4153 = new long[12]; // L: 5
-
-		for (int var0 = 0; var0 < field4153.length; ++var0) { // L: 8
-			field4153[var0] = (long)Math.pow(37.0D, (double)var0);
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Lel;)V"
+	)
+	class344(String var1, UrlRequester var2) {
+		try {
+			this.field3651 = var2.request(new URL(var1)); // L: 16
+		} catch (MalformedURLException var4) { // L: 18
+			this.field3651 = null; // L: 19
 		}
 
-	} // L: 9
+	} // L: 21
 
-	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "([BB)Lbi;",
-		garbageValue = "8"
+		descriptor = "(Leb;)V"
 	)
-	@Export("newScript")
-	static Script newScript(byte[] var0) {
-		Script var1 = new Script(); // L: 84
-		Buffer var2 = new Buffer(var0); // L: 85
-		var2.offset = var2.array.length - 2; // L: 86
-		int var3 = var2.readUnsignedShort(); // L: 87
-		int var4 = var2.array.length - 2 - var3 - 12; // L: 88
-		var2.offset = var4; // L: 89
-		int var5 = var2.readInt(); // L: 90
-		var1.localIntCount = var2.readUnsignedShort(); // L: 91
-		var1.localStringCount = var2.readUnsignedShort(); // L: 92
-		var1.intArgumentCount = var2.readUnsignedShort(); // L: 93
-		var1.stringArgumentCount = var2.readUnsignedShort(); // L: 94
-		int var6 = var2.readUnsignedByte(); // L: 95
-		int var7;
-		int var8;
-		if (var6 > 0) { // L: 96
-			var1.switches = var1.newIterableNodeHashTable(var6); // L: 97
+	class344(UrlRequest var1) {
+		this.field3651 = var1; // L: 24
+	} // L: 25
 
-			for (var7 = 0; var7 < var6; ++var7) { // L: 98
-				var8 = var2.readUnsignedShort(); // L: 99
-				IterableNodeHashTable var9 = new IterableNodeHashTable(var8 > 0 ? class135.method2910(var8) : 1); // L: 100
-				var1.switches[var7] = var9; // L: 101
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lvd;",
+		garbageValue = "-750205083"
+	)
+	SpritePixels method6459() {
+		if (this.field3650 == null && this.field3651 != null && this.field3651.isDone()) { // L: 28
+			if (this.field3651.getResponse() != null) { // L: 29
+				this.field3650 = class202.method3920(this.field3651.getResponse()); // L: 30
+			}
 
-				while (var8-- > 0) { // L: 102
-					int var10 = var2.readInt(); // L: 103
-					int var11 = var2.readInt(); // L: 104
-					var9.put(new IntegerNode(var11), (long)var10); // L: 105
+			this.field3651 = null; // L: 32
+		}
+
+		return this.field3650; // L: 34
+	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "-283741013"
+	)
+	public static boolean method6465(char var0) {
+		if (var0 >= ' ' && var0 < 127 || var0 > 127 && var0 < 160 || var0 > 160 && var0 <= 255) { // L: 61
+			return true;
+		} else {
+			if (var0 != 0) { // L: 62
+				char[] var1 = class403.cp1252AsciiExtension; // L: 64
+
+				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 65
+					char var3 = var1[var2]; // L: 66
+					if (var0 == var3) { // L: 68
+						return true; // L: 69
+					}
 				}
 			}
+
+			return false; // L: 75
 		}
-
-		var2.offset = 0; // L: 109
-		var1.field967 = var2.readStringCp1252NullTerminatedOrNull(); // L: 110
-		var1.opcodes = new int[var5]; // L: 111
-		var1.intOperands = new int[var5]; // L: 112
-		var1.stringOperands = new String[var5]; // L: 113
-
-		for (var7 = 0; var2.offset < var4; var1.opcodes[var7++] = var8) { // L: 114 115 120
-			var8 = var2.readUnsignedShort(); // L: 116
-			if (var8 == 3) { // L: 117
-				var1.stringOperands[var7] = var2.readStringCp1252NullTerminated();
-			} else if (var8 < 100 && var8 != 21 && var8 != 38 && var8 != 39) { // L: 118
-				var1.intOperands[var7] = var2.readInt();
-			} else {
-				var1.intOperands[var7] = var2.readUnsignedByte(); // L: 119
-			}
-		}
-
-		return var1; // L: 122
 	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(Lof;Lof;ZII)V",
+		garbageValue = "2137737759"
+	)
+	static void method6458(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
+		if (Login.clearLoginScreen) { // L: 232
+			if (var3 == 4) { // L: 233
+				JagexCache.method4224(4); // L: 234
+			}
+
+		} else {
+			if (var3 == 0) { // L: 238
+				PacketBufferNode.method6050(var2); // L: 239
+			} else {
+				JagexCache.method4224(var3); // L: 242
+			}
+
+			Rasterizer2D.Rasterizer2D_clear(); // L: 244
+			byte[] var4 = var0.takeFileByNames("title.jpg", ""); // L: 245
+			Login.leftTitleSprite = class202.method3920(var4); // L: 246
+			WorldMapLabelSize.rightTitleSprite = Login.leftTitleSprite.mirrorHorizontally(); // L: 247
+			class213.method4205(var1, Client.worldProperties); // L: 248
+			class155.titleboxSprite = class173.SpriteBuffer_getIndexedSpriteByName(var1, "titlebox", ""); // L: 249
+			Login.field964 = class173.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton", ""); // L: 250
+			Login.field944 = class173.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton_large", ""); // L: 251
+			class90.field1121 = class173.SpriteBuffer_getIndexedSpriteByName(var1, "play_now_text", ""); // L: 252
+			class173.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton_wide42,1", ""); // L: 253
+			Login.field942 = FloorOverlayDefinition.method4031(var1, "runes", ""); // L: 254
+			class169.title_muteSprite = FloorOverlayDefinition.method4031(var1, "title_mute", ""); // L: 255
+			class128.field1508 = class173.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,0", ""); // L: 256
+			UserComparator2.field5265 = class173.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", ""); // L: 257
+			class472.field4868 = class173.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", ""); // L: 258
+			class557.field5358 = class173.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", ""); // L: 259
+			FriendSystem.field859 = class128.field1508.subWidth; // L: 260
+			class316.field3448 = class128.field1508.subHeight; // L: 261
+			class325.loginScreenRunesAnimation = new LoginScreenAnimation(Login.field942); // L: 262
+			if (var2) { // L: 263
+				Login.Login_username = ""; // L: 264
+				Login.Login_password = ""; // L: 265
+				Login.field962 = new String[8]; // L: 266
+				Login.field961 = 0; // L: 267
+			}
+
+			class36.field247 = 0; // L: 269
+			MenuAction.otp = ""; // L: 270
+			Login.field966 = true; // L: 271
+			Login.worldSelectOpen = false; // L: 272
+			if (!class30.clientPreferences.method2580()) { // L: 274
+				ArrayList var5 = new ArrayList(); // L: 275
+				var5.add(new class333(Renderable.field2921, "scape main", "", 255, false)); // L: 276
+				PacketWriter.method2891(var5, 0, 0, 0, 100, false); // L: 277
+			} else {
+				class169.method3521(0, 0); // L: 279
+			}
+
+			GrandExchangeOfferOwnWorldComparator.method1192(); // L: 281
+			Fonts.method9109().method7212(false); // L: 282
+			Login.clearLoginScreen = true; // L: 283
+			Login.xPadding = (GameEngine.canvasWidth - 765) / 2; // L: 284
+			Login.loginBoxX = Login.xPadding + 202; // L: 285
+			Login.loginBoxCenter = Login.loginBoxX + 180; // L: 286
+			Login.leftTitleSprite.drawAt(Login.xPadding, 0); // L: 287
+			WorldMapLabelSize.rightTitleSprite.drawAt(Login.xPadding + 382, 0); // L: 288
+			Login.logoSprite.drawAt(Login.xPadding + 382 - Login.logoSprite.subWidth / 2, 18); // L: 289
+		}
+	} // L: 236 290
 }

@@ -4,168 +4,133 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hi")
+@ObfuscatedName("lf")
 @Implements("WallObject")
 public final class WallObject {
-	@ObfuscatedName("tr")
+	@ObfuscatedName("pb")
 	@ObfuscatedGetter(
-		intValue = 274182681
+		intValue = 1135227967
 	)
-	static int field2622;
-	@ObfuscatedName("c")
+	static int field3111;
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = 1257114009
+		intValue = -1442786301
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -655721437
+		intValue = -718274560
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = -1527654875
+		intValue = 990182061
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = 364149679
+		intValue = -954673215
 	)
 	@Export("orientationA")
 	int orientationA;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1337588957
+		intValue = 718867179
 	)
 	@Export("orientationB")
 	int orientationB;
-	@ObfuscatedName("e")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lky;"
 	)
 	@Export("renderable1")
 	public Renderable renderable1;
-	@ObfuscatedName("g")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Lgj;"
+		descriptor = "Lky;"
 	)
 	@Export("renderable2")
 	public Renderable renderable2;
-	@ObfuscatedName("w")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		longValue = 5334859034127772709L
+		longValue = -5775559510302590085L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -256459155
+		intValue = -1101717799
 	)
 	@Export("flags")
 	int flags;
 
 	WallObject() {
-		this.tag = 0L; // L: 11
+		this.tag = 0L;
 		this.flags = 0; // L: 12
-	} // L: 14
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lcw;B)V",
-		garbageValue = "-14"
-	)
-	@Export("runScriptEvent")
-	public static void runScriptEvent(ScriptEvent var0) {
-		class135.runScript(var0, 500000, 475000);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "94"
+		descriptor = "(Ljava/lang/Object;ZI)[B",
+		garbageValue = "-214764962"
 	)
-	static void method4534(int var0, int var1, int var2, int var3) {
-		for (ObjectSound var4 = (ObjectSound)ObjectSound.objectSounds.last(); var4 != null; var4 = (ObjectSound)ObjectSound.objectSounds.previous()) { // L: 93
-			if (var4.soundEffectId != -1 || var4.soundEffectIds != null) { // L: 94
-				int var5 = 0; // L: 95
-				if (var1 > var4.maxX * 128) { // L: 96
-					var5 += var1 - var4.maxX * 128;
-				} else if (var1 < var4.x * 128) { // L: 97
-					var5 += var4.x * 128 - var1;
-				}
-
-				if (var2 > var4.maxY * 16384) { // L: 98
-					var5 += var2 - var4.maxY * 16384;
-				} else if (var2 < var4.y * 16384) { // L: 99
-					var5 += var4.y * 16384 - var2;
-				}
-
-				if (var5 - 64 <= var4.field812 && class19.clientPreferences.method2262() != 0 && var0 == var4.plane) { // L: 100
-					var5 -= 64; // L: 111
-					if (var5 < 0) { // L: 112
-						var5 = 0;
-					}
-
-					int var6 = (var4.field812 - var5) * class19.clientPreferences.method2262() / var4.field812; // L: 113
-					if (var4.stream1 == null) { // L: 114
-						if (var4.soundEffectId >= 0) { // L: 115
-							SoundEffect var7 = SoundEffect.readSoundEffect(Client.archive4, var4.soundEffectId, 0); // L: 116
-							if (var7 != null) { // L: 117
-								RawSound var8 = var7.toRawSound().resample(WorldMapRegion.decimator); // L: 118
-								RawPcmStream var9 = RawPcmStream.createRawPcmStream(var8, 100, var6); // L: 119
-								var9.setNumLoops(-1); // L: 120
-								class21.pcmStreamMixer.addSubStream(var9); // L: 121
-								var4.stream1 = var9; // L: 122
-							}
-						}
-					} else {
-						var4.stream1.method790(var6); // L: 126
-					}
-
-					if (var4.stream2 == null) { // L: 127
-						if (var4.soundEffectIds != null && (var4.field809 -= var3) <= 0) { // L: 128
-							int var11 = (int)(Math.random() * (double)var4.soundEffectIds.length); // L: 129
-							SoundEffect var12 = SoundEffect.readSoundEffect(Client.archive4, var4.soundEffectIds[var11], 0); // L: 130
-							if (var12 != null) { // L: 131
-								RawSound var13 = var12.toRawSound().resample(WorldMapRegion.decimator); // L: 132
-								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var13, 100, var6); // L: 133
-								var10.setNumLoops(0); // L: 134
-								class21.pcmStreamMixer.addSubStream(var10); // L: 135
-								var4.stream2 = var10; // L: 136
-								var4.field809 = var4.field819 + (int)(Math.random() * (double)(var4.field811 - var4.field819)); // L: 137
-							}
-						}
-					} else {
-						var4.stream2.method790(var6); // L: 142
-						if (!var4.stream2.hasNext()) { // L: 143
-							var4.stream2 = null; // L: 144
-						}
-					}
-				} else {
-					if (var4.stream1 != null) { // L: 101
-						class21.pcmStreamMixer.removeSubStream(var4.stream1); // L: 102
-						var4.stream1 = null; // L: 103
-					}
-
-					if (var4.stream2 != null) { // L: 105
-						class21.pcmStreamMixer.removeSubStream(var4.stream2); // L: 106
-						var4.stream2 = null; // L: 107
-					}
-				}
+	public static byte[] method5944(Object var0, boolean var1) {
+		if (var0 == null) { // L: 8
+			return null;
+		} else if (var0 instanceof byte[]) { // L: 9
+			byte[] var6 = (byte[])((byte[])var0); // L: 10
+			if (var1) { // L: 11
+				int var4 = var6.length; // L: 14
+				byte[] var5 = new byte[var4]; // L: 15
+				System.arraycopy(var6, 0, var5, 0, var4); // L: 16
+				return var5; // L: 19
+			} else {
+				return var6; // L: 21
 			}
+		} else if (var0 instanceof AbstractByteArrayCopier) { // L: 23
+			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0; // L: 24
+			return var2.get(); // L: 25
+		} else {
+			throw new IllegalArgumentException(); // L: 27
 		}
+	}
 
-	} // L: 148
-
-	@ObfuscatedName("fp")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(I)J",
-		garbageValue = "-2059501837"
+		descriptor = "(Ljava/lang/CharSequence;I)Z",
+		garbageValue = "1260925535"
 	)
-	static long method4536() {
-		return Client.field612; // L: 2945
+	@Export("isNumber")
+	public static boolean isNumber(CharSequence var0) {
+		return class53.method1068(var0, 10, true); // L: 40
+	}
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "-1893992852"
+	)
+	@Export("isAlphaNumeric")
+	public static boolean isAlphaNumeric(char var0) {
+		return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z'; // L: 159
+	}
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "-2129517602"
+	)
+	@Export("isCharPrintable")
+	public static boolean isCharPrintable(char var0) {
+		if (var0 >= ' ' && var0 <= '~') { // L: 203
+			return true;
+		} else if (var0 >= 160 && var0 <= 255) { // L: 204
+			return true;
+		} else {
+			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376; // L: 205
+		}
 	}
 }
