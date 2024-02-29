@@ -3,10 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dm")
+@ObfuscatedName("ef")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("ao")
+	static int[] field1457;
+	@ObfuscatedName("bb")
+	@ObfuscatedSignature(
+		descriptor = "Lua;"
+	)
+	@Export("rasterProvider")
+	public static AbstractRasterProvider rasterProvider;
+	@ObfuscatedName("aq")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +22,10 @@ public class UserComparator8 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "1682683031"
+		descriptor = "(Lry;Lry;I)I",
+		garbageValue = "-1579115164"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,55 +44,46 @@ public class UserComparator8 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 25
 	}
 
-	@ObfuscatedName("if")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "6"
+		descriptor = "(I)Z",
+		garbageValue = "-2029946391"
 	)
-	static void method2571(int var0, int var1) {
-		int var2 = TileItem.fontBold12.stringWidth("Choose Option"); // L: 8663
+	static final boolean method2944() {
+		return ViewportMouse.ViewportMouse_isInViewport; // L: 103
+	}
 
-		int var3;
-		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) { // L: 8664
-			Font var7 = TileItem.fontBold12; // L: 8665
-			String var8;
-			if (var3 < 0) { // L: 8668
-				var8 = ""; // L: 8669
-			} else if (Client.menuTargets[var3].length() > 0) { // L: 8672
-				var8 = Client.menuActions[var3] + " " + Client.menuTargets[var3];
-			} else {
-				var8 = Client.menuActions[var3]; // L: 8673
-			}
-
-			int var6 = var7.stringWidth(var8); // L: 8675
-			if (var6 > var2) { // L: 8676
-				var2 = var6;
-			}
+	@ObfuscatedName("be")
+	@ObfuscatedSignature(
+		descriptor = "(Lng;II)V",
+		garbageValue = "-1245873869"
+	)
+	public static void method2942(Widget var0, int var1) {
+		ItemComposition var2 = ArchiveDiskActionHandler.ItemComposition_get(var1); // L: 1041
+		var0.field3774.equipment[var2.maleModel] = var1 + 512; // L: 1042
+		if (var2.maleModel1 != -1) { // L: 1043
+			var0.field3774.equipment[var2.maleModel1] = 0; // L: 1044
 		}
 
-		var2 += 8; // L: 8678
-		var3 = Client.menuOptionsCount * 15 + 22; // L: 8679
-		int var4 = var0 - var2 / 2; // L: 8680
-		if (var2 + var4 > Script.canvasWidth) { // L: 8681
-			var4 = Script.canvasWidth - var2;
+		if (var2.maleModel2 != -1) { // L: 1046
+			var0.field3774.equipment[var2.maleModel2] = 0; // L: 1047
 		}
 
-		if (var4 < 0) { // L: 8682
-			var4 = 0;
-		}
+		var0.field3774.method6477(); // L: 1049
+	} // L: 1050
 
-		int var5 = var1; // L: 8683
-		if (var3 + var1 > class78.canvasHeight) { // L: 8684
-			var5 = class78.canvasHeight - var3;
+	@ObfuscatedName("nc")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "-30"
+	)
+	@Export("clanKickUser")
+	static final void clanKickUser(String var0) {
+		if (Projectile.friendsChatManager != null) { // L: 12702
+			PacketBufferNode var1 = ViewportMouse.getPacketBufferNode(ClientPacket.field3259, Client.packetWriter.isaacCipher); // L: 12703
+			var1.packetBuffer.writeByte(class145.stringCp1252NullTerminatedByteSize(var0)); // L: 12704
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12705
+			Client.packetWriter.addNode(var1); // L: 12706
 		}
-
-		if (var5 < 0) { // L: 8685
-			var5 = 0;
-		}
-
-		UserComparator3.menuX = var4; // L: 8686
-		ViewportMouse.menuY = var5; // L: 8687
-		Language.menuWidth = var2; // L: 8688
-		Player.menuHeight = Client.menuOptionsCount * 15 + 22; // L: 8689
-	} // L: 8690
+	} // L: 12707
 }

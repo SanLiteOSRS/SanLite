@@ -1,21 +1,29 @@
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("oc")
-public class class402 {
-	@ObfuscatedName("i")
-	static final int[] field4449;
-	@ObfuscatedName("s")
-	static final int[] field4450;
+@ObfuscatedName("ps")
+public final class class402 {
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "2077460460"
+	)
+	static int method7575(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 28
+		if (var2 == null) { // L: 29
+			return 0;
+		} else if (var1 == -1) { // L: 30
+			return 0;
+		} else {
+			int var3 = 0; // L: 31
 
-	static {
-		field4449 = new int[2048]; // L: 13
-		field4450 = new int[2048]; // L: 14
-		double var0 = 0.0030679615757712823D; // L: 17
+			for (int var4 = 0; var4 < var2.quantities.length; ++var4) { // L: 32
+				if (var2.ids[var4] == var1) {
+					var3 += var2.quantities[var4]; // L: 33
+				}
+			}
 
-		for (int var2 = 0; var2 < 2048; ++var2) { // L: 18
-			field4449[var2] = (int)(65536.0D * Math.sin(var0 * (double)var2)); // L: 19
-			field4450[var2] = (int)(65536.0D * Math.cos((double)var2 * var0)); // L: 20
+			return var3; // L: 35
 		}
-
-	} // L: 22
+	}
 }

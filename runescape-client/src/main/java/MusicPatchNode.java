@@ -4,165 +4,175 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jm")
+@ObfuscatedName("mw")
 @Implements("MusicPatchNode")
 public class MusicPatchNode extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1539628919
+		intValue = -2014932929
 	)
-	int field3284;
-	@ObfuscatedName("v")
+	int field3576;
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Ljg;"
+		descriptor = "Lmq;"
 	)
-	@Export("patch")
-	MusicPatch patch;
-	@ObfuscatedName("q")
+	@Export("table")
+	MusicPatch table;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Laf;"
+		descriptor = "Lbr;"
 	)
 	@Export("rawSound")
 	RawSound rawSound;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Ljv;"
+		descriptor = "Lmh;"
 	)
-	MusicPatchNode2 field3264;
-	@ObfuscatedName("j")
+	MusicPatchNode2 field3567;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 1874501073
+		intValue = 864391351
 	)
-	int field3267;
-	@ObfuscatedName("e")
+	int field3572;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = -370020525
+		intValue = 1791347925
 	)
-	int field3269;
-	@ObfuscatedName("g")
+	int field3569;
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = 785892757
+		intValue = -1287444843
 	)
-	int field3282;
-	@ObfuscatedName("w")
+	int field3570;
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -2029040381
+		intValue = 781872781
 	)
-	int field3271;
-	@ObfuscatedName("y")
+	int field3580;
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 2036763329
+		intValue = -215055731
 	)
-	int field3272;
-	@ObfuscatedName("i")
+	int field3581;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -1389641683
+		intValue = -1171568241
 	)
-	int field3273;
-	@ObfuscatedName("s")
+	int field3573;
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = -1743724405
+		intValue = 1801689695
 	)
-	int field3277;
-	@ObfuscatedName("t")
+	int field3574;
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -848752911
+		intValue = -51880320
 	)
-	int field3275;
-	@ObfuscatedName("z")
+	int field3571;
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 1533749071
+		intValue = 981667397
 	)
-	int field3276;
-	@ObfuscatedName("r")
+	int field3582;
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -950899707
+		intValue = 1841880265
 	)
-	int field3274;
-	@ObfuscatedName("u")
+	int field3577;
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 1022110285
+		intValue = -906107239
 	)
-	int field3278;
-	@ObfuscatedName("k")
+	int field3578;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -1739604047
+		intValue = -2050032387
 	)
-	int field3279;
-	@ObfuscatedName("h")
+	int field3579;
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -407034595
+		intValue = 1276025151
 	)
-	int field3280;
-	@ObfuscatedName("x")
+	int field3586;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = -1860967229
+		intValue = 1874591773
 	)
-	int field3281;
-	@ObfuscatedName("l")
+	int field3565;
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "Lai;"
+		descriptor = "Lbs;"
 	)
 	@Export("stream")
 	RawPcmStream stream;
-	@ObfuscatedName("a")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -292002933
+		intValue = -289353881
 	)
-	int field3283;
-	@ObfuscatedName("b")
+	int field3583;
+	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
-		intValue = -799763535
+		intValue = -1232026487
 	)
-	int field3270;
+	int field3584;
 
 	MusicPatchNode() {
 	} // L: 31
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "-120"
+		garbageValue = "1"
 	)
-	void method5471() {
-		this.patch = null; // L: 34
+	void method6378() {
+		this.table = null; // L: 34
 		this.rawSound = null; // L: 35
-		this.field3264 = null; // L: 36
+		this.field3567 = null; // L: 36
 		this.stream = null; // L: 37
 	} // L: 38
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("lh")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljt;",
-		garbageValue = "-1448337434"
+		descriptor = "(IIIIIIB)V",
+		garbageValue = "1"
 	)
-	public static PacketBufferNode method5473() {
-		PacketBufferNode var0;
-		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) { // L: 47
-			var0 = new PacketBufferNode(); // L: 48
-		} else {
-			var0 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 51
+	static final void method6381(int var0, int var1, int var2, int var3, int var4, int var5) {
+		int var6 = var2 - var0; // L: 11079
+		int var7 = var3 - var1; // L: 11080
+		int var8 = var6 >= 0 ? var6 : -var6; // L: 11081
+		int var9 = var7 >= 0 ? var7 : -var7; // L: 11082
+		int var10 = var8; // L: 11083
+		if (var8 < var9) { // L: 11084
+			var10 = var9;
 		}
 
-		var0.clientPacket = null; // L: 54
-		var0.clientPacketLength = 0; // L: 55
-		var0.packetBuffer = new PacketBuffer(5000); // L: 56
-		return var0; // L: 57
-	}
+		if (var10 != 0) { // L: 11085
+			int var11 = (var6 << 16) / var10; // L: 11086
+			int var12 = (var7 << 16) / var10; // L: 11087
+			if (var12 <= var11) { // L: 11088
+				var11 = -var11;
+			} else {
+				var12 = -var12; // L: 11089
+			}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lpv;",
-		garbageValue = "-507334207"
-	)
-	public static class432 method5472(int var0) {
-		int var1 = class430.field4652[var0]; // L: 19
-		if (var1 == 1) { // L: 20
-			return class432.field4658; // L: 21
-		} else if (var1 == 2) { // L: 23
-			return class432.field4657; // L: 24
-		} else {
-			return var1 == 3 ? class432.field4656 : null; // L: 26 27 29
+			int var13 = var5 * var12 >> 17; // L: 11090
+			int var14 = var5 * var12 + 1 >> 17; // L: 11091
+			int var15 = var5 * var11 >> 17; // L: 11092
+			int var16 = var5 * var11 + 1 >> 17; // L: 11093
+			var0 -= Rasterizer2D.Rasterizer2D_xClipStart; // L: 11094
+			var1 -= Rasterizer2D.Rasterizer2D_yClipStart; // L: 11095
+			int var17 = var0 + var13; // L: 11096
+			int var18 = var0 - var14; // L: 11097
+			int var19 = var0 + var6 - var14; // L: 11098
+			int var20 = var0 + var6 + var13; // L: 11099
+			int var21 = var15 + var1; // L: 11100
+			int var22 = var1 - var16; // L: 11101
+			int var23 = var7 + var1 - var16; // L: 11102
+			int var24 = var15 + var7 + var1; // L: 11103
+			Rasterizer3D.method5296(var17, var18, var19); // L: 11104
+			Rasterizer3D.method5306(var21, var22, var23, var17, var18, var19, 0.0F, 0.0F, 0.0F, var4); // L: 11105
+			Rasterizer3D.method5296(var17, var19, var20); // L: 11106
+			Rasterizer3D.method5306(var21, var23, var24, var17, var19, var20, 0.0F, 0.0F, 0.0F, var4); // L: 11107
 		}
-	}
+	} // L: 11108
 }

@@ -4,77 +4,65 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("ea")
 @Implements("AttackOption")
-public enum AttackOption implements MouseWheel {
-	@ObfuscatedName("c")
+public enum AttackOption implements class390 {
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lea;"
 	)
 	@Export("AttackOption_dependsOnCombatLevels")
 	AttackOption_dependsOnCombatLevels(0),
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lea;"
 	)
 	@Export("AttackOption_alwaysRightClick")
 	AttackOption_alwaysRightClick(1),
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lea;"
 	)
-	field1288(2),
-	@ObfuscatedName("f")
+	field1364(2),
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lea;"
 	)
 	@Export("AttackOption_hidden")
 	AttackOption_hidden(3),
-	@ObfuscatedName("j")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lce;"
+		descriptor = "Lea;"
 	)
-	field1294(4);
+	field1362(4);
 
-	@ObfuscatedName("sx")
-	@ObfuscatedSignature(
-		descriptor = "Lar;"
-	)
-	@Export("pcmPlayer0")
-	static PcmPlayer pcmPlayer0;
-	@ObfuscatedName("e")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 1078797137
+		intValue = -1735123761
 	)
 	@Export("id")
 	final int id;
 
 	AttackOption(int var3) {
-		this.id = var3; // L: 12508
-	} // L: 12509
+		this.id = var3; // L: 13089
+	} // L: 13090
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "691209479"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 12513
+		return this.id; // L: 13094
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("hl")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;IIIZI)V",
-		garbageValue = "-2127504965"
+		descriptor = "(I)J",
+		garbageValue = "-1485439106"
 	)
-	public static void method2410(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class272.musicPlayerStatus = 1; // L: 26
-		class272.musicTrackArchive = var0; // L: 27
-		class272.musicTrackGroupId = var1; // L: 28
-		class151.musicTrackFileId = var2; // L: 29
-		class272.musicTrackVolume = var3; // L: 30
-		class11.musicTrackBoolean = var4; // L: 31
-		class272.pcmSampleLength = 10000; // L: 32
-	} // L: 33
+	static long method2755() {
+		return Client.field654; // L: 3025
+	}
 }

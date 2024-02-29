@@ -1,90 +1,141 @@
-import java.util.Comparator;
-import java.util.Map.Entry;
+import java.util.concurrent.Future;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("l")
-class class18 implements Comparator {
-	@ObfuscatedName("fm")
+@ObfuscatedName("ad")
+public class class18 {
+	@ObfuscatedName("kf")
 	@ObfuscatedGetter(
-		intValue = 872496551
+		intValue = -442066059
 	)
-	@Export("js5Port")
-	static int js5Port;
-	@ObfuscatedName("jt")
+	@Export("cameraY")
+	static int cameraY;
+	@ObfuscatedName("uz")
 	@ObfuscatedGetter(
-		intValue = 437863053
+		intValue = -1584333625
 	)
-	@Export("cameraX")
-	static int cameraX;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Ls;"
-	)
-	final class10 this$0;
+	static int field86;
+	@ObfuscatedName("aq")
+	Future field84;
+	@ObfuscatedName("aw")
+	String field87;
 
+	class18(Future var1) {
+		this.field84 = var1; // L: 10
+	} // L: 11
+
+	class18(String var1) {
+		this.method240(var1); // L: 14
+	} // L: 15
+
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Ls;)V"
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "17"
 	)
-	class18(class10 var1) {
-		this.this$0 = var1; // L: 50
+	void method240(String var1) {
+		if (var1 == null) { // L: 18
+			var1 = "";
+		}
+
+		this.field87 = var1; // L: 19
+		if (this.field84 != null) { // L: 20
+			this.field84.cancel(true); // L: 21
+			this.field84 = null; // L: 22
+		}
+
+	} // L: 24
+
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "-59"
+	)
+	public final String method237() {
+		return this.field87; // L: 27
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Map$Entry;Ljava/util/Map$Entry;I)I",
-		garbageValue = "-175722815"
+		descriptor = "(I)Z",
+		garbageValue = "1166311642"
 	)
-	int method233(Entry var1, Entry var2) {
-		return ((Float)var2.getValue()).compareTo((Float)var1.getValue()); // L: 52
+	public boolean method238() {
+		return this.field87 != null || this.field84 == null; // L: 31
 	}
 
-	public int compare(Object var1, Object var2) {
-		return this.method233((Entry)var1, (Entry)var2); // L: 56
-	}
-
-	public boolean equals(Object var1) {
-		return super.equals(var1); // L: 60
-	}
-
-	@ObfuscatedName("q")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)Lbr;",
-		garbageValue = "123"
+		descriptor = "(I)Z",
+		garbageValue = "-2031124639"
 	)
-	@Export("Messages_getByChannelAndID")
-	static Message Messages_getByChannelAndID(int var0, int var1) {
-		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 35
-		return var2.getMessage(var1); // L: 36
+	public final boolean method250() {
+		return this.method238() ? true : this.field84.isDone(); // L: 35 36
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-80"
+		descriptor = "(I)Lay;",
+		garbageValue = "-1043212072"
 	)
-	@Export("isKeyDown")
-	public static final boolean isKeyDown() {
-		synchronized(KeyHandler.KeyHandler_instance) { // L: 175
-			if (KeyHandler.field127 == KeyHandler.field147) { // L: 176
-				return false;
-			} else {
-				class272.field3196 = KeyHandler.field148[KeyHandler.field147]; // L: 177
-				HealthBar.field1258 = KeyHandler.field149[KeyHandler.field147]; // L: 178
-				KeyHandler.field147 = KeyHandler.field147 + 1 & 127; // L: 179
-				return true; // L: 180
+	public final class20 method239() {
+		if (this.method238()) { // L: 40
+			return new class20(this.field87);
+		} else if (!this.method250()) {
+			return null; // L: 41
+		} else {
+			try {
+				return (class20)this.field84.get(); // L: 43
+			} catch (Exception var3) { // L: 45
+				String var2 = "Error retrieving REST request reply"; // L: 46
+				System.err.println(var2 + "\r\n" + var3); // L: 47
+				this.method240(var2); // L: 48
+				return new class20(var2); // L: 49
 			}
 		}
 	}
 
-	@ObfuscatedName("im")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-15"
+		descriptor = "(IIIZII)J",
+		garbageValue = "1100565094"
 	)
-	static final boolean method234() {
-		return Client.isMenuOpen; // L: 8499
+	@Export("calculateTag")
+	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
+		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17; // L: 85
+		if (var3) { // L: 86
+			var5 |= 65536L;
+		}
+
+		return var5; // L: 87
 	}
+
+	@ObfuscatedName("kq")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)V",
+		garbageValue = "-65"
+	)
+	static final void method252(int var0, int var1) {
+		if (Client.menuOptionsCount >= 2 || Client.isItemSelected != 0 || Client.isSpellSelected) { // L: 9242
+			if (Client.showMouseOverText) { // L: 9243
+				int var2 = FontName.method9113(); // L: 9244
+				String var3;
+				if (Client.isItemSelected == 1 && Client.menuOptionsCount < 2) { // L: 9246
+					var3 = "Use" + " " + Client.field822 + " " + "->";
+				} else if (Client.isSpellSelected && Client.menuOptionsCount < 2) { // L: 9247
+					var3 = Client.field696 + " " + Client.field574 + " " + "->";
+				} else {
+					var3 = SoundSystem.method810(var2); // L: 9248
+				}
+
+				if (Client.menuOptionsCount > 2) { // L: 9249
+					var3 = var3 + class370.colorStartTag(16777215) + " " + '/' + " " + (Client.menuOptionsCount - 2) + " more options";
+				}
+
+				class166.fontBold12.drawRandomAlphaAndSpacing(var3, var0 + 4, var1 + 15, 16777215, 0, Client.cycle / 1000); // L: 9250
+			}
+		}
+	} // L: 9251
 }
