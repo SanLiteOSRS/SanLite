@@ -1,36 +1,31 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nt")
+@ObfuscatedName("rm")
 @Implements("TriBool")
 public class TriBool {
-	@ObfuscatedName("uj")
-	@ObfuscatedGetter(
-		intValue = -1573630725
-	)
-	@Export("foundItemIndex")
-	static int foundItemIndex;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lrm;"
 	)
 	@Export("TriBool_unknown")
 	public static final TriBool TriBool_unknown;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lrm;"
 	)
 	@Export("TriBool_true")
 	public static final TriBool TriBool_true;
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lrm;"
 	)
 	@Export("TriBool_false")
 	public static final TriBool TriBool_false;
+	@ObfuscatedName("ar")
+	static short[][][] field4773;
 
 	static {
 		TriBool_unknown = new TriBool(); // L: 4
@@ -40,18 +35,4 @@ public class TriBool {
 
 	TriBool() {
 	} // L: 8
-
-	@ObfuscatedName("fi")
-	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "114016538"
-	)
-	static final void method6791(boolean var0) {
-		if (var0) { // L: 3020
-			Client.field515 = Login.field895 ? class124.field1544 : class124.field1550; // L: 3021
-		} else {
-			Client.field515 = class19.clientPreferences.parameters.containsKey(Projectile.method1950(Login.Login_username)) ? class124.field1546 : class124.field1543; // L: 3024
-		}
-
-	} // L: 3026
 }

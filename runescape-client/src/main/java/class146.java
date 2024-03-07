@@ -2,61 +2,47 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ep")
-public class class146 extends class128 {
-	@ObfuscatedName("sg")
+@ObfuscatedName("ff")
+public class class146 extends class145 {
+	@ObfuscatedName("ip")
+	static int[] field1675;
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1417840077
+		intValue = -257261707
 	)
-	static int field1682;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 1388421223
-	)
-	int field1683;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 132668311
-	)
-	int field1679;
+	int field1674;
+	@ObfuscatedName("aw")
+	boolean field1673;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfg;"
 	)
-	final class131 this$0;
+	final class148 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfg;)V"
 	)
-	class146(class131 var1) {
-		this.this$0 = var1; // L: 271
-	}
+	class146(class148 var1) {
+		this.this$0 = var1;
+		this.field1674 = -1; // L: 178
+	} // L: 181
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Luq;I)V",
+		garbageValue = "584073694"
 	)
-	void vmethod3150(Buffer var1) {
-		this.field1683 = var1.readInt(); // L: 274
-		this.field1679 = var1.readInt(); // L: 275
-	} // L: 276
+	void vmethod3512(Buffer var1) {
+		this.field1674 = var1.readUnsignedShort(); // L: 184
+		this.field1673 = var1.readUnsignedByte() == 1; // L: 185
+	} // L: 186
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Lgt;I)V",
+		garbageValue = "406847376"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2965(this.field1683, this.field1679); // L: 279
-	} // L: 280
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;I)V",
-		garbageValue = "-1659219140"
-	)
-	public static void method3082(AbstractArchive var0) {
-		FloorOverlayDefinition.FloorOverlayDefinition_archive = var0; // L: 26
-	} // L: 27
+	void vmethod3513(ClanSettings var1) {
+		var1.method3345(this.field1674, this.field1673); // L: 189
+	} // L: 190
 }
