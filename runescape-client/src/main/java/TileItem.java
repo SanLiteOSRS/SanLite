@@ -4,51 +4,60 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cy")
+@ObfuscatedName("ej")
 @Implements("TileItem")
 public final class TileItem extends Renderable {
-	@ObfuscatedName("ar")
-	protected static String field1301;
-	@ObfuscatedName("aw")
-	static String field1299;
-	@ObfuscatedName("hi")
-	@ObfuscatedSignature(
-		descriptor = "Lmt;"
-	)
-	@Export("fontBold12")
-	static Font fontBold12;
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1688540919
+		intValue = 418956957
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -895126303
+		intValue = 1152551687
 	)
 	@Export("quantity")
 	int quantity;
+	@ObfuscatedName("ai")
+	@ObfuscatedGetter(
+		intValue = -63855207
+	)
+	int field1368;
 
 	TileItem() {
-	} // L: 11
+		this.field1368 = 31; // L: 11
+	} // L: 13
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhy;",
-		garbageValue = "1081110576"
+		descriptor = "(II)V",
+		garbageValue = "255610960"
+	)
+	void method2758(int var1) {
+		this.field1368 = var1; // L: 16
+	} // L: 17
+
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lkz;",
+		garbageValue = "1036754463"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return EnumComposition.ItemComposition_get(this.id).getModel(this.quantity); // L: 14
+		return ArchiveDiskActionHandler.ItemComposition_get(this.id).getModel(this.quantity); // L: 27
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "1179876648"
+		descriptor = "(IB)Z",
+		garbageValue = "-20"
 	)
-	public static int method2414(int var0) {
-		return class7.method51(ViewportMouse.ViewportMouse_entityTags[var0]); // L: 73
+	boolean method2760(int var1) {
+		if (var1 >= 0 && var1 <= 4) { // L: 20
+			return (this.field1368 & 1 << var1) != 0; // L: 21
+		} else {
+			return true; // L: 23
+		}
 	}
 }

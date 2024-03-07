@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import net.runelite.mapping.Export;
@@ -7,244 +6,188 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lz")
+@ObfuscatedName("pl")
 @Implements("ModeWhere")
-public enum ModeWhere implements MouseWheel {
-	@ObfuscatedName("c")
+public enum ModeWhere implements class390 {
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4106("", 0, new class326[]{class326.field4080}),
-	@ObfuscatedName("v")
+	field4505("", 0, new class389[]{class389.field4476, class389.field4480}),
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4103("", 1, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("q")
+	field4499("", 1, new class389[]{class389.field4478, class389.field4476, class389.field4480}),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4104("", 2, new class326[]{class326.field4083, class326.field4079, class326.field4080}),
-	@ObfuscatedName("f")
+	field4500("", 2, new class389[]{class389.field4478, class389.field4477, class389.field4476}),
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4105("", 3, new class326[]{class326.field4083}),
-	@ObfuscatedName("j")
+	field4498("", 3, new class389[]{class389.field4478}),
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4115("", 4),
-	@ObfuscatedName("e")
+	field4513("", 4),
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4117("", 5, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("g")
+	field4503("", 5, new class389[]{class389.field4478, class389.field4476}),
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4108("", 6, new class326[]{class326.field4080}),
-	@ObfuscatedName("w")
+	field4510("", 6, new class389[]{class389.field4476}),
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4102("", 8, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("y")
+	field4504("", 8, new class389[]{class389.field4478, class389.field4476}),
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4107("", 9, new class326[]{class326.field4083, class326.field4079}),
-	@ObfuscatedName("i")
+	field4506("", 9, new class389[]{class389.field4478, class389.field4477}),
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4111("", 10, new class326[]{class326.field4083}),
-	@ObfuscatedName("s")
+	field4507("", 10, new class389[]{class389.field4478}),
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4112("", 11, new class326[]{class326.field4083}),
-	@ObfuscatedName("t")
+	field4508("", 11, new class389[]{class389.field4478}),
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4113("", 12, new class326[]{class326.field4083, class326.field4080}),
-	@ObfuscatedName("z")
+	field4509("", 12, new class389[]{class389.field4478, class389.field4476}),
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
+		descriptor = "Lpl;"
 	)
-	field4110("", 13, new class326[]{class326.field4083});
+	field4512("", 13, new class389[]{class389.field4478});
 
-	@ObfuscatedName("ix")
-	@ObfuscatedGetter(
-		intValue = -2136536725
-	)
-	@Export("selectedItemWidget")
-	static int selectedItemWidget;
-	@ObfuscatedName("pq")
+	@ObfuscatedName("dm")
 	@ObfuscatedSignature(
-		descriptor = "Lpr;"
+		descriptor = "Lvg;"
 	)
-	@Export("Ignored_cached")
-	static class427 Ignored_cached;
-	@ObfuscatedName("r")
+	static IndexedSprite field4514;
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = 2136032221
+		intValue = 923722533
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("u")
-	final Set field4116;
+	@ObfuscatedName("ax")
+	final Set field4502;
 
 	static {
-		method6075(); // L: 28
-	} // L: 29
+		method7375(); // L: 26
+	} // L: 27
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I[Llg;)V"
+		descriptor = "(Ljava/lang/String;I[Low;)V"
 	)
-	ModeWhere(String var3, int var4, class326[] var5) {
-		this.field4116 = new HashSet();
-		this.id = var4; // L: 43
-		class326[] var6 = var5; // L: 45
+	ModeWhere(String var3, int var4, class389[] var5) {
+		this.field4502 = new HashSet();
+		this.id = var4; // L: 41
+		class389[] var6 = var5; // L: 43
 
-		for (int var7 = 0; var7 < var6.length; ++var7) { // L: 46
-			class326 var8 = var6[var7]; // L: 47
-			this.field4116.add(var8); // L: 48
+		for (int var7 = 0; var7 < var6.length; ++var7) { // L: 44
+			class389 var8 = var6[var7]; // L: 45
+			this.field4502.add(var8); // L: 46
 		}
 
-	} // L: 51
+	} // L: 49
 
 	ModeWhere(String var3, int var4) {
-		this.field4116 = new HashSet(); // L: 32
-		this.id = var4; // L: 39
-	} // L: 40
+		this.field4502 = new HashSet(); // L: 30
+		this.id = var4; // L: 37
+	} // L: 38
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "691209479"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 55
+		return this.id; // L: 53
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lfk;",
-		garbageValue = "1173982871"
+		descriptor = "(B)[Lpl;",
+		garbageValue = "1"
 	)
-	static HorizontalAlignment[] method6076() {
-		return new HorizontalAlignment[]{HorizontalAlignment.field1905, HorizontalAlignment.field1910, HorizontalAlignment.HorizontalAlignment_centered}; // L: 14
+	static ModeWhere[] method7375() {
+		return new ModeWhere[]{field4505, field4510, field4509, field4508, field4503, field4513, field4506, field4500, field4499, field4507, field4512, field4498, field4504}; // L: 33
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Llz;",
-		garbageValue = "110"
+		descriptor = "(Lng;I[B[BI)V",
+		garbageValue = "1875065031"
 	)
-	static ModeWhere[] method6075() {
-		return new ModeWhere[]{field4107, field4106, field4110, field4112, field4102, field4111, field4113, field4108, field4115, field4104, field4105, field4117, field4103}; // L: 35
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "941818161"
-	)
-	public static byte[] method6082() {
-		byte[] var0 = new byte[24]; // L: 277
-
-		try {
-			JagexCache.JagexCache_randomDat.seek(0L); // L: 279
-			JagexCache.JagexCache_randomDat.readFully(var0); // L: 280
-
-			int var1;
-			for (var1 = 0; var1 < 24 && var0[var1] == 0; ++var1) { // L: 281 282 283
+	@Export("Widget_setKey")
+	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+		if (var0.field3739 == null) { // L: 1246
+			if (var2 == null) { // L: 1247
+				return; // L: 1253
 			}
 
-			if (var1 >= 24) {
-				throw new IOException(); // L: 285
-			}
-		} catch (Exception var4) {
-			for (int var2 = 0; var2 < 24; ++var2) { // L: 288
-				var0[var2] = -1;
-			}
+			var0.field3739 = new byte[11][]; // L: 1248
+			var0.field3806 = new byte[11][]; // L: 1249
+			var0.field3820 = new int[11]; // L: 1250
+			var0.field3804 = new int[11]; // L: 1251
 		}
 
-		return var0; // L: 290
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "16"
-	)
-	static final int method6079(int var0, int var1) {
-		if (var0 == -2) { // L: 927
-			return 12345678;
-		} else if (var0 == -1) { // L: 928
-			if (var1 < 2) { // L: 929
-				var1 = 2;
-			} else if (var1 > 126) { // L: 930
-				var1 = 126;
-			}
-
-			return var1; // L: 931
+		var0.field3739[var1] = var2; // L: 1255
+		if (var2 != null) {
+			var0.field3808 = true; // L: 1256
 		} else {
-			var1 = (var0 & 127) * var1 / 128; // L: 933
-			if (var1 < 2) { // L: 934
-				var1 = 2;
-			} else if (var1 > 126) { // L: 935
-				var1 = 126;
+			var0.field3808 = false; // L: 1258
+
+			for (int var4 = 0; var4 < var0.field3739.length; ++var4) { // L: 1259
+				if (var0.field3739[var4] != null) { // L: 1260
+					var0.field3808 = true; // L: 1261
+					break;
+				}
 			}
-
-			return (var0 & 65408) + var1; // L: 936
 		}
-	}
 
-	@ObfuscatedName("ff")
+		var0.field3806[var1] = var3; // L: 1266
+	} // L: 1267
+
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(IZZZZI)Llc;",
-		garbageValue = "-1168566075"
+		descriptor = "(B)V",
+		garbageValue = "82"
 	)
-	@Export("newArchive")
-	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3, boolean var4) {
-		ArchiveDisk var5 = null; // L: 2030
-		if (JagexCache.JagexCache_dat2File != null) { // L: 2031
-			var5 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, class359.JagexCache_idxFiles[var0], 1000000);
-		}
+	public static void method7376() {
+		SequenceDefinition.SequenceDefinition_cached.clear(); // L: 573
+		SequenceDefinition.SequenceDefinition_cachedFrames.clear(); // L: 574
+		SequenceDefinition.SequenceDefinition_cachedModel.clear(); // L: 575
+	} // L: 576
 
-		return new Archive(var5, CollisionMap.masterDisk, var0, var1, var2, var3, var4); // L: 2032
-	}
-
-	@ObfuscatedName("lu")
+	@ObfuscatedName("kg")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)Ljava/lang/String;",
-		garbageValue = "4"
+		descriptor = "(III)Lih;",
+		garbageValue = "-580270022"
 	)
-	static String method6080(String var0, boolean var1) {
-		String var2 = var1 ? "https://" : "http://"; // L: 12330
-		if (Client.gameBuild == 1) { // L: 12331
-			var0 = var0 + "-wtrc";
-		} else if (Client.gameBuild == 2) { // L: 12332
-			var0 = var0 + "-wtqa";
-		} else if (Client.gameBuild == 3) { // L: 12333
-			var0 = var0 + "-wtwip";
-		} else if (Client.gameBuild == 5) { // L: 12334
-			var0 = var0 + "-wti";
-		} else if (Client.gameBuild == 4) { // L: 12335
-			var0 = "local";
-		}
-
-		String var3 = ""; // L: 12336
-		if (GrandExchangeOfferTotalQuantityComparator.field4045 != null) { // L: 12337
-			var3 = "/p=" + GrandExchangeOfferTotalQuantityComparator.field4045;
-		}
-
-		String var4 = "runescape.com"; // L: 12338
-		return var2 + var0 + "." + var4 + "/l=" + class134.clientLanguage + "/a=" + class17.field99 + var3 + "/"; // L: 12339
+	static RouteStrategy method7374(int var0, int var1) {
+		Client.field801.approxDestinationX = var0; // L: 9222
+		Client.field801.approxDestinationY = var1; // L: 9223
+		Client.field801.approxDestinationSizeX = 1; // L: 9224
+		Client.field801.approxDestinationSizeY = 1; // L: 9225
+		return Client.field801; // L: 9226
 	}
 }
