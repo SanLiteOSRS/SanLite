@@ -4,46 +4,41 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("na")
+@ObfuscatedName("rs")
 @Implements("DefaultsGroup")
 public class DefaultsGroup {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "Lna;"
+		descriptor = "Lrs;"
 	)
-	static final DefaultsGroup field4363;
-	@ObfuscatedName("v")
+	static final DefaultsGroup field4809;
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lrs;"
+	)
+	static final DefaultsGroup field4808;
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 44353579
+		intValue = 1422233943
 	)
 	@Export("group")
 	final int group;
 
 	static {
-		field4363 = new DefaultsGroup(3); // L: 4
+		field4809 = new DefaultsGroup(1); // L: 4
+		field4808 = new DefaultsGroup(3); // L: 5
 	}
 
 	DefaultsGroup(int var1) {
-		this.group = var1; // L: 8
-	} // L: 9
+		this.group = var1; // L: 9
+	} // L: 10
 
-	@ObfuscatedName("fc")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "1365746841"
+		descriptor = "(Lof;I)V",
+		garbageValue = "-664569182"
 	)
-	@Export("forceDisconnect")
-	static final void forceDisconnect(int var0) {
-		MouseRecorder.logOut(); // L: 2923
-		switch(var0) { // L: 2924
-		case 1:
-			WorldMapData_1.method4872(24); // L: 2936
-			class101.setLoginResponseString("", "You were disconnected from the server.", ""); // L: 2937
-			break;
-		case 2:
-			WorldMapData_1.method4872(24); // L: 2928
-			class101.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", ""); // L: 2929
-		}
-
-	} // L: 2942
+	public static void method8542(AbstractArchive var0) {
+		GrandExchangeOfferWorldComparator.EnumDefinition_archive = var0; // L: 25
+	} // L: 26
 }

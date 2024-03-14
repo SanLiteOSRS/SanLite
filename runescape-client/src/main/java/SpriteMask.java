@@ -1,136 +1,94 @@
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kp")
+@ObfuscatedName("mc")
 @Implements("SpriteMask")
 public class SpriteMask extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("bx")
+	@ObfuscatedSignature(
+		descriptor = "Lrc;"
+	)
+	static Bounds field3613;
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1630376351
+		intValue = 2078688393
 	)
 	@Export("width")
 	public final int width;
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 890911275
+		intValue = -527389665
 	)
 	@Export("height")
 	public final int height;
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@Export("xWidths")
 	public final int[] xWidths;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ai")
 	@Export("xStarts")
 	public final int[] xStarts;
 
 	SpriteMask(int var1, int var2, int[] var3, int[] var4, int var5) {
-		this.width = var1; // L: 973
-		this.height = var2; // L: 974
-		this.xWidths = var3; // L: 975
-		this.xStarts = var4; // L: 976
-	} // L: 977
+		this.width = var1; // L: 1068
+		this.height = var2; // L: 1069
+		this.xWidths = var3; // L: 1070
+		this.xStarts = var4; // L: 1071
+	} // L: 1072
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "1395546386"
+		descriptor = "(IIB)Z",
+		garbageValue = "18"
 	)
 	@Export("contains")
 	public boolean contains(int var1, int var2) {
-		if (var2 >= 0 && var2 < this.xStarts.length) { // L: 980
-			int var3 = this.xStarts[var2]; // L: 981
-			if (var1 >= var3 && var1 <= var3 + this.xWidths[var2]) { // L: 982
+		if (var2 >= 0 && var2 < this.xStarts.length) { // L: 1075
+			int var3 = this.xStarts[var2]; // L: 1076
+			if (var1 >= var3 && var1 <= var3 + this.xWidths[var2]) { // L: 1077
 				return true;
 			}
 		}
 
-		return false; // L: 984
+		return false; // L: 1079
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ma")
 	@ObfuscatedSignature(
-		descriptor = "(B)[I",
-		garbageValue = "117"
+		descriptor = "(II)V",
+		garbageValue = "1762638973"
 	)
-	public static int[] method5523() {
-		int[] var0 = new int[KeyHandler.field144]; // L: 257
+	static final void method6399(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 255); // L: 12359
+		if (var0 != class30.clientPreferences.method2544()) { // L: 12360
+			if (class30.clientPreferences.method2544() == 0 && VarbitComposition.method3831()) { // L: 12361
+				Interpreter.method2056(Renderable.field2921, var0); // L: 12362
+				Client.playingJingle = false; // L: 12363
+			} else if (var0 == 0) { // L: 12365
+				class169.method3521(0, 0); // L: 12366
+				Client.playingJingle = false; // L: 12367
+			} else if (!class321.field3474.isEmpty()) { // L: 12370
+				Iterator var1 = class321.field3474.iterator(); // L: 12371
 
-		for (int var1 = 0; var1 < KeyHandler.field144; ++var1) { // L: 258
-			var0[var1] = KeyHandler.field134[var1]; // L: 259
-		}
-
-		return var0; // L: 261
-	}
-
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-1051989669"
-	)
-	static int method5524(int var0, Script var1, boolean var2) {
-		if (var0 != 7000 && var0 != 7005 && var0 != 7010 && var0 != 7015 && var0 != 7020 && var0 != 7025 && var0 != 7030 && var0 != 7035) { // L: 4557
-			if (var0 != 7001 && var0 != 7002 && var0 != 7011 && var0 != 7012 && var0 != 7021 && var0 != 7022) { // L: 4561
-				if (var0 != 7003 && var0 != 7013 && var0 != 7023) { // L: 4565
-					if (var0 != 7006 && var0 != 7007 && var0 != 7016 && var0 != 7017 && var0 != 7026 && var0 != 7027) { // L: 4569
-						if (var0 != 7008 && var0 != 7018 && var0 != 7028) { // L: 4573
-							if (var0 != 7031 && var0 != 7032) { // L: 4577
-								if (var0 == 7033) { // L: 4582
-									--Interpreter.Interpreter_stringStackSize; // L: 4583
-									return 1; // L: 4584
-								} else if (var0 != 7036 && var0 != 7037) { // L: 4586
-									if (var0 == 7038) { // L: 4590
-										--class446.Interpreter_intStackSize; // L: 4591
-										return 1; // L: 4592
-									} else if (var0 != 7004 && var0 != 7009 && var0 != 7014 && var0 != 7019 && var0 != 7024 && var0 != 7029 && var0 != 7034 && var0 != 7039) { // L: 4594
-										return 2; // L: 4598
-									} else {
-										--class446.Interpreter_intStackSize; // L: 4595
-										return 1; // L: 4596
-									}
-								} else {
-									class446.Interpreter_intStackSize -= 2; // L: 4587
-									return 1; // L: 4588
-								}
-							} else {
-								--Interpreter.Interpreter_stringStackSize; // L: 4578
-								--class446.Interpreter_intStackSize; // L: 4579
-								return 1; // L: 4580
-							}
-						} else {
-							--class446.Interpreter_intStackSize; // L: 4574
-							return 1; // L: 4575
-						}
-					} else {
-						class446.Interpreter_intStackSize -= 2; // L: 4570
-						return 1; // L: 4571
+				while (var1.hasNext()) {
+					class333 var2 = (class333)var1.next(); // L: 12372
+					if (var2 != null) { // L: 12374
+						var2.field3592 = var0; // L: 12377
 					}
-				} else {
-					class446.Interpreter_intStackSize -= 2; // L: 4566
-					return 1; // L: 4567
 				}
-			} else {
-				class446.Interpreter_intStackSize -= 3; // L: 4562
-				return 1; // L: 4563
-			}
-		} else {
-			class446.Interpreter_intStackSize -= 5; // L: 4558
-			return 1; // L: 4559
-		}
-	}
 
-	@ObfuscatedName("gl")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1187838679"
-	)
-	static void method5522() {
-		PacketBufferNode var0 = EnumComposition.getPacketBufferNode(ClientPacket.field3008, Client.packetWriter.isaacCipher); // L: 4385
-		var0.packetBuffer.writeByte(class9.getWindowedMode()); // L: 4386
-		var0.packetBuffer.writeShort(Script.canvasWidth); // L: 4387
-		var0.packetBuffer.writeShort(class78.canvasHeight); // L: 4388
-		Client.packetWriter.addNode(var0); // L: 4389
-	} // L: 4390
+				class333 var3 = (class333)class321.field3474.get(0); // L: 12380
+				if (var3 != null && var3.field3594 != null && var3.field3594.isReady() && !var3.field3597) { // L: 12381
+					var3.field3594.setPcmStreamVolume(var0); // L: 12382
+					var3.field3602 = (float)var0; // L: 12383
+				}
+			}
+
+			class30.clientPreferences.method2556(var0); // L: 12387
+		}
+
+	} // L: 12389
 }

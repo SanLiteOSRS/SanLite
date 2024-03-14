@@ -4,13 +4,13 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lw")
+@ObfuscatedName("ol")
 @Implements("GrandExchangeOfferNameComparator")
 final class GrandExchangeOfferNameComparator implements Comparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Llj;Llj;I)I",
-		garbageValue = "-2002809758"
+		descriptor = "(Loj;Loj;B)I",
+		garbageValue = "-65"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -25,12 +25,20 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 		return super.equals(var1); // L: 64
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("nn")
 	@ObfuscatedSignature(
-		descriptor = "(Llh;I)V",
-		garbageValue = "-1233510501"
+		descriptor = "(Lng;IIIB)V",
+		garbageValue = "1"
 	)
-	public static void method5979(AbstractArchive var0) {
-		StructComposition.StructDefinition_archive = var0; // L: 19
-	} // L: 20
+	static final void method7261(Widget var0, int var1, int var2, int var3) {
+		SpriteMask var4 = var0.method6801(ArchiveLoader.field1070, false); // L: 12652
+		if (var4 != null) { // L: 12653
+			if (Client.minimapState < 3) { // L: 12654
+				Varps.field3615.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, 25, 25, Client.camAngleY, 256, var4.xStarts, var4.xWidths);
+			} else {
+				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths); // L: 12655
+			}
+
+		}
+	} // L: 12656
 }

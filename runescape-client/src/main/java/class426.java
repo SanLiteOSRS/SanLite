@@ -1,43 +1,53 @@
-import java.util.Iterator;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
+import java.util.ArrayList;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ph")
-class class426 implements Iterator {
-	@ObfuscatedName("f")
-	@Export("SpriteBuffer_xOffsets")
-	public static int[] SpriteBuffer_xOffsets;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 443476841
-	)
-	int field4644;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lpr;"
-	)
-	final class427 this$0;
+@ObfuscatedName("qh")
+public class class426 extends class425 {
+	@ObfuscatedName("aq")
+	ArrayList field4631;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpr;)V"
+		descriptor = "(Lqe;Ljava/util/ArrayList;)V"
 	)
-	class426(class427 var1) {
-		this.this$0 = var1; // L: 51
-	}
+	public class426(class425 var1, ArrayList var2) {
+		super(var1); // L: 9
+		this.field4631 = var2; // L: 10
+		super.field4627 = "ConcurrentMidiTask"; // L: 11
+	} // L: 12
 
-	public boolean hasNext() {
-		return this.field4644 < this.this$0.method7058(); // L: 56
-	}
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-2024199564"
+	)
+	public boolean vmethod8043() {
+		for (int var1 = 0; var1 < this.field4631.size(); ++var1) { // L: 16
+			class425 var2 = (class425)this.field4631.get(var1); // L: 17
+			if (var2 == null) { // L: 18
+				this.field4631.remove(var1); // L: 19
+				--var1; // L: 20
+			} else if (var2.vmethod8043()) { // L: 23
+				if (var2.method8013()) { // L: 24
+					this.method8017(var2.method8015()); // L: 25
+					this.field4631.clear(); // L: 26
+					return true; // L: 27
+				}
 
-	public void remove() {
-		throw new UnsupportedOperationException(); // L: 69
-	}
+				if (var2.method8016() != null) { // L: 30
+					this.field4631.add(var2.method8016()); // L: 31
+				}
 
-	public Object next() {
-		int var1 = ++this.field4644 - 1; // L: 61
-		class393 var2 = (class393)this.this$0.field4648.get((long)var1); // L: 62
-		return var2 != null ? var2 : this.this$0.method7522(var1); // L: 63 64
+				super.field4630 = var2.field4630; // L: 33
+				this.field4631.remove(var1); // L: 35
+				--var1; // L: 36
+			}
+		}
+
+		if (this.field4631.isEmpty()) { // L: 39
+			return true; // L: 40
+		} else {
+			return false; // L: 42
+		}
 	}
 }

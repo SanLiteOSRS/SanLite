@@ -4,625 +4,710 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cj")
+@ObfuscatedName("dz")
 @Implements("Actor")
 public abstract class Actor extends Renderable {
-	@ObfuscatedName("hv")
-	@Export("regionLandArchives")
-	static byte[][] regionLandArchives;
-	@ObfuscatedName("ab")
+	@ObfuscatedName("jy")
+	@ObfuscatedSignature(
+		descriptor = "Lkq;"
+	)
+	@Export("scene")
+	static Scene scene;
+	@ObfuscatedName("an")
+	@Export("isWalking")
+	boolean isWalking;
+	@ObfuscatedName("ba")
 	@ObfuscatedGetter(
-		intValue = -1118070755
+		intValue = -1682415597
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("bt")
 	@ObfuscatedGetter(
-		intValue = -1646015609
+		intValue = 261390341
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("bk")
 	@ObfuscatedGetter(
-		intValue = -972787127
+		intValue = 1769179749
 	)
 	@Export("rotation")
 	int rotation;
-	@ObfuscatedName("ae")
-	@Export("isWalking")
-	boolean isWalking;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("bm")
 	@ObfuscatedGetter(
-		intValue = 2047436751
+		intValue = -906487817
 	)
-	int field1205;
-	@ObfuscatedName("am")
+	int field1212;
+	@ObfuscatedName("bw")
 	@ObfuscatedGetter(
-		intValue = 1050181507
+		intValue = 1653856533
 	)
 	@Export("playerCycle")
 	int playerCycle;
-	@ObfuscatedName("an")
+	@ObfuscatedName("bv")
 	@ObfuscatedGetter(
-		intValue = 2097702445
+		intValue = -1005587195
 	)
 	@Export("idleSequence")
 	int idleSequence;
-	@ObfuscatedName("af")
+	@ObfuscatedName("by")
 	@ObfuscatedGetter(
-		intValue = -1100537755
+		intValue = 596527443
 	)
-	@Export("turnLeftSequence")
-	int turnLeftSequence;
-	@ObfuscatedName("ax")
+	int field1266;
+	@ObfuscatedName("bb")
 	@ObfuscatedGetter(
-		intValue = -1115406841
+		intValue = 256643485
 	)
-	@Export("turnRightSequence")
-	int turnRightSequence;
-	@ObfuscatedName("ar")
+	int field1213;
+	@ObfuscatedName("bn")
 	@ObfuscatedGetter(
-		intValue = 615118423
+		intValue = 245214983
 	)
 	@Export("walkSequence")
 	int walkSequence;
-	@ObfuscatedName("at")
+	@ObfuscatedName("br")
 	@ObfuscatedGetter(
-		intValue = -280732815
+		intValue = 1199032719
 	)
 	@Export("walkBackSequence")
 	int walkBackSequence;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("bp")
 	@ObfuscatedGetter(
-		intValue = -1801716209
+		intValue = -529748857
 	)
 	@Export("walkLeftSequence")
 	int walkLeftSequence;
-	@ObfuscatedName("aq")
+	@ObfuscatedName("bf")
 	@ObfuscatedGetter(
-		intValue = -207098851
+		intValue = -1475508573
 	)
 	@Export("walkRightSequence")
 	int walkRightSequence;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("bg")
 	@ObfuscatedGetter(
-		intValue = 282222667
+		intValue = 1293406329
 	)
 	@Export("runSequence")
 	int runSequence;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("be")
 	@ObfuscatedGetter(
-		intValue = 372349823
+		intValue = -386329313
 	)
-	int field1180;
-	@ObfuscatedName("az")
+	int field1219;
+	@ObfuscatedName("bc")
 	@ObfuscatedGetter(
-		intValue = 1469217257
+		intValue = -909248759
 	)
-	int field1144;
-	@ObfuscatedName("av")
+	int field1220;
+	@ObfuscatedName("bz")
 	@ObfuscatedGetter(
-		intValue = 1010191265
+		intValue = 1576876033
 	)
-	int field1145;
-	@ObfuscatedName("aw")
+	int field1221;
+	@ObfuscatedName("bh")
 	@ObfuscatedGetter(
-		intValue = -1730351949
+		intValue = -1765727881
 	)
-	int field1155;
-	@ObfuscatedName("au")
+	int field1222;
+	@ObfuscatedName("bs")
 	@ObfuscatedGetter(
-		intValue = 756854087
+		intValue = 1796982345
 	)
-	int field1179;
-	@ObfuscatedName("aa")
+	int field1216;
+	@ObfuscatedName("bj")
 	@ObfuscatedGetter(
-		intValue = 582466563
+		intValue = 1022136029
 	)
-	int field1137;
-	@ObfuscatedName("ay")
+	int field1224;
+	@ObfuscatedName("bl")
 	@ObfuscatedGetter(
-		intValue = 373349895
+		intValue = 1008518259
 	)
-	int field1149;
-	@ObfuscatedName("as")
+	int field1225;
+	@ObfuscatedName("bx")
 	@Export("overheadText")
 	String overheadText;
-	@ObfuscatedName("be")
+	@ObfuscatedName("cs")
 	@Export("isAutoChatting")
 	boolean isAutoChatting;
-	@ObfuscatedName("bz")
-	boolean field1152;
-	@ObfuscatedName("bp")
+	@ObfuscatedName("ch")
+	boolean field1205;
+	@ObfuscatedName("co")
 	@ObfuscatedGetter(
-		intValue = -1340711323
+		intValue = 1526300639
 	)
 	@Export("overheadTextCyclesRemaining")
 	int overheadTextCyclesRemaining;
-	@ObfuscatedName("bf")
+	@ObfuscatedName("cd")
 	@ObfuscatedGetter(
-		intValue = 1575450167
+		intValue = 92402267
 	)
 	@Export("overheadTextColor")
 	int overheadTextColor;
-	@ObfuscatedName("bg")
+	@ObfuscatedName("cg")
 	@ObfuscatedGetter(
-		intValue = -182052553
+		intValue = 108337669
 	)
 	@Export("overheadTextEffect")
 	int overheadTextEffect;
-	@ObfuscatedName("bn")
+	@ObfuscatedName("cn")
+	int[] field1226;
+	@ObfuscatedName("ci")
 	@Export("hitSplatCount")
 	byte hitSplatCount;
-	@ObfuscatedName("bq")
+	@ObfuscatedName("cl")
 	@Export("hitSplatTypes")
 	int[] hitSplatTypes;
-	@ObfuscatedName("bc")
+	@ObfuscatedName("cm")
 	@Export("hitSplatValues")
 	int[] hitSplatValues;
-	@ObfuscatedName("bl")
+	@ObfuscatedName("cx")
 	@Export("hitSplatCycles")
 	int[] hitSplatCycles;
-	@ObfuscatedName("bv")
+	@ObfuscatedName("cw")
 	@Export("hitSplatTypes2")
 	int[] hitSplatTypes2;
-	@ObfuscatedName("bt")
+	@ObfuscatedName("cy")
 	@Export("hitSplatValues2")
 	int[] hitSplatValues2;
-	@ObfuscatedName("bh")
+	@ObfuscatedName("cu")
 	@ObfuscatedSignature(
-		descriptor = "Llk;"
+		descriptor = "Lpo;"
 	)
 	@Export("healthBars")
 	IterableNodeDeque healthBars;
-	@ObfuscatedName("bs")
+	@ObfuscatedName("ce")
 	@ObfuscatedGetter(
-		intValue = -271055267
+		intValue = 1046435177
 	)
 	@Export("targetIndex")
 	int targetIndex;
-	@ObfuscatedName("bk")
-	@Export("false0")
-	boolean false0;
-	@ObfuscatedName("bb")
+	@ObfuscatedName("cv")
+	boolean field1241;
+	@ObfuscatedName("cj")
 	@ObfuscatedGetter(
-		intValue = -79075039
+		intValue = -2134481181
 	)
-	int field1165;
-	@ObfuscatedName("ba")
-	boolean field1161;
-	@ObfuscatedName("bu")
+	int field1242;
+	@ObfuscatedName("ct")
 	@ObfuscatedGetter(
-		intValue = 606824383
+		intValue = -758837295
+	)
+	int field1243;
+	@ObfuscatedName("ck")
+	@ObfuscatedGetter(
+		intValue = -1874899127
+	)
+	int field1244;
+	@ObfuscatedName("ca")
+	boolean field1245;
+	@ObfuscatedName("cp")
+	@ObfuscatedGetter(
+		intValue = 509789123
 	)
 	@Export("movementSequence")
 	int movementSequence;
-	@ObfuscatedName("bw")
+	@ObfuscatedName("cc")
 	@ObfuscatedGetter(
-		intValue = 1101086801
+		intValue = 2022919199
 	)
 	@Export("movementFrame")
 	int movementFrame;
-	@ObfuscatedName("bi")
+	@ObfuscatedName("cb")
 	@ObfuscatedGetter(
-		intValue = -925467467
+		intValue = 2017854917
 	)
-	@Export("movementFrameCycle")
-	int movementFrameCycle;
-	@ObfuscatedName("bo")
+	int field1267;
+	@ObfuscatedName("cq")
 	@ObfuscatedGetter(
-		intValue = -792237997
+		intValue = 1854379435
+	)
+	int field1232;
+	@ObfuscatedName("cf")
+	@ObfuscatedGetter(
+		intValue = 1049413981
 	)
 	@Export("sequence")
 	int sequence;
-	@ObfuscatedName("bx")
+	@ObfuscatedName("cr")
 	@ObfuscatedGetter(
-		intValue = 1937149831
+		intValue = 1430383743
 	)
 	@Export("sequenceFrame")
 	int sequenceFrame;
-	@ObfuscatedName("bm")
+	@ObfuscatedName("dg")
 	@ObfuscatedGetter(
-		intValue = 1066271643
+		intValue = -2143902041
 	)
 	@Export("sequenceFrameCycle")
 	int sequenceFrameCycle;
-	@ObfuscatedName("by")
+	@ObfuscatedName("dc")
 	@ObfuscatedGetter(
-		intValue = 1022517063
+		intValue = -2057820411
 	)
 	@Export("sequenceDelay")
 	int sequenceDelay;
-	@ObfuscatedName("bj")
+	@ObfuscatedName("do")
 	@ObfuscatedGetter(
-		intValue = -1788834823
+		intValue = -803318257
 	)
-	int field1190;
-	@ObfuscatedName("bd")
+	int field1254;
+	@ObfuscatedName("dv")
+	@ObfuscatedSignature(
+		descriptor = "Lta;"
+	)
+	IterableNodeHashTable field1263;
+	@ObfuscatedName("dl")
 	@ObfuscatedGetter(
-		intValue = -2008089801
+		intValue = 1919601901
+	)
+	int field1256;
+	@ObfuscatedName("dk")
+	@ObfuscatedGetter(
+		intValue = -834807045
+	)
+	int field1257;
+	@ObfuscatedName("dw")
+	@ObfuscatedGetter(
+		intValue = -1348271175
+	)
+	int field1258;
+	@ObfuscatedName("du")
+	@ObfuscatedGetter(
+		intValue = 397933817
+	)
+	int field1259;
+	@ObfuscatedName("dt")
+	@ObfuscatedGetter(
+		intValue = 1896744821
+	)
+	int field1248;
+	@ObfuscatedName("dm")
+	@ObfuscatedGetter(
+		intValue = 1925697223
 	)
 	@Export("spotAnimation")
 	int spotAnimation;
-	@ObfuscatedName("cr")
+	@ObfuscatedName("da")
 	@ObfuscatedGetter(
-		intValue = 965779263
+		intValue = -941694955
 	)
-	@Export("spotAnimationFrame")
-	int spotAnimationFrame;
-	@ObfuscatedName("cq")
+	int field1271;
+	@ObfuscatedName("dq")
 	@ObfuscatedGetter(
-		intValue = -338713871
+		intValue = 1676030111
 	)
-	@Export("spotAnimationFrameCycle")
-	int spotAnimationFrameCycle;
-	@ObfuscatedName("cw")
+	int field1223;
+	@ObfuscatedName("dd")
 	@ObfuscatedGetter(
-		intValue = 1296382665
-	)
-	int field1178;
-	@ObfuscatedName("cx")
-	@ObfuscatedGetter(
-		intValue = -1369289223
-	)
-	@Export("spotAnimationHeight")
-	int spotAnimationHeight;
-	@ObfuscatedName("cc")
-	@ObfuscatedGetter(
-		intValue = -1719412661
-	)
-	int field1140;
-	@ObfuscatedName("cm")
-	@ObfuscatedGetter(
-		intValue = 960222749
-	)
-	int field1181;
-	@ObfuscatedName("ci")
-	@ObfuscatedGetter(
-		intValue = 1156188427
-	)
-	int field1182;
-	@ObfuscatedName("cg")
-	@ObfuscatedGetter(
-		intValue = 1597921931
-	)
-	int field1183;
-	@ObfuscatedName("cj")
-	@ObfuscatedGetter(
-		intValue = -379199875
-	)
-	int field1184;
-	@ObfuscatedName("cp")
-	@ObfuscatedGetter(
-		intValue = -777407565
-	)
-	int field1194;
-	@ObfuscatedName("cf")
-	@ObfuscatedGetter(
-		intValue = -1595241739
-	)
-	int field1186;
-	@ObfuscatedName("cv")
-	@ObfuscatedGetter(
-		intValue = 269273095
+		intValue = 1493658757
 	)
 	@Export("npcCycle")
 	int npcCycle;
-	@ObfuscatedName("cn")
+	@ObfuscatedName("dh")
 	@ObfuscatedGetter(
-		intValue = -954472933
+		intValue = -825642877
 	)
 	@Export("defaultHeight")
 	int defaultHeight;
-	@ObfuscatedName("co")
+	@ObfuscatedName("dj")
 	@ObfuscatedGetter(
-		intValue = -338202467
+		intValue = -379331335
 	)
-	int field1189;
-	@ObfuscatedName("cz")
+	int field1262;
+	@ObfuscatedName("di")
 	@ObfuscatedGetter(
-		intValue = 99787659
+		intValue = 1667653559
 	)
-	int field1135;
-	@ObfuscatedName("cu")
-	byte field1191;
-	@ObfuscatedName("ce")
-	byte field1192;
-	@ObfuscatedName("cy")
-	byte field1193;
-	@ObfuscatedName("ca")
-	byte field1133;
-	@ObfuscatedName("ck")
+	int field1278;
+	@ObfuscatedName("ds")
+	byte field1268;
+	@ObfuscatedName("dy")
+	byte field1269;
+	@ObfuscatedName("dz")
+	byte field1276;
+	@ObfuscatedName("dp")
+	byte field1255;
+	@ObfuscatedName("de")
 	@ObfuscatedGetter(
-		intValue = 1887319247
+		intValue = -1409684201
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("cb")
+	@ObfuscatedName("df")
 	@ObfuscatedGetter(
-		intValue = 291062025
+		intValue = 1528983473
 	)
-	int field1196;
-	@ObfuscatedName("cs")
+	int field1227;
+	@ObfuscatedName("db")
 	@ObfuscatedGetter(
-		intValue = 124924459
+		intValue = -359528855
 	)
-	int field1129;
-	@ObfuscatedName("cd")
+	int field1249;
+	@ObfuscatedName("dx")
 	@ObfuscatedGetter(
-		intValue = 1161369831
+		intValue = 614875555
 	)
 	@Export("pathLength")
 	int pathLength;
-	@ObfuscatedName("cl")
+	@ObfuscatedName("dn")
 	@Export("pathX")
 	int[] pathX;
-	@ObfuscatedName("ct")
+	@ObfuscatedName("dr")
 	@Export("pathY")
 	int[] pathY;
-	@ObfuscatedName("ch")
+	@ObfuscatedName("ea")
 	@ObfuscatedSignature(
-		descriptor = "[Lgn;"
+		descriptor = "[Lip;"
 	)
 	@Export("pathTraversed")
-	class192[] pathTraversed;
-	@ObfuscatedName("dm")
+	class233[] pathTraversed;
+	@ObfuscatedName("ej")
 	@ObfuscatedGetter(
-		intValue = 278658953
+		intValue = 796262365
 	)
-	int field1202;
-	@ObfuscatedName("dd")
+	int field1279;
+	@ObfuscatedName("ee")
 	@ObfuscatedGetter(
-		intValue = 551206327
+		intValue = -991708375
 	)
-	int field1203;
-	@ObfuscatedName("dz")
+	int field1280;
+	@ObfuscatedName("ei")
 	@ObfuscatedGetter(
-		intValue = 71404267
+		intValue = -764561221
 	)
-	int field1204;
+	int field1270;
 
 	Actor() {
-		this.isWalking = false; // L: 13
-		this.field1205 = 1; // L: 14
-		this.idleSequence = -1; // L: 16
-		this.turnLeftSequence = -1;
-		this.turnRightSequence = -1;
-		this.walkSequence = -1;
-		this.walkBackSequence = -1; // L: 20
-		this.walkLeftSequence = -1;
-		this.walkRightSequence = -1; // L: 22
-		this.runSequence = -1; // L: 23
-		this.field1180 = -1; // L: 24
-		this.field1144 = -1;
-		this.field1145 = -1; // L: 26
-		this.field1155 = -1; // L: 27
-		this.field1179 = -1; // L: 28
-		this.field1137 = -1; // L: 29
-		this.field1149 = -1; // L: 30
-		this.overheadText = null; // L: 31
-		this.field1152 = false; // L: 33
-		this.overheadTextCyclesRemaining = 100; // L: 34
-		this.overheadTextColor = 0; // L: 35
-		this.overheadTextEffect = 0; // L: 36
-		this.hitSplatCount = 0; // L: 38
-		this.hitSplatTypes = new int[4]; // L: 39
-		this.hitSplatValues = new int[4]; // L: 40
-		this.hitSplatCycles = new int[4]; // L: 41
-		this.hitSplatTypes2 = new int[4]; // L: 42
-		this.hitSplatValues2 = new int[4]; // L: 43
-		this.healthBars = new IterableNodeDeque(); // L: 44
-		this.targetIndex = -1; // L: 45
-		this.false0 = false; // L: 46
-		this.field1165 = -1; // L: 47
-		this.movementSequence = -1; // L: 49
-		this.movementFrame = 0; // L: 50
-		this.movementFrameCycle = 0; // L: 51
-		this.sequence = -1; // L: 52
-		this.sequenceFrame = 0; // L: 53
-		this.sequenceFrameCycle = 0; // L: 54
-		this.sequenceDelay = 0; // L: 55
-		this.field1190 = 0; // L: 56
-		this.spotAnimation = -1; // L: 57
-		this.spotAnimationFrame = 0; // L: 58
-		this.spotAnimationFrameCycle = 0; // L: 59
-		this.npcCycle = 0; // L: 69
-		this.defaultHeight = 200; // L: 70
-		this.field1189 = -1; // L: 71
-		this.field1135 = -1; // L: 72
-		this.field1196 = 0; // L: 78
-		this.field1129 = 32; // L: 79
-		this.pathLength = 0; // L: 80
-		this.pathX = new int[10]; // L: 81
-		this.pathY = new int[10]; // L: 82
-		this.pathTraversed = new class192[10]; // L: 83
-		this.field1202 = 0; // L: 84
-		this.field1203 = 0; // L: 85
-		this.field1204 = -1; // L: 86
-	} // L: 88
+		this.isWalking = false; // L: 18
+		this.field1212 = 1; // L: 19
+		this.idleSequence = -1; // L: 21
+		this.field1266 = -1; // L: 22
+		this.field1213 = -1; // L: 23
+		this.walkSequence = -1; // L: 24
+		this.walkBackSequence = -1; // L: 25
+		this.walkLeftSequence = -1; // L: 26
+		this.walkRightSequence = -1; // L: 27
+		this.runSequence = -1; // L: 28
+		this.field1219 = -1; // L: 29
+		this.field1220 = -1; // L: 30
+		this.field1221 = -1; // L: 31
+		this.field1222 = -1; // L: 32
+		this.field1216 = -1; // L: 33
+		this.field1224 = -1; // L: 34
+		this.field1225 = -1; // L: 35
+		this.overheadText = null; // L: 36
+		this.field1205 = false; // L: 38
+		this.overheadTextCyclesRemaining = 100; // L: 39
+		this.overheadTextColor = 0; // L: 40
+		this.overheadTextEffect = 0; // L: 41
+		this.field1226 = null; // L: 42
+		this.hitSplatCount = 0; // L: 44
+		this.hitSplatTypes = new int[4]; // L: 45
+		this.hitSplatValues = new int[4]; // L: 46
+		this.hitSplatCycles = new int[4]; // L: 47
+		this.hitSplatTypes2 = new int[4]; // L: 48
+		this.hitSplatValues2 = new int[4]; // L: 49
+		this.healthBars = new IterableNodeDeque(); // L: 50
+		this.targetIndex = -1; // L: 51
+		this.field1241 = false; // L: 52
+		this.field1242 = -1; // L: 53
+		this.field1243 = -1; // L: 54
+		this.field1244 = -1; // L: 55
+		this.movementSequence = -1; // L: 57
+		this.movementFrame = 0; // L: 58
+		this.field1267 = 0; // L: 59
+		this.field1232 = 0; // L: 60
+		this.sequence = -1; // L: 61
+		this.sequenceFrame = 0; // L: 62
+		this.sequenceFrameCycle = 0; // L: 63
+		this.sequenceDelay = 0; // L: 64
+		this.field1254 = 0; // L: 65
+		this.field1263 = new IterableNodeHashTable(4); // L: 66
+		this.field1256 = 0; // L: 67
+		this.npcCycle = 0; // L: 75
+		this.defaultHeight = 200; // L: 76
+		this.field1262 = -1; // L: 77
+		this.field1278 = -1; // L: 78
+		this.field1227 = 0; // L: 84
+		this.field1249 = 32; // L: 85
+		this.pathLength = 0; // L: 86
+		this.pathX = new int[10]; // L: 87
+		this.pathY = new int[10]; // L: 88
+		this.pathTraversed = new class233[10]; // L: 89
+		this.field1279 = 0; // L: 90
+		this.field1280 = 0; // L: 91
+		this.field1270 = -1; // L: 92
+	} // L: 94
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "9013641"
+		descriptor = "(S)Z",
+		garbageValue = "16409"
 	)
 	@Export("isVisible")
 	boolean isVisible() {
-		return false; // L: 96
+		return false; // L: 102
 	}
 
-	@ObfuscatedName("bf")
+	@ObfuscatedName("cs")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "585677791"
+		garbageValue = "709886252"
 	)
-	final void method2182() {
-		this.pathLength = 0; // L: 91
-		this.field1203 = 0; // L: 92
-	} // L: 93
+	final void method2462() {
+		this.pathLength = 0; // L: 97
+		this.field1280 = 0; // L: 98
+	} // L: 99
 
-	@ObfuscatedName("bg")
+	@ObfuscatedName("ch")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIB)V",
-		garbageValue = "7"
+		descriptor = "(IIIIIII)V",
+		garbageValue = "1723210572"
 	)
 	@Export("addHitSplat")
 	final void addHitSplat(int var1, int var2, int var3, int var4, int var5, int var6) {
-		boolean var7 = true; // L: 100
-		boolean var8 = true; // L: 101
+		boolean var7 = true; // L: 106
+		boolean var8 = true; // L: 107
 
 		int var9;
-		for (var9 = 0; var9 < 4; ++var9) { // L: 102
-			if (this.hitSplatCycles[var9] > var5) { // L: 103
+		for (var9 = 0; var9 < 4; ++var9) { // L: 108
+			if (this.hitSplatCycles[var9] > var5) { // L: 109
 				var7 = false;
 			} else {
-				var8 = false; // L: 104
+				var8 = false; // L: 110
 			}
 		}
 
-		var9 = -1; // L: 106
-		int var10 = -1; // L: 107
-		int var11 = 0; // L: 108
-		if (var1 >= 0) { // L: 109
-			HitSplatDefinition var12 = class122.method2800(var1); // L: 110
-			var10 = var12.field2035; // L: 111
-			var11 = var12.field2026; // L: 112
+		var9 = -1; // L: 112
+		int var10 = -1; // L: 113
+		int var11 = 0; // L: 114
+		if (var1 >= 0) { // L: 115
+			HitSplatDefinition var12 = Language.method7357(var1); // L: 116
+			var10 = var12.field2084; // L: 117
+			var11 = var12.field2092; // L: 118
 		}
 
 		int var14;
-		if (var8) { // L: 114
-			if (var10 == -1) { // L: 115
+		if (var8) { // L: 120
+			if (var10 == -1) { // L: 121
 				return;
 			}
 
-			var9 = 0; // L: 116
-			var14 = 0; // L: 117
-			if (var10 == 0) { // L: 118
+			var9 = 0; // L: 122
+			var14 = 0; // L: 123
+			if (var10 == 0) { // L: 124
 				var14 = this.hitSplatCycles[0];
-			} else if (var10 == 1) { // L: 119
+			} else if (var10 == 1) { // L: 125
 				var14 = this.hitSplatValues[0];
 			}
 
-			for (int var13 = 1; var13 < 4; ++var13) { // L: 120
-				if (var10 == 0) { // L: 121
-					if (this.hitSplatCycles[var13] < var14) { // L: 122
-						var9 = var13; // L: 123
-						var14 = this.hitSplatCycles[var13]; // L: 124
+			for (int var13 = 1; var13 < 4; ++var13) { // L: 126
+				if (var10 == 0) { // L: 127
+					if (this.hitSplatCycles[var13] < var14) { // L: 128
+						var9 = var13; // L: 129
+						var14 = this.hitSplatCycles[var13]; // L: 130
 					}
-				} else if (var10 == 1 && this.hitSplatValues[var13] < var14) { // L: 127 128
-					var9 = var13; // L: 129
-					var14 = this.hitSplatValues[var13]; // L: 130
+				} else if (var10 == 1 && this.hitSplatValues[var13] < var14) { // L: 133 134
+					var9 = var13; // L: 135
+					var14 = this.hitSplatValues[var13]; // L: 136
 				}
 			}
 
-			if (var10 == 1 && var14 >= var2) { // L: 134
+			if (var10 == 1 && var14 >= var2) { // L: 140
 				return;
 			}
 		} else {
-			if (var7) { // L: 137
+			if (var7) { // L: 143
 				this.hitSplatCount = 0;
 			}
 
-			for (var14 = 0; var14 < 4; ++var14) { // L: 138
-				byte var15 = this.hitSplatCount; // L: 139
-				this.hitSplatCount = (byte)((this.hitSplatCount + 1) % 4); // L: 140
-				if (this.hitSplatCycles[var15] <= var5) { // L: 141
-					var9 = var15; // L: 142
-					break; // L: 143
+			for (var14 = 0; var14 < 4; ++var14) { // L: 144
+				byte var15 = this.hitSplatCount; // L: 145
+				this.hitSplatCount = (byte)((this.hitSplatCount + 1) % 4); // L: 146
+				if (this.hitSplatCycles[var15] <= var5) { // L: 147
+					var9 = var15; // L: 148
+					break; // L: 149
 				}
 			}
 		}
 
-		if (var9 >= 0) { // L: 147
-			this.hitSplatTypes[var9] = var1; // L: 148
-			this.hitSplatValues[var9] = var2; // L: 149
-			this.hitSplatTypes2[var9] = var3; // L: 150
-			this.hitSplatValues2[var9] = var4; // L: 151
-			this.hitSplatCycles[var9] = var5 + var11 + var6; // L: 152
+		if (var9 >= 0) { // L: 153
+			this.hitSplatTypes[var9] = var1; // L: 154
+			this.hitSplatValues[var9] = var2; // L: 155
+			this.hitSplatTypes2[var9] = var3; // L: 156
+			this.hitSplatValues2[var9] = var4; // L: 157
+			this.hitSplatCycles[var9] = var5 + var11 + var6; // L: 158
 		}
-	} // L: 153
+	} // L: 159
 
-	@ObfuscatedName("br")
+	@ObfuscatedName("co")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIS)V",
-		garbageValue = "134"
+		descriptor = "(IIIIIII)V",
+		garbageValue = "1922704024"
 	)
 	@Export("addHealthBar")
 	final void addHealthBar(int var1, int var2, int var3, int var4, int var5, int var6) {
-		HealthBarDefinition var7 = MusicPatchNode2.method5244(var1); // L: 156
-		HealthBar var8 = null; // L: 157
-		HealthBar var9 = null; // L: 158
-		int var10 = var7.int2; // L: 159
-		int var11 = 0; // L: 160
+		HealthBarDefinition var7 = VarcInt.method3595(var1); // L: 162
+		HealthBar var8 = null; // L: 163
+		HealthBar var9 = null; // L: 164
+		int var10 = var7.int2; // L: 165
+		int var11 = 0; // L: 166
 
 		HealthBar var12;
-		for (var12 = (HealthBar)this.healthBars.last(); var12 != null; var12 = (HealthBar)this.healthBars.previous()) { // L: 161
-			++var11; // L: 162
-			if (var12.definition.field1876 == var7.field1876) { // L: 163
-				var12.put(var2 + var4, var5, var6, var3); // L: 164
-				return; // L: 165
+		for (var12 = (HealthBar)this.healthBars.last(); var12 != null; var12 = (HealthBar)this.healthBars.previous()) { // L: 167
+			++var11; // L: 168
+			if (var12.definition.field1918 == var7.field1918) { // L: 169
+				var12.put(var2 + var4, var5, var6, var3); // L: 170
+				return; // L: 171
 			}
 
-			if (var12.definition.int1 <= var7.int1) { // L: 167
+			if (var12.definition.int1 <= var7.int1) { // L: 173
 				var8 = var12;
 			}
 
-			if (var12.definition.int2 > var10) { // L: 168
-				var9 = var12; // L: 169
-				var10 = var12.definition.int2; // L: 170
+			if (var12.definition.int2 > var10) { // L: 174
+				var9 = var12; // L: 175
+				var10 = var12.definition.int2; // L: 176
 			}
 		}
 
-		if (var9 != null || var11 < 4) { // L: 173
-			var12 = new HealthBar(var7); // L: 174
-			if (var8 == null) { // L: 175
+		if (var9 != null || var11 < 4) { // L: 179
+			var12 = new HealthBar(var7); // L: 180
+			if (var8 == null) { // L: 181
 				this.healthBars.addLast(var12);
 			} else {
-				IterableNodeDeque.IterableNodeDeque_addBefore(var12, var8); // L: 176
+				IterableNodeDeque.IterableNodeDeque_addBefore(var12, var8); // L: 182
 			}
 
-			var12.put(var2 + var4, var5, var6, var3); // L: 177
-			if (var11 >= 4) { // L: 178
+			var12.put(var2 + var4, var5, var6, var3); // L: 183
+			if (var11 >= 4) { // L: 184
 				var9.remove();
 			}
 
 		}
-	} // L: 179
+	} // L: 185
 
-	@ObfuscatedName("bn")
+	@ObfuscatedName("cd")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "-330258668"
+		garbageValue = "-1919875371"
 	)
 	@Export("removeHealthBar")
 	final void removeHealthBar(int var1) {
-		HealthBarDefinition var2 = MusicPatchNode2.method5244(var1); // L: 182
+		HealthBarDefinition var2 = VarcInt.method3595(var1); // L: 188
 
-		for (HealthBar var3 = (HealthBar)this.healthBars.last(); var3 != null; var3 = (HealthBar)this.healthBars.previous()) { // L: 183
-			if (var2 == var3.definition) { // L: 184
-				var3.remove(); // L: 185
-				return; // L: 186
+		for (HealthBar var3 = (HealthBar)this.healthBars.last(); var3 != null; var3 = (HealthBar)this.healthBars.previous()) { // L: 189
+			if (var2 == var3.definition) { // L: 190
+				var3.remove(); // L: 191
+				return; // L: 192
 			}
 		}
 
-	} // L: 189
+	} // L: 195
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("cg")
 	@ObfuscatedSignature(
-		descriptor = "([Lla;II)Lla;",
-		garbageValue = "822359584"
+		descriptor = "(IIIII)V",
+		garbageValue = "1566666540"
 	)
-	@Export("findEnumerated")
-	public static MouseWheel findEnumerated(MouseWheel[] var0, int var1) {
-		MouseWheel[] var2 = var0; // L: 17
-
-		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 18
-			MouseWheel var4 = var2[var3]; // L: 19
-			if (var1 == var4.rsOrdinal()) {
-				return var4; // L: 21
-			}
+	void method2466(int var1, int var2, int var3, int var4) {
+		int var5 = var4 + Client.cycle; // L: 198
+		class555 var6 = (class555)this.field1263.get((long)var1); // L: 199
+		if (var6 != null) { // L: 200
+			var6.remove(); // L: 201
+			--this.field1256; // L: 202
 		}
 
-		return null; // L: 25
+		if (var2 != 65535 && var2 != -1) { // L: 204
+			byte var7 = 0; // L: 207
+			if (var4 > 0) { // L: 208
+				var7 = -1; // L: 209
+			}
+
+			this.field1263.put(new class555(var2, var3, var5, var7), (long)var1); // L: 211
+			++this.field1256; // L: 212
+		}
+	} // L: 205 213
+
+	@ObfuscatedName("cn")
+	@ObfuscatedSignature(
+		descriptor = "(B)Lta;",
+		garbageValue = "-43"
+	)
+	IterableNodeHashTable method2475() {
+		return this.field1263; // L: 216
 	}
+
+	@ObfuscatedName("cz")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "230480918"
+	)
+	void method2468() {
+		IterableNodeHashTableIterator var1 = new IterableNodeHashTableIterator(this.field1263); // L: 220
+
+		for (class555 var2 = (class555)var1.method9127(); var2 != null; var2 = (class555)var1.next()) { // L: 221
+			var2.remove(); // L: 222
+		}
+
+		this.field1256 = 0; // L: 224
+	} // L: 225
+
+	@ObfuscatedName("ci")
+	@ObfuscatedSignature(
+		descriptor = "(Lkz;B)Lkz;",
+		garbageValue = "1"
+	)
+	Model method2469(Model var1) {
+		if (this.field1256 == 0) { // L: 228
+			return var1;
+		} else {
+			IterableNodeHashTableIterator var2 = new IterableNodeHashTableIterator(this.field1263); // L: 229
+			int var3 = var1.verticesCount; // L: 230
+			int var4 = var1.indicesCount; // L: 231
+			int var5 = var1.field3028; // L: 232
+			byte var6 = var1.field2991; // L: 233
+
+			for (class555 var7 = (class555)var2.method9127(); var7 != null; var7 = (class555)var2.next()) { // L: 234
+				if (var7.field5349 != -1) { // L: 235
+					Model var8 = VarbitComposition.SpotAnimationDefinition_get(var7.field5352).method3787(); // L: 236
+					if (var8 != null) { // L: 237
+						var3 += var8.verticesCount; // L: 238
+						var4 += var8.indicesCount; // L: 239
+						var5 += var8.field3028; // L: 240
+					}
+				}
+			}
+
+			Model var10 = new Model(var3, var4, var5, var6); // L: 242
+			var10.method5683(var1); // L: 243
+
+			for (class555 var11 = (class555)var2.method9127(); var11 != null; var11 = (class555)var2.next()) { // L: 244
+				if (var11.field5349 != -1) { // L: 245
+					Model var9 = VarbitComposition.SpotAnimationDefinition_get(var11.field5352).getModel(var11.field5349); // L: 246
+					if (var9 != null) { // L: 247
+						var9.offsetBy(0, -var11.field5353, 0); // L: 248
+						var10.method5683(var9); // L: 249
+					}
+				}
+			}
+
+			return var10; // L: 251
+		}
+	}
+
+	@ObfuscatedName("cl")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "811106472"
+	)
+	void method2470() {
+		this.field1245 = false; // L: 255
+		this.field1242 = -1; // L: 256
+		this.field1243 = -1; // L: 257
+		this.field1244 = -1; // L: 258
+	} // L: 259
 }

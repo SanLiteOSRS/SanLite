@@ -1,44 +1,29 @@
-import java.util.Comparator;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mg")
-class class360 implements Comparator {
-	@ObfuscatedName("c")
-	@Export("javaVendor")
-	public static String javaVendor;
-	// $FF: synthetic field
+@ObfuscatedName("nl")
+public class class360 {
+	@ObfuscatedName("kv")
 	@ObfuscatedSignature(
-		descriptor = "Lmy;"
+		descriptor = "(IIIIIB)V",
+		garbageValue = "0"
 	)
-	final class361 this$0;
+	static void method6993(int var0, int var1, int var2, int var3, int var4) {
+		NodeDeque var5 = Client.groundItems[var0][var1][var2]; // L: 8491
+		if (var5 != null) { // L: 8492
+			for (TileItem var6 = (TileItem)var5.last(); var6 != null; var6 = (TileItem)var5.previous()) { // L: 8493 8494 8499
+				if ((var3 & 32767) == var6.id && var4 == var6.quantity) { // L: 8495
+					var6.remove(); // L: 8496
+					break;
+				}
+			}
 
-	@ObfuscatedSignature(
-		descriptor = "(Lmy;)V"
-	)
-	class360(class361 var1) {
-		this.this$0 = var1; // L: 7
-	}
+			if (var5.last() == null) { // L: 8501
+				Client.groundItems[var0][var1][var2] = null;
+			}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lmv;Lmv;I)I",
-		garbageValue = "796004144"
-	)
-	int method6532(class362 var1, class362 var2) {
-		if (var1.field4277 > var2.field4277) {
-			return 1; // L: 9
-		} else {
-			return var1.field4277 < var2.field4277 ? -1 : 0; // L: 10 11
+			class73.method2117(var0, var1, var2); // L: 8502
 		}
-	}
 
-	public int compare(Object var1, Object var2) {
-		return this.method6532((class362)var1, (class362)var2); // L: 15
-	}
-
-	public boolean equals(Object var1) {
-		return super.equals(var1); // L: 19
-	}
+	} // L: 8504
 }
