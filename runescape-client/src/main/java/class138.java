@@ -1,83 +1,51 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eq")
-public class class138 extends class128 {
-	@ObfuscatedName("he")
+@ObfuscatedName("fn")
+public class class138 {
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "Lcd;"
+		descriptor = "Lof;"
 	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1956537991
-	)
-	int field1623;
-	@ObfuscatedName("v")
-	String field1620;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Lej;"
-	)
-	final class131 this$0;
+	@Export("SequenceDefinition_skeletonsArchive")
+	public static AbstractArchive SequenceDefinition_skeletonsArchive;
 
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lof;III)[Lvd;",
+		garbageValue = "-86233743"
 	)
-	class138(class131 var1) {
-		this.this$0 = var1; // L: 323
-	}
+	public static SpritePixels[] method3146(AbstractArchive var0, int var1, int var2) {
+		if (!class130.method3074(var0, var1, var2)) { // L: 28
+			return null;
+		} else {
+			SpritePixels[] var4 = new SpritePixels[class548.SpriteBuffer_spriteCount]; // L: 31
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
-	)
-	void vmethod3150(Buffer var1) {
-		this.field1623 = var1.readInt(); // L: 326
-		this.field1620 = var1.readStringCp1252NullTerminated(); // L: 327
-	} // L: 328
+			for (int var5 = 0; var5 < class548.SpriteBuffer_spriteCount; ++var5) { // L: 32
+				SpritePixels var6 = var4[var5] = new SpritePixels(); // L: 33
+				var6.width = class548.SpriteBuffer_spriteWidth; // L: 34
+				var6.height = class548.SpriteBuffer_spriteHeight; // L: 35
+				var6.xOffset = class548.SpriteBuffer_xOffsets[var5]; // L: 36
+				var6.yOffset = class548.SpriteBuffer_yOffsets[var5]; // L: 37
+				var6.subWidth = class235.SpriteBuffer_spriteWidths[var5]; // L: 38
+				var6.subHeight = class548.SpriteBuffer_spriteHeights[var5]; // L: 39
+				int var7 = var6.subWidth * var6.subHeight; // L: 40
+				byte[] var8 = class548.SpriteBuffer_pixels[var5]; // L: 41
+				var6.pixels = new int[var7]; // L: 42
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2968(this.field1623, this.field1620); // L: 331
-	} // L: 332
+				for (int var9 = 0; var9 < var7; ++var9) { // L: 43
+					var6.pixels[var9] = AbstractSocket.SpriteBuffer_spritePalette[var8[var9] & 255];
+				}
+			}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Llh;B)V",
-		garbageValue = "4"
-	)
-	public static void method2948(AbstractArchive var0) {
-		class435.field4666 = var0; // L: 19
-	} // L: 20
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IZIZI)V",
-		garbageValue = "1195912675"
-	)
-	@Export("sortWorldList")
-	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-		if (class362.World_worlds != null) { // L: 171
-			class131.doWorldSorting(0, class362.World_worlds.length - 1, var0, var1, var2, var3); // L: 172
+			class548.SpriteBuffer_xOffsets = null; // L: 46
+			class548.SpriteBuffer_yOffsets = null; // L: 47
+			class235.SpriteBuffer_spriteWidths = null; // L: 48
+			class548.SpriteBuffer_spriteHeights = null; // L: 49
+			AbstractSocket.SpriteBuffer_spritePalette = null; // L: 50
+			class548.SpriteBuffer_pixels = null; // L: 51
+			return var4; // L: 55
 		}
-
-	} // L: 174
-
-	@ObfuscatedName("hj")
-	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1549613437"
-	)
-	static boolean method2944() {
-		return (Client.drawPlayerNames & 8) != 0; // L: 4953
 	}
 }

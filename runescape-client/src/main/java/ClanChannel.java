@@ -7,54 +7,49 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ex")
+@ObfuscatedName("gg")
 @Implements("ClanChannel")
 public class ClanChannel extends Node {
-	@ObfuscatedName("tj")
-	@ObfuscatedGetter(
-		intValue = 91794545
-	)
-	static int field1690;
-	@ObfuscatedName("c")
-	boolean field1689;
-	@ObfuscatedName("v")
-	boolean field1701;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aq")
+	boolean field1805;
+	@ObfuscatedName("aw")
+	boolean field1802;
+	@ObfuscatedName("al")
 	@Export("members")
 	public List members;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ai")
 	@Export("sortedMembers")
 	int[] sortedMembers;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		longValue = 1434435831047347565L
+		longValue = 9051283318980582005L
 	)
-	long field1693;
-	@ObfuscatedName("e")
+	public long field1808;
+	@ObfuscatedName("as")
 	@Export("name")
 	public String name;
-	@ObfuscatedName("g")
-	public byte field1695;
-	@ObfuscatedName("w")
-	public byte field1696;
+	@ObfuscatedName("aa")
+	public byte field1806;
+	@ObfuscatedName("az")
+	public byte field1801;
 
 	static {
 		new BitSet(65536); // L: 22
 	} // L: 23
 
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;)V"
+		descriptor = "(Luq;)V"
 	)
 	public ClanChannel(Buffer var1) {
-		this.field1701 = true; // L: 13
+		this.field1802 = true; // L: 13
 		this.name = null; // L: 17
-		this.method3121(var1); // L: 26
+		this.method3475(var1); // L: 26
 	} // L: 27
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(B)[I",
-		garbageValue = "-17"
+		descriptor = "(I)[I",
+		garbageValue = "316467633"
 	)
 	@Export("getSortedMembers")
 	public int[] getSortedMembers() {
@@ -63,19 +58,19 @@ public class ClanChannel extends Node {
 			this.sortedMembers = new int[this.members.size()]; // L: 32
 
 			for (int var2 = 0; var2 < this.members.size(); this.sortedMembers[var2] = var2++) { // L: 33 35
-				var1[var2] = ((ClanChannelMember)this.members.get(var2)).username.method8320(); // L: 34
+				var1[var2] = ((ClanChannelMember)this.members.get(var2)).username.method10078(); // L: 34
 			}
 
-			class353.method6507(var1, this.sortedMembers); // L: 37
+			class237.method4614(var1, this.sortedMembers); // L: 37
 		}
 
 		return this.sortedMembers; // L: 39
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Lew;I)V",
-		garbageValue = "-619896679"
+		descriptor = "(Lfe;I)V",
+		garbageValue = "1081139077"
 	)
 	@Export("addMember")
 	void addMember(ClanChannelMember var1) {
@@ -83,10 +78,10 @@ public class ClanChannel extends Node {
 		this.sortedMembers = null; // L: 44
 	} // L: 45
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "911390350"
+		garbageValue = "-1652550545"
 	)
 	@Export("removeMember")
 	void removeMember(int var1) {
@@ -94,22 +89,22 @@ public class ClanChannel extends Node {
 		this.sortedMembers = null; // L: 49
 	} // L: 50
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1458908732"
+		descriptor = "(B)I",
+		garbageValue = "-104"
 	)
-	public int method3113() {
+	public int method3481() {
 		return this.members.size(); // L: 53
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)I",
-		garbageValue = "0"
+		descriptor = "(Ljava/lang/String;I)I",
+		garbageValue = "-2146908176"
 	)
-	public int method3102(String var1) {
-		if (!this.field1701) { // L: 57
+	public int method3487(String var1) {
+		if (!this.field1802) { // L: 57
 			throw new RuntimeException("Displaynames not available");
 		} else {
 			for (int var2 = 0; var2 < this.members.size(); ++var2) { // L: 58
@@ -122,19 +117,19 @@ public class ClanChannel extends Node {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "1615348983"
+		descriptor = "(Luq;I)V",
+		garbageValue = "1159592870"
 	)
-	void method3121(Buffer var1) {
+	void method3475(Buffer var1) {
 		int var2 = var1.readUnsignedByte(); // L: 65
 		if ((var2 & 1) != 0) { // L: 66
-			this.field1689 = true;
+			this.field1805 = true;
 		}
 
 		if ((var2 & 2) != 0) { // L: 67
-			this.field1701 = true;
+			this.field1802 = true;
 		}
 
 		int var3 = 2; // L: 68
@@ -143,22 +138,22 @@ public class ClanChannel extends Node {
 		}
 
 		super.key = var1.readLong(); // L: 70
-		this.field1693 = var1.readLong(); // L: 71
+		this.field1808 = var1.readLong(); // L: 71
 		this.name = var1.readStringCp1252NullTerminated(); // L: 72
 		var1.readBoolean(); // L: 73
-		this.field1696 = var1.readByte(); // L: 74
-		this.field1695 = var1.readByte(); // L: 75
+		this.field1801 = var1.readByte(); // L: 74
+		this.field1806 = var1.readByte(); // L: 75
 		int var4 = var1.readUnsignedShort(); // L: 76
 		if (var4 > 0) { // L: 77
 			this.members = new ArrayList(var4); // L: 78
 
 			for (int var5 = 0; var5 < var4; ++var5) { // L: 79
 				ClanChannelMember var6 = new ClanChannelMember(); // L: 80
-				if (this.field1689) { // L: 81
+				if (this.field1805) { // L: 81
 					var1.readLong(); // L: 82
 				}
 
-				if (this.field1701) { // L: 84
+				if (this.field1802) { // L: 84
 					var6.username = new Username(var1.readStringCp1252NullTerminated());
 				}
 
@@ -174,50 +169,48 @@ public class ClanChannel extends Node {
 
 	} // L: 94
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Llc;IIIBZB)V",
-		garbageValue = "126"
+		descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "9"
 	)
-	@Export("requestNetFile")
-	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
-		long var6 = (long)((var1 << 16) + var2); // L: 101
-		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6); // L: 102
-		if (var8 == null) { // L: 103
-			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6); // L: 104
-			if (var8 == null) { // L: 105
-				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6); // L: 106
-				if (var8 != null) { // L: 107
-					if (var5) { // L: 108
-						var8.removeDual(); // L: 109
-						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 110
-						--NetCache.NetCache_pendingWritesCount; // L: 111
-						++NetCache.NetCache_pendingPriorityWritesCount; // L: 112
-					}
+	public static String method3490(String var0) {
+		int var1 = var0.length(); // L: 163
+		char[] var2 = new char[var1]; // L: 164
+		byte var3 = 2; // L: 165
 
+		for (int var4 = 0; var4 < var1; ++var4) { // L: 166
+			char var5 = var0.charAt(var4); // L: 167
+			if (var3 == 0) { // L: 168
+				var5 = Character.toLowerCase(var5);
+			} else if (var3 == 2 || Character.isUpperCase(var5)) { // L: 169
+				char var6;
+				if (var5 != 181 && var5 != 402) { // L: 172
+					var6 = Character.toTitleCase(var5); // L: 176
 				} else {
-					if (!var5) { // L: 116
-						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6); // L: 117
-						if (var8 != null) { // L: 118
-							return;
-						}
-					}
-
-					var8 = new NetFileRequest(); // L: 120
-					var8.archive = var0; // L: 121
-					var8.crc = var3; // L: 122
-					var8.padding = var4; // L: 123
-					if (var5) { // L: 124
-						NetCache.NetCache_pendingPriorityWrites.put(var8, var6); // L: 125
-						++NetCache.NetCache_pendingPriorityWritesCount; // L: 126
-					} else {
-						NetCache.NetCache_pendingWritesQueue.addFirst(var8); // L: 129
-						NetCache.NetCache_pendingWrites.put(var8, var6); // L: 130
-						++NetCache.NetCache_pendingWritesCount; // L: 131
-					}
-
+					var6 = var5; // L: 173
 				}
+
+				var5 = var6; // L: 178
 			}
+
+			if (Character.isLetter(var5)) { // L: 180
+				var3 = 0;
+			} else if (var5 != '.' && var5 != '?' && var5 != '!') { // L: 181
+				if (Character.isSpaceChar(var5)) { // L: 182
+					if (var3 != 2) { // L: 183
+						var3 = 1;
+					}
+				} else {
+					var3 = 1; // L: 185
+				}
+			} else {
+				var3 = 2;
+			}
+
+			var2[var4] = var5; // L: 186
 		}
-	} // L: 114 133
+
+		return new String(var2); // L: 188
+	}
 }

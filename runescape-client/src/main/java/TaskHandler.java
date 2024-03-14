@@ -2,84 +2,87 @@ import java.io.DataInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
+import java.util.Arrays;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fr")
+@ObfuscatedName("ig")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ay")
+	public static String field2320;
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "Lii;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "Lii;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("j")
+	@ObfuscatedName("ar")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("e")
+	@ObfuscatedName("as")
 	@Export("isClosed")
 	boolean isClosed;
 
 	public TaskHandler() {
 		this.current = null; // L: 11
 		this.task = null; // L: 12
-		this.isClosed = false; // L: 14
-		class360.javaVendor = "Unknown"; // L: 20
-		javaVersion = "1.6"; // L: 21
+		this.isClosed = false;
+		GrandExchangeOfferUnitPriceComparator.javaVendor = "Unknown";
+		javaVersion = "1.6";
 
 		try {
-			class360.javaVendor = System.getProperty("java.vendor"); // L: 23
-			javaVersion = System.getProperty("java.version"); // L: 24
-		} catch (Exception var2) { // L: 26
+			GrandExchangeOfferUnitPriceComparator.javaVendor = System.getProperty("java.vendor");
+			javaVersion = System.getProperty("java.version");
+		} catch (Exception var2) {
 		}
 
-		this.isClosed = false; // L: 27
-		this.thread = new Thread(this); // L: 28
-		this.thread.setPriority(10); // L: 29
-		this.thread.setDaemon(true); // L: 30
-		this.thread.start(); // L: 31
-	} // L: 32
+		this.isClosed = false;
+		this.thread = new Thread(this);
+		this.thread.setPriority(10);
+		this.thread.setDaemon(true);
+		this.thread.start();
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "64"
+		descriptor = "(I)V",
+		garbageValue = "208627683"
 	)
 	@Export("close")
 	public final void close() {
-		synchronized(this) { // L: 35
-			this.isClosed = true; // L: 36
-			this.notifyAll(); // L: 37
-		} // L: 38
-
-		try {
-			this.thread.join(); // L: 40
-		} catch (InterruptedException var3) { // L: 42
+		synchronized(this) {
+			this.isClosed = true;
+			this.notifyAll();
 		}
 
-	} // L: 43
+		try {
+			this.thread.join();
+		} catch (InterruptedException var3) {
+		}
 
-	@ObfuscatedName("v")
+	}
+
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;B)Lfm;",
-		garbageValue = "0"
+		descriptor = "(IIILjava/lang/Object;B)Lii;",
+		garbageValue = "-56"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
-		Task var5 = new Task();
-		var5.type = var1;
+		Task var5 = new Task(); // L: 90
+		var5.type = var1; // L: 91
 		var5.intArgument = var2; // L: 92
 		var5.objectArgument = var4; // L: 93
 		synchronized(this) { // L: 94
@@ -95,20 +98,19 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;IB)Lfm;",
-		garbageValue = "-14"
+		descriptor = "(Ljava/lang/String;II)Lii;",
+		garbageValue = "197291801"
 	)
-	@Export("newSocketTask")
-	public final Task newSocketTask(String var1, int var2) {
+	public final Task method4189(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1); // L: 108
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;II)Lfm;",
-		garbageValue = "966743438"
+		descriptor = "(Ljava/lang/Runnable;IB)Lii;",
+		garbageValue = "64"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -118,7 +120,7 @@ public class TaskHandler implements Runnable {
 	public final void run() {
 		while (true) {
 			Task var1;
-			synchronized(this) { // L: 48
+			synchronized(this) {
 				while (true) {
 					if (this.isClosed) { // L: 50
 						return;
@@ -127,14 +129,14 @@ public class TaskHandler implements Runnable {
 					if (this.current != null) { // L: 51
 						var1 = this.current; // L: 52
 						this.current = this.current.next; // L: 53
-						if (this.current == null) { // L: 54
+						if (this.current == null) {
 							this.task = null;
 						}
 						break;
 					}
 
 					try {
-						this.wait();
+						this.wait(); // L: 58
 					} catch (InterruptedException var8) { // L: 60
 					}
 				}
@@ -148,8 +150,8 @@ public class TaskHandler implements Runnable {
 					Thread var3 = new Thread((Runnable)var1.objectArgument); // L: 69
 					var3.setDaemon(true); // L: 70
 					var3.start(); // L: 71
-					var3.setPriority(var1.intArgument); // L: 72
-					var1.result = var3; // L: 73
+					var3.setPriority(var1.intArgument);
+					var1.result = var3;
 				} else if (var5 == 4) { // L: 75
 					var1.result = new DataInputStream(((URL)var1.objectArgument).openStream()); // L: 76
 				}
@@ -163,79 +165,111 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "-443449853"
+		descriptor = "(Luq;Ljava/lang/String;S)I",
+		garbageValue = "10333"
 	)
-	public static String method3240(CharSequence var0) {
-		String var1 = class229.base37DecodeLong(class339.method6244(var0)); // L: 57
-		if (var1 == null) { // L: 58
-			var1 = "";
-		}
+	public static int method4203(Buffer var0, String var1) {
+		int var2 = var0.offset; // L: 14
+		int var4 = var1.length(); // L: 17
+		byte[] var5 = new byte[var4]; // L: 18
 
-		return var1; // L: 59
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(IIIZII)J",
-		garbageValue = "608136618"
-	)
-	@Export("calculateTag")
-	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
-		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17; // L: 89
-		if (var3) { // L: 90
-			var5 |= 65536L;
-		}
-
-		return var5; // L: 91
-	}
-
-	@ObfuscatedName("jr")
-	@ObfuscatedSignature(
-		descriptor = "([Lkb;IB)V",
-		garbageValue = "79"
-	)
-	@Export("runComponentCloseListeners")
-	static final void runComponentCloseListeners(Widget[] var0, int var1) {
-		for (int var2 = 0; var2 < var0.length; ++var2) { // L: 11586
-			Widget var3 = var0[var2]; // L: 11587
-			if (var3 != null) { // L: 11588
-				if (var3.type == 0) { // L: 11589
-					if (var3.children != null) { // L: 11590
-						runComponentCloseListeners(var3.children, var1);
-					}
-
-					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id); // L: 11591
-					if (var4 != null) { // L: 11592
-						class7.runIntfCloseListeners(var4.group, var1);
-					}
-				}
-
-				ScriptEvent var5;
-				if (var1 == 0 && var3.onDialogAbort != null) { // L: 11594
-					var5 = new ScriptEvent(); // L: 11595
-					var5.widget = var3; // L: 11596
-					var5.args = var3.onDialogAbort; // L: 11597
-					WallObject.runScriptEvent(var5); // L: 11598
-				}
-
-				if (var1 == 1 && var3.onSubChange != null) { // L: 11600
-					if (var3.childIndex >= 0) { // L: 11601
-						Widget var6 = class140.getWidget(var3.id); // L: 11602
-						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) { // L: 11603
-							continue;
-						}
-					}
-
-					var5 = new ScriptEvent(); // L: 11607
-					var5.widget = var3; // L: 11608
-					var5.args = var3.onSubChange; // L: 11609
-					WallObject.runScriptEvent(var5); // L: 11610
-				}
+		for (int var6 = 0; var6 < var4; ++var6) { // L: 19
+			char var7 = var1.charAt(var6); // L: 20
+			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) { // L: 21
+				var5[var6] = (byte)var7;
+			} else if (var7 == 8364) { // L: 22
+				var5[var6] = -128;
+			} else if (var7 == 8218) { // L: 23
+				var5[var6] = -126;
+			} else if (var7 == 402) { // L: 24
+				var5[var6] = -125;
+			} else if (var7 == 8222) { // L: 25
+				var5[var6] = -124;
+			} else if (var7 == 8230) { // L: 26
+				var5[var6] = -123;
+			} else if (var7 == 8224) {
+				var5[var6] = -122; // L: 27
+			} else if (var7 == 8225) { // L: 28
+				var5[var6] = -121;
+			} else if (var7 == 710) { // L: 29
+				var5[var6] = -120;
+			} else if (var7 == 8240) { // L: 30
+				var5[var6] = -119;
+			} else if (var7 == 352) { // L: 31
+				var5[var6] = -118;
+			} else if (var7 == 8249) { // L: 32
+				var5[var6] = -117;
+			} else if (var7 == 338) { // L: 33
+				var5[var6] = -116;
+			} else if (var7 == 381) { // L: 34
+				var5[var6] = -114;
+			} else if (var7 == 8216) { // L: 35
+				var5[var6] = -111;
+			} else if (var7 == 8217) { // L: 36
+				var5[var6] = -110;
+			} else if (var7 == 8220) { // L: 37
+				var5[var6] = -109;
+			} else if (var7 == 8221) { // L: 38
+				var5[var6] = -108;
+			} else if (var7 == 8226) { // L: 39
+				var5[var6] = -107;
+			} else if (var7 == 8211) { // L: 40
+				var5[var6] = -106;
+			} else if (var7 == 8212) { // L: 41
+				var5[var6] = -105;
+			} else if (var7 == 732) { // L: 42
+				var5[var6] = -104;
+			} else if (var7 == 8482) { // L: 43
+				var5[var6] = -103;
+			} else if (var7 == 353) { // L: 44
+				var5[var6] = -102;
+			} else if (var7 == 8250) { // L: 45
+				var5[var6] = -101;
+			} else if (var7 == 339) { // L: 46
+				var5[var6] = -100;
+			} else if (var7 == 382) { // L: 47
+				var5[var6] = -98;
+			} else if (var7 == 376) { // L: 48
+				var5[var6] = -97;
+			} else {
+				var5[var6] = 63; // L: 49
 			}
 		}
 
-	} // L: 11613
+		var0.writeSmartByteShort(var5.length); // L: 54
+		var0.offset += class405.huffman.compress(var5, 0, var5.length, var0.array, var0.offset); // L: 55
+		return var0.offset - var2; // L: 56
+	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1490202891"
+	)
+	public static void method4204() {
+		Arrays.fill(Varps.Varps_temp, 0); // L: 72
+		Arrays.fill(Varps.Varps_main, 0); // L: 73
+	} // L: 74
+
+	@ObfuscatedName("md")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-1925726734"
+	)
+	static final void method4199(int var0) {
+		if (ArchiveLoader.field1070.method6437(var0)) { // L: 12262
+			Widget[] var1 = ArchiveLoader.field1070.field3633[var0]; // L: 12263
+
+			for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12264
+				Widget var3 = var1[var2]; // L: 12265
+				if (var3 != null) { // L: 12266
+					var3.modelFrame = 0; // L: 12267
+					var3.modelFrameCycle = 0; // L: 12268
+				}
+			}
+
+		}
+	} // L: 12270
 }
