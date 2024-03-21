@@ -1,100 +1,78 @@
-import net.runelite.mapping.Export;
+import java.util.ArrayList;
+import java.util.Iterator;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jv")
+@ObfuscatedName("mh")
 @Implements("MusicPatchNode2")
 public class MusicPatchNode2 {
-	@ObfuscatedName("i")
-	@Export("Tiles_hue")
-	static int[] Tiles_hue;
-	@ObfuscatedName("c")
-	byte[] field3184;
-	@ObfuscatedName("v")
-	byte[] field3181;
-	@ObfuscatedName("q")
+	@ObfuscatedName("aq")
+	byte[] field3467;
+	@ObfuscatedName("aw")
+	byte[] field3466;
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 444022475
+		intValue = -1546619593
 	)
-	int field3182;
-	@ObfuscatedName("f")
+	int field3465;
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = -1028117213
+		intValue = 955065725
 	)
-	int field3190;
-	@ObfuscatedName("j")
+	int field3468;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = -1704743957
+		intValue = -2123728519
 	)
-	int field3185;
-	@ObfuscatedName("e")
+	int field3469;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 1934945847
+		intValue = -1834353121
 	)
-	int field3183;
-	@ObfuscatedName("g")
+	int field3470;
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = 986515665
+		intValue = 1077628681
 	)
-	int field3186;
-	@ObfuscatedName("w")
+	int field3471;
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = 952644039
+		intValue = 349360921
 	)
-	int field3187;
-	@ObfuscatedName("y")
+	int field3472;
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 270113767
+		intValue = -1864429963
 	)
-	int field3188;
+	int field3473;
 
 	MusicPatchNode2() {
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lfe;",
-		garbageValue = "527401858"
+		descriptor = "(Ljava/util/ArrayList;ZI)V",
+		garbageValue = "-822937371"
 	)
-	public static HealthBarDefinition method5244(int var0) {
-		HealthBarDefinition var1 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var0); // L: 32
-		if (var1 != null) { // L: 33
-			return var1;
-		} else {
-			byte[] var2 = HealthBarDefinition.HealthBarDefinition_archive.takeFile(33, var0); // L: 34
-			var1 = new HealthBarDefinition(); // L: 35
-			if (var2 != null) { // L: 36
-				var1.decode(new Buffer(var2));
-			}
-
-			HealthBarDefinition.HealthBarDefinition_cached.put(var1, (long)var0); // L: 37
-			return var1; // L: 38
+	static void method6109(ArrayList var0, boolean var1) {
+		if (!var1) { // L: 167
+			class321.field3484.clear(); // L: 168
 		}
-	}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-1387162064"
-	)
-	public static boolean method5243(char var0) {
-		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) { // L: 45
-			if (var0 != 0) { // L: 46
-				char[] var1 = class340.cp1252AsciiExtension; // L: 48
+		Iterator var2 = var0.iterator(); // L: 170
 
-				for (int var2 = 0; var2 < var1.length; ++var2) { // L: 49
-					char var3 = var1[var2]; // L: 50
-					if (var0 == var3) { // L: 52
-						return true;
-					}
+		while (var2.hasNext()) {
+			class333 var3 = (class333)var2.next(); // L: 171
+			if (var3.field3590 != -1 && var3.field3591 != -1) { // L: 173
+				if (!var1) { // L: 176
+					class321.field3484.add(var3); // L: 177
 				}
-			}
 
-			return false; // L: 57
-		} else {
-			return true;
+				class321.field3478.add(var3); // L: 179
+			}
 		}
-	}
+
+	} // L: 182
 }

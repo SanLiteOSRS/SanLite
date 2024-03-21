@@ -3,10 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dv")
+@ObfuscatedName("es")
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class UserComparator9 extends AbstractUserComparator {
 		this.reversed = var1; // L: 11
 	} // L: 12
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Lnm;Lnm;I)I",
-		garbageValue = "-582515893"
+		descriptor = "(Lry;Lry;B)I",
+		garbageValue = "-99"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -32,12 +32,33 @@ public class UserComparator9 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2); // L: 22
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Ldt;",
-		garbageValue = "6"
+		descriptor = "(B)Lsr;",
+		garbageValue = "73"
 	)
-	static class119[] method2599() {
-		return new class119[]{class119.field1497, class119.field1504, class119.field1505, class119.field1501, class119.field1492, class119.field1493, class119.field1494, class119.field1495, class119.field1496, class119.field1489, class119.field1498, class119.field1499, class119.field1500, class119.field1502, class119.field1488, class119.field1503, class119.field1491}; // L: 74
+	public static class469 method2965() {
+		synchronized(class469.field4845) { // L: 25
+			if (class469.field4842 == 0) { // L: 26
+				return new class469();
+			} else {
+				class469.field4845[--class469.field4842].method8627(); // L: 28
+				return class469.field4845[class469.field4842]; // L: 29
+			}
+		}
+	}
+
+	@ObfuscatedName("na")
+	@ObfuscatedSignature(
+		descriptor = "(Lng;B)Ljava/lang/String;",
+		garbageValue = "-127"
+	)
+	@Export("Widget_getSpellActionName")
+	static String Widget_getSpellActionName(Widget var0) {
+		if (TextureProvider.Widget_unpackTargetMask(class429.getWidgetFlags(var0)) == 0) { // L: 12784
+			return null;
+		} else {
+			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null; // L: 12785 12786 12788
+		}
 	}
 }

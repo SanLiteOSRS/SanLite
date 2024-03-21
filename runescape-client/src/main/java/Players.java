@@ -4,162 +4,90 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ca")
+@ObfuscatedName("ey")
 @Implements("Players")
 public class Players {
-	@ObfuscatedName("q")
-	static byte[] field1311;
-	@ObfuscatedName("f")
+	@ObfuscatedName("al")
+	static byte[] field1379;
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "[Lgn;"
+		descriptor = "[Lip;"
 	)
-	static class192[] field1304;
-	@ObfuscatedName("j")
+	static class233[] field1378;
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "[Lqt;"
+		descriptor = "[Luq;"
 	)
-	static Buffer[] field1307;
-	@ObfuscatedName("e")
+	static Buffer[] field1389;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 698385475
+		intValue = -880622585
 	)
 	@Export("Players_count")
 	static int Players_count;
-	@ObfuscatedName("g")
+	@ObfuscatedName("aa")
 	@Export("Players_indices")
 	static int[] Players_indices;
-	@ObfuscatedName("w")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = 581177589
+		intValue = -334792955
 	)
 	@Export("Players_emptyIdxCount")
 	static int Players_emptyIdxCount;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ao")
 	@Export("Players_emptyIndices")
 	static int[] Players_emptyIndices;
-	@ObfuscatedName("i")
+	@ObfuscatedName("au")
 	@Export("Players_regions")
 	static int[] Players_regions;
-	@ObfuscatedName("s")
+	@ObfuscatedName("ak")
 	@Export("Players_orientations")
 	static int[] Players_orientations;
-	@ObfuscatedName("t")
+	@ObfuscatedName("ah")
 	@Export("Players_targetIndices")
 	static int[] Players_targetIndices;
-	@ObfuscatedName("z")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = 1123966373
+		intValue = -2005939831
 	)
 	@Export("Players_pendingUpdateCount")
 	static int Players_pendingUpdateCount;
-	@ObfuscatedName("r")
+	@ObfuscatedName("af")
 	@Export("Players_pendingUpdateIndices")
 	static int[] Players_pendingUpdateIndices;
-	@ObfuscatedName("u")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lqt;"
+		descriptor = "Luq;"
 	)
-	static Buffer field1317;
-	@ObfuscatedName("bp")
+	static Buffer field1381;
+	@ObfuscatedName("jk")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "[Lvd;"
 	)
-	static GameBuild field1305;
+	static SpritePixels[] field1390;
 
 	static {
-		field1311 = new byte[2048]; // L: 18
-		field1304 = new class192[2048]; // L: 19
-		field1307 = new Buffer[2048]; // L: 20
-		Players_count = 0; // L: 21
-		Players_indices = new int[2048]; // L: 22
-		Players_emptyIdxCount = 0; // L: 23
-		Players_emptyIndices = new int[2048]; // L: 24
-		Players_regions = new int[2048]; // L: 25
-		Players_orientations = new int[2048]; // L: 26
-		Players_targetIndices = new int[2048]; // L: 27
-		Players_pendingUpdateCount = 0; // L: 28
-		Players_pendingUpdateIndices = new int[2048]; // L: 29
-		field1317 = new Buffer(new byte[5000]); // L: 30
+		field1379 = new byte[2048]; // L: 19
+		field1378 = new class233[2048]; // L: 20
+		field1389 = new Buffer[2048]; // L: 21
+		Players_count = 0; // L: 22
+		Players_indices = new int[2048]; // L: 23
+		Players_emptyIdxCount = 0; // L: 24
+		Players_emptyIndices = new int[2048]; // L: 25
+		Players_regions = new int[2048]; // L: 26
+		Players_orientations = new int[2048]; // L: 27
+		Players_targetIndices = new int[2048]; // L: 28
+		Players_pendingUpdateCount = 0; // L: 29
+		Players_pendingUpdateIndices = new int[2048]; // L: 30
+		field1381 = new Buffer(new byte[5000]); // L: 31
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;IIIIIII)V",
-		garbageValue = "1254271887"
+		descriptor = "(ZZI)Lvg;",
+		garbageValue = "-1785638983"
 	)
-	@Export("loadTerrain")
-	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var7;
-		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) { // L: 145
-			Tiles.Tiles_renderFlags[var1][var2][var3] = 0; // L: 146
-
-			while (true) {
-				var7 = var0.readUnsignedByte(); // L: 148
-				if (var7 == 0) { // L: 149
-					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -class14.method156(var2 + 932731 + var4, 556238 + var3 + var5) * 8; // L: 150
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240; // L: 151
-					}
-					break;
-				}
-
-				if (var7 == 1) { // L: 154
-					int var8 = var0.readUnsignedByte(); // L: 155
-					if (var8 == 1) { // L: 156
-						var8 = 0;
-					}
-
-					if (var1 == 0) { // L: 157
-						Tiles.Tiles_heights[0][var2][var3] = -var8 * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var8 * 8; // L: 158
-					}
-					break;
-				}
-
-				if (var7 <= 49) { // L: 161
-					Tiles.Tiles_overlays[var1][var2][var3] = var0.readByte(); // L: 162
-					Tiles.Tiles_shapes[var1][var2][var3] = (byte)((var7 - 2) / 4); // L: 163
-					Tiles.field996[var1][var2][var3] = (byte)(var7 - 2 + var6 & 3); // L: 164
-				} else if (var7 <= 81) { // L: 167
-					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var7 - 49); // L: 168
-				} else {
-					Tiles.Tiles_underlays[var1][var2][var3] = (byte)(var7 - 81); // L: 171
-				}
-			}
-		} else {
-			while (true) {
-				var7 = var0.readUnsignedByte(); // L: 176
-				if (var7 == 0) { // L: 177
-					break;
-				}
-
-				if (var7 == 1) { // L: 178
-					var0.readUnsignedByte(); // L: 179
-					break;
-				}
-
-				if (var7 <= 49) { // L: 182
-					var0.readUnsignedByte();
-				}
-			}
-		}
-
-	} // L: 185
-
-	@ObfuscatedName("le")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "94"
-	)
-	@Export("Clan_joinChat")
-	static final void Clan_joinChat(String var0) {
-		if (!var0.equals("")) { // L: 12233
-			PacketBufferNode var1 = EnumComposition.getPacketBufferNode(ClientPacket.field2942, Client.packetWriter.isaacCipher); // L: 12235
-			var1.packetBuffer.writeByte(ScriptEvent.stringCp1252NullTerminatedByteSize(var0)); // L: 12236
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12237
-			Client.packetWriter.addNode(var1); // L: 12238
-		}
-	} // L: 12239
+	static IndexedSprite method2785(boolean var0, boolean var1) {
+		return var0 ? (var1 ? class557.field5358 : class472.field4868) : (var1 ? UserComparator2.field5265 : class128.field1508); // L: 293
+	}
 }

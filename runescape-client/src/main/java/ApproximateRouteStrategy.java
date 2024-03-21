@@ -1,55 +1,66 @@
+import java.security.SecureRandom;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bn")
+@ObfuscatedName("cu")
 @Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
-	@ObfuscatedName("ek")
+	@ObfuscatedName("ah")
+	@Export("Tiles_lightness")
+	static int[] Tiles_lightness;
+	@ObfuscatedName("hm")
+	static SecureRandom field489;
+	@ObfuscatedName("qs")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Ltx;"
 	)
-	@Export("archive10")
-	static Archive archive10;
-	@ObfuscatedName("hp")
-	@ObfuscatedGetter(
-		intValue = 998883341
-	)
-	static int field466;
+	static class516 field488;
 
 	ApproximateRouteStrategy() {
-	} // L: 12551
+	} // L: 13157
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(IIILgv;I)Z",
-		garbageValue = "1278947831"
+		descriptor = "(IIILiz;I)Z",
+		garbageValue = "-101996106"
 	)
 	@Export("hasArrived")
-	public boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
-		return var2 == super.approxDestinationX && var3 == super.approxDestinationY; // L: 12555
+	protected boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
+		return var2 == super.approxDestinationX && var3 == super.approxDestinationY; // L: 13161
 	}
 
-	@ObfuscatedName("lt")
+	@ObfuscatedName("jp")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "1"
+		descriptor = "(IIIIIB)V",
+		garbageValue = "64"
 	)
-	static final void method1086(int var0, int var1) {
-		ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : class150.guestClanChannel; // L: 12249
-		if (var2 != null && var1 >= 0 && var1 < var2.method3113()) { // L: 12250
-			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1); // L: 12251
-			if (var3.rank == -1) { // L: 12252
-				String var4 = var3.username.getName(); // L: 12253
-				PacketBufferNode var5 = EnumComposition.getPacketBufferNode(ClientPacket.field2914, Client.packetWriter.isaacCipher); // L: 12254
-				var5.packetBuffer.writeByte(3 + ScriptEvent.stringCp1252NullTerminatedByteSize(var4)); // L: 12255
-				var5.packetBuffer.writeByte(var0); // L: 12256
-				var5.packetBuffer.writeShort(var1); // L: 12257
-				var5.packetBuffer.writeStringCp1252NullTerminated(var4); // L: 12258
-				Client.packetWriter.addNode(var5); // L: 12259
+	static void method1185(int var0, int var1, int var2, int var3, int var4) {
+		NodeDeque var5 = Client.groundItems[var0][var1][var2]; // L: 8406
+		if (var5 != null) { // L: 8407
+			for (TileItem var6 = (TileItem)var5.last(); var6 != null; var6 = (TileItem)var5.previous()) { // L: 8408 8409 8414
+				if ((var3 & 32767) == var6.id) { // L: 8410
+					var6.method2758(var4); // L: 8411
+					break;
+				}
 			}
 		}
-	} // L: 12260
+
+	} // L: 8417
+
+	@ObfuscatedName("no")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;S)V",
+		garbageValue = "233"
+	)
+	@Export("Clan_joinChat")
+	static final void Clan_joinChat(String var0) {
+		if (!var0.equals("")) { // L: 12710
+			PacketBufferNode var1 = ViewportMouse.getPacketBufferNode(ClientPacket.field3233, Client.packetWriter.isaacCipher); // L: 12712
+			var1.packetBuffer.writeByte(class145.stringCp1252NullTerminatedByteSize(var0)); // L: 12713
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 12714
+			Client.packetWriter.addNode(var1); // L: 12715
+		}
+	} // L: 12716
 }
