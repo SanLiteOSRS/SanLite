@@ -3,127 +3,80 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
-public class class150 extends class128 {
-	@ObfuscatedName("rf")
+@ObfuscatedName("fw")
+public class class150 extends class145 {
+	@ObfuscatedName("fc")
 	@ObfuscatedSignature(
-		descriptor = "Lex;"
+		descriptor = "Lom;"
 	)
-	@Export("guestClanChannel")
-	static ClanChannel guestClanChannel;
-	@ObfuscatedName("c")
+	static Archive field1703;
+	@ObfuscatedName("fz")
 	@ObfuscatedGetter(
-		longValue = -8713006525766535939L
+		intValue = 1471281011
 	)
-	long field1707;
-	@ObfuscatedName("v")
-	String field1708;
+	@Export("js5Port")
+	static int js5Port;
+	@ObfuscatedName("aq")
+	@ObfuscatedGetter(
+		intValue = 864379007
+	)
+	int field1704;
+	@ObfuscatedName("aw")
+	@ObfuscatedGetter(
+		intValue = -87635401
+	)
+	int field1702;
+	@ObfuscatedName("al")
+	@ObfuscatedGetter(
+		intValue = -1132385113
+	)
+	int field1707;
+	@ObfuscatedName("ai")
+	@ObfuscatedGetter(
+		intValue = 1342163369
+	)
+	int field1701;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Lfg;"
 	)
-	final class131 this$0;
+	final class148 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
+		descriptor = "(Lfg;)V"
 	)
-	class150(class131 var1) {
-		this.this$0 = var1;
-		this.field1707 = -1L; // L: 194
-		this.field1708 = null; // L: 195
-	} // L: 197
+	class150(class148 var1) {
+		this.this$0 = var1; // L: 289
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Luq;I)V",
+		garbageValue = "584073694"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 200
-			--var1.offset; // L: 201
-			this.field1707 = var1.readLong(); // L: 202
-		}
+	void vmethod3512(Buffer var1) {
+		this.field1704 = var1.readInt(); // L: 292
+		this.field1701 = var1.readInt(); // L: 293
+		this.field1702 = var1.readUnsignedByte(); // L: 294
+		this.field1707 = var1.readUnsignedByte(); // L: 295
+	} // L: 296
 
-		this.field1708 = var1.readStringCp1252NullTerminatedOrNull(); // L: 204
-	} // L: 205
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
+		descriptor = "(Lgt;I)V",
+		garbageValue = "406847376"
 	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2959(this.field1707, this.field1708); // L: 208
-	} // L: 209
+	void vmethod3513(ClanSettings var1) {
+		var1.method3319(this.field1704, this.field1701, this.field1702, this.field1707); // L: 299
+	} // L: 300
 
-	@ObfuscatedName("iv")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-22445945"
+		descriptor = "(II)V",
+		garbageValue = "1620728648"
 	)
-	static final void method3135(int var0, int var1) {
-		if (Client.menuOptionsCount >= 2 || Client.isItemSelected != 0 || Client.isSpellSelected) { // L: 8437
-			if (Client.showMouseOverText) { // L: 8438
-				int var2 = class240.method5005(); // L: 8439
-				String var3;
-				if (Client.isItemSelected == 1 && Client.menuOptionsCount < 2) { // L: 8441
-					var3 = "Use" + " " + Client.selectedItemName + " " + "->";
-				} else if (Client.isSpellSelected && Client.menuOptionsCount < 2) { // L: 8442
-					var3 = Client.selectedSpellActionName + " " + Client.selectedSpellName + " " + "->";
-				} else {
-					String var4;
-					if (var2 < 0) { // L: 8446
-						var4 = ""; // L: 8447
-					} else if (Client.menuTargets[var2].length() > 0) { // L: 8450
-						var4 = Client.menuActions[var2] + " " + Client.menuTargets[var2];
-					} else {
-						var4 = Client.menuActions[var2]; // L: 8451
-					}
-
-					var3 = var4; // L: 8453
-				}
-
-				if (Client.menuOptionsCount > 2) { // L: 8455
-					var3 = var3 + class122.colorStartTag(16777215) + " " + '/' + " " + (Client.menuOptionsCount - 2) + " more options";
-				}
-
-				TileItem.fontBold12.drawRandomAlphaAndSpacing(var3, var0 + 4, var1 + 15, 16777215, 0, Client.cycle / 1000); // L: 8456
-			}
-		}
-	} // L: 8457
-
-	@ObfuscatedName("jy")
-	@ObfuscatedSignature(
-		descriptor = "(Lkb;Lgs;IIZB)V",
-		garbageValue = "119"
-	)
-	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
-		String[] var5 = var1.inventoryActions; // L: 10868
-		byte var6 = -1; // L: 10869
-		String var7 = null; // L: 10870
-		if (var5 != null && var5[var3] != null) { // L: 10871
-			if (var3 == 0) { // L: 10872
-				var6 = 33;
-			} else if (var3 == 1) { // L: 10873
-				var6 = 34;
-			} else if (var3 == 2) {
-				var6 = 35; // L: 10874
-			} else if (var3 == 3) { // L: 10875
-				var6 = 36;
-			} else {
-				var6 = 37; // L: 10876
-			}
-
-			var7 = var5[var3]; // L: 10877
-		} else if (var3 == 4) { // L: 10880
-			var6 = 37; // L: 10881
-			var7 = "Drop"; // L: 10882
-		}
-
-		if (var6 != -1 && var7 != null) { // L: 10885
-			class268.insertMenuItem(var7, class122.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4); // L: 10886
-		}
-
-	} // L: 10888
+	static void method3272(int var0) {
+		JagexCache.method4224(14); // L: 2011
+		Login.field952 = var0; // L: 2012
+	} // L: 2013
 }

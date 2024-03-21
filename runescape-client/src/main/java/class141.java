@@ -3,109 +3,88 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ec")
-public class class141 extends class144 {
-	@ObfuscatedName("jm")
+@ObfuscatedName("fm")
+public enum class141 implements class390 {
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "Lfm;"
+	)
+	field1642(0, 0),
+	@ObfuscatedName("aw")
+	@ObfuscatedSignature(
+		descriptor = "Lfm;"
+	)
+	field1653(1, 1),
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "Lfm;"
+	)
+	field1641(2, 2),
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "Lfm;"
+	)
+	field1652(3, 3),
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "Lfm;"
+	)
+	field1645(4, 4),
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		descriptor = "Lfm;"
+	)
+	field1646(5, 5),
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "Lfm;"
+	)
+	field1647(6, 6),
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "Lfm;"
+	)
+	field1648(7, 7),
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "Lfm;"
+	)
+	field1649(8, 8);
+
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "Lng;"
+	)
+	static Widget field1644;
+	@ObfuscatedName("ik")
+	@ObfuscatedSignature(
+		descriptor = "Lpb;"
+	)
+	@Export("fontPlain12")
+	static Font fontPlain12;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = -1799721325
+		intValue = -614422849
 	)
-	@Export("oculusOrbFocalPointY")
-	static int oculusOrbFocalPointY;
-	@ObfuscatedName("c")
+	final int field1643;
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = 1400461077
+		intValue = 2028799887
 	)
-	int field1659;
-	@ObfuscatedName("v")
-	byte field1660;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 1585058459
-	)
-	int field1658;
-	@ObfuscatedName("f")
-	String field1656;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Leu;"
-	)
-	final class145 this$0;
+	final int field1651;
 
-	@ObfuscatedSignature(
-		descriptor = "(Leu;)V"
-	)
-	class141(class145 var1) {
-		this.this$0 = var1;
-		this.field1659 = -1; // L: 125
-	} // L: 130
+	class141(int var3, int var4) {
+		this.field1643 = var3; // L: 101
+		this.field1651 = var4; // L: 102
+	} // L: 103
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "(I)I",
+		garbageValue = "691209479"
 	)
-	void vmethod3137(Buffer var1) {
-		var1.readUnsignedByte(); // L: 133
-		this.field1659 = var1.readUnsignedShort(); // L: 134
-		this.field1660 = var1.readByte(); // L: 135
-		this.field1658 = var1.readUnsignedShort(); // L: 136
-		var1.readLong(); // L: 137
-		this.field1656 = var1.readStringCp1252NullTerminated(); // L: 138
-		var1.readUnsignedByte(); // L: 139
-	} // L: 140
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
-	)
-	void vmethod3138(ClanChannel var1) {
-		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field1659); // L: 143
-		var2.rank = this.field1660; // L: 144
-		var2.world = this.field1658; // L: 145
-		var2.username = new Username(this.field1656); // L: 146
-	} // L: 147
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-113948023"
-	)
-	public static int method3048(int var0) {
-		return (var0 & class438.field4680) - 1; // L: 26
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field1651; // L: 106
 	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIII)I",
-		garbageValue = "-612042966"
-	)
-	public static int method3044(int var0, int var1, int var2, int var3, int var4, int var5) {
-		if ((var5 & 1) == 1) { // L: 38
-			int var6 = var3; // L: 39
-			var3 = var4; // L: 40
-			var4 = var6; // L: 41
-		}
-
-		var2 &= 3; // L: 43
-		if (var2 == 0) { // L: 44
-			return var1;
-		} else if (var2 == 1) { // L: 45
-			return 7 - var0 - (var3 - 1);
-		} else {
-			return var2 == 2 ? 7 - var1 - (var4 - 1) : var0; // L: 46
-		}
-	}
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1644827355"
-	)
-	public static void method3047() {
-		ObjectComposition.ObjectDefinition_cached.clear(); // L: 429
-		ObjectComposition.ObjectDefinition_cachedModelData.clear(); // L: 430
-		ObjectComposition.ObjectDefinition_cachedEntities.clear(); // L: 431
-		ObjectComposition.ObjectDefinition_cachedModels.clear(); // L: 432
-	} // L: 433
 }
