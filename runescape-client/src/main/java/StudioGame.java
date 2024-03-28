@@ -4,52 +4,52 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kx")
+@ObfuscatedName("on")
 @Implements("StudioGame")
-public enum StudioGame implements MouseWheel {
-	@ObfuscatedName("c")
+public enum StudioGame implements class391 {
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lkx;"
+		descriptor = "Lon;"
 	)
 	@Export("runescape")
 	runescape("runescape", "RuneScape", 0),
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lkx;"
+		descriptor = "Lon;"
 	)
 	@Export("stellardawn")
 	stellardawn("stellardawn", "Stellar Dawn", 1),
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lkx;"
+		descriptor = "Lon;"
 	)
 	@Export("game3")
 	game3("game3", "Game 3", 2),
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lkx;"
+		descriptor = "Lon;"
 	)
 	@Export("game4")
 	game4("game4", "Game 4", 3),
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lkx;"
+		descriptor = "Lon;"
 	)
 	@Export("game5")
 	game5("game5", "Game 5", 4),
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lkx;"
+		descriptor = "Lon;"
 	)
 	@Export("oldscape")
 	oldscape("oldscape", "RuneScape 2007", 5);
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ab")
 	@Export("name")
 	public final String name;
-	@ObfuscatedName("w")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 1771412669
+		intValue = 972217003
 	)
 	@Export("id")
 	final int id;
@@ -59,39 +59,26 @@ public enum StudioGame implements MouseWheel {
 		this.id = var5; // L: 18
 	} // L: 19
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "800883718"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 22
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lqy;",
-		garbageValue = "-466654611"
+		descriptor = "(Ljava/lang/String;IB)V",
+		garbageValue = "-10"
 	)
-	@Export("FillMode_values")
-	public static FillMode[] FillMode_values() {
-		return new FillMode[]{FillMode.SOLID, FillMode.field4778, FillMode.field4783}; // L: 15
-	}
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "1723835093"
-	)
-	@Export("isCharPrintable")
-	public static boolean isCharPrintable(char var0) {
-		if (var0 >= ' ' && var0 <= '~') { // L: 197
-			return true;
-		} else if (var0 >= 160 && var0 <= 255) { // L: 198
-			return true;
-		} else {
-			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376; // L: 199
-		}
-	}
+	static final void method6870(String var0, int var1) {
+		PacketBufferNode var2 = class425.getPacketBufferNode(ClientPacket.field3227, Client.packetWriter.isaacCipher); // L: 244
+		var2.packetBuffer.writeByte(SequenceDefinition.stringCp1252NullTerminatedByteSize(var0) + 1); // L: 245
+		var2.packetBuffer.writeStringCp1252NullTerminated(var0); // L: 246
+		var2.packetBuffer.method9295(var1); // L: 247
+		Client.packetWriter.addNode(var2); // L: 248
+	} // L: 249
 }

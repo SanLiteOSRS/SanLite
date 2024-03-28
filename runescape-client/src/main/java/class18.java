@@ -1,90 +1,86 @@
-import java.util.Comparator;
-import java.util.Map.Entry;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
+import java.util.concurrent.Future;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("l")
-class class18 implements Comparator {
-	@ObfuscatedName("fm")
-	@ObfuscatedGetter(
-		intValue = 872496551
-	)
-	@Export("js5Port")
-	static int js5Port;
-	@ObfuscatedName("jt")
-	@ObfuscatedGetter(
-		intValue = 437863053
-	)
-	@Export("cameraX")
-	static int cameraX;
-	// $FF: synthetic field
+@ObfuscatedName("ap")
+public class class18 {
+	@ObfuscatedName("az")
+	Future field80;
+	@ObfuscatedName("ah")
+	String field81;
+
+	class18(Future var1) {
+		this.field80 = var1; // L: 10
+	} // L: 11
+
+	class18(String var1) {
+		this.method261(var1); // L: 14
+	} // L: 15
+
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Ls;"
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "2142627404"
 	)
-	final class10 this$0;
+	void method261(String var1) {
+		if (var1 == null) { // L: 18
+			var1 = "";
+		}
 
+		this.field81 = var1; // L: 19
+		if (this.field80 != null) { // L: 20
+			this.field80.cancel(true); // L: 21
+			this.field80 = null; // L: 22
+		}
+
+	} // L: 24
+
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Ls;)V"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "559620010"
 	)
-	class18(class10 var1) {
-		this.this$0 = var1; // L: 50
+	public final String method257() {
+		return this.field81; // L: 27
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Map$Entry;Ljava/util/Map$Entry;I)I",
-		garbageValue = "-175722815"
+		descriptor = "(I)Z",
+		garbageValue = "-741032955"
 	)
-	int method233(Entry var1, Entry var2) {
-		return ((Float)var2.getValue()).compareTo((Float)var1.getValue()); // L: 52
+	public boolean method256() {
+		return this.field81 != null || this.field80 == null; // L: 31
 	}
 
-	public int compare(Object var1, Object var2) {
-		return this.method233((Entry)var1, (Entry)var2); // L: 56
-	}
-
-	public boolean equals(Object var1) {
-		return super.equals(var1); // L: 60
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)Lbr;",
-		garbageValue = "123"
-	)
-	@Export("Messages_getByChannelAndID")
-	static Message Messages_getByChannelAndID(int var0, int var1) {
-		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 35
-		return var2.getMessage(var1); // L: 36
-	}
-
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "-80"
+		garbageValue = "61"
 	)
-	@Export("isKeyDown")
-	public static final boolean isKeyDown() {
-		synchronized(KeyHandler.KeyHandler_instance) { // L: 175
-			if (KeyHandler.field127 == KeyHandler.field147) { // L: 176
-				return false;
-			} else {
-				class272.field3196 = KeyHandler.field148[KeyHandler.field147]; // L: 177
-				HealthBar.field1258 = KeyHandler.field149[KeyHandler.field147]; // L: 178
-				KeyHandler.field147 = KeyHandler.field147 + 1 & 127; // L: 179
-				return true; // L: 180
+	public final boolean method258() {
+		return this.method256() ? true : this.field80.isDone(); // L: 35 36
+	}
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(I)Laa;",
+		garbageValue = "644655777"
+	)
+	public final class20 method259() {
+		if (this.method256()) { // L: 40
+			return new class20(this.field81);
+		} else if (!this.method258()) { // L: 41
+			return null;
+		} else {
+			try {
+				return (class20)this.field80.get(); // L: 43
+			} catch (Exception var3) { // L: 45
+				String var2 = "Error retrieving REST request reply"; // L: 46
+				System.err.println(var2 + "\r\n" + var3); // L: 47
+				this.method261(var2); // L: 48
+				return new class20(var2); // L: 49
 			}
 		}
-	}
-
-	@ObfuscatedName("im")
-	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-15"
-	)
-	static final boolean method234() {
-		return Client.isMenuOpen; // L: 8499
 	}
 }

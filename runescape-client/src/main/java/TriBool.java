@@ -1,36 +1,34 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nt")
+@ObfuscatedName("rb")
 @Implements("TriBool")
 public class TriBool {
-	@ObfuscatedName("uj")
-	@ObfuscatedGetter(
-		intValue = -1573630725
-	)
-	@Export("foundItemIndex")
-	static int foundItemIndex;
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lrb;"
 	)
 	@Export("TriBool_unknown")
 	public static final TriBool TriBool_unknown;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lrb;"
 	)
 	@Export("TriBool_true")
 	public static final TriBool TriBool_true;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lrb;"
 	)
 	@Export("TriBool_false")
 	public static final TriBool TriBool_false;
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "Lvl;"
+	)
+	static IndexedSprite field4811;
 
 	static {
 		TriBool_unknown = new TriBool(); // L: 4
@@ -41,17 +39,25 @@ public class TriBool {
 	TriBool() {
 	} // L: 8
 
-	@ObfuscatedName("fi")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "114016538"
+		descriptor = "(II)Luv;",
+		garbageValue = "-958861827"
 	)
-	static final void method6791(boolean var0) {
-		if (var0) { // L: 3020
-			Client.field515 = Login.field895 ? class124.field1544 : class124.field1550; // L: 3021
+	public static class525 method8249(int var0) {
+		class525 var1 = (class525)class525.DBTableType_cache.get((long)var0); // L: 23
+		if (var1 != null) { // L: 24
+			return var1;
 		} else {
-			Client.field515 = class19.clientPreferences.parameters.containsKey(Projectile.method1950(Login.Login_username)) ? class124.field1546 : class124.field1543; // L: 3024
-		}
+			byte[] var2 = class525.field5163.takeFile(39, var0); // L: 25
+			var1 = new class525(); // L: 26
+			if (var2 != null) { // L: 27
+				var1.method9148(new Buffer(var2));
+			}
 
-	} // L: 3026
+			var1.method9151(); // L: 28
+			class525.DBTableType_cache.put(var1, (long)var0); // L: 29
+			return var1; // L: 30
+		}
+	}
 }

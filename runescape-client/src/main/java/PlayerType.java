@@ -4,129 +4,150 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ky")
+@ObfuscatedName("ok")
 @Implements("PlayerType")
-public enum PlayerType implements MouseWheel {
-	@ObfuscatedName("c")
+public enum PlayerType implements class391 {
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
 	@Export("PlayerType_normal")
 	PlayerType_normal(0, -1, true, false, true),
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
 	@Export("PlayerType_playerModerator")
 	PlayerType_playerModerator(1, 0, true, true, true),
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
 	@Export("PlayerType_jagexModerator")
 	PlayerType_jagexModerator(2, 1, true, true, false),
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
 	@Export("PlayerType_ironman")
 	PlayerType_ironman(3, 2, false, false, true),
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
 	@Export("PlayerType_ultimateIronman")
 	PlayerType_ultimateIronman(4, 3, false, false, true),
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
 	@Export("PlayerType_hardcoreIronman")
 	PlayerType_hardcoreIronman(5, 10, false, false, true),
-	@ObfuscatedName("g")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3951(6, 22, false, false, true),
-	@ObfuscatedName("w")
+	field4343(6, 22, false, false, true),
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3952(7, 41, false, false, true),
-	@ObfuscatedName("y")
+	field4350(7, 41, false, false, true),
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3956(8, 42, false, false, true),
-	@ObfuscatedName("i")
+	field4342(8, 42, false, false, true),
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3954(9, 43, false, false, true),
-	@ObfuscatedName("s")
+	field4345(9, 43, false, false, true),
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3949(10, 44, false, false, true),
-	@ObfuscatedName("t")
+	field4341(10, 44, false, false, true),
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3945(11, 45, false, false, true),
-	@ObfuscatedName("z")
+	field4339(11, 45, false, false, true),
+	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3957(12, 46, false, false, true),
-	@ObfuscatedName("r")
+	field4344(12, 46, false, false, true),
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3958(13, 47, false, false, true),
-	@ObfuscatedName("u")
+	field4352(13, 47, false, false, true),
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3959(14, 48, false, false, true),
-	@ObfuscatedName("k")
+	field4346(14, 48, false, false, true),
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lok;"
 	)
-	field3960(15, 49, false, false, true);
+	field4347(15, 49, false, false, true),
+	@ObfuscatedName("au")
+	@ObfuscatedSignature(
+		descriptor = "Lok;"
+	)
+	field4348(16, 52, false, false, true);
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("fi")
+	@ObfuscatedSignature(
+		descriptor = "Lov;"
+	)
+	static Archive field4332;
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -1157893365
+		intValue = -393601945
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("x")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -982051127
+		intValue = -1453228269
 	)
 	@Export("modIcon")
 	public final int modIcon;
-	@ObfuscatedName("l")
+	@ObfuscatedName("av")
 	@Export("isPrivileged")
 	public final boolean isPrivileged;
-	@ObfuscatedName("a")
+	@ObfuscatedName("aa")
 	@Export("isUser")
 	public final boolean isUser;
 
 	PlayerType(int var3, int var4, boolean var5, boolean var6, boolean var7) {
-		this.id = var3; // L: 33
-		this.modIcon = var4; // L: 34
-		this.isPrivileged = var6; // L: 35
-		this.isUser = var7; // L: 36
-	} // L: 37
+		this.id = var3; // L: 34
+		this.modIcon = var4; // L: 35
+		this.isPrivileged = var6; // L: 36
+		this.isUser = var7; // L: 37
+	} // L: 38
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "800883718"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id; // L: 41
+		return this.id; // L: 42
 	}
+
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-1867370469"
+	)
+	static void method6892(int var0) {
+		class469.field4862 = var0; // L: 22
+		class469.field4866 = new class469[var0]; // L: 23
+		class277.field3054 = 0; // L: 24
+	} // L: 25
 }

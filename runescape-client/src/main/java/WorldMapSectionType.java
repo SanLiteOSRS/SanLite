@@ -3,51 +3,48 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("hv")
+@ObfuscatedName("kp")
 @Implements("WorldMapSectionType")
-public enum WorldMapSectionType implements MouseWheel {
-	@ObfuscatedName("c")
+public enum WorldMapSectionType implements class391 {
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lhv;"
+		descriptor = "Lkp;"
 	)
 	@Export("WORLDMAPSECTIONTYPE0")
-	WORLDMAPSECTIONTYPE0(1, (byte)0),
-	@ObfuscatedName("v")
+	WORLDMAPSECTIONTYPE0(3, (byte)0),
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lhv;"
+		descriptor = "Lkp;"
 	)
 	@Export("WORLDMAPSECTIONTYPE1")
-	WORLDMAPSECTIONTYPE1(3, (byte)1),
-	@ObfuscatedName("q")
+	WORLDMAPSECTIONTYPE1(1, (byte)1),
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lhv;"
+		descriptor = "Lkp;"
 	)
 	@Export("WORLDMAPSECTIONTYPE2")
 	WORLDMAPSECTIONTYPE2(2, (byte)2),
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "Lhv;"
+		descriptor = "Lkp;"
 	)
 	@Export("WORLDMAPSECTIONTYPE3")
 	WORLDMAPSECTIONTYPE3(0, (byte)3);
 
-	@ObfuscatedName("s")
-	public static short[] field2793;
-	@ObfuscatedName("eq")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Loc;"
 	)
-	@Export("archive9")
-	static Archive archive9;
-	@ObfuscatedName("j")
+	@Export("ItemComposition_modelArchive")
+	public static AbstractArchive ItemComposition_modelArchive;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -2074450081
+		intValue = 1965058737
 	)
 	@Export("type")
 	final int type;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@Export("id")
 	final byte id;
 
@@ -56,200 +53,271 @@ public enum WorldMapSectionType implements MouseWheel {
 		this.id = var4; // L: 22
 	} // L: 23
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "800883718"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id; // L: 27
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lhv;",
-		garbageValue = "0"
+		descriptor = "(B)[Lkp;",
+		garbageValue = "12"
 	)
-	static WorldMapSectionType[] method4950() {
-		return new WorldMapSectionType[]{WORLDMAPSECTIONTYPE1, WORLDMAPSECTIONTYPE2, WORLDMAPSECTIONTYPE3, WORLDMAPSECTIONTYPE0}; // L: 17
+	static WorldMapSectionType[] method5645() {
+		return new WorldMapSectionType[]{WORLDMAPSECTIONTYPE3, WORLDMAPSECTIONTYPE2, WORLDMAPSECTIONTYPE0, WORLDMAPSECTIONTYPE1}; // L: 17
 	}
 
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ia")
 	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-803910111"
+		descriptor = "(Ljava/lang/String;ZI)V",
+		garbageValue = "-1568358623"
 	)
-	static int method4953(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERTYPE) { // L: 2902
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2903
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].type(); // L: 2904
-			return 1; // L: 2905
-		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERITEM) { // L: 2907
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2908
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].id; // L: 2909
-			return 1; // L: 2910
-		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERPRICE) { // L: 2912
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2913
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].unitPrice; // L: 2914
-			return 1; // L: 2915
-		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERCOUNT) { // L: 2917
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2918
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].totalQuantity; // L: 2919
-			return 1; // L: 2920
-		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERCOMPLETEDCOUNT) { // L: 2922
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2923
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].currentQuantity; // L: 2924
-			return 1; // L: 2925
-		} else if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERCOMPLETEDGOLD) { // L: 2927
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2928
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = Client.grandExchangeOffers[var3].currentPrice; // L: 2929
-			return 1; // L: 2930
-		} else {
-			int var13;
-			if (var0 == ScriptOpcodes.STOCKMARKET_ISOFFEREMPTY) { // L: 2932
-				var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2933
-				var13 = Client.grandExchangeOffers[var3].status(); // L: 2934
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var13 == 0 ? 1 : 0; // L: 2935
-				return 1; // L: 2936
-			} else if (var0 == ScriptOpcodes.STOCKMARKET_ISOFFERSTABLE) { // L: 2938
-				var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2939
-				var13 = Client.grandExchangeOffers[var3].status(); // L: 2940
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var13 == 2 ? 1 : 0; // L: 2941
-				return 1; // L: 2942
-			} else if (var0 == ScriptOpcodes.STOCKMARKET_ISOFFERFINISHED) { // L: 2944
-				var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2945
-				var13 = Client.grandExchangeOffers[var3].status(); // L: 2946
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var13 == 5 ? 1 : 0; // L: 2947
-				return 1; // L: 2948
-			} else if (var0 == ScriptOpcodes.STOCKMARKET_ISOFFERADDING) { // L: 2950
-				var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2951
-				var13 = Client.grandExchangeOffers[var3].status(); // L: 2952
-				Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var13 == 1 ? 1 : 0; // L: 2953
-				return 1; // L: 2954
+	@Export("drawLoadingMessage")
+	static final void drawLoadingMessage(String var0, boolean var1) {
+		if (Client.showLoadingMessages) { // L: 4768
+			byte var2 = 4; // L: 4769
+			int var3 = var2 + 6; // L: 4770
+			int var4 = var2 + 6; // L: 4771
+			int var5 = class316.fontPlain12.lineWidth(var0, 250); // L: 4772
+			int var6 = class316.fontPlain12.lineCount(var0, 250) * 13; // L: 4773
+			Rasterizer2D.Rasterizer2D_fillRectangle(var3 - var2, var4 - var2, var2 + var2 + var5, var2 + var6 + var2, 0); // L: 4774
+			Rasterizer2D.Rasterizer2D_drawRectangle(var3 - var2, var4 - var2, var2 + var2 + var5, var2 + var6 + var2, 16777215); // L: 4775
+			class316.fontPlain12.drawLines(var0, var3, var4, var5, var6, 16777215, -1, 1, 1, 0); // L: 4776
+			GrandExchangeOfferWorldComparator.method7116(var3 - var2, var4 - var2, var2 + var2 + var5, var2 + var6 + var2); // L: 4777
+			if (var1) { // L: 4778
+				UserComparator9.rasterProvider.drawFull(0, 0); // L: 4779
 			} else {
-				boolean var12;
-				if (var0 == ScriptOpcodes.TRADINGPOST_SORTBY_NAME) { // L: 2956
-					var12 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 2957
-					if (class143.grandExchangeEvents != null) { // L: 2958
-						class143.grandExchangeEvents.sort(GrandExchangeEvents.GrandExchangeEvents_nameComparator, var12); // L: 2959
+				int var7 = var3; // L: 4782
+				int var8 = var4; // L: 4783
+				int var9 = var5; // L: 4784
+				int var10 = var6; // L: 4785
+
+				for (int var11 = 0; var11 < Client.rootWidgetCount; ++var11) { // L: 4787
+					if (Client.rootWidgetWidths[var11] + Client.rootWidgetXs[var11] > var7 && Client.rootWidgetXs[var11] < var9 + var7 && Client.rootWidgetHeights[var11] + Client.rootWidgetYs[var11] > var8 && Client.rootWidgetYs[var11] < var8 + var10) { // L: 4788
+						Client.field816[var11] = true;
+					}
+				}
+			}
+
+		}
+	} // L: 4792
+
+	@ObfuscatedName("ix")
+	@ObfuscatedSignature(
+		descriptor = "(IIIII)V",
+		garbageValue = "-2112871261"
+	)
+	@Export("drawEntities")
+	static final void drawEntities(int var0, int var1, int var2, int var3) {
+		++Client.viewportDrawCount; // L: 4795
+		if (class133.localPlayer.x >> 7 == Client.destinationX && class133.localPlayer.y >> 7 == Client.destinationY) { // L: 4797
+			Client.destinationX = 0; // L: 4798
+		}
+
+		NPC.method2650(); // L: 4801
+		if (Client.combatTargetPlayerIndex >= 0 && Client.players[Client.combatTargetPlayerIndex] != null) { // L: 4803
+			class167.addPlayerToScene(Client.players[Client.combatTargetPlayerIndex], false); // L: 4804
+		}
+
+		ServerPacket.addNpcsToScene(true); // L: 4807
+		NPCComposition.method3903(); // L: 4808
+		ServerPacket.addNpcsToScene(false); // L: 4809
+
+		int var6;
+		for (Projectile var4 = (Projectile)Client.projectiles.last(); var4 != null; var4 = (Projectile)Client.projectiles.previous()) { // L: 4811 4812 4850
+			if (var4.plane == class172.Client_plane && Client.cycle <= var4.cycleEnd) { // L: 4813
+				if (Client.cycle >= var4.cycleStart) { // L: 4814
+					NPC var17;
+					Player var18;
+					if (!var4.isMoving && var4.field979 != 0) { // L: 4815
+						if (var4.field979 > 0) { // L: 4816
+							var17 = Client.npcs[var4.field979 - 1]; // L: 4817
+							if (var17 != null && var17.x >= 0 && var17.x < 13312 && var17.y >= 0 && var17.y < 13312) { // L: 4818
+								var4.sourceX = var17.x; // L: 4819
+								var4.sourceY = var17.y; // L: 4820
+								var4.setDestination(var4.field972, var4.field973, var4.field974, Client.cycle); // L: 4821
+							}
+						} else {
+							var6 = -var4.field979 - 1; // L: 4826
+							if (var6 == Client.localPlayerIndex) { // L: 4827
+								var18 = class133.localPlayer;
+							} else {
+								var18 = Client.players[var6]; // L: 4828
+							}
+
+							if (var18 != null && var18.x >= 0 && var18.x < 13312 && var18.y >= 0 && var18.y < 13312) { // L: 4829
+								var4.sourceX = var18.x; // L: 4830
+								var4.sourceY = var18.y; // L: 4831
+								var4.setDestination(var4.field972, var4.field973, var4.field974, Client.cycle); // L: 4832
+							}
+						}
 					}
 
-					return 1; // L: 2961
-				} else if (var0 == ScriptOpcodes.TRADINGPOST_SORTBY_PRICE) { // L: 2963
-					var12 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 2964
-					if (class143.grandExchangeEvents != null) { // L: 2965
-						class143.grandExchangeEvents.sort(GrandExchangeEvents.GrandExchangeEvents_priceComparator, var12); // L: 2966
+					if (var4.targetIndex > 0) { // L: 4836
+						var17 = Client.npcs[var4.targetIndex - 1]; // L: 4837
+						if (var17 != null && var17.x >= 0 && var17.x < 13312 && var17.y >= 0 && var17.y < 13312) { // L: 4838
+							var4.setDestination(var17.x, var17.y, Canvas.getTileHeight(var17.x, var17.y, var4.plane) - var4.endHeight, Client.cycle);
+						}
 					}
 
-					return 1; // L: 2968
-				} else if (var0 == ScriptOpcodes.TRADINGPOST_SORTFILTERBY_WORLD) { // L: 2970
-					class446.Interpreter_intStackSize -= 2; // L: 2971
-					var12 = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize] == 1; // L: 2972
-					boolean var11 = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 1] == 1; // L: 2973
-					if (class143.grandExchangeEvents != null) { // L: 2974
-						Client.GrandExchangeEvents_worldComparator.filterWorlds = var11; // L: 2975
-						class143.grandExchangeEvents.sort(Client.GrandExchangeEvents_worldComparator, var12); // L: 2976
+					if (var4.targetIndex < 0) { // L: 4840
+						var6 = -var4.targetIndex - 1; // L: 4842
+						if (var6 == Client.localPlayerIndex) { // L: 4843
+							var18 = class133.localPlayer;
+						} else {
+							var18 = Client.players[var6]; // L: 4844
+						}
+
+						if (var18 != null && var18.x >= 0 && var18.x < 13312 && var18.y >= 0 && var18.y < 13312) { // L: 4845
+							var4.setDestination(var18.x, var18.y, Canvas.getTileHeight(var18.x, var18.y, var4.plane) - var4.endHeight, Client.cycle);
+						}
 					}
 
-					return 1; // L: 2978
-				} else if (var0 == ScriptOpcodes.TRADINGPOST_SORTBY_AGE) { // L: 2980
-					var12 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 2981
-					if (class143.grandExchangeEvents != null) { // L: 2982
-						class143.grandExchangeEvents.sort(GrandExchangeEvents.GrandExchangeEvents_ageComparator, var12); // L: 2983
-					}
+					var4.advance(Client.field545); // L: 4847
+					LoginType.scene.drawEntity(class172.Client_plane, (int)var4.x, (int)var4.y, (int)var4.z, 60, var4, var4.yaw, -1L, false); // L: 4848
+				}
+			} else {
+				var4.remove();
+			}
+		}
 
-					return 1; // L: 2985
-				} else if (var0 == ScriptOpcodes.TRADINGPOST_SORTBY_COUNT) { // L: 2987
-					var12 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize] == 1; // L: 2988
-					if (class143.grandExchangeEvents != null) { // L: 2989
-						class143.grandExchangeEvents.sort(GrandExchangeEvents.GrandExchangeEvents_quantityComparator, var12); // L: 2990
-					}
+		class421.method7808(); // L: 4853
+		SecureRandomFuture.setViewportShape(var0, var1, var2, var3, true); // L: 4854
+		var0 = Client.viewportOffsetX; // L: 4855
+		var1 = Client.viewportOffsetY; // L: 4856
+		var2 = Client.viewportWidth; // L: 4857
+		var3 = Client.viewportHeight; // L: 4858
+		Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1); // L: 4859
+		Rasterizer3D.method4576(); // L: 4860
+		Rasterizer2D.method9619(); // L: 4861
+		int var16 = Client.camAngleX; // L: 4862
+		if (Client.field612 / 256 > var16) { // L: 4863
+			var16 = Client.field612 / 256;
+		}
 
-					return 1; // L: 2992
-				} else if (var0 == ScriptOpcodes.TRADINGPOST_GETTOTALOFFERS) { // L: 2994
-					Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = class143.grandExchangeEvents == null ? 0 : class143.grandExchangeEvents.events.size(); // L: 2995
-					return 1; // L: 2996
+		if (Client.field780[4] && Client.field782[4] + 128 > var16) { // L: 4864
+			var16 = Client.field782[4] + 128;
+		}
+
+		int var5 = Client.camAngleY & 2047; // L: 4865
+		class128.method2989(class185.oculusOrbFocalPointX, FloorUnderlayDefinition.field2198, Skeleton.oculusOrbFocalPointY, var16, var5, UserComparator5.method2898(var16), var3); // L: 4866
+		int var7;
+		int var8;
+		if (!Client.isCameraLocked) { // L: 4868
+			var6 = ObjectComposition.method4130();
+		} else {
+			if (NPC.clientPreferences.method2459()) { // L: 4872
+				var7 = class172.Client_plane; // L: 4873
+			} else {
+				var8 = Canvas.getTileHeight(WorldMapLabelSize.cameraX, class193.cameraZ, class172.Client_plane); // L: 4876
+				if (var8 - MouseHandler.cameraY < 800 && (Tiles.Tiles_renderFlags[class172.Client_plane][WorldMapLabelSize.cameraX >> 7][class193.cameraZ >> 7] & 4) != 0) { // L: 4877
+					var7 = class172.Client_plane; // L: 4878
 				} else {
-					GrandExchangeEvent var4;
-					if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERWORLD) { // L: 2998
-						var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2999
-						var4 = (GrandExchangeEvent)class143.grandExchangeEvents.events.get(var3); // L: 3000
-						Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var4.world; // L: 3001
-						return 1; // L: 3002
-					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERNAME) { // L: 3004
-						var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 3005
-						var4 = (GrandExchangeEvent)class143.grandExchangeEvents.events.get(var3); // L: 3006
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4.getOfferName(); // L: 3007
-						return 1; // L: 3008
-					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERPREVIOUSNAME) { // L: 3010
-						var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 3011
-						var4 = (GrandExchangeEvent)class143.grandExchangeEvents.events.get(var3); // L: 3012
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4.getPreviousOfferName(); // L: 3013
-						return 1; // L: 3014
-					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERAGE) { // L: 3016
-						var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 3017
-						var4 = (GrandExchangeEvent)class143.grandExchangeEvents.events.get(var3); // L: 3018
-						long var5 = class115.method2692() - class270.field3177 - var4.age; // L: 3019
-						int var7 = (int)(var5 / 3600000L); // L: 3020
-						int var8 = (int)((var5 - (long)(var7 * 3600000)) / 60000L); // L: 3021
-						int var9 = (int)((var5 - (long)(var7 * 3600000) - (long)(var8 * 60000)) / 1000L); // L: 3022
-						String var10 = var7 + ":" + var8 / 10 + var8 % 10 + ":" + var9 / 10 + var9 % 10; // L: 3023
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var10; // L: 3024
-						return 1; // L: 3025
-					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERCOUNT) { // L: 3027
-						var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 3028
-						var4 = (GrandExchangeEvent)class143.grandExchangeEvents.events.get(var3); // L: 3029
-						Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var4.grandExchangeOffer.totalQuantity; // L: 3030
-						return 1; // L: 3031
-					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERPRICE) { // L: 3033
-						var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 3034
-						var4 = (GrandExchangeEvent)class143.grandExchangeEvents.events.get(var3); // L: 3035
-						Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var4.grandExchangeOffer.unitPrice; // L: 3036
-						return 1; // L: 3037
-					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERITEM) { // L: 3039
-						var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 3040
-						var4 = (GrandExchangeEvent)class143.grandExchangeEvents.events.get(var3); // L: 3041
-						Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = var4.grandExchangeOffer.id; // L: 3042
-						return 1; // L: 3043
-					} else {
-						return 2; // L: 3045
+					var7 = 3; // L: 4881
+				}
+			}
+
+			var6 = var7; // L: 4883
+		}
+
+		var7 = WorldMapLabelSize.cameraX; // L: 4885
+		var8 = MouseHandler.cameraY; // L: 4886
+		int var9 = class193.cameraZ; // L: 4887
+		int var10 = UserComparator10.cameraPitch; // L: 4888
+		int var11 = class17.cameraYaw; // L: 4889
+
+		int var12;
+		int var13;
+		for (var12 = 0; var12 < 5; ++var12) { // L: 4890
+			if (Client.field780[var12]) { // L: 4891
+				var13 = (int)(Math.random() * (double)(Client.field744[var12] * 2 + 1) - (double)Client.field744[var12] + Math.sin((double)Client.field784[var12] * ((double)Client.field548[var12] / 100.0D)) * (double)Client.field782[var12]); // L: 4892
+				if (var12 == 0) { // L: 4893
+					WorldMapLabelSize.cameraX += var13;
+				}
+
+				if (var12 == 1) { // L: 4894
+					MouseHandler.cameraY += var13;
+				}
+
+				if (var12 == 2) { // L: 4895
+					class193.cameraZ += var13;
+				}
+
+				if (var12 == 3) { // L: 4896
+					class17.cameraYaw = var13 + class17.cameraYaw & 2047;
+				}
+
+				if (var12 == 4) { // L: 4897
+					UserComparator10.cameraPitch += var13; // L: 4898
+					if (UserComparator10.cameraPitch < 128) { // L: 4899
+						UserComparator10.cameraPitch = 128;
+					}
+
+					if (UserComparator10.cameraPitch > 383) { // L: 4900
+						UserComparator10.cameraPitch = 383;
 					}
 				}
 			}
 		}
-	}
 
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "1351074150"
-	)
-	static int method4948(int var0, Script var1, boolean var2) {
-		if (var0 >= 7200 && var0 < 7204) { // L: 4649
-			class446.Interpreter_intStackSize -= 5; // L: 4650
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = -1; // L: 4651
-			return 1; // L: 4652
-		} else if (var0 == 7204) { // L: 4654
-			class446.Interpreter_intStackSize -= 6; // L: 4655
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = -1; // L: 4656
-			return 1; // L: 4657
-		} else if (var0 >= 7205 && var0 < 7209) { // L: 4659
-			Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize - 1] = -1; // L: 4660
-			return 1; // L: 4661
-		} else if (var0 == 7209) { // L: 4663
-			class446.Interpreter_intStackSize -= 2; // L: 4664
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = -1; // L: 4665
-			return 1; // L: 4666
-		} else if (var0 >= 7210 && var0 < 7214) { // L: 4668
-			--class446.Interpreter_intStackSize; // L: 4669
-			return 1; // L: 4670
-		} else if (var0 == 7214) { // L: 4672
-			class446.Interpreter_intStackSize -= 2; // L: 4673
-			return 1; // L: 4674
-		} else {
-			return 2; // L: 4676
+		var12 = MouseHandler.MouseHandler_x; // L: 4904
+		var13 = MouseHandler.MouseHandler_y; // L: 4905
+		if (MouseHandler.MouseHandler_lastButton != 0) { // L: 4906
+			var12 = MouseHandler.MouseHandler_lastPressedX; // L: 4907
+			var13 = MouseHandler.MouseHandler_lastPressedY; // L: 4908
 		}
-	}
+
+		int var14;
+		if (var12 >= var0 && var12 < var0 + var2 && var13 >= var1 && var13 < var3 + var1) { // L: 4910
+			var14 = var12 - var0; // L: 4911
+			int var15 = var13 - var1; // L: 4912
+			ViewportMouse.ViewportMouse_x = var14; // L: 4914
+			ViewportMouse.ViewportMouse_y = var15; // L: 4915
+			ViewportMouse.ViewportMouse_isInViewport = true; // L: 4916
+			ViewportMouse.ViewportMouse_entityCount = 0; // L: 4917
+			ViewportMouse.ViewportMouse_false0 = false; // L: 4918
+		} else {
+			ViewportMouse.ViewportMouse_isInViewport = false; // L: 4923
+			ViewportMouse.ViewportMouse_entityCount = 0; // L: 4924
+		}
+
+		class167.method3417(); // L: 4927
+		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, 0); // L: 4928
+		class167.method3417(); // L: 4929
+		var14 = Rasterizer3D.method4620(); // L: 4930
+		Rasterizer3D.method4562(UrlRequest.client.field172); // L: 4931
+		Rasterizer3D.field2611.field2889 = Client.viewportZoom; // L: 4932
+		LoginType.scene.draw(WorldMapLabelSize.cameraX, MouseHandler.cameraY, class193.cameraZ, UserComparator10.cameraPitch, class17.cameraYaw, var6); // L: 4933
+		Rasterizer3D.method4562(false); // L: 4934
+		if (Client.renderSelf) { // L: 4935
+			Rasterizer2D.method9605(); // L: 4936
+		}
+
+		Rasterizer3D.field2611.field2889 = var14; // L: 4938
+		class167.method3417(); // L: 4939
+		LoginType.scene.clearTempGameObjects(); // L: 4940
+		HealthBar.method2578(var0, var1, var2, var3); // L: 4941
+		class53.method1052(var0, var1); // L: 4942
+		((TextureProvider)Rasterizer3D.field2611.Rasterizer3D_textureLoader).animate(Client.field545); // L: 4943
+		class36.method664(var0, var1, var2, var3); // L: 4944
+		WorldMapLabelSize.cameraX = var7; // L: 4945
+		MouseHandler.cameraY = var8; // L: 4946
+		class193.cameraZ = var9; // L: 4947
+		UserComparator10.cameraPitch = var10; // L: 4948
+		class17.cameraYaw = var11; // L: 4949
+		if (Client.field521 && ChatChannel.field1023.method7059(true, false) == 0) { // L: 4950
+			Client.field521 = false;
+		}
+
+		if (Client.field521) { // L: 4951
+			Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, 0); // L: 4952
+			drawLoadingMessage("Loading - please wait.", false); // L: 4953
+		}
+
+	} // L: 4955
 }

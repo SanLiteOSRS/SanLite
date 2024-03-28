@@ -4,68 +4,67 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cw")
+@ObfuscatedName("dr")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@Export("args")
 	Object[] args;
-	@ObfuscatedName("v")
-	@Export("isMouseInputEvent")
-	boolean isMouseInputEvent;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ah")
+	boolean field1078;
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lnt;"
 	)
 	@Export("widget")
 	Widget widget;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 708016645
+		intValue = -1798935257
 	)
 	@Export("mouseX")
 	int mouseX;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -768277781
+		intValue = -1899347697
 	)
 	@Export("mouseY")
 	int mouseY;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = -1223835253
+		intValue = 572449949
 	)
 	@Export("opIndex")
 	int opIndex;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Lnt;"
 	)
 	@Export("dragTarget")
 	Widget dragTarget;
-	@ObfuscatedName("w")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 308775773
+		intValue = -862554869
 	)
 	@Export("keyTyped")
 	int keyTyped;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = -1014377791
+		intValue = 1619291901
 	)
 	@Export("keyPressed")
 	int keyPressed;
-	@ObfuscatedName("i")
+	@ObfuscatedName("al")
 	@Export("targetName")
 	String targetName;
-	@ObfuscatedName("s")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 643045145
+		intValue = 2000331233
 	)
-	int field1056;
-	@ObfuscatedName("t")
+	int field1087;
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = 1853302577
+		intValue = -2067849717
 	)
 	@Export("type")
 	int type;
@@ -74,77 +73,41 @@ public class ScriptEvent extends Node {
 		this.type = 76; // L: 19
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/Object;I)V",
-		garbageValue = "1631698731"
+		descriptor = "([Ljava/lang/Object;B)V",
+		garbageValue = "-46"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
 		this.args = var1; // L: 22
 	} // L: 23
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-59182126"
+		descriptor = "(IB)V",
+		garbageValue = "43"
 	)
 	@Export("setType")
 	public void setType(int var1) {
 		this.type = var1; // L: 26
 	} // L: 27
 
-	@ObfuscatedName("bf")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)I",
-		garbageValue = "-2093180066"
+		descriptor = "(Lnt;I)V",
+		garbageValue = "-1958973698"
 	)
-	@Export("stringCp1252NullTerminatedByteSize")
-	public static int stringCp1252NullTerminatedByteSize(String var0) {
-		return var0.length() + 1; // L: 117
-	}
+	public void method2305(Widget var1) {
+		this.widget = var1; // L: 30
+	} // L: 31
 
-	@ObfuscatedName("lf")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-372949524"
-	)
-	static void method2101() {
-		if (Client.field533 && class101.localPlayer != null) { // L: 12429
-			int var0 = class101.localPlayer.pathX[0]; // L: 12430
-			int var1 = class101.localPlayer.pathY[0]; // L: 12431
-			if (var0 < 0 || var1 < 0 || var0 >= 104 || var1 >= 104) { // L: 12432
-				return;
-			}
-
-			InterfaceParent.oculusOrbFocalPointX = class101.localPlayer.x; // L: 12433
-			int var2 = SceneTilePaint.getTileHeight(class101.localPlayer.x, class101.localPlayer.y, PacketWriter.Client_plane) - Client.camFollowHeight; // L: 12434
-			if (var2 < class181.field1992) { // L: 12435
-				class181.field1992 = var2;
-			}
-
-			class141.oculusOrbFocalPointY = class101.localPlayer.y; // L: 12436
-			Client.field533 = false; // L: 12437
-		}
-
-	} // L: 12439
-
-	@ObfuscatedName("lo")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-115976306"
+		garbageValue = "-1960766410"
 	)
-	static void method2106() {
-		if (UrlRequester.field1362 != null) { // L: 12460
-			Client.field770 = Client.cycle; // L: 12461
-			UrlRequester.field1362.method6035(); // L: 12462
-
-			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 12463
-				if (Client.players[var0] != null) { // L: 12464
-					UrlRequester.field1362.method6048(class28.baseX * 64 + (Client.players[var0].x >> 7), WorldMapLabelSize.baseY * 64 + (Client.players[var0].y >> 7)); // L: 12465
-				}
-			}
-		}
-
-	} // L: 12469
+	public static void method2306() {
+		InvDefinition.InvDefinition_cached.clear(); // L: 40
+	} // L: 41
 }

@@ -1,44 +1,69 @@
-import java.util.Comparator;
-import net.runelite.mapping.Export;
+import java.applet.Applet;
+import java.net.URL;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import netscape.javascript.JSObject;
 
-@ObfuscatedName("mg")
-class class360 implements Comparator {
-	@ObfuscatedName("c")
-	@Export("javaVendor")
-	public static String javaVendor;
-	// $FF: synthetic field
+@ObfuscatedName("nx")
+public class class360 {
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lmy;"
+		descriptor = "(Ljava/lang/String;ILjava/lang/String;I)Z",
+		garbageValue = "-627141573"
 	)
-	final class361 this$0;
+	static boolean method6859(String var0, int var1, String var2) {
+		if (var1 == 0) { // L: 54
+			try {
+				if (!class31.field150.startsWith("win")) { // L: 56
+					throw new Exception();
+				} else if (!var0.startsWith("http://") && !var0.startsWith("https://")) { // L: 57
+					throw new Exception();
+				} else {
+					String var14 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?&=,.%+-_#:/*"; // L: 58
 
-	@ObfuscatedSignature(
-		descriptor = "(Lmy;)V"
-	)
-	class360(class361 var1) {
-		this.this$0 = var1; // L: 7
-	}
+					for (int var4 = 0; var4 < var0.length(); ++var4) { // L: 59
+						if (var14.indexOf(var0.charAt(var4)) == -1) { // L: 60
+							throw new Exception();
+						}
+					}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Lmv;Lmv;I)I",
-		garbageValue = "796004144"
-	)
-	int method6532(class362 var1, class362 var2) {
-		if (var1.field4277 > var2.field4277) {
-			return 1; // L: 9
+					Runtime.getRuntime().exec("cmd /c start \"j\" \"" + var0 + "\""); // L: 62
+					return true; // L: 63
+				}
+			} catch (Throwable var8) { // L: 65
+				return false; // L: 66
+			}
+		} else if (var1 == 1) { // L: 69
+			try {
+				Applet var7 = class31.field153; // L: 72
+				Object[] var5 = new Object[]{(new URL(class31.field153.getCodeBase(), var0)).toString()}; // L: 73
+				Object var13 = JSObject.getWindow(var7).call(var2, var5); // L: 76
+				return var13 != null; // L: 79
+			} catch (Throwable var9) { // L: 81
+				return false; // L: 82
+			}
+		} else if (var1 == 2) { // L: 85
+			try {
+				class31.field153.getAppletContext().showDocument(new URL(class31.field153.getCodeBase(), var0), "_blank"); // L: 87
+				return true; // L: 88
+			} catch (Exception var10) { // L: 90
+				return false; // L: 91
+			}
+		} else if (var1 == 3) { // L: 94
+			try {
+				Applet var3 = class31.field153; // L: 96
+				JSObject.getWindow(var3).call("loggedout", (Object[])null); // L: 99
+			} catch (Throwable var12) { // L: 102
+			}
+
+			try {
+				class31.field153.getAppletContext().showDocument(new URL(class31.field153.getCodeBase(), var0), "_top"); // L: 104
+				return true; // L: 105
+			} catch (Exception var11) { // L: 107
+				return false; // L: 108
+			}
 		} else {
-			return var1.field4277 < var2.field4277 ? -1 : 0; // L: 10 11
+			throw new IllegalArgumentException(); // L: 111
 		}
-	}
-
-	public int compare(Object var1, Object var2) {
-		return this.method6532((class362)var1, (class362)var2); // L: 15
-	}
-
-	public boolean equals(Object var1) {
-		return super.equals(var1); // L: 19
 	}
 }

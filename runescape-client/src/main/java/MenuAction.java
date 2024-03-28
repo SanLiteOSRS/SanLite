@@ -4,103 +4,137 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bk")
+@ObfuscatedName("cf")
 @Implements("MenuAction")
 public class MenuAction {
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -513159761
+		intValue = -1692400061
 	)
 	@Export("param0")
 	int param0;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 312244153
+		intValue = -1598293749
 	)
 	@Export("param1")
 	int param1;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = 1134197845
+		intValue = 1279809643
 	)
 	@Export("opcode")
 	int opcode;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 59405457
+		intValue = 1751090427
 	)
 	@Export("identifier")
 	int identifier;
-	@ObfuscatedName("j")
-	@Export("action")
-	String action;
+	@ObfuscatedName("an")
+	@ObfuscatedGetter(
+		intValue = 1862470197
+	)
+	int field916;
+	@ObfuscatedName("ao")
+	String field913;
+	@ObfuscatedName("ab")
+	String field918;
 
 	MenuAction() {
-	} // L: 12524
+	} // L: 13120
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lny;",
-		garbageValue = "24881"
+		descriptor = "(Lur;Ljava/lang/String;I)I",
+		garbageValue = "349317824"
 	)
-	public static class387 method1884() {
-		synchronized(class387.field4393) { // L: 25
-			if (class387.field4395 == 0) { // L: 26
-				return new class387();
+	public static int method2088(Buffer var0, String var1) {
+		int var2 = var0.offset; // L: 18
+		int var4 = var1.length(); // L: 21
+		byte[] var5 = new byte[var4]; // L: 22
+
+		for (int var6 = 0; var6 < var4; ++var6) { // L: 23
+			char var7 = var1.charAt(var6); // L: 24
+			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) { // L: 25
+				var5[var6] = (byte)var7;
+			} else if (var7 == 8364) { // L: 26
+				var5[var6] = -128;
+			} else if (var7 == 8218) { // L: 27
+				var5[var6] = -126;
+			} else if (var7 == 402) { // L: 28
+				var5[var6] = -125;
+			} else if (var7 == 8222) { // L: 29
+				var5[var6] = -124;
+			} else if (var7 == 8230) { // L: 30
+				var5[var6] = -123;
+			} else if (var7 == 8224) {
+				var5[var6] = -122; // L: 31
+			} else if (var7 == 8225) { // L: 32
+				var5[var6] = -121;
+			} else if (var7 == 710) { // L: 33
+				var5[var6] = -120;
+			} else if (var7 == 8240) { // L: 34
+				var5[var6] = -119;
+			} else if (var7 == 352) { // L: 35
+				var5[var6] = -118;
+			} else if (var7 == 8249) { // L: 36
+				var5[var6] = -117;
+			} else if (var7 == 338) { // L: 37
+				var5[var6] = -116;
+			} else if (var7 == 381) { // L: 38
+				var5[var6] = -114;
+			} else if (var7 == 8216) { // L: 39
+				var5[var6] = -111;
+			} else if (var7 == 8217) { // L: 40
+				var5[var6] = -110;
+			} else if (var7 == 8220) { // L: 41
+				var5[var6] = -109;
+			} else if (var7 == 8221) { // L: 42
+				var5[var6] = -108;
+			} else if (var7 == 8226) { // L: 43
+				var5[var6] = -107;
+			} else if (var7 == 8211) {
+				var5[var6] = -106; // L: 44
+			} else if (var7 == 8212) { // L: 45
+				var5[var6] = -105;
+			} else if (var7 == 732) { // L: 46
+				var5[var6] = -104;
+			} else if (var7 == 8482) { // L: 47
+				var5[var6] = -103;
+			} else if (var7 == 353) { // L: 48
+				var5[var6] = -102;
+			} else if (var7 == 8250) { // L: 49
+				var5[var6] = -101;
+			} else if (var7 == 339) { // L: 50
+				var5[var6] = -100;
+			} else if (var7 == 382) { // L: 51
+				var5[var6] = -98;
+			} else if (var7 == 376) { // L: 52
+				var5[var6] = -97;
 			} else {
-				class387.field4393[--class387.field4395].method6956(); // L: 28
-				return class387.field4393[class387.field4395]; // L: 29
+				var5[var6] = 63; // L: 53
 			}
 		}
+
+		var0.writeSmartByteShort(var5.length); // L: 58
+		var0.offset += class352.huffman.compress(var5, 0, var5.length, var0.array, var0.offset); // L: 59
+		return var0.offset - var2; // L: 60
 	}
 
-	@ObfuscatedName("gi")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;IIS)V",
-		garbageValue = "4254"
+		descriptor = "(FFFFLfm;B)V",
+		garbageValue = "0"
 	)
-	@Export("checkIfMinimapClicked")
-	static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
-		if (Client.minimapState == 0 || Client.minimapState == 3) { // L: 3856
-			if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !class122.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) { // L: 3857
-				SpriteMask var3 = var0.getSpriteMask(true); // L: 3858
-				if (var3 == null) { // L: 3859
-					return;
-				}
-
-				int var4 = MouseHandler.MouseHandler_lastPressedX - var1; // L: 3860
-				int var5 = MouseHandler.MouseHandler_lastPressedY - var2; // L: 3861
-				if (var3.contains(var4, var5)) { // L: 3862
-					var4 -= var3.width / 2; // L: 3863
-					var5 -= var3.height / 2; // L: 3864
-					int var6 = Client.camAngleY & 2047; // L: 3865
-					int var7 = Rasterizer3D.Rasterizer3D_sine[var6]; // L: 3866
-					int var8 = Rasterizer3D.Rasterizer3D_cosine[var6]; // L: 3867
-					int var9 = var8 * var4 + var5 * var7 >> 11; // L: 3868
-					int var10 = var5 * var8 - var4 * var7 >> 11; // L: 3869
-					int var11 = var9 + class101.localPlayer.x >> 7; // L: 3870
-					int var12 = class101.localPlayer.y - var10 >> 7; // L: 3871
-					PacketBufferNode var13 = EnumComposition.getPacketBufferNode(ClientPacket.field2913, Client.packetWriter.isaacCipher); // L: 3873
-					var13.packetBuffer.writeByte(18); // L: 3874
-					var13.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0); // L: 3875
-					var13.packetBuffer.writeShort(class28.baseX * 64 + var11); // L: 3876
-					var13.packetBuffer.writeIntME(WorldMapLabelSize.baseY * 64 + var12); // L: 3877
-					var13.packetBuffer.writeByte(var4); // L: 3878
-					var13.packetBuffer.writeByte(var5); // L: 3879
-					var13.packetBuffer.writeShort(Client.camAngleY); // L: 3880
-					var13.packetBuffer.writeByte(57); // L: 3881
-					var13.packetBuffer.writeByte(0); // L: 3882
-					var13.packetBuffer.writeByte(0); // L: 3883
-					var13.packetBuffer.writeByte(89); // L: 3884
-					var13.packetBuffer.writeShort(class101.localPlayer.x); // L: 3885
-					var13.packetBuffer.writeShort(class101.localPlayer.y); // L: 3886
-					var13.packetBuffer.writeByte(63); // L: 3887
-					Client.packetWriter.addNode(var13); // L: 3888
-					Client.destinationX = var11; // L: 3889
-					Client.destinationY = var12; // L: 3890
-				}
-			}
-
-		}
-	} // L: 3893
+	static void method2087(float var0, float var1, float var2, float var3, class131 var4) {
+		float var5 = var1 - var0; // L: 338
+		float var6 = var2 - var1; // L: 339
+		float var7 = var3 - var2; // L: 340
+		float var8 = var6 - var5; // L: 341
+		var4.field1569 = var7 - var6 - var8; // L: 342
+		var4.field1564 = var8 + var8 + var8; // L: 343
+		var4.field1580 = var5 + var5 + var5; // L: 344
+		var4.field1581 = var0; // L: 345
+	} // L: 346
 }

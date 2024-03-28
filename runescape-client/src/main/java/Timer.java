@@ -4,155 +4,149 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ms")
+@ObfuscatedName("qm")
 @Implements("Timer")
 public class Timer {
-	@ObfuscatedName("pd")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -18121781
+		longValue = -8231557409147375753L
 	)
-	@Export("widgetDragDuration")
-	static int widgetDragDuration;
-	@ObfuscatedName("c")
+	long field4700;
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		longValue = -7534706657050485889L
+		longValue = 6642217131054963375L
 	)
-	long field4229;
-	@ObfuscatedName("v")
+	long field4697;
+	@ObfuscatedName("af")
+	public boolean field4696;
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		longValue = -5833618965012635637L
+		longValue = 7490225758762001347L
 	)
-	long field4222;
-	@ObfuscatedName("q")
-	public boolean field4223;
-	@ObfuscatedName("f")
+	long field4699;
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		longValue = 3038728060957111589L
+		longValue = -8633116534975608415L
 	)
-	long field4225;
-	@ObfuscatedName("j")
+	long field4707;
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		longValue = -6534297593738218343L
+		longValue = 4826269579713770151L
 	)
-	long field4224;
-	@ObfuscatedName("e")
+	long field4698;
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		longValue = -6100054900427269931L
+		intValue = -940805175
 	)
-	long field4226;
-	@ObfuscatedName("g")
+	int field4702;
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 1919878609
+		intValue = -1798271895
 	)
-	int field4230;
-	@ObfuscatedName("w")
+	int field4703;
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = 804777017
+		intValue = -150352439
 	)
-	int field4228;
-	@ObfuscatedName("y")
+	int field4704;
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 100565155
+		intValue = -506535383
 	)
-	int field4227;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -2082864779
-	)
-	int field4221;
+	int field4705;
 
 	public Timer() {
-		this.field4229 = -1L; // L: 7
-		this.field4222 = -1L; // L: 8
-		this.field4223 = false; // L: 9
-		this.field4225 = 0L; // L: 10
-		this.field4224 = 0L; // L: 11
-		this.field4226 = 0L; // L: 12
-		this.field4230 = 0; // L: 13
-		this.field4228 = 0; // L: 14
-		this.field4227 = 0; // L: 15
-		this.field4221 = 0; // L: 16
+		this.field4700 = -1L; // L: 7
+		this.field4697 = -1L; // L: 8
+		this.field4696 = false; // L: 9
+		this.field4699 = 0L; // L: 10
+		this.field4707 = 0L; // L: 11
+		this.field4698 = 0L; // L: 12
+		this.field4702 = 0; // L: 13
+		this.field4703 = 0; // L: 14
+		this.field4704 = 0; // L: 15
+		this.field4705 = 0; // L: 16
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "2014926456"
+		descriptor = "(B)V",
+		garbageValue = "21"
 	)
-	public void method6509() {
-		this.field4229 = class115.method2692(); // L: 19
+	public void method7912() {
+		this.field4700 = VerticalAlignment.method3924(); // L: 19
 	} // L: 20
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-2107977295"
+		garbageValue = "-1797301596"
 	)
-	public void method6510() {
-		if (-1L != this.field4229) { // L: 23
-			this.field4224 = class115.method2692() - this.field4229; // L: 24
-			this.field4229 = -1L; // L: 25
+	public void method7914() {
+		if (this.field4700 != -1L) { // L: 23
+			this.field4707 = VerticalAlignment.method3924() - this.field4700; // L: 24
+			this.field4700 = -1L; // L: 25
 		}
 
 	} // L: 27
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
 		descriptor = "(IB)V",
-		garbageValue = "1"
+		garbageValue = "-36"
 	)
-	public void method6528(int var1) {
-		this.field4222 = class115.method2692(); // L: 30
-		this.field4230 = var1; // L: 31
+	public void method7927(int var1) {
+		this.field4697 = VerticalAlignment.method3924(); // L: 30
+		this.field4702 = var1; // L: 31
 	} // L: 32
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-869956596"
+		garbageValue = "2079797857"
 	)
-	public void method6511() {
-		if (-1L != this.field4222) { // L: 35
-			this.field4225 = class115.method2692() - this.field4222; // L: 36
-			this.field4222 = -1L; // L: 37
+	public void method7915() {
+		if (-1L != this.field4697) { // L: 35
+			this.field4699 = VerticalAlignment.method3924() - this.field4697; // L: 36
+			this.field4697 = -1L; // L: 37
 		}
 
-		++this.field4227; // L: 39
-		this.field4223 = true; // L: 40
+		++this.field4704; // L: 39
+		this.field4696 = true; // L: 40
 	} // L: 41
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "665300300"
+		garbageValue = "324343159"
 	)
-	public void method6513() {
-		this.field4223 = false; // L: 44
-		this.field4228 = 0; // L: 45
+	public void method7916() {
+		this.field4696 = false; // L: 44
+		this.field4703 = 0; // L: 45
 	} // L: 46
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "29951237"
+		garbageValue = "2021279116"
 	)
-	public void method6514() {
-		this.method6511(); // L: 49
+	public void method7917() {
+		this.method7915(); // L: 49
 	} // L: 50
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "-1160086305"
+		descriptor = "(Lur;B)V",
+		garbageValue = "-19"
 	)
 	@Export("write")
 	public void write(Buffer var1) {
-		FloorOverlayDefinition.method3822(var1, this.field4224); // L: 53
-		FloorOverlayDefinition.method3822(var1, this.field4225); // L: 54
-		FloorOverlayDefinition.method3822(var1, this.field4226); // L: 55
-		var1.writeShort(this.field4230); // L: 56
-		var1.writeShort(this.field4228); // L: 57
-		var1.writeShort(this.field4227); // L: 58
-		var1.writeShort(this.field4221); // L: 59
+		WorldMapData_1.method5535(var1, this.field4707); // L: 53
+		WorldMapData_1.method5535(var1, this.field4699); // L: 54
+		WorldMapData_1.method5535(var1, this.field4698); // L: 55
+		var1.writeShort(this.field4702); // L: 56
+		var1.writeShort(this.field4703); // L: 57
+		var1.writeShort(this.field4704); // L: 58
+		var1.writeShort(this.field4705); // L: 59
 	} // L: 60
 }

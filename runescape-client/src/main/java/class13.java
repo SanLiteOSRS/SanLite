@@ -2,31 +2,27 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Hashtable;
-import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.DefaultTlsClient;
 import org.bouncycastle.crypto.tls.TlsAuthentication;
 
-@ObfuscatedName("r")
+@ObfuscatedName("ax")
 class class13 extends DefaultTlsClient {
-	@ObfuscatedName("w")
-	@Export("SpriteBuffer_spritePalette")
-	public static int[] SpriteBuffer_spritePalette;
-	@ObfuscatedName("iu")
-	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
+	@ObfuscatedName("gg")
+	@ObfuscatedGetter(
+		intValue = 1515401243
 	)
-	@Export("mapSceneSprites")
-	static IndexedSprite[] mapSceneSprites;
+	static int field60;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lz;"
+		descriptor = "Lai;"
 	)
 	final class12 this$1;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lz;)V"
+		descriptor = "(Lai;)V"
 	)
 	class13(class12 var1) {
 		this.this$1 = var1; // L: 285
@@ -53,4 +49,24 @@ class class13 extends DefaultTlsClient {
 	public TlsAuthentication getAuthentication() throws IOException {
 		return new class11(this); // L: 306
 	}
+
+	@ObfuscatedName("kd")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIIII)V",
+		garbageValue = "258076310"
+	)
+	static void method170(int var0, int var1, int var2, int var3, int var4, int var5) {
+		NodeDeque var6 = Client.groundItems[var0][var1][var2]; // L: 8395
+		if (var6 != null) { // L: 8396
+			for (TileItem var7 = (TileItem)var6.last(); var7 != null; var7 = (TileItem)var6.previous()) { // L: 8397 8398 8403
+				if ((var3 & 32767) == var7.id && var4 == var7.quantity) { // L: 8399
+					var7.quantity = var5; // L: 8400
+					break;
+				}
+			}
+
+			class477.method8529(var0, var1, var2); // L: 8405
+		}
+
+	} // L: 8407
 }

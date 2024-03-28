@@ -1,19 +1,28 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pt")
-public interface class420 extends Iterable {
-	@ObfuscatedName("c")
+@ObfuscatedName("qn")
+public class class420 extends class426 {
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-2111872296"
+		descriptor = "(Lqc;)V"
 	)
-	int vmethod7440(int var1);
+	public class420(class426 var1) {
+		super(var1); // L: 8
+		super.field4651 = "SwapSongTask"; // L: 9
+	} // L: 10
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/Object;S)V",
-		garbageValue = "31470"
+		descriptor = "(I)Z",
+		garbageValue = "-362428891"
 	)
-	void vmethod7441(int var1, Object var2);
+	public boolean vmethod7854() {
+		if (class321.field3495.size() > 1 && class321.field3495.get(0) != null && ((class333)class321.field3495.get(0)).field3613.isReady() && class321.field3495.get(1) != null && ((class333)class321.field3495.get(1)).field3613.isReady()) { // L: 14
+			class333 var1 = (class333)class321.field3495.get(0); // L: 15
+			class321.field3495.set(0, class321.field3495.get(1)); // L: 16
+			class321.field3495.set(1, var1); // L: 17
+		}
+
+		return true; // L: 19
+	}
 }

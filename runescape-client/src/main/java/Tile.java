@@ -4,129 +4,131 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gy")
+@ObfuscatedName("jh")
 @Implements("Tile")
 public final class Tile extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("iw")
+	static int[] field2599;
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -1461576443
+		intValue = -668451045
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 107736561
+		intValue = 867288095
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -1903824993
+		intValue = 401221575
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 183262573
+		intValue = -1598634067
 	)
 	@Export("originalPlane")
 	int originalPlane;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "Lhu;"
+		descriptor = "Ljs;"
 	)
 	@Export("paint")
 	SceneTilePaint paint;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "Lhs;"
+		descriptor = "Ljg;"
 	)
 	@Export("model")
 	SceneTileModel model;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lhi;"
+		descriptor = "Lku;"
 	)
 	@Export("wallObject")
 	WallObject wallObject;
-	@ObfuscatedName("w")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lhr;"
+		descriptor = "Lkm;"
 	)
 	@Export("decorativeObject")
 	DecorativeObject decorativeObject;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "Lge;"
+		descriptor = "Ljf;"
 	)
 	@Export("groundObject")
 	GroundObject groundObject;
-	@ObfuscatedName("i")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "Lgz;"
+		descriptor = "Ljc;"
 	)
 	@Export("itemLayer")
 	ItemLayer itemLayer;
-	@ObfuscatedName("s")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = -1959220913
+		intValue = -1426142267
 	)
 	@Export("gameObjectsCount")
 	int gameObjectsCount;
-	@ObfuscatedName("t")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "[Lhb;"
+		descriptor = "[Lkk;"
 	)
 	@Export("gameObjects")
 	GameObject[] gameObjects;
-	@ObfuscatedName("z")
+	@ObfuscatedName("ai")
 	@Export("gameObjectEdgeMasks")
 	int[] gameObjectEdgeMasks;
-	@ObfuscatedName("r")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = 1592606351
+		intValue = 1022218731
 	)
 	@Export("gameObjectsEdgeMask")
 	int gameObjectsEdgeMask;
-	@ObfuscatedName("u")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 876783023
+		intValue = -906793913
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("k")
+	@ObfuscatedName("aj")
 	@Export("drawPrimary")
 	boolean drawPrimary;
-	@ObfuscatedName("h")
+	@ObfuscatedName("au")
 	@Export("drawSecondary")
 	boolean drawSecondary;
-	@ObfuscatedName("x")
+	@ObfuscatedName("ay")
 	@Export("drawGameObjects")
 	boolean drawGameObjects;
-	@ObfuscatedName("l")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = -1840099321
+		intValue = 1376316457
 	)
 	@Export("drawGameObjectEdges")
 	int drawGameObjectEdges;
-	@ObfuscatedName("a")
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = 1630683853
+		intValue = -287320169
 	)
-	int field2333;
-	@ObfuscatedName("p")
+	int field2602;
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = -1394148627
+		intValue = 37074917
 	)
-	int field2334;
-	@ObfuscatedName("b")
+	int field2583;
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = -1332026471
+		intValue = 2057043439
 	)
-	int field2326;
-	@ObfuscatedName("n")
+	int field2604;
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "Lgy;"
+		descriptor = "Ljh;"
 	)
 	@Export("linkedBelowTile")
 	Tile linkedBelowTile;
@@ -140,26 +142,91 @@ public final class Tile extends Node {
 		this.y = var3; // L: 33
 	} // L: 34
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(IZB)Ljava/lang/String;",
-		garbageValue = "69"
+		descriptor = "(CLpv;I)C",
+		garbageValue = "994159739"
 	)
-	@Export("intToString")
-	public static String intToString(int var0, boolean var1) {
-		return var1 && var0 >= 0 ? class140.method3038(var0, 10, var1) : Integer.toString(var0); // L: 115 116
-	}
+	@Export("standardizeChar")
+	static char standardizeChar(char var0, Language var1) {
+		if (var0 >= 192 && var0 <= 255) { // L: 117
+			if (var0 >= 192 && var0 <= 198) { // L: 118
+				return 'A';
+			}
 
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "29"
-	)
-	public static int method4019(int var0) {
-		if (var0 > 0) { // L: 204
-			return 1;
+			if (var0 == 199) { // L: 119
+				return 'C';
+			}
+
+			if (var0 >= 200 && var0 <= 203) { // L: 120
+				return 'E';
+			}
+
+			if (var0 >= 204 && var0 <= 207) { // L: 121
+				return 'I';
+			}
+
+			if (var0 == 209 && var1 != Language.Language_ES) { // L: 122
+				return 'N';
+			}
+
+			if (var0 >= 210 && var0 <= 214) { // L: 123
+				return 'O';
+			}
+
+			if (var0 >= 217 && var0 <= 220) { // L: 124
+				return 'U';
+			}
+
+			if (var0 == 221) { // L: 125
+				return 'Y';
+			}
+
+			if (var0 == 223) { // L: 126
+				return 's';
+			}
+
+			if (var0 >= 224 && var0 <= 230) { // L: 127
+				return 'a';
+			}
+
+			if (var0 == 231) { // L: 128
+				return 'c';
+			}
+
+			if (var0 >= 232 && var0 <= 235) { // L: 129
+				return 'e';
+			}
+
+			if (var0 >= 236 && var0 <= 239) {
+				return 'i'; // L: 130
+			}
+
+			if (var0 == 241 && var1 != Language.Language_ES) { // L: 131
+				return 'n';
+			}
+
+			if (var0 >= 242 && var0 <= 246) { // L: 132
+				return 'o';
+			}
+
+			if (var0 >= 249 && var0 <= 252) { // L: 133
+				return 'u';
+			}
+
+			if (var0 == 253 || var0 == 255) { // L: 134
+				return 'y';
+			}
+		}
+
+		if (var0 == 338) { // L: 136
+			return 'O';
+		} else if (var0 == 339) { // L: 137
+			return 'o';
+		} else if (var0 == 376) { // L: 138
+			return 'Y';
 		} else {
-			return var0 < 0 ? -1 : 0; // L: 205 206
+			return var0; // L: 139
 		}
 	}
 }

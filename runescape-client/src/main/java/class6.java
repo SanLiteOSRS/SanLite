@@ -3,95 +3,64 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("g")
-public enum class6 implements MouseWheel {
-	@ObfuscatedName("c")
+@ObfuscatedName("ab")
+public enum class6 implements class391 {
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Lg;"
+		descriptor = "Lab;"
 	)
-	field17(0, 0);
+	field12(0, 0);
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "Lqu;"
-	)
-	@Export("titlebuttonSprite")
-	static IndexedSprite titlebuttonSprite;
-	@ObfuscatedName("ef")
-	@ObfuscatedSignature(
-		descriptor = "Llc;"
-	)
-	@Export("archive17")
-	static Archive archive17;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -1659874385
+		intValue = 1286983601
 	)
-	public final int field16;
-	@ObfuscatedName("q")
+	final int field13;
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -162249617
+		intValue = 244219453
 	)
-	final int field15;
+	final int field11;
 
 	class6(int var3, int var4) {
-		this.field16 = var3; // L: 12
-		this.field15 = var4; // L: 13
+		this.field13 = var3; // L: 12
+		this.field11 = var4; // L: 13
 	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "800883718"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field15; // L: 18
+		return this.field11; // L: 18
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-1172724173"
+		descriptor = "(Ljava/lang/String;B)V",
+		garbageValue = "49"
 	)
-	public static boolean method37() {
-		ReflectionCheck var0 = (ReflectionCheck)class33.reflectionChecks.last(); // L: 28
-		return var0 != null; // L: 29
-	}
+	static final void method40(String var0) {
+		SecureRandomCallable.addGameMessage(30, "", var0); // L: 122
+	} // L: 123
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("ku")
 	@ObfuscatedSignature(
-		descriptor = "(IIILgk;II)V",
-		garbageValue = "565551340"
+		descriptor = "(IIIIII)V",
+		garbageValue = "-1441606661"
 	)
-	static void method38(int var0, int var1, int var2, ObjectComposition var3, int var4) {
-		ObjectSound var5 = new ObjectSound(); // L: 67
-		var5.plane = var0; // L: 68
-		var5.x = var1 * 16384; // L: 69
-		var5.y = var2 * 128; // L: 70
-		int var6 = var3.sizeX; // L: 71
-		int var7 = var3.sizeY; // L: 72
-		if (var4 == 1 || var4 == 3) { // L: 73
-			var6 = var3.sizeY; // L: 74
-			var7 = var3.sizeX; // L: 75
+	static void method42(int var0, int var1, int var2, int var3, int var4) {
+		NodeDeque var5 = Client.groundItems[var0][var1][var2]; // L: 8381
+		if (var5 != null) { // L: 8382
+			for (TileItem var6 = (TileItem)var5.last(); var6 != null; var6 = (TileItem)var5.previous()) { // L: 8383 8384 8389
+				if ((var3 & 32767) == var6.id) { // L: 8385
+					var6.method2680(var4); // L: 8386
+					break;
+				}
+			}
 		}
 
-		var5.maxX = (var6 + var1) * 16384; // L: 77
-		var5.maxY = (var7 + var2) * 128; // L: 78
-		var5.soundEffectId = var3.ambientSoundId; // L: 79
-		var5.field812 = var3.int7 * 128; // L: 80
-		var5.field819 = var3.int5; // L: 81
-		var5.field811 = var3.int6; // L: 82
-		var5.soundEffectIds = var3.soundEffectIds; // L: 83
-		if (var3.transforms != null) { // L: 84
-			var5.obj = var3; // L: 85
-			var5.set(); // L: 86
-		}
-
-		ObjectSound.objectSounds.addFirst(var5); // L: 88
-		if (var5.soundEffectIds != null) { // L: 89
-			var5.field809 = var5.field819 + (int)(Math.random() * (double)(var5.field811 - var5.field819));
-		}
-
-	} // L: 90
+	} // L: 8392
 }

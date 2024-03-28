@@ -3,32 +3,29 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bg")
+@ObfuscatedName("cc")
 @Implements("ScriptFrame")
 public class ScriptFrame {
-	@ObfuscatedName("cw")
+	@ObfuscatedName("df")
+	static boolean field460;
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
-	)
-	@Export("worldSelectBackSprites")
-	static SpritePixels[] worldSelectBackSprites;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lbi;"
+		descriptor = "Ldn;"
 	)
 	@Export("script")
 	Script script;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 1512825097
+		intValue = -1861957827
 	)
 	@Export("pc")
 	int pc;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@Export("intLocals")
 	int[] intLocals;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@Export("stringLocals")
 	String[] stringLocals;
 
@@ -36,55 +33,59 @@ public class ScriptFrame {
 		this.pc = -1; // L: 5
 	} // L: 9
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgc;",
-		garbageValue = "12"
+		descriptor = "(ILdn;ZB)I",
+		garbageValue = "41"
 	)
-	@Export("SequenceDefinition_get")
-	public static SequenceDefinition SequenceDefinition_get(int var0) {
-		SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0); // L: 52
-		if (var1 != null) { // L: 53
-			return var1;
+	static int method1147(int var0, Script var1, boolean var2) {
+		Widget var7;
+		if (var0 != ScriptOpcodes.CC_CALLONRESIZE && var0 != ScriptOpcodes.IF_CALLONRESIZE) { // L: 1636
+			int var4;
+			if (var0 == ScriptOpcodes.CC_TRIGGEROP) { // L: 1653
+				var7 = var2 ? class475.scriptDotWidget : class535.field5236; // L: 1654
+				var4 = Interpreter.Interpreter_intStack[--class19.Interpreter_intStackSize]; // L: 1655
+				if (var4 >= 1 && var4 <= 10) { // L: 1656
+					class103 var8 = new class103(var4, var7.id, var7.childIndex, var7.itemId); // L: 1659
+					Interpreter.field867.add(var8); // L: 1660
+					return 1; // L: 1661
+				} else {
+					throw new RuntimeException(); // L: 1657
+				}
+			} else if (var0 == ScriptOpcodes.IF_TRIGGEROP) { // L: 1663
+				class19.Interpreter_intStackSize -= 3; // L: 1664
+				int var3 = Interpreter.Interpreter_intStack[class19.Interpreter_intStackSize]; // L: 1665
+				var4 = Interpreter.Interpreter_intStack[class19.Interpreter_intStackSize + 1]; // L: 1666
+				int var5 = Interpreter.Interpreter_intStack[class19.Interpreter_intStackSize + 2]; // L: 1667
+				if (var5 >= 1 && var5 <= 10) { // L: 1668
+					class103 var6 = new class103(var5, var3, var4, class243.field2620.method6281(var3).itemId); // L: 1671
+					Interpreter.field867.add(var6); // L: 1672
+					return 1; // L: 1673
+				} else {
+					throw new RuntimeException(); // L: 1669
+				}
+			} else {
+				return 2; // L: 1675
+			}
+		} else if (Interpreter.field875 >= 10) { // L: 1637
+			throw new RuntimeException(); // L: 1638
 		} else {
-			byte[] var2 = SequenceDefinition.SequenceDefinition_archive.takeFile(12, var0); // L: 54
-			var1 = new SequenceDefinition(); // L: 55
-			if (var2 != null) { // L: 56
-				var1.decode(new Buffer(var2));
+			if (var0 >= 2000) { // L: 1641
+				var7 = class243.field2620.method6281(Interpreter.Interpreter_intStack[--class19.Interpreter_intStackSize]); // L: 1642
+			} else {
+				var7 = var2 ? class475.scriptDotWidget : class535.field5236; // L: 1644
 			}
 
-			var1.postDecode(); // L: 57
-			SequenceDefinition.SequenceDefinition_cached.put(var1, (long)var0); // L: 58
-			return var1; // L: 59
+			if (var7.onResize == null) { // L: 1645
+				return 0;
+			} else {
+				ScriptEvent var9 = new ScriptEvent(); // L: 1646
+				var9.widget = var7; // L: 1647
+				var9.args = var7.onResize; // L: 1648
+				var9.field1087 = Interpreter.field875 + 1; // L: 1649
+				Client.scriptEvents.addFirst(var9); // L: 1650
+				return 1; // L: 1651
+			}
 		}
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(III)Lkb;",
-		garbageValue = "114682209"
-	)
-	@Export("getWidgetChild")
-	public static Widget getWidgetChild(int var0, int var1) {
-		Widget var2 = class140.getWidget(var0); // L: 230
-		if (var1 == -1) { // L: 231
-			return var2;
-		} else {
-			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null; // L: 232 233
-		}
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ldf;",
-		garbageValue = "-246877585"
-	)
-	static class123 method1052(int var0) {
-		class123 var1 = (class123)Actor.findEnumerated(Interpreter.method1866(), var0); // L: 126
-		if (var1 == null) {
-			var1 = class123.field1528; // L: 127
-		}
-
-		return var1; // L: 128
 	}
 }

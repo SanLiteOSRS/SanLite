@@ -1,8 +1,7 @@
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("kc")
-public class class300 {
-	static {
-		Math.sqrt(8192.0D); // L: 9
-	} // L: 10
+@ObfuscatedName("li")
+public interface class300 {
+	@ObfuscatedName("az")
+	void method5837(Object var1);
 }
