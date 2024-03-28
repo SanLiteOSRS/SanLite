@@ -1,69 +1,81 @@
+import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("go")
-public class class193 {
-	@ObfuscatedName("q")
-	@Export("directions")
-	public static int[][] directions;
-	@ObfuscatedName("f")
-	@Export("distances")
-	public static int[][] distances;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = -1258310083
+@ObfuscatedName("hh")
+public class class193 extends DualNode {
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "Llt;"
 	)
-	public static int field2219;
-	@ObfuscatedName("w")
-	@Export("bufferX")
-	public static int[] bufferX;
-	@ObfuscatedName("y")
-	@Export("bufferY")
-	public static int[] bufferY;
+	public static EvictingDualNodeHashTable field1990;
+	@ObfuscatedName("at")
+	static File field1986;
+	@ObfuscatedName("kk")
+	@ObfuscatedGetter(
+		intValue = -1300460723
+	)
+	@Export("cameraZ")
+	static int cameraZ;
 
 	static {
-		directions = new int[128][128]; // L: 6
-		distances = new int[128][128]; // L: 7
-		bufferX = new int[4096]; // L: 11
-		bufferY = new int[4096]; // L: 12
+		field1990 = new EvictingDualNodeHashTable(64); // L: 7
 	}
 
-	@ObfuscatedName("ju")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIII)V",
-		garbageValue = "628542116"
+		descriptor = "(IS)Lio;",
+		garbageValue = "256"
 	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (WorldMapSection2.loadInterface(var0)) { // L: 10078
-			class12.field62 = null; // L: 10085
-			class14.drawInterface(SoundCache.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7); // L: 10086
-			if (class12.field62 != null) { // L: 10087
-				class14.drawInterface(class12.field62, -1412584499, var1, var2, var3, var4, UserComparator5.field1389, SecureRandomFuture.field960, var7); // L: 10088
-				class12.field62 = null; // L: 10089
-			}
-
+	public static HitSplatDefinition method3723(int var0) {
+		HitSplatDefinition var1 = (HitSplatDefinition)HitSplatDefinition.HitSplatDefinition_cached.get((long)var0); // L: 46
+		if (var1 != null) { // L: 47
+			return var1;
 		} else {
-			if (var7 != -1) { // L: 10079
-				Client.field703[var7] = true;
-			} else {
-				for (int var8 = 0; var8 < 100; ++var8) { // L: 10081
-					Client.field703[var8] = true;
-				}
+			byte[] var2 = HitSplatDefinition.HitSplatDefinition_archive.takeFile(32, var0); // L: 48
+			var1 = new HitSplatDefinition(); // L: 49
+			if (var2 != null) { // L: 50
+				var1.decode(new Buffer(var2));
 			}
 
+			HitSplatDefinition.HitSplatDefinition_cached.put(var1, (long)var0); // L: 51
+			return var1; // L: 52
 		}
-	} // L: 10083 10091
+	}
 
-	@ObfuscatedName("ke")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "98"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "-1853820072"
 	)
-	static final int method3919() {
-		float var0 = 200.0F * ((float)class19.clientPreferences.method2254() - 0.5F); // L: 11835
-		return 100 - Math.round(var0); // L: 11836
+	@Export("addChatMessage")
+	static void addChatMessage(int var0, String var1, String var2, String var3) {
+		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 27
+		if (var4 == null) { // L: 28
+			var4 = new ChatChannel(); // L: 29
+			Messages.Messages_channels.put(var0, var4); // L: 30
+		}
+
+		Message var5 = var4.addMessage(var0, var1, var2, var3); // L: 32
+		Messages.Messages_hashTable.put(var5, (long)var5.count); // L: 33
+		Messages.Messages_queue.add(var5); // L: 34
+		Client.chatCycle = Client.cycleCntr; // L: 35
+	} // L: 36
+
+	@ObfuscatedName("ao")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "-299676250"
+	)
+	public static int method3722(int var0) {
+		--var0; // L: 66
+		var0 |= var0 >>> 1; // L: 67
+		var0 |= var0 >>> 2; // L: 68
+		var0 |= var0 >>> 4; // L: 69
+		var0 |= var0 >>> 8; // L: 70
+		var0 |= var0 >>> 16; // L: 71
+		return var0 + 1; // L: 72
 	}
 }

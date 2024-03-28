@@ -1,91 +1,85 @@
-import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("du")
-public class class126 extends class128 {
-	@ObfuscatedName("n")
+@ObfuscatedName("eg")
+public class class126 {
+	@ObfuscatedName("aw")
+	@Export("SpriteBuffer_spritePalette")
+	public static int[] SpriteBuffer_spritePalette;
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lgi;"
 	)
-	@Export("Widget_modelsArchive")
-	public static AbstractArchive Widget_modelsArchive;
-	@ObfuscatedName("cx")
-	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
-	)
-	@Export("worldSelectFlagSprites")
-	static IndexedSprite[] worldSelectFlagSprites;
-	@ObfuscatedName("ig")
-	@ObfuscatedSignature(
-		descriptor = "[Lqu;"
-	)
-	@Export("scrollBarSprites")
-	static IndexedSprite[] scrollBarSprites;
-	@ObfuscatedName("c")
+	static ClanChannel field1513;
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		longValue = -8228182624755456153L
+		intValue = -1398823501
 	)
-	long field1562;
-	@ObfuscatedName("v")
-	String field1559;
-	// $FF: synthetic field
+	int field1512;
+	@ObfuscatedName("ah")
+	float field1516;
+	@ObfuscatedName("af")
+	float field1511;
+	@ObfuscatedName("at")
+	float field1510;
+	@ObfuscatedName("an")
+	float field1509;
+	@ObfuscatedName("ao")
+	float field1514;
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lej;"
+		descriptor = "Leg;"
 	)
-	final class131 this$0;
+	class126 field1515;
 
-	@ObfuscatedSignature(
-		descriptor = "(Lej;)V"
-	)
-	class126(class131 var1) {
-		this.this$0 = var1;
-		this.field1562 = -1L; // L: 74
-		this.field1559 = null; // L: 75
-	} // L: 77
+	class126() {
+		this.field1511 = Float.MAX_VALUE; // L: 8
+		this.field1510 = Float.MAX_VALUE; // L: 9
+		this.field1509 = Float.MAX_VALUE; // L: 10
+		this.field1514 = Float.MAX_VALUE; // L: 11
+	} // L: 14
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;B)V",
-		garbageValue = "5"
+		descriptor = "(Lur;II)V",
+		garbageValue = "1527065551"
 	)
-	void vmethod3150(Buffer var1) {
-		if (var1.readUnsignedByte() != 255) { // L: 80
-			--var1.offset; // L: 81
-			this.field1562 = var1.readLong(); // L: 82
+	void method2945(Buffer var1, int var2) {
+		this.field1512 = var1.readShort(); // L: 17
+		this.field1516 = var1.method9273(); // L: 18
+		this.field1511 = var1.method9273(); // L: 19
+		this.field1510 = var1.method9273(); // L: 20
+		this.field1509 = var1.method9273(); // L: 21
+		this.field1514 = var1.method9273(); // L: 22
+	} // L: 23
+
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "(ILra;Lov;I)V",
+		garbageValue = "1244670288"
+	)
+	static void method2947(int var0, ArchiveDisk var1, Archive var2) {
+		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 44
+		var3.type = 1; // L: 45
+		var3.key = (long)var0; // L: 46
+		var3.archiveDisk = var1; // L: 47
+		var3.archive = var2; // L: 48
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 49
+			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 50
+		} // L: 51
+
+		synchronized(ArchiveDiskActionHandler.field4365) { // L: 53
+			if (ArchiveDiskActionHandler.field4360 == 0) { // L: 54
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler()); // L: 55
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setDaemon(true); // L: 56
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.start(); // L: 57
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setPriority(5); // L: 58
+			}
+
+			ArchiveDiskActionHandler.field4360 = 600; // L: 60
+			ArchiveDiskActionHandler.field4358 = false; // L: 61
 		}
-
-		this.field1559 = var1.readStringCp1252NullTerminatedOrNull(); // L: 84
-	} // L: 85
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Len;I)V",
-		garbageValue = "-1718344311"
-	)
-	void vmethod3149(ClanSettings var1) {
-		var1.method2956(this.field1562, this.field1559, 0); // L: 88
-	} // L: 89
-
-	@ObfuscatedName("km")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "78"
-	)
-	@Export("FriendSystem_invalidateIgnoreds")
-	static final void FriendSystem_invalidateIgnoreds() {
-		Iterator var0 = Messages.Messages_hashTable.iterator(); // L: 12195
-
-		while (var0.hasNext()) {
-			Message var1 = (Message)var0.next(); // L: 12196
-			var1.clearIsFromIgnored(); // L: 12198
-		}
-
-		if (Huffman.friendsChatManager != null) { // L: 12202
-			Huffman.friendsChatManager.invalidateIgnoreds(); // L: 12203
-		}
-
-	} // L: 12205
+	} // L: 64
 }

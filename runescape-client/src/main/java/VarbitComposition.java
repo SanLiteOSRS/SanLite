@@ -4,86 +4,83 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gx")
+@ObfuscatedName("ij")
 @Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Loc;"
 	)
 	@Export("VarbitDefinition_archive")
 	public static AbstractArchive VarbitDefinition_archive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Llt;"
 	)
 	@Export("VarbitDefinition_cached")
 	public static EvictingDualNodeHashTable VarbitDefinition_cached;
-	@ObfuscatedName("e")
-	static final int[] field1998;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ao")
+	static final int[] field2204;
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -1904553397
+		intValue = -954648043
 	)
 	@Export("baseVar")
 	public int baseVar;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 1678069445
+		intValue = 1144667469
 	)
 	@Export("startBit")
 	public int startBit;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1905765043
+		intValue = 724567733
 	)
 	@Export("endBit")
 	public int endBit;
 
 	static {
 		VarbitDefinition_cached = new EvictingDualNodeHashTable(64); // L: 11
-		field1998 = new int[32]; // L: 15
+		field2204 = new int[32]; // L: 15
 		int var0 = 2; // L: 18
 
 		for (int var1 = 0; var1 < 32; ++var1) { // L: 19
-			field1998[var1] = var0 - 1; // L: 20
+			field2204[var1] = var0 - 1; // L: 20
 			var0 += var0; // L: 21
 		}
 
 	} // L: 23
 
-	VarbitComposition() {
-	} // L: 25
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "-2021831653"
+		descriptor = "(Lur;B)V",
+		garbageValue = "-31"
 	)
 	@Export("decode")
-	void decode(Buffer var1) {
+	public void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 39
-			if (var2 == 0) { // L: 40
-				return; // L: 43
+			int var2 = var1.readUnsignedByte(); // L: 31
+			if (var2 == 0) { // L: 32
+				return; // L: 35
 			}
 
-			this.decodeNext(var1, var2); // L: 41
+			this.decodeNext(var1, var2); // L: 33
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;IB)V",
-		garbageValue = "98"
+		descriptor = "(Lur;II)V",
+		garbageValue = "-1679749468"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 1) { // L: 46
-			this.baseVar = var1.readUnsignedShort(); // L: 47
-			this.startBit = var1.readUnsignedByte(); // L: 48
-			this.endBit = var1.readUnsignedByte(); // L: 49
+		if (var2 == 1) { // L: 38
+			this.baseVar = var1.readUnsignedShort(); // L: 39
+			this.startBit = var1.readUnsignedByte(); // L: 40
+			this.endBit = var1.readUnsignedByte(); // L: 41
 		}
 
-	} // L: 52
+	} // L: 44
 }

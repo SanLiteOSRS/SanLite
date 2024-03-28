@@ -3,290 +3,163 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("i")
-public class class9 implements MouseWheel {
-	@ObfuscatedName("c")
+@ObfuscatedName("al")
+public class class9 implements class391 {
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "Li;"
-	)
-	public static final class9 field36;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "Li;"
+		descriptor = "Lal;"
 	)
 	public static final class9 field30;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "Li;"
+		descriptor = "Lal;"
+	)
+	public static final class9 field28;
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "Lal;"
+	)
+	static final class9 field29;
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		descriptor = "Lal;"
+	)
+	static final class9 field27;
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "Lal;"
 	)
 	static final class9 field31;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Li;"
-	)
-	static final class9 field39;
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "Li;"
-	)
-	static final class9 field33;
-	@ObfuscatedName("iq")
-	@ObfuscatedSignature(
-		descriptor = "[Lqe;"
-	)
-	@Export("mapDotSprites")
-	static SpritePixels[] mapDotSprites;
-	@ObfuscatedName("e")
+	@ObfuscatedName("is")
 	@ObfuscatedGetter(
-		intValue = -145879233
+		intValue = 818729035
 	)
-	int field29;
-	@ObfuscatedName("g")
-	String field35;
-	@ObfuscatedName("w")
-	boolean field40;
-	@ObfuscatedName("y")
-	boolean field37;
+	static int field36;
+	@ObfuscatedName("ud")
+	@ObfuscatedGetter(
+		intValue = 2033208005
+	)
+	static int field38;
+	@ObfuscatedName("ao")
+	@ObfuscatedGetter(
+		intValue = 906294433
+	)
+	int field32;
+	@ObfuscatedName("ab")
+	String field33;
+	@ObfuscatedName("aw")
+	boolean field34;
+	@ObfuscatedName("ad")
+	boolean field35;
 
 	static {
-		field36 = new class9(0, "POST", true, true); // L: 6
-		field30 = new class9(1, "GET", true, false); // L: 7
-		field31 = new class9(2, "PUT", false, true); // L: 8
-		field39 = new class9(3, "PATCH", false, true); // L: 9
-		field33 = new class9(4, "DELETE", false, true); // L: 10
+		field30 = new class9(0, "POST", true, true); // L: 6
+		field28 = new class9(1, "GET", true, false); // L: 7
+		field29 = new class9(2, "PUT", false, true); // L: 8
+		field27 = new class9(3, "PATCH", false, true); // L: 9
+		field31 = new class9(4, "DELETE", false, true); // L: 10
 	}
 
 	class9(int var1, String var2, boolean var3, boolean var4) {
-		this.field29 = var1; // L: 17
-		this.field35 = var2; // L: 18
-		this.field40 = var3; // L: 19
-		this.field37 = var4; // L: 20
-	} // L: 21
+		this.field32 = var1;
+		this.field33 = var2;
+		this.field34 = var3;
+		this.field35 = var4;
+	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-100"
+		descriptor = "(I)I",
+		garbageValue = "800883718"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field29; // L: 37
+		return this.field32; // L: 37
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "1680698316"
+		garbageValue = "-123083614"
 	)
-	boolean method61() {
-		return this.field40; // L: 24
+	boolean method68() {
+		return this.field34;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(S)Ljava/lang/String;",
-		garbageValue = "311"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "1604233669"
 	)
-	public String method64() {
-		return this.field35; // L: 28
+	public String method69() {
+		return this.field33; // L: 28
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-1657994418"
+		garbageValue = "2110880381"
 	)
-	boolean method62() {
-		return this.field37; // L: 32
+	boolean method70() {
+		return this.field35; // L: 32
 	}
 
-	@ObfuscatedName("ge")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1270247165"
+		descriptor = "(Ljava/lang/CharSequence;I)J",
+		garbageValue = "-638846758"
 	)
-	@Export("getWindowedMode")
-	static int getWindowedMode() {
-		return Client.isResizable ? 2 : 1; // L: 4367
+	public static long method83(CharSequence var0) {
+		long var1 = 0L; // L: 16
+		int var3 = var0.length(); // L: 17
+
+		for (int var4 = 0; var4 < var3; ++var4) { // L: 18
+			var1 *= 37L; // L: 19
+			char var5 = var0.charAt(var4); // L: 20
+			if (var5 >= 'A' && var5 <= 'Z') { // L: 21
+				var1 += (long)(var5 + 1 - 65);
+			} else if (var5 >= 'a' && var5 <= 'z') { // L: 22
+				var1 += (long)(var5 + 1 - 97);
+			} else if (var5 >= '0' && var5 <= '9') { // L: 23
+				var1 += (long)(var5 + 27 - 48);
+			}
+
+			if (var1 >= 177917621779460413L) { // L: 24
+				break;
+			}
+		}
+
+		while (var1 % 37L == 0L && 0L != var1) { // L: 26
+			var1 /= 37L;
+		}
+
+		return var1; // L: 27
 	}
 
-	@ObfuscatedName("jj")
+	@ObfuscatedName("mp")
 	@ObfuscatedSignature(
-		descriptor = "(Lkb;III)V",
-		garbageValue = "2138979483"
+		descriptor = "(IIIIIB)V",
+		garbageValue = "64"
 	)
-	@Export("Widget_addToMenu")
-	static final void Widget_addToMenu(Widget var0, int var1, int var2) {
-		if (var0.buttonType == 1) { // L: 10891
-			class4.insertMenuItemNoShift(var0.buttonText, "", 24, 0, 0, var0.id); // L: 10892
+	@Export("drawScrollBar")
+	static final void drawScrollBar(int var0, int var1, int var2, int var3, int var4) {
+		FriendSystem.scrollBarSprites[0].drawAt(var0, var1); // L: 11288
+		FriendSystem.scrollBarSprites[1].drawAt(var0, var3 + var1 - 16); // L: 11289
+		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1 + 16, 16, var3 - 32, Client.field560); // L: 11290
+		int var5 = var3 * (var3 - 32) / var4; // L: 11291
+		if (var5 < 8) { // L: 11292
+			var5 = 8;
 		}
 
-		String var3;
-		if (var0.buttonType == 2 && !Client.isSpellSelected) { // L: 10895
-			var3 = WorldMapIcon_0.Widget_getSpellActionName(var0); // L: 10896
-			if (var3 != null) { // L: 10897
-				class4.insertMenuItemNoShift(var3, class122.colorStartTag(65280) + var0.spellName, 25, 0, -1, var0.id); // L: 10898
-			}
-		}
-
-		if (var0.buttonType == 3) { // L: 10902
-			class4.insertMenuItemNoShift("Close", "", 26, 0, 0, var0.id); // L: 10903
-		}
-
-		if (var0.buttonType == 4) { // L: 10906
-			class4.insertMenuItemNoShift(var0.buttonText, "", 28, 0, 0, var0.id); // L: 10907
-		}
-
-		if (var0.buttonType == 5) { // L: 10910
-			class4.insertMenuItemNoShift(var0.buttonText, "", 29, 0, 0, var0.id); // L: 10911
-		}
-
-		if (var0.buttonType == 6 && Client.meslayerContinueWidget == null) { // L: 10914
-			class4.insertMenuItemNoShift(var0.buttonText, "", 30, 0, -1, var0.id); // L: 10915
-		}
-
-		int var4;
-		int var13;
-		if (var0.type == 2) { // L: 10918
-			var13 = 0; // L: 10919
-
-			for (var4 = 0; var4 < var0.height; ++var4) { // L: 10920
-				for (int var15 = 0; var15 < var0.width; ++var15) { // L: 10921
-					int var6 = (var0.paddingX + 32) * var15; // L: 10922
-					int var7 = (var0.paddingY + 32) * var4; // L: 10923
-					if (var13 < 20) { // L: 10924
-						var6 += var0.inventoryXOffsets[var13]; // L: 10925
-						var7 += var0.inventoryYOffsets[var13]; // L: 10926
-					}
-
-					if (var1 >= var6 && var2 >= var7 && var1 < var6 + 32 && var2 < var7 + 32) { // L: 10928
-						Client.dragItemSlotDestination = var13; // L: 10929
-						class161.hoveredItemContainer = var0; // L: 10930
-						if (var0.itemIds[var13] > 0) { // L: 10931
-							ItemComposition var8 = EnumComposition.ItemComposition_get(var0.itemIds[var13] - 1); // L: 10932
-							if (Client.isItemSelected == 1 && class120.method2759(class124.getWidgetFlags(var0))) { // L: 10933
-								if (var0.id != ModeWhere.selectedItemWidget || var13 != EnumComposition.selectedItemSlot) { // L: 10934
-									class4.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + class122.colorStartTag(16748608) + var8.name, 31, var8.id, var13, var0.id); // L: 10935
-								}
-							} else if (Client.isSpellSelected && class120.method2759(class124.getWidgetFlags(var0))) { // L: 10939
-								if ((HealthBar.selectedSpellFlags & 16) == 16) { // L: 10940
-									class4.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + class122.colorStartTag(16748608) + var8.name, 32, var8.id, var13, var0.id); // L: 10941
-								}
-							} else {
-								String[] var9 = var8.inventoryActions; // L: 10946
-								int var10 = -1; // L: 10947
-								if (Client.shiftClickDrop) { // L: 10948
-									boolean var11 = Client.tapToDrop || KeyHandler.KeyHandler_pressedKeys[81]; // L: 10951
-									if (var11) { // L: 10953
-										var10 = var8.getShiftClickIndex(); // L: 10954
-									}
-								}
-
-								int var16;
-								if (class120.method2759(class124.getWidgetFlags(var0))) { // L: 10957
-									for (var16 = 4; var16 >= 3; --var16) { // L: 10958
-										if (var16 != var10) { // L: 10959
-											class150.addWidgetItemMenuItem(var0, var8, var13, var16, false); // L: 10960
-										}
-									}
-								}
-
-								if (FontName.method7386(class124.getWidgetFlags(var0))) { // L: 10963
-									class4.insertMenuItemNoShift("Use", class122.colorStartTag(16748608) + var8.name, 38, var8.id, var13, var0.id); // L: 10964
-								}
-
-								if (class120.method2759(class124.getWidgetFlags(var0))) { // L: 10967
-									for (var16 = 2; var16 >= 0; --var16) { // L: 10968
-										if (var10 != var16) { // L: 10969
-											class150.addWidgetItemMenuItem(var0, var8, var13, var16, false); // L: 10970
-										}
-									}
-
-									if (var10 >= 0) { // L: 10972
-										class150.addWidgetItemMenuItem(var0, var8, var13, var10, true); // L: 10973
-									}
-								}
-
-								var9 = var0.itemActions; // L: 10976
-								if (var9 != null) { // L: 10977
-									for (var16 = 4; var16 >= 0; --var16) { // L: 10978
-										if (var9[var16] != null) { // L: 10979
-											byte var12 = 0; // L: 10980
-											if (var16 == 0) { // L: 10981
-												var12 = 39;
-											}
-
-											if (var16 == 1) { // L: 10982
-												var12 = 40;
-											}
-
-											if (var16 == 2) { // L: 10983
-												var12 = 41;
-											}
-
-											if (var16 == 3) { // L: 10984
-												var12 = 42;
-											}
-
-											if (var16 == 4) { // L: 10985
-												var12 = 43;
-											}
-
-											class4.insertMenuItemNoShift(var9[var16], class122.colorStartTag(16748608) + var8.name, var12, var8.id, var13, var0.id); // L: 10986
-										}
-									}
-								}
-
-								class4.insertMenuItemNoShift("Examine", class122.colorStartTag(16748608) + var8.name, 1005, var8.id, var13, var0.id); // L: 10991
-							}
-						}
-					}
-
-					++var13; // L: 10996
-				}
-			}
-		}
-
-		if (var0.isIf3) { // L: 11000
-			if (Client.isSpellSelected) { // L: 11001
-				if (class67.method1885(class124.getWidgetFlags(var0)) && (HealthBar.selectedSpellFlags & 32) == 32) { // L: 11002
-					class4.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + var0.dataText, 58, 0, var0.childIndex, var0.id); // L: 11003
-				}
-			} else {
-				for (var13 = 9; var13 >= 5; --var13) { // L: 11008
-					String var14 = class14.method157(var0, var13); // L: 11009
-					if (var14 != null) { // L: 11010
-						class4.insertMenuItemNoShift(var14, var0.dataText, 1007, var13 + 1, var0.childIndex, var0.id); // L: 11011
-					}
-				}
-
-				var3 = WorldMapIcon_0.Widget_getSpellActionName(var0); // L: 11015
-				if (var3 != null) { // L: 11016
-					class4.insertMenuItemNoShift(var3, var0.dataText, 25, 0, var0.childIndex, var0.id); // L: 11017
-				}
-
-				for (var4 = 4; var4 >= 0; --var4) { // L: 11020
-					String var5 = class14.method157(var0, var4); // L: 11021
-					if (var5 != null) { // L: 11022
-						class268.insertMenuItem(var5, var0.dataText, 57, var4 + 1, var0.childIndex, var0.id, var0.prioritizeMenuEntry); // L: 11023
-					}
-				}
-
-				if (FontName.method7385(class124.getWidgetFlags(var0))) { // L: 11027
-					class4.insertMenuItemNoShift("Continue", "", 30, 0, var0.childIndex, var0.id); // L: 11028
-				}
-			}
-		}
-
-	} // L: 11033
-
-	@ObfuscatedName("jm")
-	@ObfuscatedSignature(
-		descriptor = "(ZB)V",
-		garbageValue = "-112"
-	)
-	@Export("setTapToDrop")
-	static void setTapToDrop(boolean var0) {
-		Client.tapToDrop = var0; // L: 11036
-	} // L: 11037
+		int var6 = (var3 - 32 - var5) * var2 / (var4 - var3); // L: 11293
+		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var6 + var1 + 16, 16, var5, Client.field590); // L: 11294
+		Rasterizer2D.method9625(var0, var6 + var1 + 16, var5, Client.field592); // L: 11295
+		Rasterizer2D.method9625(var0 + 1, var6 + var1 + 16, var5, Client.field592); // L: 11296
+		Rasterizer2D.method9581(var0, var6 + var1 + 16, 16, Client.field592); // L: 11297
+		Rasterizer2D.method9581(var0, var6 + var1 + 17, 16, Client.field592); // L: 11298
+		Rasterizer2D.method9625(var0 + 15, var6 + var1 + 16, var5, Client.field624); // L: 11299
+		Rasterizer2D.method9625(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field624); // L: 11300
+		Rasterizer2D.method9581(var0, var6 + var5 + var1 + 15, 16, Client.field624); // L: 11301
+		Rasterizer2D.method9581(var0 + 1, var5 + var6 + var1 + 14, 15, Client.field624); // L: 11302
+	} // L: 11303
 }

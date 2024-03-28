@@ -1,27 +1,33 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mr")
-public final class class342 {
-	@ObfuscatedName("fw")
-	@ObfuscatedSignature(
-		descriptor = "(S)Z",
-		garbageValue = "208"
+@ObfuscatedName("no")
+public class class342 {
+	@ObfuscatedName("aq")
+	@ObfuscatedGetter(
+		intValue = 876070529
 	)
-	static boolean method6312() {
-		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1634
-			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) { // L: 1635
-				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone); // L: 1636
-				if (!var0.isLoaded()) { // L: 1637
-					return false;
-				}
+	@Export("canvasHeight")
+	public static int canvasHeight;
 
-				++Client.archiveLoadersDone; // L: 1638
-			}
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "-2054843409"
+	)
+	@Export("Widget_unpackTargetMask")
+	public static int Widget_unpackTargetMask(int var0) {
+		return var0 >> 11 & 63; // L: 9
+	}
 
-			return true; // L: 1640
-		} else {
-			return true; // L: 1639
-		}
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "(Lur;I)Ljava/lang/String;",
+		garbageValue = "1549371491"
+	)
+	public static String method6308(Buffer var0) {
+		return class150.method3199(var0, 32767); // L: 64
 	}
 }

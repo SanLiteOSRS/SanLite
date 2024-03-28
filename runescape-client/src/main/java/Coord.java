@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kd")
+@ObfuscatedName("nn")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = 1382052049
+		intValue = 2091700133
 	)
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 798305999
+		intValue = 1081214275
 	)
 	@Export("x")
 	public int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -1552762679
+		intValue = 1464789173
 	)
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkd;)V"
+		descriptor = "(Lnn;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane; // L: 15
@@ -52,107 +52,65 @@ public class Coord {
 
 	} // L: 27
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "34"
+		descriptor = "(I)I",
+		garbageValue = "804057570"
 	)
 	@Export("packed")
 	public int packed() {
-		int var2 = this.plane; // L: 31
-		int var3 = this.x; // L: 32
-		int var4 = this.y; // L: 33
-		int var1 = var2 << 28 | var3 << 14 | var4; // L: 35
-		return var1; // L: 37
+		return Actor.method2392(this.plane, this.x, this.y); // L: 30
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(Lkd;I)Z",
-		garbageValue = "-326273528"
+		descriptor = "(Lnn;I)Z",
+		garbageValue = "655102500"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
-		if (this.plane != var1.plane) { // L: 48
+		if (this.plane != var1.plane) { // L: 45
 			return false;
-		} else if (this.x != var1.x) { // L: 49
+		} else if (this.x != var1.x) { // L: 46
 			return false;
 		} else {
-			return this.y == var1.y; // L: 50
+			return this.y == var1.y; // L: 47
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "65710498"
+		descriptor = "(Ljava/lang/String;S)Ljava/lang/String;",
+		garbageValue = "503"
 	)
 	@Export("toString")
 	String toString(String var1) {
-		return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63); // L: 64
+		return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63); // L: 61
 	}
 
 	public boolean equals(Object var1) {
-		if (this == var1) { // L: 42
+		if (this == var1) { // L: 39
 			return true;
 		} else {
-			return !(var1 instanceof Coord) ? false : this.equalsCoord((Coord)var1); // L: 43 44
+			return !(var1 instanceof Coord) ? false : this.equalsCoord((Coord)var1); // L: 40 41
 		}
 	}
 
 	public int hashCode() {
-		return this.packed(); // L: 56
+		return this.packed(); // L: 53
 	}
 
 	public String toString() {
-		return this.toString(","); // L: 60
+		return this.toString(","); // L: 57
 	}
 
-	@ObfuscatedName("in")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;I)V",
-		garbageValue = "1586830806"
+		descriptor = "(II)Lcn;",
+		garbageValue = "939558819"
 	)
-	static void method5549(int var0, String var1) {
-		int var2 = Players.Players_count; // L: 9514
-		int[] var3 = Players.Players_indices; // L: 9515
-		boolean var4 = false; // L: 9516
-		Username var5 = new Username(var1, HealthBarDefinition.loginType); // L: 9517
-
-		for (int var6 = 0; var6 < var2; ++var6) { // L: 9518
-			Player var7 = Client.players[var3[var6]]; // L: 9519
-			if (var7 != null && var7 != class101.localPlayer && var7.username != null && var7.username.equals(var5)) { // L: 9520
-				PacketBufferNode var8;
-				if (var0 == 1) { // L: 9521
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2970, Client.packetWriter.isaacCipher); // L: 9523
-					var8.packetBuffer.writeShort(var3[var6]); // L: 9524
-					var8.packetBuffer.writeByte(0); // L: 9525
-					Client.packetWriter.addNode(var8); // L: 9526
-				} else if (var0 == 4) { // L: 9528
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2991, Client.packetWriter.isaacCipher); // L: 9530
-					var8.packetBuffer.method7762(0); // L: 9531
-					var8.packetBuffer.method7863(var3[var6]); // L: 9532
-					Client.packetWriter.addNode(var8); // L: 9533
-				} else if (var0 == 6) { // L: 9535
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2965, Client.packetWriter.isaacCipher); // L: 9537
-					var8.packetBuffer.writeIntME(var3[var6]); // L: 9538
-					var8.packetBuffer.method7762(0); // L: 9539
-					Client.packetWriter.addNode(var8); // L: 9540
-				} else if (var0 == 7) { // L: 9542
-					var8 = EnumComposition.getPacketBufferNode(ClientPacket.field2947, Client.packetWriter.isaacCipher); // L: 9544
-					var8.packetBuffer.writeShort(var3[var6]); // L: 9545
-					var8.packetBuffer.writeByte(0); // L: 9546
-					Client.packetWriter.addNode(var8); // L: 9547
-				}
-
-				var4 = true; // L: 9549
-				break;
-			}
-		}
-
-		if (!var4) { // L: 9553
-			class290.addGameMessage(4, "", "Unable to find " + var1);
-		}
-
-	} // L: 9554
+	@Export("Messages_getMessage")
+	static Message Messages_getMessage(int var0) {
+		return (Message)Messages.Messages_hashTable.get((long)var0); // L: 44
+	}
 }

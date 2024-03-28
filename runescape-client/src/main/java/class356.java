@@ -1,13 +1,14 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mu")
+@ObfuscatedName("nv")
 public class class356 {
-	@ObfuscatedName("ij")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "Lgg;"
+		descriptor = "(CB)C",
+		garbageValue = "68"
 	)
-	@Export("scene")
-	static Scene scene;
+	static char method6844(char var0) {
+		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0; // L: 63 64
+	}
 }

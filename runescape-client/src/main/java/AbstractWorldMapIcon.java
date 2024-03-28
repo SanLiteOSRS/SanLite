@@ -4,78 +4,84 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("im")
+@ObfuscatedName("lh")
 @Implements("AbstractWorldMapIcon")
 public abstract class AbstractWorldMapIcon {
-	@ObfuscatedName("g")
+	@ObfuscatedName("as")
+	@ObfuscatedGetter(
+		intValue = 640013743
+	)
+	@Export("Interpreter_stringStackSize")
+	static int Interpreter_stringStackSize;
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lnn;"
 	)
 	@Export("coord2")
 	public final Coord coord2;
-	@ObfuscatedName("w")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lnn;"
 	)
 	@Export("coord1")
 	public final Coord coord1;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = 1729910963
+		intValue = 654240679
 	)
 	@Export("screenX")
 	int screenX;
-	@ObfuscatedName("i")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = -218016767
+		intValue = 1395795845
 	)
 	@Export("screenY")
 	int screenY;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkd;Lkd;)V"
+		descriptor = "(Lnn;Lnn;)V"
 	)
 	AbstractWorldMapIcon(Coord var1, Coord var2) {
 		this.coord1 = var1; // L: 13
 		this.coord2 = var2; // L: 14
 	} // L: 15
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "781292504"
+		garbageValue = "-1650655075"
 	)
 	@Export("getElement")
 	public abstract int getElement();
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(I)Liz;",
-		garbageValue = "1473728"
+		descriptor = "(I)Lkz;",
+		garbageValue = "-2083618685"
 	)
 	@Export("getLabel")
 	abstract WorldMapLabel getLabel();
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1263012412"
+		garbageValue = "139624089"
 	)
 	@Export("getSubWidth")
 	abstract int getSubWidth();
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-34"
+		descriptor = "(I)I",
+		garbageValue = "-1778353617"
 	)
 	@Export("getSubHeight")
 	abstract int getSubHeight();
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "1869827620"
+		descriptor = "(IIB)Z",
+		garbageValue = "10"
 	)
 	@Export("fitsScreen")
 	boolean fitsScreen(int var1, int var2) {
@@ -86,27 +92,27 @@ public abstract class AbstractWorldMapIcon {
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "75"
+		garbageValue = "-96"
 	)
 	@Export("hasValidElement")
 	boolean hasValidElement() {
 		return this.getElement() >= 0; // L: 33
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)Z",
-		garbageValue = "0"
+		descriptor = "(III)Z",
+		garbageValue = "523862636"
 	)
 	@Export("elementFitsScreen")
 	boolean elementFitsScreen(int var1, int var2) {
 		if (!this.hasValidElement()) { // L: 37
 			return false;
 		} else {
-			WorldMapElement var3 = class432.WorldMapElement_get(this.getElement()); // L: 38
+			WorldMapElement var3 = class340.WorldMapElement_get(this.getElement()); // L: 38
 			int var4 = this.getSubWidth(); // L: 39
 			int var5 = this.getSubHeight(); // L: 40
 			switch(var3.horizontalAlignment.value) { // L: 41
@@ -129,17 +135,19 @@ public abstract class AbstractWorldMapIcon {
 
 			switch(var3.verticalAlignment.value) { // L: 58
 			case 0:
-				if (var2 <= this.screenY - var5 || var2 > this.screenY) { // L: 71
-					return false;
+				if (var2 > this.screenY - var5 && var2 <= this.screenY) { // L: 66
+					break;
 				}
-				break;
+
+				return false;
 			case 1:
-				if (var2 < this.screenY || var2 >= var5 + this.screenY) { // L: 66
-					return false;
+				if (var2 >= this.screenY && var2 < var5 + this.screenY) { // L: 61
+					break;
 				}
-				break;
+
+				return false;
 			case 2:
-				if (var2 < this.screenY - var5 / 2 || var2 > var5 / 2 + this.screenY) { // L: 61
+				if (var2 < this.screenY - var5 / 2 || var2 > var5 / 2 + this.screenY) { // L: 71
 					return false;
 				}
 			}
@@ -148,10 +156,10 @@ public abstract class AbstractWorldMapIcon {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
 		descriptor = "(III)Z",
-		garbageValue = "-1782115036"
+		garbageValue = "-908887082"
 	)
 	@Export("labelFitsScreen")
 	boolean labelFitsScreen(int var1, int var2) {
@@ -163,5 +171,39 @@ public abstract class AbstractWorldMapIcon {
 		} else {
 			return false; // L: 85
 		}
+	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1735548780"
+	)
+	static final void method5748() {
+		class6.method40("Your friend list is full. Max of 200 for free users, and 400 for members"); // L: 126
+	} // L: 127
+
+	@ObfuscatedName("hs")
+	@ObfuscatedSignature(
+		descriptor = "(Lig;IIILde;I)V",
+		garbageValue = "-600779663"
+	)
+	static void method5729(SequenceDefinition var0, int var1, int var2, int var3, Actor var4) {
+		if (Client.soundEffectCount < 50) { // L: 3816
+			if (var0.field2374 != null && var1 < var0.field2374.length && var0.field2374[var1] != null) { // L: 3817
+				int var5 = var0.field2374[var1].field2241 & 31; // L: 3818
+				if ((var5 <= 0 || NPC.clientPreferences.method2475() != 0) && (var5 != 0 || NPC.clientPreferences.method2473() != 0)) { // L: 3819
+					class311.method5913(var0.field2374[var1], var2, var3, var4 == class133.localPlayer); // L: 3820
+				}
+			}
+		}
+	} // L: 3821
+
+	@ObfuscatedName("lj")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1795217828"
+	)
+	static final boolean method5750() {
+		return Client.isMenuOpen; // L: 9281
 	}
 }

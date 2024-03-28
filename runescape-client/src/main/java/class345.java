@@ -1,26 +1,40 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mn")
-public final class class345 {
-	@ObfuscatedName("z")
+@ObfuscatedName("ny")
+public class class345 {
+	@ObfuscatedName("fj")
 	@ObfuscatedSignature(
-		descriptor = "Lqu;"
+		descriptor = "Lrj;"
 	)
-	@Export("options_buttons_0Sprite")
-	static IndexedSprite options_buttons_0Sprite;
-	@ObfuscatedName("c")
-	final Object field4159;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 1922417529
+	static GraphicsDefaults field3680;
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "Lnf;"
 	)
-	int field4158;
+	public class347 field3674;
+	@ObfuscatedName("ah")
+	@ObfuscatedSignature(
+		descriptor = "Lna;"
+	)
+	class341 field3672;
+	@ObfuscatedName("af")
+	@ObfuscatedSignature(
+		descriptor = "Lbz;"
+	)
+	class27 field3678;
+	@ObfuscatedName("at")
+	public Object[] field3671;
+	@ObfuscatedName("an")
+	public Object[] field3675;
+	@ObfuscatedName("ao")
+	public Object[] field3676;
+	@ObfuscatedName("ab")
+	public Object[] field3677;
 
-	class345(Object var1, int var2) {
-		this.field4159 = var1; // L: 170
-		this.field4158 = var2; // L: 171
-	} // L: 172
+	class345() {
+		this.field3674 = new class347(); // L: 6
+		this.field3672 = new class341(); // L: 7
+		this.field3678 = new class27(); // L: 8
+	} // L: 14
 }

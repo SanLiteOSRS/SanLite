@@ -1,22 +1,30 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("el")
+@ObfuscatedName("fv")
 public abstract class class144 extends Node {
+	@ObfuscatedName("tp")
+	@ObfuscatedSignature(
+		descriptor = "Lby;"
+	)
+	@Export("pcmPlayer1")
+	static PcmPlayer pcmPlayer1;
+
 	class144() {
-	} // L: 49
+	} // L: 68
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(Lqt;I)V",
-		garbageValue = "355261812"
+		descriptor = "(Lur;I)V",
+		garbageValue = "1253598633"
 	)
-	abstract void vmethod3137(Buffer var1);
+	abstract void vmethod3420(Buffer var1);
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		descriptor = "(Lex;I)V",
-		garbageValue = "1368590037"
+		descriptor = "(Lfp;B)V",
+		garbageValue = "-123"
 	)
-	abstract void vmethod3138(ClanChannel var1);
+	abstract void vmethod3419(ClanSettings var1);
 }

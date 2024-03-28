@@ -1,55 +1,78 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bn")
+@ObfuscatedName("ce")
 @Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
-	@ObfuscatedName("ek")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "[Lvl;"
 	)
-	@Export("archive10")
-	static Archive archive10;
-	@ObfuscatedName("hp")
-	@ObfuscatedGetter(
-		intValue = 998883341
-	)
-	static int field466;
+	@Export("title_muteSprite")
+	static IndexedSprite[] title_muteSprite;
 
 	ApproximateRouteStrategy() {
-	} // L: 12551
+	} // L: 13147
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(IIILgv;I)Z",
-		garbageValue = "1278947831"
+		descriptor = "(IIILix;I)Z",
+		garbageValue = "173564567"
 	)
 	@Export("hasArrived")
-	public boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
-		return var2 == super.approxDestinationX && var3 == super.approxDestinationY; // L: 12555
+	protected boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
+		return var2 == super.approxDestinationX && var3 == super.approxDestinationY; // L: 13151
 	}
 
-	@ObfuscatedName("lt")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
+		descriptor = "(I)V",
+		garbageValue = "1464238055"
+	)
+	static void method1181() {
+		Tiles.Tiles_minPlane = 99; // L: 45
+		Tiles.field1030 = new short[4][104][104]; // L: 46
+		AccessFile.field5129 = new short[4][104][104]; // L: 47
+		Tiles.field1031 = new byte[4][104][104]; // L: 48
+		Tiles.field1028 = new byte[4][104][104]; // L: 49
+		class168.field1833 = new int[4][105][105]; // L: 50
+		TextureProvider.field2750 = new byte[4][105][105]; // L: 51
+		class306.field3195 = new int[105][105]; // L: 52
+		World.Tiles_hue = new int[104]; // L: 53
+		WorldMapLabelSize.Tiles_saturation = new int[104]; // L: 54
+		class539.Tiles_lightness = new int[104]; // L: 55
+		Tiles.Tiles_hueMultiplier = new int[104]; // L: 56
+		class384.field4473 = new int[104]; // L: 57
+	} // L: 58
+
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		descriptor = "(Loc;B)V",
 		garbageValue = "1"
 	)
-	static final void method1086(int var0, int var1) {
-		ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : class150.guestClanChannel; // L: 12249
-		if (var2 != null && var1 >= 0 && var1 < var2.method3113()) { // L: 12250
-			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1); // L: 12251
-			if (var3.rank == -1) { // L: 12252
-				String var4 = var3.username.getName(); // L: 12253
-				PacketBufferNode var5 = EnumComposition.getPacketBufferNode(ClientPacket.field2914, Client.packetWriter.isaacCipher); // L: 12254
-				var5.packetBuffer.writeByte(3 + ScriptEvent.stringCp1252NullTerminatedByteSize(var4)); // L: 12255
-				var5.packetBuffer.writeByte(var0); // L: 12256
-				var5.packetBuffer.writeShort(var1); // L: 12257
-				var5.packetBuffer.writeStringCp1252NullTerminated(var4); // L: 12258
-				Client.packetWriter.addNode(var5); // L: 12259
+	public static void method1185(AbstractArchive var0) {
+		VarcInt.VarcInt_archive = var0; // L: 17
+	} // L: 18
+
+	@ObfuscatedName("mq")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-1991559965"
+	)
+	static final void method1186(int var0) {
+		if (class243.field2620.method6285(var0)) { // L: 12275
+			Widget[] var1 = class243.field2620.field3645[var0]; // L: 12276
+
+			for (int var2 = 0; var2 < var1.length; ++var2) { // L: 12277
+				Widget var3 = var1[var2]; // L: 12278
+				if (var3 != null) { // L: 12279
+					var3.modelFrame = 0; // L: 12280
+					var3.modelFrameCycle = 0; // L: 12281
+				}
 			}
+
 		}
-	} // L: 12260
+	} // L: 12283
 }

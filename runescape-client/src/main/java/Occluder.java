@@ -1,144 +1,132 @@
+import java.lang.management.GarbageCollectorMXBean;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gb")
+@ObfuscatedName("jo")
 @Implements("Occluder")
 public final class Occluder {
-	@ObfuscatedName("uw")
-	@ObfuscatedSignature(
-		descriptor = "Los;"
-	)
-	@Export("platformInfo")
-	static PlatformInfo platformInfo;
-	@ObfuscatedName("c")
+	@ObfuscatedName("bq")
+	@Export("garbageCollector")
+	static GarbageCollectorMXBean garbageCollector;
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -1913259521
+		intValue = 1792594373
 	)
 	@Export("minTileX")
 	int minTileX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -743836359
+		intValue = 1966375909
 	)
 	@Export("maxTileX")
 	int maxTileX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = -1643298167
+		intValue = 335146951
 	)
 	@Export("minTileY")
 	int minTileY;
-	@ObfuscatedName("f")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -1894194977
+		intValue = -524388883
 	)
 	@Export("maxTileY")
 	int maxTileY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = -741467087
+		intValue = 879712363
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("e")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		intValue = 360875993
+		intValue = -541373797
 	)
 	@Export("minX")
 	int minX;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = -1324054405
+		intValue = 1903069961
 	)
 	@Export("maxX")
 	int maxX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = 1977577685
+		intValue = -619378321
 	)
 	@Export("minZ")
 	int minZ;
-	@ObfuscatedName("y")
+	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = 690008559
+		intValue = 1348505357
 	)
 	@Export("maxZ")
 	int maxZ;
-	@ObfuscatedName("i")
+	@ObfuscatedName("al")
 	@ObfuscatedGetter(
-		intValue = 638283975
+		intValue = 1085992831
 	)
 	@Export("minY")
 	int minY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 1747045819
+		intValue = 1767305469
 	)
 	@Export("maxY")
 	int maxY;
-	@ObfuscatedName("t")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -1792742847
+		intValue = -1472768343
 	)
-	int field2470;
-	@ObfuscatedName("z")
+	int field2735;
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = 963802065
+		intValue = 495265463
 	)
-	int field2472;
-	@ObfuscatedName("r")
+	int field2740;
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = -1423983461
+		intValue = 1600859245
 	)
-	int field2466;
-	@ObfuscatedName("u")
+	int field2737;
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 942298147
+		intValue = -642164565
 	)
-	int field2467;
-	@ObfuscatedName("k")
+	int field2738;
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -740983489
+		intValue = 1984607757
 	)
-	int field2468;
-	@ObfuscatedName("h")
+	int field2739;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = 336673989
+		intValue = -572021331
 	)
-	int field2462;
-	@ObfuscatedName("x")
+	int field2724;
+	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = 680765335
+		intValue = -351512567
 	)
-	int field2473;
+	int field2731;
 
 	Occluder() {
 	} // L: 23
 
-	@ObfuscatedName("kc")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-49313522"
+		descriptor = "(Lfm;FI)F",
+		garbageValue = "1485039685"
 	)
-	static final void method4354() {
-		PacketBufferNode var0 = EnumComposition.getPacketBufferNode(ClientPacket.field2987, Client.packetWriter.isaacCipher); // L: 11980
-		Client.packetWriter.addNode(var0); // L: 11981
-		Interpreter.field842 = true; // L: 11982
-
-		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) { // L: 11983
-			if (var1.type == 0 || var1.type == 3) { // L: 11984
-				MusicPatchPcmStream.closeInterface(var1, true);
-			}
+	static float method4897(class131 var0, float var1) {
+		if (var0 == null) { // L: 244
+			return 0.0F; // L: 245
+		} else {
+			float var2 = var1 - var0.field1560; // L: 247
+			return var0.field1569 + ((var0.field1580 + var0.field1581 * var2) * var2 + var0.field1564) * var2; // L: 248
 		}
-
-		if (Client.meslayerContinueWidget != null) { // L: 11986
-			ChatChannel.invalidateWidget(Client.meslayerContinueWidget); // L: 11987
-			Client.meslayerContinueWidget = null; // L: 11988
-		}
-
-		Interpreter.field842 = false; // L: 11990
-	} // L: 11991
+	}
 }

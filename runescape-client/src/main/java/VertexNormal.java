@@ -4,30 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hj")
+@ObfuscatedName("ji")
 @Implements("VertexNormal")
 public class VertexNormal {
-	@ObfuscatedName("v")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = 852204679
+		intValue = -1895811385
+	)
+	@Export("gameCyclesToDo")
+	static int gameCyclesToDo;
+	@ObfuscatedName("az")
+	@ObfuscatedGetter(
+		intValue = 1599042677
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = -2028083131
+		intValue = -684966753
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("f")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		intValue = 1173750943
+		intValue = 531859923
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = -860468825
+		intValue = 1798581129
 	)
 	@Export("magnitude")
 	int magnitude;
@@ -36,7 +42,7 @@ public class VertexNormal {
 	} // L: 9
 
 	@ObfuscatedSignature(
-		descriptor = "(Lhj;)V"
+		descriptor = "(Lji;)V"
 	)
 	VertexNormal(VertexNormal var1) {
 		this.x = var1.x; // L: 12
@@ -45,62 +51,41 @@ public class VertexNormal {
 		this.magnitude = var1.magnitude; // L: 15
 	} // L: 16
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "886166360"
+		descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "0"
 	)
-	public static boolean method4528(int var0) {
-		return var0 >= 0 && var0 < 112 ? KeyHandler.field136[var0] : false;
-	}
+	public static String method5102(String var0) {
+		int var1 = var0.length(); // L: 161
+		char[] var2 = new char[var1]; // L: 162
+		byte var3 = 2; // L: 163
 
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "([BIILgg;[Lgv;I)V",
-		garbageValue = "-1413330538"
-	)
-	static final void method4527(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
-		Buffer var5 = new Buffer(var0); // L: 228
-		int var6 = -1; // L: 229
-
-		while (true) {
-			int var7 = var5.method7770(); // L: 231
-			if (var7 == 0) { // L: 232
-				return; // L: 256
+		for (int var4 = 0; var4 < var1; ++var4) { // L: 164
+			char var5 = var0.charAt(var4); // L: 165
+			if (var3 == 0) { // L: 166
+				var5 = Character.toLowerCase(var5);
+			} else if (var3 == 2 || Character.isUpperCase(var5)) { // L: 167
+				var5 = class356.method6844(var5);
 			}
 
-			var6 += var7; // L: 233
-			int var8 = 0; // L: 234
-
-			while (true) {
-				int var9 = var5.readUShortSmart(); // L: 236
-				if (var9 == 0) { // L: 237
-					break;
-				}
-
-				var8 += var9 - 1; // L: 238
-				int var10 = var8 & 63; // L: 239
-				int var11 = var8 >> 6 & 63; // L: 240
-				int var12 = var8 >> 12; // L: 241
-				int var13 = var5.readUnsignedByte(); // L: 242
-				int var14 = var13 >> 2; // L: 243
-				int var15 = var13 & 3; // L: 244
-				int var16 = var11 + var1; // L: 245
-				int var17 = var10 + var2; // L: 246
-				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) { // L: 247
-					int var18 = var12; // L: 248
-					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) { // L: 249
-						var18 = var12 - 1;
+			if (Character.isLetter(var5)) { // L: 168
+				var3 = 0;
+			} else if (var5 != '.' && var5 != '?' && var5 != '!') { // L: 169
+				if (Character.isSpaceChar(var5)) { // L: 170
+					if (var3 != 2) { // L: 171
+						var3 = 1;
 					}
-
-					CollisionMap var19 = null; // L: 250
-					if (var18 >= 0) { // L: 251
-						var19 = var4[var18];
-					}
-
-					class268.addObjects(var12, var16, var17, var6, var15, var14, var3, var19); // L: 252
+				} else {
+					var3 = 1; // L: 173
 				}
+			} else {
+				var3 = 2;
 			}
+
+			var2[var4] = var5; // L: 174
 		}
+
+		return new String(var2); // L: 176
 	}
 }

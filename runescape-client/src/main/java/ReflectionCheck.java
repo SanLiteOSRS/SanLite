@@ -5,176 +5,162 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("aj")
+@ObfuscatedName("bs")
 @Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
-	@ObfuscatedName("ba")
+	@ObfuscatedName("wh")
 	@ObfuscatedGetter(
-		intValue = 1448497001
+		intValue = 161780905
 	)
-	static int field247;
-	@ObfuscatedName("c")
+	@Export("foundItemIdCount")
+	static int foundItemIdCount;
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 1169863591
+		intValue = -1102759223
+	)
+	@Export("loginBoxCenter")
+	static int loginBoxCenter;
+	@ObfuscatedName("ul")
+	@ObfuscatedGetter(
+		intValue = -1220442589
+	)
+	static int field244;
+	@ObfuscatedName("az")
+	@ObfuscatedGetter(
+		intValue = -501813555
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 181292073
+		intValue = 522886235
 	)
 	@Export("size")
 	int size;
-	@ObfuscatedName("q")
+	@ObfuscatedName("af")
 	@Export("operations")
 	int[] operations;
-	@ObfuscatedName("f")
-	@Export("intReplaceValues")
-	int[] intReplaceValues;
-	@ObfuscatedName("j")
+	@ObfuscatedName("at")
 	@Export("creationErrors")
 	int[] creationErrors;
-	@ObfuscatedName("e")
+	@ObfuscatedName("an")
 	@Export("fields")
 	Field[] fields;
-	@ObfuscatedName("g")
+	@ObfuscatedName("ao")
+	@Export("intReplaceValues")
+	int[] intReplaceValues;
+	@ObfuscatedName("ab")
 	@Export("methods")
 	Method[] methods;
-	@ObfuscatedName("w")
+	@ObfuscatedName("aw")
 	@Export("arguments")
 	byte[][][] arguments;
 
 	ReflectionCheck() {
 	} // L: 17
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "1131201261"
-	)
-	@Export("changeWorldSelectSorting")
-	static void changeWorldSelectSorting(int var0, int var1) {
-		int[] var2 = new int[4]; // L: 63
-		int[] var3 = new int[4]; // L: 64
-		var2[0] = var0; // L: 65
-		var3[0] = var1; // L: 66
-		int var4 = 1; // L: 67
-
-		for (int var5 = 0; var5 < 4; ++var5) { // L: 68
-			if (World.World_sortOption1[var5] != var0) { // L: 69
-				var2[var4] = World.World_sortOption1[var5]; // L: 70
-				var3[var4] = World.World_sortOption2[var5]; // L: 71
-				++var4; // L: 72
-			}
-		}
-
-		World.World_sortOption1 = var2; // L: 75
-		World.World_sortOption2 = var3; // L: 76
-		MouseRecorder.sortWorlds(class362.World_worlds, 0, class362.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2); // L: 77
-	} // L: 78
-
-	@ObfuscatedName("q")
+	@ObfuscatedName("he")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1378535469"
+		garbageValue = "570300148"
 	)
-	public static void method579() {
-		class272.midiPcmStream.clear();
-		class272.musicPlayerStatus = 1;
-		class272.musicTrackArchive = null; // L: 43
-	}
+	static final void method670() {
+		for (int var0 = 0; var0 < Client.soundEffectCount; ++var0) { // L: 3734
+			int var10002 = Client.queuedSoundEffectDelays[var0]--; // L: 3735
+			if (Client.queuedSoundEffectDelays[var0] >= -10) { // L: 3736
+				SoundEffect var11 = Client.soundEffects[var0]; // L: 3749
+				if (var11 == null) { // L: 3750
+					Object var10000 = null; // L: 3751
+					var11 = SoundEffect.readSoundEffect(class141.archive4, Client.soundEffectIds[var0], 0);
+					if (var11 == null) { // L: 3752
+						continue;
+					}
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIS)V",
-		garbageValue = "-8124"
-	)
-	@Export("itemContainerSetItem")
-	static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
-		ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0); // L: 39
-		if (var4 == null) { // L: 40
-			var4 = new ItemContainer(); // L: 41
-			ItemContainer.itemContainers.put(var4, (long)var0); // L: 42
-		}
-
-		if (var4.ids.length <= var1) { // L: 44
-			int[] var5 = new int[var1 + 1]; // L: 45
-			int[] var6 = new int[var1 + 1]; // L: 46
-
-			int var7;
-			for (var7 = 0; var7 < var4.ids.length; ++var7) { // L: 47
-				var5[var7] = var4.ids[var7]; // L: 48
-				var6[var7] = var4.quantities[var7]; // L: 49
-			}
-
-			for (var7 = var4.ids.length; var7 < var1; ++var7) { // L: 51
-				var5[var7] = -1; // L: 52
-				var6[var7] = 0; // L: 53
-			}
-
-			var4.ids = var5; // L: 55
-			var4.quantities = var6; // L: 56
-		}
-
-		var4.ids[var1] = var2; // L: 58
-		var4.quantities[var1] = var3; // L: 59
-	} // L: 60
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "-232696808"
-	)
-	static int method576(int var0, Script var1, boolean var2) {
-		Widget var7;
-		if (var0 != ScriptOpcodes.CC_CALLONRESIZE && var0 != ScriptOpcodes.IF_CALLONRESIZE) { // L: 1279
-			int var4;
-			if (var0 == ScriptOpcodes.CC_TRIGGEROP) { // L: 1296
-				var7 = var2 ? class124.scriptDotWidget : GrandExchangeOfferOwnWorldComparator.scriptActiveWidget; // L: 1297
-				var4 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 1298
-				if (var4 >= 1 && var4 <= 10) { // L: 1299
-					class93 var8 = new class93(var4, var7.id, var7.childIndex, var7.itemId); // L: 1302
-					Interpreter.field843.add(var8); // L: 1303
-					return 1; // L: 1304
-				} else {
-					throw new RuntimeException(); // L: 1300
+					int[] var16 = Client.queuedSoundEffectDelays; // L: 3753
+					var16[var0] += var11.calculateDelay();
+					Client.soundEffects[var0] = var11; // L: 3754
 				}
-			} else if (var0 == ScriptOpcodes.IF_TRIGGEROP) { // L: 1306
-				class446.Interpreter_intStackSize -= 3; // L: 1307
-				int var3 = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize]; // L: 1308
-				var4 = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 1]; // L: 1309
-				int var5 = Interpreter.Interpreter_intStack[class446.Interpreter_intStackSize + 2]; // L: 1310
-				if (var5 >= 1 && var5 <= 10) { // L: 1311
-					class93 var6 = new class93(var5, var3, var4, class140.getWidget(var3).itemId); // L: 1314
-					Interpreter.field843.add(var6); // L: 1315
-					return 1; // L: 1316
-				} else {
-					throw new RuntimeException(); // L: 1312
+
+				if (Client.queuedSoundEffectDelays[var0] < 0) { // L: 3760
+					int var2;
+					if (Client.soundLocations[var0] != 0) { // L: 3762
+						int var3 = (Client.soundLocations[var0] & 255) * 128; // L: 3763
+						int var4 = Client.soundLocations[var0] >> 16 & 255; // L: 3764
+						int var5 = Math.abs(var4 * 128 + 64 - class133.localPlayer.x); // L: 3765
+						int var6 = Client.soundLocations[var0] >> 8 & 255; // L: 3766
+						int var7 = Math.abs(var6 * 128 + 64 - class133.localPlayer.y); // L: 3767
+						int var8 = Math.max(var7 + var5 - 128, 0); // L: 3768
+						int var9 = Math.max(((Client.field770[var0] & 31) - 1) * 128, 0); // L: 3769
+						if (var8 >= var3) { // L: 3770
+							Client.queuedSoundEffectDelays[var0] = -100; // L: 3771
+							continue; // L: 3772
+						}
+
+						float var10 = var9 < var3 ? Math.min(Math.max((float)(var3 - var8) / (float)(var3 - var9), 0.0F), 1.0F) : 1.0F; // L: 3774
+						var2 = (int)(var10 * (float)NPC.clientPreferences.method2475()); // L: 3775
+					} else {
+						var2 = NPC.clientPreferences.method2473(); // L: 3777
+					}
+
+					if (var2 > 0) { // L: 3778
+						RawSound var12 = var11.toRawSound().resample(class86.decimator); // L: 3779
+						RawPcmStream var13 = RawPcmStream.createRawPcmStream(var12, 100, var2); // L: 3780
+						var13.setNumLoops(Client.queuedSoundEffectLoops[var0] - 1); // L: 3781
+						HealthBarUpdate.pcmStreamMixer.addSubStream(var13); // L: 3782
+					}
+
+					Client.queuedSoundEffectDelays[var0] = -100; // L: 3784
 				}
 			} else {
-				return 2; // L: 1318
-			}
-		} else if (Interpreter.field850 >= 10) { // L: 1280
-			throw new RuntimeException(); // L: 1281
-		} else {
-			if (var0 >= 2000) { // L: 1284
-				var7 = class140.getWidget(Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]); // L: 1285
-			} else {
-				var7 = var2 ? class124.scriptDotWidget : GrandExchangeOfferOwnWorldComparator.scriptActiveWidget; // L: 1287
-			}
+				--Client.soundEffectCount; // L: 3737
 
-			if (var7.onResize == null) { // L: 1288
-				return 0;
-			} else {
-				ScriptEvent var9 = new ScriptEvent(); // L: 1289
-				var9.widget = var7; // L: 1290
-				var9.args = var7.onResize; // L: 1291
-				var9.field1056 = Interpreter.field850 + 1; // L: 1292
-				Client.scriptEvents.addFirst(var9); // L: 1293
-				return 1; // L: 1294
+				for (int var1 = var0; var1 < Client.soundEffectCount; ++var1) { // L: 3738
+					Client.soundEffectIds[var1] = Client.soundEffectIds[var1 + 1]; // L: 3739
+					Client.soundEffects[var1] = Client.soundEffects[var1 + 1]; // L: 3740
+					Client.queuedSoundEffectLoops[var1] = Client.queuedSoundEffectLoops[var1 + 1]; // L: 3741
+					Client.queuedSoundEffectDelays[var1] = Client.queuedSoundEffectDelays[var1 + 1]; // L: 3742
+					Client.soundLocations[var1] = Client.soundLocations[var1 + 1]; // L: 3743
+					Client.field770[var1] = Client.field770[var1 + 1]; // L: 3744
+				}
+
+				--var0; // L: 3746
 			}
 		}
-	}
+
+		if (Client.playingJingle) { // L: 3787
+			boolean var14;
+			if (!class321.field3498.isEmpty()) { // L: 3790
+				var14 = true; // L: 3791
+			} else if (!class321.field3495.isEmpty() && class321.field3495.get(0) != null && ((class333)class321.field3495.get(0)).field3613 != null) { // L: 3794
+				var14 = ((class333)class321.field3495.get(0)).field3613.isReady(); // L: 3798
+			} else {
+				var14 = false; // L: 3795
+			}
+
+			if (!var14) { // L: 3800
+				if (NPC.clientPreferences.method2503() != 0) { // L: 3801
+					boolean var15 = !class321.field3496.isEmpty(); // L: 3804
+					if (var15) { // L: 3806
+						class190.method3711(UserComparator6.field1508, NPC.clientPreferences.method2503()); // L: 3807
+					}
+				}
+
+				Client.playingJingle = false; // L: 3810
+			}
+		}
+
+	} // L: 3813
+
+	@ObfuscatedName("nc")
+	static final void method669(double var0) {
+		Rasterizer3D.method4564(var0); // L: 12361
+		((TextureProvider)Rasterizer3D.field2611.Rasterizer3D_textureLoader).setBrightness(var0); // L: 12362
+		if (ModeWhere.worldMap != null) { // L: 12363
+			ModeWhere.worldMap.method8728(); // L: 12364
+		}
+
+		ItemComposition.ItemComposition_cachedSprites.clear(); // L: 12367
+		NPC.clientPreferences.method2469(var0); // L: 12369
+	} // L: 12370
 }

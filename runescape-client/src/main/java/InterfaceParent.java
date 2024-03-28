@@ -4,86 +4,71 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cq")
+@ObfuscatedName("dv")
 @Implements("InterfaceParent")
 public class InterfaceParent extends Node {
-	@ObfuscatedName("sm")
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -1985635931
-	)
-	static int field1043;
-	@ObfuscatedName("jy")
-	@ObfuscatedGetter(
-		intValue = -1949636447
-	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 315980607
+		intValue = -325947393
 	)
 	@Export("group")
 	int group;
-	@ObfuscatedName("v")
+	@ObfuscatedName("ah")
 	@ObfuscatedGetter(
-		intValue = 1762148949
+		intValue = -1642221491
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("q")
-	boolean field1040;
+	@ObfuscatedName("af")
+	boolean field1076;
 
 	InterfaceParent() {
-		this.field1040 = false; // L: 8
+		this.field1076 = false; // L: 8
 	} // L: 10
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "896944894"
+		descriptor = "(Lun;I)V",
+		garbageValue = "-1733375835"
 	)
-	public static int method2095(int var0) {
-		long var2 = ViewportMouse.ViewportMouse_entityTags[var0]; // L: 65
-		int var1 = (int)(var2 >>> 7 & 127L); // L: 67
-		return var1; // L: 69
-	}
-
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "(ILbi;ZI)I",
-		garbageValue = "1938605488"
-	)
-	static int method2097(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == 3500) { // L: 2332
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2333
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method764(var3) ? 1 : 0; // L: 2334
-			return 1; // L: 2335
-		} else if (var0 == 3501) { // L: 2337
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2338
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = VertexNormal.method4528(var3) ? 1 : 0; // L: 2339
-			return 1; // L: 2340
-		} else if (var0 == 3502) { // L: 2342
-			var3 = Interpreter.Interpreter_intStack[--class446.Interpreter_intStackSize]; // L: 2343
-			Interpreter.Interpreter_intStack[++class446.Interpreter_intStackSize - 1] = SoundCache.method753(var3) ? 1 : 0; // L: 2344
-			return 1; // L: 2345
-		} else {
-			return 2; // L: 2347
+	@Export("updatePlayer")
+	static final void updatePlayer(PacketBuffer var0) {
+		var0.importIndex(); // L: 38
+		int var1 = Client.localPlayerIndex; // L: 39
+		Player var2 = class133.localPlayer = Client.players[var1] = new Player(); // L: 40
+		var2.index = var1; // L: 41
+		int var3 = var0.readBits(30); // L: 42
+		byte var4 = (byte)(var3 >> 28); // L: 43
+		int var5 = var3 >> 14 & 16383; // L: 44
+		int var6 = var3 & 16383; // L: 45
+		var2.pathX[0] = var5 - GrandExchangeOfferOwnWorldComparator.baseX * 64; // L: 46
+		var2.x = (var2.pathX[0] << 7) + (var2.transformedSize() << 6); // L: 47
+		var2.pathY[0] = var6 - DevicePcmPlayerProvider.baseY * 64; // L: 48
+		var2.y = (var2.pathY[0] << 7) + (var2.transformedSize() << 6); // L: 49
+		class172.Client_plane = var2.plane = var4; // L: 50
+		if (Players.field1395[var1] != null) { // L: 51
+			var2.read(Players.field1395[var1]);
 		}
-	}
 
-	@ObfuscatedName("il")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-62"
-	)
-	@Export("addCancelMenuEntry")
-	static void addCancelMenuEntry() {
-		class125.method2824(); // L: 8428
-		Client.menuActions[0] = "Cancel"; // L: 8429
-		Client.menuTargets[0] = ""; // L: 8430
-		Client.menuOpcodes[0] = 1006; // L: 8431
-		Client.menuShiftClick[0] = false; // L: 8432
-		Client.menuOptionsCount = 1; // L: 8433
-	} // L: 8434
+		Players.Players_count = 0; // L: 52
+		Players.Players_indices[++Players.Players_count - 1] = var1; // L: 53
+		Players.field1382[var1] = 0; // L: 54
+		Players.Players_emptyIdxCount = 0; // L: 55
+
+		for (int var7 = 1; var7 < 2048; ++var7) { // L: 56
+			if (var7 != var1) { // L: 57
+				int var8 = var0.readBits(18); // L: 58
+				int var9 = var8 >> 16; // L: 59
+				int var10 = var8 >> 8 & 597; // L: 60
+				int var11 = var8 & 597; // L: 61
+				Players.Players_regions[var7] = (var10 << 14) + var11 + (var9 << 28); // L: 62
+				Players.Players_orientations[var7] = 0; // L: 63
+				Players.Players_targetIndices[var7] = -1; // L: 64
+				Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var7; // L: 65
+				Players.field1382[var7] = 0; // L: 66
+			}
+		}
+
+		var0.exportIndex(); // L: 68
+	} // L: 69
 }
